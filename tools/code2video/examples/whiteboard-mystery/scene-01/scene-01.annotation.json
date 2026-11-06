@@ -1,0 +1,203 @@
+{
+  "sceneId": "scene-01",
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "storyBasis": "Mở đầu — Hook",
+  "sceneDurationMs": 35000,
+  "elements": [
+    {
+      "id": "scene-01-el1",
+      "label": "Tầng 10",
+      "sequence": 1,
+      "narrativeRole": "Một căn phòng khách sạn sang trọng, nằm ở tầng 10.",
+      "subtitle": "Một căn phòng khách sạn sang trọng, nằm ở tầng 10.",
+      "type": "mansion",
+      "region": {
+        "x": 124,
+        "y": 254,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 100,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          254
+        ],
+        "end": [
+          393,
+          606
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-01-el2",
+      "label": "Cửa khóa trái",
+      "sequence": 2,
+      "narrativeRole": "Cửa ra vào khóa trái từ bên trong bằng chốt sắt kiên cố.",
+      "subtitle": "Cửa ra vào khóa trái từ bên trong bằng chốt sắt kiên cố.",
+      "type": "door",
+      "region": {
+        "x": 690,
+        "y": 254,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 5600,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          254
+        ],
+        "end": [
+          959,
+          606
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-01-el3",
+      "label": "Cửa sổ nguyên vẹn",
+      "sequence": 3,
+      "narrativeRole": "Cửa sổ hoàn toàn nguyên vẹn, bị kẹt cứng và không có ban công.",
+      "subtitle": "Cửa sổ hoàn toàn nguyên vẹn, bị kẹt cứng và không có ban công.",
+      "type": "window",
+      "region": {
+        "x": 1257,
+        "y": 254,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 11580,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          254
+        ],
+        "end": [
+          1526,
+          606
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-01-el4",
+      "label": "Nạn nhân",
+      "sequence": 4,
+      "narrativeRole": "Khi cảnh sát phá cửa vào, nạn nhân đã tử vong.",
+      "subtitle": "Khi cảnh sát phá cửa vào, nạn nhân đã tử vong.",
+      "type": "body",
+      "region": {
+        "x": 124,
+        "y": 634,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 18040,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          634
+        ],
+        "end": [
+          393,
+          986
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-01-el5",
+      "label": "Hung thủ?",
+      "sequence": 5,
+      "narrativeRole": "Không có bóng dáng hung thủ hay bất kỳ lối thoát nào.",
+      "subtitle": "Không có bóng dáng hung thủ hay bất kỳ lối thoát nào.",
+      "type": "question",
+      "region": {
+        "x": 690,
+        "y": 634,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 23220,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          634
+        ],
+        "end": [
+          959,
+          986
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-01-el6",
+      "label": "Phòng kín",
+      "sequence": 6,
+      "narrativeRole": "Làm sao kẻ sát nhân biến mất khỏi một phòng kín tuyệt đối?",
+      "subtitle": "Làm sao kẻ sát nhân biến mất khỏi một phòng kín tuyệt đối?",
+      "type": "question",
+      "region": {
+        "x": 1257,
+        "y": 634,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 28960,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          634
+        ],
+        "end": [
+          1526,
+          986
+        ],
+        "easing": "easeInOut"
+      }
+    }
+  ]
+}

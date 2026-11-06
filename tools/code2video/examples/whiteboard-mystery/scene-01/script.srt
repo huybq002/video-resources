@@ -1,0 +1,23 @@
+1
+00:00:00,000 --> 00:00:05,500
+Một căn phòng khách sạn sang trọng, nằm ở tầng 10.
+
+2
+00:00:05,500 --> 00:00:11,480
+Cửa ra vào khóa trái từ bên trong bằng chốt sắt kiên cố.
+
+3
+00:00:11,480 --> 00:00:17,940
+Cửa sổ hoàn toàn nguyên vẹn, bị kẹt cứng và không có ban công.
+
+4
+00:00:17,940 --> 00:00:23,120
+Khi cảnh sát phá cửa vào, nạn nhân đã tử vong.
+
+5
+00:00:23,120 --> 00:00:28,860
+Không có bóng dáng hung thủ hay bất kỳ lối thoát nào.
+
+6
+00:00:28,860 --> 00:00:35,000
+Làm sao kẻ sát nhân biến mất khỏi một phòng kín tuyệt đối?

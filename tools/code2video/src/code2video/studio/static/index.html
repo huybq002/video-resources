@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Code2Video Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/studio.css">
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="mark"></span>
+        <div class="brand-text">
+          <h1>Code2Video <em>Studio</em></h1>
+          <p>script + scene assets &nbsp;→&nbsp; video · VieNeu · HyperFrames · Whiteboard</p>
+        </div>
+      </div>
+      <div class="env" id="env"></div>
+    </header>
+
+    <main class="workspace">
+      <section class="panel source">
+        <div class="panel-head">
+          <span class="kicker">Nguồn vào</span>
+          <span class="kicker-index">01</span>
+        </div>
+
+        <label class="field"><span class="lbl">Video engine</span>
+          <select id="renderer">
+            <option value="hyperframes">HyperFrames</option>
+            <option value="whiteboard">Whiteboard animation</option>
+          </select>
+        </label>
+
+        <label class="field"><span class="lbl">Ngôn ngữ</span>
+          <select id="language"></select>
+        </label>
+
+        <div class="two">
+          <label class="field"><span class="lbl">Khung hình</span><select id="format"></select></label>
+          <label class="field"><span class="lbl">Kiểu khung</span>
+            <select id="formatMode">
+              <option value="fit">Fit (đủ hình, thêm viền)</option>
+              <option value="fill">Fill (cắt lấp đầy)</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="two">
+          <label class="field"><span class="lbl">FPS</span><select id="fps"></select></label>
+          <label class="field"><span class="lbl">Chạy song song (tối đa 4)</span><select id="workers"></select></label>
+        </div>
+
+        <div class="tabs" role="tablist">
+          <button class="tab is-active" data-mode="files">File lẻ</button>
+          <button class="tab" data-mode="upload">Folder</button>
+        </div>
+        <input type="hidden" id="mode" value="files">
+
+        <!-- files -->
+        <div class="mode-panel" data-panel="files">
+          <p class="note">Tải <b>index.html</b> + <b>assets</b> + <b>Script</b>. App tự dựng timeline &amp; voiceover theo nhân vật.</p>
+          <label class="file"><span>index.html (bắt buộc)</span><input type="file" id="htmlFile" accept=".html,.htm"></label>
+          <div class="two">
+            <label class="file"><span>assets — file lẻ</span><input type="file" id="assetFiles" multiple></label>
+            <label class="file"><span>assets — folder</span><input type="file" id="assetDir" webkitdirectory directory multiple></label>
+          </div>
+        </div>
+
+        <!-- folder -->
+        <div class="mode-panel" data-panel="upload" hidden>
+          <p class="note" id="uploadNote">Chọn folder chứa <b>index.html</b> + <b>assets/</b> + <b>script.srt</b>. App render thẳng.</p>
+          <label class="file big"><span>Folder project</span><input type="file" id="projectFiles" webkitdirectory directory multiple></label>
+          <div id="hfDetected" class="whiteboard-scenes"></div>
+        </div>
+
+        <div class="mode-panel" data-panel="whiteboard" hidden>
+          <div class="wtabs" role="tablist">
+            <button class="wtab is-active" data-wbtab="folder">Folder</button>
+            <button class="wtab" data-wbtab="manual">Thủ công</button>
+          </div>
+          <input type="hidden" id="wbTab" value="folder">
+          <div data-wbpanel="folder">
+            <p class="note">Chọn <b>folder</b> để app tự tách scene (mỗi scene: <b>PNG</b> + <b>annotation</b> + <b>script</b>) và detect nhân vật.</p>
+            <label class="file big"><span>Folder các scene</span><input type="file" id="wbFolder" webkitdirectory directory multiple></label>
+            <label class="field"><span class="lbl">Hoặc chọn folder trên máy</span>
+              <span class="fs-pick"><input id="wbLocalFolder" placeholder="Đường dẫn folder...">
+                <button id="wbBrowse" class="ghost" type="button">Duyệt...</button></span></label>
+            <div id="fsExplorer" class="fs-explorer" hidden>
+              <div class="fs-head">
+                <button id="fsUp" class="ghost" type="button">↑ Cha</button>
+                <span id="fsPath" class="fs-path">(chọn ổ đĩa)</span>
+              </div>
+              <div id="fsDirs" class="fs-dirs"></div>
+              <button id="fsPick" class="primary" type="button">Chọn folder này</button>
+            </div>
+            <div id="wbDetected" class="whiteboard-scenes"></div>
+          </div>
+          <div data-wbpanel="manual" hidden>
+            <p class="note">Mỗi scene gồm một <b>script</b>, ảnh <b>PNG</b> và <b>annotation JSON</b> cùng tên gốc.</p>
+            <div id="whiteboardScenes" class="whiteboard-scenes"></div>
+            <button id="addScene" class="ghost add-scene" type="button">+ Thêm scene</button>
+            <button id="wbPreview" class="ghost add-scene" type="button">Xem trước 10s (scene đầu, không giọng)</button>
+          </div>
+        </div>
+
+        <!-- script + speakers -->
+        <div class="divider"><span>Script &amp; nhân vật</span></div>
+        <div id="standaloneScriptInput">
+          <label class="file"><span>Script / SRT — nhiều nhân vật: <code>[Tên][00:00:00,000 --&gt; 00:00:03,000]: lời</code></span><input type="file" id="compScript" accept=".srt,.txt"></label>
+          <p id="scriptHint" class="hint">1 nhân vật: SRT thường. Nhiều nhân vật: mỗi block dạng <code>[Tên][start --&gt; end]: lời</code>, cách nhau dòng trống.</p>
+        </div>
+        <div id="speakers" class="speakers"></div>
+
+        <div class="divider"><span>Giọng đọc</span></div>
+        <div class="two">
+          <label class="field"><span class="lbl">VieNeu mode</span><select id="voTtsMode"></select></label>
+          <label class="file"><span>Audio tham chiếu (tùy chọn)</span><input type="file" id="voRef" accept="audio/*"></label>
+        </div>
+        <label class="check-inline"><input type="checkbox" id="voDry"> Dry-run TTS (audio im lặng)</label>
+
+        <div class="runbar">
+          <div class="runmode">
+            <span class="lbl">Cách chạy</span>
+            <div class="seg" role="tablist">
+              <button class="seg-btn is-active" data-run="queue">Queue</button>
+              <button class="seg-btn" data-run="batch">Batch</button>
+            </div>
+            <input type="hidden" id="runMode" value="queue">
+          </div>
+          <button id="run" class="primary">Tạo video</button>
+        </div>
+        <p id="runhint" class="runhint"></p>
+      </section>
+
+      <section class="panel output">
+        <div class="panel-head">
+          <span class="kicker">Đầu ra</span>
+          <span class="kicker-index">02</span>
+        </div>
+
+        <div class="sub-head"><h3>Hàng đợi</h3>
+          <div class="sub-actions"><span id="queueCount" class="count">0</span>
+            <button id="mergeScenes" class="ghost" type="button" disabled hidden>Ghép cảnh (0)</button>
+            <button id="downloadScenes" class="ghost" type="button" disabled hidden>Tải scene (zip)</button>
+            <button id="clear" class="ghost" type="button">Xóa lịch sử</button></div>
+        </div>
+        <ul id="queue" class="queue"></ul>
+
+        <div class="progress-block">
+          <div class="prog-top"><span>Tiến trình</span><span id="progPct">0%</span></div>
+          <div class="bar"><div id="barFill" class="fill"></div></div>
+          <p id="status" class="status">Sẵn sàng.</p>
+        </div>
+
+        <div class="sub-head"><h3>Kết quả</h3></div>
+        <div id="summary" class="summary"></div>
+        <div class="media">
+          <audio id="audioOut" controls hidden></audio>
+          <video id="videoOut" controls hidden></video>
+        </div>
+        <div id="links" class="links"></div>
+      </section>
+    </main>
+  </div>
+  <script src="/static/studio.js"></script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+{
+  "version": 1,
+  "historyId": "3b0dfcfa-7c8c-4aee-b27d-a44f625d3520",
+  "currentRevision": "f87b84cb-541f-49e6-8781-6c4a0369361c",
+  "pendingChanges": false,
+  "files": {
+    "assets/board.svg": {
+      "hash": "bd436f38dee9be3d563bff1112e604928af03e2841642754bbbd7844a4fe043e",
+      "content": "C:\\Users\\Quang Huy\\.cache\\hyperframes\\history\\3b0dfcfa-7c8c-4aee-b27d-a44f625d3520\\blobs\\bd\\bd436f38dee9be3d563bff1112e604928af03e2841642754bbbd7844a4fe043e"
+    },
+    "index.html": {
+      "hash": "b91a2ed907059c38f0ae1e2b444b0d604e7fc4220caf8dda2fd7b209afe06201",
+      "content": "C:\\Users\\Quang Huy\\.cache\\hyperframes\\history\\3b0dfcfa-7c8c-4aee-b27d-a44f625d3520\\blobs\\b9\\b91a2ed907059c38f0ae1e2b444b0d604e7fc4220caf8dda2fd7b209afe06201"
+    },
+    "script.srt": {
+      "hash": "af91ccb299b0232a7428aa2744774f7fb57099f94e2c2546cbfa245fb13215b2",
+      "content": "C:\\Users\\Quang Huy\\.cache\\hyperframes\\history\\3b0dfcfa-7c8c-4aee-b27d-a44f625d3520\\blobs\\af\\af91ccb299b0232a7428aa2744774f7fb57099f94e2c2546cbfa245fb13215b2"
+    }
+  },
+  "revisions": {
+    "f87b84cb-541f-49e6-8781-6c4a0369361c": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793795328618,
+      "endedAt": 1793795328621,
+      "files": {
+        "index.html": {
+          "before": "C:\\Users\\Quang Huy\\.cache\\hyperframes\\history\\3b0dfcfa-7c8c-4aee-b27d-a44f625d3520\\blobs\\3f\\3f34758193bdf43d40f8ac320bbf12d098b122671c48fed9c3d5b57837a33551",
+          "after": "C:\\Users\\Quang Huy\\.cache\\hyperframes\\history\\3b0dfcfa-7c8c-4aee-b27d-a44f625d3520\\blobs\\b9\\b91a2ed907059c38f0ae1e2b444b0d604e7fc4220caf8dda2fd7b209afe06201"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": {
+      "revision": "f87b84cb-541f-49e6-8781-6c4a0369361c",
+      "id": "f6719283-d969-4f7d-99da-ef05c6619d0e"
+    },
+    "revisions": {
+      "f87b84cb-541f-49e6-8781-6c4a0369361c": [
+        {
+          "id": "f6719283-d969-4f7d-99da-ef05c6619d0e",
+          "scope": "project",
+          "report": "H:\\Tool\\code2video\\examples\\whiteboard-psych\\.hyperframes\\artifacts\\checks\\f6719283-d969-4f7d-99da-ef05c6619d0e.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 45000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1793795348931,
+          "contentHash": "21dbc120b57d2abef1dc799200c53a9c32871b769ac7b292a024247aa0e06e93",
+          "revision": "f87b84cb-541f-49e6-8781-6c4a0369361c",
+          "inputFingerprint": "50df53f28b141000af5126b7c8fb1b73771722d479cf48cdb8e6b0b59317f8db",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": [
+      {
+        "id": "750e8997-6495-48c2-9034-677e6c611d8d",
+        "scope": "project",
+        "report": "H:\\Tool\\code2video\\examples\\whiteboard-psych\\.hyperframes\\artifacts\\checks\\750e8997-6495-48c2-9034-677e6c611d8d.json",
+        "metadata": {
+          "ok": false,
+          "browserSkipped": true,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793795302861,
+        "contentHash": "da1bcb91d8469aacef927ef796d0b4775caa612c3d24edd8de43154edfff3f51",
+        "revision": null,
+        "inputFingerprint": "520d1458bbc325ab063ead5899bd75f20e20e6ce51910af40983605695a88115",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "id": "5b83967a-dda9-4e82-9baa-bd9dc490283e",
+        "scope": "project",
+        "report": "H:\\Tool\\code2video\\examples\\whiteboard-psych\\.hyperframes\\artifacts\\checks\\5b83967a-dda9-4e82-9baa-bd9dc490283e.json",
+        "metadata": {
+          "ok": false,
+          "browserSkipped": true,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793795312018,
+        "contentHash": "da1bcb91d8469aacef927ef796d0b4775caa612c3d24edd8de43154edfff3f51",
+        "revision": null,
+        "inputFingerprint": "520d1458bbc325ab063ead5899bd75f20e20e6ce51910af40983605695a88115",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": {
+      "revision": null,
+      "id": "e2006af8-31a0-4d80-821e-deaacac260b1-4"
+    },
+    "revisions": {},
+    "unversioned": [
+      {
+        "scope": "full",
+        "id": "e2006af8-31a0-4d80-821e-deaacac260b1-0",
+        "image": "H:\\Tool\\code2video\\examples\\whiteboard-psych\\.review\\frame-00-at-4s.png",
+        "time": 4,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1793795361267,
+        "contentHash": "7040b23528639401d1552c52b6e0ebfbf7897d1e07d6b53817d1009306bc9e18",
+        "revision": null,
+        "inputFingerprint": "50df53f28b141000af5126b7c8fb1b73771722d479cf48cdb8e6b0b59317f8db",
+        "inputScope": "local-project-files",
+        "attribution": "inputs-changed"
+      },
+      {
+        "scope": "full",
+        "id": "e2006af8-31a0-4d80-821e-deaacac260b1-1",
+        "image": "H:\\Tool\\code2video\\examples\\whiteboard-psych\\.review\\frame-01-at-60s.png",
+        "time": 60,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1793795361268,
+        "contentHash": "0763f46c73248fa4a7a6e7ce544d2686339c0fbf8618e5f607c3e13478ca06c7",
+        "revision": null,
+        "inputFingerprint": "50df53f28b141000af5126b7c8fb1b73771722d479cf48cdb8e6b0b59317f8db",
+        "inputScope": "local-project-files",
+        "attribution": "inputs-changed"
+      },
+      {
+        "scope": "full",
+        "id": "e2006af8-31a0-4d80-821e-deaacac260b1-2",
+        "image": "H:\\Tool\\code2video\\examples\\whiteboard-psych\\.review\\frame-02-at-300s.png",
+        "time": 300,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1793795361268,
+        "contentHash": "24dd2ddd83e83eeb86ddc1b7c1ccba123e678c374083d4d6ea519f998cb6f665",
+        "revision": null,
+        "inputFingerprint": "50df53f28b141000af5126b7c8fb1b73771722d479cf48cdb8e6b0b59317f8db",
+        "inputScope": "local-project-files",
+        "attribution": "inputs-changed"
+      },
+      {
+        "scope": "full",
+        "id": "e2006af8-31a0-4d80-821e-deaacac260b1-3",
+        "image": "H:\\Tool\\code2video\\examples\\whiteboard-psych\\.review\\frame-03-at-460s.png",
+        "time": 460,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1793795361268,
+        "contentHash": "eeeb2b21166ba6b05b759aebad06c0285684d3deba7840958f50a54d122f0e68",
+        "revision": null,
+        "inputFingerprint": "50df53f28b141000af5126b7c8fb1b73771722d479cf48cdb8e6b0b59317f8db",
+        "inputScope": "local-project-files",
+        "attribution": "inputs-changed"
+      },
+      {
+        "scope": "full",
+        "id": "e2006af8-31a0-4d80-821e-deaacac260b1-4",
+        "image": "H:\\Tool\\code2video\\examples\\whiteboard-psych\\.review\\frame-04-at-479.39s.png",
+        "time": 479.39,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1793795361268,
+        "contentHash": "79f98f9826057a7d516e3419597ede065ff21cbcae7c51e376b02d9a6c94d05f",
+        "revision": null,
+        "inputFingerprint": "50df53f28b141000af5126b7c8fb1b73771722d479cf48cdb8e6b0b59317f8db",
+        "inputScope": "local-project-files",
+        "attribution": "inputs-changed"
+      }
+    ]
+  }
+}

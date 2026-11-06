@@ -1,0 +1,267 @@
+{
+  "sceneId": "scene-03",
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "storyBasis": "Giả thuyết & Nút thắt",
+  "sceneDurationMs": 46780,
+  "elements": [
+    {
+      "id": "scene-03-el1",
+      "label": "Thám tử",
+      "sequence": 1,
+      "narrativeRole": "Ban đầu, người ta nghĩ đến mẹo dùng sợi chỉ.",
+      "subtitle": "Ban đầu, người ta nghĩ đến mẹo dùng sợi chỉ.",
+      "type": "detective",
+      "region": {
+        "x": 124,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 100,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          254
+        ],
+        "end": [
+          393,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el2",
+      "label": "Sợi chỉ",
+      "sequence": 2,
+      "narrativeRole": "Một sợi chỉ hoặc dây cước để sập chốt từ bên ngoài.",
+      "subtitle": "Một sợi chỉ hoặc dây cước để sập chốt từ bên ngoài.",
+      "type": "string",
+      "region": {
+        "x": 690,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 5120,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          254
+        ],
+        "end": [
+          959,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el3",
+      "label": "Chốt nặng",
+      "sequence": 3,
+      "narrativeRole": "Nhưng với loại chốt nặng này, không sợi chỉ nào đủ lực.",
+      "subtitle": "Nhưng với loại chốt nặng này, không sợi chỉ nào đủ lực.",
+      "type": "door",
+      "region": {
+        "x": 1257,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 10700,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          254
+        ],
+        "end": [
+          1526,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el4",
+      "label": "Vết xước",
+      "sequence": 4,
+      "narrativeRole": "Thực nghiệm cho thấy không thể sập chốt mà không để lại vết xước.",
+      "subtitle": "Thực nghiệm cho thấy không thể sập chốt mà không để lại vết xước.",
+      "type": "arrow",
+      "region": {
+        "x": 124,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 16600,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          507
+        ],
+        "end": [
+          393,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el5",
+      "label": "Mật đạo?",
+      "sequence": 5,
+      "narrativeRole": "Giả thuyết hai: có đường mật đạo bí mật dưới sàn nhà?",
+      "subtitle": "Giả thuyết hai: có đường mật đạo bí mật dưới sàn nhà?",
+      "type": "floorplan",
+      "region": {
+        "x": 690,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 23300,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          507
+        ],
+        "end": [
+          959,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el6",
+      "label": "Bê tông đặc",
+      "sequence": 6,
+      "narrativeRole": "Đội kỹ thuật lật từng tấm ván: bê tông cốt thép đặc nguyên khối.",
+      "subtitle": "Đội kỹ thuật lật từng tấm ván: bê tông cốt thép đặc nguyên khối.",
+      "type": "concrete",
+      "region": {
+        "x": 1257,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 29040,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          507
+        ],
+        "end": [
+          1526,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el7",
+      "label": "Ngõ cụt",
+      "sequence": 7,
+      "narrativeRole": "Vụ án rơi vào ngõ cụt.",
+      "subtitle": "Vụ án rơi vào ngõ cụt.",
+      "type": "question",
+      "region": {
+        "x": 124,
+        "y": 760,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 35660,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          760
+        ],
+        "end": [
+          393,
+          985
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el8",
+      "label": "Siêu nhiên?",
+      "sequence": 8,
+      "narrativeRole": "Mọi người bắt đầu tin rằng có thế lực siêu nhiên nhúng tay.",
+      "subtitle": "Mọi người bắt đầu tin rằng có thế lực siêu nhiên nhúng tay.",
+      "type": "ghost",
+      "region": {
+        "x": 690,
+        "y": 760,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 40660,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          760
+        ],
+        "end": [
+          959,
+          985
+        ],
+        "easing": "easeInOut"
+      }
+    }
+  ]
+}

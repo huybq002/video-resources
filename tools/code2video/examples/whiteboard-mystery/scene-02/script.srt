@@ -1,0 +1,35 @@
+1
+00:00:00,000 --> 00:00:05,000
+Đó là vụ án tại phòng 1004.
+
+2
+00:00:05,000 --> 00:00:10,100
+Nạn nhân là ông David, một nhà sưu tầm đồ cổ.
+
+3
+00:00:10,100 --> 00:00:15,100
+Vào lúc 21 giờ tối, tiếng hét vang lên.
+
+4
+00:00:15,100 --> 00:00:21,080
+Người quản gia phá cửa, nhưng chốt sắt bên trong đã sập.
+
+5
+00:00:21,080 --> 00:00:26,820
+Thứ nhất: chìa khóa vẫn nằm ở ổ khóa bên trong phòng.
+
+6
+00:00:26,820 --> 00:00:33,280
+Thứ hai: mọi cửa sổ đóng kín từ bên trong, bụi dày nhiều ngày.
+
+7
+00:00:33,280 --> 00:00:38,380
+Thứ ba: gầm giường trống, tủ quá nhỏ để trốn.
+
+8
+00:00:38,380 --> 00:00:43,400
+Cảnh sát bế tắc và gọi đây là một vụ tự sát.
+
+9
+00:00:43,400 --> 00:00:48,420
+Cho đến khi họ phát hiện ra chi tiết thứ tư.

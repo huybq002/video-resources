@@ -1,0 +1,89 @@
+{
+  "sceneId": "whiteboard-test",
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "storyBasis": "Một ý tưởng nhỏ được phác họa, biến thành nét vẽ rồi hoàn thiện thành câu chuyện.",
+  "sceneDurationMs": 9000,
+  "elements": [
+    {
+      "id": "idea",
+      "label": "Ý tưởng",
+      "sequence": 1,
+      "narrativeRole": "Mở đầu bằng một ý tưởng nhỏ.",
+      "subtitle": "Mỗi video bắt đầu từ một ý tưởng nhỏ.",
+      "type": "concept",
+      "region": {
+        "x": 120,
+        "y": 180,
+        "width": 460,
+        "height": 600
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 0,
+        "durationMs": 2400,
+        "maskPaddingPx": 20,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [350, 180],
+        "end": [350, 780],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "drawing",
+      "label": "Nét vẽ",
+      "sequence": 2,
+      "narrativeRole": "Ý tưởng dần hiện ra thành hình minh họa.",
+      "subtitle": "Từng nét vẽ xuất hiện theo lời thuyết minh.",
+      "type": "action",
+      "region": {
+        "x": 720,
+        "y": 150,
+        "width": 480,
+        "height": 650
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 2600,
+        "durationMs": 2500,
+        "maskPaddingPx": 20,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [960, 150],
+        "end": [960, 800],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "story",
+      "label": "Câu chuyện hoàn chỉnh",
+      "sequence": 3,
+      "narrativeRole": "Kết thúc bằng câu chuyện đã hoàn thiện.",
+      "subtitle": "Cuối cùng, các cảnh ghép thành một câu chuyện.",
+      "type": "result",
+      "region": {
+        "x": 1320,
+        "y": 180,
+        "width": 480,
+        "height": 600
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 5300,
+        "durationMs": 3000,
+        "maskPaddingPx": 20,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [1560, 180],
+        "end": [1560, 780],
+        "easing": "easeInOut"
+      }
+    }
+  ]
+}

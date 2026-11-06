@@ -1,0 +1,299 @@
+{
+  "sceneId": "scene-02",
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "storyBasis": "Hiện trường & Sơ đồ",
+  "sceneDurationMs": 48420,
+  "elements": [
+    {
+      "id": "scene-02-el1",
+      "label": "Phòng 1004",
+      "sequence": 1,
+      "narrativeRole": "Đó là vụ án tại phòng 1004.",
+      "subtitle": "Đó là vụ án tại phòng 1004.",
+      "type": "floorplan",
+      "region": {
+        "x": 124,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 100,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          254
+        ],
+        "end": [
+          393,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el2",
+      "label": "Ông David",
+      "sequence": 2,
+      "narrativeRole": "Nạn nhân là ông David, một nhà sưu tầm đồ cổ.",
+      "subtitle": "Nạn nhân là ông David, một nhà sưu tầm đồ cổ.",
+      "type": "body",
+      "region": {
+        "x": 690,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 5100,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          254
+        ],
+        "end": [
+          959,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el3",
+      "label": "21:00",
+      "sequence": 3,
+      "narrativeRole": "Vào lúc 21 giờ tối, tiếng hét vang lên.",
+      "subtitle": "Vào lúc 21 giờ tối, tiếng hét vang lên.",
+      "type": "clock",
+      "region": {
+        "x": 1257,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 10200,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          254
+        ],
+        "end": [
+          1526,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el4",
+      "label": "Chốt sắt",
+      "sequence": 4,
+      "narrativeRole": "Người quản gia phá cửa, nhưng chốt sắt bên trong đã sập.",
+      "subtitle": "Người quản gia phá cửa, nhưng chốt sắt bên trong đã sập.",
+      "type": "door",
+      "region": {
+        "x": 124,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 15200,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          507
+        ],
+        "end": [
+          393,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el5",
+      "label": "Chìa trong ổ",
+      "sequence": 5,
+      "narrativeRole": "Thứ nhất: chìa khóa vẫn nằm ở ổ khóa bên trong phòng.",
+      "subtitle": "Thứ nhất: chìa khóa vẫn nằm ở ổ khóa bên trong phòng.",
+      "type": "key",
+      "region": {
+        "x": 690,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 21180,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          507
+        ],
+        "end": [
+          959,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el6",
+      "label": "Bụi dày",
+      "sequence": 6,
+      "narrativeRole": "Thứ hai: mọi cửa sổ đóng kín từ bên trong, bụi dày nhiều ngày.",
+      "subtitle": "Thứ hai: mọi cửa sổ đóng kín từ bên trong, bụi dày nhiều ngày.",
+      "type": "window",
+      "region": {
+        "x": 1257,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 26920,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          507
+        ],
+        "end": [
+          1526,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el7",
+      "label": "Không chỗ trốn",
+      "sequence": 7,
+      "narrativeRole": "Thứ ba: gầm giường trống, tủ quá nhỏ để trốn.",
+      "subtitle": "Thứ ba: gầm giường trống, tủ quá nhỏ để trốn.",
+      "type": "closet",
+      "region": {
+        "x": 124,
+        "y": 760,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 33380,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          760
+        ],
+        "end": [
+          393,
+          985
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el8",
+      "label": "Bế tắc",
+      "sequence": 8,
+      "narrativeRole": "Cảnh sát bế tắc và gọi đây là một vụ tự sát.",
+      "subtitle": "Cảnh sát bế tắc và gọi đây là một vụ tự sát.",
+      "type": "question",
+      "region": {
+        "x": 690,
+        "y": 760,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 38480,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          760
+        ],
+        "end": [
+          959,
+          985
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el9",
+      "label": "Chi tiết thứ tư",
+      "sequence": 9,
+      "narrativeRole": "Cho đến khi họ phát hiện ra chi tiết thứ tư.",
+      "subtitle": "Cho đến khi họ phát hiện ra chi tiết thứ tư.",
+      "type": "question",
+      "region": {
+        "x": 1257,
+        "y": 760,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 43500,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          760
+        ],
+        "end": [
+          1526,
+          985
+        ],
+        "easing": "easeInOut"
+      }
+    }
+  ]
+}

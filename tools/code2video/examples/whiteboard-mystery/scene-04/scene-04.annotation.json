@@ -1,0 +1,235 @@
+{
+  "sceneId": "scene-04",
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "storyBasis": "Cú twist & Lời giải",
+  "sceneDurationMs": 41860,
+  "elements": [
+    {
+      "id": "scene-04-el1",
+      "label": "Không tin ma quỷ",
+      "sequence": 1,
+      "narrativeRole": "Nhưng thám tử chính trực không tin vào ma quỷ.",
+      "subtitle": "Nhưng thám tử chính trực không tin vào ma quỷ.",
+      "type": "detective",
+      "region": {
+        "x": 124,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 100,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          254
+        ],
+        "end": [
+          393,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-04-el2",
+      "label": "Vũng nước",
+      "sequence": 2,
+      "narrativeRole": "Anh ta nhìn kỹ chốt cửa và vũng nước nhỏ dưới sàn phòng tắm.",
+      "subtitle": "Anh ta nhìn kỹ chốt cửa và vũng nước nhỏ dưới sàn phòng tắm.",
+      "type": "water",
+      "region": {
+        "x": 690,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 5280,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          254
+        ],
+        "end": [
+          959,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-04-el3",
+      "label": "Chêm băng",
+      "sequence": 3,
+      "narrativeRole": "Thủ thuật chính là một chiếc chêm bằng băng đá lớn.",
+      "subtitle": "Thủ thuật chính là một chiếc chêm bằng băng đá lớn.",
+      "type": "ice",
+      "region": {
+        "x": 1257,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 11580,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          254
+        ],
+        "end": [
+          1526,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-04-el4",
+      "label": "Giữ chốt mở",
+      "sequence": 4,
+      "narrativeRole": "Khối băng giữ chốt ở trạng thái mở trong vài phút ngắn ngủi.",
+      "subtitle": "Khối băng giữ chốt ở trạng thái mở trong vài phút ngắn ngủi.",
+      "type": "ice",
+      "region": {
+        "x": 124,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 17160,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          507
+        ],
+        "end": [
+          393,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-04-el5",
+      "label": "Rút dây",
+      "sequence": 5,
+      "narrativeRole": "Hung thủ rút sợi dây mảnh kéo khối băng ra ngoài, hoặc để nó tan.",
+      "subtitle": "Hung thủ rút sợi dây mảnh kéo khối băng ra ngoài, hoặc để nó tan.",
+      "type": "string",
+      "region": {
+        "x": 690,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 23460,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          507
+        ],
+        "end": [
+          959,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-04-el6",
+      "label": "Tan thành nước",
+      "sequence": 6,
+      "narrativeRole": "Khi băng tan hết, chiếc chốt tự sập xuống do trọng lực.",
+      "subtitle": "Khi băng tan hết, chiếc chốt tự sập xuống do trọng lực.",
+      "type": "water",
+      "region": {
+        "x": 1257,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 30160,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          507
+        ],
+        "end": [
+          1526,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-04-el7",
+      "label": "Phòng kín hoàn hảo",
+      "sequence": 7,
+      "narrativeRole": "Căn phòng trở thành một phòng kín bất khả thi hoàn hảo.",
+      "subtitle": "Căn phòng trở thành một phòng kín bất khả thi hoàn hảo.",
+      "type": "door",
+      "region": {
+        "x": 124,
+        "y": 760,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 36060,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          760
+        ],
+        "end": [
+          393,
+          985
+        ],
+        "easing": "easeInOut"
+      }
+    }
+  ]
+}

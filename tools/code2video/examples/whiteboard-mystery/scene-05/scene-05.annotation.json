@@ -1,0 +1,171 @@
+{
+  "sceneId": "scene-05",
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "storyBasis": "Kết luận & CTA",
+  "sceneDurationMs": 30120,
+  "elements": [
+    {
+      "id": "scene-05-el1",
+      "label": "Sơ đồ hoàn chỉnh",
+      "sequence": 1,
+      "narrativeRole": "Một thủ đoạn tinh vi dựa vào vật lý và sự đánh lừa thị giác.",
+      "subtitle": "Một thủ đoạn tinh vi dựa vào vật lý và sự đánh lừa thị giác.",
+      "type": "zoom",
+      "region": {
+        "x": 124,
+        "y": 254,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 100,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          254
+        ],
+        "end": [
+          393,
+          606
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-05-el2",
+      "label": "Chưa lời giải",
+      "sequence": 2,
+      "narrativeRole": "Tội phạm hoàn hảo không có thật, chỉ có chi tiết chưa tìm ra lời giải.",
+      "subtitle": "Tội phạm hoàn hảo không có thật, chỉ có chi tiết chưa tìm ra lời giải.",
+      "type": "question",
+      "region": {
+        "x": 690,
+        "y": 254,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 6400,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          254
+        ],
+        "end": [
+          959,
+          606
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-05-el3",
+      "label": "Like",
+      "sequence": 3,
+      "narrativeRole": "Bạn có ấn tượng với cú twist này không? Hãy để lại bình luận.",
+      "subtitle": "Bạn có ấn tượng với cú twist này không? Hãy để lại bình luận.",
+      "type": "like",
+      "region": {
+        "x": 1257,
+        "y": 254,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 13500,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          254
+        ],
+        "end": [
+          1526,
+          606
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-05-el4",
+      "label": "Đăng ký + chuông",
+      "sequence": 4,
+      "narrativeRole": "Bấm đăng ký kênh để không bỏ lỡ vụ án tiếp theo.",
+      "subtitle": "Bấm đăng ký kênh để không bỏ lỡ vụ án tiếp theo.",
+      "type": "bell",
+      "region": {
+        "x": 124,
+        "y": 634,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 19880,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          634
+        ],
+        "end": [
+          393,
+          986
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-05-el5",
+      "label": "Hẹn gặp lại",
+      "sequence": 5,
+      "narrativeRole": "Xin chào và hẹn gặp lại!",
+      "subtitle": "Xin chào và hẹn gặp lại!",
+      "type": "wave",
+      "region": {
+        "x": 690,
+        "y": 634,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 25220,
+        "durationMs": 1400,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          634
+        ],
+        "end": [
+          959,
+          986
+        ],
+        "easing": "easeInOut"
+      }
+    }
+  ]
+}
