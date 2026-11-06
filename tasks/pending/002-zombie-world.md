@@ -2,7 +2,7 @@
 id: 002-zombie-world
 type: video
 priority: 2
-status: pending
+status: in-progress
 idea: "What if only you exist in the world, and everyone transforms into zombies"
 lang: en
 aspect: "9:16"
@@ -26,3 +26,5 @@ A 5-minute vertical (9:16) story video in English. The viewer imagines being the
 - [ ] Release published with bundle.zip and the video
 
 ## Progress notes
+
+- 2026-11-06 night run: only ~47 min left before the 05:45 deadline at start. Render needs ~45 min (300 s x 7 x 1.3) plus TTS, so it cannot finish. Nothing started (no spec yet). status: in-progress; next night: write specs/002-zombie-world.json and run the full pipeline.
