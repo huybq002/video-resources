@@ -1,7 +1,7 @@
 ---
 id: 001-test-thumbnail
 priority: 1
-status: pending
+status: done
 ---
 
 # Test: 3 thumbnail variants
@@ -16,7 +16,9 @@ No assets yet. Use text and shapes only. Use the html-thumbnail skill.
 outputs/001-test-thumbnail/thumbnails/ (a/b/c .html and .png), rows appended to data/thumbnail-results.csv.
 
 ## Done when
-- [ ] 3 PNG files exist and were visually checked
-- [ ] 3 rows added to data/thumbnail-results.csv
+- [x] 3 PNG files exist and were visually checked
+- [x] 3 rows added to data/thumbnail-results.csv
 
 ## Progress notes
+- Assumed long-form 1280x720. data/thumbnail-results.csv had no CTR data, so explored 3 different styles (navy+bubbles, yellow big number, red/green split).
+- Fixed 5-word headlines to <=4 words after visual check. Variants follow contrast/focal-point/safe-margin principles; CTR must be measured after posting.
