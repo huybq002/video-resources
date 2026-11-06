@@ -20,7 +20,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 # System packages: git/curl/unzip are needed by claude-code-action; ffmpeg for media.
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        ca-certificates curl gnupg git git-lfs unzip sudo \
+        ca-certificates curl gnupg git unzip zip sudo \
         python3 python3-pip python3-venv ffmpeg \
         fonts-liberation fonts-noto-core fonts-noto-color-emoji \
     && rm -rf /var/lib/apt/lists/*
@@ -39,7 +39,10 @@ RUN curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor
     && printf '#!/bin/sh\nexec /opt/google/chrome/chrome --no-sandbox --disable-dev-shm-usage "$@"\n' > /usr/local/bin/chrome-nosandbox \
     && chmod +x /usr/local/bin/chrome-nosandbox
 
-RUN git config --system --add safe.directory '*' && git lfs install --system
+# GitHub CLI (publishes the Release with the bundle and video)
+RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg -o /usr/share/keyrings/githubcli-archive-keyring.gpg     && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github-cli.list     && apt-get update && apt-get install -y --no-install-recommends gh     && rm -rf /var/lib/apt/lists/*
+
+RUN git config --system --add safe.directory '*'
 
 # Python deps for the skills (edge-tts fallback, thumbnails, ...)
 COPY requirements.txt /tmp/requirements.txt
