@@ -52,6 +52,7 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          show_full_output: true
           prompt: |
             Follow tasks/README.md.
             1. Switch to branch `night`: continue it if origin/night exists, else create it from main.
