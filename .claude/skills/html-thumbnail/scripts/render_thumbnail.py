@@ -8,6 +8,7 @@ A directory renders every *.html in it. Output PNG has the same base name.
 Use --size 720x1280 for Shorts covers.
 """
 import argparse
+import os
 import sys
 from pathlib import Path
 
@@ -36,7 +37,8 @@ def main() -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     with sync_playwright() as p:
-        browser = p.chromium.launch()
+        chrome = os.environ.get("CHROME_PATH")  # set in CI by setup-chrome
+        browser = p.chromium.launch(executable_path=chrome) if chrome else p.chromium.launch()
         page = browser.new_page(viewport={"width": w, "height": h})
         for f in files:
             page.goto(f.resolve().as_uri(), wait_until="networkidle")

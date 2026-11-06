@@ -1,0 +1,172 @@
+{
+  "sceneId": "scene-05",
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "storyBasis": "まとめと行動",
+  "language": "ja",
+  "sceneDurationMs": 28080,
+  "elements": [
+    {
+      "id": "scene-05-el1",
+      "label": "全体の図",
+      "sequence": 1,
+      "narrativeRole": "物理と、目の錯覚を利用した巧妙な手口でした。",
+      "subtitle": "物理と、目の錯覚を利用した巧妙な手口でした。",
+      "type": "zoom",
+      "region": {
+        "x": 124,
+        "y": 254,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 0,
+        "durationMs": 4690,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          254
+        ],
+        "end": [
+          393,
+          606
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-05-el2",
+      "label": "完璧な犯罪はない",
+      "sequence": 2,
+      "narrativeRole": "完璧な犯罪はありません。解明されていない詳細があるだけです。",
+      "subtitle": "完璧な犯罪はありません。解明されていない詳細があるだけです。",
+      "type": "question",
+      "region": {
+        "x": 690,
+        "y": 254,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 4810,
+        "durationMs": 5930,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          254
+        ],
+        "end": [
+          959,
+          606
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-05-el3",
+      "label": "あなたの意見",
+      "sequence": 3,
+      "narrativeRole": "このトリックにだまされましたか？コメントで教えてください。",
+      "subtitle": "このトリックにだまされましたか？コメントで教えてください。",
+      "type": "like",
+      "region": {
+        "x": 1257,
+        "y": 254,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 10860,
+        "durationMs": 5775,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          254
+        ],
+        "end": [
+          1526,
+          606
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-05-el4",
+      "label": "登録とベル",
+      "sequence": 4,
+      "narrativeRole": "次の事件を逃さないよう、チャンネル登録をお願いします。",
+      "subtitle": "次の事件を逃さないよう、チャンネル登録をお願いします。",
+      "type": "bell",
+      "region": {
+        "x": 124,
+        "y": 634,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 16755,
+        "durationMs": 5465,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          634
+        ],
+        "end": [
+          393,
+          986
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-05-el5",
+      "label": "また次回",
+      "sequence": 5,
+      "narrativeRole": "ご視聴ありがとうございました。また次回お会いしましょう。",
+      "subtitle": "ご視聴ありがとうございました。また次回お会いしましょう。",
+      "type": "wave",
+      "region": {
+        "x": 690,
+        "y": 634,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 22340,
+        "durationMs": 5620,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          634
+        ],
+        "end": [
+          959,
+          986
+        ],
+        "easing": "easeInOut"
+      }
+    }
+  ]
+}

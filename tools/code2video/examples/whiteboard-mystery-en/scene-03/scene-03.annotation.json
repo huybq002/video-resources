@@ -1,0 +1,268 @@
+{
+  "sceneId": "scene-03",
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "storyBasis": "Theories and dead ends",
+  "language": "en",
+  "sceneDurationMs": 44470,
+  "elements": [
+    {
+      "id": "scene-03-el1",
+      "label": "The detective",
+      "sequence": 1,
+      "narrativeRole": "At first, everyone assumed the classic thread trick.",
+      "subtitle": "At first, everyone assumed the classic thread trick.",
+      "type": "detective",
+      "region": {
+        "x": 124,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 0,
+        "durationMs": 4920,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          254
+        ],
+        "end": [
+          393,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el2",
+      "label": "A thread",
+      "sequence": 2,
+      "narrativeRole": "A thin thread or fishing line, used to drop the latch from outside.",
+      "subtitle": "A thin thread or fishing line, used to drop the latch from outside.",
+      "type": "string",
+      "region": {
+        "x": 690,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 5040,
+        "durationMs": 5970,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          254
+        ],
+        "end": [
+          959,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el3",
+      "label": "Far too heavy",
+      "sequence": 3,
+      "narrativeRole": "But this latch is heavy, and no thread can hold that much force.",
+      "subtitle": "But this latch is heavy, and no thread can hold that much force.",
+      "type": "door",
+      "region": {
+        "x": 1257,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 11130,
+        "durationMs": 5760,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          254
+        ],
+        "end": [
+          1526,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el4",
+      "label": "No scratches",
+      "sequence": 4,
+      "narrativeRole": "The test showed the latch cannot drop without leaving a scratch.",
+      "subtitle": "The test showed the latch cannot drop without leaving a scratch.",
+      "type": "arrow",
+      "region": {
+        "x": 124,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 17010,
+        "durationMs": 5760,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          507
+        ],
+        "end": [
+          393,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el5",
+      "label": "A secret tunnel?",
+      "sequence": 5,
+      "narrativeRole": "Theory two: a hidden tunnel running under the floorboards.",
+      "subtitle": "Theory two: a hidden tunnel running under the floorboards.",
+      "type": "floorplan",
+      "region": {
+        "x": 690,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 22890,
+        "durationMs": 5340,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          507
+        ],
+        "end": [
+          959,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el6",
+      "label": "Solid concrete",
+      "sequence": 6,
+      "narrativeRole": "The crew lifted every plank: solid reinforced concrete underneath.",
+      "subtitle": "The crew lifted every plank: solid reinforced concrete underneath.",
+      "type": "concrete",
+      "region": {
+        "x": 1257,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 28350,
+        "durationMs": 5900,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          507
+        ],
+        "end": [
+          1526,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el7",
+      "label": "Nowhere to go",
+      "sequence": 7,
+      "narrativeRole": "The case ran into a wall.",
+      "subtitle": "The case ran into a wall.",
+      "type": "question",
+      "region": {
+        "x": 124,
+        "y": 760,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 34370,
+        "durationMs": 4380,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          760
+        ],
+        "end": [
+          393,
+          985
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el8",
+      "label": "Supernatural?",
+      "sequence": 8,
+      "narrativeRole": "People began to believe something beyond nature was at work.",
+      "subtitle": "People began to believe something beyond nature was at work.",
+      "type": "ghost",
+      "region": {
+        "x": 690,
+        "y": 760,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 38870,
+        "durationMs": 5480,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          760
+        ],
+        "end": [
+          959,
+          985
+        ],
+        "easing": "easeInOut"
+      }
+    }
+  ]
+}

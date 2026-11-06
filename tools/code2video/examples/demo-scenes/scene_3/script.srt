@@ -1,0 +1,5 @@
+[Minh][00:00:00,000 --> 00:00:03,500]: Đây là cảnh cuối cùng của video.
+
+[An][00:00:03,500 --> 00:00:08,000]: Nếu âm thanh liền mạch thì việc ghép đã thành công.
+
+[Minh][00:00:08,000 --> 00:00:11,000]: Cảm ơn bạn đã xem.

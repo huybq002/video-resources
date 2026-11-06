@@ -1,0 +1,72 @@
+name: render-video
+
+# Claude (hoặc người) đẩy file jobs/*.json lên nhánh jobs, hoặc bấm Run workflow.
+# Mặc định chạy trên self-hosted runner (máy có VieNeu + HyperFrames + ffmpeg).
+# Muốn thử trên runner GitHub: đặt runner=ubuntu-latest và dry_run=true (TTS giả).
+# Lưu ý: dùng self-hosted runner chỉ an toàn với repo riêng tư.
+on:
+  workflow_dispatch:
+    inputs:
+      job_file:
+        description: "File job (vd jobs/example.json)"
+        default: jobs/example.json
+      runner:
+        description: "Label runner"
+        default: self-hosted
+      dry_run:
+        description: "TTS giả (không cần model)"
+        type: boolean
+        default: false
+  push:
+    branches: [jobs]
+    paths: ["jobs/*.json"]
+
+jobs:
+  render:
+    runs-on: ${{ inputs.runner || 'self-hosted' }}
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }   # HyperFrames cần Node >= 22
+      - name: Cài đặt
+        run: pip install -e ".[dev]"
+      - name: Chọn file job
+        id: pick
+        env:
+          INPUT_JOB_FILE: ${{ inputs.job_file }}
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: |
+          if [ -n "$INPUT_JOB_FILE" ]; then
+            files="$INPUT_JOB_FILE"
+          else
+            # push: chạy đúng các file jobs/*.json vừa đổi (không phải luôn example.json)
+            files=$(git diff --name-only --diff-filter=AM "$BEFORE" "$AFTER" -- 'jobs/*.json' || true)
+          fi
+          files="${files:-jobs/example.json}"
+          { echo "files<<EOF"; echo "$files"; echo "EOF"; } >> "$GITHUB_OUTPUT"
+      - name: Chạy job
+        env:
+          JOB_FILES: ${{ steps.pick.outputs.files }}
+          DRY: ${{ inputs.dry_run && '--dry-run' || '' }}
+        run: |
+          set -e
+          mkdir -p build
+          i=0
+          for f in $JOB_FILES; do
+            i=$((i+1))
+            code2video-job "$f" $DRY --report "build/report-$i.json"
+          done
+        shell: bash
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: videos
+          path: |
+            build/report-*.json
+            **/output.mp4

@@ -1,0 +1,107 @@
+{
+  "sceneId": "scene-02",
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "storyBasis": "Cách thoát",
+  "sceneDurationMs": 12000,
+  "elements": [
+    {
+      "id": "scene-02-el1",
+      "label": "Chia nhỏ",
+      "sequence": 1,
+      "narrativeRole": "Chia việc lớn thành từng bước nhỏ, đủ nhỏ để không còn sợ.",
+      "subtitle": "Chia việc lớn thành từng bước nhỏ, đủ nhỏ để không còn sợ.",
+      "type": "action",
+      "region": {
+        "x": 150,
+        "y": 230,
+        "width": 440,
+        "height": 560
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 0,
+        "durationMs": 3880,
+        "maskPaddingPx": 24,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          370,
+          230
+        ],
+        "end": [
+          370,
+          790
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el2",
+      "label": "Bắt đầu 2 phút",
+      "sequence": 2,
+      "narrativeRole": "Chỉ cần bắt đầu trong hai phút. Phần còn lại thường tự chảy.",
+      "subtitle": "Chỉ cần bắt đầu trong hai phút. Phần còn lại thường tự chảy.",
+      "type": "action",
+      "region": {
+        "x": 740,
+        "y": 210,
+        "width": 440,
+        "height": 600
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 4000,
+        "durationMs": 3880,
+        "maskPaddingPx": 24,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          960,
+          210
+        ],
+        "end": [
+          960,
+          810
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el3",
+      "label": "Tha thứ",
+      "sequence": 3,
+      "narrativeRole": "Và tha thứ cho lần trượt. Tự trách chỉ khiến ta trốn lâu hơn.",
+      "subtitle": "Và tha thứ cho lần trượt. Tự trách chỉ khiến ta trốn lâu hơn.",
+      "type": "result",
+      "region": {
+        "x": 1330,
+        "y": 230,
+        "width": 440,
+        "height": 560
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 8000,
+        "durationMs": 3880,
+        "maskPaddingPx": 24,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1550,
+          230
+        ],
+        "end": [
+          1550,
+          790
+        ],
+        "easing": "easeInOut"
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+name: Build runner image
+
+# Build once, reuse every night. Runs when the image inputs change, or by hand.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - Dockerfile
+      - .dockerignore
+      - requirements.txt
+      - tools/code2video/**
+      - .claude/skills/code2video-resource-generator/scripts/bg_renderer/package.json
+      - .github/workflows/build-image.yml
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/huybq002/video-resources-runner:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

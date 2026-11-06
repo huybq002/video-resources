@@ -1,0 +1,1 @@
+{"name":"bg-renderer","private":true,"type":"module","dependencies":{"three":"0.160.0","puppeteer-core":"^22.0.0"}}

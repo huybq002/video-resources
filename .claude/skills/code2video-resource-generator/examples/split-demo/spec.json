@@ -1,0 +1,245 @@
+{
+ "id": "split-demo",
+ "title": "Hai căn phòng",
+ "lang": "vi",
+ "duration_s": 30,
+ "idea": "Demo: màn hình chia đôi, mỗi bên một bối cảnh và một tông màu; chuyển cảnh whip và zoom; bộ đếm, chip, bong bóng thoại.",
+ "cast": [
+  {
+   "id": "an",
+   "name": "An",
+   "skin": "#d9b38c",
+   "shirt": "#2f9e9a",
+   "pants": "#35405a",
+   "hair": "#3a2a2a",
+   "hair_style": "bun",
+   "glow": true
+  },
+  {
+   "id": "binh",
+   "name": "Bình",
+   "skin": "#cfa17c",
+   "shirt": "#b8505e",
+   "pants": "#2a3340",
+   "hair": "#2a1f24",
+   "hair_style": "short",
+   "glasses": true,
+   "torso_w": 1.05
+  }
+ ],
+ "settings": {
+  "porch": "../silent-samaritan/settings/porch.json",
+  "desk": "../silent-samaritan/settings/desk.json",
+  "tea": "../silent-samaritan/settings/tea.json"
+ },
+ "scenes": [
+  {
+   "id": 1,
+   "shots": [
+    {
+     "cues": [
+      "Cùng một đêm, hai căn phòng, hai cách nghĩ về ngày mai.",
+      "Bên trái, An đã ngủ say từ chín giờ.",
+      "Bên phải, Bình nằm đếm những việc chưa làm.",
+      "Một người tin rằng sáng mai sẽ ổn.",
+      "Người kia chắc chắn có chuyện sẽ hỏng."
+     ],
+     "cam": "push_slow",
+     "split": [
+      {
+       "setting": "tea",
+       "tint": "#3aa6a0",
+       "chars": [
+        {
+         "k": "an",
+         "x": 480,
+         "by": 905,
+         "s": 0.8,
+         "acts": [
+          [
+           0.6,
+           "breathe"
+          ],
+          [
+           5.5,
+           "happy"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "setting": "desk",
+       "tint": "#e0577a",
+       "chars": [
+        {
+         "k": "binh",
+         "x": 480,
+         "by": 905,
+         "s": 0.8,
+         "flip": true,
+         "acts": [
+          [
+           3.0,
+           "worry"
+          ],
+          [
+           9.0,
+           "glare"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "overlays": [
+      {
+       "type": "chip",
+       "text": "21:00",
+       "t": 0.4,
+       "dur": 3.0,
+       "pos": "tl"
+      },
+      {
+       "type": "counter",
+       "from": 0,
+       "to": 27,
+       "label": "việc chưa làm",
+       "t": 4.0,
+       "dur": 5.0,
+       "pos": "tr"
+      }
+     ]
+    },
+    {
+     "setting": "porch",
+     "trans": "whip",
+     "cues": [
+      "Sáng hôm sau, cả hai đều dậy trễ mười phút.",
+      "Chỉ khác ở chỗ, một người đã cười."
+     ],
+     "cam": "pan_right",
+     "rays": true,
+     "chars": [
+      {
+       "k": "an",
+       "x": 700,
+       "by": 920,
+       "s": 0.84,
+       "acts": [
+        [
+         0.3,
+         "walkTo",
+         300,
+         2.2
+        ],
+        [
+         2.8,
+         "wave"
+        ]
+       ]
+      },
+      {
+       "k": "binh",
+       "x": 1300,
+       "by": 920,
+       "s": 0.84,
+       "flip": true,
+       "acts": [
+        [
+         0.5,
+         "look",
+         -1,
+         0
+        ],
+        [
+         2.0,
+         "shrug"
+        ]
+       ]
+      }
+     ],
+     "overlays": [
+      {
+       "type": "burst",
+       "text": "TRỄ!",
+       "x": 960,
+       "y": 200,
+       "t": 0.6,
+       "dur": 1.6
+      }
+     ],
+     "sway": true,
+     "dof": true
+    },
+    {
+     "setting": "tea",
+     "trans": "zoom",
+     "cues": [
+      "Nỗi lo không làm ai đến sớm hơn.",
+      "Bạn đang ở căn phòng nào? Hãy kể ở phần bình luận."
+     ],
+     "cam": "push",
+     "chars": [
+      {
+       "k": "an",
+       "x": 640,
+       "by": 905,
+       "s": 0.82,
+       "acts": [
+        [
+         0.5,
+         "wave"
+        ],
+        [
+         3.5,
+         "reach",
+         "r"
+        ]
+       ]
+      },
+      {
+       "k": "binh",
+       "x": 1290,
+       "by": 905,
+       "s": 0.82,
+       "flip": true,
+       "acts": [
+        [
+         0.8,
+         "think"
+        ],
+        [
+         3.0,
+         "talk",
+         3.2
+        ]
+       ]
+      }
+     ],
+     "overlays": [
+      {
+       "type": "bubble",
+       "text": "Bạn ở phòng nào?",
+       "x": 960,
+       "y": 300,
+       "t": 2.0,
+       "dur": 3.0
+      },
+      {
+       "type": "title",
+       "text": "Bạn nghĩ sao?",
+       "t": 5.2,
+       "dur": 2.5,
+       "pos": "tc"
+      }
+     ],
+     "sway": true
+    }
+   ]
+  }
+ ],
+ "letterbox": true,
+ "fps": 60,
+ "motion_blur": true
+}

@@ -1,0 +1,11 @@
+{
+  "jobs": [
+    {
+      "engine": "hyperframes",
+      "project": "examples/hyperframes-multi-scene",
+      "fps": 60,
+      "hfQuality": "delivery",
+      "speakers": {"An": "Hải Đăng", "Minh": "Hải Đăng"}
+    }
+  ]
+}

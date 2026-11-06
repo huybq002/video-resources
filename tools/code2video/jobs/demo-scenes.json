@@ -1,0 +1,10 @@
+{
+  "jobs": [
+    {
+      "engine": "hyperframes",
+      "project": "examples/demo-scenes",
+      "fps": 30,
+      "hfQuality": "standard"
+    }
+  ]
+}

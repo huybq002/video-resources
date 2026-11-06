@@ -1,0 +1,11 @@
+1
+00:00:00,000 --> 00:00:03,000
+Mỗi video bắt đầu từ một ý tưởng nhỏ.
+
+2
+00:00:03,000 --> 00:00:06,000
+Từng nét vẽ xuất hiện theo lời thuyết minh.
+
+3
+00:00:06,000 --> 00:00:09,000
+Cuối cùng, các cảnh ghép thành một câu chuyện.

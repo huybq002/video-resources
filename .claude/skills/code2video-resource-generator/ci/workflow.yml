@@ -1,0 +1,107 @@
+# Copy to .github/workflows/video.yml. The skill folder must be committed at .claude/skills/code2video-resource-generator
+# Secrets: ANTHROPIC_API_KEY (or CLAUDE_CODE_OAUTH_TOKEN); YT_CLIENT_ID, YT_CLIENT_SECRET, YT_REFRESH_TOKEN only when upload=true
+# Claude does the whole job inside ONE run: writes the spec, then runs ONE tool command (ci/run_pipeline.py) that generates the assets,
+# makes the voice-over, renders the video (parallel slices) and optionally uploads it.
+name: video
+
+on:
+  workflow_dispatch:
+    inputs:
+      idea:
+        description: "Idea / topic"
+        required: true
+      lang:
+        description: "Language"
+        default: "vi"
+      aspect:
+        description: "Frame"
+        type: choice
+        options: ["16:9", "9:16"]
+        default: "16:9"
+      duration_min:
+        description: "Duration in minutes (e.g. 9, 0.5)"
+        default: "9"
+      script_prompt:
+        description: "Your own script / outline / tone (optional)"
+        required: false
+      series:
+        description: "Series folder name under series/ (empty = stand-alone video)"
+        required: false
+      episode:
+        description: "Episode number (series only)"
+        required: false
+      privacy:
+        description: "YouTube privacy"
+        type: choice
+        options: [private, unlisted, public]
+        default: private
+      upload:
+        description: "Upload to YouTube after rendering"
+        type: boolean
+        default: false
+  # schedule:                      # example: a new episode every Monday (then take the inputs from a file in the repo)
+  #   - cron: "0 2 * * 1"
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  video:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    env:
+      SKILL: .claude/skills/code2video-resource-generator
+      SLUG: ${{ github.run_id }}
+      BASH_MAX_TIMEOUT_MS: "21000000"          # let Claude's single render command run for hours
+      BASH_DEFAULT_TIMEOUT_MS: "21000000"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+      - name: tools
+        run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          pip install requests edge-tts gTTS
+          echo "CHROME_PATH=${{ steps.chrome.outputs.chrome-path }}" >> $GITHUB_ENV
+          echo "PUPPETEER_EXECUTABLE_PATH=${{ steps.chrome.outputs.chrome-path }}" >> $GITHUB_ENV
+      - uses: anthropics/claude-code-action@v1
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_args: --max-turns 40 --allowedTools "Read,Write,Edit,Bash(python:*),Bash(npx:*),Bash(ffmpeg:*),Bash(ffprobe:*)"
+          prompt: |
+            Use the code2video-resource-generator skill in CI mode (SKILL.md, section "CI mode").
+            Inputs: idea=${{ inputs.idea }} | lang=${{ inputs.lang }} | aspect=${{ inputs.aspect }} | duration_min=${{ inputs.duration_min }}
+            series=${{ inputs.series }} | episode=${{ inputs.episode }} | script_prompt=${{ inputs.script_prompt }}
+            upload=${{ inputs.upload }} | privacy=${{ inputs.privacy }}
+            1. Write specs/${{ env.SLUG }}.json (duration_s = duration_min*60 exactly; scenes[].target_s add up to it). If series is set, first run
+               python $SKILL/scripts/series.py brief series/${{ inputs.series }}/series-bible.json and continue that story; fill the spec's series block.
+            2. Run ONE foreground command (timeout 21000000 ms) and read only its short status lines:
+               python $SKILL/ci/run_pipeline.py specs/${{ env.SLUG }}.json out/project [--series series/<name>/series-bible.json] [--upload --privacy <privacy>]
+               Add --upload only if upload=true. Never add --allow-public unless privacy=public was chosen.
+            3. If a script-length WARNING appears, edit the spec text/targets and run the command again (it is idempotent). Report the final status.
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: video-${{ github.run_id }}
+          path: |
+            out/project/final.mp4
+            out/project/script.srt
+            out/project_metadata.json
+            out/project_pipeline.log
+            specs/
+      - name: save series memory back to the repo
+        if: ${{ inputs.series != '' }}
+        run: |
+          git config user.name "video-bot"; git config user.email "video-bot@users.noreply.github.com"
+          git add series specs; git commit -m "series ${{ inputs.series }}: episode ${{ inputs.episode }}" || echo "nothing to commit"; git push

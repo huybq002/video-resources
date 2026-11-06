@@ -1,0 +1,107 @@
+{
+  "sceneId": "scene-01",
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "storyBasis": "Cái bẫy trì hoãn",
+  "sceneDurationMs": 12000,
+  "elements": [
+    {
+      "id": "scene-01-el1",
+      "label": "Đồng hồ",
+      "sequence": 1,
+      "narrativeRole": "Hạn chót đến gần, và ta bắt đầu thấy nặng.",
+      "subtitle": "Hạn chót đến gần, và ta bắt đầu thấy nặng.",
+      "type": "concept",
+      "region": {
+        "x": 150,
+        "y": 230,
+        "width": 440,
+        "height": 560
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 0,
+        "durationMs": 3880,
+        "maskPaddingPx": 24,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          370,
+          230
+        ],
+        "end": [
+          370,
+          790
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-01-el2",
+      "label": "Điện thoại",
+      "sequence": 2,
+      "narrativeRole": "Thay vì bắt đầu, ta mở điện thoại để trốn cảm giác đó.",
+      "subtitle": "Thay vì bắt đầu, ta mở điện thoại để trốn cảm giác đó.",
+      "type": "action",
+      "region": {
+        "x": 740,
+        "y": 210,
+        "width": 440,
+        "height": 600
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 4000,
+        "durationMs": 3880,
+        "maskPaddingPx": 24,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          960,
+          210
+        ],
+        "end": [
+          960,
+          810
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-01-el3",
+      "label": "Lo lắng",
+      "sequence": 3,
+      "narrativeRole": "Càng trốn, nỗi lo càng lớn. Đó là cái bẫy trì hoãn.",
+      "subtitle": "Càng trốn, nỗi lo càng lớn. Đó là cái bẫy trì hoãn.",
+      "type": "concept",
+      "region": {
+        "x": 1330,
+        "y": 230,
+        "width": 440,
+        "height": 560
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 8000,
+        "durationMs": 3880,
+        "maskPaddingPx": 24,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1550,
+          230
+        ],
+        "end": [
+          1550,
+          790
+        ],
+        "easing": "easeInOut"
+      }
+    }
+  ]
+}

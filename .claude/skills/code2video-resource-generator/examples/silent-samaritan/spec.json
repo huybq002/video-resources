@@ -1,0 +1,638 @@
+{
+ "id": "silent-samaritan",
+ "title": "The Silent Samaritan — Người Samaritan Thầm Lặng",
+ "lang": "vi",
+ "duration_s": 69.2,
+ "idea": "Thanh tra Quân lần theo chuỗi án 15 năm; mọi nạn nhân từng thoát tội, trước mỗi vụ người nghèo nhận phong bì trắng. Kẻ đứng sau là ông thợ đồng hồ hiền lành Nhân; twist: chính Quân từng đóng hồ sơ vụ sập giàn giáo giết vợ con Nhân.",
+ "cast": [
+  {
+   "id": "quan",
+   "name": "Thanh tra Quân",
+   "skin": "#d9b38c",
+   "shirt": "#3e5c76",
+   "pants": "#2a3340",
+   "hat": "fedora",
+   "hat_color": "#2a2f3a",
+   "mustache": true,
+   "coat": true,
+   "torso_w": 1.15,
+   "brow": "#6e6e76"
+  },
+  {
+   "id": "nhan",
+   "name": "Lâm Nhân",
+   "skin": "#d9b38c",
+   "shirt": "#8a5a3a",
+   "pants": "#3a3034",
+   "hair": "#9a9aa2",
+   "hair_style": "short",
+   "glasses": true,
+   "bag": true,
+   "watch": true,
+   "torso_w": 0.9
+  },
+  {
+   "id": "nga",
+   "name": "Bà Nga",
+   "skin": "#cfa17c",
+   "shirt": "#5a5568",
+   "pants": "#3a3340",
+   "hat": "scarf",
+   "hat_color": "#7d7a86",
+   "hair_style": "bald",
+   "torso_w": 0.85
+  },
+  {
+   "id": "boy",
+   "name": "Cậu bé",
+   "skin": "#e0b690",
+   "shirt": "#e0b83a",
+   "pants": "#46506a",
+   "hair": "#2a1f24",
+   "hair_style": "tuft",
+   "torso_w": 0.8
+  }
+ ],
+ "settings": {
+  "alley": "settings/alley.json",
+  "shop": "settings/shop.json",
+  "kitchen": "settings/kitchen.json",
+  "ruin": "settings/ruin.json",
+  "porch": "settings/porch.json",
+  "desk": "settings/desk.json",
+  "tea": "settings/tea.json"
+ },
+ "scenes": [
+  {
+   "id": 1,
+   "shots": [
+    {
+     "setting": "alley",
+     "cues": [
+      "Mười lăm năm. Chín người thoát tội đều biến mất.",
+      "Và trước mỗi lần, một gia đình nghèo nhận được phong bì trắng."
+     ],
+     "cam": "push",
+     "rain": true,
+     "flash": 4.57,
+     "props": [
+      {
+       "id": "envelope",
+       "x": 700,
+       "y": 800,
+       "w": 190,
+       "t": 4.7
+      }
+     ],
+     "chars": [
+      {
+       "k": "nga",
+       "x": 560,
+       "by": 905,
+       "s": 0.66,
+       "acts": [
+        [
+         0.6,
+         "breathe"
+        ],
+        [
+         5.0,
+         "bend"
+        ],
+        [
+         6.4,
+         "nod"
+        ]
+       ]
+      },
+      {
+       "k": "quan",
+       "x": 1390,
+       "by": 925,
+       "s": 0.82,
+       "flip": true,
+       "acts": [
+        [
+         0.4,
+         "breathe"
+        ],
+        [
+         5.2,
+         "think"
+        ],
+        [
+         7.0,
+         "worry"
+        ]
+       ]
+      }
+     ],
+     "overlays": [
+      {
+       "type": "chip",
+       "text": "15 năm · 9 vụ án",
+       "t": 0.4,
+       "dur": 4.0,
+       "pos": "tl"
+      },
+      {
+       "type": "counter",
+       "from": 0,
+       "to": 9,
+       "label": "người biến mất",
+       "t": 1.2,
+       "dur": 3.4,
+       "pos": "tr"
+      }
+     ],
+     "rays": false
+    },
+    {
+     "setting": "shop",
+     "cues": [
+      "Thanh tra Quân lần ra kẻ gửi những phong bì đó.",
+      "Một ông thợ đồng hồ tên Nhân."
+     ],
+     "cam": [
+      1.02,
+      0,
+      0,
+      1.12,
+      40,
+      -10
+     ],
+     "chars": [
+      {
+       "k": "quan",
+       "x": 640,
+       "by": 900,
+       "s": 0.78,
+       "enter": -420,
+       "acts": [
+        [
+         2.4,
+         "think"
+        ]
+       ]
+      },
+      {
+       "k": "nhan",
+       "x": 1290,
+       "by": 905,
+       "s": 0.74,
+       "flip": true,
+       "acts": [
+        [
+         0.5,
+         "breathe"
+        ],
+        [
+         3.9,
+         "wave"
+        ]
+       ]
+      }
+     ],
+     "trans": "whip",
+     "overlays": [
+      {
+       "type": "chip",
+       "text": "Tiệm đồng hồ · 11:40",
+       "t": 0.3,
+       "dur": 3.4,
+       "pos": "tl"
+      }
+     ]
+    },
+    {
+     "setting": "kitchen",
+     "cues": [
+      "Nhân nấu cơm miễn phí cho người vô gia cư.",
+      "Ông còn nuôi một cậu bé mồ côi."
+     ],
+     "cam": [
+      1.05,
+      30,
+      0,
+      1.13,
+      -30,
+      -8
+     ],
+     "chars": [
+      {
+       "k": "nhan",
+       "x": 760,
+       "by": 900,
+       "s": 0.8,
+       "acts": [
+        [
+         0.3,
+         "stir",
+         4
+        ]
+       ]
+      },
+      {
+       "k": "boy",
+       "x": 1210,
+       "by": 905,
+       "s": 0.55,
+       "flip": true,
+       "acts": [
+        [
+         3.4,
+         "receive"
+        ],
+        [
+         5.0,
+         "happy"
+        ]
+       ]
+      },
+      {
+       "k": "nga",
+       "x": 1560,
+       "by": 900,
+       "s": 0.62,
+       "flip": true,
+       "acts": [
+        [
+         0.5,
+         "breathe"
+        ],
+        [
+         1.8,
+         "nod"
+        ]
+       ]
+      }
+     ],
+     "overlays": [
+      {
+       "type": "chip",
+       "text": "Bếp cơm miễn phí",
+       "t": 0.3,
+       "dur": 3.2,
+       "pos": "tl"
+      }
+     ],
+     "rays": true,
+     "crowd": {
+      "n": 22,
+      "x": [
+       120,
+       980
+      ],
+      "by": [
+       600,
+       690
+      ],
+      "s": [
+       0.12,
+       0.2
+      ],
+      "seed": 3
+     }
+    },
+    {
+     "setting": "shop",
+     "cues": [
+      "Quân càng theo dõi, càng không thể ghét ông ấy."
+     ],
+     "cam": "punch",
+     "cut": true,
+     "chars": [
+      {
+       "k": "quan",
+       "x": 640,
+       "by": 900,
+       "s": 0.84,
+       "acts": [
+        [
+         0.2,
+         "worry"
+        ],
+        [
+         1.6,
+         "lean"
+        ]
+       ]
+      },
+      {
+       "k": "nhan",
+       "x": 1420,
+       "by": 850,
+       "s": 0.5,
+       "flip": true,
+       "acts": [
+        [
+         0.5,
+         "breathe"
+        ],
+        [
+         1.5,
+         "stir",
+         2
+        ]
+       ]
+      }
+     ],
+     "trans": "flash"
+    },
+    {
+     "setting": "ruin",
+     "cues": [
+      "Rồi ông tìm ra quá khứ của Nhân.",
+      "Vợ và con gái Nhân chết khi giàn giáo sập."
+     ],
+     "cam": [
+      1.04,
+      0,
+      0,
+      1.14,
+      40,
+      0
+     ],
+     "chars": [
+      {
+       "k": "nhan",
+       "x": 760,
+       "by": 920,
+       "s": 0.84,
+       "acts": [
+        [
+         0.3,
+         "breathe"
+        ],
+        [
+         2.2,
+         "sad"
+        ]
+       ]
+      },
+      {
+       "k": "quan",
+       "x": 1450,
+       "by": 925,
+       "s": 0.8,
+       "flip": true,
+       "acts": [
+        [
+         0.6,
+         "worry"
+        ],
+        [
+         4.2,
+         "nod"
+        ]
+       ]
+      }
+     ],
+     "trans": "dip",
+     "overlays": [
+      {
+       "type": "chip",
+       "text": "Vụ sập giàn giáo",
+       "t": 0.3,
+       "dur": 3.5,
+       "pos": "tr"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "shots": [
+    {
+     "setting": "ruin",
+     "cues": [
+      "Kẻ chịu trách nhiệm đã được tha."
+     ],
+     "cam": [
+      1.14,
+      40,
+      -10,
+      1.26,
+      -60,
+      -30
+     ],
+     "cut": true,
+     "chars": [
+      {
+       "k": "nhan",
+       "x": 980,
+       "by": 930,
+       "s": 0.92,
+       "acts": [
+        [
+         0.2,
+         "sad"
+        ],
+        [
+         1.4,
+         "shake"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "setting": "porch",
+     "cues": [
+      "Tối đó, một phong bì trắng nằm trước cửa nhà Quân.",
+      "May là nó không phải lời đe dọa.",
+      "Không may là nó ghi tên ông."
+     ],
+     "cam": [
+      1.03,
+      0,
+      0,
+      1.15,
+      -30,
+      -15
+     ],
+     "props": [
+      {
+       "id": "envelope",
+       "x": 1030,
+       "y": 845,
+       "w": 170,
+       "mode": "static",
+       "lift": 4.2
+      }
+     ],
+     "chars": [
+      {
+       "k": "quan",
+       "x": 760,
+       "by": 930,
+       "s": 0.86,
+       "acts": [
+        [
+         0.4,
+         "breathe"
+        ],
+        [
+         1.3,
+         "surprise"
+        ],
+        [
+         4.4,
+         "relief"
+        ],
+        [
+         6.6,
+         "worry"
+        ],
+        [
+         7.6,
+         "shake"
+        ]
+       ]
+      }
+     ],
+     "trans": "whip",
+     "overlays": [
+      {
+       "type": "burst",
+       "text": "!?",
+       "x": 1130,
+       "y": 360,
+       "t": 1.3,
+       "dur": 1.6
+      },
+      {
+       "type": "bubble",
+       "text": "Sao lại là tên mình?",
+       "x": 1180,
+       "y": 330,
+       "t": 6.4,
+       "dur": 2.8
+      }
+     ]
+    },
+    {
+     "setting": "desk",
+     "cues": [
+      "Hai mươi năm trước, chính Quân đã đóng hồ sơ vụ sập giàn giáo.",
+      "Ông đã để kẻ đó thoát."
+     ],
+     "cam": [
+      1.06,
+      0,
+      0,
+      1.16,
+      30,
+      -8
+     ],
+     "shake": [
+      2.95,
+      5.05
+     ],
+     "chars": [
+      {
+       "k": "quan",
+       "x": 640,
+       "by": 900,
+       "s": 0.84,
+       "acts": [
+        [
+         0.8,
+         "breathe"
+        ],
+        [
+         2.7,
+         "stamp"
+        ],
+        [
+         4.8,
+         "stamp"
+        ],
+        [
+         6.6,
+         "sad"
+        ]
+       ]
+      }
+     ],
+     "trans": "flash",
+     "overlays": [
+      {
+       "type": "chip",
+       "text": "20 năm trước",
+       "t": 0.3,
+       "dur": 3.0,
+       "pos": "tl"
+      }
+     ]
+    },
+    {
+     "setting": "tea",
+     "cues": [
+      "Nhân chìa tay ra chờ còng. Ông không cầu xin.",
+      "Theo bạn, người tốt có quyền phán xét không?",
+      "Hãy để lại ý kiến, và đăng ký để xem tập tiếp theo."
+     ],
+     "cam": [
+      1.02,
+      0,
+      0,
+      1.14,
+      0,
+      -12
+     ],
+     "chars": [
+      {
+       "k": "quan",
+       "x": 640,
+       "by": 905,
+       "s": 0.82,
+       "acts": [
+        [
+         0.3,
+         "breathe"
+        ],
+        [
+         2.2,
+         "worry"
+        ],
+        [
+         5.8,
+         "think"
+        ]
+       ]
+      },
+      {
+       "k": "nhan",
+       "x": 1290,
+       "by": 905,
+       "s": 0.82,
+       "flip": true,
+       "acts": [
+        [
+         0.8,
+         "offer"
+        ],
+        [
+         5.0,
+         "breathe"
+        ]
+       ]
+      }
+     ],
+     "trans": "dip",
+     "overlays": [
+      {
+       "type": "title",
+       "text": "Công lý?",
+       "t": 6.0,
+       "dur": 3.2,
+       "pos": "cc"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

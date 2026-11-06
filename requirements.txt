@@ -3,3 +3,6 @@ pillow
 pillow-avif-plugin
 yt-dlp
 playwright
+requests
+edge-tts
+gTTS

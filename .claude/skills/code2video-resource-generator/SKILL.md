@@ -1,0 +1,88 @@
+---
+name: code2video-resource-generator
+description: Turn a video idea + length (e.g. 8-10 minutes) into a Code2Video / HyperFrames project that follows the user's hyperframes-asset-contract (index.html, script.srt multi-speaker, compositions/scene_N.html, assets/ with 3D-toon backgrounds, rigged SVG stick-figure characters with story wardrobe, props, fonts) with a many-scene script whose scene durations add up exactly to the requested length, plus Gemini prompts for characters and backgrounds. Use when the user gives an idea/topic/story and a duration for Code2Video Studio. No audio and no mp4 are produced (the app makes voiceover.wav and renders). Supports 16:9 and 9:16, series with recurring characters, optional user script. Default Vietnamese.
+---
+
+# Code2Video resource generator
+
+Input from the user: **an idea + a length** (optional: tone, cast size, language). You plan the story as scenes, write the script to the second, design the cast and settings, write `spec.json`, then run `scripts/generate.py`. Output follows `references/hyperframes-asset-contract.md` exactly:
+
+```
+<out>/                                  <- the project (upload this folder to Code2Video Studio)
+  index.html                            root: data-composition-id="story", data-duration = total seconds, scene hosts, <audio id="voice" src="assets/audio/voiceover.wav">
+  script.srt                            [Name][00:00:00,000 --> 00:00:03,500]: line   (multi-speaker, contiguous, ends exactly at the total length)
+  compositions/scene_1.html … scene_N.html   one scene = one <template>, id scene-N
+  assets/   bg_<setting>.png (+ _far/_mid/_near), <id>.svg (characters), props/, fonts/, vendor/gsap.min.js, character-rigs.json
+<out>_docs/                             <- for the user, outside the project
+  scene-plan.md        every scene: time range, duration vs target, goal, all lines
+  gemini-prompts.md    ready-to-paste Gemini prompts: characters (SVG) + backgrounds (PNG) with the exact file name to save each as
+  asset-checklist.md   which file is made by whom and its status
+```
+`assets/audio/voiceover.wav` is made by the app from `script.srt` (it stretches the voice into each cue window), so the cue windows ARE the timeline: no `timeline.json`, `hyperframes.json` or `package.json` is written.
+
+## Inputs (collect in ONE message; ask only for what is missing)
+| Input | Spec key | Notes |
+|---|---|---|
+| idea / topic | `idea` | required |
+| language | `lang` | default `vi` (narration, captions, chips) |
+| frame | `aspect` | `16:9` (1920×1080, default) or `9:16` (1080×1920, Shorts) |
+| duration | `duration_s` | required (8–10 min → 16–24 scenes) |
+| script prompt (optional) | `script_prompt` | the user's own script/outline/tone: keep their wording, only split it into scenes and cues |
+| series (optional) | `series: {name, episode, open_loops}` + `--series <series-bible.json>` | recurring characters keep identical look, Gemini art and settings are reused across episodes; episode 2+ only needs the new lines (cast may be empty: it comes from the bible) |
+| reference style (optional) | `style_dna` | from a reference channel/transcripts, see `references/youtube-craft.md` |
+
+## Series: every episode is an independent run, same characters, continuous story
+All memory lives in ONE file, `series-bible.json` (keep it in a folder of your own, e.g. `MySeries/series-bible.json` with `MySeries/assets/` for the Gemini art made once). A new session needs nothing else.
+- **Episode 1:** write the spec with the full cast (`look` for every character) and a `series` block, run `generate.py spec.json out1 --series MySeries/series-bible.json`. The bible is created and filled.
+- **Episode N ≥ 2 (new session):** (1) `python scripts/series.py brief MySeries/series-bible.json` (≈ 400 words: cast looks and current state, story so far, last 3 episodes, open loops, rules); (2) write ONLY the new scenes: `cast: []` is fine, character design comes from the bible and cannot drift (differences produce `SERIES WARNING`); pay off the last open loop within 15 s and list it in `series.resolved`; end on a new loop; (3) `generate.py spec.json outN --series …`. Shared `<id>.svg` / `bg_*.png` art in the bible's `assets_dir` is copied into every episode.
+- **Fill the `series` block every time** so the next run can continue: `episode`, `summary`, `key_events`, `clues`, `last_line`, `next_hook`, `resolved`, `open_loops`, `character_state` (per character, end of episode), `story_so_far` (updated rolling summary ≤ 200 words). Change a design deliberately (new outfit) by editing the character in the bible, not in the episode.
+
+## Token economy (important: do not burn tokens)
+- Read ONLY what the current step needs: planning → `script-planning.md` (+ `youtube-craft.md` for hook/CTA/Shorts/series); cast → `wardrobe.md`; shots → `spec-schema.md` (the "Film coverage" part). Skip `motion-language.md`, `animation-principles.md`, `scene-dsl.md` unless you must hand-write shots or settings.
+- Write scenes as `sequence` blocks (dialogue/narration); hand-write shots only for key moments. Never write per-shot acts for a whole film.
+- Use `lib:` settings; do not author 3D settings unless the story needs a place the library lacks.
+- Do not open generated HTML/SVG, `script.srt` or `_docs` files to "check" them: run `generate.py`/`validate.py` and read their short output; look at 3–4 snapshot frames at most.
+- Do not install or read the external repos (claude-youtube, faceless-youtube-agents): their useful parts are already in `youtube-craft.md`.
+
+## Workflow
+1. **Intake.** idea + length. Ask ONE combined question only if either is missing; otherwise state assumptions in one line and go.
+2. **Plan scenes first** (`references/script-planning.md`): 8–10 min → 16–24 scenes of 24–30 s, `scenes[].target_s` adding up to `duration_s`; per scene `title`, `goal`, setting, characters, mood. Hook, setup, rising action with a turn every scene, twist with clues, resolution, takeaway + CTA.
+3. **Write the lines to the budget:** ≈ `target_s × 2.2` words per scene, ≤ 14 words per cue, speaker per cue (`{"t","who"}`), narrator = cast entry `{"id":"narrator","name":"Người kể","narrator":true}`. Use `sequence` blocks (`references/spec-schema.md`) so the generator adds master / medium / close-up / reaction shots for you.
+4. **Cast** (`references/wardrobe.md`): stick figure, big white head, outfit chosen from the script (`top`, `bottom`, `shoes`, `hat`, …), unique silhouette + colour per character; give each a hand-written `look` sentence for the Gemini prompt. Settings: `lib:` library or your own (`references/scene-dsl.md`), optional `setting_desc` text for the background prompts.
+5. **Generate:** `python scripts/generate.py <spec.json> <out_dir> [--check] [--no-audio-tag]`
+   - plans `script.srt` (exact total, exact scene lengths) and prints `WARNING: scene N target 27s but its text naturally takes 33s: cut about 14 words`. **Fix every warning by editing the text/targets and re-run until none remain.**
+   - renders the 3D backgrounds (first run does `npm install` in `scripts/bg_renderer`; needs Chrome/Edge, `CHROME_PATH` overrides), builds characters, scenes, `index.html`, validates the contract.
+   - Re-run after the user hand-edits timings: `--keep-srt --skip-bg`. Generate into a new folder name rather than deleting a folder.
+6. **Verify:** `python scripts/validate.py <out> --check --no-audio` (contract + `hyperframes check`: ok, 0 errors) and `npx hyperframes snapshot <out> --at 3,15,40,80 -o <tmp outside out>`; look at the frames (≤ 3 characters per shot, feet on the ground, captions readable, overlays off faces).
+7. **Hand-off:** project path, `_docs` path, total length, scene count, list of characters/settings, which files the user still has to add (Gemini SVGs/backgrounds, optional), and what was and was not checked (e.g. "snapshots viewed, no full render").
+
+## Characters and backgrounds from Gemini (optional, per character / setting)
+- Default: the skill draws characters (rigged inline SVG, written to `assets/<id>.svg`) and 3D backgrounds, so the project renders immediately.
+- To use Gemini art: open `<out>_docs/gemini-prompts.md`, paste each prompt, save the SVG/PNG under the exact file name shown (`assets/<id>.svg`, `assets/bg_<setting>.png`). Then set `"external": true` on the cast entry (character is used as one animated image: breathe, walk, tilt, hop; no limb joints) and/or `"external_bg": true` (or a list of setting ids) at the top of the spec, and run `generate.py … --keep-srt --skip-bg`. The skill never overwrites a file the user placed.
+
+## CI mode (GitHub job: Claude makes the resources, then renders with tools, then optionally uploads)
+Only when the prompt says CI mode / runs in GitHub Actions (`ci/workflow.yml`). Normal mode above is unchanged (no audio, no mp4).
+1. **Job = create resources exactly as in Workflow steps 1–6** (same spec, same project structure, same contract; series via `series.py brief` + `--series`). No shortcuts on scenes or script length. Stand-alone defaults: no Gemini files (built-in characters/backgrounds).
+2. **Render is run by Claude through tools**, as ONE foreground command: `python ci/run_pipeline.py <spec> <out> [--series bible] [--upload --privacy private]`. It does generate → `ci/tts.py` (voice-over fitted to `script.srt`) → parallel slice render (`ci/render_chunks.py`, `npx hyperframes render --start/--end`) → ffmpeg assemble + mux → `thumb.jpg` → `metadata.json` (chapters from scene titles) → upload. Read only its short status lines; the full log is `<out>_pipeline.log`. `--stop-after generate|tts|render` to run in parts; on failure fix the cause and re-run (idempotent), or run the `ci/*.py` steps by hand.
+3. **Fix every script-length WARNING** before the render (edit spec text/targets, re-run) because the voice-over is fitted to the SRT windows (max ×1.5 speed-up).
+4. **Upload is opt-in**: only with `--upload`; default privacy `private`; `public` needs both `--privacy public` and `--allow-public`. Secrets `YT_CLIENT_ID/SECRET/REFRESH_TOKEN` from the env (create once with `ci/get_refresh_token.py`); never print them. Unaudited API projects can only upload private; ≈1600 of 10,000 quota units per upload.
+5. Cost: render ≈ 7 s per video-second at 30 fps on one machine (9 min ≈ 70 min, slices run in parallel with `--jobs`); set the job timeout and `BASH_MAX_TIMEOUT_MS` accordingly. After a series episode, commit the updated series bible back.
+
+## Rules
+- Several speakers → set `gender` on every cast entry (+ `narrator_gender`): `script.srt` then carries `[Name][time][gender-label]: text` in the script's language (see `references/spec-schema.md`).
+- Contract rules (`references/hyperframes-asset-contract.md`): seconds in HTML, ms in SRT, `class="clip"` + `data-start/duration`, one paused GSAP timeline per composition registered after its tweens, no `repeat:-1` / random / fetch / timers, no tween of display/visibility on `.clip`, asset paths `assets/...` without leading `/`, caption ≥ 0.5 s + 0.3 s/word and the last caption of a scene stays to the end (≥ 2 s), first frame already has content, no slide look (characters + background + motion in every scene). The builder already follows them; edit the spec, not the HTML.
+- Fiction by default, invented names, no graphic violence, moral ambiguity kept, no real people/brands/team kits.
+- Never claim audio, alignment or a render exists. Keep scratch files outside `<out>`.
+- Look/motion: `references/animation-principles.md` (film grammar, acting), `references/motion-language.md` (camera, transitions, HUD overlays measured from reference videos), `references/wardrobe.md`.
+
+## Defaults (already decided with the user)
+16:9 1920×1080 (or 9:16 1080×1920 with `aspect`), 60 fps for videos ≤ 3 min and 30 fps for longer ones (`fps`, `motion_blur` in the spec). **Render cost measured on this laptop: ≈ 7 s of wall time per second of video at 30 fps (a 9-minute film ≈ 70 min, 60 fps ≈ double)**; tell the user before they start a render, Vietnamese, lit 3D-toon backgrounds in depth layers, stick-figure characters in three views (front / profile / back) with lip-sync on `who` cues, close-ups via `focus`, transitions whip/zoom/flash/dip, overlays chip/counter/burst/bubble/title.
+
+## Environment gotchas (Windows + Git Bash)
+Write long files with the Write tool (heredocs with quotes break); print Vietnamese with `PYTHONIOENCODING=utf-8`; Python cannot read `/tmp/...` from Git Bash (use `C:/…`); `hyperframes check` prints progress lines, parse JSON from the first `{`; transparent-background screenshots need a transparent page body (already set).
+
+## Files
+`ci/`: `workflow.yml` · `run_pipeline.py` · `tts.py` · `render_chunks.py` · `make_metadata.py` · `upload_youtube.py` · `get_refresh_token.py`
+`scripts/`: `generate.py` · `series.py` · `srt_tools.py` (scene-budgeted script.srt) · `coverage.py` · `docs_gen.py` · `characters.py` + `characters_stick.py` · `build_project.py` · `engine.js` · `lipsync.py` · `validate.py` · `bg_renderer/`
+`references/`: `hyperframes-asset-contract.md` · `youtube-craft.md` · `script-planning.md` · `spec-schema.md` · `wardrobe.md` · `scene-dsl.md` · `animation-principles.md` · `motion-language.md` · `story-guidelines.md`
+`assets/`: `settings-library/` · `kenney-glb/` · `props/` · `fonts/` · `vendor/` · `examples/film-demo` (70 s, 2 scenes) · `examples/silent-samaritan` · `examples/split-demo`

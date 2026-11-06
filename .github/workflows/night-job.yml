@@ -1,8 +1,9 @@
 name: Night job
 
-# 00:00 Asia/Ho_Chi_Minh (UTC+7) = 17:00 UTC. Runs once per night.
-# Job is capped at 300 min (one 5h usage window), so it ends by ~05:00,
-# well inside the 00:00-07:00 allowed range.
+# Starts 00:00 Asia/Ho_Chi_Minh (UTC+7) = 17:00 UTC, once per night. The whole job ends by 06:00 ICT (job timeout 360 min).
+# The Claude step is stopped at 05:45 ICT (22:45 UTC) so the last 15 min are left to save work and upload logs. If Claude runs out of usage (rate limit)
+# the step ends at once and the job stops; unfinished tasks stay in tasks/pending and are picked up again the next night.
+# Runs inside the prebuilt image (see Dockerfile / build-image.yml): nothing is installed at night.
 on:
   schedule:
     - cron: "0 17 * * *"
@@ -15,22 +16,26 @@ concurrency:
 jobs:
   night:
     runs-on: ubuntu-latest
-    timeout-minutes: 300
+    timeout-minutes: 360
+    container:
+      image: ghcr.io/huybq002/video-resources-runner:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     permissions:
       contents: write
+      packages: read
       id-token: write
+    env:
+      SKILL: .claude/skills/code2video-resource-generator
+      STUDIO_DATA_DIR: ${{ github.workspace }}/out/.studio-data
+      # let Claude's single long render command run for hours
+      BASH_MAX_TIMEOUT_MS: "21000000"
+      BASH_DEFAULT_TIMEOUT_MS: "21000000"
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          cache: pip
-      - name: Install Python deps
-        run: pip install -r requirements.txt
-      - name: Install Chromium for thumbnails
-        run: playwright install --with-deps chromium
       - name: Check for tasks
         id: check
         run: |
@@ -44,11 +49,39 @@ jobs:
           done
           echo "Runnable tasks: $count"
           echo "count=$count" >> "$GITHUB_OUTPUT"
+        shell: bash
+      - name: Deadline (05:45 Asia/Ho_Chi_Minh = 22:45 UTC, job ends by 06:00)
+        id: deadline
+        shell: bash
+        run: |
+          now=$(date -u +%s); h=$(date -u +%H)
+          if [ "$h" -ge 17 ] && [ "$h" -lt 23 ]; then
+            end=$(date -u -d "$(date -u +%F) 22:45:00" +%s)       # inside the night window: stop Claude at 05:45 ICT
+          elif [ "${{ github.event_name }}" = "schedule" ]; then
+            end=$now                                              # scheduled run that started too late: do nothing
+          else
+            end=$((now + 300*60))                                 # manual run outside the window: 5 h
+          fi
+          mins=$(( (end - now) / 60 ))
+          [ "$mins" -lt 0 ] && mins=0
+          echo "minutes=$mins" >> "$GITHUB_OUTPUT"
+          echo "DEADLINE_EPOCH=$end" >> "$GITHUB_ENV"
+          echo "Minutes until deadline: $mins (deadline $(date -u -d @$end +%FT%TZ))"
+      - name: Restore unfinished work (bundles, voice-over)
+        uses: actions/cache/restore@v4
+        with:
+          path: outputs/*/project
+          key: bundle-${{ github.run_id }}
+          restore-keys: bundle-
       - name: Run Claude
-        if: steps.check.outputs.count != '0'
+        if: steps.check.outputs.count != '0' && steps.deadline.outputs.minutes != '0'
+        timeout-minutes: ${{ fromJSON(steps.deadline.outputs.minutes) }}
         uses: anthropics/claude-code-action@v1
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -59,8 +92,67 @@ jobs:
             2. Take files in tasks/pending/ in filename order and do each task.
                Skip any task whose file already exists in tasks/done/ on the night branch.
             3. Save results in outputs/<task id>/. Update "Progress notes" as you go.
-            4. When a task is finished, set status: done and move it to tasks/done/.
-            5. Commit and `git push origin night` after every task and after every major step,
+            4. Task types (frontmatter `type:`):
+               - `video`: use the code2video-resource-generator skill in CI mode (its SKILL.md, section "CI mode"; skill dir is $SKILL).
+                 Read idea, lang, aspect, duration_min, script_prompt, series, episode, renderer, privacy, upload from the task.
+                 Everything for task <id> goes under outputs/<id>/ (this is what gets committed: resource bundle + video).
+                 1. Write specs/<id>.json (duration_s = duration_min*60 exactly; scenes[].target_s must add up to it; follow the skill's
+                    planning rules: scene count and length, words per scene, <= 14 words per cue, cast with gender on every character).
+                    If series is set, first run `python $SKILL/scripts/series.py brief series/<series>/series-bible.json` and continue that story.
+                 2. Generate the resource bundle:
+                    `python $SKILL/ci/run_pipeline.py specs/<id>.json outputs/<id>/project --stop-after generate [--series series/<series>/series-bible.json]`
+                    Fix every WARNING (edit the spec text/targets) and re-run until none is left.
+                 3. Verify the bundle (length, contiguous cues, cue size, scenes vs spec, required files):
+                    `python scripts/verify_bundle.py bundle outputs/<id>/project --spec specs/<id>.json --expect-minutes <duration_min>`
+                    If it prints PROBLEMS, fix the spec and go back to step 2. Do not render a bundle that fails.
+                 4. Render with the task's `renderer` (default `tool`):
+                    * `tool` (best voice and video quality: VieNeu voice, Whisper alignment, HyperFrames render):
+                      write outputs/<id>/job.json: {"engine":"hyperframes","project":"outputs/<id>/project","language":"<lang>","fps":30}
+                      (add "speakers" only if the task names voices; otherwise voices are assigned from the genders in script.srt),
+                      then run ONE foreground command: `code2video-job outputs/<id>/job.json --report outputs/<id>/report.json`
+                      The video is outputs/<id>/project/output.mp4 (see the report). On failure read the report, fix the project files, re-run.
+                    * `skill` (fallback, edge-tts voice): ONE foreground command
+                      `python $SKILL/ci/run_pipeline.py specs/<id>.json outputs/<id>/project [--series ...]` (video: outputs/<id>/project/final.mp4).
+                 5. Verify the video (length, audio stream present and not silent, frame size):
+                    `python scripts/verify_bundle.py video <the mp4> --spec specs/<id>.json --expect-minutes <duration_min>`
+                    If it prints PROBLEMS (for example a silent or short video), find the cause, fix and re-render. Never commit a video that fails.
+                 6. Metadata: `python $SKILL/ci/make_metadata.py specs/<id>.json outputs/<id>/project --privacy <privacy> > outputs/<id>/metadata.json`.
+                    Thumbnail: use the html-thumbnail skill (outputs/<id>/thumbnails/).
+                 7. Upload to YouTube ONLY if the task says `upload: true`:
+                    `python $SKILL/ci/upload_youtube.py --video <the mp4> --meta outputs/<id>/metadata.json --thumb <image> --confirm`.
+                    Never add `--allow-public` unless the task says `privacy: public`.
+                 8. Publish: `python scripts/publish_release.py <id> --spec specs/<id>.json`
+                    It zips the resource bundle (bundle.zip, without the video), attaches the video, thumbnails and metadata to a GitHub Release,
+                    and writes outputs/<id>/manifest.json (release URL, sizes, sha256). If it fails, fix the cause and run it again; never mark the task done without a release URL in the manifest.
+                 9. Commit only small files: `git add outputs/<id>/manifest.json outputs/<id>/thumbnails outputs/<id>/report.json outputs/<id>/metadata.json specs/<id>.json series/ tasks/ data/`.
+                    The bundle, video and wav are git-ignored on purpose (they live in the Release).
+               - `thumbnail` or no type: use the html-thumbnail skill.
+            5. When a task is finished, set status: done and move it to tasks/done/.
+            6. Commit and `git push origin night` after every task and after every major step,
                so nothing is lost if the usage limit hits.
-            6. Never push to main. Keep going until no tasks remain or you hit the usage limit.
-          claude_args: --allowedTools "Bash,Read,Write,Edit,Glob,Grep"
+            7. Never push to main. Never print secrets.
+            8. Hard stop at 05:45 Vietnam time (the job itself ends at 06:00): the epoch is in $DEADLINE_EPOCH (compare with `date +%s`). Before starting a task or a render,
+               check the time left. A render needs about 7 s per video second (x1.3 margin) plus TTS and checks; if it cannot finish
+               before the deadline, do not start it: write the state in Progress notes, commit, push and stop.
+            9. If you get a usage-limit or rate-limit error, or less than 15 minutes remain: STOP immediately. Do not retry. First commit and push
+               what you have (spec, Progress notes with exactly where you stopped, status: in-progress) and leave the task in tasks/pending/.
+               The next night's run picks it up and continues from your notes.
+            10. Keep going until no tasks remain.
+          claude_args: --max-turns 300 --allowedTools "Bash,Read,Write,Edit,Glob,Grep"
+      - name: Save unfinished work (bundles, voice-over)
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: outputs/*/project
+          key: bundle-${{ github.run_id }}
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: night-logs-${{ github.run_id }}
+          if-no-files-found: ignore
+          retention-days: 7
+          path: |
+            outputs/*/report.json
+            outputs/*/manifest.json
+            outputs/*/project_pipeline.log

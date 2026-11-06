@@ -1,0 +1,11 @@
+1
+00:00:00,000 --> 00:00:02,000
+Xin chào, đây là video được tạo bằng mã nguồn.
+
+2
+00:00:02,000 --> 00:00:05,000
+VieNeu tạo giọng nói, faster-whisper lấy timing.
+
+3
+00:00:05,000 --> 00:00:08,000
+HyperFrames render HTML thành video MP4.

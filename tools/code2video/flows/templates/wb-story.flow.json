@@ -1,0 +1,89 @@
+{
+  "id": "wb-story",
+  "name": "Whiteboard Kể chuyện",
+  "engine": "whiteboard",
+  "start": "idea",
+  "nodes": {
+    "idea": {
+      "type": "idea",
+      "label": "Ý tưởng",
+      "config": {
+        "text": "Vụ án phòng kín bất khả thi",
+        "language": "vi",
+        "minutes": 3
+      }
+    },
+    "script": {
+      "type": "ai-script",
+      "label": "AI kịch bản",
+      "config": {
+        "provider": "gemini",
+        "skill": "whiteboard",
+        "prompt": ""
+      }
+    },
+    "scenes": {
+      "type": "build-scenes",
+      "label": "Dựng scene",
+      "config": {}
+    },
+    "tts": {
+      "type": "tts",
+      "label": "Voiceover",
+      "config": {
+        "voice": "",
+        "ttsMode": "v3turbo",
+        "dryRun": false
+      }
+    },
+    "render": {
+      "type": "render",
+      "label": "Render",
+      "config": {
+        "fps": 60,
+        "format": "16:9",
+        "formatMode": "fit"
+      }
+    },
+    "merge": {
+      "type": "merge",
+      "label": "Ghép cảnh",
+      "config": {}
+    }
+  },
+  "edges": [
+    {
+      "from": "idea",
+      "to": "script"
+    },
+    {
+      "from": "script",
+      "to": "script",
+      "condition": {
+        "field": "script.error",
+        "op": "exists"
+      },
+      "maxLoop": 3
+    },
+    {
+      "from": "script",
+      "to": "scenes",
+      "condition": {
+        "field": "script.scenes",
+        "op": "exists"
+      }
+    },
+    {
+      "from": "scenes",
+      "to": "tts"
+    },
+    {
+      "from": "tts",
+      "to": "render"
+    },
+    {
+      "from": "render",
+      "to": "merge"
+    }
+  ]
+}

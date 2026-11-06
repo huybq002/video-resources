@@ -1,0 +1,5 @@
+[An][00:00:00,000 --> 00:00:04,000]: Cảnh thứ hai là một project riêng, có script riêng.
+
+[Minh][00:00:04,000 --> 00:00:08,500]: Render xong từng cảnh, rồi ghép lại thành một video.
+
+[An][00:00:08,500 --> 00:00:11,500]: Nghe thật gọn gàng.

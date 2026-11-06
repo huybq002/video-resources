@@ -1,0 +1,300 @@
+{
+  "sceneId": "scene-02",
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "storyBasis": "The scene and the clues",
+  "language": "en",
+  "sceneDurationMs": 47800,
+  "elements": [
+    {
+      "id": "scene-02-el1",
+      "label": "Room 1004",
+      "sequence": 1,
+      "narrativeRole": "This is the case of room 1004.",
+      "subtitle": "This is the case of room 1004.",
+      "type": "floorplan",
+      "region": {
+        "x": 124,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 0,
+        "durationMs": 4380,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          254
+        ],
+        "end": [
+          393,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el2",
+      "label": "Mr. David",
+      "sequence": 2,
+      "narrativeRole": "The victim was Mr. David, a collector of antiques.",
+      "subtitle": "The victim was Mr. David, a collector of antiques.",
+      "type": "body",
+      "region": {
+        "x": 690,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 4500,
+        "durationMs": 4780,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          254
+        ],
+        "end": [
+          959,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el3",
+      "label": "21:00",
+      "sequence": 3,
+      "narrativeRole": "At nine in the evening, a scream tore across the floor.",
+      "subtitle": "At nine in the evening, a scream tore across the floor.",
+      "type": "clock",
+      "region": {
+        "x": 1257,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 9400,
+        "durationMs": 5130,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          254
+        ],
+        "end": [
+          1526,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el4",
+      "label": "The iron latch",
+      "sequence": 4,
+      "narrativeRole": "The butler broke the door, but the iron latch had already dropped.",
+      "subtitle": "The butler broke the door, but the iron latch had already dropped.",
+      "type": "door",
+      "region": {
+        "x": 124,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 14650,
+        "durationMs": 5900,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          507
+        ],
+        "end": [
+          393,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el5",
+      "label": "Key inside",
+      "sequence": 5,
+      "narrativeRole": "Clue one: the key was still in the lock, on the inside.",
+      "subtitle": "Clue one: the key was still in the lock, on the inside.",
+      "type": "key",
+      "region": {
+        "x": 690,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 20670,
+        "durationMs": 5130,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          507
+        ],
+        "end": [
+          959,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el6",
+      "label": "Thick dust",
+      "sequence": 6,
+      "narrativeRole": "Clue two: the windows were closed from within, coated in days of dust.",
+      "subtitle": "Clue two: the windows were closed from within, coated in days of dust.",
+      "type": "window",
+      "region": {
+        "x": 1257,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 25920,
+        "durationMs": 6180,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          507
+        ],
+        "end": [
+          1526,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el7",
+      "label": "Nowhere to hide",
+      "sequence": 7,
+      "narrativeRole": "Clue three: the space under the bed was empty, the wardrobe far too small.",
+      "subtitle": "Clue three: the space under the bed was empty, the wardrobe far too small.",
+      "type": "closet",
+      "region": {
+        "x": 124,
+        "y": 760,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 32220,
+        "durationMs": 6460,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          760
+        ],
+        "end": [
+          393,
+          985
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el8",
+      "label": "Dead end",
+      "sequence": 8,
+      "narrativeRole": "The police stalled, and called it a suicide.",
+      "subtitle": "The police stalled, and called it a suicide.",
+      "type": "question",
+      "region": {
+        "x": 690,
+        "y": 760,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 38800,
+        "durationMs": 4380,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          760
+        ],
+        "end": [
+          959,
+          985
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el9",
+      "label": "A fourth detail",
+      "sequence": 9,
+      "narrativeRole": "Until they found the fourth detail.",
+      "subtitle": "Until they found the fourth detail.",
+      "type": "question",
+      "region": {
+        "x": 1257,
+        "y": 760,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 43300,
+        "durationMs": 4380,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          760
+        ],
+        "end": [
+          1526,
+          985
+        ],
+        "easing": "easeInOut"
+      }
+    }
+  ]
+}

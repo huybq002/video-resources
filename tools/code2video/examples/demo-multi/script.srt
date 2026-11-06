@@ -1,0 +1,5 @@
+[An][00:00:00,000 --> 00:00:03,500]: Chào Minh, hôm nay mình quay một video nhỏ.
+
+[Minh][00:00:03,500 --> 00:00:07,000]: Ừ, có nhân vật, có bối cảnh, và giọng nói riêng.
+
+[An][00:00:07,000 --> 00:00:11,000]: Vậy là đủ để thành một câu chuyện rồi.

@@ -1,0 +1,204 @@
+{
+  "sceneId": "scene-01",
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "storyBasis": "冒頭 - 引き",
+  "language": "ja",
+  "sceneDurationMs": 30100,
+  "elements": [
+    {
+      "id": "scene-01-el1",
+      "label": "10階",
+      "sequence": 1,
+      "narrativeRole": "高級ホテルの10階にあるスイートルーム。",
+      "subtitle": "高級ホテルの10階にあるスイートルーム。",
+      "type": "mansion",
+      "region": {
+        "x": 124,
+        "y": 254,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 0,
+        "durationMs": 4380,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          254
+        ],
+        "end": [
+          393,
+          606
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-01-el2",
+      "label": "内側から錠",
+      "sequence": 2,
+      "narrativeRole": "ドアは内側から重い鉄のかんぬりで閉ざされていました。",
+      "subtitle": "ドアは内側から重い鉄のかんぬりで閉ざされていました。",
+      "type": "door",
+      "region": {
+        "x": 690,
+        "y": 254,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 4500,
+        "durationMs": 5310,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          254
+        ],
+        "end": [
+          959,
+          606
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-01-el3",
+      "label": "窓は閉じたまま",
+      "sequence": 3,
+      "narrativeRole": "窓はすべて内側から施錠され、ベランダもありません。",
+      "subtitle": "窓はすべて内側から施錠され、ベランダもありません。",
+      "type": "window",
+      "region": {
+        "x": 1257,
+        "y": 254,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 9930,
+        "durationMs": 5155,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          254
+        ],
+        "end": [
+          1526,
+          606
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-01-el4",
+      "label": "犠牲者",
+      "sequence": 4,
+      "narrativeRole": "警察がドアを破ると、客はすでに死亡していました。",
+      "subtitle": "警察がドアを破ると、客はすでに死亡していました。",
+      "type": "body",
+      "region": {
+        "x": 124,
+        "y": 634,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 15205,
+        "durationMs": 5000,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          634
+        ],
+        "end": [
+          393,
+          986
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-01-el5",
+      "label": "犯人は？",
+      "sequence": 5,
+      "narrativeRole": "犯人の姿も、逃げ出せる道も見当たりません。",
+      "subtitle": "犯人の姿も、逃げ出せる道も見当たりません。",
+      "type": "question",
+      "region": {
+        "x": 690,
+        "y": 634,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 20325,
+        "durationMs": 4535,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          634
+        ],
+        "end": [
+          959,
+          986
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-01-el6",
+      "label": "密室",
+      "sequence": 6,
+      "narrativeRole": "ではどうやって殺人者が完璧な密室から消えたのか。",
+      "subtitle": "ではどうやって殺人者が完璧な密室から消えたのか。",
+      "type": "question",
+      "region": {
+        "x": 1257,
+        "y": 634,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 24980,
+        "durationMs": 5000,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          634
+        ],
+        "end": [
+          1526,
+          986
+        ],
+        "easing": "easeInOut"
+      }
+    }
+  ]
+}
