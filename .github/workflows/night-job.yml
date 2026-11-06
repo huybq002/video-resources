@@ -36,6 +36,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          lfs: false
       - name: Check for tasks
         id: check
         run: |
@@ -70,24 +71,35 @@ jobs:
             4. Task types (frontmatter `type:`):
                - `video`: use the code2video-resource-generator skill in CI mode (its SKILL.md, section "CI mode"; skill dir is $SKILL).
                  Read idea, lang, aspect, duration_min, script_prompt, series, episode, renderer, privacy, upload from the task.
-                 Write specs/<task id>.json (duration_s = duration_min*60 exactly; scenes[].target_s must add up to it).
-                 If series is set, first run `python $SKILL/scripts/series.py brief series/<series>/series-bible.json` and continue that story.
-                 Then render with the task's `renderer` (default `tool`):
-                 * `tool` (best voice and video quality: VieNeu voice, Whisper alignment, HyperFrames render):
-                   a. `python $SKILL/ci/run_pipeline.py specs/<task id>.json out/<task id>/project --stop-after generate [--series series/<series>/series-bible.json]`
-                   b. Write out/<task id>/job.json: {"engine":"hyperframes","project":"out/<task id>/project","language":"<lang>","fps":30}
-                      (add "speakers" only if the task names voices; otherwise the default voice is used).
-                   c. Run ONE foreground command: `code2video-job out/<task id>/job.json --report out/<task id>/report.json`
-                      and read the report for the video path. Fix errors in the project files and re-run if it fails.
-                   d. Make metadata: `python $SKILL/ci/make_metadata.py specs/<task id>.json out/<task id>/project --privacy <privacy> > out/<task id>_metadata.json`.
-                      Make a thumbnail with the html-thumbnail skill.
-                 * `skill` (fallback, edge-tts voice): ONE foreground command
-                   `python $SKILL/ci/run_pipeline.py specs/<task id>.json out/<task id>/project [--series series/<series>/series-bible.json]`
-                 Upload to YouTube ONLY if the task says `upload: true`: with `skill` add `--upload --privacy <privacy>` to run_pipeline;
-                 with `tool` run `python $SKILL/ci/upload_youtube.py --video <mp4> --meta out/<task id>_metadata.json --thumb <jpg or png> --confirm`.
-                 Never add `--allow-public` unless the task says `privacy: public`.
-                 If a script-length WARNING appears, edit the spec and run again (idempotent).
-                 `out/` is git-ignored: do NOT commit videos. Commit specs/ and series/. The workflow uploads the videos and logs as an artifact.
+                 Everything for task <id> goes under outputs/<id>/ (this is what gets committed: resource bundle + video).
+                 1. Write specs/<id>.json (duration_s = duration_min*60 exactly; scenes[].target_s must add up to it; follow the skill's
+                    planning rules: scene count and length, words per scene, <= 14 words per cue, cast with gender on every character).
+                    If series is set, first run `python $SKILL/scripts/series.py brief series/<series>/series-bible.json` and continue that story.
+                 2. Generate the resource bundle:
+                    `python $SKILL/ci/run_pipeline.py specs/<id>.json outputs/<id>/project --stop-after generate [--series series/<series>/series-bible.json]`
+                    Fix every WARNING (edit the spec text/targets) and re-run until none is left.
+                 3. Verify the bundle (length, contiguous cues, cue size, scenes vs spec, required files):
+                    `python scripts/verify_bundle.py bundle outputs/<id>/project --spec specs/<id>.json --expect-minutes <duration_min>`
+                    If it prints PROBLEMS, fix the spec and go back to step 2. Do not render a bundle that fails.
+                 4. Render with the task's `renderer` (default `tool`):
+                    * `tool` (best voice and video quality: VieNeu voice, Whisper alignment, HyperFrames render):
+                      write outputs/<id>/job.json: {"engine":"hyperframes","project":"outputs/<id>/project","language":"<lang>","fps":30}
+                      (add "speakers" only if the task names voices; otherwise voices are assigned from the genders in script.srt),
+                      then run ONE foreground command: `code2video-job outputs/<id>/job.json --report outputs/<id>/report.json`
+                      The video is outputs/<id>/project/output.mp4 (see the report). On failure read the report, fix the project files, re-run.
+                    * `skill` (fallback, edge-tts voice): ONE foreground command
+                      `python $SKILL/ci/run_pipeline.py specs/<id>.json outputs/<id>/project [--series ...]` (video: outputs/<id>/project/final.mp4).
+                 5. Verify the video (length, audio stream present and not silent, frame size):
+                    `python scripts/verify_bundle.py video <the mp4> --spec specs/<id>.json --expect-minutes <duration_min>`
+                    If it prints PROBLEMS (for example a silent or short video), find the cause, fix and re-render. Never commit a video that fails.
+                 6. Metadata: `python $SKILL/ci/make_metadata.py specs/<id>.json outputs/<id>/project --privacy <privacy> > outputs/<id>/metadata.json`.
+                    Thumbnail: use the html-thumbnail skill (outputs/<id>/thumbnails/).
+                 7. Upload to YouTube ONLY if the task says `upload: true`:
+                    `python $SKILL/ci/upload_youtube.py --video <the mp4> --meta outputs/<id>/metadata.json --thumb <image> --confirm`.
+                    Never add `--allow-public` unless the task says `privacy: public`.
+                 8. Commit the resource bundle AND the video: `git add outputs/<id> specs/<id>.json series/`. The *.mp4 is stored with Git LFS
+                    (see .gitattributes). voiceover.wav is git-ignored (regenerated by the tool). If `git push` is rejected because the LFS quota
+                    is exhausted, push the bundle without the video, keep the video in the workflow artifact, and say so in Progress notes.
                - `thumbnail` or no type: use the html-thumbnail skill.
             5. When a task is finished, set status: done and move it to tasks/done/.
             6. Commit and `git push origin night` after every task and after every major step,
@@ -100,12 +112,11 @@ jobs:
         with:
           name: night-${{ github.run_id }}
           if-no-files-found: ignore
+          retention-days: 7
           path: |
-            out/*/project/final.mp4
-            out/*/project/output.mp4
-            out/*/project/script.srt
-            out/*/project/thumb.jpg
-            out/*/report.json
-            out/*_metadata.json
-            out/*/project_pipeline.log
-            outputs/
+            outputs/*/project/output.mp4
+            outputs/*/project/final.mp4
+            outputs/*/report.json
+            outputs/*/metadata.json
+            outputs/*/project_pipeline.log
+            outputs/*/thumbnails/*.png

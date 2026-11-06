@@ -109,6 +109,7 @@ def assign_voices(
     *,
     mode: str = "v3turbo",
     language: str = "vi",
+    genders: dict[str, str] | None = None,
 ) -> dict[str, str]:
     """Trả về map nhân vật → giọng; giữ nguyên lựa chọn tay trong ``explicit``."""
     voices = {k: v for k, v in (explicit or {}).items() if v}
@@ -135,7 +136,7 @@ def assign_voices(
 
     named = [s for s in dict.fromkeys(speakers) if s and s not in voices]
     # Nhân vật rõ giới tính chọn trước để nhân vật trung tính cân bằng quanh họ.
-    known = [(s, guess_gender(s)) for s in named]
+    known = [(s, (genders or {}).get(s) or guess_gender(s)) for s in named]
     for name, gender in known:
         if gender:
             voice = pick(gender)

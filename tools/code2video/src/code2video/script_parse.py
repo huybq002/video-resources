@@ -4,7 +4,23 @@ import re
 from dataclasses import dataclass
 
 _TIME = re.compile(r"(\d+):(\d{2}):(\d{2})[,.](\d{1,3})")
-_MULTI = re.compile(r"^\[(?P<name>[^\]]+)\]\s*\[(?P<times>[^\]]+)\]\s*:\s*(?P<text>.*)$", re.S)
+# Dạng của skill khi có nhiều người nói: [Tên][start --> end][nhãn giới tính]: lời (nhãn là tùy chọn).
+_MULTI = re.compile(r"^\[(?P<name>[^\]]+)\]\s*\[(?P<times>[^\]]+)\](?:\s*\[(?P<gender>[^\]]*)\])?\s*:\s*(?P<text>.*)$", re.S)
+
+_FEMALE_LABELS = {"f", "female", "woman", "girl", "nu", "nữ", "mujer", "femme", "weiblich", "feminino", "femmina",
+                  "wanita", "女性", "女", "여성", "หญิง", "жен", "महिला"}
+_MALE_LABELS = {"m", "male", "man", "boy", "nam", "hombre", "homme", "männlich", "masculino", "maschio", "pria",
+                "男性", "男", "남성", "ชาย", "муж", "पुरुष"}
+
+
+def normalize_gender(label: str) -> str:
+    """'female' | 'male' | '' từ nhãn giới tính trong script (nhiều ngôn ngữ)."""
+    value = (label or "").strip().lower()
+    if value in _FEMALE_LABELS:
+        return "female"
+    if value in _MALE_LABELS:
+        return "male"
+    return ""
 
 
 def _to_ms(hours: str, minutes: str, seconds: str, fraction: str) -> int:
@@ -18,6 +34,7 @@ class ScriptLine:
     text: str
     start_ms: int
     end_ms: int
+    gender: str = ""
 
 
 def _normalize(text: str) -> str:
@@ -61,7 +78,8 @@ def parse_script(text: str) -> tuple[list[ScriptLine], list[str]]:
             body = re.sub(r"\s+", " ", body)
             if not body:
                 continue
-            lines.append(ScriptLine(len(lines) + 1, match.group("name").strip(), body, start_ms, max(start_ms + 1, end_ms)))
+            lines.append(ScriptLine(len(lines) + 1, match.group("name").strip(), body, start_ms, max(start_ms + 1, end_ms),
+                                    normalize_gender(match.group("gender") or "")))
     else:
         from .srt import cues_from_lines, parse_srt
 
@@ -77,3 +95,12 @@ def parse_script(text: str) -> tuple[list[ScriptLine], list[str]]:
         if line.speaker and line.speaker not in speakers:
             speakers.append(line.speaker)
     return lines, speakers
+
+
+def speaker_genders(lines: list[ScriptLine]) -> dict[str, str]:
+    """Nhân vật → 'female'/'male' khi script có ghi nhãn giới tính (bỏ qua nhân vật không có)."""
+    result: dict[str, str] = {}
+    for line in lines:
+        if line.speaker and line.gender and line.speaker not in result:
+            result[line.speaker] = line.gender
+    return result

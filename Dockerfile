@@ -20,7 +20,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 # System packages: git/curl/unzip are needed by claude-code-action; ffmpeg for media.
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        ca-certificates curl gnupg git unzip sudo \
+        ca-certificates curl gnupg git git-lfs unzip sudo \
         python3 python3-pip python3-venv ffmpeg \
         fonts-liberation fonts-noto-core fonts-noto-color-emoji \
     && rm -rf /var/lib/apt/lists/*
@@ -39,7 +39,7 @@ RUN curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor
     && printf '#!/bin/sh\nexec /opt/google/chrome/chrome --no-sandbox --disable-dev-shm-usage "$@"\n' > /usr/local/bin/chrome-nosandbox \
     && chmod +x /usr/local/bin/chrome-nosandbox
 
-RUN git config --system --add safe.directory '*'
+RUN git config --system --add safe.directory '*' && git lfs install --system
 
 # Python deps for the skills (edge-tts fallback, thumbnails, ...)
 COPY requirements.txt /tmp/requirements.txt

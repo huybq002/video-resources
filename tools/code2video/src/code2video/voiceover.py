@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import shutil
 import subprocess
 import tempfile
@@ -103,14 +104,15 @@ def synthesize_voiceover_from_timeline(
     }
 
 
-def _auto_voices(tts, speakers: list[str], voices: dict[str, str], language: str) -> dict[str, str]:
+def _auto_voices(tts, speakers: list[str], voices: dict[str, str], language: str,
+                 genders: dict[str, str] | None = None) -> dict[str, str]:
     """Nhân vật chưa được chọn giọng → tự gán theo giới tính (đoán từ tên), mỗi người một giọng."""
     named = [name for name in speakers if name]
     if not named or not hasattr(tts, "voice"):
         return voices
     from .voice_assign import assign_voices
 
-    return assign_voices(named, voices, mode=getattr(tts, "mode", "v3turbo"), language=language)
+    return assign_voices(named, voices, mode=getattr(tts, "mode", "v3turbo"), language=language, genders=genders)
 
 
 def _prepare_track(timeline_path: Path, tts: TTSAdapter, voices: dict[str, str], fit: bool) -> dict:
@@ -151,14 +153,14 @@ def build_from_script(
 ) -> dict:
     """Dựng timeline.json + voiceover.wav (đa giọng theo nhân vật) từ script cho composition có sẵn."""
     from .models import Cue
-    from .script_parse import parse_script
+    from .script_parse import parse_script, speaker_genders
 
     project_dir = Path(project_dir)
     project_dir.mkdir(parents=True, exist_ok=True)
     voices = voices or {}
     raw = Path(script_path).read_text(encoding="utf-8-sig")
     lines, speakers = parse_script(raw)
-    voices = _auto_voices(tts, speakers, voices, language)
+    voices = _auto_voices(tts, speakers, voices, language, speaker_genders(lines))
     if not lines:
         raise ValueError(f"Không tìm thấy nội dung trong {script_path}")
 
@@ -188,7 +190,38 @@ def build_from_script(
         timeline_path.write_text(json.dumps(timeline.to_dict(), ensure_ascii=False, indent=2), encoding="utf-8")
         stats = {"cues": len(cues), "durationMs": timeline.duration_ms}
 
-    return {"timeline": str(timeline_path), "audio": str(audio_path), "speakers": speakers, "voices": voices, **stats}
+    synced = sync_composition_audio(project_dir, audio_path)
+    extra = {"audioCopy": str(synced)} if synced else {}
+    return {"timeline": str(timeline_path), "audio": str(audio_path), "speakers": speakers, "voices": voices, **stats, **extra}
+
+
+_AUDIO_SRC = re.compile(r"""<audio[^>]*?\ssrc\s*=\s*(?P<q>['"])(?P<src>.+?)(?P=q)""", re.I | re.S)
+
+
+def sync_composition_audio(project_dir: Path, audio_path: Path) -> Path | None:
+    """index.html dựng sẵn (vd. của skill) trỏ tới assets/audio/voiceover.wav, còn tool ghi voiceover.wav ở gốc project.
+
+    Chép file vào đúng đường dẫn mà <audio src> yêu cầu (chỉ trong project), nếu không HyperFrames render video câm.
+    """
+    project_dir = Path(project_dir)
+    audio_path = Path(audio_path)
+    index = project_dir / "index.html"
+    if not index.is_file() or not audio_path.is_file():
+        return None
+    html = index.read_text(encoding="utf-8", errors="replace")
+    root = project_dir.resolve()
+    copied: Path | None = None
+    for match in _AUDIO_SRC.finditer(html):
+        src = match.group("src").strip()
+        if "://" in src or src.startswith(("/", "data:")):
+            continue
+        target = (project_dir / src).resolve()
+        if root not in target.parents or target == audio_path.resolve():
+            continue
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(audio_path, target)
+        copied = target
+    return copied
 
 
 def _trim_silence(clip: np.ndarray, sample_rate: int, threshold: float = 0.008, pad_ms: int = 80) -> np.ndarray:
