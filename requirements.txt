@@ -2,3 +2,4 @@ google-genai
 pillow
 pillow-avif-plugin
 yt-dlp
+playwright

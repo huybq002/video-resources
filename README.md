@@ -17,3 +17,7 @@ Requires the `CLAUDE_CODE_OAUTH_TOKEN` repository secret (from `claude setup-tok
 - `claude-youtube` ([AgriciDaniel/claude-youtube](https://github.com/AgriciDaniel/claude-youtube)): channel strategy, SEO, scripts, hooks, Shorts. Optional `YOUTUBE_API_KEY` for data scripts.
 
 Python deps: `requirements.txt`. Licenses: `.claude/skills/_licenses/`.
+
+## Thumbnails (default: no image API)
+
+Skill `html-thumbnail`: Claude writes 3 HTML variants per video, renders PNGs with headless Chromium (Playwright), and logs them in `data/thumbnail-results.csv`. After you post them, fill in `ctr_percent`; the next run reads it and reuses what won. CTR is measured, not guaranteed.
