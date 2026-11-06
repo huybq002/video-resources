@@ -21,12 +21,19 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           prompt: |
-            Read NIGHT_TASKS.md and work through the unchecked tasks in order.
-            Work on a new branch named night/<today's date>, never on main.
-            Commit after each finished task and tick it in NIGHT_TASKS.md.
-            Keep going until you run out of tasks or hit the usage limit.
+            Follow tasks/README.md.
+            1. Switch to branch `night`: continue it if origin/night exists, else create it from main.
+               Then merge origin/main into it so new tasks appear.
+            2. Take files in tasks/pending/ in filename order and do each task.
+            3. Save results in outputs/<task id>/. Update "Progress notes" as you go.
+            4. When a task is finished, set status: done and move it to tasks/done/.
+            5. Commit and `git push origin night` after every task and after every major step,
+               so nothing is lost if the usage limit hits.
+            6. Never push to main. Keep going until no tasks remain or you hit the usage limit.
           claude_args: --allowedTools "Bash,Read,Write,Edit,Glob,Grep"
