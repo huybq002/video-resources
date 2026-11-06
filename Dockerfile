@@ -61,7 +61,10 @@ RUN cd /tmp/bg && npm install --no-audit --no-fund && rm -rf /tmp/bg
 
 # Download the models at build time so nights never download them.
 # faster-whisper "small" (tool default) and VieNeu "v3turbo" (tool default).
-RUN python3 -c "from faster_whisper import WhisperModel; WhisperModel('small', device='cpu', compute_type='int8'); print('whisper ok')" \
-    && python3 -c "from vieneu import Vieneu; Vieneu(mode='v3turbo'); print('vieneu ok')"
+RUN python3 -c "from faster_whisper import WhisperModel; WhisperModel('small', device='cpu', compute_type='int8'); print('whisper ok')"
+# VieNeu: the first load downloads the model, but onnxruntime then rejects it because the HuggingFace cache
+# stores files as symlinks that point outside the model directory ("External data path escapes model directory").
+# So: let it download (failure tolerated), replace every symlink with a real file, then load it again to verify.
+RUN (python3 -c "from vieneu import Vieneu; Vieneu(mode='v3turbo')" || true)     && find /opt/cache/huggingface -type l | while read -r link; do target="$(readlink -f "$link")"; rm "$link"; cp "$target" "$link"; done     && python3 -c "from vieneu import Vieneu; Vieneu(mode='v3turbo'); print('vieneu ok')"
 
 WORKDIR /github/workspace
