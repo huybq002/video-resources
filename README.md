@@ -9,7 +9,9 @@ Video resources and nightly automation (HyperFrames, YouTube).
 - `.github/workflows/night-job.yml`: runs at 00:00 (UTC+7), one 5h window
 - `.github/workflows/claude.yml`: `@claude` mentions in issues and PRs
 
-Requires the `CLAUDE_CODE_OAUTH_TOKEN` repository secret (from `claude setup-token`).
+Requires the `CLAUDE_CODE_OAUTH_TOKEN` repository secret (from `claude setup-token`). YouTube upload additionally needs `YT_CLIENT_ID`, `YT_CLIENT_SECRET`, `YT_REFRESH_TOKEN`.
+
+Video tasks use `.claude/skills/code2video-resource-generator`. `tools/code2video` (the Studio app with VieNeu-TTS and faster-whisper) is **not** used by the night job: the skill brings its own generator, edge-tts voice-over and HyperFrames render.
 
 ## Skills (in `.claude/skills/`)
 

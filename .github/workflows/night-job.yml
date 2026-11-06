@@ -19,18 +19,30 @@ jobs:
     permissions:
       contents: write
       id-token: write
+    env:
+      SKILL: .claude/skills/code2video-resource-generator
+      # let Claude's single long render command run for hours (skill CI mode)
+      BASH_MAX_TIMEOUT_MS: "21000000"
+      BASH_DEFAULT_TIMEOUT_MS: "21000000"
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
-      - name: Install Python deps
-        run: pip install -r requirements.txt
-      - name: Install Chromium for thumbnails
-        run: playwright install --with-deps chromium
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+      - name: Install tools
+        run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          pip install -r requirements.txt
+          echo "CHROME_PATH=${{ steps.chrome.outputs.chrome-path }}" >> "$GITHUB_ENV"
+          echo "PUPPETEER_EXECUTABLE_PATH=${{ steps.chrome.outputs.chrome-path }}" >> "$GITHUB_ENV"
       - name: Check for tasks
         id: check
         run: |
@@ -48,7 +60,9 @@ jobs:
         if: steps.check.outputs.count != '0'
         uses: anthropics/claude-code-action@v1
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -59,8 +73,32 @@ jobs:
             2. Take files in tasks/pending/ in filename order and do each task.
                Skip any task whose file already exists in tasks/done/ on the night branch.
             3. Save results in outputs/<task id>/. Update "Progress notes" as you go.
-            4. When a task is finished, set status: done and move it to tasks/done/.
-            5. Commit and `git push origin night` after every task and after every major step,
+            4. Task types (frontmatter `type:`):
+               - `video`: use the code2video-resource-generator skill in CI mode (its SKILL.md, section "CI mode"; skill dir is $SKILL).
+                 Read idea, lang, aspect, duration_min, script_prompt, series, episode, privacy, upload from the task.
+                 Write specs/<task id>.json (duration_s = duration_min*60 exactly; scenes[].target_s must add up to it).
+                 If series is set, first run `python $SKILL/scripts/series.py brief series/<series>/series-bible.json` and continue that story.
+                 Then run ONE foreground command and read only its short status lines:
+                 `python $SKILL/ci/run_pipeline.py specs/<task id>.json out/<task id>/project [--series series/<series>/series-bible.json]`
+                 Add `--upload --privacy <privacy>` ONLY if the task says `upload: true`. Never add `--allow-public` unless the task says `privacy: public`.
+                 If a script-length WARNING appears, edit the spec and run the command again (it is idempotent).
+                 `out/` is git-ignored: do NOT commit videos. Commit specs/ and series/. The workflow uploads final.mp4, script.srt, thumb.jpg and logs as an artifact.
+               - `thumbnail` or no type: use the html-thumbnail skill.
+            5. When a task is finished, set status: done and move it to tasks/done/.
+            6. Commit and `git push origin night` after every task and after every major step,
                so nothing is lost if the usage limit hits.
-            6. Never push to main. Keep going until no tasks remain or you hit the usage limit.
-          claude_args: --allowedTools "Bash,Read,Write,Edit,Glob,Grep"
+            7. Never push to main. Never print secrets. Keep going until no tasks remain or you hit the usage limit.
+          claude_args: --max-turns 300 --allowedTools "Bash,Read,Write,Edit,Glob,Grep"
+      - name: Upload render artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: night-${{ github.run_id }}
+          if-no-files-found: ignore
+          path: |
+            out/*/project/final.mp4
+            out/*/project/script.srt
+            out/*/project/thumb.jpg
+            out/*/project_metadata.json
+            out/*/project_pipeline.log
+            outputs/

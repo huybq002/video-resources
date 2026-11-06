@@ -1,0 +1,8 @@
+# Render output (uploaded as workflow artifact, never committed)
+out/
+*.mp4
+*.wav
+__pycache__/
+*.py[cod]
+.env
+node_modules/
