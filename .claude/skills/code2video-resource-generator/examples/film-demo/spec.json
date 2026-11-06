@@ -1,0 +1,216 @@
+{
+ "id": "film-demo",
+ "title": "Một lời xin lỗi",
+ "lang": "vi",
+ "duration_s": 70,
+ "fps": 30,
+ "motion_blur": true,
+ "letterbox": false,
+ "idea": "Hai người bạn gặp lại sau hai năm; một cuộc trò chuyện ở quán cà phê rồi công viên. Demo: sequences tự sinh nhiều shot (toàn - trung - cận mặt - phản ứng), nhân vật quay nghiêng, miệng khớp theo từng từ.",
+ "cast": [
+  {
+   "id": "narrator",
+   "name": "Người kể",
+   "narrator": true
+  },
+  {
+   "id": "lan",
+   "name": "Lan",
+   "top": "shirt",
+   "top_color": "#e9e4d8",
+   "top2": "#ffffff",
+   "bottom": "skirt",
+   "bottom_color": "#3f5a8a",
+   "shoes": "sneakers",
+   "shoe_color": "#c9c2b4",
+   "hair_style": "bun",
+   "hair": "#3a2a2a",
+   "scarf": "#d96a6a",
+   "bag": true,
+   "bag_color": "#b8855a"
+  },
+  {
+   "id": "minh",
+   "name": "Minh",
+   "top": "jacket",
+   "top_color": "#4b6a52",
+   "top2": "#e6dfcf",
+   "bottom": "pants",
+   "bottom_color": "#34384a",
+   "shoes": "boots",
+   "shoe_color": "#4a3326",
+   "hair_style": "short",
+   "hair": "#2a1f24",
+   "glasses": true,
+   "torso_w": 1.05
+  }
+ ],
+ "settings": {},
+ "scenes": [
+  {
+   "id": 1,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "seed": 2,
+      "mood": "warm",
+      "settings": [
+       "lib:street_day",
+       "lib:cafe"
+      ],
+      "actors": [
+       {
+        "k": "lan",
+        "x": 760,
+        "s": 0.8
+       }
+      ],
+      "cues": [
+       "Sáng thứ hai, Lan đến quán cà phê quen thuộc.",
+       "Cô hẹn Minh, người bạn đã hai năm không gặp.",
+       "Trong đầu cô là cả trăm câu hỏi chưa nói."
+      ]
+     }
+    },
+    {
+     "sequence": {
+      "type": "dialogue",
+      "setting": "lib:cafe",
+      "mood": "warm",
+      "seed": 1,
+      "a": {
+       "k": "lan",
+       "x": 620
+      },
+      "b": {
+       "k": "minh",
+       "x": 1300
+      },
+      "lines": [
+       {
+        "who": "minh",
+        "t": "Lan! Lâu quá rồi, cậu vẫn như xưa."
+       },
+       {
+        "who": "lan",
+        "t": "Cậu thì khác. Sao tự nhiên lại biến mất?"
+       },
+       {
+        "who": "minh",
+        "t": "Tớ có lý do. Nhưng khó nói lắm."
+       },
+       {
+        "who": "lan",
+        "t": "Cứ nói đi, tớ nghe đây."
+       },
+       {
+        "who": "minh",
+        "t": "Hôm đó tớ nhận việc ở xa và không dám báo cậu."
+       }
+      ]
+     }
+    }
+   ],
+   "title": "Cuộc hẹn ở quán cà phê",
+   "goal": "Hai người bạn gặp lại và hỏi lý do biến mất",
+   "target_s": 36
+  },
+  {
+   "id": 2,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "seed": 0,
+      "mood": "warm",
+      "settings": [
+       "lib:park_dusk"
+      ],
+      "actors": [
+       {
+        "k": "lan",
+        "x": 700,
+        "s": 0.8
+       },
+       {
+        "k": "minh",
+        "x": 1250,
+        "s": 0.8
+       }
+      ],
+      "cues": [
+       "Chiều hôm ấy, hai người đi dạo trong công viên.",
+       "Gió thổi nhẹ, câu chuyện cũ dần nhẹ đi."
+      ]
+     }
+    },
+    {
+     "sequence": {
+      "type": "dialogue",
+      "setting": "lib:park_dusk",
+      "mood": "sad",
+      "seed": 3,
+      "a": {
+       "k": "lan",
+       "x": 620
+      },
+      "b": {
+       "k": "minh",
+       "x": 1300
+      },
+      "lines": [
+       {
+        "who": "lan",
+        "t": "Cậu có hối hận không?"
+       },
+       {
+        "who": "minh",
+        "t": "Có, nhiều lắm. Nhưng tớ đã quay về."
+       },
+       {
+        "who": "lan",
+        "t": "Vậy lần sau, hãy nói với tớ trước nhé!"
+       },
+       {
+        "who": "minh",
+        "t": "Hứa luôn. Cảm ơn cậu, Lan."
+       }
+      ]
+     }
+    },
+    {
+     "sequence": {
+      "type": "narration",
+      "seed": 4,
+      "mood": "warm",
+      "settings": [
+       "lib:rooftop_night"
+      ],
+      "actors": [
+       {
+        "k": "lan",
+        "x": 700,
+        "s": 0.8
+       },
+       {
+        "k": "minh",
+        "x": 1250,
+        "s": 0.8
+       }
+      ],
+      "cues": [
+       "Đêm đó, trên sân thượng, họ cười như chưa từng xa nhau.",
+       "Có những người, chỉ cần một lời xin lỗi là đủ."
+      ]
+     }
+    }
+   ],
+   "title": "Công viên và sân thượng",
+   "goal": "Lời xin lỗi, hòa giải",
+   "target_s": 34
+  }
+ ],
+ "narrator": "narrator",
+ "narrator_name": "Người kể"
+}
