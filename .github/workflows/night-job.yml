@@ -1,0 +1,32 @@
+name: Night job
+
+# 00:00 Asia/Ho_Chi_Minh (UTC+7) = 17:00 UTC. Runs once per night.
+# Job is capped at 300 min (one 5h usage window), so it ends by ~05:00,
+# well inside the 00:00-07:00 allowed range.
+on:
+  schedule:
+    - cron: "0 17 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: night-job
+  cancel-in-progress: false
+
+jobs:
+  night:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            Read NIGHT_TASKS.md and work through the unchecked tasks in order.
+            Work on a new branch named night/<today's date>, never on main.
+            Commit after each finished task and tick it in NIGHT_TASKS.md.
+            Keep going until you run out of tasks or hit the usage limit.
+          claude_args: --allowedTools "Bash,Read,Write,Edit,Glob,Grep"
