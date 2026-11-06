@@ -107,20 +107,27 @@ def apply_format(video_path: Path, fmt: str | None, mode: str = "fit") -> None:
     temp = video_path.with_name(video_path.stem + ".fmt.mp4")
     subprocess.run(
         [ffmpeg, "-y", "-loglevel", "error", "-i", str(video_path), "-vf", vf,
-         "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-c:a", "copy",
+         "-c:v", "libx264", "-preset", "slow", "-crf", "16", "-c:a", "copy",
          "-movflags", "+faststart", str(temp)],
         check=True,
     )
     temp.replace(video_path)
 
 
-def render_hyperframes(project_dir: Path, output_path: Path, hyperframes_command: str = "npx hyperframes", fps: int | None = None) -> None:
+HF_QUALITIES = ("draft", "looks", "delivery", "standard", "high")
+
+
+def render_hyperframes(project_dir: Path, output_path: Path, hyperframes_command: str = "npx hyperframes", fps: int | None = None,
+                      quality: str | None = None) -> None:
     project_dir = project_dir.resolve()
     output_path = output_path.resolve()
     command = hyperframes_command.split() + ["render", "--output", str(output_path)]
     # Tăng tốc tùy chọn qua env: -q draft, -w workers, -f fps (không đổi mặc định nếu không set).
-    if os.environ.get("HF_RENDER_QUALITY"):
-        command += ["--quality", os.environ["HF_RENDER_QUALITY"]]
+    quality = quality or os.environ.get("HF_RENDER_QUALITY")
+    if quality:
+        if quality not in HF_QUALITIES:
+            raise ValueError(f"Chất lượng render không hợp lệ: {quality}")
+        command += ["--quality", quality]
     if os.environ.get("HF_RENDER_WORKERS"):
         command += ["--workers", os.environ["HF_RENDER_WORKERS"]]
     fps_value = fps or os.environ.get("HF_RENDER_FPS")

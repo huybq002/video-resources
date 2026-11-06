@@ -25,6 +25,13 @@ def _normalize(text: str) -> str:
     return re.sub(r"\r+\n|\r", "\n", text)
 
 
+def _strip_leading_comments(block: str) -> str:
+    rows = block.split("\n")
+    while rows and rows[0].lstrip().startswith("#"):
+        rows.pop(0)
+    return "\n".join(rows).strip()
+
+
 def parse_script(text: str) -> tuple[list[ScriptLine], list[str]]:
     """Đọc script -> (danh sách line có nhân vật/timing, danh sách nhân vật).
 
@@ -34,17 +41,20 @@ def parse_script(text: str) -> tuple[list[ScriptLine], list[str]]:
     """
     text = _normalize(text)
     blocks = [b.strip() for b in re.split(r"\n\s*\n", text.strip()) if b.strip()]
-    is_multi = any(_MULTI.match(block) for block in blocks)
+    # dòng chú thích '# SCENE ...' đứng đầu block (kể cả dính liền trên [Tên][..]: lời) chỉ là ghi chú, bỏ đi
+    cleaned = [c for c in (_strip_leading_comments(b) for b in blocks) if c]
+    is_multi = any(_MULTI.match(block) for block in cleaned)
 
     lines: list[ScriptLine] = []
     if is_multi:
-        for block in blocks:
+        for block in cleaned:
             match = _MULTI.match(block)
-            if not match:
-                continue
+            if not match:  # không im lặng bỏ lời thoại: báo rõ để sửa script
+                preview = block[:80].replace("\n", " ")
+                raise ValueError(f"Script nhiều nhân vật có block sai định dạng '[Tên][00:00:00,000 --> 00:00:03,000]: lời': {preview}")
             times = _TIME.findall(match.group("times"))
             if len(times) < 2:
-                continue
+                raise ValueError(f"Block thiếu mốc thời gian 'start --> end': {block[:80]}".replace("\n", " "))
             start_ms = _to_ms(*times[0])
             end_ms = _to_ms(*times[1])
             body = " ".join(part.strip() for part in match.group("text").splitlines()).strip()

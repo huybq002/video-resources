@@ -8,59 +8,78 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/studio.css">
+  <link rel="stylesheet" href="/static/workflow.css">
+  <link rel="stylesheet" href="/static/shell.css">
+  <link rel="stylesheet" href="/static/feedback.css">
 </head>
 <body>
   <div class="grain"></div>
-  <div class="app">
-    <header class="topbar">
+  <div class="shell">
+    <aside class="sidenav" aria-label="Điều hướng">
       <div class="brand">
         <span class="mark"></span>
         <div class="brand-text">
           <h1>Code2Video <em>Studio</em></h1>
-          <p>script + scene assets &nbsp;→&nbsp; video · VieNeu · HyperFrames · Whiteboard</p>
+          <p>script → video</p>
         </div>
       </div>
-      <div class="env" id="env"></div>
-    </header>
 
-    <main class="workspace">
+      <label class="field nav-engine"><span class="lbl">Video engine</span>
+        <select id="renderer">
+          <option value="hyperframes">HyperFrames</option>
+          <option value="whiteboard">Whiteboard animation</option>
+        </select>
+      </label>
+
+      <nav class="nav" id="nav">
+        <span class="nav-title" data-engine="hyperframes">HyperFrames</span>
+        <button type="button" class="nav-item" data-nav="hf-folder" data-engine="hyperframes">Folder</button>
+        <button type="button" class="nav-item" data-nav="hf-files" data-engine="hyperframes">File lẻ</button>
+        <span class="nav-title" data-engine="whiteboard">Whiteboard</span>
+        <button type="button" class="nav-item" data-nav="wb-folder" data-engine="whiteboard">Folder</button>
+        <button type="button" class="nav-item" data-nav="wb-manual" data-engine="whiteboard">Thủ công</button>
+        <button type="button" class="nav-item" data-nav="wb-ai" data-engine="whiteboard">AI Kịch bản</button>
+        <span class="nav-title">Tự động hóa</span>
+        <button type="button" class="nav-item" data-nav="workflow">Workflow</button>
+        <button type="button" class="nav-item" data-nav="settings">Settings</button>
+      </nav>
+
+      <div class="env" id="env"></div>
+    </aside>
+
+    <div class="content">
+      <section class="commonbar" id="commonBar" aria-label="Cài đặt chung">
+        <label class="field"><span class="lbl">Ngôn ngữ</span><select id="language"></select></label>
+        <label class="field"><span class="lbl">Khung hình</span><select id="format"></select></label>
+        <label class="field"><span class="lbl">Kiểu khung</span>
+          <select id="formatMode">
+            <option value="fit">Fit (đủ hình, thêm viền)</option>
+            <option value="fill">Fill (cắt lấp đầy)</option>
+          </select>
+        </label>
+        <label class="field"><span class="lbl">FPS</span><select id="fps" title="Số khung hình được chụp mỗi giây. HyperFrames chụp từng khung theo FPS này: 60 fps cho chuyển động mượt gấp đôi 30 fps (render lâu hơn). Whiteboard tối đa 60."></select></label>
+        <label class="field" data-engine="hyperframes"><span class="lbl">Chất lượng render</span>
+          <select id="hfQuality" title="Cao nhất (delivery) cho file đẹp nhất, render lâu hơn">
+            <option value="delivery" selected>Cao nhất (delivery)</option>
+            <option value="looks">Cao (mặc định HyperFrames)</option>
+            <option value="draft">Xem thử (nhanh)</option>
+          </select></label>
+        <label class="field" data-engine="whiteboard"><span class="lbl">Độ nét Whiteboard</span>
+          <select id="wbLongEdge" title="1080 là mặc định. 1920 nét hơn nhưng render chậm hơn khoảng 18 lần">
+            <option value="1080" selected>1080 px (mặc định)</option>
+            <option value="1920">1920 px (nét nhất, rất chậm)</option>
+          </select></label>
+        <label class="field"><span class="lbl">Chạy song song (≤4)</span><select id="workers"></select></label>
+      </section>
+
+    <main class="workspace" id="studioView">
       <section class="panel source">
         <div class="panel-head">
-          <span class="kicker">Nguồn vào</span>
+          <span class="kicker" id="sourceKicker">Nguồn vào</span>
           <span class="kicker-index">01</span>
         </div>
 
-        <label class="field"><span class="lbl">Video engine</span>
-          <select id="renderer">
-            <option value="hyperframes">HyperFrames</option>
-            <option value="whiteboard">Whiteboard animation</option>
-          </select>
-        </label>
-
-        <label class="field"><span class="lbl">Ngôn ngữ</span>
-          <select id="language"></select>
-        </label>
-
-        <div class="two">
-          <label class="field"><span class="lbl">Khung hình</span><select id="format"></select></label>
-          <label class="field"><span class="lbl">Kiểu khung</span>
-            <select id="formatMode">
-              <option value="fit">Fit (đủ hình, thêm viền)</option>
-              <option value="fill">Fill (cắt lấp đầy)</option>
-            </select>
-          </label>
-        </div>
-
-        <div class="two">
-          <label class="field"><span class="lbl">FPS</span><select id="fps"></select></label>
-          <label class="field"><span class="lbl">Chạy song song (tối đa 4)</span><select id="workers"></select></label>
-        </div>
-
-        <div class="tabs" role="tablist">
-          <button class="tab is-active" data-mode="files">File lẻ</button>
-          <button class="tab" data-mode="upload">Folder</button>
-        </div>
-        <input type="hidden" id="mode" value="files">
+        <input type="hidden" id="mode" value="upload">
 
         <!-- files -->
         <div class="mode-panel" data-panel="files">
@@ -80,32 +99,31 @@
         </div>
 
         <div class="mode-panel" data-panel="whiteboard" hidden>
-          <div class="wtabs" role="tablist">
-            <button class="wtab is-active" data-wbtab="folder">Folder</button>
-            <button class="wtab" data-wbtab="manual">Thủ công</button>
-          </div>
           <input type="hidden" id="wbTab" value="folder">
           <div data-wbpanel="folder">
             <p class="note">Chọn <b>folder</b> để app tự tách scene (mỗi scene: <b>PNG</b> + <b>annotation</b> + <b>script</b>) và detect nhân vật.</p>
             <label class="file big"><span>Folder các scene</span><input type="file" id="wbFolder" webkitdirectory directory multiple></label>
-            <label class="field"><span class="lbl">Hoặc chọn folder trên máy</span>
-              <span class="fs-pick"><input id="wbLocalFolder" placeholder="Đường dẫn folder...">
-                <button id="wbBrowse" class="ghost" type="button">Duyệt...</button></span></label>
-            <div id="fsExplorer" class="fs-explorer" hidden>
-              <div class="fs-head">
-                <button id="fsUp" class="ghost" type="button">↑ Cha</button>
-                <span id="fsPath" class="fs-path">(chọn ổ đĩa)</span>
-              </div>
-              <div id="fsDirs" class="fs-dirs"></div>
-              <button id="fsPick" class="primary" type="button">Chọn folder này</button>
-            </div>
+            <label class="check-inline"><input type="checkbox" id="wbAutoMerge" checked> Tự ghép cảnh khi render xong (vẫn giữ video từng scene để tải về)</label>
             <div id="wbDetected" class="whiteboard-scenes"></div>
           </div>
           <div data-wbpanel="manual" hidden>
             <p class="note">Mỗi scene gồm một <b>script</b>, ảnh <b>PNG</b> và <b>annotation JSON</b> cùng tên gốc.</p>
             <div id="whiteboardScenes" class="whiteboard-scenes"></div>
             <button id="addScene" class="ghost add-scene" type="button">+ Thêm scene</button>
-            <button id="wbPreview" class="ghost add-scene" type="button">Xem trước 10s (scene đầu, không giọng)</button>
+          </div>
+          <div data-wbpanel="ai" hidden>
+            <p class="note">AI viết kịch bản + chọn doodle theo ý tưởng của bạn. Nhập API key và chọn model miễn phí ở mục <b>Settings</b> trong sidebar. Provider <b>Demo</b> chạy offline không cần key.</p>
+            <label class="field"><span class="lbl">Ý tưởng / chủ đề</span>
+              <textarea id="aiTopic" rows="3" placeholder="Ví dụ: 5 thói quen buổi sáng giúp làm việc hiệu quả hơn"></textarea></label>
+            <div class="two">
+              <label class="field"><span class="lbl">Thời lượng (phút)</span>
+                <input id="aiMinutes" type="number" min="1" max="10" value="3"></label>
+              <label class="field"><span class="lbl">Provider</span><select id="aiProvider"></select></label>
+            </div>
+            <label class="field"><span class="lbl">Skill (system prompt)</span><select id="aiSkill"></select></label>
+            <button id="aiGenerate" class="primary" type="button">Sinh kịch bản (AI)</button>
+            <div id="aiReview" class="whiteboard-scenes"></div>
+            <button id="aiRender" class="primary" type="button" hidden>Tạo video từ kịch bản</button>
           </div>
         </div>
 
@@ -128,10 +146,10 @@
           <div class="runmode">
             <span class="lbl">Cách chạy</span>
             <div class="seg" role="tablist">
-              <button class="seg-btn is-active" data-run="queue">Queue</button>
-              <button class="seg-btn" data-run="batch">Batch</button>
+              <button class="seg-btn" data-run="queue">Queue</button>
+              <button class="seg-btn is-active" data-run="batch">Batch</button>
             </div>
-            <input type="hidden" id="runMode" value="queue">
+            <input type="hidden" id="runMode" value="batch">
           </div>
           <button id="run" class="primary">Tạo video</button>
         </div>
@@ -167,7 +185,86 @@
         <div id="links" class="links"></div>
       </section>
     </main>
+
+    <main class="wf" id="workflowView" hidden>
+      <div class="wf-toolbar">
+        <select id="wfFlowSelect" aria-label="Video đã lưu"></select>
+        <select id="wfEngine" aria-label="Engine video">
+          <option value="whiteboard">Whiteboard</option>
+          <option value="hyperframes">HyperFrames</option>
+        </select>
+        <button id="wfCreate" class="ghost" type="button">Tạo mới</button>
+        <input id="wfName" class="wf-name" placeholder="Tên video" aria-label="Tên video">
+        <span class="wf-spacer"></span>
+        <button id="wfGuideBtn" class="ghost" type="button" aria-expanded="false" aria-controls="wfGuide">Hướng dẫn</button>
+        <button id="wfSave" class="ghost" type="button">Lưu</button>
+        <button id="wfDelete" class="ghost" type="button">Xóa</button>
+        <button id="wfRun" class="primary" type="button">Chạy</button>
+      </div>
+      <section id="wfGuide" class="wf-guide" hidden aria-label="Hướng dẫn dùng Workflow">
+        <div class="wf-guide-head"><h3>Cách dùng Workflow</h3><button id="wfGuideClose" class="ghost" type="button">Đóng</button></div>
+        <ol class="wf-guide-steps">
+          <li><b>Cài AI trước.</b> Vào <b>Settings</b>, nhập API key, chọn model rồi bấm <i>Kiểm tra kết nối</i> và <i>Lưu settings</i>.</li>
+          <li><b>Chọn engine.</b> Mỗi engine có đủ các bước từ prompt tới video. <i>Whiteboard</i>: Ý tưởng → Skill → AI kịch bản → Hình ảnh → Giọng đọc → Render → Ghép cảnh. <i>HyperFrames</i>: Ý tưởng → Skill → AI kịch bản → Giọng đọc → AI dựng HTML → Render (giọng đọc chạy trước để hình khớp tiếng).</li>
+          <li><b>Đi từng bước.</b> Bấm vào bước ở cột trái hoặc dùng <i>Bước tiếp</i>, rồi chỉnh cài đặt ở bên phải. Bước còn thiếu thông tin có dấu ⚠. Thứ tự các bước cố định nên không thể nối sai.</li>
+          <li><b>Nhiều nhân vật.</b> Ở bước AI kịch bản, nhập mỗi dòng một tên nhân vật (2 đến 4 người); AI viết lời thoại luân phiên. Sang bước Giọng đọc, gán giọng VieNeu riêng cho từng nhân vật.</li>
+          <li><b>Skill là tùy chọn.</b> Bật ở bước Skill, chọn tối đa 4 skill (gộp lại làm system prompt). Có thể tải nhiều file <code>.md/.txt</code>, tối đa 4 file upload.</li>
+          <li><b>Hình ảnh (Whiteboard).</b> Mặc định là <i>Doodle có sẵn của app</i> (ổn định, nét vẽ tay). <i>AI tự vẽ ảnh</i> cần provider đã chọn “Model tạo ảnh” ở Settings (thường tính phí, ví dụ Gemini/OpenAI có bật thanh toán) hoặc <i>Doodle có sẵn của app</i>.</li>
+          <li><b>Chạy.</b> Bấm <b>Chạy</b>: cột trái cho biết đang ở bước nào, bước xong có ✓, bước lỗi có ✗ và tự mở để xem lỗi.</li>
+          <li><b>Xem kết quả.</b> Bấm vào bước đã xong để xem kết quả ngay dưới phần cài đặt. Ô nhập bị khóa, bấm <b>Mở khóa để sửa</b> nếu muốn chỉnh rồi chạy lại.</li>
+          <li><b>Lưu trữ.</b> Settings, skill, video đã lưu và kết quả gần nhất nằm local trong thư mục <code>.studio-data</code>. File upload xóa ở Settings → Tệp đã tải lên.</li>
+        </ol>
+      </section>
+      <p id="wfMsg" class="wf-msg" role="status"></p>
+      <div class="wf-body" id="wfBody">
+        <nav class="wf-steps-col" aria-label="Các bước"><ol id="wfSteps" class="wf-steps"></ol></nav>
+        <section class="wf-panel" id="wfPanel" aria-label="Cài đặt bước"></section>
+      </div>
+      <div class="wf-result" id="wfResult" hidden>
+        <div class="prog-top"><span id="wfStatus" class="wf-status-line">Sẵn sàng.</span><span id="wfPct">0%</span></div>
+        <div class="bar"><div id="wfBar" class="fill"></div></div>
+        <video id="wfVideo" controls hidden></video>
+        <div id="wfLinks" class="links"></div>
+      </div>
+    </main>
+
+    <main class="settings-view panel" id="settingsView" hidden>
+      <div class="panel-head">
+        <span class="kicker">Settings — AI provider &amp; skills</span>
+      </div>
+      <p class="note">Dùng chung cho AI Kịch bản và Workflow. Chỉ cho chọn model miễn phí: bấm <b>Tải danh sách model</b> ở từng provider (Gemini/Groq lọc theo gói free, OpenRouter lọc theo giá bằng 0). API key lưu ở <code>.studio-data/settings/ai.json</code> trên máy này, không nằm trong file flow.</p>
+      <div class="ai-settings">
+        <h3 class="settings-h">Đường dẫn công cụ</h3>
+        <p class="note">Trỏ tới phần mềm đã cài trên máy (lưu local, có hiệu lực ngay, không cần sửa file <code>.env</code>).</p>
+        <div class="tool-paths">
+          <label class="ai-field">Thư mục srt-whiteboard-animation (WHITEBOARD_ROOT)
+            <input id="toolRoot" placeholder="vd: H:/Tool/video-generate/srt-whiteboard-animation"></label>
+          <label class="ai-field">Python của Whiteboard (WHITEBOARD_PYTHON, để trống = Python của app)
+            <input id="toolPython" placeholder="vd: H:/Tool/.../.venv/Scripts/python.exe"></label>
+          <p id="toolStatus" class="ai-status" role="status" hidden></p>
+          <div id="toolBadges" class="tool-badges"></div>
+          <div class="ai-actions"><button id="toolSave" class="ghost" type="button">Lưu đường dẫn</button></div>
+        </div>
+        <h3 class="settings-h">Provider</h3>
+        <div id="aiProviders"></div>
+        <button id="aiAddProvider" class="ghost add-scene" type="button">+ Thêm provider (Other)</button>
+        <h3 class="settings-h">Skills (system prompt)</h3>
+        <div id="aiSkills"></div>
+        <div class="row-inline">
+          <button id="aiAddSkill" class="ghost add-scene" type="button">+ Thêm skill</button>
+          <button id="aiUploadSkill" class="ghost add-scene" type="button">⬆ Tải skill lên (.md / .txt)</button>
+          <input id="aiSkillFile" type="file" accept=".md,.markdown,.txt" multiple hidden>
+        </div>
+        <p class="note">File upload được lưu local ở <code>.studio-data/settings/uploads/skills</code> và dùng được ngay ở bước <b>Skill</b> trong Workflow.</p>
+        <h3 class="settings-h">Tệp đã tải lên</h3>
+        <div id="aiFiles" class="files-box"></div>
+        <button id="aiSettingsSave" class="primary" type="button">Lưu settings</button>
+      </div>
+    </main>
+    </div>
   </div>
+  <script src="/static/feedback.js"></script>
   <script src="/static/studio.js"></script>
+  <script src="/static/workflow.js"></script>
 </body>
 </html>

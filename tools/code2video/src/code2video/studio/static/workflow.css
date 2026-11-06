@@ -1,0 +1,88 @@
+/* ---------- workflow theo step ---------- */
+.wf { display: flex; flex-direction: column; gap: 10px; }
+.wf-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+.wf-toolbar select, .wf-toolbar input, .wf-panel input, .wf-panel select, .wf-panel textarea {
+  background: var(--control); color: var(--ink); border: 1px solid var(--line-strong); border-radius: 8px; padding: 7px 9px; font: .85rem var(--body); max-width: 100%;
+}
+.wf-toolbar select { width: auto; max-width: 260px; }
+.wf-toolbar button { width: auto; }
+.wf-name { width: 200px; }
+.wf-toolbar #wfRun { padding: 9px 22px; }
+.wf-spacer { flex: 1; }
+.wf-msg { margin: 0; min-height: 1.2em; font-size: .85rem; color: var(--muted); }
+.wf-msg.is-error { color: var(--red); }
+.wf-msg.is-ok { color: var(--mint); }
+
+.wf-body { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 10px; align-items: start; }
+@media (max-width: 900px) { .wf-body { grid-template-columns: 1fr; } }
+
+/* cột các bước */
+.wf-steps-col { padding: 10px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+.wf-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.wf-step { display: flex; align-items: center; gap: 10px; width: 100%; padding: 9px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--control); color: var(--ink); text-align: left; cursor: pointer; font: inherit; }
+.wf-step:hover { border-color: var(--line-strong); }
+.wf-step:focus-visible { outline: 2px solid var(--mint); outline-offset: 1px; }
+.wf-step.is-current { border-color: var(--accent-2); box-shadow: 0 0 0 1px var(--accent-2); }
+.wf-step-no { flex: none; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--line-strong); font: 700 .74rem var(--mono); color: var(--muted); }
+.wf-step-text { flex: 1; min-width: 0; display: grid; gap: 1px; }
+.wf-step-name { font: 700 .86rem var(--display); }
+.wf-step-sum { font-size: .74rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wf-step-time { flex: none; font: 500 .68rem var(--mono); color: var(--dim); }
+.wf-step.is-done .wf-step-no { background: var(--mint); border-color: var(--mint); color: #08110e; }
+.wf-step.is-error { border-color: var(--red); }
+.wf-step.is-error .wf-step-no { background: var(--red); border-color: var(--red); color: #fff; }
+.wf-step.is-running { border-color: var(--amber); }
+.wf-step.is-running .wf-step-no { border-color: var(--amber); border-right-color: transparent; animation: spin .7s linear infinite; }
+.wf-step.is-issue .wf-step-sum { color: var(--amber); }
+.wf-step.is-skipped { opacity: .6; }
+
+/* panel cài đặt */
+.wf-panel { padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); min-width: 0; }
+.wf-panel-no { margin: 0; font: 600 .72rem var(--mono); color: var(--dim); letter-spacing: .04em; }
+.wf-panel-title { margin: 2px 0 2px; font: 700 1.15rem var(--display); }
+.wf-panel-desc { margin: 0 0 12px; font-size: .84rem; color: var(--muted); }
+.wf-panel label { display: block; margin-bottom: 10px; font-size: .8rem; color: var(--muted); }
+.wf-panel label > input:not([type=checkbox]), .wf-panel label > select, .wf-panel label > textarea { display: block; width: 100%; margin-top: 4px; }
+.wf-panel .wf-check { display: flex; align-items: center; gap: 8px; color: var(--ink); }
+.wf-grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0 12px; }
+.wf-panel .row-actions { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+.wf-panel .row-actions button, .wf-banner button, .wf-panel-nav button { width: auto; }
+.wf-panel .empty { margin: 4px 0 8px; color: var(--dim); font-size: .8rem; }
+.wf-panel-nav { display: flex; justify-content: space-between; gap: 8px; margin-top: 14px; }
+.wf-fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.wf-fieldset:disabled { opacity: .55; }
+.wf-lock { color: var(--mint); }
+.wf-banner { margin: 0 0 12px; padding: 8px 10px; border: 1px solid var(--mint); border-radius: 10px; background: rgba(80,200,150,.08); font-size: .8rem; color: var(--muted); }
+.wf-banner button { display: block; margin-top: 6px; }
+.wf-warn { margin: 6px 0; padding: 6px 8px; border-radius: 8px; border: 1px solid var(--red); color: var(--red); font-size: .8rem; overflow-wrap: anywhere; }
+
+/* kết quả */
+.wf-res { margin-top: 14px; padding-top: 10px; border-top: 1px dashed var(--line-strong); }
+.wf-res h4 { margin: 0 0 6px; font: 700 .72rem var(--mono); letter-spacing: .08em; color: var(--dim); text-transform: uppercase; }
+.wf-res p, .wf-res ul { margin: 4px 0; font-size: .84rem; color: var(--ink); overflow-wrap: anywhere; }
+.wf-res ul { padding-left: 18px; }
+.wf-res .empty, .wf-res .wf-res-run { color: var(--muted); }
+.wf-res .wf-warn { color: var(--red); }
+.wf-res pre { max-height: 220px; overflow: auto; font-size: .72rem; white-space: pre-wrap; }
+.wf-scroll { max-height: 320px; overflow: auto; padding-right: 4px; }
+.wf-thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
+.wf-thumb { display: block; width: 100%; border: 1px solid var(--line-strong); border-radius: 8px; background: #fff; }
+.wf-mini { width: 100%; border-radius: 8px; }
+
+.wf-result { padding: 12px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+.wf-result video { width: 100%; max-width: 640px; margin-top: 10px; border-radius: 10px; }
+
+/* hướng dẫn */
+.wf-guide { padding: 12px 16px; border: 1px solid var(--accent-2); border-radius: 14px; background: var(--panel); }
+.wf-guide[hidden] { display: none; }
+.wf-guide-head { display: flex; justify-content: space-between; align-items: center; }
+.wf-guide-head h3 { margin: 0; font: 700 1rem var(--display); }
+.wf-guide-head button { width: auto; }
+.wf-guide-steps { margin: 8px 0 0; padding-left: 20px; display: grid; gap: 6px; font-size: .85rem; color: var(--muted); }
+.wf-guide-steps b { color: var(--ink); }
+.wf-guide-steps code { font-size: .78rem; color: var(--accent-2); }
+
+@media (prefers-reduced-motion: reduce) { .wf-step.is-running .wf-step-no { animation-duration: 2s; } }
+
+.wf-skills { display: grid; gap: 2px; margin: 4px 0 10px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--control); }
+.wf-skills .wf-check { margin: 0; padding: 3px 0; }

@@ -11,7 +11,9 @@ Video resources and nightly automation (HyperFrames, YouTube).
 
 Requires the `CLAUDE_CODE_OAUTH_TOKEN` repository secret (from `claude setup-token`). YouTube upload additionally needs `YT_CLIENT_ID`, `YT_CLIENT_SECRET`, `YT_REFRESH_TOKEN`.
 
-Video tasks use `.claude/skills/code2video-resource-generator`. `tools/code2video` (the Studio app with VieNeu-TTS and faster-whisper) is **not** used by the night job: the skill brings its own generator, edge-tts voice-over and HyperFrames render.
+Video tasks use `.claude/skills/code2video-resource-generator`. `tools/code2video` (VieNeu-TTS, faster-whisper, HyperFrames render, `code2video-job`) renders the video for `renderer: tool` tasks; `renderer: skill` uses the skill's own edge-tts + render as a fallback.
+
+The night job runs inside a prebuilt image (`Dockerfile`, built by `build-image.yml` and stored at `ghcr.io/huybq002/video-resources-runner`), so nothing is installed or downloaded at night. Run **Build runner image** once (and whenever tools or dependencies change) before the first night.
 
 ## Skills (in `.claude/skills/`)
 

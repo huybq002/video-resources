@@ -1,10 +1,9 @@
-import json
 from pathlib import Path
 from unittest.mock import patch
 
 import pytest
 
-from code2video.whiteboard import merge_whiteboard_scenes, render_whiteboard, render_whiteboard_preview, scene_pairs
+from code2video.whiteboard import merge_whiteboard_scenes, render_whiteboard, scene_pairs
 
 
 def test_scene_pairs_match_annotations_to_pngs(tmp_path: Path) -> None:
@@ -102,64 +101,21 @@ def test_render_whiteboard_requires_configured_root(tmp_path: Path) -> None:
             render_whiteboard(tmp_path, tmp_path / "output.mp4")
 
 
-def test_render_whiteboard_preview_uses_fast_engine_flags(tmp_path):
-    root = tmp_path / "whiteboard"
-    scripts = root / "scripts"
-    scripts.mkdir(parents=True)
-    (scripts / "render_stream_whiteboard.py").touch()
-    image = tmp_path / "scene-01.png"
-    image.touch()
-    annotation = tmp_path / "scene-01.annotation.json"
-    annotation.write_text(json.dumps({
-        "sceneDurationMs": 20000,
-        "elements": [{"sequence": 1, "reveal": {"startMs": 0, "durationMs": 20000}}],
-    }), encoding="utf-8")
-    output = tmp_path / "preview.mp4"
-    calls = []
-
-    def run(command, **kwargs):
-        calls.append(command)
-        Path(command[4]).touch()
-
-    with patch("code2video.whiteboard.subprocess.run", side_effect=run):
-        render_whiteboard_preview(image, annotation, output, root=root, python="py-wb", seconds=10)
-
-    assert len(calls) == 1
-    command = calls[0]
-    assert command[1].endswith("render_stream_whiteboard.py")
-    assert command[command.index("--total-ms") + 1] == "10000"
-    assert command[command.index("--cap-long-edge") + 1] == "640"
-    assert command[command.index("--fps") + 1] == "30"
-    assert "--full-color-ink" in command
-    assert output.is_file()
-    # annotation tạm đã co giãn về đúng 10s
-    scaled = json.loads(Path(command[3]).read_text(encoding="utf-8"))
-    assert scaled["sceneDurationMs"] == 10000
-    assert scaled["elements"][0]["reveal"]["durationMs"] == 10000
-
-
-def test_render_whiteboard_preview_caps_total_to_annotation(tmp_path):
-    root = tmp_path / "whiteboard"
-    scripts = root / "scripts"
-    scripts.mkdir(parents=True)
-    (scripts / "render_stream_whiteboard.py").touch()
-    image = tmp_path / "scene-01.png"
-    image.touch()
-    annotation = tmp_path / "scene-01.annotation.json"
-    annotation.write_text(json.dumps({
-        "sceneDurationMs": 4200,
-        "elements": [{"sequence": 1, "reveal": {"startMs": 0, "durationMs": 4200}}],
-    }), encoding="utf-8")
-    calls = []
-
-    def run(command, **kwargs):
-        calls.append(command)
-        Path(command[4]).touch()
-
-    with patch("code2video.whiteboard.subprocess.run", side_effect=run):
-        render_whiteboard_preview(image, annotation, tmp_path / "preview.mp4", root=root, python="py-wb", seconds=10)
-
-    command = calls[0]
-    assert command[command.index("--total-ms") + 1] == "4200"
-    scaled = json.loads(Path(command[3]).read_text(encoding="utf-8"))
-    assert scaled["sceneDurationMs"] == 4200
+def test_render_whiteboard_passes_long_edge_to_renderer(tmp_path: Path, monkeypatch) -> None:
+    root = tmp_path / "wb"
+    (root / "scripts").mkdir(parents=True)
+    (root / "scripts" / "render_stream_whiteboard.py").write_text("", encoding="utf-8")
+    project = tmp_path / "scene"
+    project.mkdir()
+    (project / "scene-01.png").write_bytes(b"png")
+    (project / "scene-01.annotation.json").write_text("{}", encoding="utf-8")
+    (project / "voiceover.wav").write_bytes(b"wav")
+    commands = []
+    monkeypatch.setattr("code2video.whiteboard.subprocess.run", lambda cmd, **kw: commands.append(cmd))
+    monkeypatch.setattr("code2video.whiteboard.shutil.which", lambda name: "ffmpeg")
+    monkeypatch.delenv("WHITEBOARD_LONG_EDGE", raising=False)
+    render_whiteboard(project, tmp_path / "o.mp4", root=root, python="py", long_edge=1920)
+    assert commands[0][commands[0].index("--cap-long-edge") + 1] == "1920"
+    commands.clear()
+    render_whiteboard(project, tmp_path / "o.mp4", root=root, python="py")
+    assert "--cap-long-edge" not in commands[0]

@@ -1,0 +1,204 @@
+{
+  "sceneId": "scene-01",
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "storyBasis": "Opening - the hook",
+  "language": "en",
+  "sceneDurationMs": 30890,
+  "elements": [
+    {
+      "id": "scene-01-el1",
+      "label": "Floor 10",
+      "sequence": 1,
+      "narrativeRole": "A luxury hotel suite on the tenth floor.",
+      "subtitle": "A luxury hotel suite on the tenth floor.",
+      "type": "mansion",
+      "region": {
+        "x": 124,
+        "y": 254,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 0,
+        "durationMs": 4380,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          254
+        ],
+        "end": [
+          393,
+          606
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-01-el2",
+      "label": "Bolted inside",
+      "sequence": 2,
+      "narrativeRole": "The door was bolted from the inside with a heavy iron latch.",
+      "subtitle": "The door was bolted from the inside with a heavy iron latch.",
+      "type": "door",
+      "region": {
+        "x": 690,
+        "y": 254,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 4500,
+        "durationMs": 5480,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          254
+        ],
+        "end": [
+          959,
+          606
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-01-el3",
+      "label": "Windows sealed",
+      "sequence": 3,
+      "narrativeRole": "Every window was shut tight, and there was no balcony.",
+      "subtitle": "Every window was shut tight, and there was no balcony.",
+      "type": "window",
+      "region": {
+        "x": 1257,
+        "y": 254,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 10100,
+        "durationMs": 5060,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          254
+        ],
+        "end": [
+          1526,
+          606
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-01-el4",
+      "label": "The victim",
+      "sequence": 4,
+      "narrativeRole": "When police broke the door down, the guest was already dead.",
+      "subtitle": "When police broke the door down, the guest was already dead.",
+      "type": "body",
+      "region": {
+        "x": 124,
+        "y": 634,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 15280,
+        "durationMs": 5480,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          634
+        ],
+        "end": [
+          393,
+          986
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-01-el5",
+      "label": "The killer?",
+      "sequence": 5,
+      "narrativeRole": "No sign of a killer, and no way out anywhere.",
+      "subtitle": "No sign of a killer, and no way out anywhere.",
+      "type": "question",
+      "region": {
+        "x": 690,
+        "y": 634,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 20880,
+        "durationMs": 4430,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          634
+        ],
+        "end": [
+          959,
+          986
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-01-el6",
+      "label": "Locked room",
+      "sequence": 6,
+      "narrativeRole": "So how did a murderer vanish from a perfectly sealed room?",
+      "subtitle": "So how did a murderer vanish from a perfectly sealed room?",
+      "type": "question",
+      "region": {
+        "x": 1257,
+        "y": 634,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 25430,
+        "durationMs": 5340,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          634
+        ],
+        "end": [
+          1526,
+          986
+        ],
+        "easing": "easeInOut"
+      }
+    }
+  ]
+}

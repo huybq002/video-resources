@@ -1,0 +1,236 @@
+{
+  "sceneId": "scene-04",
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "storyBasis": "The twist and the answer",
+  "language": "en",
+  "sceneDurationMs": 38570,
+  "elements": [
+    {
+      "id": "scene-04-el1",
+      "label": "No ghosts",
+      "sequence": 1,
+      "narrativeRole": "But an honest detective does not believe in ghosts.",
+      "subtitle": "But an honest detective does not believe in ghosts.",
+      "type": "detective",
+      "region": {
+        "x": 124,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 0,
+        "durationMs": 4850,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          254
+        ],
+        "end": [
+          393,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-04-el2",
+      "label": "A puddle",
+      "sequence": 2,
+      "narrativeRole": "He looked closely at the latch, and at the small puddle by the bath.",
+      "subtitle": "He looked closely at the latch, and at the small puddle by the bath.",
+      "type": "water",
+      "region": {
+        "x": 690,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 4970,
+        "durationMs": 6040,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          254
+        ],
+        "end": [
+          959,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-04-el3",
+      "label": "A wedge of ice",
+      "sequence": 3,
+      "narrativeRole": "The trick was a large wedge carved out of ice.",
+      "subtitle": "The trick was a large wedge carved out of ice.",
+      "type": "ice",
+      "region": {
+        "x": 1257,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 11130,
+        "durationMs": 4500,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          254
+        ],
+        "end": [
+          1526,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-04-el4",
+      "label": "Holding it up",
+      "sequence": 4,
+      "narrativeRole": "The ice held the latch raised for a few short minutes.",
+      "subtitle": "The ice held the latch raised for a few short minutes.",
+      "type": "ice",
+      "region": {
+        "x": 124,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 15750,
+        "durationMs": 5060,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          507
+        ],
+        "end": [
+          393,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-04-el5",
+      "label": "Pulled away",
+      "sequence": 5,
+      "narrativeRole": "The killer drew the ice out on a thin line, or simply let it melt.",
+      "subtitle": "The killer drew the ice out on a thin line, or simply let it melt.",
+      "type": "string",
+      "region": {
+        "x": 690,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 20930,
+        "durationMs": 5900,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          507
+        ],
+        "end": [
+          959,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-04-el6",
+      "label": "Melted to nothing",
+      "sequence": 6,
+      "narrativeRole": "Once the ice was gone, gravity dropped the latch on its own.",
+      "subtitle": "Once the ice was gone, gravity dropped the latch on its own.",
+      "type": "water",
+      "region": {
+        "x": 1257,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 26950,
+        "durationMs": 5480,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          507
+        ],
+        "end": [
+          1526,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-04-el7",
+      "label": "A perfect seal",
+      "sequence": 7,
+      "narrativeRole": "The room became an impossible locked room, sealed without a trace.",
+      "subtitle": "The room became an impossible locked room, sealed without a trace.",
+      "type": "door",
+      "region": {
+        "x": 124,
+        "y": 760,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 32550,
+        "durationMs": 5900,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          760
+        ],
+        "end": [
+          393,
+          985
+        ],
+        "easing": "easeInOut"
+      }
+    }
+  ]
+}

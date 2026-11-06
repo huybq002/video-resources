@@ -127,7 +127,7 @@ REGIONS = [
 ]
 
 CUE_MS = 4000
-REVEAL_MS = 1400
+BREATH_MS = 120
 
 
 def fmt_time(ms: int) -> str:
@@ -195,8 +195,8 @@ def build_scene(scene: dict) -> dict:
             "region": region,
             "reveal": {
                 "direction": "top_to_bottom",
-                "startMs": start + 200,
-                "durationMs": REVEAL_MS,
+                "startMs": start,
+                "durationMs": CUE_MS - BREATH_MS,
                 "maskPaddingPx": 24,
                 "protectedRegions": [],
             },

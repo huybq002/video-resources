@@ -8,15 +8,25 @@ import re
 import shutil
 import uuid
 import zipfile
+from dataclasses import asdict
 from pathlib import Path
 
-from fastapi import FastAPI, File, Form, HTTPException, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse, JSONResponse, Response, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 
 from .jobs import ARTIFACT_FILES, JobQueue, artifact_path
+from .. import uploads
+from .. import tools_config
+from ..ai_client import AiClientError, chat_json, list_all_models, ping
+from ..ai_script import demo_script, parse_script_payload, system_prompt, user_prompt
+from ..ai_settings import Provider, Skill, load as load_ai_settings, save as save_ai_settings
+from ..flow import rules as flow_rules
+from ..flow import store as flow_store
+from ..flow.runner import validate_for_engine
 from ..tts import EDGE_VOICES
 from ..whiteboard import whiteboard_root
+from ..whiteboard_assets import DOODLES
 
 STATIC_DIR = Path(__file__).parent / "static"
 RUNS_ROOT = Path("build/ui-runs").resolve()
@@ -150,28 +160,326 @@ def _accepted(jobs) -> JSONResponse:
     return JSONResponse(payload, status_code=202)
 
 
-@app.get("/api/fs/browse")
-def browse_filesystem(path: str = "") -> dict:
-    """Duyệt thư mục local cho ô chọn folder (tool chạy local, không cần upload)."""
-    import os as _os
-    import string as _string
+def _enqueue_whiteboard_merge(entries, jobs, auto_merge: bool, format: str, format_mode: str) -> JSONResponse:
+    if auto_merge and len(jobs) >= 2:
+        merge_id = uuid.uuid4().hex[:12]
+        merge_dir = RUNS_ROOT / merge_id
+        merge_dir.mkdir(parents=True, exist_ok=True)
+        merge_job = queue.enqueue(
+            {
+                "mode": "merge-whiteboard",
+                "outputDir": str(merge_dir),
+                "sceneDirs": [entry[0]["outputDir"] for entry in entries],
+                "format": format,
+                "formatMode": format_mode,
+                "dependsOn": [job.id for job in jobs],
+            },
+            job_id=merge_id,
+        )
+        return _accepted(jobs + [merge_job])
+    return _accepted(jobs)
 
-    requested = (path or "").strip().strip('"')
-    if not requested:
-        drives = [f"{letter}:/" for letter in _string.ascii_uppercase if _os.path.exists(f"{letter}:\\")]
-        return {"path": "", "parent": None, "dirs": drives, "drives": drives}
-    current = Path(requested).expanduser()
-    if not current.is_dir():
-        raise HTTPException(status_code=400, detail=f"Đường dẫn không tồn tại: {current}")
+
+def _json_body(data: dict):
+    """Helper test gọi route trực tiếp: mô phỏng request.json()."""
+
+    class _Body:
+        def __init__(self, payload):
+            self._payload = payload
+
+        async def json(self):
+            return self._payload
+
+    return _Body(data)
+
+
+def _tools_payload() -> dict:
+    values = tools_config.effective()
+    root = whiteboard_root()
+    ready = bool(root and (root / "scripts" / "render_stream_whiteboard.py").is_file() and (root / "scripts" / "merge_scenes.py").is_file())
+    return {"values": values, "problems": tools_config.validate(values), "tools": tools_config.tools_present(),
+            "saved": tools_config.load(), "whiteboardReady": ready}
+
+
+@app.get("/api/tools")
+def get_tools() -> dict:
+    return _tools_payload()
+
+
+@app.post("/api/tools")
+async def put_tools(request: Request) -> dict:
+    data = await request.json()
+    values = {k: str(data.get(k) or "").strip() for k in tools_config.KEYS}
+    problems = tools_config.validate(values)
+    if problems:
+        raise HTTPException(status_code=400, detail="; ".join(f"{k}: {v}" for k, v in problems.items()))
+    tools_config.save(values)
+    tools_config.clear_from_env(k for k, v in values.items() if not v)  # ô để trống = bỏ cấu hình đã lưu
+    tools_config.apply_to_env(values)
+    return _tools_payload()
+
+
+@app.get("/api/ai/settings")
+def get_ai_settings() -> dict:
+    settings = load_ai_settings()
+    return {
+        "providers": [
+            {**{k: v for k, v in asdict(p).items() if k != "apiKey"}, "hasKey": bool(p.apiKey)}
+            for p in settings.providers.values()
+        ],
+        "skills": [asdict(s) for s in settings.skills.values()],
+        "defaultProvider": settings.defaultProvider,
+        "defaultSkill": settings.defaultSkill,
+        "doodles": sorted(DOODLES),
+    }
+
+
+@app.post("/api/ai/settings")
+async def put_ai_settings(request: Request) -> dict:
+    data = await request.json()
+    settings = load_ai_settings()
+    old_keys = {pid: p.apiKey for pid, p in settings.providers.items()}
+    raw_providers = data.get("providers")
+    raw_skills = data.get("skills")
+    if not isinstance(raw_providers, list) or not isinstance(raw_skills, list):
+        raise HTTPException(status_code=400, detail="Settings cần mảng providers và skills.")
+    settings.providers = {}
+    for raw in raw_providers:
+        if not isinstance(raw, dict) or not str(raw.get("id") or "").strip():
+            raise HTTPException(status_code=400, detail="Mỗi provider cần id.")
+        pid = str(raw["id"]).strip()
+        base_url = str(raw.get("baseUrl") or "").strip()
+        model = str(raw.get("model") or "").strip()
+        api_key = str(raw.get("apiKey") or "").strip() or old_keys.get(pid, "")
+        if api_key and (not base_url or not model):
+            raise HTTPException(
+                status_code=400,
+                detail=f"Provider '{pid}' đã có API key nhưng thiếu baseUrl hoặc model. Điền đủ hoặc xóa key.",
+            )
+        settings.providers[pid] = Provider(
+            id=pid,
+            label=str(raw.get("label") or pid),
+            baseUrl=base_url,
+            model=model,
+            apiKey=api_key,
+            imageModel=str(raw.get("imageModel") or "").strip(),
+        )
+    settings.skills = {}
+    for raw in raw_skills:
+        if not isinstance(raw, dict) or not raw.get("id"):
+            raise HTTPException(status_code=400, detail="Mỗi skill cần id.")
+        source = str(raw.get("source") or "")
+        settings.skills[str(raw["id"])] = Skill(
+            id=str(raw["id"]),
+            name=str(raw.get("name") or raw["id"]),
+            content=str(raw.get("content") or ""),
+            source=source if source and (uploads.skills_dir() / source).is_file() else "",
+        )
+    settings.defaultProvider = str(data.get("defaultProvider") or next(iter(settings.providers), ""))
+    settings.defaultSkill = str(data.get("defaultSkill") or next(iter(settings.skills), ""))
+    save_ai_settings(settings)
+    return {"saved": True}
+
+
+def _provider_from_body(data: dict, *, need_model: bool) -> Provider:
+    """Provider từ form Settings (chưa lưu); thiếu key thì dùng key đã lưu của cùng id."""
+    pid = str(data.get("id") or "").strip()
+    saved = load_ai_settings().providers.get(pid)
+    api_key = str(data.get("apiKey") or "").strip() or (saved.apiKey if saved else "")
+    return Provider(
+        id=pid or "tmp",
+        label=str(data.get("label") or pid or "provider"),
+        baseUrl=str(data.get("baseUrl") or "").strip(),
+        model=str(data.get("model") or "").strip(),
+        apiKey=api_key,
+        imageModel=str(data.get("imageModel") or "").strip(),
+    )
+
+
+@app.post("/api/ai/test")
+async def test_ai_provider(request: Request) -> dict:
+    """Gọi thử provider thật; luôn trả 200 với ok=true/false để UI hiện kết quả ngay trên dòng provider."""
+    provider = _provider_from_body(await request.json(), need_model=True)
     try:
-        dirs = [
-            str(entry) for entry in sorted(current.iterdir())
-            if entry.is_dir() and not entry.name.startswith(".")
+        result = await asyncio.to_thread(ping, provider)
+    except AiClientError as error:
+        return {"ok": False, "message": str(error)}
+    return {"ok": True, **result}
+
+
+@app.post("/api/ai/models")
+async def list_ai_models(request: Request) -> dict:
+    provider = _provider_from_body(await request.json(), need_model=False)
+    try:
+        return await asyncio.to_thread(list_all_models, provider)
+    except AiClientError as error:
+        raise HTTPException(status_code=502, detail=str(error)) from error
+
+
+@app.post("/api/skills/upload")
+async def upload_skill(file: UploadFile = File(...), name: str = Form("")) -> dict:
+    data = await file.read()
+    try:
+        skill = uploads.save_skill_file(file.filename or "", data, name)
+    except ValueError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error
+    return {"id": skill.id, "name": skill.name, "content": skill.content, "source": skill.source}
+
+
+@app.get("/api/files")
+def list_uploaded_files() -> dict:
+    files = uploads.list_files()
+    return {"files": files, "totalBytes": sum(f["size"] for f in files)}
+
+
+@app.delete("/api/files/{kind}/{name}")
+def delete_uploaded_file(kind: str, name: str) -> dict:
+    try:
+        removed = uploads.delete_file(kind, name)
+    except ValueError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error
+    except FileNotFoundError as error:
+        raise HTTPException(status_code=404, detail="File không tồn tại.") from error
+    return {"deleted": True, "removedSkills": removed}
+
+
+@app.post("/api/ai/generate-script")
+async def generate_ai_script(request: Request) -> dict:
+    data = await request.json()
+    topic = str(data.get("topic") or "").strip()
+    if not topic:
+        raise HTTPException(status_code=400, detail="Chưa nhập ý tưởng kịch bản.")
+    language = str(data.get("language") or "vi")
+    provider_id = str(data.get("providerId") or "").strip()
+    if not provider_id:
+        raise HTTPException(status_code=400, detail="Chưa chọn provider. Chọn Demo hoặc một provider đã có key và model ở Settings.")
+    skill_id = str(data.get("skillId") or "")
+    minutes = min(10.0, max(1.0, float(data.get("minutes") or 3)))
+
+    settings = load_ai_settings()
+    if provider_id == "demo":
+        payload = demo_script(topic, language, minutes)
+    else:
+        provider = settings.providers.get(provider_id)
+        if provider is None:
+            raise HTTPException(status_code=400, detail=f"Provider {provider_id} không tồn tại.")
+        skill = settings.skills.get(skill_id)
+        fallback = settings.skills.get("whiteboard")
+        content = skill.content if skill else (fallback.content if fallback else "")
+        messages = [
+            {"role": "system", "content": system_prompt(content, language)},
+            {"role": "user", "content": user_prompt(topic, language, minutes)},
         ]
-    except PermissionError as error:
-        raise HTTPException(status_code=403, detail=f"Không đọc được thư mục: {current}") from error
-    parent = str(current.parent) if current.parent != current else None
-    return {"path": str(current), "parent": parent, "dirs": dirs, "drives": []}
+        try:
+            payload = await asyncio.to_thread(chat_json, provider, messages)
+        except AiClientError as error:
+            raise HTTPException(status_code=502, detail=str(error)) from error
+    try:
+        validated = parse_script_payload(payload)
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=f"Kịch bản AI không hợp lệ: {error}") from error
+    return {"scenes": validated["scenes"], "providerId": provider_id}
+
+
+def _flow_or_404(flow_id: str) -> dict:
+    try:
+        return flow_store.read_flow(flow_id)
+    except ValueError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error
+    except FileNotFoundError as error:
+        raise HTTPException(status_code=404, detail=f"Không có flow {flow_id}.") from error
+
+
+@app.get("/api/flow")
+def list_flows() -> list[dict]:
+    return flow_store.list_flows()
+
+
+@app.post("/api/flow/from-template")
+async def flow_from_template(request: Request) -> dict:
+    data = await request.json()
+    try:
+        flow = flow_store.read_template(str(data.get("template") or ""))
+        name = str(data.get("name") or flow.get("name") or "flow")
+        flow_id = flow_store.unique_id(flow_store.slugify(name))
+        flow = {**flow, "name": name}
+        flow_store.write_flow(flow_id, flow)
+    except ValueError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error
+    except FileNotFoundError as error:
+        raise HTTPException(status_code=404, detail="Template không tồn tại.") from error
+    return {**flow, "id": flow_id}
+
+
+@app.get("/api/flow/rules")
+def get_flow_rules() -> dict:
+    return flow_rules.rules_payload()
+
+
+@app.get("/api/flow/{flow_id}/last-run")
+def get_flow_last_run(flow_id: str) -> dict:
+    _flow_or_404(flow_id)
+    return flow_store.read_run(flow_id) or {}
+
+
+_RUN_FILE_TYPES = {".png", ".jpg", ".jpeg", ".webp", ".mp4", ".wav", ".srt", ".json", ".txt", ".html"}
+
+
+@app.get("/api/flow/{flow_id}/file")
+def get_flow_run_file(flow_id: str, path: str):
+    """Phục vụ file kết quả (ảnh/video/...) của lần chạy gần nhất, chỉ trong thư mục chạy đó."""
+    run = flow_store.read_run(flow_id)
+    if not run or not run.get("outputDir"):
+        raise HTTPException(status_code=404, detail="Flow chưa có lần chạy nào.")
+    base = Path(run["outputDir"]).resolve()
+    target = Path(path)
+    target = (target if target.is_absolute() else base / target).resolve()
+    if not target.is_relative_to(base) or target.suffix.lower() not in _RUN_FILE_TYPES or not target.is_file():
+        raise HTTPException(status_code=404, detail="Không có file này trong kết quả.")
+    return FileResponse(target)
+
+
+@app.get("/api/flow/{flow_id}")
+def get_flow(flow_id: str) -> dict:
+    return _flow_or_404(flow_id)
+
+
+@app.put("/api/flow/{flow_id}")
+async def put_flow(flow_id: str, request: Request) -> dict:
+    flow = await request.json()
+    if not isinstance(flow, dict):
+        raise HTTPException(status_code=400, detail="Flow phải là object JSON.")
+    errors = validate_for_engine(flow)
+    if errors:
+        raise HTTPException(status_code=422, detail="; ".join(errors))
+    try:
+        flow_store.write_flow(flow_id, flow)
+    except ValueError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error
+    return {"saved": True, "id": flow_id}
+
+
+@app.delete("/api/flow/{flow_id}")
+def delete_flow(flow_id: str) -> dict:
+    _flow_or_404(flow_id)
+    flow_store.delete_flow(flow_id)
+    return {"deleted": True}
+
+
+@app.post("/api/flow/run")
+async def run_flow_job(request: Request) -> JSONResponse:
+    data = await request.json()
+    flow = _flow_or_404(str(data.get("flowId") or ""))
+    errors = validate_for_engine(flow)
+    if errors:
+        raise HTTPException(status_code=422, detail="; ".join(errors))
+    run_id = uuid.uuid4().hex[:12]
+    run_dir = flow_store.run_output_dir(str(data.get("flowId")), run_id)
+    job = queue.enqueue(
+        {"mode": "flow", "flow": flow, "flowId": str(data.get("flowId")), "topic": str(data.get("topic") or "").strip(), "outputDir": str(run_dir)},
+        job_id=run_id,
+    )
+    return _accepted([job])
 
 
 @app.get("/api/config")
@@ -188,7 +496,7 @@ def get_config() -> dict:
         "hasNpx": shutil.which("npx") is not None,
         "maxWorkers": 4,
         "workers": queue.worker_count,
-        "fpsOptions": [24, 30, 60],
+        "fpsOptions": [24, 30, 48, 60, 120],
         "defaultFps": 60,
         "languages": [
             {"code": "vi", "label": "Tiếng Việt"},
@@ -243,6 +551,8 @@ async def create_job(
     dryRun: bool = Form(True),
     renderMp4: bool = Form(False),
     fps: int | None = Form(None),
+    hfQuality: str = Form(""),
+    wbLongEdge: int = Form(0),
     language: str = Form("vi"),
     format: str = Form("16:9"),
     formatMode: str = Form("fit"),
@@ -260,13 +570,14 @@ async def create_job(
     voDry: bool = Form(False),
     compScript: UploadFile | None = File(None),
     speakers: str = Form("{}"),
-    localFolder: str = Form(""),
+    autoMerge: bool = Form(False),
+    scenes: str = Form("[]"),
 ) -> JSONResponse:
     if renderer not in ("hyperframes", "whiteboard"):
         raise HTTPException(status_code=400, detail="Video engine không hợp lệ.")
-    if renderer == "whiteboard" and mode not in ("whiteboard-scenes", "whiteboard-folder", "preview-whiteboard"):
+    if renderer == "whiteboard" and mode not in ("whiteboard-scenes", "whiteboard-folder", "ai-script"):
         raise HTTPException(status_code=400, detail="Whiteboard cần các scene được tải riêng.")
-    if mode in ("whiteboard-scenes", "whiteboard-folder", "preview-whiteboard") and renderer != "whiteboard":
+    if mode in ("whiteboard-scenes", "whiteboard-folder", "ai-script") and renderer != "whiteboard":
         raise HTTPException(status_code=400, detail="Scene riêng chỉ hỗ trợ engine Whiteboard.")
 
     def new_dir() -> tuple[str, Path]:
@@ -274,23 +585,6 @@ async def create_job(
         run_dir = RUNS_ROOT / rid
         run_dir.mkdir(parents=True, exist_ok=True)
         return rid, run_dir
-
-    if mode == "preview-whiteboard":
-        if not isinstance(sceneImages, list) or not isinstance(sceneAnnotations, list) or not sceneImages or not sceneAnnotations:
-            raise HTTPException(status_code=400, detail="Cần ảnh PNG và annotation để xem trước.")
-        _, base = new_dir()
-        image_path = base / Path(sceneImages[0].filename or "scene.png").name
-        annotation_path = base / Path(sceneAnnotations[0].filename or "scene.annotation.json").name
-        image_path.write_bytes(sceneImages[0].file.read())
-        annotation_path.write_bytes(sceneAnnotations[0].file.read())
-        job = queue.enqueue({
-            "mode": "preview-whiteboard",
-            "image": str(image_path),
-            "annotation": str(annotation_path),
-            "outputDir": str(base),
-            "seconds": 10,
-        })
-        return _accepted([job])
 
     def voice_params(dest: Path) -> dict:
         ref_path = None
@@ -315,6 +609,8 @@ async def create_job(
             "scriptPath": str(script_path) if script_path else None,
             "speakers": speakers,
             "fps": fps,
+            "hfQuality": hfQuality or None,
+            "wbLongEdge": wbLongEdge or None,
             "language": language,
             "format": format,
             "formatMode": formatMode,
@@ -376,6 +672,8 @@ async def create_job(
                     "dryRun": voDry,
                     "speakers": speakers,
                     "fps": fps,
+            "hfQuality": hfQuality or None,
+            "wbLongEdge": wbLongEdge or None,
                     "language": language,
                     "format": format,
                     "formatMode": formatMode,
@@ -384,22 +682,12 @@ async def create_job(
         return _accepted(jobs)
 
     if mode == "whiteboard-folder":
-        source_dir: Path | None = None
-        if localFolder.strip():
-            source_dir = Path(localFolder.strip()).expanduser()
-            if not source_dir.is_dir():
-                raise HTTPException(status_code=400, detail=f"Đường dẫn folder không tồn tại: {source_dir}")
-        if not isinstance(files, list):
-            files = []
-        if not files and source_dir is None:
-            raise HTTPException(status_code=400, detail="Chọn folder tải lên hoặc nhập đường dẫn folder trên máy.")
+        if not files:
+            raise HTTPException(status_code=400, detail="Chưa chọn folder nào để tải lên.")
         from ..script_parse import parse_script
 
         _, base = new_dir()
-        if source_dir is not None:
-            shutil.copytree(source_dir, base, dirs_exist_ok=True, ignore=shutil.ignore_patterns("__pycache__"))
-        else:
-            _write_tree(files, base)
+        _write_tree(files, base)
         scenes = _discover_whiteboard_scenes(base)
         if not scenes:
             raise HTTPException(
@@ -437,11 +725,51 @@ async def create_job(
                 "dryRun": voDry,
                 "speakers": speakers,
                 "fps": fps,
+            "hfQuality": hfQuality or None,
+            "wbLongEdge": wbLongEdge or None,
                 "language": language,
                 "format": format,
                 "formatMode": formatMode,
             }, None))
-        return _accepted(queue.enqueue_many(entries))
+        jobs = queue.enqueue_many(entries)
+        return _enqueue_whiteboard_merge(entries, jobs, autoMerge, format, formatMode)
+
+    if mode == "ai-script":
+        try:
+            scenes_raw = json.loads(scenes)
+        except json.JSONDecodeError as error:
+            raise HTTPException(status_code=400, detail="Danh sách scene không hợp lệ.") from error
+        try:
+            validated = parse_script_payload({"scenes": scenes_raw})
+        except ValueError as error:
+            raise HTTPException(status_code=400, detail=str(error)) from error
+        from ..whiteboard_assets import build_scene_folder
+        _, base = new_dir()
+        entries = []
+        for index, scene in enumerate(validated["scenes"], 1):
+            sid = f"scene-{index:02d}"
+            scene_dir = base / sid
+            items = [(cue["doodle"], cue["label"], cue["text"]) for cue in scene["cues"]]
+            build_scene_folder(scene_dir, sid, scene["title"], items, language)
+            entries.append(({
+                "mode": "upload",
+                "renderer": "whiteboard",
+                "outputDir": str(scene_dir),
+                "scriptPath": str(scene_dir / "script.srt"),
+                "makeVoiceover": True,
+                "voice": voVoice.strip() or None,
+                "ttsMode": voTtsMode,
+                "dryRun": voDry,
+                "speakers": speakers,
+                "fps": fps,
+            "hfQuality": hfQuality or None,
+            "wbLongEdge": wbLongEdge or None,
+                "language": language,
+                "format": format,
+                "formatMode": formatMode,
+            }, None))
+        jobs = queue.enqueue_many(entries)
+        return _enqueue_whiteboard_merge(entries, jobs, autoMerge, format, formatMode)
 
     if mode == "files":
         if htmlFile is None or not getattr(htmlFile, "size", 0):
@@ -535,6 +863,8 @@ async def create_job(
             "dryRun": dryRun,
             "renderMp4": renderMp4,
             "fps": fps,
+            "hfQuality": hfQuality or None,
+            "wbLongEdge": wbLongEdge or None,
             "language": language,
             "format": format,
             "formatMode": formatMode,
@@ -646,13 +976,14 @@ async def job_events(job_id: str) -> StreamingResponse:
             if snap["version"] != last_version:
                 last_version = snap["version"]
                 if snap["status"] == "error":
-                    yield _sse("error", {"message": snap["error"]})
+                    yield _sse("error", {"message": snap["error"], "result": snap["result"]})
                     return
                 yield _sse("stage", {
                     "stage": snap["stage"],
                     "progress": snap["progress"],
                     "label": snap["label"],
                     "queuePosition": snap["queuePosition"],
+                    "result": snap["result"] if snap["stage"] == "flow" else None,
                 })
                 if snap["status"] == "done":
                     yield _sse("done", {"jobId": snap["jobId"], **(snap["result"] or {})})
@@ -689,8 +1020,10 @@ def index() -> FileResponse:
 def main() -> None:
     import uvicorn
 
-    from .._env import configure_cache
+    from .._env import configure_cache, prepare_data_dir, startup_env
     configure_cache()
+    startup_env()
+    print(f"Dữ liệu  : {prepare_data_dir()}", flush=True)
     host = os.environ.get("STUDIO_HOST", "127.0.0.1")
     port = int(os.environ.get("STUDIO_PORT", "7860"))
     uvicorn.run(app, host=host, port=port)

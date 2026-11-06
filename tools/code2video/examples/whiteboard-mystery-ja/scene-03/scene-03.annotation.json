@@ -1,0 +1,268 @@
+{
+  "sceneId": "scene-03",
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "storyBasis": "仮説と袋小路",
+  "language": "ja",
+  "sceneDurationMs": 43595,
+  "elements": [
+    {
+      "id": "scene-03-el1",
+      "label": "探偵",
+      "sequence": 1,
+      "narrativeRole": "まず疑われたのは、有名な糸のトリックでした。",
+      "subtitle": "まず疑われたのは、有名な糸のトリックでした。",
+      "type": "detective",
+      "region": {
+        "x": 124,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 0,
+        "durationMs": 4690,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          254
+        ],
+        "end": [
+          393,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el2",
+      "label": "一本の糸",
+      "sequence": 2,
+      "narrativeRole": "細い糸やテグスを使って、外からかんぬりを下げる手口です。",
+      "subtitle": "細い糸やテグスを使って、外からかんぬりを下げる手口です。",
+      "type": "string",
+      "region": {
+        "x": 690,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 4810,
+        "durationMs": 5620,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          254
+        ],
+        "end": [
+          959,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el3",
+      "label": "重すぎる",
+      "sequence": 3,
+      "narrativeRole": "しかしこのかんぬりは重すぎます。糸にそこまでの力は出せません。",
+      "subtitle": "しかしこのかんぬりは重すぎます。糸にそこまでの力は出せません。",
+      "type": "door",
+      "region": {
+        "x": 1257,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 10550,
+        "durationMs": 6085,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          254
+        ],
+        "end": [
+          1526,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el4",
+      "label": "傷は残らない",
+      "sequence": 4,
+      "narrativeRole": "検証の結果、傷をつけずにかんぬりを下げることは不可能でした。",
+      "subtitle": "検証の結果、傷をつけずにかんぬりを下げることは不可能でした。",
+      "type": "arrow",
+      "region": {
+        "x": 124,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 16755,
+        "durationMs": 5930,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          507
+        ],
+        "end": [
+          393,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el5",
+      "label": "隠し通路？",
+      "sequence": 5,
+      "narrativeRole": "二つ目の仮説。床板の下に隠し通路があるのではないか。",
+      "subtitle": "二つ目の仮説。床板の下に隠し通路があるのではないか。",
+      "type": "floorplan",
+      "region": {
+        "x": 690,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 22805,
+        "durationMs": 5310,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          507
+        ],
+        "end": [
+          959,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el6",
+      "label": "鉄筋コンクリート",
+      "sequence": 6,
+      "narrativeRole": "技術班が床板をすべて剥がすと、打ちっぱなしの鉄筋コンクリート。",
+      "subtitle": "技術班が床板をすべて剥がすと、打ちっぱなしの鉄筋コンクリート。",
+      "type": "concrete",
+      "region": {
+        "x": 1257,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 28235,
+        "durationMs": 6085,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          507
+        ],
+        "end": [
+          1526,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el7",
+      "label": "袋小路",
+      "sequence": 7,
+      "narrativeRole": "事件は完全に袋小路に陥りました。",
+      "subtitle": "事件は完全に袋小路に陥りました。",
+      "type": "question",
+      "region": {
+        "x": 124,
+        "y": 760,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 34440,
+        "durationMs": 4380,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          760
+        ],
+        "end": [
+          393,
+          985
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-03-el8",
+      "label": "超常現象？",
+      "sequence": 8,
+      "narrativeRole": "人々は、人間の仕業ではないと思い始めます。",
+      "subtitle": "人々は、人間の仕業ではないと思い始めます。",
+      "type": "ghost",
+      "region": {
+        "x": 690,
+        "y": 760,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 38940,
+        "durationMs": 4535,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          760
+        ],
+        "end": [
+          959,
+          985
+        ],
+        "easing": "easeInOut"
+      }
+    }
+  ]
+}

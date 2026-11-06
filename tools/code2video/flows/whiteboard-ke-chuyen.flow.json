@@ -1,0 +1,113 @@
+{
+  "id": "whiteboard-ke-chuyen",
+  "name": "Whiteboard Kể chuyện",
+  "engine": "whiteboard",
+  "start": "idea",
+  "nodes": {
+    "idea": {
+      "type": "idea",
+      "label": "Ý tưởng",
+      "config": {
+        "text": "Vụ án phòng kín bất khả thi",
+        "language": "vi",
+        "minutes": 3
+      },
+      "ui": {
+        "x": 50,
+        "y": 80
+      }
+    },
+    "script": {
+      "type": "ai-script",
+      "label": "AI kịch bản",
+      "config": {
+        "provider": "gemini",
+        "skill": "whiteboard",
+        "prompt": ""
+      },
+      "ui": {
+        "x": 284,
+        "y": 216
+      }
+    },
+    "scenes": {
+      "type": "build-scenes",
+      "label": "Dựng scene",
+      "config": {},
+      "ui": {
+        "x": 670,
+        "y": 80
+      }
+    },
+    "tts": {
+      "type": "tts",
+      "label": "Voiceover",
+      "config": {
+        "voice": "",
+        "ttsMode": "v3turbo",
+        "dryRun": false
+      },
+      "ui": {
+        "x": 980,
+        "y": 80
+      }
+    },
+    "render": {
+      "type": "render",
+      "label": "Render",
+      "config": {
+        "fps": 60,
+        "format": "16:9",
+        "formatMode": "fit"
+      },
+      "ui": {
+        "x": 1290,
+        "y": 80
+      }
+    },
+    "merge": {
+      "type": "merge",
+      "label": "Ghép cảnh",
+      "config": {},
+      "ui": {
+        "x": 1600,
+        "y": 80
+      }
+    }
+  },
+  "edges": [
+    {
+      "from": "idea",
+      "to": "script"
+    },
+    {
+      "from": "script",
+      "to": "script",
+      "condition": {
+        "field": "script.error",
+        "op": "exists"
+      },
+      "maxLoop": 3
+    },
+    {
+      "from": "script",
+      "to": "scenes",
+      "condition": {
+        "field": "script.scenes",
+        "op": "exists"
+      }
+    },
+    {
+      "from": "scenes",
+      "to": "tts"
+    },
+    {
+      "from": "tts",
+      "to": "render"
+    },
+    {
+      "from": "render",
+      "to": "merge"
+    }
+  ]
+}

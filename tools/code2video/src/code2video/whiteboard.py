@@ -23,20 +23,40 @@ def whiteboard_root() -> Path | None:
     return Path(configured).expanduser().resolve()
 
 
-def _hand_path(project_dir: Path) -> Path | None:
-    """Ảnh tay/bút: env WHITEBOARD_HAND > hand.png trong project > asset mặc định của repo."""
-    env = os.environ.get("WHITEBOARD_HAND")
+def _pen_path(project_dir: Path) -> Path | None:
+    """Ảnh cây bút: env WHITEBOARD_PEN > pen.png/hand.png trong project > asset mặc định của repo."""
+    env = os.environ.get("WHITEBOARD_PEN")
     if env:
         if env.strip().lower() in ("none", "default", "off"):
             return None
         candidate = Path(env).expanduser()
         if candidate.is_file():
             return candidate
-    local = Path(project_dir) / "hand.png"
-    if local.is_file():
-        return local
-    default = Path(__file__).resolve().parents[2] / "assets" / "whiteboard-hand.png"
+    for name in ("pen.png", "hand.png"):
+        local = Path(project_dir) / name
+        if local.is_file():
+            return local
+    default = Path(__file__).resolve().parents[2] / "assets" / "whiteboard-pen.png"
     return default if default.is_file() else None
+
+
+def apply_windows_to_annotations(project_dir: Path, windows: list[tuple[int, int]]) -> None:
+    """Ghi đè reveal.startMs/durationMs của mọi scene trong project theo cửa sổ giọng đọc.
+
+    Cue thứ i (theo thứ tự SRT) ánh xạ tới element có sequence = i+1; nét vẽ kéo dài
+    gần hết cửa sổ (chừa 120ms lấy hơi) để bút không dừng giữa các đoạn thoại.
+    """
+    for _, annotation in scene_pairs(project_dir):
+        data = json.loads(annotation.read_text(encoding="utf-8"))
+        elements = sorted(data.get("elements", []), key=lambda e: int(e.get("sequence", 0)))
+        for idx, element in enumerate(elements[: len(windows)]):
+            start, end = windows[idx]
+            reveal = element.setdefault("reveal", {})
+            reveal["startMs"] = start
+            reveal["durationMs"] = max(600, end - start - 120)
+        if windows:
+            data["sceneDurationMs"] = max(end for _, end in windows)
+        annotation.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def scene_pairs(project_dir: Path) -> list[tuple[Path, Path]]:
@@ -55,6 +75,7 @@ def render_whiteboard(
     root: Path | None = None,
     python: str | None = None,
     fps: int | None = None,
+    long_edge: int | None = None,
 ) -> None:
     project_dir = Path(project_dir).resolve()
     output_path = Path(output_path).resolve()
@@ -82,73 +103,24 @@ def render_whiteboard(
         silent_scene = Path(temp_dir) / "scene.mp4"
         image, annotation = pairs[0]
         command = [python, str(render_script), str(image), str(annotation), str(silent_scene)]
-        hand = _hand_path(project_dir)
-        if hand is not None:
-            command.append(str(hand))
+        pen = _pen_path(project_dir)
+        if pen is not None:
+            command.append(str(pen))
         command += ["--fps", str(fps or os.environ.get("WHITEBOARD_FPS", "60")),
-                    "--pause", os.environ.get("WHITEBOARD_PAUSE", "light")]
-        if os.environ.get("WHITEBOARD_LONG_EDGE"):
-            command += ["--cap-long-edge", os.environ["WHITEBOARD_LONG_EDGE"]]
+                    "--pause", os.environ.get("WHITEBOARD_PAUSE", "off"),
+                    "--full-color-ink"]
+        edge = long_edge or os.environ.get("WHITEBOARD_LONG_EDGE")
+        if edge:
+            command += ["--cap-long-edge", str(edge)]
         subprocess.run(command, cwd=root, check=True, env=_child_env())
         subprocess.run(
             [
                 ffmpeg, "-y", "-loglevel", "error", "-i", str(silent_scene), "-i", str(voiceover),
-                "-map", "0:v:0", "-map", "1:a:0", "-c:v", "copy", "-c:a", "aac",
+                "-map", "0:v:0", "-map", "1:a:0", "-c:v", "copy", "-c:a", "aac", "-b:a", "256k",
                 "-af", "apad", "-shortest", str(output_path),
             ],
             check=True,
         )
-
-
-def render_whiteboard_preview(
-    image_path: Path,
-    annotation_path: Path,
-    output_path: Path,
-    *,
-    root: Path | None = None,
-    python: str | None = None,
-    seconds: int = 10,
-    fps: int = 30,
-    long_edge: int = 640,
-) -> None:
-    """Render nhanh không giọng: thấp độ phân giải + fps để soi nét vẽ trước khi render thật."""
-    image_path = Path(image_path).resolve()
-    annotation_path = Path(annotation_path).resolve()
-    root = (root or whiteboard_root())
-    if root is None:
-        raise RuntimeError("Whiteboard chưa được cấu hình. Đặt WHITEBOARD_ROOT tới thư mục srt-whiteboard-animation.")
-    root = root.resolve()
-    render_script = root / "scripts" / "render_stream_whiteboard.py"
-    if not render_script.is_file():
-        raise RuntimeError(f"Không tìm thấy scripts của whiteboard trong {root / 'scripts'}.")
-    python = python or os.environ.get("WHITEBOARD_PYTHON") or sys.executable
-    total_ms = seconds * 1000
-    try:
-        data = json.loads(annotation_path.read_text(encoding="utf-8"))
-        annotated_ms = int(data.get("sceneDurationMs") or 0)
-        if annotated_ms < total_ms:
-            total_ms = annotated_ms
-        elif annotated_ms > total_ms:
-            # engine không cắt ngắn được — co giãn timeline về đúng cửa sổ preview
-            scale = total_ms / annotated_ms
-            for element in data.get("elements", []):
-                reveal = element.get("reveal", {})
-                reveal["startMs"] = int(float(reveal.get("startMs", 0)) * scale)
-                reveal["durationMs"] = max(100, int(float(reveal.get("durationMs", 0)) * scale))
-            data["sceneDurationMs"] = total_ms
-    except (json.JSONDecodeError, OSError, ValueError):
-        data = None
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    engine_annotation = annotation_path
-    if data is not None:
-        engine_annotation = output_path.parent / "preview-annotation.json"
-        engine_annotation.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-    command = [python, str(render_script), str(image_path), str(engine_annotation), str(output_path)]
-    pen = _hand_path(annotation_path.parent)
-    if pen is not None:
-        command.append(str(pen))
-    command += ["--fps", str(fps), "--cap-long-edge", str(long_edge), "--total-ms", str(total_ms), "--full-color-ink"]
-    subprocess.run(command, cwd=root, check=True, env=_child_env())
 
 
 def merge_whiteboard_scenes(

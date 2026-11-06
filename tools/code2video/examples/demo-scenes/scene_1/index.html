@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>Cảnh 1</title>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <style>
+    html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #0d1211; }
+    #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
+    #voice { position: absolute; width: 1px; height: 1px; opacity: 0; }
+    .bg { position: absolute; inset: -6%; z-index: 1; background: url(assets/bg.svg) center/cover; }
+    .scene-tint { position: absolute; inset: 0; z-index: 2;
+      background: radial-gradient(1200px 700px at 50% 30%, transparent 40%, rgba(0,0,0,.45) 100%); }
+    .char { position: absolute; bottom: 13%; height: 58%; z-index: 3; opacity: 0;
+      filter: drop-shadow(0 20px 26px rgba(0,0,0,.45)); }
+    #an { left: 15%; }
+    #minh { left: 63%; }
+    .name { position: absolute; bottom: 13.5%; z-index: 6; opacity: 0;
+      font: 700 30px "Segoe UI", Arial; color: #f4efe6; letter-spacing: .02em;
+      background: rgba(13,18,17,.6); border-radius: 999px; padding: 6px 18px; }
+    #an-name { left: 20%; }
+    #minh-name { left: 68%; }
+    .cap { position: absolute; left: 10%; right: 10%; bottom: 2%; z-index: 5; text-align: center; }
+    .cap span { display: inline-block; background: rgba(13,18,17,.68); color: #f4efe6;
+      font: 700 52px "Segoe UI", Arial; line-height: 1.3; padding: 14px 30px; border-radius: 14px; opacity: 0; }
+  </style>
+</head>
+<body>
+  <div id="root" data-composition-id="scene1" data-width="1920" data-height="1080" data-start="0" data-duration="11">
+    <div class="bg"></div>
+    <div class="scene-tint"></div>
+    <audio id="voice" src="voiceover.wav" data-start="0" data-duration="11" data-track-index="0"></audio>
+
+    <img id="an" class="char" src="assets/an.svg" alt="">
+    <img id="minh" class="char" src="assets/minh.svg" alt="">
+    <div id="an-name" class="name">An</div>
+    <div id="minh-name" class="name">Minh</div>
+
+    <div id="c1" class="cap clip" data-start="0" data-duration="3.5"><span>Chào Minh, hôm nay mình quay một video nhỏ.</span></div>
+    <div id="c2" class="cap clip" data-start="3.5" data-duration="3.5"><span>Ừ, có nhân vật, có bối cảnh, và giọng nói riêng.</span></div>
+    <div id="c3" class="cap clip" data-start="7" data-duration="4"><span>Vậy là đủ để thành một câu chuyện rồi.</span></div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo(".bg", { scale: 1.05 }, { scale: 1.14, duration: 11, ease: "none" }, 0);
+      tl.fromTo("#an", { opacity: 0, x: -90 }, { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" }, 0.1);
+      tl.fromTo("#an-name", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4 }, 0.4);
+      tl.fromTo("#minh", { opacity: 0, x: 90 }, { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" }, 3.5);
+      tl.fromTo("#minh-name", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4 }, 3.8);
+      tl.fromTo("#c1 span", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 0.2);
+      tl.fromTo("#c2 span", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 3.7);
+      tl.fromTo("#c3 span", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 7.2);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["scene1"] = tl;
+    </script>
+  </div>
+</body>
+</html>

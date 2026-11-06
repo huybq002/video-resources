@@ -20,3 +20,5 @@ spec in `specs/<id>.json`, then ONE command `ci/run_pipeline.py` (resources, voi
 - Render takes about 7 s of wall time per video second at 30 fps (a 9-minute video is about 70 minutes). Keep the total of all tasks inside the 300-minute cap; long videos should go in their own night.
 - YouTube upload only happens with `upload: true`, needs secrets `YT_CLIENT_ID`, `YT_CLIENT_SECRET`, `YT_REFRESH_TOKEN`, and is `private` by default.
 - Series memory (`series/<name>/series-bible.json`) is committed to the `night` branch.
+
+- `renderer: tool` (default) uses `code2video-job` (VieNeu voice, Whisper alignment, HyperFrames) for the best voice and video quality; `renderer: skill` uses the skill's own edge-tts + render as a fallback.

@@ -22,8 +22,8 @@
       },
       "reveal": {
         "direction": "top_to_bottom",
-        "startMs": 100,
-        "durationMs": 1400,
+        "startMs": 0,
+        "durationMs": 4880,
         "maskPaddingPx": 18,
         "protectedRegions": []
       },
@@ -54,8 +54,8 @@
       },
       "reveal": {
         "direction": "top_to_bottom",
-        "startMs": 5100,
-        "durationMs": 1400,
+        "startMs": 5000,
+        "durationMs": 4980,
         "maskPaddingPx": 18,
         "protectedRegions": []
       },
@@ -86,8 +86,8 @@
       },
       "reveal": {
         "direction": "top_to_bottom",
-        "startMs": 10200,
-        "durationMs": 1400,
+        "startMs": 10100,
+        "durationMs": 4880,
         "maskPaddingPx": 18,
         "protectedRegions": []
       },
@@ -118,8 +118,8 @@
       },
       "reveal": {
         "direction": "top_to_bottom",
-        "startMs": 15200,
-        "durationMs": 1400,
+        "startMs": 15100,
+        "durationMs": 5860,
         "maskPaddingPx": 18,
         "protectedRegions": []
       },
@@ -150,8 +150,8 @@
       },
       "reveal": {
         "direction": "top_to_bottom",
-        "startMs": 21180,
-        "durationMs": 1400,
+        "startMs": 21080,
+        "durationMs": 5620,
         "maskPaddingPx": 18,
         "protectedRegions": []
       },
@@ -182,8 +182,8 @@
       },
       "reveal": {
         "direction": "top_to_bottom",
-        "startMs": 26920,
-        "durationMs": 1400,
+        "startMs": 26820,
+        "durationMs": 6340,
         "maskPaddingPx": 18,
         "protectedRegions": []
       },
@@ -214,8 +214,8 @@
       },
       "reveal": {
         "direction": "top_to_bottom",
-        "startMs": 33380,
-        "durationMs": 1400,
+        "startMs": 33280,
+        "durationMs": 4980,
         "maskPaddingPx": 18,
         "protectedRegions": []
       },
@@ -246,8 +246,8 @@
       },
       "reveal": {
         "direction": "top_to_bottom",
-        "startMs": 38480,
-        "durationMs": 1400,
+        "startMs": 38380,
+        "durationMs": 4900,
         "maskPaddingPx": 18,
         "protectedRegions": []
       },
@@ -278,8 +278,8 @@
       },
       "reveal": {
         "direction": "top_to_bottom",
-        "startMs": 43500,
-        "durationMs": 1400,
+        "startMs": 43400,
+        "durationMs": 4900,
         "maskPaddingPx": 18,
         "protectedRegions": []
       },

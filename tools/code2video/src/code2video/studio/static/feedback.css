@@ -1,0 +1,38 @@
+/* ---------- spinner + toast ---------- */
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes toast-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+.is-busy { position: relative; cursor: progress; opacity: .85; }
+.is-busy::before, .status.is-running::before, .wf-status-line.is-running::before {
+  content: ""; display: inline-block; width: .95em; height: .95em; margin-right: .55em; vertical-align: -.12em;
+  border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+.status.is-running, .wf-status-line.is-running { color: var(--amber); }
+
+.is-loading { position: relative; min-height: 80px; }
+.is-loading > * { opacity: .45; pointer-events: none; transition: opacity .15s; }
+.is-loading::after {
+  content: ""; position: absolute; top: 50%; left: 50%; width: 30px; height: 30px; margin: -15px 0 0 -15px; z-index: 5;
+  border: 3px solid var(--line-strong); border-top-color: var(--accent-2); border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+
+.toasts { position: fixed; right: 18px; bottom: 18px; z-index: 1000; display: flex; flex-direction: column; gap: 10px; width: min(380px, calc(100vw - 36px)); }
+.toast {
+  display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; border-radius: 12px;
+  border: 1px solid var(--line-strong); border-left-width: 4px; background: var(--panel-solid); color: var(--ink);
+  box-shadow: 0 14px 40px rgba(0,0,0,.5); font: .88rem/1.4 var(--body); animation: toast-in .2s ease-out both;
+}
+.toast.is-leaving { opacity: 0; transform: translateY(6px); transition: opacity .18s, transform .18s; }
+.toast-success { border-left-color: var(--mint); }
+.toast-error { border-left-color: var(--red); }
+.toast-info { border-left-color: var(--amber); }
+.toast-text { flex: 1; overflow-wrap: anywhere; }
+.toast-close { border: 0; background: transparent; color: var(--muted); font-size: 1.2rem; line-height: 1; cursor: pointer; padding: 0 2px; }
+.toast-close:hover, .toast-close:focus-visible { color: var(--ink); outline: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .is-busy::before, .status.is-running::before, .wf-status-line.is-running::before, .is-loading::after { animation-duration: 2s; }
+  .toast { animation: none; }
+}

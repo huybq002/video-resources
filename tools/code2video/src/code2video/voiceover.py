@@ -103,6 +103,16 @@ def synthesize_voiceover_from_timeline(
     }
 
 
+def _auto_voices(tts, speakers: list[str], voices: dict[str, str], language: str) -> dict[str, str]:
+    """Nhân vật chưa được chọn giọng → tự gán theo giới tính (đoán từ tên), mỗi người một giọng."""
+    named = [name for name in speakers if name]
+    if not named or not hasattr(tts, "voice"):
+        return voices
+    from .voice_assign import assign_voices
+
+    return assign_voices(named, voices, mode=getattr(tts, "mode", "v3turbo"), language=language)
+
+
 def _prepare_track(timeline_path: Path, tts: TTSAdapter, voices: dict[str, str], fit: bool) -> dict:
     data = json.loads(Path(timeline_path).read_text(encoding="utf-8"))
     cues = data.get("cues", [])
@@ -148,6 +158,7 @@ def build_from_script(
     voices = voices or {}
     raw = Path(script_path).read_text(encoding="utf-8-sig")
     lines, speakers = parse_script(raw)
+    voices = _auto_voices(tts, speakers, voices, language)
     if not lines:
         raise ValueError(f"Không tìm thấy nội dung trong {script_path}")
 
@@ -177,7 +188,100 @@ def build_from_script(
         timeline_path.write_text(json.dumps(timeline.to_dict(), ensure_ascii=False, indent=2), encoding="utf-8")
         stats = {"cues": len(cues), "durationMs": timeline.duration_ms}
 
-    return {"timeline": str(timeline_path), "audio": str(audio_path), "speakers": speakers, **stats}
+    return {"timeline": str(timeline_path), "audio": str(audio_path), "speakers": speakers, "voices": voices, **stats}
+
+
+def _trim_silence(clip: np.ndarray, sample_rate: int, threshold: float = 0.008, pad_ms: int = 80) -> np.ndarray:
+    """Cắt khoảng lặng ở đầu/cuối clip TTS (edge-tts thường đệm ~0.7s im lặng cuối)."""
+    if clip.size == 0:
+        return clip
+    frame = max(1, sample_rate // 100)  # 10ms
+    n = len(clip) // frame
+    if n == 0:
+        return clip
+    energy = np.abs(clip[: n * frame].reshape(n, frame)).mean(axis=1)
+    active = np.where(energy > threshold)[0]
+    if active.size == 0:
+        return clip
+    pad = max(1, round(pad_ms * sample_rate / 1000 / frame))
+    start = max(0, int(active[0] - pad) * frame)
+    end = min(len(clip), int(active[-1] + 1 + pad) * frame)
+    return clip[start:end]
+
+
+def build_whiteboard_from_script(
+    project_dir: Path,
+    script_path: Path,
+    tts: TTSAdapter,
+    voices: dict[str, str] | None = None,
+    language: str = "vi",
+    tail_ms: int = 300,
+    lead_ms: int = 350,
+) -> dict:
+    """Dựng timeline + voiceover cho scene whiteboard: cửa sổ mỗi cue = độ dài giọng đọc thật + đệm ngắn.
+
+    Khác build_from_script ở chỗ không dùng timestamp trong SRT làm cửa sổ (cửa sổ tĩnh thường dài
+    hơn giọng thật, khiến voiceover bị pad im lặng và giọng "chờ" nét vẽ). Audio được đặt thô
+    (không co giãn) vào các cửa sổ suy từ chính audio, đảm bảo giọng và nét vẽ kết thúc cùng lúc.
+    Trả về "windows" = [[startMs, endMs], ...] để ghi đè timing annotation trước khi render.
+    """
+    from .models import Cue, Timeline
+    from .script_parse import parse_script
+
+    project_dir = Path(project_dir)
+    project_dir.mkdir(parents=True, exist_ok=True)
+    voices = voices or {}
+    lines, speakers = parse_script(Path(script_path).read_text(encoding="utf-8-sig"))
+    voices = _auto_voices(tts, speakers, voices, language)
+    if not lines:
+        raise ValueError(f"Không tìm thấy nội dung trong {script_path}")
+    default_voice = voices.get("") or (next(iter(voices.values()), None) if voices else None)
+    sample_rate = tts.sample_rate
+
+    windows: list[tuple[int, int]] = []
+    placements: list[tuple[int, np.ndarray]] = []
+    t = lead_ms
+    for line in lines:
+        if voices and hasattr(tts, "voice"):
+            tts.voice = voices.get(line.speaker or "", default_voice)
+        clip = np.asarray(tts.synthesize(line.text), dtype=np.float32).reshape(-1)
+        clip = _trim_silence(clip, sample_rate)
+        dur_ms = round(len(clip) * 1000 / sample_rate)
+        window_ms = max(700, dur_ms + tail_ms)
+        placements.append((round(t * sample_rate / 1000), clip))
+        windows.append((t, t + window_ms))
+        t += window_ms
+
+    total = round(t * sample_rate / 1000) + sample_rate // 2
+    track = np.zeros(total, dtype=np.float32)
+    for start, clip in placements:
+        track[start:start + len(clip)] += clip
+    audio_path = project_dir / "voiceover.wav"
+    write_wav(track, sample_rate, audio_path)
+
+    cues = [Cue(line.index, line.text, start, end) for line, (start, end) in zip(lines, windows)]
+    timeline = Timeline(
+        audio=audio_path.name,
+        duration_ms=t,
+        cues=cues,
+        scenes=group_scenes(cues),
+        sample_rate=sample_rate,
+        language=language,
+    )
+    timeline_path = project_dir / "timeline.json"
+    payload = timeline.to_dict()
+    for cue_dict in payload["cues"]:
+        cue_dict["speaker"] = next((line.speaker for line in lines if line.index == cue_dict["index"]), "")
+    timeline_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    return {
+        "timeline": str(timeline_path),
+        "audio": str(audio_path),
+        "windows": windows,
+        "speakers": speakers,
+        "voices": voices,
+        "cues": len(windows),
+        "durationMs": t,
+    }
 
 
 def prepare_composition_audio(project_dir: Path, script_path: Path, tts: TTSAdapter) -> Path:

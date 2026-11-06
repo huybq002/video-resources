@@ -9,6 +9,7 @@ lang: vi               # script language
 aspect: "16:9"         # "16:9" or "9:16"
 duration_min: 9        # exact length in minutes, e.g. 9 or 0.5
 script_prompt: ""      # optional: your own script, outline or tone
+renderer: tool         # tool (VieNeu voice + HyperFrames, best quality) | skill (edge-tts, fallback)
 series: ""             # optional: folder name under series/ (empty = stand-alone)
 episode: ""            # optional: episode number (series only)
 upload: false          # true = upload to YouTube after rendering (needs YT_* secrets)

@@ -1,0 +1,9 @@
+*
+!Dockerfile
+!requirements.txt
+!tools/code2video
+!.claude/skills/code2video-resource-generator/scripts/bg_renderer/package.json
+**/.git
+**/__pycache__
+**/.pytest_cache
+**/node_modules

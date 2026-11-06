@@ -1,0 +1,23 @@
+1
+00:00:00,000 --> 00:00:04,500
+A luxury hotel suite on the tenth floor.
+
+2
+00:00:04,500 --> 00:00:10,100
+The door was bolted from the inside with a heavy iron latch.
+
+3
+00:00:10,100 --> 00:00:15,280
+Every window was shut tight, and there was no balcony.
+
+4
+00:00:15,280 --> 00:00:20,880
+When police broke the door down, the guest was already dead.
+
+5
+00:00:20,880 --> 00:00:25,430
+No sign of a killer, and no way out anywhere.
+
+6
+00:00:25,430 --> 00:00:30,890
+So how did a murderer vanish from a perfectly sealed room?

@@ -22,8 +22,8 @@
       },
       "reveal": {
         "direction": "top_to_bottom",
-        "startMs": 200,
-        "durationMs": 1400,
+        "startMs": 0,
+        "durationMs": 3880,
         "maskPaddingPx": 24,
         "protectedRegions": []
       },
@@ -54,8 +54,8 @@
       },
       "reveal": {
         "direction": "top_to_bottom",
-        "startMs": 4200,
-        "durationMs": 1400,
+        "startMs": 4000,
+        "durationMs": 3880,
         "maskPaddingPx": 24,
         "protectedRegions": []
       },
@@ -86,8 +86,8 @@
       },
       "reveal": {
         "direction": "top_to_bottom",
-        "startMs": 8200,
-        "durationMs": 1400,
+        "startMs": 8000,
+        "durationMs": 3880,
         "maskPaddingPx": 24,
         "protectedRegions": []
       },

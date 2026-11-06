@@ -21,8 +21,15 @@ STAGE_LABEL = {
     "compose": "Dựng composition HTML",
     "render": "Render HyperFrames MP4",
     "whiteboard": "Render Whiteboard MP4",
+    "flow": "Chạy workflow",
     "done": "Hoàn tất",
 }
+def _wb_fps(params: dict) -> int | None:
+    """Renderer whiteboard vẽ tay không có lợi khi quá 60 fps (chỉ làm render lâu hơn nhiều lần)."""
+    fps = params.get("fps")
+    return min(int(fps), 60) if fps else None
+
+
 ARTIFACT_FILES = {
     "audio": "voiceover.wav",
     "video": "output.mp4",
@@ -146,9 +153,25 @@ class JobQueue:
                     return
                 job = self.get(job_id)
                 if job is not None:
+                    if self._deps_pending(job):
+                        # Scene phụ thuộc chưa xong → trả về cuối hàng chờ, nhường slot worker.
+                        time.sleep(0.3)
+                        self._pending.put(job_id)
+                        continue
                     self._execute(job)
             finally:
                 self._pending.task_done()
+
+    def _deps_pending(self, job: Job) -> bool:
+        deps = job.params.get("dependsOn") or []
+        if not deps:
+            return False
+        with self._lock:
+            return any(
+                (dependency := self._jobs.get(dep_id)) is not None
+                and dependency.status in ("queued", "running")
+                for dep_id in deps
+            )
 
     def _set_stage(self, job: Job, stage: str) -> None:
         with self._lock:
@@ -164,26 +187,9 @@ class JobQueue:
         job.status = "running"
         mode = p.get("mode", "script")
         try:
-            if mode == "preview-whiteboard":
-                self._set_stage(job, "whiteboard")
-                from ..whiteboard import render_whiteboard_preview
-                output_dir = Path(p["outputDir"])
-                output_dir.mkdir(parents=True, exist_ok=True)
-                video_path = output_dir / "preview.mp4"
-                render_whiteboard_preview(
-                    Path(p["image"]), Path(p["annotation"]), video_path,
-                    seconds=int(p.get("seconds", 10)),
-                )
-                job.output_dir = output_dir
-                with self._lock:
-                    job.result = {
-                        "outputDir": str(output_dir),
-                        "video": str(video_path),
-                        "renderer": "whiteboard-preview",
-                    }
-                    job.status = "done"
-                    job.version += 1
-                self._set_stage(job, "done")
+            if mode == "flow":
+                from ..flow.runner import execute_flow_job
+                execute_flow_job(job, self)
                 return
 
             if mode == "merge-whiteboard":
@@ -192,7 +198,10 @@ class JobQueue:
                 output_dir = Path(p["outputDir"])
                 output_dir.mkdir(parents=True, exist_ok=True)
                 video_path = output_dir / "output.mp4"
-                merge_whiteboard_scenes([Path(path) for path in p["sceneDirs"]], video_path)
+                scene_dirs = [Path(path) for path in p["sceneDirs"] if (Path(path) / "output.mp4").is_file()]
+                if not scene_dirs:
+                    raise ValueError("Không có scene nào hoàn tất để merge.")
+                merge_whiteboard_scenes(scene_dirs, video_path)
                 apply_format(video_path, p.get("format"), p.get("formatMode", "fit"))
                 job.output_dir = output_dir
                 with self._lock:
@@ -200,6 +209,7 @@ class JobQueue:
                         "outputDir": str(output_dir),
                         "video": str(video_path),
                         "renderer": "whiteboard-merge",
+                        "sceneCount": len(scene_dirs),
                     }
                     job.status = "done"
                     job.version += 1
@@ -215,7 +225,7 @@ class JobQueue:
                 language = p.get("language", "vi")
                 if script_path or p.get("makeVoiceover"):
                     from ..tts import VieNeuAdapter
-                    from ..voiceover import build_from_script, synthesize_voiceover_from_timeline
+                    from ..voiceover import build_from_script, build_whiteboard_from_script, synthesize_voiceover_from_timeline
                     with self._tts_lock:
                         self._set_stage(job, "tts")
                         tts = engines.get_tts(p.get("dryRun", False), p.get("ttsMode", "v3turbo"), language, p.get("voice"))
@@ -227,7 +237,12 @@ class JobQueue:
                             if isinstance(voices, str):
                                 import json as _json
                                 voices = _json.loads(voices) if voices.strip() else {}
-                            build_from_script(project_dir, Path(script_path), tts, voices, language=language)
+                            if renderer == "whiteboard":
+                                from ..whiteboard import apply_windows_to_annotations
+                                stats = build_whiteboard_from_script(project_dir, Path(script_path), tts, voices, language=language)
+                                apply_windows_to_annotations(project_dir, stats["windows"])
+                            else:
+                                build_from_script(project_dir, Path(script_path), tts, voices, language=language)
                         else:
                             timeline_path = project_dir / "timeline.json"
                             if not timeline_path.is_file():
@@ -237,11 +252,11 @@ class JobQueue:
                 if p.get("renderer", "hyperframes") == "whiteboard":
                     self._set_stage(job, "whiteboard")
                     from ..whiteboard import render_whiteboard, scene_pairs
-                    render_whiteboard(project_dir, video_path, fps=p.get("fps"))
+                    render_whiteboard(project_dir, video_path, fps=_wb_fps(p), long_edge=p.get("wbLongEdge"))
                     result_scene = scene_pairs(project_dir)[0][0].stem
                 else:
                     self._set_stage(job, "render")
-                    render_hyperframes(project_dir, video_path, fps=p.get("fps"))
+                    render_hyperframes(project_dir, video_path, fps=p.get("fps"), quality=p.get("hfQuality"))
                     result_scene = None
                 apply_format(video_path, p.get("format"), p.get("formatMode", "fit"))
                 job.output_dir = project_dir
@@ -292,12 +307,12 @@ class JobQueue:
                 self._set_stage(job, "whiteboard")
                 from ..whiteboard import render_whiteboard
                 video_path = job.output_dir / "output.mp4"
-                render_whiteboard(job.output_dir, video_path, fps=p.get("fps"))
+                render_whiteboard(job.output_dir, video_path, fps=_wb_fps(p), long_edge=p.get("wbLongEdge"))
                 result["video"] = str(video_path)
             elif p["renderMp4"]:
                 self._set_stage(job, "render")
                 video_path = job.output_dir / "output.mp4"
-                render_hyperframes(job.output_dir, video_path, fps=p.get("fps"))
+                render_hyperframes(job.output_dir, video_path, fps=p.get("fps"), quality=p.get("hfQuality"))
                 result["video"] = str(video_path)
             if (job.output_dir / "output.mp4").is_file():
                 apply_format(job.output_dir / "output.mp4", p.get("format"), p.get("formatMode", "fit"))

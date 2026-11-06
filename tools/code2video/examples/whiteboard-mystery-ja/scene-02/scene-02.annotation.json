@@ -1,0 +1,300 @@
+{
+  "sceneId": "scene-02",
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "storyBasis": "現場と四つの手がかり",
+  "language": "ja",
+  "sceneDurationMs": 45770,
+  "elements": [
+    {
+      "id": "scene-02-el1",
+      "label": "1004号室",
+      "sequence": 1,
+      "narrativeRole": "これが1004号室の事件です。",
+      "subtitle": "これが1004号室の事件です。",
+      "type": "floorplan",
+      "region": {
+        "x": 124,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 0,
+        "durationMs": 4380,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          254
+        ],
+        "end": [
+          393,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el2",
+      "label": "ダヴィッド氏",
+      "sequence": 2,
+      "narrativeRole": "犠牲者は骨董品コレクターのダヴィッド氏でした。",
+      "subtitle": "犠牲者は骨董品コレクターのダヴィッド氏でした。",
+      "type": "body",
+      "region": {
+        "x": 690,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 4500,
+        "durationMs": 4845,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          254
+        ],
+        "end": [
+          959,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el3",
+      "label": "21時",
+      "sequence": 3,
+      "narrativeRole": "夜9時、フロアに悲鳴が響き渡りました。",
+      "subtitle": "夜9時、フロアに悲鳴が響き渡りました。",
+      "type": "clock",
+      "region": {
+        "x": 1257,
+        "y": 254,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 9465,
+        "durationMs": 4380,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          254
+        ],
+        "end": [
+          1526,
+          479
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el4",
+      "label": "鉄のかんぬり",
+      "sequence": 4,
+      "narrativeRole": "執事がドアを破りましたが、かんぬりはすでに下りていました。",
+      "subtitle": "執事がドアを破りましたが、かんぬりはすでに下りていました。",
+      "type": "door",
+      "region": {
+        "x": 124,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 13965,
+        "durationMs": 5775,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          507
+        ],
+        "end": [
+          393,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el5",
+      "label": "鍵は内側で",
+      "sequence": 5,
+      "narrativeRole": "手がかりその一。鍵は内側の錠前に入ったまま。",
+      "subtitle": "手がかりその一。鍵は内側の錠前に入ったまま。",
+      "type": "key",
+      "region": {
+        "x": 690,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 19860,
+        "durationMs": 4690,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          507
+        ],
+        "end": [
+          959,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el6",
+      "label": "厚い埃",
+      "sequence": 6,
+      "narrativeRole": "その二。窓は閉じられ、何日分もの埃が積もっていました。",
+      "subtitle": "その二。窓は閉じられ、何日分もの埃が積もっていました。",
+      "type": "window",
+      "region": {
+        "x": 1257,
+        "y": 507,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 24670,
+        "durationMs": 5465,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          507
+        ],
+        "end": [
+          1526,
+          732
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el7",
+      "label": "隠れる場所なし",
+      "sequence": 7,
+      "narrativeRole": "その三。ベッドの下は空で、クローゼットは人間には狭すぎます。",
+      "subtitle": "その三。ベッドの下は空で、クローゼットは人間には狭すぎます。",
+      "type": "closet",
+      "region": {
+        "x": 124,
+        "y": 760,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 30255,
+        "durationMs": 5930,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          760
+        ],
+        "end": [
+          393,
+          985
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el8",
+      "label": "行き詰まり",
+      "sequence": 8,
+      "narrativeRole": "警察は行き詰まり、これを自殺と結論づけました。",
+      "subtitle": "警察は行き詰まり、これを自殺と結論づけました。",
+      "type": "question",
+      "region": {
+        "x": 690,
+        "y": 760,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 36305,
+        "durationMs": 4845,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          760
+        ],
+        "end": [
+          959,
+          985
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-02-el9",
+      "label": "四つ目",
+      "sequence": 9,
+      "narrativeRole": "四つ目の手がかりを見つけるまで。",
+      "subtitle": "四つ目の手がかりを見つけるまで。",
+      "type": "question",
+      "region": {
+        "x": 1257,
+        "y": 760,
+        "width": 538,
+        "height": 225
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 41270,
+        "durationMs": 4380,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          760
+        ],
+        "end": [
+          1526,
+          985
+        ],
+        "easing": "easeInOut"
+      }
+    }
+  ]
+}

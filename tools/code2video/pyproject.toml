@@ -14,16 +14,23 @@ dependencies = [
   "uvicorn>=0.27",
   "python-multipart>=0.0.9",
   "edge-tts>=7.0",
+  "httpx>=0.27",
+  "pillow>=10",
 ]
 
 [project.optional-dependencies]
 tts = ["vieneu>=3.8.3"]
 alignment = ["faster-whisper>=1.1.0"]
+desktop = ["pywebview>=5.0"]
 dev = ["pytest>=8.0,<9.0"]
 
 [project.scripts]
 code2video = "code2video.cli:main"
 code2video-studio = "code2video.studio.app:main"
+code2video-job = "code2video.headless:main"
+
+[project.gui-scripts]
+code2video-desktop = "code2video.desktop:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

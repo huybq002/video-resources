@@ -1,0 +1,96 @@
+{
+  "id": "hf-scenes",
+  "name": "HyperFrames Kịch bản cảnh",
+  "engine": "hyperframes",
+  "start": "idea",
+  "nodes": {
+    "idea": {
+      "type": "idea",
+      "label": "Ý tưởng",
+      "config": {
+        "text": "Chuyện gì xảy ra nếu AI có cảm xúc",
+        "language": "vi",
+        "minutes": 3
+      }
+    },
+    "script": {
+      "type": "ai-script",
+      "label": "AI kịch bản",
+      "config": {
+        "provider": "gemini",
+        "skill": "whiteboard",
+        "prompt": ""
+      }
+    },
+    "html": {
+      "type": "ai-html",
+      "label": "AI dựng HTML",
+      "config": {
+        "provider": "openrouter",
+        "prompt": ""
+      }
+    },
+    "tts": {
+      "type": "tts",
+      "label": "Voiceover",
+      "config": {
+        "voice": "",
+        "ttsMode": "v3turbo",
+        "dryRun": false
+      }
+    },
+    "render": {
+      "type": "render",
+      "label": "Render",
+      "config": {
+        "fps": 30,
+        "format": "16:9",
+        "formatMode": "fit"
+      }
+    }
+  },
+  "edges": [
+    {
+      "from": "idea",
+      "to": "script"
+    },
+    {
+      "from": "script",
+      "to": "script",
+      "condition": {
+        "field": "script.error",
+        "op": "exists"
+      },
+      "maxLoop": 3
+    },
+    {
+      "from": "script",
+      "to": "tts",
+      "condition": {
+        "field": "script.scenes",
+        "op": "exists"
+      }
+    },
+    {
+      "from": "tts",
+      "to": "html"
+    },
+    {
+      "from": "html",
+      "to": "html",
+      "condition": {
+        "field": "html.error",
+        "op": "exists"
+      },
+      "maxLoop": 2
+    },
+    {
+      "from": "html",
+      "to": "render",
+      "condition": {
+        "field": "html.dir",
+        "op": "exists"
+      }
+    }
+  ]
+}

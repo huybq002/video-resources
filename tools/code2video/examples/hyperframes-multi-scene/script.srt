@@ -1,0 +1,22 @@
+# Script nhiều nhân vật: mỗi block là một lời thoại, các block cách nhau MỘT DÒNG TRỐNG.
+# Dòng bắt đầu bằng # chỉ là ghi chú cho người/AI, app bỏ qua. Quy ước cảnh: 3 cảnh (xem index.html).
+
+# CẢNH 1 | quán cà phê buổi sáng | An (trái), Minh (phải) | 0.0s - 6.0s
+
+[An][00:00:00,000 --> 00:00:03,000]: Chào Minh, hôm nay mình quay một video nhỏ.
+
+[Minh][00:00:03,000 --> 00:00:06,000]: Ừ, có nhân vật, có bối cảnh, và giọng nói riêng.
+
+# CẢNH 2 | công viên buổi chiều | An (trái), Minh (phải) | 6.0s - 14.5s
+
+[An][00:00:06,000 --> 00:00:09,000]: Hôm qua mình đã đi dạo ở công viên rất lâu.
+
+[Minh][00:00:09,000 --> 00:00:11,500]: Vậy sao? Cậu có gặp ai quen không?
+
+[An][00:00:11,500 --> 00:00:14,500]: Không, nhưng mình nghĩ ra một ý tưởng hay.
+
+# CẢNH 3 | ban đêm trên sân thượng | An (trái), Minh (phải) | 14.5s - 19.5s
+
+[Minh][00:00:14,500 --> 00:00:16,500]: Kể mình nghe đi.
+
+[An][00:00:16,500 --> 00:00:19,000]: Vậy là đủ để thành một câu chuyện rồi.

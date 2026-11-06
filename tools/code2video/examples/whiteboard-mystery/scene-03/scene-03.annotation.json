@@ -22,8 +22,8 @@
       },
       "reveal": {
         "direction": "top_to_bottom",
-        "startMs": 100,
-        "durationMs": 1400,
+        "startMs": 0,
+        "durationMs": 4900,
         "maskPaddingPx": 18,
         "protectedRegions": []
       },
@@ -54,8 +54,8 @@
       },
       "reveal": {
         "direction": "top_to_bottom",
-        "startMs": 5120,
-        "durationMs": 1400,
+        "startMs": 5020,
+        "durationMs": 5460,
         "maskPaddingPx": 18,
         "protectedRegions": []
       },
@@ -86,8 +86,8 @@
       },
       "reveal": {
         "direction": "top_to_bottom",
-        "startMs": 10700,
-        "durationMs": 1400,
+        "startMs": 10600,
+        "durationMs": 5780,
         "maskPaddingPx": 18,
         "protectedRegions": []
       },
@@ -118,8 +118,8 @@
       },
       "reveal": {
         "direction": "top_to_bottom",
-        "startMs": 16600,
-        "durationMs": 1400,
+        "startMs": 16500,
+        "durationMs": 6580,
         "maskPaddingPx": 18,
         "protectedRegions": []
       },
@@ -150,8 +150,8 @@
       },
       "reveal": {
         "direction": "top_to_bottom",
-        "startMs": 23300,
-        "durationMs": 1400,
+        "startMs": 23200,
+        "durationMs": 5620,
         "maskPaddingPx": 18,
         "protectedRegions": []
       },
@@ -182,8 +182,8 @@
       },
       "reveal": {
         "direction": "top_to_bottom",
-        "startMs": 29040,
-        "durationMs": 1400,
+        "startMs": 28940,
+        "durationMs": 6500,
         "maskPaddingPx": 18,
         "protectedRegions": []
       },
@@ -214,8 +214,8 @@
       },
       "reveal": {
         "direction": "top_to_bottom",
-        "startMs": 35660,
-        "durationMs": 1400,
+        "startMs": 35560,
+        "durationMs": 4880,
         "maskPaddingPx": 18,
         "protectedRegions": []
       },
@@ -246,8 +246,8 @@
       },
       "reveal": {
         "direction": "top_to_bottom",
-        "startMs": 40660,
-        "durationMs": 1400,
+        "startMs": 40560,
+        "durationMs": 6100,
         "maskPaddingPx": 18,
         "protectedRegions": []
       },

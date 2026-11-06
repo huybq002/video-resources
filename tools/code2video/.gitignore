@@ -9,3 +9,5 @@ build/
 .tools/
 .env
 .cache/
+settings/
+flows/.runs/

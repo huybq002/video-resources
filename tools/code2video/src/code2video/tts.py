@@ -1,8 +1,6 @@
 from __future__ import annotations
 
 import asyncio
-import hashlib
-import os
 import shutil
 import subprocess
 import tempfile
@@ -57,9 +55,18 @@ class DryRunTTS:
 
 EDGE_VOICES: dict[str, list[dict[str, str]]] = {
     "en": [
-        {"id": "en-US-AriaNeural", "label": "Aria (US)"},
-        {"id": "en-US-GuyNeural", "label": "Guy (US)"},
-        {"id": "en-GB-SoniaNeural", "label": "Sonia (UK)"},
+        {"id": "en-US-JennyNeural", "label": "Jenny (US, nữ)"},
+        {"id": "en-US-GuyNeural", "label": "Guy (US, nam)"},
+        {"id": "en-US-AriaNeural", "label": "Aria (US, nữ)"},
+        {"id": "en-US-EricNeural", "label": "Eric (US, nam)"},
+        {"id": "en-US-MichelleNeural", "label": "Michelle (US, nữ)"},
+        {"id": "en-US-ChristopherNeural", "label": "Christopher (US, nam)"},
+        {"id": "en-GB-SoniaNeural", "label": "Sonia (UK, nữ)"},
+        {"id": "en-GB-RyanNeural", "label": "Ryan (UK, nam)"},
+        {"id": "en-GB-LibbyNeural", "label": "Libby (UK, nữ)"},
+        {"id": "en-US-RogerNeural", "label": "Roger (US, nam)"},
+        {"id": "en-AU-NatashaNeural", "label": "Natasha (AU, nữ)"},
+        {"id": "en-AU-WilliamNeural", "label": "William (AU, nam)"},
     ],
     "ja": [
         {"id": "ja-JP-NanamiNeural", "label": "Nanami"},
@@ -127,63 +134,3 @@ def write_wav(audio: np.ndarray, sample_rate: int, path: Path) -> None:
         output.setsampwidth(2)
         output.setframerate(sample_rate)
         output.writeframes(pcm.tobytes())
-
-
-def _read_wav(path: Path) -> tuple[np.ndarray, int]:
-    with wave.open(str(path), "rb") as handle:
-        frames = handle.readframes(handle.getnframes())
-        rate = handle.getframerate()
-    audio = np.frombuffer(frames, dtype=np.int16).astype(np.float32) / 32768.0
-    return audio, rate
-
-
-def tts_cache_dir() -> Path:
-    return Path(os.environ.get("TTS_CACHE_DIR") or (Path(__file__).resolve().parents[2] / ".cache" / "tts"))
-
-
-class CachedTTS:
-    """Bọc adapter TTS, cache wav theo (text, voice, ref audio) vào .cache/tts.
-
-    Ủy quyền thuộc tính cho adapter bên trong nên việc đổi voice/ref giữa các cue
-    (multi-speaker) vẫn hoạt động như không có cache.
-    """
-
-    def __init__(self, inner: TTSAdapter, cache_dir: Path | None = None, prefix: str = ""):
-        self.inner = inner
-        self.cache_dir = Path(cache_dir) if cache_dir is not None else tts_cache_dir()
-        self.prefix = prefix
-
-    @property
-    def sample_rate(self) -> int:
-        return self.inner.sample_rate
-
-    def __getattr__(self, name):
-        return getattr(self.inner, name)
-
-    def __setattr__(self, name, value):
-        if name in ("inner", "cache_dir", "prefix"):
-            object.__setattr__(self, name, value)
-        else:
-            setattr(self.inner, name, value)
-
-    def _key(self, text: str) -> str:
-        voice = getattr(self.inner, "voice", None) or ""
-        ref = getattr(self.inner, "ref_audio", None) or ""
-        if ref:
-            ref_path = Path(ref)
-            if ref_path.is_file():
-                stat = ref_path.stat()
-                ref = f"{ref}:{stat.st_size}:{int(stat.st_mtime)}"
-        payload = f"{self.prefix}\0{voice}\0{ref}\0{text}"
-        return hashlib.sha1(payload.encode("utf-8")).hexdigest()
-
-    def synthesize(self, text: str) -> np.ndarray:
-        self.cache_dir.mkdir(parents=True, exist_ok=True)
-        path = self.cache_dir / f"{self._key(text)}.wav"
-        if path.is_file():
-            audio, rate = _read_wav(path)
-            if rate == self.sample_rate:
-                return audio
-        audio = self.inner.synthesize(text)
-        write_wav(audio, self.sample_rate, path)
-        return audio

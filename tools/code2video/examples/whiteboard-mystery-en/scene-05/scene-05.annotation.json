@@ -1,0 +1,172 @@
+{
+  "sceneId": "scene-05",
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "storyBasis": "Closing and call to action",
+  "language": "en",
+  "sceneDurationMs": 26130,
+  "elements": [
+    {
+      "id": "scene-05-el1",
+      "label": "The full diagram",
+      "sequence": 1,
+      "narrativeRole": "A clever trick built on physics, and on what the eye expects.",
+      "subtitle": "A clever trick built on physics, and on what the eye expects.",
+      "type": "zoom",
+      "region": {
+        "x": 124,
+        "y": 254,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 0,
+        "durationMs": 5550,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          254
+        ],
+        "end": [
+          393,
+          606
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-05-el2",
+      "label": "No perfect crime",
+      "sequence": 2,
+      "narrativeRole": "There is no perfect crime, only details you have not explained yet.",
+      "subtitle": "There is no perfect crime, only details you have not explained yet.",
+      "type": "question",
+      "region": {
+        "x": 690,
+        "y": 254,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 5670,
+        "durationMs": 5970,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          254
+        ],
+        "end": [
+          959,
+          606
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-05-el3",
+      "label": "Your turn",
+      "sequence": 3,
+      "narrativeRole": "Did that twist fool you? Tell us in the comments.",
+      "subtitle": "Did that twist fool you? Tell us in the comments.",
+      "type": "like",
+      "region": {
+        "x": 1257,
+        "y": 254,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 11760,
+        "durationMs": 4710,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          1526,
+          254
+        ],
+        "end": [
+          1526,
+          606
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-05-el4",
+      "label": "Subscribe",
+      "sequence": 4,
+      "narrativeRole": "Subscribe so you never miss the next case.",
+      "subtitle": "Subscribe so you never miss the next case.",
+      "type": "bell",
+      "region": {
+        "x": 124,
+        "y": 634,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 16590,
+        "durationMs": 4380,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          393,
+          634
+        ],
+        "end": [
+          393,
+          986
+        ],
+        "easing": "easeInOut"
+      }
+    },
+    {
+      "id": "scene-05-el5",
+      "label": "See you",
+      "sequence": 5,
+      "narrativeRole": "Thank you for watching, and see you in the next one.",
+      "subtitle": "Thank you for watching, and see you in the next one.",
+      "type": "wave",
+      "region": {
+        "x": 690,
+        "y": 634,
+        "width": 538,
+        "height": 352
+      },
+      "reveal": {
+        "direction": "top_to_bottom",
+        "startMs": 21090,
+        "durationMs": 4920,
+        "maskPaddingPx": 18,
+        "protectedRegions": []
+      },
+      "handPath": {
+        "start": [
+          959,
+          634
+        ],
+        "end": [
+          959,
+          986
+        ],
+        "easing": "easeInOut"
+      }
+    }
+  ]
+}

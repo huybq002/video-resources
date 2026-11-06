@@ -269,10 +269,14 @@ audio { width: 100%; }
   .brand h1 { font-size: 1.35rem; }
 }
 
-.fs-pick { display: flex; gap: 8px; align-items: center; }
-.fs-pick input { flex: 1; }
-.fs-explorer { border: 1px solid var(--line); border-radius: 8px; padding: 10px; margin: 8px 0; background: rgba(255,255,255,.02); }
-.fs-head { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
-.fs-path { font-family: var(--mono); font-size: .78rem; color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.fs-dirs { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 6px; max-height: 220px; overflow: auto; margin-bottom: 8px; }
-.fs-dir { text-align: left; font-size: .8rem; padding: 6px 8px; }
+.ai-settings { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 10px; }
+.ai-settings summary { cursor: pointer; color: var(--accent-2); font-size: .9rem; margin-bottom: 8px; }
+.provider-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px 0; border-bottom: 1px dashed var(--line); align-items: center; }
+.provider-row .ai-base { grid-column: 1 / -1; }
+.skill-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px 0; border-bottom: 1px dashed var(--line); }
+.skill-row .ai-skill-content { grid-column: 1 / -1; }
+.ai-scene { border: 1px solid var(--line); border-radius: 8px; padding: 10px; margin-top: 10px; }
+.ai-scene-title { width: 100%; margin-bottom: 8px; }
+.cue-row { display: grid; grid-template-columns: 150px 1fr; gap: 8px; padding: 4px 0; }
+.cue-row .grow { grid-column: 1 / -1; }
+#aiReview { margin-top: 10px; }

@@ -1,0 +1,35 @@
+1
+00:00:00,000 --> 00:00:04,500
+This is the case of room 1004.
+
+2
+00:00:04,500 --> 00:00:09,400
+The victim was Mr. David, a collector of antiques.
+
+3
+00:00:09,400 --> 00:00:14,650
+At nine in the evening, a scream tore across the floor.
+
+4
+00:00:14,650 --> 00:00:20,670
+The butler broke the door, but the iron latch had already dropped.
+
+5
+00:00:20,670 --> 00:00:25,920
+Clue one: the key was still in the lock, on the inside.
+
+6
+00:00:25,920 --> 00:00:32,220
+Clue two: the windows were closed from within, coated in days of dust.
+
+7
+00:00:32,220 --> 00:00:38,800
+Clue three: the space under the bed was empty, the wardrobe far too small.
+
+8
+00:00:38,800 --> 00:00:43,300
+The police stalled, and called it a suicide.
+
+9
+00:00:43,300 --> 00:00:47,800
+Until they found the fourth detail.
