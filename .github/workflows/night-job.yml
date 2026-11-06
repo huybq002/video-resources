@@ -1,8 +1,8 @@
 name: Night job
 
-# 00:00 Asia/Ho_Chi_Minh (UTC+7) = 17:00 UTC. Runs once per night.
-# Job is capped at 300 min (one 5h usage window), so it ends by ~05:00,
-# well inside the 00:00-07:00 allowed range.
+# Starts 00:00 Asia/Ho_Chi_Minh (UTC+7) = 17:00 UTC, once per night. The whole job ends by 06:00 ICT (job timeout 360 min).
+# The Claude step is stopped at 05:45 ICT (22:45 UTC) so the last 15 min are left to save work and upload logs. If Claude runs out of usage (rate limit)
+# the step ends at once and the job stops; unfinished tasks stay in tasks/pending and are picked up again the next night.
 # Runs inside the prebuilt image (see Dockerfile / build-image.yml): nothing is installed at night.
 on:
   schedule:
@@ -16,7 +16,7 @@ concurrency:
 jobs:
   night:
     runs-on: ubuntu-latest
-    timeout-minutes: 300
+    timeout-minutes: 360
     container:
       image: ghcr.io/huybq002/video-resources-runner:latest
       credentials:
@@ -50,8 +50,32 @@ jobs:
           echo "Runnable tasks: $count"
           echo "count=$count" >> "$GITHUB_OUTPUT"
         shell: bash
+      - name: Deadline (05:45 Asia/Ho_Chi_Minh = 22:45 UTC, job ends by 06:00)
+        id: deadline
+        shell: bash
+        run: |
+          now=$(date -u +%s); h=$(date -u +%H)
+          if [ "$h" -ge 17 ] && [ "$h" -lt 23 ]; then
+            end=$(date -u -d "$(date -u +%F) 22:45:00" +%s)       # inside the night window: stop Claude at 05:45 ICT
+          elif [ "${{ github.event_name }}" = "schedule" ]; then
+            end=$now                                              # scheduled run that started too late: do nothing
+          else
+            end=$((now + 300*60))                                 # manual run outside the window: 5 h
+          fi
+          mins=$(( (end - now) / 60 ))
+          [ "$mins" -lt 0 ] && mins=0
+          echo "minutes=$mins" >> "$GITHUB_OUTPUT"
+          echo "DEADLINE_EPOCH=$end" >> "$GITHUB_ENV"
+          echo "Minutes until deadline: $mins (deadline $(date -u -d @$end +%FT%TZ))"
+      - name: Restore unfinished work (bundles, voice-over)
+        uses: actions/cache/restore@v4
+        with:
+          path: outputs/*/project
+          key: bundle-${{ github.run_id }}
+          restore-keys: bundle-
       - name: Run Claude
-        if: steps.check.outputs.count != '0'
+        if: steps.check.outputs.count != '0' && steps.deadline.outputs.minutes != '0'
+        timeout-minutes: ${{ fromJSON(steps.deadline.outputs.minutes) }}
         uses: anthropics/claude-code-action@v1
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -106,8 +130,21 @@ jobs:
             5. When a task is finished, set status: done and move it to tasks/done/.
             6. Commit and `git push origin night` after every task and after every major step,
                so nothing is lost if the usage limit hits.
-            7. Never push to main. Never print secrets. Keep going until no tasks remain or you hit the usage limit.
+            7. Never push to main. Never print secrets.
+            8. Hard stop at 05:45 Vietnam time (the job itself ends at 06:00): the epoch is in $DEADLINE_EPOCH (compare with `date +%s`). Before starting a task or a render,
+               check the time left. A render needs about 7 s per video second (x1.3 margin) plus TTS and checks; if it cannot finish
+               before the deadline, do not start it: write the state in Progress notes, commit, push and stop.
+            9. If you get a usage-limit or rate-limit error, or less than 15 minutes remain: STOP immediately. Do not retry. First commit and push
+               what you have (spec, Progress notes with exactly where you stopped, status: in-progress) and leave the task in tasks/pending/.
+               The next night's run picks it up and continues from your notes.
+            10. Keep going until no tasks remain.
           claude_args: --max-turns 300 --allowedTools "Bash,Read,Write,Edit,Glob,Grep"
+      - name: Save unfinished work (bundles, voice-over)
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: outputs/*/project
+          key: bundle-${{ github.run_id }}
       - name: Upload logs
         if: always()
         uses: actions/upload-artifact@v4

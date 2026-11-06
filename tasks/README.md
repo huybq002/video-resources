@@ -23,3 +23,10 @@ spec in `specs/<id>.json`, then ONE command `ci/run_pipeline.py` (resources, voi
 - Series memory (`series/<name>/series-bible.json`) is committed to the `night` branch.
 
 - `renderer: tool` (default) uses `code2video-job` (VieNeu voice, Whisper alignment, HyperFrames) for the best voice and video quality; `renderer: skill` uses the skill's own edge-tts + render as a fallback.
+
+## Time and usage limits
+
+- The job starts at 00:00 Vietnam time. Claude stops at 05:45 and the whole job ends by 06:00 at the latest.
+- Before starting a task or a render the job checks the time left (render takes about 7 s per video second). It does not start work it cannot finish.
+- On a usage-limit error, or with less than 15 minutes left, Claude stops at once, commits its notes and leaves the task in `tasks/pending/` with `status: in-progress`. The next night picks it up again and continues from the notes.
+- Bundles and voice-over of unfinished tasks are kept in the Actions cache (restored the next night; the cache is evicted after about 7 days without use).
