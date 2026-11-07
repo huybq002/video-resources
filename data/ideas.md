@@ -11,7 +11,7 @@ topic is behind its `share`.
 
 | date | topic | status | idea | keyword | opp | format | why now |
 |---|---|---|---|---|---|---|---|
-| 2026-11-07 | psychology | queued | Maya cleans her oven at 11pm instead of starting her presentation: mood-repair mechanism of procrastination | why we procrastinate | 94 | story | 18 channels share the top results; no animated story version |
+| 2026-11-07 | psychology | done https://github.com/huybq002/video-resources/releases/tag/003-procrastination-oven-42412989156 | Maya cleans her oven at 11pm instead of starting her presentation: mood-repair mechanism of procrastination | why we procrastinate | 94 | story | 18 channels share the top results; no animated story version |
 | 2026-11-07 | psychology | new | A man keeps a failing project alive for three more years: sunk cost, shown | sunk cost fallacy | 58 | story | low demand, keep for later |
 | 2026-11-07 | mystery | new | Invented: an auction house's best client turns out to have never existed (the shape of a fabricated-provenance con) | how the scam worked | 93 | story | 20 channels, scams in demand |
 | 2026-11-07 | money | new | A woman gets a raise and watches it vanish month by month: lifestyle creep, one invented year | saving money psychology | 90 | story | money topic is behind its share |

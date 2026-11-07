@@ -1,0 +1,94 @@
+{
+  "id": "003-procrastination-oven",
+  "tag": "003-procrastination-oven-42412989156",
+  "idea": "An invented woman cleans her oven at 11 p.m. instead of starting her presentation: the mood-repair mechanism of procrastination, shown, then placed in the viewer's week.",
+  "lang": "en",
+  "duration_s": 300,
+  "cuts": [
+    {
+      "cut": "landscape",
+      "aspect": "16:9",
+      "video": "landscape.mp4",
+      "bundle": "landscape-bundle.zip"
+    },
+    {
+      "cut": "portrait",
+      "aspect": "9:16",
+      "video": "portrait.mp4",
+      "bundle": "portrait-bundle.zip"
+    }
+  ],
+  "assets": [
+    {
+      "name": "landscape.mp4",
+      "bytes": 110847436,
+      "sha256": "ee7ada1197f114b388d94d9a3a75cc7e4c65b3a1d9658497d093b835519e22cf"
+    },
+    {
+      "name": "landscape-bundle.zip",
+      "bytes": 19060013,
+      "sha256": "01b3a9eee9f049e3adf562a214d144bf3fccffd52f814ef61dda34d4de32a3c1"
+    },
+    {
+      "name": "portrait.mp4",
+      "bytes": 114975760,
+      "sha256": "9f2c9739195f77bf7dace4e9520f10e05a55690e7d12ea3f3489a287452f3823"
+    },
+    {
+      "name": "portrait-bundle.zip",
+      "bytes": 18249810,
+      "sha256": "ea7e67c10aa94489c9ba858b38c9b0ca3adc1ca6d89374b2613bcec4bdd13942"
+    },
+    {
+      "name": "metadata.json",
+      "bytes": 914,
+      "sha256": "8e6f23f89cc0ec0ccf5552a8faa30d1d51e546fb05e0444eb8590d87af9c5345"
+    },
+    {
+      "name": "tiktok.md",
+      "bytes": 700,
+      "sha256": "136b99c5a72f3bf74d7b048865871785ed587c370d58ac25644dce8194db1d85"
+    },
+    {
+      "name": "youtube.md",
+      "bytes": 1239,
+      "sha256": "337627d5726cad1f713f6e2e604ede7433169d836dfeef13becb49e536945096"
+    },
+    {
+      "name": "youtube_shorts.md",
+      "bytes": 408,
+      "sha256": "780d9a2c500bb11f89d65daa1aa84cbd83b6d4ca355cae941e8661e215c6ad3a"
+    },
+    {
+      "name": "a.png",
+      "bytes": 379312,
+      "sha256": "184eec1234bd28b7f2f5b13baa0e7b4935f2f3c982ccfc080bb5238f3a60cadb"
+    },
+    {
+      "name": "b.png",
+      "bytes": 242996,
+      "sha256": "6a8b660112807f7be14f6a73a14ee1a47e2e789eb37d7b74893063c45a08af6c"
+    },
+    {
+      "name": "c.png",
+      "bytes": 293549,
+      "sha256": "fde3c3a488cd2cf87aa86d5920ee0d6c931ee20ebc20a2dc52e08241d34d8bef"
+    },
+    {
+      "name": "d.png",
+      "bytes": 217407,
+      "sha256": "2578cd010eaff2ac8f2d760144d651a87637a88960a5f2ccbf0d898382ed2d59"
+    },
+    {
+      "name": "e.png",
+      "bytes": 151270,
+      "sha256": "da892286b28b3a83912d4785310bcbd1c509e8161923774e7ccd8d499b5bf06c"
+    },
+    {
+      "name": "f.png",
+      "bytes": 204239,
+      "sha256": "9ba2bef4d2b1681bd82e9e8032f14959b8b166a1fb50aa9ea038e46238bda353"
+    }
+  ],
+  "release_url": "https://github.com/huybq002/video-resources/releases/tag/003-procrastination-oven-42412989156"
+}
