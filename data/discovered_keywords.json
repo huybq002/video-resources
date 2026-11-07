@@ -1,5 +1,16 @@
 {
-  "money": [],
-  "psychology": [],
-  "mystery": []
+  "money": [
+    "financial"
+  ],
+  "psychology": [
+    "biases",
+    "crash",
+    "course",
+    "science",
+    "decisions",
+    "better"
+  ],
+  "mystery": [
+    "mysteries"
+  ]
 }
