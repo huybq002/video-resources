@@ -10,7 +10,11 @@ The user gives an idea and a length (e.g. 8–10 minutes). The result must have 
 | 5 min | 10–12 | 24–30 | 75–90 | 720 |
 | 8 min | 16–20 | 24–30 | 120–140 | 1150 |
 | 10 min | 20–24 | 24–30 | 150–175 | 1450 |
-Rules: duration_s = sum of scenes[].target_s (to the second). Speaking rate ≈ 2.55 words/s (Vietnamese TTS) → **words per scene ≈ target_s × 2.2** (leaves room for pauses). A cue is one sentence or one line of dialogue (≤ 14 words, ≥ 0.5 s + 0.3 s per word on screen). The last cue of a scene must stay ≥ 2 s.
+Rules: duration_s = sum of scenes[].target_s (to the second). Speaking rate ≈ 2.55 words/s → **words per scene ≈ target_s × 2.4**, i.e. about 5–6 words per second of two-cue pair; a 27 s scene needs ≈ 65 words, not 50.
+
+**Dead air is the number-one defect.** The voice-over is one clip per cue placed at the cue's start: if the text is shorter than the window the scene simply runs on in silence. `generate.py` prints `WARNING: scene N target 27s but its text naturally takes 20s (33% of the scene would be silent): add about 15 words` and a closing `silence: about X%` line. **Aim for under 8 % and never ship over 12 %.** Write more lines rather than longer lines, and cut `target_s` for a scene that genuinely has little to say.
+
+A cue is one sentence or one line of dialogue (≤ 14 words, ≥ 0.5 s + 0.3 s per word on screen). The last cue of a scene must stay ≥ 2 s.
 
 ## 2. Write the scene plan before any line of script
 For every scene: `id`, `title`, `goal` (what changes for the story / what the viewer learns), `target_s`, setting(s), characters present, mood, the 1–2 key visual beats. Put them in the spec (`scenes[].title / goal / target_s`). Typical shape for a story film:
@@ -18,9 +22,13 @@ For every scene: `id`, `title`, `goal` (what changes for the story / what the vi
 2. Setup (2–3 scenes), rising action (60 % of scenes, each ends on a small turn or question), turn/twist (2–3 scenes, with clues planted earlier), resolution (2 scenes), takeaway + CTA scene (≥ 20 s, a question for the comments).
 3. A new fact, question or reversal every 30–45 s, i.e. about every scene; vary place and mood from scene to scene.
 4. Dialogue scenes use `sequence: dialogue` (speaker per line), connective narration uses `sequence: narration`; hand-write only the key moments.
+5. **Every scene needs its own picture.** Decide the place, the time of day and who is on screen per scene, and make at least 60 % of the scenes visually distinct (own setting, or the same place changed by weather, damage, light or crowd). A scene that reuses a setting must at least change the camera and what is happening in frame. `generate.py` warns when the settings are too few or one setting carries more than a third of the film.
+6. **Whoever the script mentions must be visible.** If the lines say "everyone", "they", "the crowd", "the zombies", "hundreds of them", put them on the screen: named cast for the ones who matter, a `crowd` block (spec-schema.md) for the mass. Narration over an empty street is the most common way these films turn boring; `generate.py` warns about it.
+7. **Long scenes get more than one shot.** Over ~15 s, split the scene into 2–3 shots: a wide that establishes, a medium on the action, a close-up on the face or the object that matters. A single static shot for 27 s reads as a slideshow.
 
 ## 3. Write the lines to the budget
-- Count words per scene while writing: target = target_s × 2.2 ± 10 %. `generate.py` reports `WARNING: scene N target 27s but its text naturally takes 33s: cut about 14 words`; fix by editing text (or the target) and re-run until no warnings remain.
+- Count words per scene while writing: target = target_s × 2.4, tolerance −12 % / +12 %. Re-run `generate.py` until no WARNING is left; the lines it prints say exactly how many words to add or cut.
+- Write the lines in scene order and read them aloud in your head: concrete nouns, one image per line, no filler like "and so", "as you can see", "in this video". A line that adds no new fact, feeling or question is cut, and the time goes to a line that does.
 - Speaker names: cast `id` is the file name (`an` → `assets/an.svg`), cast `name` is what appears in `script.srt` (`[An]`). Narration uses the cast entry `{ "id": "narrator", "name": "Người kể", "narrator": true }` (no body on screen).
 - Never write numerals the TTS may misread; write numbers as words. Vietnamese with correct diacritics.
 

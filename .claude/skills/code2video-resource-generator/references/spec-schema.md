@@ -61,6 +61,10 @@ Acts for faces: `["t","turn", yaw, secs]` (0 front, ±0.5 three-quarter, ±1 ful
   "rays": true,                               // god-ray overlay (golden light)
   "flat": false,                              // true = ignore depth layers, use the single bg image
   "crowd": { "n": 40, "x": [120, 1800], "by": [600, 720], "s": [0.12, 0.22], "seed": 3, "colors": ["#c0577a", "#e0b83a"] },
+  // crowd/props/overlays also work on a `sequence` block: they are copied onto every shot that sequence makes,
+  // which is how you show a group (a horde, a queue, a market) behind a narration or a dialogue.
+  // `x` and `by` are fractions of the frame (0-1, the portable form: defaults x [0.10,0.90], by [0.59,0.83])
+  // or pixels of the real frame (1920x1080, or 1080x1920 in 9:16). `s` is auto-scaled 1.25x in 9:16, like characters.
   "overlays": [
     { "type": "chip",    "text": "Tokyo · 2:14 AM", "t": 0.3, "dur": 3, "pos": "tl" },        // pos = row t|c|b + col l|c|r
     { "type": "counter", "from": 0, "to": 4100000000, "label": "people", "t": 1, "dur": 3.5, "pos": "tr" },

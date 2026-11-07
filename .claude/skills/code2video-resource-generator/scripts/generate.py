@@ -21,7 +21,8 @@ bible = SER.load(a.series) if a.series else None
 if bible:
     spec0, _w = SER.merge(spec0, bible)                           # recurring characters/settings keep their look across episodes
     for _m in _w: print("SERIES WARNING:", _m)
-import coverage, srt_tools, docs_gen
+import coverage, srt_tools, docs_gen, spec_lint
+for _m in spec_lint.lint(spec0): print(_m)                 # settings variety, cast, crowds, static scenes, wardrobe
 spec = coverage.expand(spec0, spec_path.parent)            # sequences -> many shots, lib:/relative settings resolved
 tmp = pathlib.Path(tempfile.mkdtemp(prefix="c2v_")); exp = tmp / "spec.expanded.json"; exp.write_text(json.dumps(spec, ensure_ascii=False), encoding="utf-8")
 py = sys.executable

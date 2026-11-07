@@ -1,0 +1,574 @@
+{
+  "id": "zombie-test",
+  "title": "Last One Awake",
+  "lang": "en",
+  "aspect": "9:16",
+  "duration_s": 72,
+  "idea": "What if only you exist, and everyone else turned into zombies",
+  "narrator": "narrator",
+  "narrator_name": "Narrator",
+  "narrator_gender": "male",
+  "cast": [
+    {
+      "id": "narrator",
+      "name": "Narrator",
+      "narrator": true,
+      "gender": "male"
+    },
+    {
+      "id": "you",
+      "name": "You",
+      "gender": "female",
+      "style": "stick",
+      "top": "hoodie",
+      "top_color": "#3e7cb1",
+      "bottom": "pants",
+      "bottom_color": "#232838",
+      "shoes": "sneakers",
+      "hair_style": "short",
+      "hair": "#2a1f24",
+      "bag": true,
+      "bag_color": "#8c5a3c",
+      "look": "young survivor in a blue hoodie and a worn backpack"
+    },
+    {
+      "id": "dad",
+      "name": "Dad",
+      "gender": "male",
+      "style": "stick",
+      "top": "shirt",
+      "top_color": "#8f9aa8",
+      "bottom": "none",
+      "sock": "#3a3f4a",
+      "shoes": "boots",
+      "glasses": true,
+      "belt": "#4a3a2c",
+      "hair_style": "short",
+      "hair": "#6c6a68",
+      "mustache": true,
+      "look": "tired father in a grey work shirt, glasses, heavy boots"
+    }
+  ],
+  "settings": {
+    "ruined_street": {
+      "sky": [
+        "#2a1b2e",
+        "#c4743f"
+      ],
+      "fog": {
+        "near": 14,
+        "far": 60,
+        "c": "#6b4a46"
+      },
+      "ambient": {
+        "c": "#8a6a7a",
+        "i": 1.1
+      },
+      "sun": {
+        "c": "#ffa062",
+        "i": 0.8,
+        "pos": [
+          -8,
+          7,
+          5
+        ]
+      },
+      "ground": "#3a3238",
+      "exposure": 1.15,
+      "camera": {
+        "pos": [
+          0,
+          2.1,
+          9.5
+        ],
+        "look": [
+          0,
+          2.4,
+          -4
+        ],
+        "fov": 44
+      },
+      "layers": [
+        11,
+        22
+      ],
+      "objects": [
+        {
+          "t": "box",
+          "x": -9.5,
+          "y": 0,
+          "z": -4,
+          "w": 7,
+          "h": 15,
+          "d": 16,
+          "c": "#33293a",
+          "ink": 0.04
+        },
+        {
+          "t": "box",
+          "x": 9.5,
+          "y": 0,
+          "z": -4,
+          "w": 7,
+          "h": 12,
+          "d": 16,
+          "c": "#3b2f3c",
+          "ink": 0.04
+        },
+        {
+          "t": "box",
+          "x": 0,
+          "y": 0,
+          "z": -28,
+          "w": 26,
+          "h": 14,
+          "d": 2,
+          "c": "#2e2635"
+        },
+        {
+          "t": "box",
+          "x": -2.6,
+          "y": 0,
+          "z": -6,
+          "w": 3.6,
+          "h": 1.4,
+          "d": 1.8,
+          "c": "#55443c",
+          "rz": 0.12
+        },
+        {
+          "t": "box",
+          "x": 3.4,
+          "y": 0,
+          "z": -9,
+          "w": 3.2,
+          "h": 1.3,
+          "d": 1.7,
+          "c": "#4a3b38",
+          "rz": -0.09
+        },
+        {
+          "t": "glow",
+          "x": -5.9,
+          "y": 4.2,
+          "z": -7,
+          "w": 1.1,
+          "h": 1.4,
+          "c": "#ffb469",
+          "ry": 1.5708
+        },
+        {
+          "t": "glow",
+          "x": 5.9,
+          "y": 6.6,
+          "z": -10,
+          "w": 1.1,
+          "h": 1.4,
+          "c": "#2d2742",
+          "ry": -1.5708
+        },
+        {
+          "t": "lamp",
+          "x": 2.6,
+          "z": -7.5,
+          "h": 4.4,
+          "c": "#ffb45a",
+          "I": 16,
+          "dist": 15
+        },
+        {
+          "t": "prop",
+          "n": "rock_largeA",
+          "x": -4.4,
+          "y": 0,
+          "z": -3.2,
+          "s": 0.9,
+          "tint": "#5a4b45"
+        }
+      ]
+    },
+    "barricade_flat": {
+      "bg": "#22202c",
+      "ambient": {
+        "c": "#6d6480",
+        "i": 1.2
+      },
+      "sun": {
+        "c": "#ffd9a0",
+        "i": 0.5,
+        "pos": [
+          4,
+          6,
+          6
+        ]
+      },
+      "exposure": 1.1,
+      "camera": {
+        "pos": [
+          0,
+          2.0,
+          8.4
+        ],
+        "look": [
+          0,
+          2.3,
+          -3
+        ],
+        "fov": 42
+      },
+      "objects": [
+        {
+          "t": "box",
+          "x": 0,
+          "y": -0.2,
+          "z": -4,
+          "w": 22,
+          "h": 0.2,
+          "d": 18,
+          "c": "#3a3340"
+        },
+        {
+          "t": "box",
+          "x": 0,
+          "y": 0,
+          "z": -11,
+          "w": 20,
+          "h": 11,
+          "d": 1,
+          "c": "#2b2736"
+        },
+        {
+          "t": "box",
+          "x": -3.2,
+          "y": 0,
+          "z": -9.4,
+          "w": 2.6,
+          "h": 4.6,
+          "d": 0.5,
+          "c": "#4a3b2e",
+          "rz": 0.05
+        },
+        {
+          "t": "box",
+          "x": -3.2,
+          "y": 2.2,
+          "z": -9.1,
+          "w": 3.4,
+          "h": 0.3,
+          "d": 0.4,
+          "c": "#5b4836",
+          "rz": 0.3
+        },
+        {
+          "t": "box",
+          "x": -3.2,
+          "y": 3.4,
+          "z": -9.1,
+          "w": 3.4,
+          "h": 0.3,
+          "d": 0.4,
+          "c": "#5b4836",
+          "rz": -0.26
+        },
+        {
+          "t": "box",
+          "x": 4.2,
+          "y": 0,
+          "z": -8.6,
+          "w": 3.2,
+          "h": 1.8,
+          "d": 1.4,
+          "c": "#413a4c"
+        },
+        {
+          "t": "glow",
+          "x": 4.2,
+          "y": 2.3,
+          "z": -8.5,
+          "w": 1.2,
+          "h": 0.5,
+          "c": "#ffcf8a"
+        },
+        {
+          "t": "light",
+          "x": 3.6,
+          "y": 2.6,
+          "z": -6,
+          "c": "#ff9c42",
+          "I": 90,
+          "dist": 14,
+          "decay": 1.4
+        }
+      ]
+    },
+    "rooftop_horde": {
+      "sky": [
+        "#0d1030",
+        "#39305e"
+      ],
+      "stars": 150,
+      "moon": {
+        "x": -16,
+        "y": 17,
+        "z": -56,
+        "c": "#e9ecff"
+      },
+      "fog": {
+        "near": 18,
+        "far": 70,
+        "c": "#2a2a4a"
+      },
+      "ambient": {
+        "c": "#5a66c8",
+        "i": 1.2
+      },
+      "sun": {
+        "c": "#8b9bff",
+        "i": 0.7,
+        "pos": [
+          -5,
+          9,
+          5
+        ]
+      },
+      "ground": "#23213a",
+      "exposure": 1.2,
+      "camera": {
+        "pos": [
+          0,
+          2.3,
+          9.0
+        ],
+        "look": [
+          0,
+          2.5,
+          -5
+        ],
+        "fov": 46
+      },
+      "layers": [
+        12,
+        24
+      ],
+      "objects": [
+        {
+          "t": "box",
+          "x": 0,
+          "y": -0.2,
+          "z": -5,
+          "w": 24,
+          "h": 0.3,
+          "d": 20,
+          "c": "#2d2a45"
+        },
+        {
+          "t": "box",
+          "x": -11,
+          "y": 0,
+          "z": -16,
+          "w": 6,
+          "h": 20,
+          "d": 8,
+          "c": "#1e1c33"
+        },
+        {
+          "t": "box",
+          "x": 11.5,
+          "y": 0,
+          "z": -19,
+          "w": 7,
+          "h": 26,
+          "d": 8,
+          "c": "#211e38"
+        },
+        {
+          "t": "glow",
+          "x": -8.6,
+          "y": 9,
+          "z": -12.2,
+          "w": 0.8,
+          "h": 1.0,
+          "c": "#ffd089"
+        },
+        {
+          "t": "glow",
+          "x": 8.4,
+          "y": 13,
+          "z": -15.2,
+          "w": 0.8,
+          "h": 1.0,
+          "c": "#ffc06a"
+        },
+        {
+          "t": "box",
+          "x": 0,
+          "y": 0,
+          "z": 1.6,
+          "w": 24,
+          "h": 1.1,
+          "d": 0.5,
+          "c": "#3a3555"
+        },
+        {
+          "t": "lamp",
+          "x": -3.4,
+          "z": -3.2,
+          "h": 3.6,
+          "c": "#9fb6ff",
+          "I": 14,
+          "dist": 13
+        }
+      ]
+    }
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "title": "The Morning Nobody Answered",
+      "goal": "You wake to a dead city and see the first of them.",
+      "target_s": 24,
+      "shots": [
+        {
+          "sequence": {
+            "type": "narration",
+            "settings": [
+              "ruined_street"
+            ],
+            "mood": "tense",
+            "seed": 1,
+            "actors": [
+              {
+                "k": "you",
+                "x": 470
+              }
+            ],
+            "crowd": {
+              "n": 26,
+              "x": [
+                0.03,
+                0.97
+              ],
+              "by": [
+                0.6,
+                0.84
+              ],
+              "s": [
+                0.16,
+                0.34
+              ],
+              "seed": 4,
+              "colors": [
+                "#5d6b55",
+                "#6f5f4e"
+              ]
+            },
+            "cues": [
+              "You wake at six and the whole city is holding its breath.",
+              "No engines, no radios, no neighbour shouting at his dog downstairs.",
+              "Your phone shows four hundred missed calls, every one from last night.",
+              "You step outside and the street is standing perfectly still.",
+              "Thirty people, heads tilted, eyes empty, and all of them turn to you."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Dad Behind The Door",
+      "goal": "A voice she knows asks to be let in.",
+      "target_s": 24,
+      "shots": [
+        {
+          "sequence": {
+            "type": "dialogue",
+            "setting": "barricade_flat",
+            "mood": "tense",
+            "seed": 2,
+            "a": {
+              "k": "you",
+              "x": 400
+            },
+            "b": {
+              "k": "dad",
+              "x": 700
+            },
+            "lines": [
+              {
+                "who": "you",
+                "t": "Dad, stop. Say the word mum taught us when we were small."
+              },
+              {
+                "who": "dad",
+                "t": "Open the door, sweetheart. My hands are cold and the sun is coming."
+              },
+              {
+                "who": "you",
+                "t": "You never called me sweetheart. Not once in twenty three years."
+              },
+              {
+                "who": "dad",
+                "t": "Then open it anyway. Everyone else already did, and they are quiet now."
+              },
+              {
+                "who": "you",
+                "t": "I am not opening it. I am going up to the roof instead."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "The Roof At Midnight",
+      "goal": "She counts the lights and finds one still burning.",
+      "target_s": 24,
+      "shots": [
+        {
+          "sequence": {
+            "type": "narration",
+            "settings": [
+              "rooftop_horde"
+            ],
+            "mood": "sad",
+            "seed": 3,
+            "actors": [
+              {
+                "k": "you",
+                "x": 520
+              }
+            ],
+            "crowd": {
+              "n": 34,
+              "x": [
+                0.03,
+                0.97
+              ],
+              "by": [
+                0.6,
+                0.84
+              ],
+              "s": [
+                0.16,
+                0.34
+              ],
+              "seed": 7,
+              "colors": [
+                "#49543f",
+                "#5c4f42"
+              ]
+            },
+            "cues": [
+              "From the roof you can count every window in the district.",
+              "Eleven thousand flats, and tonight only one of them still has a lamp on.",
+              "Somebody over there is awake, and somebody over there is afraid.",
+              "You take the torch out of your bag and flash it three times, slowly.",
+              "After a long minute, the far window answers you three times back."
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
