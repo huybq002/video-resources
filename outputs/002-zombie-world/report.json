@@ -1,0 +1,12 @@
+[
+  {
+    "id": "94f27b3bdc90",
+    "status": "done",
+    "outputDir": "/__w/video-resources/video-resources/outputs/002-zombie-world/project",
+    "video": "/__w/video-resources/video-resources/outputs/002-zombie-world/project/output.mp4",
+    "renderer": "hyperframes",
+    "composition": "/__w/video-resources/video-resources/outputs/002-zombie-world/project/index.html",
+    "timeline": "/__w/video-resources/video-resources/outputs/002-zombie-world/project/timeline.json",
+    "audio": "/__w/video-resources/video-resources/outputs/002-zombie-world/project/voiceover.wav"
+  }
+]

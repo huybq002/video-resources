@@ -1,0 +1,40 @@
+{
+  "id": "002-zombie-world",
+  "tag": "002-zombie-world-42356649939",
+  "idea": "What if only you exist in the world, and everyone transforms into zombies",
+  "lang": "en",
+  "duration_s": 300,
+  "assets": [
+    {
+      "name": "output.mp4",
+      "bytes": 102561394,
+      "sha256": "27fe6de68f70a779bd90d6ee0718d24107ba60bf5390546aee4f7927dd5a049e"
+    },
+    {
+      "name": "bundle.zip",
+      "bytes": 15136080,
+      "sha256": "84ed7cc6275bfc654876867a51b7b505f0af1c4579228f16eb7ec8cadbe1f023"
+    },
+    {
+      "name": "metadata.json",
+      "bytes": 577,
+      "sha256": "939ffe0c4a81713deb891ab19d9a8d0a45b95ebfb864a5d12d179a470eb78050"
+    },
+    {
+      "name": "a.png",
+      "bytes": 143188,
+      "sha256": "2cae7f1d95d0d3033dea5af109af449861d416024a317b960e3824a63503f9b6"
+    },
+    {
+      "name": "b.png",
+      "bytes": 154898,
+      "sha256": "b7649fe93fa23da84a9b4238ced30c1bd8b3eeb9da293de4945101147787b021"
+    },
+    {
+      "name": "c.png",
+      "bytes": 139810,
+      "sha256": "65baa5d6d9b197b2a2260830b9120f9c3848f3d3e4ac18e86245405baf0d482c"
+    }
+  ],
+  "release_url": "https://github.com/huybq002/video-resources/releases/tag/002-zombie-world-42356649939"
+}
