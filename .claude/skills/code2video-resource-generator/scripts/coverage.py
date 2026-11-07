@@ -36,7 +36,16 @@ def _emote_for(text, mood, role):
     return {"warm": "joy", "tense": "neutral", "sad": "sad", "funny": "smirk"}.get(mood, "neutral")
 
 def _shot(setting, chars, **kw):
-    s = {"setting": setting, "chars": copy.deepcopy(chars)}; s.update(kw); return s
+    s = {"setting": setting, "chars": copy.deepcopy(chars)}; s.update(kw)
+    # Portrait frames are half as wide, and _actor already draws characters 1.25x bigger there.
+    # Applying the landscape zoom on top fills the screen with a head and throws the setting away,
+    # so ease every focus zoom back towards 1 in 9:16.
+    if PORTRAIT[0] and isinstance(s.get("focus"), dict):
+        f = dict(s["focus"])
+        for key in ("zoom", "to"):
+            if isinstance(f.get(key), (int, float)): f[key] = round(1 + (f[key] - 1) * 0.55, 2)
+        s["focus"] = f
+    return s
 
 def _set_acts(shot, k, acts):
     for c in shot["chars"]:
@@ -130,7 +139,13 @@ def expand(spec, spec_dir):
                 for key in ("setting",):
                     if key in seq: reg(seq[key])
                 for s in seq.get("settings", []): reg(s)
-                shots += EXPAND[seq["type"]](seq, rnd)
+                made = EXPAND[seq["type"]](seq, rnd)
+                # a `crowd` / `props` / `overlays` block on the sequence applies to every shot it makes
+                # (build_project reads them per shot; without this they would be silently dropped)
+                for key in ("crowd", "props", "overlays"):
+                    if seq.get(key) is not None:
+                        for sh in made: sh.setdefault(key, copy.deepcopy(seq[key]))
+                shots += made
             else:
                 if "setting" in item and isinstance(item["setting"], str) and item["setting"].startswith("lib:"): item["setting"] = reg(item["setting"])
                 for pn in item.get("split", []):

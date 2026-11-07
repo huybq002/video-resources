@@ -2,14 +2,23 @@
 
 Video resources and nightly automation (HyperFrames, YouTube).
 
-- `tasks/pending/`: tasks to run (see `tasks/README.md`)
+- `channel.json`: **the only file you edit.** Niche, audience, seed keywords, formats, what to avoid.
+- `tasks/pending/`: tasks to run (see `tasks/README.md`). Leave it empty and the job researches the market and writes the next task itself.
+- `data/ideas.md`: the researched idea backlog; `data/research/latest.md`: last night's market digest.
+- `reports/YYYY-MM-DD.md`: **read this first each morning**: tonight's video, what research found, every pipeline improvement, what could not be verified. Improvements arrive as a pull request (or a compare link) on branch `improve/YYYY-MM-DD`; nothing reaches `main` without you.
+- `data/learnings.md`: dated, evidenced findings that justify any change to the writing rules.
+- `data/platform-policy.md`: the YouTube/TikTok rules the pipeline obeys, refreshed weekly by the job.
+- `data/discovered_keywords.json`: keywords the job found, kept apart from `channel.json` so your edits never conflict with the job's.
+- Actions → **Research check** (manual): tests whether YouTube answers yt-dlp from a GitHub runner. Costs no Claude usage.
+- `data/known-issues.md`: what broke, why, and how it is prevented — Auto-fix reads this before fixing anything.
+- `outputs/<id>/publish/`: the title, description, tags and hashtags to paste on YouTube, Shorts and TikTok.
 - `tasks/done/`: finished tasks
 - `outputs/<task id>/`: results
 - `templates/`: task template
 - `.github/workflows/night-job.yml`: runs at 00:00 (UTC+7), one 5h window
 - `.github/workflows/claude.yml`: `@claude` mentions in issues and PRs
 
-Videos and resource bundles are published as GitHub Releases (`scripts/publish_release.py`), not committed.
+Each video task builds **both** 16:9 and 9:16 from one spec, with assets generated per frame shape. Videos and resource bundles are published as GitHub Releases (`scripts/publish_release.py`), not committed.
 
 Requires the `CLAUDE_CODE_OAUTH_TOKEN` repository secret (from `claude setup-token`). YouTube upload additionally needs `YT_CLIENT_ID`, `YT_CLIENT_SECRET`, `YT_REFRESH_TOKEN`.
 

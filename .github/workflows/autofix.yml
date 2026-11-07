@@ -51,13 +51,25 @@ jobs:
           prompt: |
             The workflow "${{ github.event.workflow_run.name }}" (run ${{ github.event.workflow_run.id }}) failed on main.
             The tail of its failure log is in ${{ runner.temp }}/failed.log. Read it first.
+            0. Read data/known-issues.md FIRST. If this failure is already in there, the earlier fix did not hold:
+               do not repeat it. Go one level deeper (fix the cause, not the symptom) or make the step fail early
+               with a clear message instead of failing late.
             1. Find the root cause. If it is NOT fixable by changing files (billing or spending limit, usage / rate limit, 401 or other auth or
-               token problem, GitHub outage, network flake, empty log), make NO changes and stop.
+               token problem, GitHub outage, network flake, empty log), append a one-line entry to data/known-issues.md
+               saying what it was and that no code change can fix it, commit that, and stop.
             2. Otherwise make the smallest fix. You may edit ONLY: Dockerfile, .dockerignore, requirements.txt, scripts/, tools/code2video/,
-               .claude/skills/, templates/, tasks/README.md. Never edit .github/ (including this file), secrets, or tasks/pending files.
+               .claude/skills/, templates/, tasks/README.md, data/known-issues.md, channel.json.
+               Never edit .github/ (including this file), secrets, or tasks/pending files.
             3. Check what you can locally (python -m py_compile, YAML/JSON parse, pytest for tools/code2video if you touched it).
-            4. Commit with a message that starts with `autofix:` and push to main. One focused commit. If you cannot fix it, push nothing.
-            5. Never print secrets. Do not rerun anything yourself.
+            4. Make it not happen again, not just this once: prefer a real fix in the script or Dockerfile over a
+               retry or a wider timeout, and where the same input could break it again, add the check that catches
+               it early. If a test can hold the fix in place (tools/code2video has pytest), add one.
+            5. Append to data/known-issues.md: date, the workflow, the error in one line, the root cause, what you
+               changed, and how it is prevented next time. This file is what step 0 reads, so it must stay honest:
+               if you only worked around the symptom, say so.
+            6. Commit with a message that starts with `autofix:` and push to main. One focused commit, including the
+               known-issues entry. If you cannot fix it, push only the known-issues entry.
+            7. Never print secrets. Do not rerun anything yourself.
           claude_args: --max-turns 40 --allowedTools "Bash,Read,Write,Edit,Glob,Grep"
       - name: Rebuild the image if the fix touched it
         if: steps.budget.outputs.go == 'true' && env.FAILED_NAME == 'Build runner image'

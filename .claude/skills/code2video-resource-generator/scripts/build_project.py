@@ -107,7 +107,15 @@ def main():
                 def rnd():
                     rs[0] = (rs[0] * 9301 + 49297) % 233280; return rs[0] / 233280
                 cols = cr.get("colors", ["#c0577a", "#e0b83a", "#3aa6a0", "#6a7ac8", "#d9884a", "#8a5ac8"])
-                s0_, s1_ = cr.get("s", [0.18, 0.4]); y0_, y1_ = cr.get("by", [640, 900]); x0_, x1_ = cr.get("x", [200, 1720])
+                # `x` and `by` may be fractions of the frame (0-1, portable between 16:9 and 9:16)
+                # or pixels in the real frame. Defaults are fractions so a crowd lands on the ground
+                # in both aspects instead of floating in the sky of a portrait frame.
+                def _span(v, size):
+                    a_, b_ = v
+                    return (a_ * size if a_ <= 1 else a_), (b_ * size if b_ <= 1 else b_)
+                s0_, s1_ = cr.get("s", [0.18, 0.4])
+                if H > W: s0_, s1_ = s0_ * 1.25, s1_ * 1.25    # portrait draws characters 1.25x: match them
+                y0_, y1_ = _span(cr.get("by", [0.59, 0.83]), H); x0_, x1_ = _span(cr.get("x", [0.10, 0.90]), W)
                 figs = sorted(((y0_ + (y1_ - y0_) * rnd(), rnd()) for _ in range(cr.get("n", 60))))
                 for fi, (fy, rr) in enumerate(figs):
                     t_ = (fy - y0_) / max(1, (y1_ - y0_)); sc = s0_ + (s1_ - s0_) * t_; fx = x0_ + (x1_ - x0_) * rnd()
@@ -220,8 +228,8 @@ def main():
     {sel} .ov.title {{ font-size:104px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; color:#ff9ad0; text-shadow:0 0 24px rgba(255,120,190,.7); text-align:center; max-width:1500px; }}
     {sel} .vig {{ position:absolute; inset:0; z-index:20; pointer-events:none; background:radial-gradient(ellipse at 50% 46%, transparent 52%, rgba(3,2,10,.62) 100%); }}
     {sel} .flash {{ position:absolute; inset:0; z-index:30; background:#fff; opacity:0; }}
-    {sel} .caption {{ position:absolute; left:8%; right:8%; bottom:5.5%; z-index:40; display:grid; place-items:center; text-align:center; opacity:0; }}
-    {sel} .caption span {{ max-width:1500px; padding:14px 32px; border-radius:14px; background:rgba(8,6,16,.66); color:#f6f0e4; font-size:54px; line-height:1.25; font-weight:700; text-shadow:0 2px 6px #000; }}
+    {sel} .caption {{ position:absolute; left:{6 if H > W else 8}%; right:{6 if H > W else 8}%; bottom:{16 if H > W else 5.5}%; z-index:40; display:grid; place-items:center; text-align:center; opacity:0; }}
+    {sel} .caption span {{ max-width:{980 if H > W else 1500}px; padding:14px 32px; border-radius:14px; background:rgba(8,6,16,.66); color:#f6f0e4; font-size:{62 if H > W else 54}px; line-height:1.25; font-weight:700; text-shadow:0 2px 6px #000; }}
     """
         lb_html = "<div class='lb' data-layout-allow-occlusion='true' style='top:0'></div><div class='lb' data-layout-allow-occlusion='true' style='bottom:0'></div>" if spec.get("letterbox") else ""
         script = engine.replace("__DATA__", data.replace("</", "<\\/"))

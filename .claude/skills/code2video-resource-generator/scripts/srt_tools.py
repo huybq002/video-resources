@@ -38,6 +38,9 @@ def min_len(text):
 def plan(spec, rate=2.55):
     """returns dict(cues=[{index,text,who,speaker,scene,startMs,endMs,words}], scenes=[{id,startMs,endMs}], notes=[...])"""
     items = cue_items(spec); n = len(items); notes = []
+    if not n:
+        raise SystemExit("no cues in the spec: plan() needs the expanded spec (coverage.expand), "
+                         "and every scene needs cues in its shots.")
     total = int(round(float(spec.get("duration_s", 0)) * 1000)) if spec.get("duration_s") else 0
     base = []
     for i, it in enumerate(items):
@@ -65,10 +68,15 @@ def plan(spec, rate=2.55):
     durs = list(base)
     for sid in scene_ids:
         idx = [i for i, it in enumerate(items) if it["scene"] == sid]; bs = sum(base[i] for i in idx); f = targets[sid] / bs
-        if f < 0.85 or f > 1.4:
+        # f > 1 means the scene is longer than its text needs: the voice-over stops and the scene keeps
+        # running in silence. Keep this tight (1.12 = at most ~12% breathing room), it is the single
+        # biggest cause of dead air in the rendered video.
+        if f < 0.88 or f > 1.12:
             words = sum(len(items[i]["text"].split()) for i in idx)
-            notes.append(f"WARNING: scene {sid} target {targets[sid]:.0f}s but its text naturally takes {bs:.0f}s: "
-                         + (f"cut about {int(words * (1 - f))} words" if f < 1 else f"add about {int(words * (f - 1))} words") + " (or change target_s).")
+            notes.append(f"WARNING: scene {sid} target {targets[sid]:.0f}s but its text naturally takes {bs:.0f}s "
+                         + (f"({(1 - f) * 100:.0f}% too much text): cut about {int(words * (1 - f))} words" if f < 1
+                            else f"({(f - 1) * 100:.0f}% of the scene would be silent): add about {int(words * (f - 1))} words")
+                         + " (or change target_s).")
         for i in idx: durs[i] = base[i] * f
         for _ in range(4):                      # keep every cue above the reading minimum (0.5s + 0.3s/word)
             short = sum(max(0, min_len(items[i]["text"]) - durs[i]) for i in idx)
@@ -95,6 +103,16 @@ def plan(spec, rate=2.55):
         scenes.append(dict(id=sc["id"], startMs=cs[0]["startMs"], endMs=cs[-1]["endMs"]))
         L = (cs[-1]["endMs"] - cs[0]["startMs"]) / 1000.0
         if L < 12 or L > 50: notes.append(f"WARNING: scene {sc['id']} lasts {L:.0f}s (aim 20-40 s per scene): split or merge scenes.")
+    # whole-film dead air: how much of the running time no one is speaking
+    if cues:
+        spoken = sum(min(c["endMs"] - c["startMs"], 1000 * (len(c["text"].split()) / rate
+                     + len(re.findall(r"[.,;:!?…]", c["text"])) * 0.12)) for c in cues)
+        silent_pct = 100.0 * (1 - spoken / cues[-1]["endMs"])
+        line = f"silence: about {silent_pct:.0f}% of the film has no voice ({len(items)} cues, " \
+               f"{sum(len(c['text'].split()) for c in cues)} words, " \
+               f"{sum(len(c['text'].split()) for c in cues) / (cues[-1]['endMs'] / 1000):.2f} words/s)"
+        notes.append(("WARNING: " + line + ": the script is too thin for this duration, add words or cut scene targets."
+                      if silent_pct > 12 else "NOTE: " + line))
     return dict(cues=cues, scenes=scenes, notes=notes, totalMs=cues[-1]["endMs"] if cues else 0)
 
 LABELS = {"vi": ("nam", "nữ"), "en": ("male", "female"), "es": ("hombre", "mujer"), "fr": ("homme", "femme"), "de": ("männlich", "weiblich"),

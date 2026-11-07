@@ -1,5 +1,24 @@
 # Tasks
 
+**You do not write tasks.** Every night at 00:00 Vietnam time the job, in this order:
+
+1. re-checks YouTube and TikTok policy and updates `data/platform-policy.md`
+2. researches the market with `scripts/research_youtube.py --update-channel`, which asks YouTube
+   through yt-dlp what ranks for every keyword of every topic in `channel.json` and writes the new
+   keywords it finds back into `channel.json`
+3. turns the digest into ideas with the `claude-youtube` skill, records them in `data/ideas.md`,
+   and drops the ones that break policy
+4. writes the best surviving idea as a task and makes the video (both 16:9 and 9:16)
+5. writes the publishing pack, so you only download and post
+
+`scripts/policy_check.py` runs on the task, the spec and the publishing pack. It fails the build on
+a claim that an invented story is true, a real organisation or case, graphic detail, advice, or a
+missing AI disclosure. Crime stories here are fiction by design: see `data/platform-policy.md`.
+
+Edit `channel.json` to steer what gets made. Write a task by hand only when you want one specific
+video first:
+
+
 1. Copy `templates/task-template.md` to `tasks/pending/NNN-name.md` (NNN = run order).
 2. Fill it in, commit, and push to `main` before 00:00.
 3. At night the job takes pending tasks in order, works until the usage limit, and:
@@ -16,7 +35,10 @@ If `tasks/pending/` has no runnable task at 00:00, the job does nothing (Claude 
 Use `templates/video-task-template.md` (`type: video`). The job follows the `code2video-resource-generator` skill in CI mode:
 spec in `specs/<id>.json`, then ONE command `ci/run_pipeline.py` (resources, voice-over, render, thumbnail, metadata).
 
-- Everything for a video task is built under `outputs/<id>/` (resource bundle in `project/`, video `project/output.mp4`, or `final.mp4` with `renderer: skill`). At the end `scripts/publish_release.py` attaches `bundle.zip` (HyperFrames project incl. assets and `voiceover.wav`), the video, thumbnails and metadata to a **GitHub Release** (tag `<id>-<run id>`). Download them from the Releases page and delete the release if you wish. Only the small `outputs/<id>/manifest.json` (release URL, sizes, sha256), thumbnails, specs and series memory are committed.
+- **Every video task produces two films from one spec**: `outputs/<id>/landscape` (16:9 1920x1080, YouTube) and `outputs/<id>/portrait` (9:16 1080x1920, Shorts). They are not the same pixels cropped: each is generated for its frame, so the three.js backgrounds are re-rendered at that resolution with the camera pulled back in portrait, characters are rescaled, shot sizes eased and captions lifted out of the Shorts UI. The voice-over is made once and copied, because `script.srt` is identical.
+- `scripts/publish_release.py` attaches `landscape.mp4` + `landscape-bundle.zip`, `portrait.mp4` + `portrait-bundle.zip`, thumbnails and metadata to a **GitHub Release** (tag `<id>-<run id>`). Only the small `outputs/<id>/manifest.json`, thumbnails, specs and series memory are committed.
+- Render cost doubles: budget about 7 s of wall time per video second **per cut**. A 9-minute story is roughly 70 min x 2 and will not fit one night with anything else.
+- A vertical cut longer than 3 minutes is no longer a Short on YouTube; for reach, publish it as a normal vertical video or write a separate 45-60 s teaser task.
 - Before committing, the job runs `scripts/verify_bundle.py` twice: on the bundle (exact length, contiguous cues, <= 14 words per cue, scene count and length vs the spec, required files) and on the video (length, audio present and not silent, frame size). A failing check means the job fixes and re-renders instead of committing.
 - Render takes about 7 s of wall time per video second at 30 fps (a 9-minute video is about 70 minutes). Keep the total of all tasks inside the 300-minute cap; long videos should go in their own night.
 - YouTube upload only happens with `upload: true`, needs secrets `YT_CLIENT_ID`, `YT_CLIENT_SECRET`, `YT_REFRESH_TOKEN`, and is `private` by default.

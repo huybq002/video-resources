@@ -70,7 +70,16 @@ if warns: print("WARNINGS:\n  " + "\n  ".join(warns))
 if "--check" in sys.argv and not errs:
     r = subprocess.run("npx --yes hyperframes check --json", cwd=root, shell=True, capture_output=True, text=True, encoding="utf-8")
     try:
-        d = json.loads(r.stdout[r.stdout.find("{"):]); print("hyperframes check ok =", d.get("ok"), "| lint:", {k: v for k, v in d.get("lint", {}).items() if k in ("errorCount", "warningCount")})
-        if not d.get("ok"): errs.append("hyperframes check failed")
+        d = json.loads(r.stdout[r.stdout.find("{"):])
+        found = d.get("lint", {}).get("findings", [])
+        # with --no-audio the voice-over has not been made yet: a missing assets/audio/voiceover.wav
+        # is expected at this point, so do not fail the build on it.
+        ignored = {"audio_src_not_found"} if "--no-audio" in sys.argv else set()
+        hard = [f for f in found if f.get("severity") == "error" and f.get("code") not in ignored]
+        skipped = sum(1 for f in found if f.get("severity") == "error" and f.get("code") in ignored)
+        lint = {k: v for k, v in d.get("lint", {}).items() if k in ("errorCount", "warningCount")}
+        if skipped: lint["ignoredUntilVoiceover"] = skipped
+        print("hyperframes check ok =", d.get("ok"), "| lint:", lint)
+        if hard or (not d.get("ok") and not found): errs.append("hyperframes check failed")
     except Exception as e: print("could not parse check output", e); errs.append("check unparsable")
 sys.exit(1 if errs else 0)

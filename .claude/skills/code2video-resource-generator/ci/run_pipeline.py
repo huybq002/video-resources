@@ -11,7 +11,10 @@ import argparse, concurrent.futures as cf, json, os, pathlib, subprocess, sys, t
 HERE = pathlib.Path(__file__).resolve().parent; SK = HERE.parent; PY = sys.executable
 ap = argparse.ArgumentParser(); ap.add_argument("spec"); ap.add_argument("out"); ap.add_argument("--series"); ap.add_argument("--jobs", type=int, default=max(1, min(4, (os.cpu_count() or 2) // 2)))
 ap.add_argument("--chunk", type=float, default=120); ap.add_argument("--upload", action="store_true"); ap.add_argument("--privacy", default="private"); ap.add_argument("--allow-public", action="store_true")
-ap.add_argument("--stop-after", choices=["generate", "tts", "render"]); a = ap.parse_args()
+ap.add_argument("--stop-after", choices=["generate", "tts", "render"])
+ap.add_argument("--aspect", choices=["16:9", "9:16"], help="override spec.aspect for this build (one aspect per run; build both by calling twice)")
+ap.add_argument("--no-series-update", action="store_true", help="read the series bible but do not write the episode back (second aspect)")
+a = ap.parse_args()
 spec = pathlib.Path(a.spec).resolve(); out = pathlib.Path(a.out).resolve(); proj = out; out.mkdir(parents=True, exist_ok=True); log = out.parent / (out.name + "_pipeline.log")
 T0 = time.time(); LOG = open(log, "w", encoding="utf-8")
 
@@ -24,7 +27,10 @@ def run(name, cmd, cwd=None, env=None):
         sys.exit(f"FAILED at {name} (exit {r.returncode}). Last log lines:\n" + "\n".join(tail))
 
 # 1 generate
-gen = [PY, str(SK / "scripts" / "generate.py"), str(spec), str(proj)] + (["--series", a.series] if a.series else [])
+gen = ([PY, str(SK / "scripts" / "generate.py"), str(spec), str(proj)]
+       + (["--series", a.series] if a.series else [])
+       + (["--aspect", a.aspect] if a.aspect else [])
+       + (["--no-series-update"] if a.no_series_update else []))
 run("generate", gen); say("generate ok: " + next((l for l in pathlib.Path(log).read_text(encoding="utf-8", errors="replace").splitlines() if l.startswith("script.srt:")), "script.srt written"))
 for l in pathlib.Path(log).read_text(encoding="utf-8", errors="replace").splitlines():
     if l.startswith(("WARNING", "SERIES WARNING")): say(l)

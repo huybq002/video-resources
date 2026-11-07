@@ -160,25 +160,37 @@ def figure(pid, gid, c, view="front"):
         hand = f'<circle cx="{Wr[0]}" cy="{Wr[1]+9}" r="9" fill="{INK}"/>'
         return f'<g id="{pid}-arm-{sd}">{up}<g id="{pid}-forearm-{sd}">{fo}{hand}{watch}</g></g>'
     # ---------------------------------------------------------------- legs
+    # The legs hang from the hem of whatever covers the hips, never from a fixed y: a gap between the
+    # garment and the legs makes the figure look cut in half, and a pelvis that pokes out below the hem
+    # reads as a nappy. HIP_Y is that attachment point; the thin black leg starts hidden behind the
+    # garment and comes out of its hem, the way the reference drawings do.
+    PEL_BOT = {"pants": hem + 24, "shorts": hem + 82, "skirt": hem + 104}.get(BOT, hem)
+    HIP_Y = (PEL_BOT - 14) if BOT in ("pants", "shorts", "skirt") else (hem - 26)
+    HIP_Y = max(430, min(HIP_Y, 600))                      # keep the legs a believable length
+
     def leg(sd, near=True):
         sg = -1 if sd == "l" else 1
-        if side: dx = 7 if near else -7; Hh, K, A = (200 + dx, 540), (204 + dx, 650), (208 + dx, 760)
-        else: Hh, K, A = (200 + sg * 24, 540), (200 + sg * 28, 650), (200 + sg * 32, 760)
+        knee_y = round(HIP_Y + (760 - HIP_Y) * 0.52)
+        if side: dx = 7 if near else -7; Hh, K, A = (200 + dx, HIP_Y), (204 + dx, knee_y), (208 + dx, 760)
+        else: Hh, K, A = (200 + sg * 27, HIP_Y), (200 + sg * 33, knee_y), (200 + sg * 37, 760)
         pant = BOT in ("pants",)
         pcol = bc if near else dark(bc, .22)
         thigh = f'<path d="M{Hh[0]} {Hh[1]} L{K[0]} {K[1]}" stroke="{INK}" stroke-width="9" fill="none" stroke-linecap="round"/>'
         shin = f'<path d="M{K[0]} {K[1]} L{A[0]} {A[1]}" stroke="{INK}" stroke-width="9" fill="none" stroke-linecap="round"/>'
         if pant:
-            thigh += f'<path d="{taper(Hh, K, 38, 30)}" fill="{pcol}" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/><circle cx="{K[0]}" cy="{K[1]}" r="15" fill="{pcol}"/>'
-            shin += f'<path d="{taper(K, lerp(K, A, .92), 30, 26)}" fill="{pcol}" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/>'
+            # narrower than the stance, so the two trouser legs never merge into one dark slab
+            thigh += f'<path d="{taper(Hh, K, 32, 27)}" fill="{pcol}" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/><circle cx="{K[0]}" cy="{K[1]}" r="13" fill="{pcol}"/>'
+            shin += f'<path d="{taper(K, lerp(K, A, .92), 27, 24)}" fill="{pcol}" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/>'
         elif w["sock"]:
-            shin += f'<path d="{taper(lerp(K, A, .5), A, 17, 15)}" fill="{w["sock"]}" stroke="{INK}" stroke-width="3" stroke-linejoin="round"/>'
+            # a real sock, from just under the knee to the ankle (football kit, school socks)
+            shin += (f'<path d="{taper(lerp(K, A, .12), A, 21, 17)}" fill="{w["sock"]}" stroke="{INK}" '
+                     f'stroke-width="3.5" stroke-linejoin="round"/>')
         shoe_c = w["shoe_color"] if near else dark(w["shoe_color"], .2)
         dirn = 1 if side else (-1 if sd == "l" else 1)          # toes point right in profile; left foot points left, right foot right in front view
         if w["shoes"] == "none": foot = f'<circle cx="{A[0] + dirn*6}" cy="768" r="8" fill="{INK}"/>'
         else:
-            if w["shoes"] == "boots": shin += f'<path d="{taper(lerp(K, A, .62), A, 26, 24)}" fill="{shoe_c}" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/>'
-            x0, x1 = A[0] - dirn * 12, A[0] + dirn * (44 if side else 34)
+            if w["shoes"] == "boots": shin += f'<path d="{taper(lerp(K, A, .72), A, 22, 21)}" fill="{shoe_c}" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/>'
+            x0, x1 = A[0] - dirn * 11, A[0] + dirn * (42 if side else 31)
             if w["shoes"] == "heels": d = f'M{x0} 756 L{A[0]+dirn*8} 756 L{x1} 772 Q{x1+dirn*3} 780 {x1-dirn*8} 782 L{A[0]-dirn*4} 782 L{x0} 772 Z'
             else: d = f'M{x0} 756 L{A[0]+dirn*10} 756 Q{x1} 758 {x1+dirn*4} 774 Q{x1} 784 {x0-dirn*2} 782 Z'
             foot = f'<path d="{d}" fill="{shoe_c}" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/><path d="M{x0-dirn*2} 780 L{x1} 780" stroke="#f1ece4" stroke-width="3" stroke-linecap="round"/>'
@@ -246,9 +258,21 @@ def figure(pid, gid, c, view="front"):
         if side or back: extra += f'<path d="M{cx-26} 310 L{cx+22} 470" stroke="{INK}" stroke-width="7" opacity=".8"/>'
         else: extra += f'<path d="M{cx-sw} 312 L{cx+sw} 460" stroke="{INK}" stroke-width="7" opacity=".8"/><rect x="{cx+sw-8}" y="446" width="46" height="40" rx="7" fill="{c.get("bag_color", "#b08850")}" stroke="{INK}" stroke-width="4"/>'
     # bottoms (hips)
-    if BOT == "pants": pelvis = f'<path id="{pid}-pelvis" d="M{cx-sw*.9} 462 L{cx+sw*.9} 462 L{cx+sw*.8} 552 Q{cx} 564 {cx-sw*.8} 552 Z" fill="{BG}" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/>'
-    elif BOT == "shorts": pelvis = f'<path id="{pid}-pelvis" d="M{cx-sw*.9} 462 L{cx+sw*.9} 462 L{cx+sw*1.0} 580 L{cx+4} 580 L{cx} 560 L{cx-4} 580 L{cx-sw*1.0} 580 Z" fill="{BG}" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/>'
-    elif BOT == "skirt": pelvis = f'<path id="{pid}-pelvis" d="M{cx-sw*.9} 462 L{cx+sw*.9} 462 L{cx+sw*1.7} 600 Q{cx} 614 {cx-sw*1.7} 600 Z" fill="{BG}" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/>'
+    # The hip garment starts at 462 (hidden behind the torso) and ends at PEL_BOT, just below the hem,
+    # with a crotch notch so the two legs never read as one slab. Trousers share the flat thigh colour
+    # so there is no seam where the hip meets the leg; shorts and skirts keep the garment gradient.
+    _top_y, _nx = 462, min(14, sw * .3)
+    if BOT == "pants":
+        pelvis = (f'<path id="{pid}-pelvis" d="M{cx-sw*.92} {_top_y} L{cx+sw*.92} {_top_y} L{cx+sw*.74} {PEL_BOT} '
+                  f'L{cx+_nx} {PEL_BOT} Q{cx} {PEL_BOT-20} {cx-_nx} {PEL_BOT} L{cx-sw*.74} {PEL_BOT} Z" '
+                  f'fill="{bc}" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/>')
+    elif BOT == "shorts":
+        pelvis = (f'<path id="{pid}-pelvis" d="M{cx-sw*.92} {_top_y} L{cx+sw*.92} {_top_y} L{cx+sw*1.02} {PEL_BOT} '
+                  f'L{cx+_nx} {PEL_BOT} Q{cx} {PEL_BOT-34} {cx-_nx} {PEL_BOT} L{cx-sw*1.02} {PEL_BOT} Z" '
+                  f'fill="{BG}" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/>')
+    elif BOT == "skirt":
+        pelvis = (f'<path id="{pid}-pelvis" d="M{cx-sw*.9} {_top_y} L{cx+sw*.9} {_top_y} L{cx+sw*1.7} {PEL_BOT} '
+                  f'Q{cx} {PEL_BOT+14} {cx-sw*1.7} {PEL_BOT} Z" fill="{BG}" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/>')
     else: pelvis = f'<g id="{pid}-pelvis"></g>'
     # head
     sk = c.get("skin", "#ffffff")
