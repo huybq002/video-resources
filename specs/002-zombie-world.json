@@ -1,0 +1,383 @@
+{
+ "id": "002-zombie-world",
+ "title": "What if only you exist and everyone turns into zombies",
+ "lang": "en",
+ "aspect": "9:16",
+ "fps": 30,
+ "duration_s": 300,
+ "idea": "What if only you exist in the world, and everyone transforms into zombies",
+ "narrator": "narrator",
+ "narrator_name": "Narrator",
+ "narrator_gender": "male",
+ "cast": [
+  {
+   "id": "narrator",
+   "name": "Narrator",
+   "narrator": true,
+   "gender": "male"
+  },
+  {
+   "id": "you",
+   "name": "You",
+   "gender": "female",
+   "style": "stick",
+   "top": "hoodie",
+   "top_color": "#3e7cb1",
+   "bottom": "pants",
+   "shoes": "sneakers",
+   "hair": "#2a1f24",
+   "hair_style": "short",
+   "look": "young survivor in a blue hoodie, dark pants, sneakers, small backpack"
+  }
+ ],
+ "scenes": [
+  {
+   "id": 1,
+   "title": "The Silent Morning",
+   "goal": "You wake up. The world is wrong.",
+   "target_s": 27,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "lib:bedroom_night"
+      ],
+      "mood": "tense",
+      "seed": 1,
+      "actors": [
+       {
+        "k": "you",
+        "x": 540
+       }
+      ],
+      "cues": [
+       "You wake up to a silence so deep it hurts.",
+       "No cars. No birds. No alarm clocks in the building.",
+       "You check your phone. Four hundred missed calls, all from the same night.",
+       "The last message from your mother says only: do not open the door.",
+       "You are about to find out why."
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "title": "The Window",
+   "goal": "First look outside.",
+   "target_s": 27,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "lib:street_day"
+      ],
+      "mood": "tense",
+      "seed": 2,
+      "actors": [
+       {
+        "k": "you",
+        "x": 540
+       }
+      ],
+      "cues": [
+       "You pull back the curtain and your stomach drops.",
+       "The street is full of people, standing perfectly still.",
+       "Hundreds of them, heads tilted, eyes empty, all facing your window.",
+       "One of them slowly raises an arm and points at you.",
+       "Then, together, they begin to walk."
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "title": "Everyone Changed",
+   "goal": "The truth sinks in.",
+   "target_s": 27,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "lib:office",
+       "lib:street_day"
+      ],
+      "mood": "tense",
+      "seed": 3,
+      "actors": [
+       {
+        "k": "you",
+        "x": 540
+       }
+      ],
+      "cues": [
+       "The news channel is still broadcasting, on a loop, from the night before.",
+       "A calm voice explains that something spread while the world slept.",
+       "Everyone who was asleep changed. Everyone who was awake changed faster.",
+       "You were the only one who took the pill that night.",
+       "The doctor's pill for your insomnia. The pill that saved you."
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "title": "Rule One: Silence",
+   "goal": "Learning how they hunt.",
+   "target_s": 27,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "lib:cafe"
+      ],
+      "mood": "tense",
+      "seed": 4,
+      "actors": [
+       {
+        "k": "you",
+        "x": 540
+       }
+      ],
+      "cues": [
+       "You slip into the cafe downstairs and watch through the glass.",
+       "A zombie bumps a chair, and the whole crowd turns toward the sound.",
+       "They don't see well. They hear everything.",
+       "So rule one is simple: silence. Soft shoes, slow steps, no panic.",
+       "Even your heartbeat feels too loud."
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "title": "Supplies",
+   "goal": "Scavenging for survival.",
+   "target_s": 27,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "lib:street_day",
+       "lib:cafe"
+      ],
+      "mood": "tense",
+      "seed": 5,
+      "actors": [
+       {
+        "k": "you",
+        "x": 540
+       }
+      ],
+      "cues": [
+       "By noon you have a backpack, bottled water, and a flashlight.",
+       "You find a bicycle, but bicycles click, so you leave it.",
+       "You find a radio and turn the volume down to nothing.",
+       "Static. Static. Then, very faintly, a voice counting numbers.",
+       "Somebody else is out there. Somebody is alive."
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "title": "The Signal",
+   "goal": "A reason to move.",
+   "target_s": 27,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "lib:rooftop_night"
+      ],
+      "mood": "tense",
+      "seed": 6,
+      "actors": [
+       {
+        "k": "you",
+        "x": 540
+       }
+      ],
+      "cues": [
+       "You climb to the rooftop and tune the radio by hand.",
+       "The voice repeats: north tower, sunrise, bring nothing loud.",
+       "Below you, the crowd drifts like a slow river.",
+       "Crossing the city will take all night, and you've never felt so small.",
+       "But hope is a strange kind of fuel."
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "title": "The Long Night",
+   "goal": "Crossing the city.",
+   "target_s": 27,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "lib:park_dusk",
+       "lib:street_day"
+      ],
+      "mood": "tense",
+      "seed": 7,
+      "actors": [
+       {
+        "k": "you",
+        "x": 540
+       }
+      ],
+      "cues": [
+       "You walk through the park at dusk, breathing through your sleeve.",
+       "A zombie stands under a streetlight, humming a lullaby.",
+       "You freeze. The melody sounds like your grandmother's song.",
+       "It is only a memory in a broken mind, but it still stings.",
+       "You step around it, and it never turns."
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "title": "The Door",
+   "goal": "Reaching the tower.",
+   "target_s": 27,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "lib:office"
+      ],
+      "mood": "tense",
+      "seed": 8,
+      "actors": [
+       {
+        "k": "you",
+        "x": 540
+       }
+      ],
+      "cues": [
+       "At last you reach the north tower, and the lobby is empty.",
+       "Chairs stacked against the doors. Candles still warm on a desk.",
+       "A note reads: we left at dawn, we are sorry, we waited.",
+       "You missed them by minutes. Your knees give out.",
+       "Then you hear footsteps behind you. Slow ones."
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "title": "The Twist",
+   "goal": "Not what it seems.",
+   "target_s": 27,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "lib:office",
+       "lib:bedroom_night"
+      ],
+      "mood": "tense",
+      "seed": 9,
+      "actors": [
+       {
+        "k": "you",
+        "x": 540
+       }
+      ],
+      "cues": [
+       "You turn around, ready to run, but it's the voice from the radio.",
+       "An old man in a lab coat, calm and unafraid.",
+       "He says: they were never hunting you. They were guarding you.",
+       "The ones who changed still remember the last thing they loved.",
+       "And the last thing they all loved was keeping the sleeper safe."
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "title": "Dawn",
+   "goal": "A new kind of world.",
+   "target_s": 27,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "lib:rooftop_night",
+       "lib:park_dusk"
+      ],
+      "mood": "tense",
+      "seed": 10,
+      "actors": [
+       {
+        "k": "you",
+        "x": 540
+       }
+      ],
+      "cues": [
+       "On the roof, the sun rises over a quiet, strange city.",
+       "Down in the street, the crowd gathers and simply watches over you.",
+       "You are not the last human. You are the last who can choose.",
+       "The old man hands you the cure, one dose, one chance.",
+       "Would you use it, or would you let them stay?"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "title": "What Would You Do?",
+   "goal": "Takeaway and call to comment.",
+   "target_s": 30,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "lib:rooftop_night"
+      ],
+      "mood": "tense",
+      "seed": 11,
+      "actors": [
+       {
+        "k": "you",
+        "x": 540
+       }
+      ],
+      "cues": [
+       "The world did not end that night. It went quiet, and taught you to listen.",
+       "You learned patience and fear, and what you would protect.",
+       "Being alone is scary, but it also shows what matters.",
+       "The people you love don't disappear when the world changes.",
+       "They hold on in ways that you may never notice.",
+       "So tell me in the comments: would you use the cure?",
+       "Like and follow for the next what-if story."
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}
