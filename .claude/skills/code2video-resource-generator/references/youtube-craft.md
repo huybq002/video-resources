@@ -10,6 +10,20 @@ Sources, used selectively and NOT loaded at run time: AgriciDaniel/claude-youtub
 | 15-30 s | Stakes: why it matters, what they lose by leaving; plant an open loop ("cuối video bạn sẽ hiểu vì sao..."). |
 55 % of viewers leave in the first minute, 20 % in the first 10 s: the hook is the highest-leverage part. Deliver on the title/thumbnail promise immediately.
 
+**Write the hook as a scene plan, not as a wish.** `generate.py` checks these and warns:
+- Scene 1 is 15-30 s and nothing else. Scene 2 carries the stakes and the open loop.
+- The first line is ≤ 14 words (≤ 10 in 9:16) and is the single strongest line in the film. No greeting, no "in this video", no title card, no logo: the first frame is already the story.
+- Something is left open inside the first 30 s: a question mark, or a promise ("by the end you will know why she never opened the door").
+- At least 4 shots in the first 30 s (8+ in 9:16) and at least two different places: a static opening reads as a slideshow and loses the 10-second cliff.
+- The last scene ends on a question the viewer can answer in the comments.
+
+**Cold open shape that works for a story film**
+| s | Beat | Example |
+|---|---|---|
+| 0-5 | The image or line that is hardest to look away from. Often the middle of the story, out of order. | "Six in the morning. Nobody in the city is awake." |
+| 5-15 | What this is and what the viewer gets: the promise, concrete. | "By tonight she will knock on the only door still lit." |
+| 15-30 | Stakes + the loop that stays open to the end. | "She has one rule, and breaking it is how the story ends." |
+
 ## Retention
 - Open loops (the "suspension bridge"): open a question early, answer it late, open the next before closing the first. Highest completion gain.
 - Pattern interrupt about every 30 s (long form) / every 2-3 s (Shorts): camera change, new place, sound/music shift, text pop-up, surprising fact, format change. In this skill: shot cut, `trans`, chip/counter overlay, burst, close-up.
@@ -18,6 +32,15 @@ Sources, used selectively and NOT loaded at run time: AgriciDaniel/claude-youtub
 
 ## CTA
 Dual CTA: first at ~1 min (after first value), second ~4 min or just before the payoff; never only at the end (only 16 % reach the last 10 %). Embedded (spoken + on-screen chip) beats spoken only. Give a specific comment question tied to the story.
+
+## Two cuts from one spec (16:9 + 9:16)
+`scripts/build_both.py <spec> <out>` builds `landscape/` and `portrait/` from the same story. They are **not the same pixels cropped**: each is generated for its frame, so the three.js backgrounds are re-rendered at 1920x1080 / 1080x1920 with the camera pulled back in portrait, characters are rescaled and re-placed, the focus zooms are eased, and the captions move up out of the Shorts UI. `script.srt` is identical in both, so make `voiceover.wav` once and copy it (with `timeline.json`) into the second project.
+
+What differs editorially, and what to write for it:
+- **Subject size.** Portrait has half the width: 1-2 characters per shot, never 3; put the important thing in the middle third, vertically between 25 % and 75 %.
+- **Safe zones.** In 9:16 the top ~10 % and bottom ~20 % are covered by the app UI. Captions are already moved up; keep faces and any `overlays` out of those bands.
+- **Pace.** The vertical cut wants a picture change every 2-3 s, the horizontal one every 5-8 s.
+- **Length.** Over 3 minutes a vertical video is no longer a Short, it is a vertical long-form video and gets far weaker distribution. For a film over 3 min, the honest options are: publish the vertical cut as a normal video, or write a separate 45-60 s vertical teaser spec that ends on the question (best reach). Say which one you chose in the hand-off.
 
 ## Shorts / 9:16 (spec `aspect: "9:16"`)
 - Length 15-60 s (sweet spot), up to 3 min allowed; 1-2 scenes of 20-30 s.

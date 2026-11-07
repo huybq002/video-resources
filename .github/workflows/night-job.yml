@@ -95,39 +95,53 @@ jobs:
                Skip any task whose file already exists in tasks/done/ on the night branch.
             3. Save results in outputs/<task id>/. Update "Progress notes" as you go.
             4. Task types (frontmatter `type:`):
-               - `video`: use the code2video-resource-generator skill in CI mode (its SKILL.md, section "CI mode"; skill dir is $SKILL).
-                 Read idea, lang, aspect, duration_min, script_prompt, series, episode, renderer, privacy, upload from the task.
-                 Everything for task <id> goes under outputs/<id>/ (this is what gets committed: resource bundle + video).
-                 1. Write specs/<id>.json (duration_s = duration_min*60 exactly; scenes[].target_s must add up to it; follow the skill's
-                    planning rules: scene count and length, words per scene, <= 14 words per cue, cast with gender on every character).
-                    If series is set, first run `python $SKILL/scripts/series.py brief series/<series>/series-bible.json` and continue that story.
-                 2. Generate the resource bundle:
-                    `python $SKILL/ci/run_pipeline.py specs/<id>.json outputs/<id>/project --stop-after generate [--series series/<series>/series-bible.json]`
-                    Fix every WARNING (edit the spec text/targets) and re-run until none is left.
-                 3. Verify the bundle (length, contiguous cues, cue size, scenes vs spec, required files):
-                    `python scripts/verify_bundle.py bundle outputs/<id>/project --spec specs/<id>.json --expect-minutes <duration_min>`
-                    If it prints PROBLEMS, fix the spec and go back to step 2. Do not render a bundle that fails.
-                 4. Render with the task's `renderer` (default `tool`):
-                    * `tool` (best voice and video quality: VieNeu voice, Whisper alignment, HyperFrames render):
-                      write outputs/<id>/job.json: {"engine":"hyperframes","project":"outputs/<id>/project","language":"<lang>","fps":30}
-                      (add "speakers" only if the task names voices; otherwise voices are assigned from the genders in script.srt),
-                      then run ONE foreground command: `code2video-job outputs/<id>/job.json --report outputs/<id>/report.json`
-                      The video is outputs/<id>/project/output.mp4 (see the report). On failure read the report, fix the project files, re-run.
-                    * `skill` (fallback, edge-tts voice): ONE foreground command
-                      `python $SKILL/ci/run_pipeline.py specs/<id>.json outputs/<id>/project [--series ...]` (video: outputs/<id>/project/final.mp4).
-                 5. Verify the video (length, audio stream present and not silent, frame size):
-                    `python scripts/verify_bundle.py video <the mp4> --spec specs/<id>.json --expect-minutes <duration_min>`
-                    If it prints PROBLEMS (for example a silent or short video), find the cause, fix and re-render. Never commit a video that fails.
-                 6. Metadata: `python $SKILL/ci/make_metadata.py specs/<id>.json outputs/<id>/project --privacy <privacy> > outputs/<id>/metadata.json`.
-                    Thumbnail: use the html-thumbnail skill (outputs/<id>/thumbnails/).
-                 7. Upload to YouTube ONLY if the task says `upload: true`:
-                    `python $SKILL/ci/upload_youtube.py --video <the mp4> --meta outputs/<id>/metadata.json --thumb <image> --confirm`.
-                    Never add `--allow-public` unless the task says `privacy: public`.
+               - `video`: use the code2video-resource-generator skill (its SKILL.md; skill dir is $SKILL).
+                 Read idea, lang, duration_min, script_prompt, series, episode, renderer, privacy, upload from the task.
+                 Every task builds BOTH frame shapes. Everything lives under outputs/<id>/.
+                 1. Write specs/<id>.json (duration_s = duration_min*60 exactly; scenes[].target_s must add up to it).
+                    Follow the skill's six rules: a hook that lands in the first 30 s, words per scene = target_s * 2.4,
+                    its own settings written with scene-dsl (not only `lib:`), supporting cast and `crowd` for groups,
+                    2-3 shots per long scene, male characters with bare stick legs. Set `aspect` to "16:9" in the spec;
+                    build_both.py overrides it per cut. If series is set, first run
+                    `python $SKILL/scripts/series.py brief series/<series>/series-bible.json` and continue that story.
+                 2. Generate both cuts:
+                    `python $SKILL/scripts/build_both.py specs/<id>.json outputs/<id> [--series series/<series>/series-bible.json]`
+                    It writes outputs/<id>/landscape (16:9) and outputs/<id>/portrait (9:16), each with its own
+                    three.js backgrounds and framing. Fix every WARNING (edit the spec) and re-run until none is left.
+                 3. Verify both bundles:
+                    `python scripts/verify_bundle.py bundle outputs/<id>/landscape --spec specs/<id>.json --expect-minutes <duration_min> --aspect 16:9`
+                    `python scripts/verify_bundle.py bundle outputs/<id>/portrait  --spec specs/<id>.json --expect-minutes <duration_min> --aspect 9:16`
+                    If either prints PROBLEMS, fix the spec and go back to step 2. Never render a bundle that fails.
+                 4. Voice-over once, then render both. script.srt is identical in the two cuts, so:
+                    * `renderer: tool` (default, best quality: VieNeu voice, Whisper alignment, HyperFrames):
+                      a. job file outputs/<id>/job-landscape.json:
+                         {"engine":"hyperframes","project":"outputs/<id>/landscape","language":"<lang>","fps":30}
+                         then `code2video-job outputs/<id>/job-landscape.json --report outputs/<id>/report-landscape.json`
+                      b. copy the voice-over into the portrait cut so it is not generated twice:
+                         `cp outputs/<id>/landscape/voiceover.wav outputs/<id>/landscape/timeline.json outputs/<id>/portrait/`
+                         `mkdir -p outputs/<id>/portrait/assets/audio && cp outputs/<id>/landscape/assets/audio/voiceover.wav outputs/<id>/portrait/assets/audio/`
+                      c. same job file for the portrait project, then
+                         `code2video-job outputs/<id>/job-portrait.json --report outputs/<id>/report-portrait.json`
+                      The videos are outputs/<id>/<cut>/output.mp4. On failure read the report, fix, re-run.
+                    * `renderer: skill` (fallback, edge-tts): run `python $SKILL/ci/run_pipeline.py specs/<id>.json outputs/<id>/landscape --aspect 16:9`
+                      and again with `--aspect 9:16 --no-series-update` into outputs/<id>/portrait (video: final.mp4).
+                 5. Verify both videos (length, audio present and not silent, frame size):
+                    `python scripts/verify_bundle.py video outputs/<id>/landscape/output.mp4 --spec specs/<id>.json --expect-minutes <duration_min> --aspect 16:9`
+                    `python scripts/verify_bundle.py video outputs/<id>/portrait/output.mp4  --spec specs/<id>.json --expect-minutes <duration_min> --aspect 9:16`
+                    If either prints PROBLEMS (silent or short video), find the cause, fix and re-render. Never publish a video that fails.
+                 6. Metadata: `python $SKILL/ci/make_metadata.py specs/<id>.json outputs/<id>/landscape --privacy <privacy> > outputs/<id>/metadata.json`.
+                    Thumbnails with the html-thumbnail skill into outputs/<id>/thumbnails/: 1280x720 for the landscape cut
+                    and 720x1280 for the portrait one.
+                 7. Upload to YouTube ONLY if the task says `upload: true`: landscape first, then portrait
+                    (`python $SKILL/ci/upload_youtube.py --video <mp4> --meta outputs/<id>/metadata.json --thumb <image> --confirm`).
+                    Never add `--allow-public` unless the task says `privacy: public`. Note in Progress notes that a vertical
+                    cut longer than 3 minutes is not eligible as a Short.
                  8. Publish: `python scripts/publish_release.py <id> --spec specs/<id>.json`
-                    It zips the resource bundle (bundle.zip, without the video), attaches the video, thumbnails and metadata to a GitHub Release,
-                    and writes outputs/<id>/manifest.json (release URL, sizes, sha256). If it fails, fix the cause and run it again; never mark the task done without a release URL in the manifest.
-                 9. Commit only small files: `git add outputs/<id>/manifest.json outputs/<id>/thumbnails outputs/<id>/report.json outputs/<id>/metadata.json specs/<id>.json series/ tasks/ data/`.
-                    The bundle, video and wav are git-ignored on purpose (they live in the Release).
+                    It attaches landscape.mp4 + landscape-bundle.zip, portrait.mp4 + portrait-bundle.zip, thumbnails and
+                    metadata to a GitHub Release and writes outputs/<id>/manifest.json. Never mark the task done without
+                    a release URL in the manifest.
+                 9. Commit only small files: `git add outputs/<id>/manifest.json outputs/<id>/thumbnails outputs/<id>/report-*.json outputs/<id>/metadata.json specs/<id>.json series/ tasks/ data/`.
+                    Bundles, videos and wav files are git-ignored on purpose (they live in the Release).
                - `thumbnail` or no type: use the html-thumbnail skill.
             5. When a task is finished, set status: done and move it to tasks/done/.
             6. Commit and `git push origin night` after every task and after every major step,

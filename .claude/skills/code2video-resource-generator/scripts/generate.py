@@ -13,9 +13,12 @@ sys.path.insert(0, str(HERE))
 ap = argparse.ArgumentParser(); ap.add_argument("spec"); ap.add_argument("out")
 ap.add_argument("--keep-srt", action="store_true"); ap.add_argument("--skip-bg", action="store_true"); ap.add_argument("--no-audio-tag", action="store_true")
 ap.add_argument("--no-captions", action="store_true"); ap.add_argument("--check", action="store_true"); ap.add_argument("--series", help="path to series-bible.json (created if missing)")
+ap.add_argument("--aspect", choices=["16:9", "9:16"], help="override spec.aspect (build_both.py uses this to make both cuts from one spec)")
+ap.add_argument("--no-series-update", action="store_true", help="read the bible but do not write this episode back (second pass of build_both.py)")
 a = ap.parse_args()
 spec_path = pathlib.Path(a.spec).resolve(); out = pathlib.Path(a.out).resolve(); out.mkdir(parents=True, exist_ok=True)
 spec0 = json.load(open(spec_path, encoding="utf-8"))
+if a.aspect: spec0["aspect"] = a.aspect          # same story, framed for this aspect (own backgrounds and shot sizes)
 import series as SER
 bible = SER.load(a.series) if a.series else None
 if bible:
@@ -85,8 +88,11 @@ for _sid in {st for sc in spec["scenes"] for sh in sc["shots"] for st in ([pn["s
     _s = spec["settings"][_sid]; _set[_sid] = _s if isinstance(_s, dict) else json.load(open(_s, encoding="utf-8"))
 docs_gen.character_prompts(spec, docs / "gemini-prompts.md", _set); docs_gen.checklist(spec, out, docs / "asset-checklist.md")
 print("docs ->", docs)
-if bible:
+if bible and not a.no_series_update:
     SER.update(bible, json.load(open(spec_path, encoding="utf-8")), plan, a.series); print("series bible updated:", a.series)
 
 # ---- 5. validate -----------------------------------------------------------------------------------------
-run([py, str(HERE / "validate.py"), str(out)] + (["--check"] if a.check else []) + (["--no-audio"] if a.no_audio_tag else []))
+# voiceover.wav is made later (by the app or ci/tts.py), so --check must not fail on a file that
+# cannot exist yet: skip the audio rule until it is actually there.
+_no_audio = a.no_audio_tag or not (out / "assets" / "audio" / "voiceover.wav").exists()
+run([py, str(HERE / "validate.py"), str(out)] + (["--check"] if a.check else []) + (["--no-audio"] if _no_audio else []))

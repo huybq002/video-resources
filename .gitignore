@@ -1,8 +1,11 @@
 # scratch output of the night job (not committed)
 out/
 # resource bundles, videos and audio are published as GitHub Releases, not committed
+outputs/*/landscape/
+outputs/*/portrait/
 outputs/*/project/
-outputs/*/bundle.zip
+outputs/*/*-bundle.zip
+outputs/*/job-*.json
 *.mp4
 *.wav
 __pycache__/

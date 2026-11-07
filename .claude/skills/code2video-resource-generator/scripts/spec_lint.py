@@ -15,8 +15,81 @@ GROUP_WORDS = re.compile(
     r"đám đông|mọi người|họ|bọn họ|hàng trăm|hàng nghìn|xác sống|người lạ|hàng xóm|binh lính)\b", re.I)
 
 
+# Openings that throw the first seconds away. 20 % of viewers leave in the first 10 s.
+GREETING = re.compile(
+    r"^\s*(hi|hey|hello|yo)\b|welcome (back|to)\b|in (this|today'?s) video\b|today (i|we|i'?m|we'?re)\b|"
+    r"before we (start|begin)\b|don'?t forget to subscribe|like and subscribe|"
+    r"xin chào|chào (các bạn|mọi người|mừng)|hôm nay (mình|chúng ta|chúng mình)|trong video (này|hôm nay)|"
+    r"đừng quên (đăng ký|like)", re.I)
+
+# A hook works by leaving something open. A question mark is the cheapest proof; these phrases count too.
+OPEN_LOOP = re.compile(
+    r"\?|what if\b|but first\b|by the end\b|you'?ll (see|understand|know|find)\b|find out\b|until\b|"
+    r"nobody\b|no one\b|the reason\b|here'?s why\b|except\b|"
+    r"điều gì (xảy ra|sẽ)|nhưng trước (hết|tiên)|cuối (video|phim)|bạn sẽ (hiểu|biết|thấy)|lý do\b|"
+    r"cho đến khi\b|không ai\b|trừ\b", re.I)
+
+
 def _cast(spec):
     return [c for c in spec.get("cast", []) if not c.get("narrator")]
+
+
+def _timeline(spec):
+    """-> [(scene, start_s, end_s, [cue text], shot count, [settings])] using scenes[].target_s."""
+    rows, t = [], 0.0
+    for sc in spec.get("scenes", []):
+        d = float(sc.get("target_s") or 0)
+        texts, shots, sets = [], 0, []
+        for item in sc.get("shots", []):
+            seq = item.get("sequence") or {}
+            cues = list(seq.get("cues", [])) + list(seq.get("lines", [])) + list(item.get("cues") or [])
+            texts += [c if isinstance(c, str) else c.get("t", "") for c in cues]
+            shots += max(1, len(cues)) if seq else 1
+            sets += [s for s in list(seq.get("settings", [])) + [seq.get("setting"), item.get("setting")] if s]
+        rows.append((sc, t, t + d, texts, shots, sets))
+        t += d
+    return rows
+
+
+def hook_and_ending(spec):
+    """The first 30 s decide whether anyone sees the rest; the last scene decides the comments."""
+    notes, rows = [], _timeline(spec)
+    if not rows:
+        return notes
+    portrait = spec.get("aspect") == "9:16"
+    first = rows[0][3]
+    opening = next((t for t in first if t.strip()), "")
+    cap = 10 if portrait else 14
+
+    if float(rows[0][0].get("target_s") or 0) > 30:
+        notes.append(f"WARNING: scene 1 lasts {rows[0][0].get('target_s')}s. The hook has to land inside 30 s: "
+                     f"make scene 1 shorter (15-30 s) and move the rest into scene 2.")
+    if GREETING.search(opening):
+        notes.append(f"WARNING: the film opens with a greeting/filler ({opening[:46]!r}). Open on the strongest "
+                     f"image, line or claim of the whole story instead; never 'welcome back' / 'xin chào'.")
+    if opening and len(opening.split()) > cap:
+        notes.append(f"WARNING: the first line is {len(opening.split())} words (max {cap} "
+                     f"{'for 9:16: the hook must land in 1-3 s' if portrait else 'for the 0-5 s attention grab'}).")
+
+    head = [t for sc, s0, s1, texts, _, _ in rows if s0 < 30 for t in texts]
+    if head and not OPEN_LOOP.search(" ".join(head)):
+        notes.append("WARNING: nothing is left open in the first 30 s: no question and no open loop. "
+                     "Ask the question the film answers, or promise what the viewer will understand by the end "
+                     "(references/youtube-craft.md).")
+    shots30 = sum(n for sc, s0, s1, _, n, _ in rows if s0 < 30)
+    want30 = 8 if portrait else 4
+    if shots30 < want30:
+        notes.append(f"WARNING: only {shots30} shot(s) in the first 30 s (want {want30}+): the picture has to change "
+                     f"every {'2-3' if portrait else '5-8'} s or the viewer leaves. Add shots or cut to another place.")
+    sets30 = {s for sc, s0, s1, _, _, ss in rows if s0 < 30 for s in ss}
+    if len(sets30) < 2 and len(rows) > 2:
+        notes.append("WARNING: the first 30 s never leave one place. Cut to a second setting inside the hook.")
+
+    last = rows[-1][3]
+    if last and "?" not in " ".join(last):
+        notes.append("WARNING: the last scene asks the viewer nothing. End on a question they can answer in the "
+                     "comments (it is the cheapest engagement there is).")
+    return notes
 
 
 def _walk(spec):
@@ -126,6 +199,8 @@ def lint(spec):
             notes.append(f"WARNING: male character '{c['id']}' has bottom \"pants\". Male characters keep bare stick "
                          f"legs (bottom \"none\") or wear \"shorts\"; give the outfit character with a top, shoes, "
                          f"hat, bag or other accessory instead (references/wardrobe.md).")
+
+    notes += hook_and_ending(spec)
     return notes
 
 

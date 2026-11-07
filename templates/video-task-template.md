@@ -6,7 +6,7 @@ status: pending        # pending | in-progress | done | blocked
 # --- video fields (skill: code2video-resource-generator, CI mode) ---
 idea: "One-sentence idea or topic"
 lang: vi               # script language
-aspect: "16:9"         # "16:9" or "9:16"
+only_aspect: ""        # leave empty: every task builds BOTH 16:9 and 9:16 (own assets per frame). "16:9" or "9:16" to build just one.
 duration_min: 9        # exact length in minutes, e.g. 9 or 0.5
 script_prompt: ""      # optional: your own script, outline or tone
 renderer: tool         # tool (VieNeu voice + HyperFrames, best quality) | skill (edge-tts, fallback)
@@ -22,7 +22,9 @@ privacy: private       # private | unlisted | public
 What the finished video should be.
 
 ## Done when
-- [ ] final.mp4 rendered (in the workflow artifact)
+- [ ] both cuts generated and verified (landscape 16:9 + portrait 9:16, exact length)
+- [ ] both videos rendered and verified (audio present, right frame size)
+- [ ] Release published with both bundles and both videos
 - [ ] specs/<id>.json committed
 - [ ] thumbnail variants made (html-thumbnail skill) if requested
 

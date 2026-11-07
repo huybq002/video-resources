@@ -9,7 +9,7 @@ Video resources and nightly automation (HyperFrames, YouTube).
 - `.github/workflows/night-job.yml`: runs at 00:00 (UTC+7), one 5h window
 - `.github/workflows/claude.yml`: `@claude` mentions in issues and PRs
 
-Videos and resource bundles are published as GitHub Releases (`scripts/publish_release.py`), not committed.
+Each video task builds **both** 16:9 and 9:16 from one spec, with assets generated per frame shape. Videos and resource bundles are published as GitHub Releases (`scripts/publish_release.py`), not committed.
 
 Requires the `CLAUDE_CODE_OAUTH_TOKEN` repository secret (from `claude setup-token`). YouTube upload additionally needs `YT_CLIENT_ID`, `YT_CLIENT_SECRET`, `YT_REFRESH_TOKEN`.
 

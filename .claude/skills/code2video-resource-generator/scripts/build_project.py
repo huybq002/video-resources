@@ -228,8 +228,8 @@ def main():
     {sel} .ov.title {{ font-size:104px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; color:#ff9ad0; text-shadow:0 0 24px rgba(255,120,190,.7); text-align:center; max-width:1500px; }}
     {sel} .vig {{ position:absolute; inset:0; z-index:20; pointer-events:none; background:radial-gradient(ellipse at 50% 46%, transparent 52%, rgba(3,2,10,.62) 100%); }}
     {sel} .flash {{ position:absolute; inset:0; z-index:30; background:#fff; opacity:0; }}
-    {sel} .caption {{ position:absolute; left:8%; right:8%; bottom:5.5%; z-index:40; display:grid; place-items:center; text-align:center; opacity:0; }}
-    {sel} .caption span {{ max-width:1500px; padding:14px 32px; border-radius:14px; background:rgba(8,6,16,.66); color:#f6f0e4; font-size:54px; line-height:1.25; font-weight:700; text-shadow:0 2px 6px #000; }}
+    {sel} .caption {{ position:absolute; left:{6 if H > W else 8}%; right:{6 if H > W else 8}%; bottom:{16 if H > W else 5.5}%; z-index:40; display:grid; place-items:center; text-align:center; opacity:0; }}
+    {sel} .caption span {{ max-width:{980 if H > W else 1500}px; padding:14px 32px; border-radius:14px; background:rgba(8,6,16,.66); color:#f6f0e4; font-size:{62 if H > W else 54}px; line-height:1.25; font-weight:700; text-shadow:0 2px 6px #000; }}
     """
         lb_html = "<div class='lb' data-layout-allow-occlusion='true' style='top:0'></div><div class='lb' data-layout-allow-occlusion='true' style='bottom:0'></div>" if spec.get("letterbox") else ""
         script = engine.replace("__DATA__", data.replace("</", "<\\/"))

@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Verify a generated resource bundle and the rendered video against the task.
 
-  python scripts/verify_bundle.py bundle <project_dir> --spec specs/<id>.json [--expect-minutes 9]
-  python scripts/verify_bundle.py video  <video.mp4> --spec specs/<id>.json [--allow-silent]
+  python scripts/verify_bundle.py bundle <project_dir> --spec specs/<id>.json [--expect-minutes 9] [--aspect 9:16]
+  python scripts/verify_bundle.py video  <video.mp4> --spec specs/<id>.json [--allow-silent] [--aspect 9:16]
+
+One spec builds both cuts, so pass --aspect to say which one is being checked (it decides the frame size).
 
 bundle: total length, contiguous cues, cue length, scenes vs target_s, required files.
 video : duration, audio stream present and not silent, frame size.
@@ -90,8 +92,10 @@ def check_video(video, spec, minutes, allow_silent):
 
 ap = argparse.ArgumentParser(); ap.add_argument("kind", choices=["bundle", "video"]); ap.add_argument("path")
 ap.add_argument("--spec", required=True); ap.add_argument("--expect-minutes"); ap.add_argument("--allow-silent", action="store_true")
+ap.add_argument("--aspect", choices=["16:9", "9:16"], help="which cut this is (one spec builds both)")
 a = ap.parse_args()
 spec = load_spec(a.spec)
+if a.aspect: spec["aspect"] = a.aspect
 (check_bundle if a.kind == "bundle" else lambda p, s, m: check_video(p, s, m, a.allow_silent))(a.path, spec, a.expect_minutes)
 for n in notes: print(n)
 if errors:
