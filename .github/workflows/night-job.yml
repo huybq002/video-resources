@@ -7,7 +7,12 @@ name: Night job
 # Runs inside the prebuilt image (see Dockerfile / build-image.yml): nothing is installed at night.
 on:
   schedule:
-    - cron: "0 17,18,19 * * *"   # 00:00 / 01:00 / 02:00 ICT: GitHub delays cron, the first one to fire wins
+    # GitHub documents the worst cron delays at the top of every hour, so these use odd minutes.
+    # Three attempts (00:07 / 01:23 / 02:41 ICT); the first real run wins, later ones stand down.
+    # This lowers the odds of a lost night, it cannot guarantee a start time.
+    - cron: "7 17 * * *"
+    - cron: "23 18 * * *"
+    - cron: "41 19 * * *"
   workflow_dispatch:
 
 concurrency:
