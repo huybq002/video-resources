@@ -101,7 +101,10 @@ jobs:
       - name: Restore unfinished work (bundles, voice-over)
         uses: actions/cache/restore@v4
         with:
-          path: outputs/*/project
+          path: |
+            outputs/*/landscape
+            outputs/*/portrait
+            outputs/*/project
           key: bundle-${{ github.run_id }}
           restore-keys: bundle-
       - name: Run Claude
@@ -134,8 +137,9 @@ jobs:
                b. `python scripts/research_youtube.py --update-channel` (about 5-10 min). It asks YouTube itself
                   through yt-dlp what ranks for every keyword of every topic in channel.json, writes
                   data/research/latest.md (demand, competition, Shorts share, winning titles, recurring words per
-                  topic) and appends the new keywords it found into channel.json `discovered_keywords`, which widen
-                  the search next night. Read only latest.md, not the JSON. Commit the updated channel.json.
+                  topic) and appends the new keywords it found into data/discovered_keywords.json (not channel.json, so
+                  your edits to channel.json and the job's never conflict), which widens the search next night.
+                  Read only latest.md, not the JSON. Commit data/discovered_keywords.json and data/research/.
                   If it exits non-zero (YouTube refused), fall back to WebSearch for the topics and say so in the notes.
                c. Use the claude-youtube skill (sub-skills/ideate.md, then seo.md) to turn the digest into
                   `research.ideas_per_run` ideas scored on demand, how crowded the keyword is, and fit with the topic.
@@ -179,10 +183,12 @@ jobs:
                       a. job file outputs/<id>/job-landscape.json:
                          {"engine":"hyperframes","project":"outputs/<id>/landscape","language":"<lang>","fps":30}
                          then `code2video-job outputs/<id>/job-landscape.json --report outputs/<id>/report-landscape.json`
-                      b. copy the voice-over into the portrait cut so it is not generated twice:
+                      b. copy the voice-over made for the landscape cut into the portrait cut:
                          `cp outputs/<id>/landscape/voiceover.wav outputs/<id>/landscape/timeline.json outputs/<id>/portrait/`
-                         `mkdir -p outputs/<id>/portrait/assets/audio && cp outputs/<id>/landscape/assets/audio/voiceover.wav outputs/<id>/portrait/assets/audio/`
-                      c. same job file for the portrait project, then
+                      c. job file outputs/<id>/job-portrait.json, the same as the landscape one but with
+                         "project":"outputs/<id>/portrait" and **"reuseVoiceover":true**. That flag makes the tool use the
+                         copied voiceover.wav instead of synthesising the whole voice again (the slowest step on a CPU);
+                         without it the voice is generated a second time. Then
                          `code2video-job outputs/<id>/job-portrait.json --report outputs/<id>/report-portrait.json`
                       The videos are outputs/<id>/<cut>/output.mp4. On failure read the report, fix, re-run.
                     * `renderer: skill` (fallback, edge-tts): run `python $SKILL/ci/run_pipeline.py specs/<id>.json outputs/<id>/landscape --aspect 16:9`
@@ -254,7 +260,7 @@ jobs:
                     if the tool was touched; `python $SKILL/scripts/build_both.py $SKILL/examples/zombie-portrait/spec.json /tmp/smoke --check`
                     must still end with contract OK for both cuts; `python scripts/policy_check.py` must still pass.
                   - Edit only: .claude/skills/, tools/code2video/, scripts/, templates/, data/learnings.md, reports/.
-                    Never .github/, secrets, channel.json (except discovered_keywords), or the rules of data/platform-policy.md.
+                    Never .github/, secrets, channel.json, or the rules of data/platform-policy.md.
                   - Never weaken scripts/policy_check.py, scripts/verify_bundle.py or any lint rule that guards a platform
                     policy. You may add checks.
                   - Look at what you change: for an asset, character or setting, render a snapshot (`npx hyperframes snapshot`)
@@ -272,7 +278,10 @@ jobs:
         if: always()
         uses: actions/cache/save@v4
         with:
-          path: outputs/*/project
+          path: |
+            outputs/*/landscape
+            outputs/*/portrait
+            outputs/*/project
           key: bundle-${{ github.run_id }}
       - name: Upload logs
         if: always()
@@ -282,6 +291,7 @@ jobs:
           if-no-files-found: ignore
           retention-days: 7
           path: |
-            outputs/*/report.json
+            outputs/*/report-*.json
             outputs/*/manifest.json
-            outputs/*/project_pipeline.log
+            outputs/*/publish/*.md
+            outputs/*/*_pipeline.log

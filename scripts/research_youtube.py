@@ -38,12 +38,12 @@ GENERIC = set("""
 more most best worst every always never thing things stuff about really actually simple easy
 explained explain complete ultimate guide tips tricks facts secret secrets truth story stories
 minutes minute hours hour today tonight everything nothing someone people person
-introduction intro video channel watch series episode part full short shorts documentary
+introduction intro video channel watch series episode part full short shorts documentary summary
 """.split())
 # a discovered word must never steer the writing into a policy problem: crime stories here are
 # fiction (data/platform-policy.md), so "true", "real" and named-victim language stay out
 RISKY_KEYWORD = re.compile(
-    r"^(true|real|actual|genuine|documented|confession|victim|victims|murderer|killer|rape|"
+    r"^(true|real|actual|genuine|documented|confession|victim|victims|murder|murders|murdered|murderer|killer|rape|"
     r"suicide|corpse|autopsy|evidence of|arrested|convicted)$", re.I)
 
 
@@ -122,7 +122,8 @@ def main() -> int:
     ap.add_argument("--out", default="data/research")
     ap.add_argument("--quick", action="store_true", help="fewer results per keyword (smoke test)")
     ap.add_argument("--update-channel", action="store_true",
-                    help="write the keywords discovered this run back into channel.json discovered_keywords")
+                    help="write the keywords discovered this run into data/discovered_keywords.json")
+    ap.add_argument("--discovered", default="data/discovered_keywords.json")
     a = ap.parse_args()
 
     cfg = json.load(open(a.config, encoding="utf-8"))
@@ -137,7 +138,8 @@ def main() -> int:
     # the old flat seed_keywords list still works
     topics = cfg.get("topics") or [{"id": "all", "name": cfg.get("niche", "all"),
                                     "seed_keywords": cfg.get("seed_keywords", [])}]
-    disc_all = cfg.get("discovered_keywords", {})
+    disc_path = pathlib.Path(a.discovered)
+    disc_all = json.load(open(disc_path, encoding="utf-8")) if disc_path.is_file() else cfg.get("discovered_keywords", {})
     plan = []
     for t in topics:
         kws = list(dict.fromkeys(list(t.get("seed_keywords", [])) + list(disc_all.get(t.get("id", ""), []))))
@@ -224,12 +226,12 @@ def main() -> int:
 
     (out_dir / "latest.md").write_text("\n".join(L) + "\n", encoding="utf-8")
     if a.update_channel and any(found.values()):
-        merged = dict(cfg.get("discovered_keywords", {}))
+        merged = dict(disc_all)
         for tid, ws in found.items():
             merged[tid] = list(dict.fromkeys(list(merged.get(tid, [])) + ws))[:cap]
-        cfg["discovered_keywords"] = merged
-        json.dump(cfg, open(a.config, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
-        print("channel.json discovered_keywords updated:", {k: len(v) for k, v in merged.items()})
+        disc_path.parent.mkdir(parents=True, exist_ok=True)
+        json.dump(merged, open(disc_path, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+        print(f"{disc_path} updated:", {k: len(v) for k, v in merged.items()})
     print(f"wrote {out_dir / (today + '.json')} and {out_dir / 'latest.md'}")
     got = sum(1 for s in data["keywords"].values() if s.get("n"))
     print(f"keywords with data: {got}/{len(data['keywords'])}")

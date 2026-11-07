@@ -1,0 +1,29 @@
+name: Research check
+
+# Manual smoke test of the one step that cannot be tested from a laptop: does YouTube answer yt-dlp
+# from a GitHub runner's address? Costs no Claude usage. Run it after any change to the research script,
+# and whenever the night job reports that research fell back to WebSearch.
+on:
+  workflow_dispatch:
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    container:
+      image: ghcr.io/huybq002/video-resources-runner:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Does YouTube answer yt-dlp from here?
+        run: |
+          python3 -m yt_dlp --version
+          python3 -m yt_dlp --flat-playlist --dump-json --playlist-end 3 --no-warnings "ytsearch3:behavioral psychology" \
+            | python3 -c "import sys,json; rows=[json.loads(l) for l in sys.stdin if l.startswith('{')]; print('results:', len(rows)); [print(r.get('view_count'), r.get('title','')[:60]) for r in rows]"
+      - name: Quick research run
+        run: |
+          python3 scripts/research_youtube.py --quick --out "$RUNNER_TEMP/research" --discovered "$RUNNER_TEMP/disc.json" --update-channel
+          head -24 "$RUNNER_TEMP/research/latest.md"
+          echo "--- discovered:"; cat "$RUNNER_TEMP/disc.json"

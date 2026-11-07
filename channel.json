@@ -1,6 +1,5 @@
 {
   "_readme": "The only file you edit by hand, and the night job also appends keywords it discovers. The job researches the market, picks the next video, writes the task and builds it. Change lang/topics/seed_keywords and the whole pipeline follows.",
-
   "channel_name": "Hezb Stories",
   "lang": "en",
   "_lang_note": "Set to en because the three topics target the high-CPM US/UK/AU market; change to vi for a Vietnamese audience and the pipeline follows, but ad revenue per view drops several times.",
@@ -8,7 +7,6 @@
   "niche": "Animated short films about decisions and what they cost: money, the mind, and invented mysteries",
   "tone": "Calm narrator, dry wit, no lecturing; stick-figure cast, lit 3D-toon backgrounds",
   "value_promise": "Every video is one story and one idea the viewer can use the same day",
-
   "topics": [
     {
       "id": "money",
@@ -70,13 +68,19 @@
       ]
     }
   ],
-
   "formats": [
-    { "name": "story", "duration_min": 5, "note": "One situation with a hook, a turn and a payoff" },
-    { "name": "explainer", "duration_min": 6, "note": "One mechanism, 3-4 short scenes that show it, then where the viewer meets it" }
+    {
+      "name": "story",
+      "duration_min": 5,
+      "note": "One situation with a hook, a turn and a payoff"
+    },
+    {
+      "name": "explainer",
+      "duration_min": 6,
+      "note": "One mechanism, 3-4 short scenes that show it, then where the viewer meets it"
+    }
   ],
   "default_duration_min": 5,
-
   "avoid": [
     "Real people, real brands, real cases, real logos or team kits",
     "Advice on money, health or law; keep to stories and mechanisms",
@@ -84,7 +88,6 @@
     "Overblown promises in the title ('this will change your life')",
     "Reusing a template with new nouns: every video is its own story (YouTube 'inauthentic content')"
   ],
-
   "research": {
     "results_per_keyword": 20,
     "videos_per_channel": 20,
@@ -92,16 +95,21 @@
     "max_discovered_keywords_per_topic": 14,
     "policy_refresh_days": 7
   },
-
-  "discovered_keywords": {},
-
   "publish": {
-    "platforms": ["youtube", "youtube_shorts", "tiktok"],
+    "platforms": [
+      "youtube",
+      "youtube_shorts",
+      "tiktok"
+    ],
     "youtube_category_id": "27",
-    "base_hashtags": ["#animatedstory", "#psychology", "#storytime"],
+    "base_hashtags": [
+      "#animatedstory",
+      "#psychology",
+      "#storytime"
+    ],
     "ai_disclosure": "Voice and visuals in this video are AI-generated. Characters and events are fictional.",
     "require_ai_label": true
   },
-
-  "reference_channels": []
+  "reference_channels": [],
+  "_discovered_note": "Keywords the job discovers are kept in data/discovered_keywords.json, not here, so your edits and the job's never conflict."
 }

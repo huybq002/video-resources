@@ -15,7 +15,8 @@ Dùng lại ``JobQueue._execute`` của Studio nên kết quả giống hệt ch
       "fps": 60, "hfQuality": "delivery", "wbLongEdge": 1080,
       "voice": "Hải Đăng", "speakers": {"An": "Hải Đăng"},
       "ttsMode": "v3turbo", "language": "vi", "dryRun": false,
-      "format": "16:9"
+      "format": "16:9",
+      "reuseVoiceover": true            // 2nd cut of a story: reuse voiceover.wav + timeline.json already in the project
     }
 
 hoặc ``{"flow": "flows/x.flow.json", "topic": "...", "outputDir": "build/run1"}``.
@@ -79,6 +80,7 @@ def build_params(spec: dict, base: Path) -> list[dict]:
         "mode": "upload", "renderer": engine, "makeVoiceover": True,
         "voice": spec.get("voice") or None, "ttsMode": spec.get("ttsMode", "v3turbo"),
         "refAudio": spec.get("refAudio"), "dryRun": bool(spec.get("dryRun", False)),
+        "reuseVoiceover": bool(spec.get("reuseVoiceover", False)),
         "speakers": spec.get("speakers") or {}, "fps": spec.get("fps"),
         "hfQuality": spec.get("hfQuality") or None, "wbLongEdge": spec.get("wbLongEdge") or None,
         "language": spec.get("language", "vi"),

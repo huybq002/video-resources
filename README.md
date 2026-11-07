@@ -8,6 +8,8 @@ Video resources and nightly automation (HyperFrames, YouTube).
 - `reports/YYYY-MM-DD.md`: **read this first each morning**: tonight's video, what research found, every pipeline improvement, what could not be verified. Improvements arrive as a pull request (or a compare link) on branch `improve/YYYY-MM-DD`; nothing reaches `main` without you.
 - `data/learnings.md`: dated, evidenced findings that justify any change to the writing rules.
 - `data/platform-policy.md`: the YouTube/TikTok rules the pipeline obeys, refreshed weekly by the job.
+- `data/discovered_keywords.json`: keywords the job found, kept apart from `channel.json` so your edits never conflict with the job's.
+- Actions → **Research check** (manual): tests whether YouTube answers yt-dlp from a GitHub runner. Costs no Claude usage.
 - `data/known-issues.md`: what broke, why, and how it is prevented — Auto-fix reads this before fixing anything.
 - `outputs/<id>/publish/`: the title, description, tags and hashtags to paste on YouTube, Shorts and TikTok.
 - `tasks/done/`: finished tasks

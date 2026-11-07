@@ -223,7 +223,16 @@ class JobQueue:
                     raise ValueError(f"Không tìm thấy index.html trong {project_dir}")
                 script_path = p.get("scriptPath")
                 language = p.get("language", "vi")
-                if script_path or p.get("makeVoiceover"):
+                # Second cut of the same story (9:16 after 16:9): script.srt is identical, so the voice-over
+                # made for the first cut is copied in and reused instead of being synthesised again, which is
+                # the slowest step on a CPU. Falls back to normal synthesis when the files are not there.
+                reuse_voice = bool(p.get("reuseVoiceover")) and (project_dir / "voiceover.wav").is_file() \
+                    and (project_dir / "timeline.json").is_file()
+                if reuse_voice:
+                    from ..voiceover import sync_composition_audio
+                    self._set_stage(job, "tts-reused")
+                    sync_composition_audio(project_dir, project_dir / "voiceover.wav")
+                elif script_path or p.get("makeVoiceover"):
                     from ..tts import VieNeuAdapter
                     from ..voiceover import build_from_script, build_whiteboard_from_script, synthesize_voiceover_from_timeline
                     with self._tts_lock:

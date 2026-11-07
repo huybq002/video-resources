@@ -54,3 +54,30 @@ def test_cli_flags_override_job_file(tmp_path, monkeypatch):
     assert seen["specs"][0]["fps"] == 60
     assert headless.main([str(job)]) == 0
     assert "dryRun" not in seen["specs"][0] and seen["specs"][0]["fps"] == 30
+
+
+def test_reuse_voiceover_flag_reaches_params(tmp_path):
+    _project(tmp_path / "p")
+    off = build_params({"project": str(tmp_path / "p")}, tmp_path)[0]
+    on = build_params({"project": str(tmp_path / "p"), "reuseVoiceover": True}, tmp_path)[0]
+    assert off["reuseVoiceover"] is False and on["reuseVoiceover"] is True
+
+
+def test_reuse_skips_synthesis_when_voiceover_is_present(tmp_path, monkeypatch):
+    """Second cut: voiceover.wav + timeline.json already in the project, so the TTS engine must not be built."""
+    from code2video.studio import engines
+    from code2video.studio.jobs import Job, JobQueue
+
+    project = _project(tmp_path / "p")
+    (project / "voiceover.wav").write_bytes(b"RIFF")
+    (project / "timeline.json").write_text("{}", encoding="utf-8")
+    called = {"tts": 0, "render": 0}
+    monkeypatch.setattr(engines, "get_tts", lambda *a, **k: called.__setitem__("tts", called["tts"] + 1))
+    import code2video.pipeline as pipeline
+    monkeypatch.setattr(pipeline, "render_hyperframes", lambda *a, **k: called.__setitem__("render", called["render"] + 1) or (project / "output.mp4").write_bytes(b"x"))
+    monkeypatch.setattr(pipeline, "apply_format", lambda *a, **k: None)
+    params = build_params({"project": str(project), "reuseVoiceover": True}, tmp_path)[0]
+    job = Job(id="t1", params=params)
+    JobQueue()._execute(job)
+    assert job.status == "done", job.error
+    assert called == {"tts": 0, "render": 1}
