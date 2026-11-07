@@ -1,12 +1,12 @@
 name: Night job
 
-# Starts 00:00 Asia/Ho_Chi_Minh (UTC+7) = 17:00 UTC, once per night. The whole job ends by 06:00 ICT (job timeout 360 min).
+# Starts 21:00 Asia/Ho_Chi_Minh (UTC+7) = 14:00 UTC, once per night (early, because GitHub often delays cron by hours). The whole job ends by 06:00 ICT (job timeout 360 min).
 # The Claude step is stopped at 05:45 ICT (22:45 UTC) so the last 15 min are left to save work and upload logs. If Claude runs out of usage (rate limit)
 # the step ends at once and the job stops; unfinished tasks stay in tasks/pending and are picked up again the next night.
 # Runs inside the prebuilt image (see Dockerfile / build-image.yml): nothing is installed at night.
 on:
   schedule:
-    - cron: "0 17 * * *"
+    - cron: "0 14 * * *"
   workflow_dispatch:
 
 concurrency:
@@ -55,7 +55,7 @@ jobs:
         shell: bash
         run: |
           now=$(date -u +%s); h=$(date -u +%H)
-          if [ "$h" -ge 17 ] && [ "$h" -lt 23 ]; then
+          if [ "$h" -ge 14 ] && [ "$h" -lt 23 ]; then
             end=$(date -u -d "$(date -u +%F) 22:45:00" +%s)       # inside the night window: stop Claude at 05:45 ICT
           elif [ "${{ github.event_name }}" = "schedule" ]; then
             end=$now                                              # scheduled run that started too late: do nothing
@@ -64,6 +64,8 @@ jobs:
           fi
           mins=$(( (end - now) / 60 ))
           [ "$mins" -lt 0 ] && mins=0
+          # too little time for a render: skip Claude (task stays pending for the next run)
+          [ "$mins" -lt 90 ] && mins=0
           echo "minutes=$mins" >> "$GITHUB_OUTPUT"
           echo "DEADLINE_EPOCH=$end" >> "$GITHUB_ENV"
           echo "Minutes until deadline: $mins (deadline $(date -u -d @$end +%FT%TZ))"
