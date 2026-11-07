@@ -5,6 +5,7 @@ Video resources and nightly automation (HyperFrames, YouTube).
 - `channel.json`: **the only file you edit.** Niche, audience, seed keywords, formats, what to avoid.
 - `tasks/pending/`: tasks to run (see `tasks/README.md`). Leave it empty and the job researches the market and writes the next task itself.
 - `data/ideas.md`: the researched idea backlog; `data/research/latest.md`: last night's market digest.
+- `data/platform-policy.md`: the YouTube/TikTok rules the pipeline obeys, refreshed weekly by the job.
 - `data/known-issues.md`: what broke, why, and how it is prevented — Auto-fix reads this before fixing anything.
 - `outputs/<id>/publish/`: the title, description, tags and hashtags to paste on YouTube, Shorts and TikTok.
 - `tasks/done/`: finished tasks

@@ -5,11 +5,13 @@ ideas it finds here, and turns the top one into a task in `tasks/pending/`. You 
 anything — but anything you do add at the top gets made first.
 
 Statuses: `new` (researched, not made), `queued` (a task file exists), `done` (video published),
-`dropped` (tried, did not work — say why so it is not proposed again).
+`dropped` (rejected — say why, including policy reasons, so it is never proposed again).
+`topic` is a topic id from channel.json (`money`, `psychology`, `mystery`); the job picks from whichever
+topic is behind its `share`.
 
-| date | status | idea | keyword | opp | format | why now |
-|---|---|---|---|---|---|---|
-| | | | | | | |
+| date | topic | status | idea | keyword | opp | format | why now |
+|---|---|---|---|---|---|---|---|
+| | | | | | | | |
 
 ## Dropped ideas and the reason
 

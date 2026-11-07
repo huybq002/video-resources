@@ -1,44 +1,107 @@
 {
-  "_readme": "The only file you edit by hand. The night job reads it, researches the market with yt-dlp, picks the next video and writes the task itself. Change the niche or the seeds and the whole pipeline follows.",
+  "_readme": "The only file you edit by hand, and the night job also appends keywords it discovers. The job researches the market, picks the next video, writes the task and builds it. Change lang/topics/seed_keywords and the whole pipeline follows.",
 
-  "channel_name": "Hezb Learn",
-  "lang": "vi",
-  "audience": "Người Việt 18-35 đang tự học tiếng Anh giao tiếp, sợ nói sai, ít thời gian",
-  "niche": "Học tiếng Anh giao tiếp qua phim hoạt hình ngắn: tình huống đời thường, mẫu câu dùng được ngay",
-  "tone": "Gần gũi, hài nhẹ, không giảng đạo; nhân vật que, bối cảnh 3D toon",
-  "value_promise": "Xem xong một video là nói được một tình huống trọn vẹn",
+  "channel_name": "Hezb Stories",
+  "lang": "en",
+  "_lang_note": "Set to en because the three topics target the high-CPM US/UK/AU market; change to vi for a Vietnamese audience and the pipeline follows, but ad revenue per view drops several times.",
+  "audience": "Adults 20-45 who like short animated stories that explain why people do what they do",
+  "niche": "Animated short films about decisions and what they cost: money, the mind, and invented mysteries",
+  "tone": "Calm narrator, dry wit, no lecturing; stick-figure cast, lit 3D-toon backgrounds",
+  "value_promise": "Every video is one story and one idea the viewer can use the same day",
 
-  "seed_keywords": [
-    "học tiếng anh giao tiếp",
-    "mẫu câu tiếng anh hằng ngày",
-    "tiếng anh cho người mất gốc",
-    "phát âm tiếng anh chuẩn",
-    "tiếng anh công sở",
-    "học tiếng anh qua phim"
+  "topics": [
+    {
+      "id": "money",
+      "name": "Money stories",
+      "share": 0.3,
+      "angle": "An invented person makes one money decision; the film follows what it costs and names the mechanism behind it",
+      "seed_keywords": [
+        "money mistakes",
+        "personal finance story",
+        "why people go broke",
+        "lifestyle inflation",
+        "debt trap explained",
+        "saving money psychology"
+      ],
+      "hard_rules": [
+        "A story with a lesson, never advice: no 'buy this', no returns promised",
+        "No real companies, tickers, products or prices",
+        "The character is invented; no real person's situation is retold"
+      ]
+    },
+    {
+      "id": "psychology",
+      "name": "Behavioural psychology",
+      "share": 0.4,
+      "angle": "Name one effect, show it happening to a character, then show the viewer where it happens in their own week",
+      "seed_keywords": [
+        "cognitive bias explained",
+        "behavioral psychology",
+        "why we procrastinate",
+        "sunk cost fallacy",
+        "decision making psychology",
+        "habits psychology explained"
+      ],
+      "hard_rules": [
+        "Describe a mechanism, never diagnose or prescribe",
+        "No claims about a named real person",
+        "Say when an effect is debated rather than stating it as settled"
+      ]
+    },
+    {
+      "id": "mystery",
+      "name": "Invented mysteries",
+      "share": 0.3,
+      "angle": "A fictional case built from the SHAPE of real cases: the kind of deception, the kind of motive, the way it unravels. Everything else invented.",
+      "seed_keywords": [
+        "detective story animated",
+        "mystery story explained",
+        "unsolved mystery story",
+        "crime investigation story",
+        "how the scam worked",
+        "con artist story"
+      ],
+      "hard_rules": [
+        "FICTION ONLY. Invented names, places, dates and outcome. Never a real case, named or recognizable.",
+        "Never claim truth anywhere: no 'true story', 'real case', 'based on real events', in title, description, caption or thumbnail",
+        "No graphic injury or death detail; the interest is the puzzle and the motive",
+        "No real victims, suspects, police forces or companies",
+        "Why: YouTube's harassment policy covers realistic recreations of real victims of violent events (strike, not just demonetization), and a recognizable real case with invented details is defamation. See data/platform-policy.md."
+      ]
+    }
   ],
-  "reference_channels": [],
 
   "formats": [
-    { "name": "story", "duration_min": 5, "note": "Một tình huống có mở đầu, cao trào, kết: nhân vật dùng mẫu câu để giải quyết vấn đề" },
-    { "name": "listicle", "duration_min": 6, "note": "8-12 mẫu câu quanh một chủ đề, mỗi mẫu là một cảnh ngắn có tình huống" }
+    { "name": "story", "duration_min": 5, "note": "One situation with a hook, a turn and a payoff" },
+    { "name": "explainer", "duration_min": 6, "note": "One mechanism, 3-4 short scenes that show it, then where the viewer meets it" }
   ],
   "default_duration_min": 5,
 
   "avoid": [
-    "Giảng ngữ pháp khô khan, đọc danh sách từ vựng không có tình huống",
-    "Hứa hẹn quá mức kiểu 'giỏi tiếng Anh sau 7 ngày'",
-    "Người thật, thương hiệu thật, tên người nổi tiếng"
+    "Real people, real brands, real cases, real logos or team kits",
+    "Advice on money, health or law; keep to stories and mechanisms",
+    "Graphic violence, shocking detail, anything aimed at children",
+    "Overblown promises in the title ('this will change your life')",
+    "Reusing a template with new nouns: every video is its own story (YouTube 'inauthentic content')"
   ],
 
   "research": {
     "results_per_keyword": 20,
     "videos_per_channel": 20,
-    "ideas_per_run": 5
+    "ideas_per_run": 5,
+    "max_discovered_keywords_per_topic": 14,
+    "policy_refresh_days": 7
   },
+
+  "discovered_keywords": {},
 
   "publish": {
     "platforms": ["youtube", "youtube_shorts", "tiktok"],
     "youtube_category_id": "27",
-    "base_hashtags": ["#hoctienganh", "#tienganhgiaotiep", "#englishvietnam"]
-  }
+    "base_hashtags": ["#animatedstory", "#psychology", "#storytime"],
+    "ai_disclosure": "Voice and visuals in this video are AI-generated. Characters and events are fictional.",
+    "require_ai_label": true
+  },
+
+  "reference_channels": []
 }

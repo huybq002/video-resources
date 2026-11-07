@@ -33,6 +33,18 @@ anh chị người cách học nên không có như để từ trong ra vào ở
 video full hd new 2024 2025 2026 part tap tập shorts short
 """.split())
 WORD = re.compile(r"[0-9\w'À-ỹ]+", re.UNICODE)
+# words that say nothing about the subject, so they are useless as extra search terms
+GENERIC = set("""
+more most best worst every always never thing things stuff about really actually simple easy
+explained explain complete ultimate guide tips tricks facts secret secrets truth story stories
+minutes minute hours hour today tonight everything nothing someone people person
+introduction intro video channel watch series episode part full short shorts documentary
+""".split())
+# a discovered word must never steer the writing into a policy problem: crime stories here are
+# fiction (data/platform-policy.md), so "true", "real" and named-victim language stay out
+RISKY_KEYWORD = re.compile(
+    r"^(true|real|actual|genuine|documented|confession|victim|victims|murderer|killer|rape|"
+    r"suicide|corpse|autopsy|evidence of|arrested|convicted)$", re.I)
 
 
 def ytdlp(target, limit, timeout=240):
@@ -109,6 +121,8 @@ def main() -> int:
     ap.add_argument("--config", default="channel.json")
     ap.add_argument("--out", default="data/research")
     ap.add_argument("--quick", action="store_true", help="fewer results per keyword (smoke test)")
+    ap.add_argument("--update-channel", action="store_true",
+                    help="write the keywords discovered this run back into channel.json discovered_keywords")
     a = ap.parse_args()
 
     cfg = json.load(open(a.config, encoding="utf-8"))
@@ -119,12 +133,25 @@ def main() -> int:
     out_dir = pathlib.Path(a.out)
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    data = {"date": today, "lang": cfg.get("lang"), "niche": cfg.get("niche"), "keywords": {}, "channels": {}}
-    for kw in cfg.get("seed_keywords", []):
-        print(f"keyword: {kw}", file=sys.stderr, flush=True)
-        s = summarise(ytdlp(f"ytsearch{per_kw}:{kw}", per_kw))
-        s["opportunity"] = opportunity(s)
-        data["keywords"][kw] = s
+    # keywords come from topics[].seed_keywords plus whatever earlier runs discovered;
+    # the old flat seed_keywords list still works
+    topics = cfg.get("topics") or [{"id": "all", "name": cfg.get("niche", "all"),
+                                    "seed_keywords": cfg.get("seed_keywords", [])}]
+    disc_all = cfg.get("discovered_keywords", {})
+    plan = []
+    for t in topics:
+        kws = list(dict.fromkeys(list(t.get("seed_keywords", [])) + list(disc_all.get(t.get("id", ""), []))))
+        plan += [(t.get("id", "all"), kw) for kw in kws]
+
+    data = {"date": today, "lang": cfg.get("lang"), "niche": cfg.get("niche"),
+            "topics": {t.get("id", "all"): t.get("name", "") for t in topics},
+            "keywords": {}, "channels": {}}
+    for tid, kw in plan:
+        print(f"[{tid}] keyword: {kw}", file=sys.stderr, flush=True)
+        st = summarise(ytdlp(f"ytsearch{per_kw}:{kw}", per_kw))
+        st["opportunity"] = opportunity(st)
+        st["topic"] = tid
+        data["keywords"][kw] = st
     for url in cfg.get("reference_channels", []):
         print(f"channel: {url}", file=sys.stderr, flush=True)
         target = url.rstrip("/")
@@ -140,13 +167,13 @@ def main() -> int:
          f"niche: {cfg.get('niche', '')}", f"language: {cfg.get('lang', '')}", "",
          "## Keywords, best opportunity first",
          "",
-         "| keyword | opp | median views | max views | median len | shorts | channels |",
-         "|---|---|---|---|---|---|---|"]
+         "| topic | keyword | opp | median views | max views | median len | shorts | channels |",
+         "|---|---|---|---|---|---|---|---|"]
     for kw, s in ranked:
         if not s.get("n"):
-            L.append(f"| {kw} | - | no data | | | | |")
+            L.append(f"| {s.get('topic','')} | {kw} | - | no data | | | | |")
             continue
-        L.append(f"| {kw} | {s['opportunity']} | {s['median_views']:,} | {s['max_views']:,} | "
+        L.append(f"| {s.get('topic','')} | {kw} | {s['opportunity']} | {s['median_views']:,} | {s['max_views']:,} | "
                  f"{s['median_duration_s']}s | {int(s['shorts_share'] * 100)}% | {s['distinct_channels']}/{s['n']} |")
     L += ["", "## What is winning right now (top titles per keyword)", ""]
     for kw, s in ranked:
@@ -172,7 +199,37 @@ def main() -> int:
           "- `shorts` is the share of results under 60 s: high means the audience for that keyword watches vertical.",
           "- Recurring title words are what the audience searches for; reuse them in the title, not in the story.",
           "- Numbers come from YouTube search results on the day, not from an ads API: treat them as a direction, not a forecast."]
+    # ---- candidate keywords discovered this run, per topic ---------------------------------
+    cap = int(rcfg.get("max_discovered_keywords_per_topic", 14))
+    seeds_by_topic = {t.get("id", "all"): {k.lower() for k in t.get("seed_keywords", [])} for t in topics}
+    found = {}
+    for tid, seeds in seeds_by_topic.items():
+        c = Counter()
+        for kw, st in data["keywords"].items():
+            if st.get("topic") == tid:
+                for w in st.get("title_words", []):
+                    c[w] += 1
+        # a candidate has to be a real topic word: in several titles, long enough to search for,
+        # not already a seed, and never one that would steer the writing into a policy problem
+        found[tid] = [w for w, n in c.most_common(60)
+                      if n >= 2 and len(w) >= 5 and w not in GENERIC
+                      and not RISKY_KEYWORD.search(w)
+                      and not any(w in sk for sk in seeds)][:cap]
+    data["discovered"] = found
+    (out_dir / f"{today}.json").write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+    if any(found.values()):
+        L += ["## Words the winning titles keep using (candidate keywords per topic)", ""]
+        L += [f"- **{tid}**: {', '.join(ws)}" for tid, ws in found.items() if ws]
+        L.append("")
+
     (out_dir / "latest.md").write_text("\n".join(L) + "\n", encoding="utf-8")
+    if a.update_channel and any(found.values()):
+        merged = dict(cfg.get("discovered_keywords", {}))
+        for tid, ws in found.items():
+            merged[tid] = list(dict.fromkeys(list(merged.get(tid, [])) + ws))[:cap]
+        cfg["discovered_keywords"] = merged
+        json.dump(cfg, open(a.config, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+        print("channel.json discovered_keywords updated:", {k: len(v) for k, v in merged.items()})
     print(f"wrote {out_dir / (today + '.json')} and {out_dir / 'latest.md'}")
     got = sum(1 for s in data["keywords"].values() if s.get("n"))
     print(f"keywords with data: {got}/{len(data['keywords'])}")

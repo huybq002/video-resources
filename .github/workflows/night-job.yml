@@ -93,21 +93,36 @@ jobs:
             Follow tasks/README.md.
             1. Switch to branch `night`: continue it if origin/night exists, else create it from main.
                Then merge origin/main into it so new tasks appear.
+            1b. POLICY FIRST, before any idea exists. Read data/platform-policy.md and channel.json
+               (topics[].hard_rules and avoid). If the policy file's "Last refreshed" is older than
+               research.policy_refresh_days, use WebSearch to re-check YouTube Community Guidelines and
+               monetization policy, and TikTok Community Guidelines, for: AI/synthetic content labelling,
+               inauthentic or mass-produced content, crime and violent content, and money or health advice.
+               Update data/platform-policy.md with the date and anything that changed, and commit it.
+               Everything after this obeys that file; when a source is unclear, take the safer reading.
             2. If tasks/pending/ has no runnable task (TASK_COUNT=$TASK_COUNT), FIND THE NEXT VIDEO YOURSELF.
                Nobody hands you ideas: research the market, pick one, write the task, then build it in this same run.
                a. Read channel.json (niche, audience, seed keywords, formats, what to avoid) and data/ideas.md
                   (what has already been made, queued or dropped: never propose any of those again).
-               b. `python scripts/research_youtube.py` (about 3-6 min). It asks YouTube itself through yt-dlp what
-                  ranks for each seed keyword and writes data/research/latest.md: demand, competition, Shorts share,
-                  the titles that are winning and the words they keep using. Read only latest.md, not the JSON.
-                  If it exits non-zero (YouTube refused), fall back to WebSearch for the niche and say so in the notes.
+               b. `python scripts/research_youtube.py --update-channel` (about 5-10 min). It asks YouTube itself
+                  through yt-dlp what ranks for every keyword of every topic in channel.json, writes
+                  data/research/latest.md (demand, competition, Shorts share, winning titles, recurring words per
+                  topic) and appends the new keywords it found into channel.json `discovered_keywords`, which widen
+                  the search next night. Read only latest.md, not the JSON. Commit the updated channel.json.
+                  If it exits non-zero (YouTube refused), fall back to WebSearch for the topics and say so in the notes.
                c. Use the claude-youtube skill (sub-skills/ideate.md, then seo.md) to turn the digest into
-                  `research.ideas_per_run` ideas scored on demand, how crowded the keyword is, and fit with the niche.
+                  `research.ideas_per_run` ideas scored on demand, how crowded the keyword is, and fit with the topic.
                   Prefer a keyword where the views are spread over many channels, not held by two big ones.
-                  Append every idea to the table in data/ideas.md with status `new`.
-               d. Take the best idea, write tasks/pending/<NNN>-<slug>.md from templates/video-task-template.md
-                  (next free number; idea, lang and duration_min from channel.json; the target keyword in the task),
-                  and set that idea's row to `queued`. Then carry on at step 3 and make the video.
+                  Respect topics[].share over time: look at data/ideas.md and pick from the topic that is behind.
+                  Append every idea to the table in data/ideas.md with status `new` and its topic id.
+               d. SCREEN the ideas against step 1b before choosing. Drop (status `dropped`, with the reason) any idea
+                  that needs a real person, a real company or a real case, promises money or health outcomes, or
+                  depends on graphic detail. For the `mystery` topic the story is ALWAYS invented: take the shape of
+                  a real kind of case, then invent names, places, dates and outcome, and never claim it is true.
+               e. Take the best surviving idea, write tasks/pending/<NNN>-<slug>.md from templates/video-task-template.md
+                  (next free number; idea, lang and duration_min from channel.json; topic id and target keyword in the
+                  task), run `python scripts/policy_check.py task tasks/pending/<file>` and fix anything it reports.
+                  Set that idea's row to `queued`. Then carry on at step 3 and make the video.
             3. Take files in tasks/pending/ in filename order and do each task.
                Skip any task whose file already exists in tasks/done/ on the night branch.
             4. Save results in outputs/<task id>/. Update "Progress notes" as you go.
@@ -125,6 +140,9 @@ jobs:
                     `python $SKILL/scripts/build_both.py specs/<id>.json outputs/<id> [--series series/<series>/series-bible.json]`
                     It writes outputs/<id>/landscape (16:9) and outputs/<id>/portrait (9:16), each with its own
                     three.js backgrounds and framing. Fix every WARNING (edit the spec) and re-run until none is left.
+                 2b. `python scripts/policy_check.py spec specs/<id>.json`. It fails on a claim that the story is
+                    true, a real organisation or company, graphic injury detail, or advice. Fix the spec and re-run
+                    step 2 until it prints "policy OK"; never render a spec that fails.
                  3. Verify both bundles:
                     `python scripts/verify_bundle.py bundle outputs/<id>/landscape --spec specs/<id>.json --expect-minutes <duration_min> --aspect 16:9`
                     `python scripts/verify_bundle.py bundle outputs/<id>/portrait  --spec specs/<id>.json --expect-minutes <duration_min> --aspect 9:16`
@@ -161,9 +179,13 @@ jobs:
                       youtube_shorts: title <=40 chars, short description, 3-5 hashtags
                       tiktok: caption (hook in the first line, <=2200 chars), 3-5 hashtags
                       plus thumbnail_text (3-4 words), pinned_comment (the question from the last scene), posting_notes
-                    Then `python scripts/make_publish_pack.py <id> --spec specs/<id>.json`, which renders
-                    youtube.md, youtube_shorts.md and tiktok.md and fails on anything a platform would cut off.
-                    Fix and re-run until it prints OK.
+                    Put channel.json publish.ai_disclosure into every description and caption: both YouTube and
+                    TikTok expect a synthetic voice-over to be labelled, and the label does not reduce reach.
+                    Then `python scripts/make_publish_pack.py <id> --spec specs/<id>.json` (platform limits) and
+                    `python scripts/policy_check.py publish outputs/<id>/publish/publish.json` (truth claims, real
+                    entities, advice, missing disclosure). Fix and re-run until both print OK.
+                    In Progress notes, remind the owner to switch on YouTube Studio's "altered or synthetic content"
+                    setting and TikTok's "AI-generated" label at upload: the files cannot do that part.
                  8. Publish: `python scripts/publish_release.py <id> --spec specs/<id>.json`
                     It attaches landscape.mp4 + landscape-bundle.zip, portrait.mp4 + portrait-bundle.zip, thumbnails and
                     metadata to a GitHub Release and writes outputs/<id>/manifest.json. Never mark the task done without

@@ -1,12 +1,22 @@
 # Tasks
 
-**You do not have to write tasks.** Every night at 00:00 Vietnam time the job looks in
-`tasks/pending/`. If it is empty, it researches YouTube itself (`scripts/research_youtube.py`
-asks YouTube through yt-dlp what ranks for the seed keywords in `channel.json`), scores the
-ideas with the `claude-youtube` skill, writes them into `data/ideas.md`, turns the best one
-into a task, and then makes that video. Edit `channel.json` to steer what it makes.
+**You do not write tasks.** Every night at 00:00 Vietnam time the job, in this order:
 
-Write a task by hand only when you want a specific video first:
+1. re-checks YouTube and TikTok policy and updates `data/platform-policy.md`
+2. researches the market with `scripts/research_youtube.py --update-channel`, which asks YouTube
+   through yt-dlp what ranks for every keyword of every topic in `channel.json` and writes the new
+   keywords it finds back into `channel.json`
+3. turns the digest into ideas with the `claude-youtube` skill, records them in `data/ideas.md`,
+   and drops the ones that break policy
+4. writes the best surviving idea as a task and makes the video (both 16:9 and 9:16)
+5. writes the publishing pack, so you only download and post
+
+`scripts/policy_check.py` runs on the task, the spec and the publishing pack. It fails the build on
+a claim that an invented story is true, a real organisation or case, graphic detail, advice, or a
+missing AI disclosure. Crime stories here are fiction by design: see `data/platform-policy.md`.
+
+Edit `channel.json` to steer what gets made. Write a task by hand only when you want one specific
+video first:
 
 
 1. Copy `templates/task-template.md` to `tasks/pending/NNN-name.md` (NNN = run order).
