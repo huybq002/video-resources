@@ -7,7 +7,7 @@ name: Night job
 # Runs inside the prebuilt image (see Dockerfile / build-image.yml): nothing is installed at night.
 on:
   schedule:
-    - cron: "0 17 * * *"
+    - cron: "0 17,18,19 * * *"   # 00:00 / 01:00 / 02:00 ICT: GitHub delays cron, the first one to fire wins
   workflow_dispatch:
 
 concurrency:
@@ -25,6 +25,7 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     permissions:
       contents: write
+      pull-requests: write
       packages: read
       id-token: write
     env:
@@ -52,6 +53,27 @@ jobs:
           echo "count=$count" >> "$GITHUB_OUTPUT"
           echo "TASK_COUNT=$count" >> "$GITHUB_ENV"
         shell: bash
+      - name: Already handled tonight?
+        id: guard
+        if: github.event_name == 'schedule'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # The cron fires three times (17, 18, 19 UTC) so one late start cannot lose the night.
+          # Only the first real run may build; any later one sees it here and stands down.
+          start=$(date -u -d "$(date -u +%F) 16:00:00" +%s)
+          n=0
+          while read -r id created status concl; do
+            [ "$id" = "${{ github.run_id }}" ] && continue
+            t=$(date -u -d "$created" +%s)
+            [ "$t" -lt "$start" ] && continue
+            if [ "$status" = "in_progress" ] || [ "$status" = "queued" ] || [ "$concl" = "success" ]; then n=$((n+1)); fi
+          done < <(gh run list --workflow night-job.yml --repo "$GITHUB_REPOSITORY" --limit 20                      --json databaseId,createdAt,status,conclusion -q '.[] | "\(.databaseId) \(.createdAt) \(.status) \(.conclusion)"')
+          echo "other runs this night: $n"
+          if [ "$n" -gt 0 ]; then echo "skip=true" >> "$GITHUB_OUTPUT"; else echo "skip=false" >> "$GITHUB_OUTPUT"; fi
+      - name: Test dependencies for the improvement phase
+        run: pip install --quiet pytest
       - name: Deadline (05:45 Asia/Ho_Chi_Minh = 22:45 UTC, job ends by 06:00)
         id: deadline
         shell: bash
@@ -78,7 +100,7 @@ jobs:
           key: bundle-${{ github.run_id }}
           restore-keys: bundle-
       - name: Run Claude
-        if: steps.deadline.outputs.minutes != '0'
+        if: steps.deadline.outputs.minutes != '0' && steps.guard.outputs.skip != 'true'
         timeout-minutes: ${{ fromJSON(steps.deadline.outputs.minutes) }}
         uses: anthropics/claude-code-action@v1
         env:
@@ -204,8 +226,43 @@ jobs:
             10. If you get a usage-limit or rate-limit error, or less than 15 minutes remain: STOP immediately. Do not retry. First commit and push
                what you have (spec, Progress notes with exactly where you stopped, status: in-progress) and leave the task in tasks/pending/.
                The next night's run picks it up and continues from your notes.
-            11. Keep going until no tasks remain.
-          claude_args: --max-turns 300 --allowedTools "Bash,Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
+            11. When no task is left, go to step 12 instead of stopping.
+            12. IMPROVEMENT PHASE. If at least 25 minutes remain before $DEADLINE_EPOCH, do not stop: spend what is left
+               making tomorrow's videos better. Stop it the moment time or usage runs out (step 10 applies).
+               FIRST create reports/<YYYY-MM-DD>.md from reports/README.md and commit + push it to `night` at once;
+               then append to it after EVERY finished item and push again. A usage limit can end the run at any
+               moment and this file is what the owner reads in the morning, so it must never be written only at the end.
+               a. MARKET AND SCRIPT (cheap, do this first)
+                  - Find what the winning videos of the three topics have in common (titles, length, first line, structure)
+                    from data/research/latest.md and WebSearch; compare it with tonight's spec and the earlier ones in specs/.
+                  - Re-read tonight's spec as a bored viewer: name its 3 weakest moments and why.
+                  - Write concrete, dated, evidenced findings into data/learnings.md.
+                  - Change the writing guidance ONLY where the evidence supports it: references/script-planning.md,
+                    references/youtube-craft.md, and spec_lint.py rules in the code2video-resource-generator skill.
+               b. PIPELINE: tools/code2video, the flow (scripts/, ci/), asset creation (settings, characters, props) and script
+                  generation. Only after (a), and only with time for it. Rules:
+                  - Work on a branch cut from main: `git switch -c improve/<YYYY-MM-DD> origin/main`. Never commit this to
+                    `night` or `main`, and never merge anything yourself.
+                  - One small improvement at a time, each with a measurable before and after (a lint count, a test, a render
+                    time, a rendered frame). No big rewrites. Revert whatever you cannot show is better.
+                  - Before every commit: `python -m py_compile` on touched scripts; `python -m pytest tools/code2video -q`
+                    if the tool was touched; `python $SKILL/scripts/build_both.py $SKILL/examples/zombie-portrait/spec.json /tmp/smoke --check`
+                    must still end with contract OK for both cuts; `python scripts/policy_check.py` must still pass.
+                  - Edit only: .claude/skills/, tools/code2video/, scripts/, templates/, data/learnings.md, reports/.
+                    Never .github/, secrets, channel.json (except discovered_keywords), or the rules of data/platform-policy.md.
+                  - Never weaken scripts/policy_check.py, scripts/verify_bundle.py or any lint rule that guards a platform
+                    policy. You may add checks.
+                  - Look at what you change: for an asset, character or setting, render a snapshot (`npx hyperframes snapshot`)
+                    and describe what you see in the report. Say plainly when you could not verify something.
+                  - When done, or at the limit: commit, `git push origin improve/<YYYY-MM-DD>`, then try
+                    `gh pr create --base main --head improve/<YYYY-MM-DD> --title "<what improved>" --body-file reports/<YYYY-MM-DD>.md`.
+                    If that fails (Actions may not be allowed to open pull requests), put
+                    https://github.com/huybq002/video-resources/compare/main...improve/<YYYY-MM-DD>?expand=1 at the top of the
+                    report. Then `git switch night`, and push the final report.
+               c. THE REPORT (reports/<YYYY-MM-DD>.md) says: tonight's video(s) with the Release link; what the research
+                  found; every improvement (what, why, evidence, files, commit); what you tried and reverted; what you could
+                  NOT verify; decisions the owner has to make; suggested next steps. Honest beats impressive.
+          claude_args: --max-turns 500 --allowedTools "Bash,Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
       - name: Save unfinished work (bundles, voice-over)
         if: always()
         uses: actions/cache/save@v4
