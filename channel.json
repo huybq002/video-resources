@@ -1,0 +1,44 @@
+{
+  "_readme": "The only file you edit by hand. The night job reads it, researches the market with yt-dlp, picks the next video and writes the task itself. Change the niche or the seeds and the whole pipeline follows.",
+
+  "channel_name": "Hezb Learn",
+  "lang": "vi",
+  "audience": "Người Việt 18-35 đang tự học tiếng Anh giao tiếp, sợ nói sai, ít thời gian",
+  "niche": "Học tiếng Anh giao tiếp qua phim hoạt hình ngắn: tình huống đời thường, mẫu câu dùng được ngay",
+  "tone": "Gần gũi, hài nhẹ, không giảng đạo; nhân vật que, bối cảnh 3D toon",
+  "value_promise": "Xem xong một video là nói được một tình huống trọn vẹn",
+
+  "seed_keywords": [
+    "học tiếng anh giao tiếp",
+    "mẫu câu tiếng anh hằng ngày",
+    "tiếng anh cho người mất gốc",
+    "phát âm tiếng anh chuẩn",
+    "tiếng anh công sở",
+    "học tiếng anh qua phim"
+  ],
+  "reference_channels": [],
+
+  "formats": [
+    { "name": "story", "duration_min": 5, "note": "Một tình huống có mở đầu, cao trào, kết: nhân vật dùng mẫu câu để giải quyết vấn đề" },
+    { "name": "listicle", "duration_min": 6, "note": "8-12 mẫu câu quanh một chủ đề, mỗi mẫu là một cảnh ngắn có tình huống" }
+  ],
+  "default_duration_min": 5,
+
+  "avoid": [
+    "Giảng ngữ pháp khô khan, đọc danh sách từ vựng không có tình huống",
+    "Hứa hẹn quá mức kiểu 'giỏi tiếng Anh sau 7 ngày'",
+    "Người thật, thương hiệu thật, tên người nổi tiếng"
+  ],
+
+  "research": {
+    "results_per_keyword": 20,
+    "videos_per_channel": 20,
+    "ideas_per_run": 5
+  },
+
+  "publish": {
+    "platforms": ["youtube", "youtube_shorts", "tiktok"],
+    "youtube_category_id": "27",
+    "base_hashtags": ["#hoctienganh", "#tienganhgiaotiep", "#englishvietnam"]
+  }
+}

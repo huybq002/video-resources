@@ -1,5 +1,14 @@
 # Tasks
 
+**You do not have to write tasks.** Every night at 00:00 Vietnam time the job looks in
+`tasks/pending/`. If it is empty, it researches YouTube itself (`scripts/research_youtube.py`
+asks YouTube through yt-dlp what ranks for the seed keywords in `channel.json`), scores the
+ideas with the `claude-youtube` skill, writes them into `data/ideas.md`, turns the best one
+into a task, and then makes that video. Edit `channel.json` to steer what it makes.
+
+Write a task by hand only when you want a specific video first:
+
+
 1. Copy `templates/task-template.md` to `tasks/pending/NNN-name.md` (NNN = run order).
 2. Fill it in, commit, and push to `main` before 00:00.
 3. At night the job takes pending tasks in order, works until the usage limit, and:

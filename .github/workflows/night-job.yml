@@ -1,12 +1,13 @@
 name: Night job
 
-# Starts 21:00 Asia/Ho_Chi_Minh (UTC+7) = 14:00 UTC, once per night (early, because GitHub often delays cron by hours). The whole job ends by 06:00 ICT (job timeout 360 min).
+# Starts 00:00 Asia/Ho_Chi_Minh (UTC+7) = 17:00 UTC, once per night. GitHub often delays cron, so the
+# deadline step below works from the real clock: a late start just gets less time, never a run past 06:00. The whole job ends by 06:00 ICT (job timeout 360 min).
 # The Claude step is stopped at 05:45 ICT (22:45 UTC) so the last 15 min are left to save work and upload logs. If Claude runs out of usage (rate limit)
 # the step ends at once and the job stops; unfinished tasks stay in tasks/pending and are picked up again the next night.
 # Runs inside the prebuilt image (see Dockerfile / build-image.yml): nothing is installed at night.
 on:
   schedule:
-    - cron: "0 14 * * *"
+    - cron: "0 17 * * *"
   workflow_dispatch:
 
 concurrency:
@@ -49,13 +50,14 @@ jobs:
           done
           echo "Runnable tasks: $count"
           echo "count=$count" >> "$GITHUB_OUTPUT"
+          echo "TASK_COUNT=$count" >> "$GITHUB_ENV"
         shell: bash
       - name: Deadline (05:45 Asia/Ho_Chi_Minh = 22:45 UTC, job ends by 06:00)
         id: deadline
         shell: bash
         run: |
           now=$(date -u +%s); h=$(date -u +%H)
-          if [ "$h" -ge 14 ] && [ "$h" -lt 23 ]; then
+          if [ "$h" -ge 17 ] && [ "$h" -lt 23 ]; then
             end=$(date -u -d "$(date -u +%F) 22:45:00" +%s)       # inside the night window: stop Claude at 05:45 ICT
           elif [ "${{ github.event_name }}" = "schedule" ]; then
             end=$now                                              # scheduled run that started too late: do nothing
@@ -76,7 +78,7 @@ jobs:
           key: bundle-${{ github.run_id }}
           restore-keys: bundle-
       - name: Run Claude
-        if: steps.check.outputs.count != '0' && steps.deadline.outputs.minutes != '0'
+        if: steps.deadline.outputs.minutes != '0'
         timeout-minutes: ${{ fromJSON(steps.deadline.outputs.minutes) }}
         uses: anthropics/claude-code-action@v1
         env:
@@ -91,10 +93,25 @@ jobs:
             Follow tasks/README.md.
             1. Switch to branch `night`: continue it if origin/night exists, else create it from main.
                Then merge origin/main into it so new tasks appear.
-            2. Take files in tasks/pending/ in filename order and do each task.
+            2. If tasks/pending/ has no runnable task (TASK_COUNT=$TASK_COUNT), FIND THE NEXT VIDEO YOURSELF.
+               Nobody hands you ideas: research the market, pick one, write the task, then build it in this same run.
+               a. Read channel.json (niche, audience, seed keywords, formats, what to avoid) and data/ideas.md
+                  (what has already been made, queued or dropped: never propose any of those again).
+               b. `python scripts/research_youtube.py` (about 3-6 min). It asks YouTube itself through yt-dlp what
+                  ranks for each seed keyword and writes data/research/latest.md: demand, competition, Shorts share,
+                  the titles that are winning and the words they keep using. Read only latest.md, not the JSON.
+                  If it exits non-zero (YouTube refused), fall back to WebSearch for the niche and say so in the notes.
+               c. Use the claude-youtube skill (sub-skills/ideate.md, then seo.md) to turn the digest into
+                  `research.ideas_per_run` ideas scored on demand, how crowded the keyword is, and fit with the niche.
+                  Prefer a keyword where the views are spread over many channels, not held by two big ones.
+                  Append every idea to the table in data/ideas.md with status `new`.
+               d. Take the best idea, write tasks/pending/<NNN>-<slug>.md from templates/video-task-template.md
+                  (next free number; idea, lang and duration_min from channel.json; the target keyword in the task),
+                  and set that idea's row to `queued`. Then carry on at step 3 and make the video.
+            3. Take files in tasks/pending/ in filename order and do each task.
                Skip any task whose file already exists in tasks/done/ on the night branch.
-            3. Save results in outputs/<task id>/. Update "Progress notes" as you go.
-            4. Task types (frontmatter `type:`):
+            4. Save results in outputs/<task id>/. Update "Progress notes" as you go.
+            5. Task types (frontmatter `type:`):
                - `video`: use the code2video-resource-generator skill (its SKILL.md; skill dir is $SKILL).
                  Read idea, lang, duration_min, script_prompt, series, episode, renderer, privacy, upload from the task.
                  Every task builds BOTH frame shapes. Everything lives under outputs/<id>/.
@@ -136,25 +153,37 @@ jobs:
                     (`python $SKILL/ci/upload_youtube.py --video <mp4> --meta outputs/<id>/metadata.json --thumb <image> --confirm`).
                     Never add `--allow-public` unless the task says `privacy: public`. Note in Progress notes that a vertical
                     cut longer than 3 minutes is not eligible as a Short.
+                 7b. Publishing pack (this is what you are really making: the user posts by hand).
+                    Using the claude-youtube skill (sub-skills/seo.md and metadata.md) and the keyword from the task,
+                    write outputs/<id>/publish/publish.json with, for each platform, what to paste:
+                      youtube: title (<=100 chars, keyword early, curiosity or concrete promise), description
+                        (2-line hook, summary, the chapter list from metadata.json, 3 hashtags), tags, hashtags
+                      youtube_shorts: title <=40 chars, short description, 3-5 hashtags
+                      tiktok: caption (hook in the first line, <=2200 chars), 3-5 hashtags
+                      plus thumbnail_text (3-4 words), pinned_comment (the question from the last scene), posting_notes
+                    Then `python scripts/make_publish_pack.py <id> --spec specs/<id>.json`, which renders
+                    youtube.md, youtube_shorts.md and tiktok.md and fails on anything a platform would cut off.
+                    Fix and re-run until it prints OK.
                  8. Publish: `python scripts/publish_release.py <id> --spec specs/<id>.json`
                     It attaches landscape.mp4 + landscape-bundle.zip, portrait.mp4 + portrait-bundle.zip, thumbnails and
                     metadata to a GitHub Release and writes outputs/<id>/manifest.json. Never mark the task done without
                     a release URL in the manifest.
-                 9. Commit only small files: `git add outputs/<id>/manifest.json outputs/<id>/thumbnails outputs/<id>/report-*.json outputs/<id>/metadata.json specs/<id>.json series/ tasks/ data/`.
+                 9. Commit only small files: `git add outputs/<id>/manifest.json outputs/<id>/publish outputs/<id>/thumbnails outputs/<id>/report-*.json outputs/<id>/metadata.json specs/<id>.json series/ tasks/ data/`.
                     Bundles, videos and wav files are git-ignored on purpose (they live in the Release).
                - `thumbnail` or no type: use the html-thumbnail skill.
-            5. When a task is finished, set status: done and move it to tasks/done/.
-            6. Commit and `git push origin night` after every task and after every major step,
+            6. When a task is finished, set status: done and move it to tasks/done/, and set its row in
+               data/ideas.md to `done` with the release URL.
+            7. Commit and `git push origin night` after every task and after every major step,
                so nothing is lost if the usage limit hits.
-            7. Never push to main. Never print secrets.
-            8. Hard stop at 05:45 Vietnam time (the job itself ends at 06:00): the epoch is in $DEADLINE_EPOCH (compare with `date +%s`). Before starting a task or a render,
+            8. Never push to main. Never print secrets.
+            9. Hard stop at 05:45 Vietnam time (the job itself ends at 06:00): the epoch is in $DEADLINE_EPOCH (compare with `date +%s`). Before starting a task or a render,
                check the time left. A render needs about 7 s per video second (x1.3 margin) plus TTS and checks; if it cannot finish
                before the deadline, do not start it: write the state in Progress notes, commit, push and stop.
-            9. If you get a usage-limit or rate-limit error, or less than 15 minutes remain: STOP immediately. Do not retry. First commit and push
+            10. If you get a usage-limit or rate-limit error, or less than 15 minutes remain: STOP immediately. Do not retry. First commit and push
                what you have (spec, Progress notes with exactly where you stopped, status: in-progress) and leave the task in tasks/pending/.
                The next night's run picks it up and continues from your notes.
-            10. Keep going until no tasks remain.
-          claude_args: --max-turns 300 --allowedTools "Bash,Read,Write,Edit,Glob,Grep"
+            11. Keep going until no tasks remain.
+          claude_args: --max-turns 300 --allowedTools "Bash,Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
       - name: Save unfinished work (bundles, voice-over)
         if: always()
         uses: actions/cache/save@v4

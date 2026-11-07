@@ -73,7 +73,8 @@ def main() -> int:
         assets += [named_video, bundle]
         cuts.append({"cut": name, "aspect": aspect, "video": named_video.name, "bundle": bundle.name})
 
-    shared = [p for p in [out / "metadata.json", *sorted((out / "thumbnails").glob("*.png"))] if p.is_file()]
+    shared = [p for p in [out / "metadata.json", *sorted((out / "publish").glob("*.md")),
+                          *sorted((out / "thumbnails").glob("*.png"))] if p.is_file()]
     assets += shared
     too_big = [p.name for p in assets if p.stat().st_size > MAX_ASSET_BYTES]
     if too_big:
@@ -90,7 +91,8 @@ def main() -> int:
         notes = (f"{spec.get('idea', a.id)}\n\nduration {spec.get('duration_s')}s, lang {spec.get('lang')}.\n"
                  + "\n".join(f"- {c['cut']} ({c['aspect']}): `{c['video']}` + `{c['bundle']}`" for c in cuts)
                  + "\n\nEach *-bundle.zip is the HyperFrames project for that frame shape "
-                   "(open with Code2Video Studio / hyperframes).")
+                   "(open with Code2Video Studio / hyperframes). youtube.md / youtube_shorts.md / tiktok.md "
+                   "hold the title, description, tags and hashtags to paste when posting.")
         r = subprocess.run(["gh", "release", "create", tag, *map(str, assets), "--title", a.id, "--notes", notes],
                            capture_output=True, text=True)
         if r.returncode:
