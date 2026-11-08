@@ -1,6 +1,8 @@
 {
   "money": [
-    "financial"
+    "financial",
+    "income",
+    "change"
   ],
   "psychology": [
     "biases",
@@ -8,9 +10,15 @@
     "course",
     "science",
     "decisions",
-    "better"
+    "better",
+    "thinking",
+    "brain",
+    "official",
+    "lyrics"
   ],
   "mystery": [
-    "mysteries"
+    "mysteries",
+    "cannot",
+    "episodes"
   ]
 }
