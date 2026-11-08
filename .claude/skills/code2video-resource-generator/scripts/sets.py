@@ -263,10 +263,12 @@ def beach(cfg, P, rnd):
         o.append(_f("towel", x + 0.9, -6.0 + (i % 2) * 2.5, ry=0.15 * (i - 1.5), c=POSTER[(i * 2 + 1) % 7]))
     for x, z in ((-11, -4), (12, -6), (-14, -12)):
         o.append(_f("palm", x, z))
+    o.append(_f("towel", 0.6, 2.6, ry=1.5708, c="#3e7cb1"))       # the hero's spot, near the camera (lie@towel picks it)
+    o.append(_f("umbrella", -1.0, 2.0, c="#e3b341"))
     o += _sky_and_sun(P, 0, -140, 300, 120, 6, 9 if time != "dusk" else 4, time)
     base = dict(sky=P["sky"] if time != "day" else ["#5aa6e8", "#d8eef8"], fog={"near": 40, "far": 160, "c": P["sky"][1]}, exposure=1.15,
                 ambient={"c": P["amb"][0], "i": P["amb"][1] * 1.1}, sun={"c": P["sun"], "i": 0.7, "pos": [-6, 10, 4]},
-                stars=120 if time == "night" else 0, camera={"pos": [0, 2.8, 10.0], "look": [0, 0.6, -20], "fov": 46}, layers=[9.0, 30.0])
+                stars=120 if time == "night" else 0, camera={"pos": [0, 2.8, 10.0], "look": [0, 0.6, -20], "fov": 46}, layers=[4.5, 30.0])   # near layer stays empty: the hero's towel must not cover the hero
     return base, o
 
 

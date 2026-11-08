@@ -192,7 +192,8 @@ def main():
               for ch in pn["chars"]:
                 ccid = f"{dom}-{ch['k']}" if pn["idx"] is None else f"{dom}p{pn['idx']}-{ch['k']}"; s = ch.get("s", 0.8)
                 w, h = 400 * s, 800 * s; left, top = ch["x"] - w / 2, ch.get("by", 900) - 782 * s
-                flip = ("transform:scaleX(-1);" if ch.get("flip") else "") + (("filter:drop-shadow(-3px -2px 0 rgba(255,214,160,.9)) drop-shadow(0 0 5px rgba(255,190,130,.3));") if (ch.get("glow") or cast[ch["k"]].get("glow") or spec.get("rim", True)) else "")
+                flip = ("transform:scaleX(-1);" if ch.get("flip") else "") + (("filter:drop-shadow(-3px -2px 0 rgba(255,214,160,.9)) drop-shadow(0 0 5px rgba(255,190,130,.3));") if (ch.get("glow") or cast[ch["k"]].get("glow") or (spec.get("rim", True) and not ch.get("extra"))) else "")
+                if ch.get("extra"): flip += "filter:saturate(.8) brightness(.96);"
                 acts_ = ch.get("acts", [])
                 views_ = ["f"] + (["s"] if (ch.get("enter") is not None or ch.get("hold") == "sit" or ch.get("face") or (ch.get("path") or {}).get("view") == "s" or any(a_[1] in ("walkTo", "sit") or (a_[1] == "view" and a_[2] in ("side", "s")) for a_ in acts_)) else []) \
                                  + (["b"] if (ch.get("back") or (ch.get("path") or {}).get("view") == "b" or any(a_[1] == "view" and a_[2] in ("back", "b") for a_ in acts_)) else [])

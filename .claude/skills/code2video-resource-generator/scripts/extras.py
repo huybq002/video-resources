@@ -66,9 +66,21 @@ def _texts_by_setting(spec):
     return out
 
 
-def _outfit(rnd, wardrobe_key, i):
+def _rgb(h):
+    h = h.lstrip("#"); return [int(h[i:i + 2], 16) for i in (0, 2, 4)]
+
+
+def _mute(h, f=0.35):
+    """towards grey: background people must not compete with the hero"""
+    r, g, b = _rgb(h); m = (r + g + b) / 3
+    return "#%02x%02x%02x" % tuple(int(v + (m - v) * f) for v in (r, g, b))
+
+
+def _outfit(rnd, wardrobe_key, i, avoid=()):
     W = WARDROBE.get(wardrobe_key, WARDROBE["default"])
-    top = rnd.choice(W["top"]); col = rnd.choice(W["colors"])
+    top = rnd.choice(W["top"])
+    pool = [c for c in W["colors"] if all(sum(abs(x - y) for x, y in zip(_rgb(c), _rgb(a))) > 150 for a in avoid)] or ["#8a8794", "#6e6a78"]
+    col = _mute(rnd.choice(pool))
     female = rnd.random() < 0.5
     c = {"top": top, "top_color": col, "bottom": W.get("bottom", "none"), "shoes": W.get("shoes", rnd.choice(["sneakers", "boots"])),
          "hair_style": rnd.choice(["long", "bun", "short"]) if female else rnd.choice(["short", "spiky", "none", "tuft"]),
@@ -110,6 +122,7 @@ def plan(spec):
         elif rules:
             roles = [(r, max(0, round(n * mult))) for r, n in rules.get(time, rules.get("dusk", []))]
         rnd = random.Random(f"extras-{sid}")
+        avoid = [c.get("top_color") for c in spec.get("cast", []) if c.get("top_color") and not c.get("extra")]
         items = []
         for role, n in roles:
             for j in range(n):
@@ -117,7 +130,7 @@ def plan(spec):
                     items.append({"role": "traffic", "k": None, "color": rnd.choice(["#d8473d", "#3e7cb1", "#e3b341", "#e9e4d8", "#2f3646", "#3aa65a"])})
                     continue
                 cid = f"x_{sid}_{len(items) + 1}"
-                c = _outfit(rnd, "office" if style == "office" else ("beach" if typ == "beach" else "default"), j)
+                c = _outfit(rnd, "office" if style == "office" else ("beach" if typ == "beach" else "default"), j, avoid)
                 c.update(id=cid, name=f"extra {len(items) + 1}", extra=True, look="background extra", blush=False)
                 cast_add.append(c); items.append({"role": role, "k": cid})
         if items:
@@ -213,7 +226,10 @@ def place(items, A, sh, W, H, dur, cast, main_chars, scale_at, ppm_at_y, find_al
                 c.update(x=xa, by=ya, s=scale_at(pa), path={"dx": xb - xa, "dy": yb - ya, "k": pb / pa, "d": dur, "view": "f" if pb > pa else "b"})
             else:                                     # across the frame on the floor / the crosswalk
                 rows = A.get("_floor") or []
-                y = rnd.uniform(H * 0.6, H * 0.82) if role != "cross" else (A.get("_cross") or H * 0.78)
+                hero_by = min([m.get("by", H) for m in main_chars if m.get("by", H) < H] or [H * 0.86])
+                y = rnd.uniform(H * 0.56, max(H * 0.58, hero_by - 0.06 * H)) if role != "cross" else (A.get("_cross") or H * 0.78)
+                if role == "cross" and y > hero_by - 10:
+                    continue
                 pp = ppm_at_y(A, y) or 120; direction = rnd.choice([-1, 1]); dx = direction * 1.3 * pp * dur
                 x0 = rnd.uniform(0.2, 0.8) * W - dx / 2
                 c.update(x=x0, by=y, s=scale_at(pp), path={"dx": dx, "dy": 0, "k": 1, "d": dur, "view": "s", "dir": direction})

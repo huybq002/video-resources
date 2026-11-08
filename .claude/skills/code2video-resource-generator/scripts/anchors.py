@@ -100,7 +100,8 @@ def compute(setting, W, H):
     if kind.get("type") == "street":    # cars come toward the camera in the left lane and drive away in the right one
         def pt(x, z):
             sx, sy, d = cam.project((x, 0, z)); return [round(sx, 1), round(sy, 1), round(cam.ppm(d), 2)]
-        out["_lanes"] = [{"from": pt(-2.1, -55), "to": pt(-2.1, P[2] - 3)}, {"from": pt(2.1, P[2] - 4), "to": pt(2.1, -55), "away": True}]
+        # cars stop short of the camera (a car filling the frame hides the story and the captions)
+        out["_lanes"] = [{"from": pt(-2.1, -55), "to": pt(-2.1, P[2] - 9)}, {"from": pt(2.1, P[2] - 9), "to": pt(2.1, -55), "away": True}]
         out["_walks"] = [{"from": pt(sx_, -40), "to": pt(sx_, P[2] - 3.5), "len_m": 40 + P[2]} for sx_ in (-5.6, 5.6)]
         out["_cross"] = pt(0, 3.0)[1]
         out["_pave"] = [[pt(sx_, z)[1], pt(sx_, z)[0], sx_] for sx_ in (-5.4, 5.4) for z in range(-40, int(P[2] - 2))]   # [y, x, side]
@@ -117,8 +118,12 @@ def find(anchors, name, near_x=None):
     if not cands:
         return None
     vis = [a for a in cands if a.get("on_screen")] or cands
-    ref = near_x if near_x is not None else None
-    return min(vis, key=lambda a: abs(a["floor"][0] - ref) if ref is not None else -a.get("floor_ppm", 0))
+    if near_x is None:
+        return max(vis, key=lambda a: a.get("floor_ppm", 0))
+    # the hero uses the piece nearest the camera (biggest on screen) among those not far from where they stand
+    W = max(a["floor"][0] for a in vis) - min(a["floor"][0] for a in vis) + 1
+    close = [a for a in vis if abs(a["floor"][0] - near_x) < max(500, 0.5 * W)] or vis
+    return max(close, key=lambda a: a.get("floor_ppm", 0) - 0.02 * abs(a["floor"][0] - near_x))
 
 
 def scale_at(ppm):

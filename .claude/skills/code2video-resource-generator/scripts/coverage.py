@@ -288,7 +288,7 @@ def narration(seq, rnd):
                    "props": [{"id": line_props[0], "x": W_ // 2, "y": int(H_ * 0.58), "w": int(W_ * (0.5 if PORTRAIT[0] else 0.3)),
                               "t": 0.0, "mode": "static"}]}
             out.append(ins)
-        elif n > 9 and not ({str(d).split(':')[0] for d in ([beat.get('do')] if isinstance(beat.get('do'), str) else beat.get('do') or [])}
+        elif (n > 9 or (n >= 6 and kind in ("wide", "establish", "wide2"))) and not ({str(d).split(':')[0] for d in ([beat.get('do')] if isinstance(beat.get('do'), str) else beat.get('do') or [])}
                             & {'sleep', 'lie', 'fall'}):   # long cue: cut to a second angle halfway (not while lying: the close-up would miss her) (was 13 words: shots ran 7.9 s on average)
             first = out[-1]; first["portion"] = [0, 0.5]
             sh2 = _shot(st, chars, share=True, portion=[0.5, 1], focus={"k": a["k"], "zoom": 2.3}, trans="cut"); _set_acts(sh2, a["k"], [[0.0, "look", rnd.choice([-1, 1]), 0]])
