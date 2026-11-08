@@ -189,8 +189,10 @@ def narration(seq, rnd):
         a = next(c for c in cast if c["k"] == fk) if fk in [c["k"] for c in cast] else cast[0]
         chars = cast
         W_, H_ = (1080, 1920) if PORTRAIT[0] else (1920, 1080)
-        if kind == "establish":
-            sh = _shot(st, chars, cues=[cue], cam="push_slow", trans="fade" if i == 0 else "cut")
+        if kind == "establish":   # the place first: people small and further back, the set fills the frame (reference wides)
+            small = [dict(c, s=round(c.get("s", 0.82) * 0.62, 2), by=int(H_ * (0.80 if PORTRAIT[0] else 0.78)),
+                          x=int(W_ / 2 + (c.get("x", W_ / 2) - W_ / 2) * 0.6)) for c in chars]
+            sh = _shot(st, small, cues=[cue], cam="push_slow", trans="fade" if i == 0 else "cut")
         elif kind == "insert":                                                   # the object fills the frame
             sh = {"setting": st, "chars": [], "cues": [cue], "cam": "push_slow", "dof": True, "trans": "cut",
                   "props": [{"id": line_props[0], "x": W_ // 2, "y": int(H_ * 0.58), "w": int(W_ * (0.5 if PORTRAIT[0] else 0.3)),
@@ -221,7 +223,8 @@ def narration(seq, rnd):
                    "props": [{"id": line_props[0], "x": W_ // 2, "y": int(H_ * 0.58), "w": int(W_ * (0.5 if PORTRAIT[0] else 0.3)),
                               "t": 0.0, "mode": "static"}]}
             out.append(ins)
-        elif n > 9:   # long cue: cut to a second angle halfway (was 13 words: shots ran 7.9 s on average)
+        elif n > 9 and not ({str(d).split(':')[0] for d in ([beat.get('do')] if isinstance(beat.get('do'), str) else beat.get('do') or [])}
+                            & {'sleep', 'lie', 'fall'}):   # long cue: cut to a second angle halfway (not while lying: the close-up would miss her) (was 13 words: shots ran 7.9 s on average)
             first = out[-1]; first["portion"] = [0, 0.5]
             sh2 = _shot(st, chars, share=True, portion=[0.5, 1], focus={"k": a["k"], "zoom": 2.3}, trans="cut"); _set_acts(sh2, a["k"], [[0.0, "look", rnd.choice([-1, 1]), 0]])
             out.append(sh2); made.append(sh2)

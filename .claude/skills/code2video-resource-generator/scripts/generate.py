@@ -24,7 +24,7 @@ bible = SER.load(a.series) if a.series else None
 if bible:
     spec0, _w = SER.merge(spec0, bible)                           # recurring characters/settings keep their look across episodes
     for _m in _w: print("SERIES WARNING:", _m)
-import coverage, srt_tools, docs_gen, spec_lint, furniture
+import coverage, srt_tools, docs_gen, spec_lint, furniture, sets
 for _m in spec_lint.lint(spec0): print(_m)                 # settings variety, cast, crowds, static scenes, wardrobe
 spec = coverage.expand(spec0, spec_path.parent)            # sequences -> many shots, lib:/relative settings resolved
 tmp = pathlib.Path(tempfile.mkdtemp(prefix="c2v_")); exp = tmp / "spec.expanded.json"; exp.write_text(json.dumps(spec, ensure_ascii=False), encoding="utf-8")
@@ -66,6 +66,7 @@ if not a.skip_bg:
         if (ext is True or sid in ext) and (out / "assets" / f"bg_{sid}.png").exists(): continue     # keep the Gemini picture
         s = spec["settings"][sid]
         data = dict(s if isinstance(s, dict) else json.load(open(s, encoding="utf-8")))
+        data = sets.expand(data)                                         # {"set": {"type": "room", ...}} -> a dressed room/street
         data["objects"] = furniture.expand(data.get("objects", []))      # {"t":"furn","n":"bed"} -> primitives
         if spec.get("aspect") == "9:16":                      # portrait: render 1080x1920 and pull the camera back to keep the scene readable
             data["width"], data["height"] = 1080, 1920; cam = dict(data["camera"]); lk = cam["look"]

@@ -18,17 +18,24 @@ let rs=1234;const rnd=()=>{rs=(rs*16807)%2147483647;return (rs-1)/2147483646};
 const col=c=>new THREE.Color(c);
 const gt=new THREE.DataTexture(new Uint8Array([70,70,70,255,150,150,150,255,255,255,255,255]),3,1,THREE.RGBAFormat);gt.minFilter=gt.magFilter=THREE.NearestFilter;gt.needsUpdate=true;
 const mkInk=w=>new THREE.ShaderMaterial({side:THREE.BackSide,uniforms:{w:{value:w}},vertexShader:`uniform float w;void main(){vec3 p=position+normalize(normal)*w;gl_Position=projectionMatrix*modelViewMatrix*vec4(p,1.);}`,fragmentShader:`void main(){gl_FragColor=vec4(0.043,0.039,0.047,1.);}`});
-const toon=c=>new THREE.MeshToonMaterial({color:col(c),gradientMap:gt});
+const toon=(c,op)=>{const m=new THREE.MeshToonMaterial({color:col(c),gradientMap:gt});if(op!=null&&op<1){m.transparent=true;m.opacity=op;m.depthWrite=false}return m};
+const basic=(c,o)=>new THREE.MeshBasicMaterial({color:col(c),transparent:o.op!=null&&o.op<1,opacity:o.op??1,depthWrite:!(o.op!=null&&o.op<1),fog:o.fog!==false});
 function inkify(obj,w=0.035){if(w<=0)return;const add=[];obj.traverse(m=>{if(m.isMesh&&!m.userData.noink){const i=new THREE.Mesh(m.geometry,mkInk(w));i.userData.noink=true;add.push([m,i])}});add.forEach(([m,i])=>m.add(i))}
 const place=(m,o)=>{m.position.set(o.x||0,(o.y||0)+(o.h||0)/2,o.z||0);if(o.ry)m.rotation.y=o.ry;if(o.rz)m.rotation.z=o.rz;scene.add(m);return m};
 const loader=new GLTFLoader();const kit=spec.kitUrl||'/kenney/';
 const T={
- box(o){const m=place(new THREE.Mesh(new THREE.BoxGeometry(o.w,o.h,o.d),toon(o.c)),o);inkify(m,o.ink??0.035)},
+ box(o){const m=place(new THREE.Mesh(new THREE.BoxGeometry(o.w,o.h,o.d),toon(o.c,o.op)),o);if(o.op==null||o.op>=1)inkify(m,o.ink??0.035)},
  cylinder(o){const m=place(new THREE.Mesh(new THREE.CylinderGeometry(o.rt??o.r,o.rb??o.r,o.h,o.seg||20),toon(o.c)),o);inkify(m,o.ink??0.03)},
  sphere(o){const m=new THREE.Mesh(new THREE.SphereGeometry(o.r,20,14),toon(o.c));m.position.set(o.x,o.y,o.z);scene.add(m);inkify(m,o.ink??0.03)},
  cone(o){const m=new THREE.Mesh(new THREE.ConeGeometry(o.r,o.h,20),new THREE.MeshBasicMaterial({color:col(o.c)}));m.position.set(o.x,o.y,o.z);scene.add(m)},
- glow(o){const m=new THREE.Mesh(new THREE.PlaneGeometry(o.w,o.h),new THREE.MeshBasicMaterial({color:col(o.c)}));m.position.set(o.x,o.y,o.z);m.rotation.y=o.ry||0;scene.add(m)},
- disc(o){const m=new THREE.Mesh(new THREE.CircleGeometry(o.r,32),new THREE.MeshBasicMaterial({color:col(o.c),fog:false}));m.position.set(o.x,o.y,o.z);scene.add(m)},
+ glow(o){const m=new THREE.Mesh(new THREE.PlaneGeometry(o.w,o.h),basic(o.c,o));m.position.set(o.x,o.y,o.z);m.rotation.order='YXZ';m.rotation.y=o.ry||0;m.rotation.x=o.rx||0;scene.add(m)},
+ // vertical gradient quad (sky seen through a window, haze): c=[top,bottom]
+ grad(o){const c=document.createElement('canvas');c.width=4;c.height=256;const g=c.getContext('2d');const gr=g.createLinearGradient(0,0,0,256);gr.addColorStop(0,o.c[0]);gr.addColorStop(1,o.c[1]);g.fillStyle=gr;g.fillRect(0,0,4,256);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;
+  const m=new THREE.Mesh(new THREE.PlaneGeometry(o.w,o.h),new THREE.MeshBasicMaterial({map:t,transparent:o.op!=null,opacity:o.op??1,fog:o.fog!==false,depthWrite:o.op==null}));m.position.set(o.x,o.y,o.z);m.rotation.y=o.ry||0;scene.add(m)},
+ // hanging ceiling lamp: cord, shade, bulb light, soft halo
+ lamp_hang(o){const y=o.y||3.4,c=o.c||'#ffcf8a';T.box({x:o.x,y:y-0.9,z:o.z,w:.02,h:.9,d:.02,c:'#1b1a1f',ink:0});T.cylinder({x:o.x,y:y-1.15,z:o.z,rt:.12,rb:.32,h:.28,c:'#2b2733',ink:.015});
+  const L=new THREE.PointLight(col(c),70,9,1.5);L.position.set(o.x,y-1.3,o.z);scene.add(L);T.disc({x:o.x,y:y-1.2,z:o.z+.01,r:.5,c:c,op:.18})},
+ disc(o){const m=new THREE.Mesh(new THREE.CircleGeometry(o.r,32),basic(o.c,{...o,fog:false}));m.position.set(o.x,o.y,o.z);scene.add(m)},
  light(o){const L=new THREE.PointLight(col(o.c),o.I,o.dist||16,o.decay||1.5);L.position.set(o.x,o.y,o.z);scene.add(L)},
  lamp(o){const hg=o.h||3.2,c=o.c||'#ffb45a';T.box({x:o.x,y:0,z:o.z,w:.12,h:hg,d:.12,c:'#1b1a1f',ink:.02});
   const b=new THREE.Mesh(new THREE.SphereGeometry(.28,16,12),new THREE.MeshBasicMaterial({color:col(c)}));b.position.set(o.x,hg+.2,o.z);scene.add(b);

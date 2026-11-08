@@ -180,7 +180,7 @@ def main():
                 lid = lambda n: f"{dom}-{n}"
                 scene_html = (f"<img id='{lid('L0')}' class='bg lay' style='{dof_far}' src='assets/bg_{sh['setting']}_far.png'><img id='{lid('L1')}' class='bg lay' style='{dof_mid}' src='assets/bg_{sh['setting']}_mid.png'>"
                               f"<div id='{lid('chars')}' class='lay'>{''.join(crowd_html)}{''.join(props_html)}{''.join(chars_html)}</div>"
-                              f"<img id='{lid('L2')}' class='bg lay' src='assets/bg_{sh['setting']}_near.png'>")
+                              f"<img id='{lid('L2')}' class='bg lay' style='filter:blur({spec.get('fg_blur', 5)}px);' src='assets/bg_{sh['setting']}_near.png'>")
                 layers_data = [dict(dom=lid("L0"), k=0.35 if not foc else 0.6), dict(dom=lid("L1"), k=0.7 if not foc else 0.85), dict(dom=lid("chars"), k=0.85 if not foc else 1.0), dict(dom=lid("L2"), k=1.2)]
             else:
                 scene_html = f"<img class='bg' style='{'filter:blur(1.5px);' if (foc and float((foc or {}).get('zoom', 1)) >= 2.2) else ''}' src='assets/bg_{sh['setting']}.png'>{''.join(crowd_html)}{''.join(props_html)}{''.join(chars_html)}"

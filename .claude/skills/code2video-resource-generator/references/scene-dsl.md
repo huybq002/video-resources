@@ -20,6 +20,9 @@ World units are metres; ground y=0; camera looks toward −z. Objects sit on the
   ] }
 ```
 
+**Start from a set** (`set-design.md`): `"set": {"type": "room", "style": "office", "time": "dusk"}` builds the whole dressed, lit room; your `objects` are added on top and your top-level keys (camera, fog, …) win.
+New primitives: `{"t":"grad","c":[top,bottom],"w","h","x","y","z","fog":false}` gradient quad (sky behind glass, haze); `op` (0-1) on box/glow/disc for see-through light pools and halos; `rx` on glow (−1.5708 lays it on the floor, +1.5708 on the ceiling); `{"t":"lamp_hang","x","z","y":ceiling}` hanging lamp with light.
+
 **Furniture — use it, a room is recognised by its furniture, not by its wall colour.**
 `{"t":"furn","n":"bed","x":1.5,"z":-5,"ry":0.3,"s":1,"c":"#5b6f9a","c2":"#8a5a3c"}` expands into primitives (`scripts/furniture.py`).
 Names: `bed bedside_table desk computer chair sofa table bookshelf kitchen_counter oven fridge window night_window door tv

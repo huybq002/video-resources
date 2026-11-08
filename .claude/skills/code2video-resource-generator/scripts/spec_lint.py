@@ -227,7 +227,8 @@ def _setting_has(spec, sid):
         return LIB_HAS.get(str(sid)[4:], set())
     st = spec.get("settings", {}).get(sid)
     if isinstance(st, dict):
-        return {o.get("n") for o in st.get("objects", []) if o.get("t") == "furn"}
+        import sets
+        return {o.get("n") for o in st.get("objects", []) if o.get("t") == "furn"} | sets.contents(st)
     return set()
 
 
@@ -347,6 +348,15 @@ def lint(spec):
                      f"'{str(spec.get('idea', ''))[:60]}'. The library only has ordinary places (cafe, office, bedroom, "
                      f"street, park, rooftop). Write the places the story actually needs in spec.settings "
                      f"(references/scene-dsl.md); keep `lib:` only where it really fits.")
+    # ---- places that look like places: a dressed set, not a floor box and a wall box ------------
+    for sid, st in (spec.get("settings") or {}).items():
+        if not isinstance(st, dict) or isinstance(st.get("set"), dict):
+            continue
+        objs = st.get("objects", [])
+        if len(objs) < 12:
+            notes.append(f"WARNING: setting '{sid}' has only {len(objs)} objects: close-ups will show an empty wall. "
+                         f"Start it from a set (\"set\": {{\"type\": \"room\", \"style\": \"bedroom\", \"time\": \"dusk\"}}, "
+                         f"or street / shopfront, references/set-design.md) and add the story's own objects on top.")
     empty = [sid for sid, v in sets.items() if not v]
     if empty:
         notes.append(f"WARNING: scene(s) {empty} have no setting.")
