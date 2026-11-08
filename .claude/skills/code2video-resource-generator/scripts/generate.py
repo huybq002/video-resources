@@ -68,12 +68,25 @@ if not a.skip_bg:
         if (ext is True or sid in ext) and (out / "assets" / f"bg_{sid}.png").exists(): continue     # keep the Gemini picture
         s = spec["settings"][sid]
         data = dict(s if isinstance(s, dict) else json.load(open(s, encoding="utf-8")))
+        if data.get("_lib"):                                             # angle variant of a library setting
+            _ang = data["_angle"]; data = dict(json.load(open(data["_lib"], encoding="utf-8")), _angle=_ang)
         data = sets.expand(data)                                         # {"set": {"type": "room", ...}} -> a dressed room/street
+        if data.get("_angle"):                                           # "angle": "high" (looking down) | "low" (looking up)
+            cam = dict(data["camera"]); P_, L_ = list(cam["pos"]), list(cam["look"])
+            room = (data.get("_kind") or {}).get("type") == "room"
+            if data["_angle"] == "high":     # inside a room stay under the ceiling (4 m) and look down at the floor
+                if room: P_[1] = 3.55; P_[2] -= 2.5; L_[1] = 0.0; L_[2] += 1.5
+                else: P_[1] += 4.2; P_[2] -= 1.2; L_[1] -= 1.4
+            else: P_[1] = 0.6; L_[1] += 1.3
+            cam["pos"], cam["look"] = P_, L_; data["camera"] = cam
+            data.pop("layers", None)      # one flat picture: from above, the near floor would cover the people
         _furn_src = dict(data)
         data["objects"] = furniture.expand(data.get("objects", []))      # {"t":"furn","n":"bed"} -> primitives
         if spec.get("aspect") == "9:16":                      # portrait: render 1080x1920 and pull the camera back to keep the scene readable
             data["width"], data["height"] = 1080, 1920; cam = dict(data["camera"]); lk = cam["look"]
-            cam["pos"] = [lk[i] + (cam["pos"][i] - lk[i]) * 1.4 for i in range(3)]; cam["fov"] = cam.get("fov", 40) + 6; data["camera"] = cam
+            cam["pos"] = [lk[i] + (cam["pos"][i] - lk[i]) * 1.4 for i in range(3)]; cam["fov"] = cam.get("fov", 40) + 6
+            if (data.get("_kind") or {}).get("type") == "room": cam["pos"][1] = min(cam["pos"][1], 3.6)   # stay under the ceiling
+            data["camera"] = cam
         (bgs / f"{sid}.json").write_text(json.dumps(data), encoding="utf-8")
         # where each furniture piece lands on screen, for lie@bed / sit@chair / place:phone@counter (anchors.py)
         _W, _H = (data.get("width", 1920), data.get("height", 1080))

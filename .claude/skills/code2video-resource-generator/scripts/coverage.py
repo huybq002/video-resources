@@ -16,6 +16,21 @@ def _sid(name):
     return "lib_" + name[4:] if isinstance(name, str) and name.startswith("lib:") else name
 
 PORTRAIT = [False]
+_base = lambda s: (s or "").split("__")[0]          # "bedroom__high" is the bedroom seen from another camera
+HANDHELD = {"phone", "photo", "ticket", "card", "cash", "document", "envelope", "key", "wallet", "receipt", "newspaper",
+            "calendar", "camera", "coins", "gift", "book", "letter", "laptop"}
+NUM_WORDS = {w: i + 1 for i, w in enumerate("one two three four five six seven eight nine ten eleven twelve".split())}
+
+
+def _time_in(text):
+    """'set for six' / 'at 6:30' / 'two in the morning' -> '6:00' / '6:30' / '2:00' (for the clock face)"""
+    import re as _re
+    m = _re.search(r"\b(\d{1,2})(?::(\d{2}))\b", text) or _re.search(r"\b(\d{1,2})\s*(?:a\.?m|p\.?m|o'clock)", text, _re.I)
+    if m:
+        return f"{int(m.group(1))}:{(m.group(2) if m.lastindex and m.lastindex >= 2 and m.group(2) else '00')}"
+    m = _re.search(r"\b(?:for|at|to|past|until|by)\s+(" + "|".join(NUM_WORDS) + r")\b", text, _re.I) or \
+        _re.search(r"\b(" + "|".join(NUM_WORDS) + r")\s+(?:o'clock|in the morning|at night|a\.?m|p\.?m)", text, _re.I)
+    return f"{NUM_WORDS[m.group(1).lower()]}:00" if m else None
 
 def _actor(a, default_flip=False):
     x, by, s = a.get("x", 960), a.get("by", 905), a.get("s", 0.82)
@@ -107,7 +122,7 @@ def dialogue(seq, rnd):
 
 MOOD_ACTS = {"warm": ["nod", "wave", "gesture", "happy"], "tense": ["look", "worry", "think", "shake"], "sad": ["sad", "look", "think", "shrug"], "funny": ["shrug", "happy", "reach", "surprise"]}
 
-BEAT_KEYS = ("at", "on", "shot", "focus", "do", "emote", "props", "crowd", "hud", "tag")
+BEAT_KEYS = ("at", "on", "shot", "focus", "do", "emote", "props", "crowd", "hud", "tag", "look", "spot", "angle", "plant", "payoff")
 
 # actions the rig can play (scripts/engine.js ACT) and the words people actually write for them
 KNOWN_ACTS = {"breathe", "bend", "nod", "shake", "think", "worry", "relief", "lean", "sad", "surprise", "wave", "stir",
@@ -187,9 +202,9 @@ def _apply_beat(shots, cue, focus_key):
     for sh in shots:      # continuity: a pose held from an earlier line, props left on furniture earlier in the scene
         for ch in sh.get("chars", []):
             held = STATE["pose"].get(ch["k"])
-            if held and held["setting"] == sh.get("setting") and not ch.get("anchor") and ch.get("by", 0) < (1900 if PORTRAIT[0] else 1060):
+            if held and _base(held["setting"]) == _base(sh.get("setting")) and not ch.get("anchor") and ch.get("by", 0) < (1900 if PORTRAIT[0] else 1060):
                 ch["anchor"] = dict(held)
-        for lp in STATE["left"].get(sh.get("setting"), []):
+        for lp in STATE["left"].get(_base(sh.get("setting")), []):
             sh.setdefault("props", []).append(dict(lp, mode="on"))
     if walked and fk:
         STATE["pose"][fk] = {"pose": "stand", "to": walked, "setting": shots[0].get("setting")}
@@ -204,7 +219,7 @@ def _apply_beat(shots, cue, focus_key):
     for pl in placed:
         shots[0].setdefault("props", []).append(dict(pl, hand=fk))
         if pl["mode"] == "place":
-            STATE["left"].setdefault(shots[0].get("setting"), []).append({"id": pl["id"], "at": pl["at"]})
+            STATE["left"].setdefault(_base(shots[0].get("setting")), []).append({"id": pl["id"], "at": pl["at"]})
     for sh in shots:
         if acts and focus_key: _set_acts(sh, focus_key, copy.deepcopy(acts))
         if cue.get("crowd") is False: sh["crowd"] = None
@@ -219,6 +234,19 @@ def _apply_beat(shots, cue, focus_key):
     if cue.get("hud") and any(isinstance(h, dict) and h.get("type") == "screen" for h in (cue["hud"] if isinstance(cue["hud"], list) else [cue["hud"]])):
         for sh in shots:
             if not sh.get("chars"): sh["props"] = [p_ for p_ in sh.get("props", []) if p_.get("id") not in ("phone", "laptop", "computer")]
+    # film looks (reference: flashbacks in warm sepia haze, night in cool blue, a single spotlight in the dark)
+    for sh in shots:
+        if cue.get("look"): sh["grade"] = cue["look"]
+        if cue.get("spot"): sh["spot"] = True
+        if cue.get("angle") in ("high", "low") and sh.get("chars"):
+            sh["setting"] = f"{_base(sh['setting'])}__{cue['angle']}"
+        if not sh.get("chars") and any(p_.get("id") in HANDHELD for p_ in sh.get("props", [])):
+            sh["pov"] = focus_key      # first-person insert: the hand that holds it comes in from the frame edge
+        if not sh.get("chars") and any(p_.get("id") == "clock" for p_ in sh.get("props", [])):
+            tm = _time_in(cue.get("t", ""))
+            if tm:                     # a clock face that shows the time the line says
+                sh["props"] = [p_ for p_ in sh["props"] if p_.get("id") != "clock"]
+                sh.setdefault("overlays", []).append({"type": "clock", "time": tm, "pos": "cc", "t": 0.1, "dur": 30})
     if cue.get("hud"):          # on-screen numbers, labels, title cards (chip / counter / burst / bubble / title)
         huds = cue["hud"] if isinstance(cue["hud"], list) else [cue["hud"]]
         shots[0].setdefault("overlays", []).extend(copy.deepcopy(h) for h in huds if isinstance(h, dict))
@@ -329,6 +357,12 @@ def expand(spec, spec_dir):
                     if pn["setting"].startswith("lib:"): pn["setting"] = reg(pn["setting"])
                 shots.append(item)
         sc["shots"] = shots
+    for sc in spec["scenes"]:     # camera-angle variants share the base setting, with another camera (generate.py)
+        for sh in sc["shots"]:
+            sid = sh.get("setting") or ""
+            if "__" in sid and sid not in settings and _base(sid) in settings:
+                b = settings[_base(sid)]
+                settings[sid] = dict(b, _angle=sid.split("__")[1]) if isinstance(b, dict) else {"_lib": b, "_angle": sid.split("__")[1]}
     for k, v in list(settings.items()):
         if isinstance(v, str) and not pathlib.Path(v).is_absolute(): settings[k] = str((spec_dir / v).resolve())
     spec["settings"] = settings

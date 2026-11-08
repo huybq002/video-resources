@@ -95,9 +95,10 @@ def _outfit(rnd, wardrobe_key, i, avoid=()):
 def plan(spec):
     """add extras to spec["cast"] and spec["extras_plan"] = {setting: [{"k", "role"}]}"""
     texts = _texts_by_setting(spec)
-    used = {sh.get("setting") for sc in spec.get("scenes", []) for sh in sc.get("shots", [])}
+    used_all = {sh.get("setting") for sc in spec.get("scenes", []) for sh in sc.get("shots", [])}
+    used = {(s or "").split("__")[0] for s in used_all if s} | set(used_all)
     plan_, cast_add = {}, []
-    for sid in sorted(s for s in used if s):
+    for sid in sorted(s for s in used if s and "__" not in s):
         k = _kind(spec.get("settings", {}).get(sid), None)
         if not k:
             continue
@@ -135,6 +136,9 @@ def plan(spec):
                 cast_add.append(c); items.append({"role": role, "k": cid})
         if items:
             plan_[sid] = items
+    for sid in used_all:
+        if sid and "__" in sid and sid.split("__")[0] in plan_:
+            plan_[sid] = plan_[sid.split("__")[0]]
     spec.setdefault("cast", []).extend(cast_add)
     spec["extras_plan"] = plan_
     return spec
@@ -227,7 +231,8 @@ def place(items, A, sh, W, H, dur, cast, main_chars, scale_at, ppm_at_y, find_al
             else:                                     # across the frame on the floor / the crosswalk
                 rows = A.get("_floor") or []
                 hero_by = min([m.get("by", H) for m in main_chars if m.get("by", H) < H] or [H * 0.86])
-                y = rnd.uniform(H * 0.56, max(H * 0.58, hero_by - 0.06 * H)) if role != "cross" else (A.get("_cross") or H * 0.78)
+                lo = max(H * 0.56, rows[0][0] + 0.02 * H if rows else 0, (sea["y1"] + 0.03 * H) if sea else 0)   # on the floor / the sand, never on a wall or in the sky
+                y = rnd.uniform(lo, max(lo + 0.02 * H, hero_by - 0.06 * H)) if role != "cross" else (A.get("_cross") or H * 0.78)
                 if role == "cross" and y > hero_by - 10:
                     continue
                 pp = ppm_at_y(A, y) or 120; direction = rnd.choice([-1, 1]); dx = direction * 1.3 * pp * dur

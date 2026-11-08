@@ -246,6 +246,10 @@
         tl.to(pr, { v: o.to, duration: Math.max(0.4, o.dur - 0.9), ease: "power2.out", onUpdate: () => { num.textContent = fmt(pr.v); } }, T + 0.25);
         tl.to(e, { opacity: 0, duration: 0.25 }, end - 0.25); }
       else if (o.type === "burst") { tl.fromTo(e, { opacity: 0, scale: 0.2, rotation: -14 }, { opacity: 1, scale: 1.12, rotation: -5, duration: 0.22, ease: "power3.out" }, T); tl.to(e, { scale: 1, duration: 0.15 }, T + 0.22); tl.to(e, { opacity: 0, scale: 0.9, duration: 0.18 }, end - 0.18); }
+      else if (o.type === "graph") { tl.fromTo(e, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" }, T);
+        const pl = e.querySelector("polyline"); if (pl && pl.getTotalLength) { const L = pl.getTotalLength(); gsap.set(pl, { strokeDasharray: L, strokeDashoffset: L }); tl.to(pl, { strokeDashoffset: 0, duration: Math.max(0.6, o.dur * 0.5), ease: "power2.out" }, T + 0.3); }
+        tl.to(e, { opacity: 0, duration: 0.25 }, end - 0.25); }
+      else if (o.type === "clock") { tl.fromTo(e, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.6)" }, T); tl.to(e, { opacity: 0, duration: 0.2 }, end - 0.2); }
       else if (o.type === "flash") { tl.fromTo(e, { opacity: 0.95 }, { opacity: 0, duration: Math.min(0.6, o.dur), ease: "power2.out" }, T); }
       else if (o.type === "speedlines") { tl.fromTo(e, { opacity: 0, scale: 1.25 }, { opacity: 0.85, scale: 1, duration: 0.18, ease: "power3.out" }, T);
         tl.to(e, { scale: 1.04, duration: 0.12, yoyo: true, repeat: Math.max(1, Math.floor((o.dur - 0.4) / 0.12)), ease: "none" }, T + 0.18); tl.to(e, { opacity: 0, duration: 0.2 }, end - 0.2); }

@@ -91,6 +91,11 @@ def main():
         sh = dict(sh); sh["chars"] = out_chars + list(sh.get("chars", [])); sh["vehicles"] = cars
         return sh
 
+    def _rim_col(sid):
+        st = spec.get("settings", {}).get((sid or "").split("__")[0])
+        tm = (st.get("set") or {}).get("time") if isinstance(st, dict) and isinstance(st.get("set"), dict) else None
+        return {"night": "rgba(150,195,255,.92)", "day": "rgba(255,240,215,.9)"}.get(tm, "rgba(255,214,160,.9)")
+
     def resolve(sh, dur=4.0):
         """put characters and props ON the furniture the line talks about (anchors.py)."""
         A = anchors_of(sh.get("setting"))
@@ -192,7 +197,7 @@ def main():
               for ch in pn["chars"]:
                 ccid = f"{dom}-{ch['k']}" if pn["idx"] is None else f"{dom}p{pn['idx']}-{ch['k']}"; s = ch.get("s", 0.8)
                 w, h = 400 * s, 800 * s; left, top = ch["x"] - w / 2, ch.get("by", 900) - 782 * s
-                flip = ("transform:scaleX(-1);" if ch.get("flip") else "") + (("filter:drop-shadow(-3px -2px 0 rgba(255,214,160,.9)) drop-shadow(0 0 5px rgba(255,190,130,.3));") if (ch.get("glow") or cast[ch["k"]].get("glow") or (spec.get("rim", True) and not ch.get("extra"))) else "")
+                flip = ("transform:scaleX(-1);" if ch.get("flip") else "") + ((f"filter:drop-shadow(-3px -2px 0 {_rim_col(sh.get('setting'))}) drop-shadow(0 0 5px rgba(255,190,130,.25));") if (ch.get("glow") or cast[ch["k"]].get("glow") or (spec.get("rim", True) and not ch.get("extra"))) else "")
                 if ch.get("extra"): flip += "filter:saturate(.8) brightness(.96);"
                 acts_ = ch.get("acts", [])
                 views_ = ["f"] + (["s"] if (ch.get("enter") is not None or ch.get("hold") == "sit" or ch.get("face") or (ch.get("path") or {}).get("view") == "s" or any(a_[1] in ("walkTo", "sit") or (a_[1] == "view" and a_[2] in ("side", "s")) for a_ in acts_)) else []) \
@@ -262,6 +267,22 @@ def main():
                     its = [html.escape(str(x)) for x in o.get("items", [])]
                     inner = "<span class='ch arrow'> &#8594; </span>".join(f"<span class='ch'>{x}</span>" for x in its)
                 elif ty == "flash": inner = ""       # white frame: impact, a power switching on, a time jump
+                elif ty == "graph":   # full-frame stat panel: "SUBJECT 11 - MAX  12.4x" with a rising line and labelled points
+                    pts_ = [float(v) for v in o.get("points", [1, 2, 3])]; lo, hi = min(pts_), max(pts_); n_ = max(1, len(pts_) - 1)
+                    gw, gh = (900, 420) if W > H else (820, 520)
+                    xy = [(40 + i * (gw - 80) / n_, gh - 40 - (v - lo) / ((hi - lo) or 1) * (gh - 100)) for i, v in enumerate(pts_)]
+                    col_ = {"up": "#ff6a6a", "down": "#3ccf9e"}.get(o.get("trend"), "#ffd27a")
+                    inner = (f"<div class='g-h'><span>{html.escape(o.get('title', ''))}</span><b style='color:{col_}'>{html.escape(str(o.get('value', '')))} {'&#9650;' if o.get('trend') == 'up' else ('&#9660;' if o.get('trend') == 'down' else '')}</b></div>"
+                             f"<div class='g-l'>{html.escape(o.get('label', ''))}</div><svg viewBox='0 0 {gw} {gh}' width='{gw}' height='{gh}'>"
+                             f"<polyline points='{' '.join(f'{x:.0f},{y:.0f}' for x, y in xy)}' fill='none' stroke='{col_}' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/>"
+                             + "".join(f"<text x='{x + 8:.0f}' y='{y - 12:.0f}' fill='#d9d2c0' font-size='26'>{html.escape(str(o.get('marks', pts_)[i]))}</text>" for i, (x, y) in enumerate(xy)) + "</svg>")
+                elif ty == "clock":   # an analog clock that shows the time the line says
+                    hh, mm = [int(x) for x in str(o.get("time", "6:00")).split(":")[:2]]
+                    ah, am = (hh % 12 + mm / 60) * 30, mm * 6
+                    inner = (f"<svg viewBox='0 0 300 300' width='{360 if W > H else 420}' height='{360 if W > H else 420}'><circle cx='150' cy='150' r='140' fill='#fbf8f1' stroke='#15121b' stroke-width='12'/>"
+                             + "".join(f"<line x1='150' y1='22' x2='150' y2='{44 if k % 3 == 0 else 36}' stroke='#15121b' stroke-width='{9 if k % 3 == 0 else 5}' transform='rotate({k * 30} 150 150)'/>" for k in range(12))
+                             + f"<line x1='150' y1='150' x2='150' y2='78' stroke='#15121b' stroke-width='12' stroke-linecap='round' transform='rotate({ah:.1f} 150 150)'/>"
+                             f"<line x1='150' y1='150' x2='150' y2='46' stroke='#15121b' stroke-width='7' stroke-linecap='round' transform='rotate({am:.1f} 150 150)'/><circle cx='150' cy='150' r='10' fill='#e35d4f'/></svg>")
                 elif ty == "speedlines":             # comic action lines rushing to the centre: the moment the power fires
                     import math as _m
                     cxs, cys = W / 2, H / 2
@@ -290,6 +311,30 @@ def main():
                 ov_data.append(dict(id=oid, type=ty, t=o.get("t", 0), dur=o.get("dur", 3), abs=("x" in o), **extra))
             rain = "".join(f"<div class='rain' style='left:{(i*97)%{W+40}-20}px;height:{70+(i*13)%60}px;opacity:0'></div>" for i in range(70)) if sh.get("rain") else ""
             rays = "<div class='rays'></div>" if sh.get("rays") else ""
+            GRADES = {"flashback": ("sepia(.5) saturate(.85) brightness(1.05) contrast(.94)", "radial-gradient(ellipse at 50% 45%, rgba(255,220,160,.10) 30%, rgba(70,38,12,.55) 100%)"),
+                      "night": ("saturate(.78) brightness(.9) hue-rotate(-6deg)", "linear-gradient(rgba(30,50,130,.22), rgba(10,14,40,.35))"),
+                      "tense": ("contrast(1.12) saturate(.8)", "radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0) 40%, rgba(0,0,0,.5) 100%)"),
+                      "dream": ("saturate(1.1) brightness(1.08) blur(.6px)", "radial-gradient(ellipse at 50% 50%, rgba(255,255,255,.12) 30%, rgba(160,140,255,.3) 100%)")}
+            grade = GRADES.get(sh.get("grade")); grade_css = f"filter:{grade[0]};" if grade else ""
+            if grade: rays += f"<div style='position:absolute;inset:0;pointer-events:none;background:{grade[1]}'></div>"
+            if sh.get("spot"):   # one cone of light on the person, darkness around (interrogation, a decision, a memory)
+                mc = next((c for c in sh.get("chars", []) if not c.get("extra")), None)
+                if mc:
+                    sx_, sy_ = mc["x"], mc.get("by", 900) - 420 * mc.get("s", 0.8); r_ = 520 * mc.get("s", 0.8)
+                    rays += (f"<div style='position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse {r_:.0f}px {r_ * 1.25:.0f}px at {sx_:.0f}px {sy_:.0f}px,"
+                             f" rgba(0,0,0,0) 0%, rgba(0,0,0,0) 55%, rgba(4,4,12,.78) 100%)'></div>"
+                             f"<div style='position:absolute;left:{sx_ - r_ * .5:.0f}px;top:0;width:{r_:.0f}px;height:{sy_ + r_:.0f}px;pointer-events:none;"
+                             f"background:linear-gradient(rgba(255,240,210,.18), rgba(255,240,210,0));clip-path:polygon(40% 0,60% 0,100% 100%,0 100%)'></div>")
+            if sh.get("pov") and sh.get("props"):   # first-person insert: an arm from the corner holds the object
+                pr0 = sh["props"][0]; hero = cast.get(sh["pov"]) or next((c for c in spec["cast"] if not c.get("narrator") and not c.get("extra")), {})
+                sl = hero.get("top_color", "#3e7cb1"); px_, py_ = pr0["x"], pr0["y"] + pr0.get("w", 170) * 0.15
+                ax, ay = W * 0.86, H * 1.12; aw = W * (0.06 if W > H else 0.1)   # forearm rising from the bottom edge, hand gripping the lower edge
+                rays += (f"<svg style='position:absolute;left:0;top:0;z-index:4000;pointer-events:none' width='{W}' height='{H}' viewBox='0 0 {W} {H}'>"
+                         f"<path d='M{ax:.0f} {ay:.0f} L{px_ + aw * .4:.0f} {py_ + aw * .5:.0f}' stroke='#15121b' stroke-width='{aw + 8:.0f}' stroke-linecap='round'/>"
+                         f"<path d='M{ax:.0f} {ay:.0f} L{px_ + aw * .4:.0f} {py_ + aw * .5:.0f}' stroke='{sl}' stroke-width='{aw:.0f}' stroke-linecap='round'/>"
+                         f"</svg><svg style='position:absolute;left:0;top:0;z-index:6000;pointer-events:none' width='{W}' height='{H}' viewBox='0 0 {W} {H}'>"
+                         f"<ellipse cx='{px_ + aw * .1:.0f}' cy='{py_ + aw * .15:.0f}' rx='{aw * .42:.0f}' ry='{aw * .3:.0f}' fill='#15121b'/>"
+                         f"<ellipse cx='{px_ - aw * .22:.0f}' cy='{py_ - aw * .02:.0f}' rx='{aw * .16:.0f}' ry='{aw * .1:.0f}' fill='#15121b' transform='rotate(-30 {px_ - aw * .22:.0f} {py_ - aw * .02:.0f})'/></svg>")
             cam = sh.get("cam", "push"); cam = CAMS[cam] if isinstance(cam, str) else cam
             foc = sh.get("focus")
             if foc and not sh.get("split"):   # zoom on a character's head (medium close-up 1.8, close-up 2.6, extreme 3.6)
@@ -330,7 +375,7 @@ def main():
             else:
                 scene_html = f"<img class='bg' style='{'filter:blur(1.5px);' if (foc and float((foc or {}).get('zoom', 1)) >= 2.2) else ''}' src='assets/bg_{sh['setting']}.png'>{''.join(veh_html)}{''.join(crowd_html)}{''.join(props_html)}{''.join(chars_html)}"
                 layers_data = None
-            shots_html.append(f"<div id='{dom}' class='shot' style='z-index:{si+1}'><div id='{dom}-sway' class='cam'><div id='{dom}-cam' class='cam'>{scene_html}</div></div>{rays}{rain}{''.join(ov_html)}</div>")
+            shots_html.append(f"<div id='{dom}' class='shot' style='z-index:{si+1}'><div id='{dom}-sway' class='cam'><div id='{dom}-cam' class='cam' style='{grade_css}'>{scene_html}</div></div>{rays}{rain}{''.join(ov_html)}</div>")
             d = dict(dom=dom, t0=round(t0, 3), t1=round(t1, 3), cam=cam, chars=chars_data, props=props_data, first=(si == 0), prev=prev,
                      cut=bool(sh.get("cut")), trans=sh.get("trans"), crowd=crowd_data, overlays=ov_data, vehicles=veh_data)
             lip = []
@@ -390,6 +435,11 @@ def main():
     {sel} .ov.bubble {{ width:560px; padding:20px 28px; border-radius:26px; background:#fff; color:#241726; font-size:34px; line-height:1.25; font-weight:700; box-sizing:border-box; box-shadow:0 6px 0 rgba(0,0,0,.25); }}
     {sel} .ov.chain {{ font-size:{64 if H > W else 72}px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#f6f0e4; text-shadow:0 4px 18px rgba(0,0,0,.55); text-align:center; }}
     {sel} .ov.chain .arrow {{ color:#ffd27a; }}
+    {sel} .ov.graph {{ padding:28px 36px; border-radius:22px; background:linear-gradient(#1c2a3e,#14202f); border:2px solid #2d4058; box-shadow:0 30px 80px rgba(0,0,0,.5); }}
+    {sel} .ov.graph .g-h {{ display:flex; justify-content:space-between; align-items:baseline; gap:40px; font-size:30px; letter-spacing:.08em; color:#aeb9c8; text-transform:uppercase; }}
+    {sel} .ov.graph .g-h b {{ font-size:56px; letter-spacing:0; }}
+    {sel} .ov.graph .g-l {{ font-size:20px; letter-spacing:.14em; color:#7f8ca0; text-transform:uppercase; margin-bottom:8px; }}
+    {sel} .ov.clock {{ filter:drop-shadow(0 20px 40px rgba(0,0,0,.45)); }}
     {sel} .ov.title {{ font-size:104px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; color:#ff9ad0; text-shadow:0 0 24px rgba(255,120,190,.7); text-align:center; max-width:1500px; }}
     {sel} .vig {{ position:absolute; inset:0; z-index:20; pointer-events:none; background:radial-gradient(ellipse at 50% 46%, transparent 52%, rgba(3,2,10,.62) 100%); }}
     {sel} .flash {{ position:absolute; inset:0; z-index:30; background:#fff; opacity:0; }}

@@ -63,3 +63,12 @@ question. Titles: "What If You ...?" with the number in it.
   pose holds across the cuts of the scene.
 - **First-person inserts**: a hand from the frame edge holding the object (a ticket, a phone) - an `insert` with the prop
   large and low in frame.
+
+
+## Devices from "One Second Felt Like Forever" (frame study 2026-11-08)
+- Flashbacks are graded warm and hazy (`"look": "flashback"`); night scenes get a cool blue rim on every figure (the rim
+  light now follows the setting's time of day).
+- A decision or a confession is lit by one cone of light in the dark (`"spot": true`).
+- Bedrooms and labs are also shown from above (`"angle": "high"`), and the hero from below in moments of power (`"low"`).
+- Objects are shown first-person: a hand from the frame edge holding the photo, the tablet, the phone (automatic on inserts).
+- Progress is a full-frame stat panel with a rising line and labelled points (`graph` HUD), the number big in the corner.

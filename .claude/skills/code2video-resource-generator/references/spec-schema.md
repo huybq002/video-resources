@@ -77,6 +77,14 @@ Acts for faces: `["t","turn", yaw, secs]` (0 front, ±0.5 three-quarter, ±1 ful
   //   "do": "walkTo@oven" (walks to stand beside it) | "place:phone@counter" (puts it down; it stays there for the scene) | "pickup:keys@table"
   //   A lie/sit pose is HELD across the following cuts of the scene until "stand" / "walkTo" / "run"; never write a bare
   //   "sleep" or "sit" when the setting has a bed/chair: the character would lie on the floor or stand in front of the desk.
+  // FILM DEVICES per line (from "One Second Felt Like Forever"):
+  //   "look": "flashback" | "night" | "tense" | "dream"   colour grade + haze for that line's shots (memories in warm sepia)
+  //   "spot": true                                         a single cone of light on the person, darkness around
+  //   "angle": "high" | "low"                              the same set from above (a bed seen from the ceiling) / from the floor
+  //   an "insert" of a handheld object (phone, photo, ticket, card, cash, key...) is drawn first-person: an arm in the
+  //   hero's sleeve colour comes in from the corner holding it; a clock insert shows the time the line says ("set for six")
+  //   HUD {"type":"graph","title":"Subject 11 - Max","label":"speed factor","points":[10,10.6,11.3,12.4],"marks":["MON",...],"value":"12.4x","trend":"up"}
+  //   HUD {"type":"clock","time":"6:00"}
   // per line:  "plant": "yellow_coat" ... later "payoff": "yellow_coat"   (spec_lint checks every plant is paid off)
   //   focus  cast key the camera favours
   //   do     an action or a list, played in order (about 1 s apart). FILM ACTIONS: "sit" "stand" "run:500" "jump:80"

@@ -212,7 +212,7 @@ def street(cfg, P, rnd):
     base = dict(sky=P["sky"], fog={"near": P["fog"][0] + 10, "far": P["fog"][1] + 60, "c": P["sky"][1]}, exposure=1.2,
                 ambient={"c": P["amb"][0], "i": P["amb"][1] * 1.1}, sun={"c": P["sun"], "i": 0.6, "pos": [-4, 8, -20]},
                 stars=120 if time == "night" else 0, camera={"pos": [1.2, 1.8, 10.5], "look": [0, 2.4, -20], "fov": 46},
-                layers=[9.0, 30.0])
+                layers=None)
     return base, o
 
 
@@ -245,7 +245,7 @@ def shopfront(cfg, P, rnd):
     o += _skyline(P, rnd, -50, 50, -40, -30, 10, 24, 0.1 if time != "day" else 0)
     base = dict(sky=P["sky"], fog={"near": 25, "far": 90, "c": P["sky"][1]}, exposure=1.2, stars=140 if time == "night" else 0,
                 ambient={"c": P["amb"][0], "i": P["amb"][1]}, sun={"c": P["sun"], "i": 0.4, "pos": [-6, 8, 6]},
-                camera={"pos": [0, 1.9, 11.5], "look": [0, 2.6, -5], "fov": 44}, layers=[10.0, 22.0])
+                camera={"pos": [0, 1.9, 11.5], "look": [0, 2.6, -5], "fov": 44}, layers=None)
     return base, o
 
 
@@ -268,7 +268,7 @@ def beach(cfg, P, rnd):
     o += _sky_and_sun(P, 0, -140, 300, 120, 6, 9 if time != "dusk" else 4, time)
     base = dict(sky=P["sky"] if time != "day" else ["#5aa6e8", "#d8eef8"], fog={"near": 40, "far": 160, "c": P["sky"][1]}, exposure=1.15,
                 ambient={"c": P["amb"][0], "i": P["amb"][1] * 1.1}, sun={"c": P["sun"], "i": 0.7, "pos": [-6, 10, 4]},
-                stars=120 if time == "night" else 0, camera={"pos": [0, 2.8, 10.0], "look": [0, 0.6, -20], "fov": 46}, layers=[4.5, 30.0])   # near layer stays empty: the hero's towel must not cover the hero
+                stars=120 if time == "night" else 0, camera={"pos": [0, 2.8, 10.0], "look": [0, 0.6, -20], "fov": 46}, layers=None)   # flat: distant swimmers and walkers must move with the picture (no parallax drift)
     return base, o
 
 
