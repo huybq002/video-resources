@@ -84,7 +84,7 @@ def main():
               for ch in pn["chars"]:
                 ccid = f"{dom}-{ch['k']}" if pn["idx"] is None else f"{dom}p{pn['idx']}-{ch['k']}"; s = ch.get("s", 0.8)
                 w, h = 400 * s, 800 * s; left, top = ch["x"] - w / 2, ch.get("by", 900) - 782 * s
-                flip = ("transform:scaleX(-1);" if ch.get("flip") else "") + ("filter:drop-shadow(0 0 7px rgba(255,205,150,.75));" if (ch.get("glow") or cast[ch["k"]].get("glow")) else "")
+                flip = ("transform:scaleX(-1);" if ch.get("flip") else "") + ("filter:drop-shadow(0 0 7px rgba(255,205,150,.75));" if (ch.get("glow") or cast[ch["k"]].get("glow") or spec.get("rim", True)) else "")
                 acts_ = ch.get("acts", [])
                 views_ = ["f"] + (["s"] if (ch.get("enter") is not None or any(a_[1] == "walkTo" or (a_[1] == "view" and a_[2] in ("side", "s")) for a_ in acts_)) else []) \
                                  + (["b"] if any(a_[1] == "view" and a_[2] in ("back", "b") for a_ in acts_) else [])
@@ -132,6 +132,15 @@ def main():
                 elif ty == "counter": inner = f"<div class='num' id='{oid}-n'></div><div class='lbl'>{html.escape(o.get('label', ''))}</div>"
                 elif ty == "burst": inner = html.escape(o["text"])
                 elif ty in ("bubble", "title"): inner = "".join(f"<span class='ch'>{html.escape(ch)}</span>" for ch in o["text"])
+                elif ty == "screen":
+                    tr = o.get("trend")
+                    pts = {"up": "0,90 60,82 120,86 180,70 240,74 300,40 360,8", "down": "0,10 60,22 120,16 180,44 240,40 300,70 360,92",
+                           "flat": "0,50 60,48 120,52 180,49 240,51 300,50 360,49"}.get(tr, "")
+                    colr = {"up": "#3ccf6e", "down": "#ff5a5a"}.get(tr, "#9aa3ad")
+                    inner = (f"<div class='scr-h'><span class='dot'></span>{html.escape(o.get('app', ''))}</div>"
+                             f"<div class='scr-l'>{html.escape(o.get('label', ''))}</div>"
+                             f"<div class='scr-v' style='color:{colr if tr else '#f6f0e4'}'>{html.escape(str(o.get('value', '')))}</div>"
+                             + (f"<svg class='scr-c' viewBox='0 0 360 100'><polyline points='{pts}' fill='none' stroke='{colr}' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/></svg>" if pts else ""))
                 top_css = "160px" if (spec.get("letterbox") and pos[0] == "t") else "%s%%" % POS[pos[0]]
                 if "x" in o:   # absolute centre placement
                     ov_html.append(f"<div class='ovabs' style='left:{o['x']}px;top:{o['y']}px'><div id='{oid}' class='{cls}' style='opacity:0'>{inner}</div></div>")
@@ -161,7 +170,10 @@ def main():
                 scene_html = "".join(parts) + "<div class='pdiv'></div>" + "".join(crowd_html) + "".join(props_html)
             _ext = spec.get("external_bg", []); _ext = _ext is True or sh["setting"] in _ext
             layered = all((assets / f"bg_{sh['setting']}{suf}.png").exists() for suf in ("_far", "_mid", "_near")) and not sh.get("flat") and not _ext
-            dof_far = "filter:blur(8px);" if (sh.get("dof") or foc) else ""; dof_mid = "filter:blur(3px);" if (sh.get("dof") or foc) else ""
+            # depth of field only on a real close-up (zoom >= 2.2) or when a shot asks for it, and gently:
+            # blurring the setting on every medium shot turned the story's places into colour blocks
+            close = bool(foc) and float((foc or {}).get("zoom", 1)) >= 2.2
+            dof_far = "filter:blur(2.5px);" if (sh.get("dof") or close) else ""; dof_mid = "filter:blur(1px);" if (sh.get("dof") or close) else ""
             if panes_data:
                 layers_data = None
             elif layered:
@@ -171,7 +183,7 @@ def main():
                               f"<img id='{lid('L2')}' class='bg lay' src='assets/bg_{sh['setting']}_near.png'>")
                 layers_data = [dict(dom=lid("L0"), k=0.35 if not foc else 0.6), dict(dom=lid("L1"), k=0.7 if not foc else 0.85), dict(dom=lid("chars"), k=0.85 if not foc else 1.0), dict(dom=lid("L2"), k=1.2)]
             else:
-                scene_html = f"<img class='bg' style='{'filter:blur(5px);' if foc else ''}' src='assets/bg_{sh['setting']}.png'>{''.join(crowd_html)}{''.join(props_html)}{''.join(chars_html)}"
+                scene_html = f"<img class='bg' style='{'filter:blur(1.5px);' if (foc and float((foc or {}).get('zoom', 1)) >= 2.2) else ''}' src='assets/bg_{sh['setting']}.png'>{''.join(crowd_html)}{''.join(props_html)}{''.join(chars_html)}"
                 layers_data = None
             shots_html.append(f"<div id='{dom}' class='shot' style='z-index:{si+1}'><div id='{dom}-sway' class='cam'><div id='{dom}-cam' class='cam'>{scene_html}</div></div>{rays}{rain}{''.join(ov_html)}</div>")
             d = dict(dom=dom, t0=round(t0, 3), t1=round(t1, 3), cam=cam, chars=chars_data, props=props_data, first=(si == 0), prev=prev,
@@ -220,6 +232,12 @@ def main():
     {sel} .ovw {{ position:absolute; left:0; right:0; display:flex; padding:0 72px; z-index:22; pointer-events:none; box-sizing:border-box; }}
     {sel} .ovabs {{ position:absolute; width:0; height:0; z-index:22; pointer-events:none; }}
     {sel} .ov.chip {{ padding:10px 26px; border-radius:999px; background:rgba(8,10,24,.72); border:1.5px solid rgba(255,255,255,.35); color:#f6f0e4; font-size:28px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; white-space:nowrap; }}
+    {sel} .ov.screen {{ width:{560 if H > W else 760}px; padding:26px 34px 30px; border-radius:26px; background:#10141d; border:3px solid #2b3240; box-shadow:0 30px 80px rgba(0,0,0,.55); color:#f6f0e4; }}
+    {sel} .ov.screen .scr-h {{ display:flex; align-items:center; gap:12px; font-size:24px; letter-spacing:.08em; color:#aeb6c2; text-transform:uppercase; }}
+    {sel} .ov.screen .dot {{ width:18px; height:18px; border-radius:50%; background:#3ccf6e; display:inline-block; }}
+    {sel} .ov.screen .scr-l {{ margin-top:18px; font-size:28px; color:#cfd6e0; }}
+    {sel} .ov.screen .scr-v {{ font-size:{84 if H > W else 96}px; font-weight:700; line-height:1.05; font-variant-numeric:tabular-nums; }}
+    {sel} .ov.screen .scr-c {{ width:100%; height:110px; margin-top:14px; }}
     {sel} .ov.counter {{ padding:12px 34px 14px; border-radius:18px; background:rgba(8,10,24,.74); border:1.5px solid rgba(232,184,74,.55); text-align:center; }}
     {sel} .ov.counter .num {{ font-size:78px; font-weight:700; color:#f0c75a; text-shadow:0 0 22px rgba(240,199,90,.55); font-variant-numeric:tabular-nums; line-height:1.05; }}
     {sel} .ov.counter .lbl {{ font-size:22px; letter-spacing:.14em; text-transform:uppercase; color:#d9d2c0; }}
@@ -229,7 +247,7 @@ def main():
     {sel} .vig {{ position:absolute; inset:0; z-index:20; pointer-events:none; background:radial-gradient(ellipse at 50% 46%, transparent 52%, rgba(3,2,10,.62) 100%); }}
     {sel} .flash {{ position:absolute; inset:0; z-index:30; background:#fff; opacity:0; }}
     {sel} .caption {{ position:absolute; left:{6 if H > W else 8}%; right:{6 if H > W else 8}%; bottom:{16 if H > W else 5.5}%; z-index:40; display:grid; place-items:center; text-align:center; opacity:0; }}
-    {sel} .caption span {{ max-width:{980 if H > W else 1500}px; padding:14px 32px; border-radius:14px; background:rgba(8,6,16,.66); color:#f6f0e4; font-size:{62 if H > W else 54}px; line-height:1.25; font-weight:700; text-shadow:0 2px 6px #000; }}
+    {sel} .caption span {{ max-width:{980 if H > W else 1500}px; padding:14px 32px; border-radius:14px; background:rgba(8,6,16,.66); color:#f6f0e4; font-size:{62 if H > W else 44}px; line-height:1.25; font-weight:700; text-shadow:0 2px 6px #000; }}
     """
         lb_html = "<div class='lb' data-layout-allow-occlusion='true' style='top:0'></div><div class='lb' data-layout-allow-occlusion='true' style='bottom:0'></div>" if spec.get("letterbox") else ""
         script = engine.replace("__DATA__", data.replace("</", "<\\/"))

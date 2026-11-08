@@ -59,7 +59,8 @@ jobs:
                saying what it was and that no code change can fix it, commit that, and stop.
             2. Otherwise make the smallest fix. You may edit ONLY: Dockerfile, .dockerignore, requirements.txt, scripts/, tools/code2video/,
                .claude/skills/, templates/, tasks/README.md, data/known-issues.md, channel.json.
-               Never edit .github/ (including this file), secrets, or tasks/pending files.
+               Never edit .github/ (including this file), secrets, tasks/pending files, data/approval.json,
+               scripts/skill_hash.py or scripts/approve_demo.py (only the owner approves how videos look).
             3. Check what you can locally (python -m py_compile, YAML/JSON parse, pytest for tools/code2video if you touched it).
             4. Make it not happen again, not just this once: prefer a real fix in the script or Dockerfile over a
                retry or a wider timeout, and where the same input could break it again, add the check that catches

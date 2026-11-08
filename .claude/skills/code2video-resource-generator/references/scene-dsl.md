@@ -20,6 +20,15 @@ World units are metres; ground y=0; camera looks toward −z. Objects sit on the
   ] }
 ```
 
+**Furniture — use it, a room is recognised by its furniture, not by its wall colour.**
+`{"t":"furn","n":"bed","x":1.5,"z":-5,"ry":0.3,"s":1,"c":"#5b6f9a","c2":"#8a5a3c"}` expands into primitives (`scripts/furniture.py`).
+Names: `bed bedside_table desk computer chair sofa table bookshelf kitchen_counter oven fridge window night_window door tv
+lamp_floor plant rug picture wall_clock shop_counter shelf_goods car bench trash_bin building street_sign fence crate barrel whiteboard`.
+A bedroom has a bed (+ bedside_table, night_window, rug); a kitchen has kitchen_counter + oven + fridge; an office has desk +
+computer + chair; a shop has shop_counter + shelf_goods; a living room has sofa + tv + lamp_floor. Put the key piece where the
+camera sees it (z between -3 and -7, x within ±3), keep the lower middle free for the characters. `spec_lint.py` fails a line
+that talks about sleeping, cooking, a desk, a shop... when its setting does not contain the matching furniture.
+
 Depth layers (parallax like the reference videos): add `"layers": [11, 22]` = split distances in metres from the camera. The renderer then also writes `bg_<id>_far.png` (the full opaque scene, so no holes ever show when layers slide apart), `_mid.png`, `_near.png` (transparent, foreground); the build stacks far → mid → characters → near and moves them at 0.35× / 0.7× / 0.85× / 1.2× of the camera move, so push-ins and pans have real depth. Put foreground props closer than d1 (small fences, plants, posts), buildings between d1 and d2, backdrop beyond d2. Skip `layers` for interiors whose walls are < 12 m away.
 
 Tips

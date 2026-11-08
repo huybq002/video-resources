@@ -5,6 +5,7 @@ Video resources and nightly automation (HyperFrames, YouTube).
 - `channel.json`: **the only file you edit.** Niche, audience, seed keywords, formats, what to avoid.
 - `tasks/pending/`: tasks to run (see `tasks/README.md`). Leave it empty and the job researches the market and writes the next task itself.
 - `data/ideas.md`: the researched idea backlog; `data/research/latest.md`: last night's market digest.
+- `data/approval.json`: the approved look. Until it matches `scripts/skill_hash.py`, nights make a short **demo** for you to approve (`scripts/approve_demo.py`), not full videos.
 - `reports/YYYY-MM-DD.md`: **read this first each morning**: tonight's video, what research found, every pipeline improvement, what could not be verified. Improvements arrive as a pull request (or a compare link) on branch `improve/YYYY-MM-DD`; nothing reaches `main` without you.
 - `data/learnings.md`: dated, evidenced findings that justify any change to the writing rules.
 - `data/platform-policy.md`: the YouTube/TikTok rules the pipeline obeys, refreshed weekly by the job.

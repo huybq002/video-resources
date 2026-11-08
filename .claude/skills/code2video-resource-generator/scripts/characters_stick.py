@@ -32,7 +32,12 @@ def lerp(a, b, t): return (a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t)
 
 def wardrobe(c):
     top = c.get("top") or ("coat" if c.get("coat") else "shirt")
-    bottom = c.get("bottom") or ("none" if top in ("dress", "coat") else "pants")   # long garments cover the hips: only the garment + thin bare legs
+    # House rule (owner, 2026-11-08): every character is a full stick figure. No long trousers for anyone:
+    # the hip of a trouser under a top never reads well at this scale. Bare thin legs by default, shorts
+    # or a skirt only when asked; a "pants" request is drawn as bare legs.
+    bottom = c.get("bottom") or "none"
+    if bottom == "pants":
+        bottom = "none"
     return dict(
         top=top, bottom=bottom, shoes=c.get("shoes", "sneakers"),
         top_color=c.get("top_color") or c.get("shirt") or "#5b6f9a", top2=c.get("top2") or "#f2efe6",
@@ -148,17 +153,33 @@ def figure(pid, gid, c, view="front"):
         else: S, E, Wr = (200 + sg * (sw + 4), 318), (200 + sg * (sw + 10), 414), (200 + sg * (sw + 15), 498)
         col = tc if near else dark(tc, .22)
         line = lambda a, b: f'<path d="M{a[0]} {a[1]} L{b[0]} {b[1]}" stroke="{INK}" stroke-width="9" fill="none" stroke-linecap="round"/>'
-        up = line(S, E)
-        if sleeve == "short": mid = lerp(S, E, .6); up += f'<path d="{taper(S, mid, 34, 30)}" fill="{col}" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/><circle cx="{S[0]}" cy="{S[1]}" r="17" fill="{col}"/>'
-        elif sleeve == "long": up += f'<path d="{taper(S, E, 30, 26)}" fill="{col}" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/><circle cx="{S[0]}" cy="{S[1]}" r="15" fill="{col}"/><circle cx="{E[0]}" cy="{E[1]}" r="13" fill="{col}" stroke="{INK}" stroke-width="4"/>'
-        up += f'<circle cx="{E[0]}" cy="{E[1]}" r="{6 if sleeve != "long" else 0.1}" fill="{INK}"/>'
+        # Smooth, jointless limbs (owner, 2026-11-08, after the IfverseTales reference): a sleeve is a round-capped
+        # tube, not two outlined polygons. Ink layers go under the colour layers, and the upper sleeve's colour is
+        # drawn AFTER the forearm group, so the elbow has no seam, no ring and no joint dot; only the silhouette is inked.
+        def tube(a, b, w, colour):
+            ink_ = f'<path d="M{a[0]} {a[1]} L{b[0]} {b[1]}" stroke="{INK}" stroke-width="{w + 6}" stroke-linecap="round" fill="none"/>'
+            col_ = f'<path d="M{a[0]} {a[1]} L{b[0]} {b[1]}" stroke="{colour}" stroke-width="{w - 2}" stroke-linecap="round" fill="none"/>'
+            return ink_, col_
+        up, up_top = "", ""
+        if sleeve == "long":
+            ui, uc = tube(S, E, 28, col)
+            up = ui
+            up_top = uc + f'<circle cx="{S[0]}" cy="{S[1]}" r="14" fill="{col}"/>'
+        elif sleeve == "short":
+            mid = lerp(S, E, .6); ui, uc = tube(S, mid, 30, col)
+            up = line(S, E) + ui
+            up_top = uc + f'<circle cx="{S[0]}" cy="{S[1]}" r="15" fill="{col}"/>'
+        else:
+            up = line(S, E)
         fo = line(E, Wr)
-        if sleeve == "long": fo += f'<path d="{taper(E, lerp(E, Wr, .9), 26, 22)}" fill="{col}" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/><path d="{taper(lerp(E, Wr, .78), lerp(E, Wr, .92), 25, 24)}" fill="{dark(col, .25)}"/>'
+        if sleeve == "long":
+            fi, fc = tube(E, lerp(E, Wr, .88), 25, col)
+            fo += fi + fc + f'<path d="M{lerp(E, Wr, .8)[0]} {lerp(E, Wr, .8)[1]} L{lerp(E, Wr, .9)[0]} {lerp(E, Wr, .9)[1]}" stroke="{dark(col, .22)}" stroke-width="22" fill="none"/>'
         watch = ''
         if c.get("watch") and sd == "l" and not side and not back:
             watch = f'<g id="{pid}-watch"><circle cx="{Wr[0]}" cy="{Wr[1]-12}" r="12" fill="#f4efe0" stroke="{INK}" stroke-width="4"/><path d="M{Wr[0]} {Wr[1]-12} L{Wr[0]} {Wr[1]-21} M{Wr[0]} {Wr[1]-12} L{Wr[0]-5} {Wr[1]-7}" stroke="{INK}" stroke-width="3" stroke-linecap="round"/></g>'
         hand = f'<circle cx="{Wr[0]}" cy="{Wr[1]+9}" r="9" fill="{INK}"/>'
-        return f'<g id="{pid}-arm-{sd}">{up}<g id="{pid}-forearm-{sd}">{fo}{hand}{watch}</g></g>'
+        return f'<g id="{pid}-arm-{sd}">{up}<g id="{pid}-forearm-{sd}">{fo}{hand}{watch}</g>{up_top}</g>'
     # ---------------------------------------------------------------- legs
     # The legs hang from the hem of whatever covers the hips, never from a fixed y: a gap between the
     # garment and the legs makes the figure look cut in half, and a pelvis that pokes out below the hem

@@ -137,6 +137,189 @@ def _script_text(spec):
     return " ".join(out)
 
 
+# ---- lines must match what is on screen --------------------------------------------------------------
+# A word in the line -> what must be visible for that line: furniture in its setting, or a prop.
+PLACE_NEEDS = [
+    (r"\b(sleeps|slept|sleeping|asleep|in bed|to bed|bed|bedroom|naps?|napping|insomnia|pillow|lies? awake|lay awake|wakes? up|woke( up)?)\b|đang ngủ|đi ngủ|giường|phòng ngủ", {"bed"}, "a bed"),
+    (r"\b(kitchen|cook\w*|oven|bak(e|ed|ing)|fridge|stove)\b|nhà bếp|nấu|lò nướng|tủ lạnh", {"oven", "kitchen_counter", "fridge"}, "a kitchen (oven / counter / fridge)"),
+    (r"\b(office|desk|boss|meeting|spreadsheet|inbox|work(ed|ing)? late)\b|văn phòng|bàn làm việc|sếp|cuộc họp", {"desk", "computer"}, "a desk or a computer"),
+    (r"\b(shop|store|supermarket|cashier|checkout|aisle)\b|cửa hàng|siêu thị|thu ngân", {"shop_counter", "shelf_goods"}, "a shop counter or shelves"),
+    (r"\b(sofa|couch|television|tv)\b|ghế sofa|ti vi|tivi", {"sofa", "tv"}, "a sofa or a TV"),
+    (r"\b(classroom|whiteboard|lecture)\b|lớp học|bảng trắng", {"whiteboard"}, "a whiteboard"),
+    (r"\b(library|bookshelf|bookshelves)\b|thư viện|giá sách", {"bookshelf"}, "a bookshelf"),
+    (r"\b(drive|drove|driving|car|traffic)\b|lái xe|ô tô|xe hơi", {"car"}, "a car"),
+    (r"\b(window|stares? out|looks? out)\b|cửa sổ", {"window", "night_window"}, "a window"),
+]
+PROP_NEEDS = [
+    (r"\b(phone|texts?|texted|messaged?|notifications?|rang|buzz\w*)\b|điện thoại|tin nhắn", {"phone"}),
+    (r"\b(laptop)\b|máy tính xách tay", {"laptop"}),
+    (r"\b(coffee|latte|espresso)\b|cà phê", {"coffee"}),
+    (r"\b(cash|banknotes?|dollars?|bucks|salary|paycheck|paid)\b|tiền mặt|lương", {"cash", "coins", "moneybag", "wallet", "card"}),
+    (r"\b(credit card|debit card|card declined)\b|thẻ tín dụng", {"card"}),
+    (r"\b(coins?|small change)\b|đồng xu", {"coins"}),
+    (r"\b(savings?|piggy bank|saved up)\b|tiết kiệm|heo đất", {"piggybank", "coins", "moneybag"}),
+    (r"\b(receipts?|invoices?|bills?)\b|hóa đơn", {"receipt", "document"}),
+    (r"\b(stock|shares?|price) (rose|soared|went up|doubled)\b|tăng giá", {"chart_up"}),
+    (r"\b(crash\w*|plunged|plummet\w*|lost (half|everything)|went down)\b|sụp đổ|mất trắng", {"chart_down"}),
+    (r"\b(clock|o'clock|midnight|deadline)\b|đồng hồ|nửa đêm|hạn chót", {"clock", "calendar", "wall_clock"}),
+    (r"\b(calendar|monday|tuesday|wednesday|thursday|friday|weekend)\b|lịch|thứ hai", {"calendar"}),
+    (r"\b(idea|realis(e|ed|es)|realiz(e|ed|es)|figured (it )?out|it clicked)\b|ý tưởng|nhận ra", {"lightbulb"}),
+    (r"\b(letter|envelope|mail)\b|lá thư|phong bì", {"envelope"}),
+    (r"\b(keys?|unlock\w*)\b|chìa khóa", {"key", "lock"}),
+    (r"\b(photo(graph)?s?|picture of)\b|bức ảnh|tấm ảnh", {"photo", "camera", "picture"}),
+    (r"\b(document|contract|report|form|paperwork)\b|tài liệu|hợp đồng|báo cáo", {"document"}),
+    (r"\b(newspaper|headline)\b|tờ báo", {"newspaper"}),
+    (r"\b(gift|present for)\b|món quà", {"gift"}),
+    (r"\b(wallet)\b|ví tiền|cái ví", {"wallet"}),
+    (r"\b(shopping|shopping bags?)\b|mua sắm", {"shopping_bag"}),
+    (r"\b(pizza)\b", {"pizza"}),
+    (r"\b(book|novel)\b|cuốn sách|quyển sách", {"book", "bookshelf"}),
+]
+# verbs in the line -> the action the character must perform on that line (beat "do")
+ACTION_NEEDS = [
+    (r"\b(sits?|sat|sitting|takes a seat)\b|ngồi", {"sit"}),
+    (r"\b(stands? up|gets? up|got up|rises)\b|đứng dậy", {"stand"}),
+    (r"\b(runs?|ran|running|rushes|rushed|sprints?|races? (to|out|home))\b|chạy", {"run"}),
+    (r"\b(jumps?|jumped|leaps?|leapt)\b|nhảy", {"jump"}),
+    (r"\b(falls? (down|over|asleep)?|fell|trips?|tripped|collapses?|collapsed|faints?|fainted)\b|ngã|té|ngất", {"fall", "lie", "sleep"}),
+    (r"\b(lies? down|lay down|goes to bed|went to bed|falls asleep|fell asleep|asleep|sleeping)\b|nằm|đi ngủ|ngủ thiếp", {"lie", "sleep"}),
+    (r"\b(walks?|walked|walking|steps? (in|out|into|over)|heads? (to|for|home)|crosses)\b|đi bộ|bước", {"walkTo", "walk", "run"}),
+    (r"\b(picks? up|picked up|grabs?|grabbed)\b|nhặt|chộp", {"pickup", "reach"}),
+    (r"\b(types?|typed|typing)\b|gõ phím", {"type"}),
+    (r"\b(drinks?|drank|sips?|sipped)\b|uống|nhấp", {"drink"}),
+    (r"\b(calls? (him|her|them|back|home)|on the phone|answers? the phone|picks up the phone)\b|gọi điện|nghe máy", {"phone"}),
+    (r"\b(throws?|threw|tosses|tossed|hurls?)\b|ném|quăng", {"throw"}),
+    (r"\b(hides?|hid|hiding|ducks?|ducked|crouch\w*)\b|trốn|nấp", {"crouch"}),
+    (r"\b(panics?|panicked|screams?|screamed)\b|hoảng|la hét", {"panic"}),
+    (r"\b(waves?|waved)\b|vẫy tay", {"wave"}),
+    (r"\b(points? at|pointed at)\b|chỉ tay", {"point"}),
+    (r"\b(laughs?|laughed)\b|cười lớn", {"laugh"}),
+    (r"\b(cries|cried|crying|sobs?|in tears)\b|khóc", {"cry"}),
+    (r"\b(shrugs?|shrugged)\b|nhún vai", {"shrug"}),
+    (r"\b(nods?|nodded)\b|gật đầu", {"nod"}),
+    (r"\b(cheers?|celebrates?|celebrated)\b|ăn mừng|reo hò", {"cheer"}),
+]
+ACT_WORDS = {"sits": "sit", "sitdown": "sit", "stands": "stand", "getup": "stand", "runs": "run", "rush": "run", "sprint": "run",
+             "jumps": "jump", "leap": "jump", "falls": "fall", "trip": "fall", "faint": "fall", "collapse": "fall",
+             "liedown": "lie", "sleeps": "sleep", "nap": "sleep", "pick": "pickup", "grab": "pickup", "types": "type",
+             "typing": "type", "drinks": "drink", "sip": "drink", "call": "phone", "calls": "phone", "throws": "throw",
+             "toss": "throw", "hide": "crouch", "duck": "crouch", "scream": "panic", "walks": "walkTo", "walkto": "walkTo"}
+
+
+def _beat_acts(beat):
+    out = set()
+    for d in ([beat["do"]] if isinstance(beat.get("do"), str) else beat.get("do", []) or []):
+        n = str(d).split(":")[0].strip()
+        out.add(ACT_WORDS.get(n.lower(), n))
+    return out
+
+
+# library settings and what they contain
+LIB_HAS = {"bedroom_night": {"bed", "window", "night_window"}, "office": {"desk", "computer"},
+           "cafe": {"table", "coffee"}, "street_day": {"car", "building"}, "park_dusk": {"bench"},
+           "rooftop_night": {"building"}}
+
+
+def _setting_has(spec, sid):
+    if not sid:
+        return set()
+    if str(sid).startswith("lib:"):
+        return LIB_HAS.get(str(sid)[4:], set())
+    st = spec.get("settings", {}).get(sid)
+    if isinstance(st, dict):
+        return {o.get("n") for o in st.get("objects", []) if o.get("t") == "furn"}
+    return set()
+
+
+def script_visual_match(spec):
+    """Every line that names a place or an object must be shot where that place or object is visible."""
+    notes, misses = [], []
+    for sc in spec.get("scenes", []):
+        for item in sc.get("shots", []):
+            seq = item.get("sequence")
+            if not seq:
+                continue
+            seq_sets = [x for x in list(seq.get("settings", [])) + [seq.get("setting")] if x]
+            seq_props = {p if isinstance(p, str) else p.get("id") for p in seq.get("props", []) or []}
+            lines = list(seq.get("cues", [])) + list(seq.get("lines", []))
+            bare_run, last_state, beats = 0, None, 0
+            for li, ln in enumerate(lines, 1):
+                text = ln if isinstance(ln, str) else ln.get("t", "")
+                beat = ln if isinstance(ln, dict) else {}
+                has_beat = any(k in beat for k in ("at", "on", "do", "emote", "props", "shot"))
+                beats += 1 if has_beat else 0
+                sets = [beat["at"]] if beat.get("at") else seq_sets
+                have = set().union(*[_setting_has(spec, x) for x in sets]) if sets else set()
+                props = seq_props | {p if isinstance(p, str) else p.get("id") for p in beat.get("props", []) or []}
+                where = f"scene {sc.get('id')} line {li} ({text[:42]!r})"
+                for rx, need, what in PLACE_NEEDS:
+                    m = re.search(rx, text, re.I)
+                    if m and not (have & need):
+                        misses.append(f"{where} says '{m.group(0)}' but its setting {sets or '?'} does not show {what}: "
+                                      f"shoot that line in a setting that has one (line \"at\", furniture in scene-dsl.md)")
+                acts = _beat_acts(beat)
+                for rx, need in ACTION_NEEDS:
+                    m = re.search(rx, text, re.I)
+                    if m and not (acts & need):
+                        misses.append(f"{where} says '{m.group(0)}' but nobody does it on screen: "
+                                      f"add \"do\": \"{sorted(need)[0]}\" to that line (actions: spec-schema.md)")
+                for rx, need in PROP_NEEDS:
+                    m = re.search(rx, text, re.I)
+                    if m and not (props & need) and not (have & need):
+                        misses.append(f"{where} says '{m.group(0)}' but nothing on screen shows it: "
+                                      f"add \"props\": [\"{sorted(need)[0]}\"] to that line")
+                state = (beat.get("at") or tuple(seq_sets), tuple(beat.get("on") or ()))
+                bare_run = bare_run + 1 if (state == last_state and not has_beat) else 1
+                last_state = state
+                if bare_run == 3:
+                    notes.append(f"WARNING: {where}: three lines in a row with the same place, the same people and no "
+                                 f"action or object while the words move on. Give each line its own beat "
+                                 f"(\"at\", \"on\", \"do\", \"props\", \"shot\").")
+            if len(lines) >= 4 and beats < len(lines) / 2:
+                notes.append(f"WARNING: scene {sc.get('id')}: only {beats} of {len(lines)} lines say what is on screen. "
+                             f"Write a visual beat for at least every other line, so the picture follows the words.")
+    if misses:
+        shown = misses[:12]
+        notes += [f"WARNING: {m}" for m in shown]
+        if len(misses) > len(shown):
+            notes.append(f"WARNING: ... and {len(misses) - len(shown)} more lines whose words are not on screen.")
+    return notes
+
+
+
+NUMBER = re.compile(r"\b(\d[\d,.]*\s*(%|percent|dollars?|hours?|minutes?|seconds?|days?|years?|x|times)?|"
+                    r"(one|two|three|four|five|six|seven|eight|nine|ten|twelve|twenty|thirty|forty|fifty|hundred|thousand|million)"
+                    r"\s+(percent|dollars|hours|minutes|seconds|days|years|times))\b", re.I)
+
+
+def film_pace(spec):
+    """Pace like the reference films: IfverseTales cuts every 2.8 s (top video) to 5.2 s; ours ran 7.9 s.
+    A number the narrator says is shown on screen (counter / chip), the way they show '0.25 s' or 'LEVEL 1'."""
+    notes, no_hud = [], []
+    for sc in spec.get("scenes", []):
+        t = float(sc.get("target_s") or 0)
+        shots = 0
+        for item in sc.get("shots", []):
+            seq = item.get("sequence")
+            if not seq:
+                shots += 1
+                continue
+            for ln in list(seq.get("cues", [])) + list(seq.get("lines", [])):
+                text = ln if isinstance(ln, str) else ln.get("t", "")
+                beat = ln if isinstance(ln, dict) else {}
+                n = len(text.split())
+                shots += 1 + (1 if (n > 9 or (beat.get("props") and n >= 8 and not beat.get("shot"))) else 0)
+                if NUMBER.search(text) and not beat.get("hud"):
+                    no_hud.append(f"scene {sc.get('id')} ({text[:40]!r})")
+        if t and shots and t / shots > 4.5:
+            notes.append(f"WARNING: scene {sc.get('id')}: about {t / shots:.1f} s per shot (aim <= 3.5 s; the reference "
+                         f"films cut every 2.8-5 s). Split lines, add an insert on an object, or a reaction shot.")
+    if no_hud:
+        notes.append(f"WARNING: {len(no_hud)} line(s) say a number with nothing on screen showing it, e.g. {no_hud[0]}: "
+                     f"add \"hud\": {{\"type\": \"counter\" | \"chip\", ...}} so the viewer SEES it (spec-schema.md).")
+    return notes
+
+
 def lint(spec):
     notes = []
     scenes = spec.get("scenes", [])
@@ -195,12 +378,14 @@ def lint(spec):
 
     # ---- wardrobe: male characters wear no long trousers ----------------------------------------
     for c in cast:
-        if str(c.get("gender", "")).lower() in ("male", "m", "nam") and c.get("bottom") == "pants":
-            notes.append(f"WARNING: male character '{c['id']}' has bottom \"pants\". Male characters keep bare stick "
-                         f"legs (bottom \"none\") or wear \"shorts\"; give the outfit character with a top, shoes, "
-                         f"hat, bag or other accessory instead (references/wardrobe.md).")
+        if c.get("bottom") == "pants":
+            notes.append(f"WARNING: character '{c['id']}' has bottom \"pants\". No character wears long trousers: "
+                         f"everyone is a full stick figure (bottom \"none\"), \"shorts\" or a \"skirt\" at most. "
+                         f"It is drawn as bare legs anyway; fix the spec so the Gemini prompt matches (references/wardrobe.md).")
 
     notes += hook_and_ending(spec)
+    notes += script_visual_match(spec)
+    notes += film_pace(spec)
     return notes
 
 

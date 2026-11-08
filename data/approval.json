@@ -1,0 +1,7 @@
+{
+  "approved": false,
+  "skill_hash": null,
+  "approved_at": null,
+  "demo": null,
+  "note": "Not approved yet. The night job makes a short demo of the next video (both cuts) until the owner approves it with scripts/approve_demo.py."
+}

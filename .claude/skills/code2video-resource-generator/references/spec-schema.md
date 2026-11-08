@@ -61,6 +61,27 @@ Acts for faces: `["t","turn", yaw, secs]` (0 front, ±0.5 three-quarter, ±1 ful
   "rays": true,                               // god-ray overlay (golden light)
   "flat": false,                              // true = ignore depth layers, use the single bg image
   "crowd": { "n": 40, "x": [120, 1800], "by": [600, 720], "s": [0.12, 0.22], "seed": 3, "colors": ["#c0577a", "#e0b83a"] },
+  // VISUAL BEATS — every line of a narration or dialogue can say what is on screen while it is spoken:
+  //   {"t": "She finally lies down at 2 a.m.", "at": "bedroom", "on": ["maya"], "do": "sad", "props": ["phone"], "shot": "wide"}
+  //   at     setting id for this line (the place the words are about)      on     cast keys visible on this line
+  //   shot   establish | wide | medium | cu | insert (the line's first prop fills the frame) | ots (over the shoulder of the first "on")
+  //   hud    an overlay or a list for this line: {"type":"counter","from":0,"to":7,"label":"hours","pos":"tr"} {"type":"chip","text":"2:14 AM","pos":"tl"}
+  //          {"type":"title","text":"WHAT IF YOU NEVER SLEPT?","pos":"cc"} {"type":"burst","text":"BUZZ!","x":1200,"y":380}   (t / dur optional)
+  //          {"type":"screen","app":"Ribbit","label":"Balance","value":"$9,000,000","trend":"up|down|flat","pos":"cc"}  (a phone/laptop app)
+  //   focus  cast key the camera favours
+  //   do     an action or a list, played in order (about 1 s apart). FILM ACTIONS: "sit" "stand" "run:500" "jump:80"
+  //          "fall:1" (stays down until "stand") "lie" "sleep" (lies on a bed, eyes shut) "pickup" "type:3" "drink" "phone:3"
+  //          "throw" "crouch:2" "panic"   GESTURES: "walkTo:300" "reach" "point" "wave" "shrug" "nod" "shake" "think"
+  //          "worry" "relief" "lean" "bend" "laugh" "cry" "cheer" "angry" "surprise" "sad" "happy" "offer" "receive" "look:-1"
+  //          When the line says someone does something, they do it: spec_lint fails "she sits down" without "do": "sit".
+  //   emote  face: joy sad cry fear anger doubt smirk surprise sleepy neutral
+  //   props  ["phone", "coffee", ...] from assets/props (placed by the focus character's hand) or full prop dicts
+  //   crowd  false to hide the sequence crowd on this line, or a crowd dict for this line only
+  // Props library: book briefcase calendar camera card cash chart_down chart_up clock coffee coins document envelope
+  //   exclaim gift heart key laptop lightbulb lock magnifier moneybag newspaper phone photo piggybank pizza question
+  //   receipt shopping_bag wallet warning
+  // spec_lint checks that a line which names a place or an object is shot where it is visible (sleep -> a bed,
+  // cook -> an oven, desk -> a desk, phone -> a phone prop ...) and that at least every other line has a beat.
   // crowd/props/overlays also work on a `sequence` block: they are copied onto every shot that sequence makes,
   // which is how you show a group (a horde, a queue, a market) behind a narration or a dialogue.
   // `x` and `by` are fractions of the frame (0-1, the portable form: defaults x [0.10,0.90], by [0.59,0.83])

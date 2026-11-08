@@ -23,11 +23,9 @@ Default style (`"style": "stick"`): round head (white by default, any tone via `
 **How the lower body is drawn.** The hip garment starts behind the torso and ends just below the hem; the thin black leg hangs from that hem, so there is never a gap between body and legs and never a pelvis block sticking out like a nappy. That gives the three shapes of the reference style:
 - `bottom:"none"` → the garment hem (shirt, jacket, coat, dress) and thin black legs straight out of it, down to the shoes. This is the house look.
 - `bottom:"shorts"` → a visible short with a crotch notch, then thin black legs, then `sock` if set, then shoes. This is the football-kit / school-boy shape.
-- `bottom:"pants"` → trousers in the thigh colour, continuous from the hem, two separate legs (never one slab).
 `sock` draws a real sock from under the knee to the ankle (football socks, school socks); it shows wherever the leg is bare, so it needs `bottom` `none` or `shorts`.
 
-**Male characters keep the bare stick legs.** Use `"bottom": "none"` (thin black legs, the house look) or `"bottom": "shorts"`; never `"pants"` on a male character — `generate.py` warns about it. The outfit still has to say who he is, so spend the detail above the waist and at the ends: `top` + `top_color` + `top2`, `shoes` (or `shoes:"none"` with a `sock` colour), and two or three accessories (`hat`, `bag`, `tie`, `scarf`, `belt`, `badge`, `glasses`, `watch`, `mustache`, `buttons`, `pattern`). Female characters may use any `bottom`.
-Hats available: `fedora`, `deerstalker` (detective), `cap`, `beanie`, `scarf`. Prop `magnifier` (assets/props) can be dropped in a shot for investigations.
+**No long trousers for anyone (owner's rule).** Every character is a full stick figure: `"bottom": "none"` (thin black legs, the house look) is the default, `"shorts"` or a `"skirt"` at most. `"pants"` is not drawn any more — it is rendered as bare legs, and `generate.py` warns so the spec and the Gemini prompt stay honest. Put the character into the top, shoes and accessories instead: `top` + `top_color` + `top2`, `shoes` (or a `sock` colour), and two or three of `hat`, `bag`, `tie`, `scarf`, `belt`, `badge`, `glasses`, `watch`, `mustache`, `buttons`, `pattern`.
 
 ## Script role → outfit (examples; invent, don't copy)
 - Detective / inspector: `coat` khaki or slate-blue (trench), `deerstalker` or `fedora`, `tie` dark red, `boots`, `mustache` optional, `buttons`.
