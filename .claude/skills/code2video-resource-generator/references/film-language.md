@@ -47,3 +47,19 @@ Measured with ffmpeg scene detection and silence detection against our 2026-11-0
 "What if you ..." in the second person, one concrete measurable premise (10x faster, 500 IQ, level 1, day 1 -> day 28),
 escalate it scene by scene, show it as a game mechanic on screen (numbers, levels, timers), pay it off, end on the
 question. Titles: "What If You ...?" with the number in it.
+
+
+## Acting and staging (6 fps study of the store, subway, bar and lab scenes, 2026-11-08)
+- **Act small.** Over 4 s a character in a reference shot barely moves: eyes shift, the head tilts a few degrees, one
+  hand lifts a ticket. One meaningful action per shot, never a gesture on every line. The coverage now adds a small
+  look/nod/think on about a third of narration shots and no random walking; speakers gesture only on long lines.
+- **Two people talking are shot side-on, facing each other** in the wide/two-shot (both in profile, `face`), then
+  over the shoulder (the listener's back big and dark in the foreground), then close-ups turned three-quarter.
+- **Groups are a tableau**: a row of people at different heights and poses (sitting on a bench, standing at a pole,
+  leaning on a counter), each with something in hand, the camera trucking slowly sideways. Use `crowd` plus 2-3 cast
+  members with their own actions, and `cam: "pan_left"`.
+- **Stagger depth**: never line everybody up on one baseline; the person who matters is nearer and larger.
+- **Use the furniture**: people sit on stools, lean on counters, lie on beds (`sit@chair`, `lie@bed`, anchors.py), and the
+  pose holds across the cuts of the scene.
+- **First-person inserts**: a hand from the frame edge holding the object (a ticket, a phone) - an `insert` with the prop
+  large and low in frame.

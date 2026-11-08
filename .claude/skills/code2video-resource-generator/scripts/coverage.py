@@ -51,6 +51,14 @@ def _set_acts(shot, k, acts):
     for c in shot["chars"]:
         if c["k"] == k: c.setdefault("acts", []).extend(acts)
 
+def _face_each_other(sh, A, B):
+    """two-shot staging from the reference films: both people in profile, turned toward each other."""
+    for ch in sh["chars"]:
+        other = B if ch["k"] == A["k"] else A
+        if ch["k"] in (A["k"], B["k"]):
+            ch["face"] = 1 if other["x"] > ch["x"] else -1
+
+
 def dialogue(seq, rnd):
     A, B = _actor(seq["a"]), _actor(seq["b"], True)
     if "flip" not in seq["b"]: B["flip"] = True
@@ -61,8 +69,10 @@ def dialogue(seq, rnd):
         st = _sid(ln["at"]) if ln.get("at") else _sid(seq["setting"]); _mark = len(out)
         if i == 0 or seq.get("master_every") and i % seq["master_every"] == 0:
             sh = _shot(st, [A, B], cues=[cue], cam="push_slow", trans="fade" if i == 0 else "cut")
-            _set_acts(sh, S["k"], [[0.5, "turn", 0.2 * d, 0.5], [0.8, "gesture", 3]]); _set_acts(sh, L["k"], [[0.3, "look", d, 0], [1.6, "nod"]])
-            out.append(sh); continue
+            _face_each_other(sh, A, B)
+            if n > 10: _set_acts(sh, S["k"], [[0.8, "gesture", 1.4]])
+            _set_acts(sh, L["k"], [[1.6, "nod"]])
+            out.append(sh); _apply_beat(out[_mark:], ln, S["k"]); continue
         p = (i - 1 + seq.get("seed", 0)) % 4
         if p == 0:    # close-up of the speaker, then the listener's reaction
             cut = 0.58 if n > 5 else 0.7
@@ -77,7 +87,7 @@ def dialogue(seq, rnd):
             fg["x"] = int(W_ * (0.13 if left else 0.87)); fg["by"] = int(H_ * 1.1); fg["s"] = round(L.get("s", 0.82) * 2.0, 2)
             sh = _shot(st, [fg, S], cues=[cue], cam="push_slow", trans="cut")
             _set_acts(sh, L["k"], [[0.0, "view", "back", 1]])
-            _set_acts(sh, S["k"], [[0.0, "turn", 0.3 * d, 0.4], [0.5, "gesture", 3]]); _set_acts(sh, L["k"], [[0.3, "look", d, 0]])
+            _set_acts(sh, S["k"], [[0.0, "turn", 0.3 * d, 0.4]] + ([[0.6, "gesture", 1.4]] if n > 12 else []))
             out.append(sh)
         elif p == 2:  # listener first (reaction), then speaker close-up
             sh = _shot(st, [A, B], cues=[cue], focus={"k": L["k"], "zoom": 2.4}, portion=[0, 0.3], trans="cut")
@@ -86,8 +96,9 @@ def dialogue(seq, rnd):
             _set_acts(sh2, S["k"], [[0.0, "turn", 0.55 * d, 0.4], [0.2, "emote", _emote_for(txt, mood, "speaker")]])
             out += [sh, sh2]
         else:         # wide two-shot, camera drifts
-            sh = _shot(st, [A, B], cues=[cue], cam=rnd.choice(["pan_left", "pan_right", "push"]), trans="cut", sway=True)
-            _set_acts(sh, S["k"], [[0.4, "gesture", 3]]); _set_acts(sh, L["k"], [[0.2, "look", d, 0], [1.4, "emote", _emote_for(txt, mood, "listener")]])
+            sh = _shot(st, [A, B], cues=[cue], cam=rnd.choice(["push_slow", "pan_left", "pan_right"]), trans="cut")
+            _face_each_other(sh, A, B)
+            _set_acts(sh, L["k"], [[1.4, "emote", _emote_for(txt, mood, "listener")]])
             out.append(sh)
         if n > 16 and out:   # long line: add an insert/reaction cut in its second half
             last = out[-1]; last["portion"] = [last.get("portion", [0, 1])[0], 0.5] if not last.get("share") else last.get("portion", [0, 1])
@@ -113,6 +124,16 @@ ACT_ALIASES = {"sits": "sit", "sitdown": "sit", "sit_down": "sit", "stands": "st
                "celebrate": "cheer", "cheers": "cheer", "thinks": "think", "worries": "worry", "reaches": "reach"}
 
 
+PROP_SIZE = {"phone": .45, "coffee": .62, "cup": .62, "clock": .7, "document": .85, "letter": .7, "key": .35, "keys": .35,
+             "wallet": .45, "money": .6, "book": .75, "laptop": 1.1, "bag": 1.0, "ticket": .55, "card": .4}
+
+# pose held across cuts inside one scene: {char_key: {"pose": "lie"|"sit", "to": "bed", "setting": sid, "awake": bool}}
+# and props left on furniture: {setting: [{"id", "at"}]}. Reset at every scene (expand()).
+STATE = {"pose": {}, "left": {}}
+HOLD_POSES = {"lie": ("lie", True), "sleep": ("lie", False), "sit": ("sit", True)}
+BREAKS_HOLD = {"stand", "walkTo", "run", "walk", "jump", "fall"}
+
+
 def _line_props(props, a):
     """props on a line: ids ("phone") or full dicts; ids are placed by the focus character's hand."""
     out = []
@@ -123,8 +144,9 @@ def _line_props(props, a):
         side = 1 if not a.get("flip") else -1
         x = (a["x"] if a else W / 2) + side * (95 + 130 * j) * (0.8 if PORTRAIT[0] else 1)
         y = (a["by"] if a else H * 0.8) - (330 if PORTRAIT[0] else 250)      # about hand height
-        out.append({"id": p, "x": int(max(90, min(W - 90, x))), "y": int(y), "w": 140 if PORTRAIT[0] else 115,
-                    "t": 0.15 + 0.25 * j, "mode": "drop"})
+        sc = (a.get("s", 0.82) if a else 0.82) / 0.82
+        out.append({"id": p, "x": int(max(90, min(W - 90, x))), "y": int(y), "w": int((140 if PORTRAIT[0] else 115) * sc * PROP_SIZE.get(p, .7) * 1.5),
+                    "t": 0.15 + 0.25 * j, "mode": "pop", "hand": a["k"] if a else None})
     return out
 
 
@@ -134,9 +156,20 @@ def _apply_beat(shots, cue, focus_key):
         return
     acts = []
     t_at = 0.25
+    anchor_set, placed = None, []
     for d in ([cue["do"]] if isinstance(cue.get("do"), str) else cue.get("do", [])):
-        name, _, arg = str(d).strip().partition(":")
+        d, _, target = str(d).strip().partition("@")
+        name, _, arg = d.partition(":")
         name = ACT_ALIASES.get(name.lower(), name)
+        if target:      # the action uses a piece of furniture (anchors.py resolves where it is on screen)
+            if name in HOLD_POSES:
+                pose, awake = HOLD_POSES[name]; anchor_set = {"pose": pose, "to": target, "awake": awake}; continue
+            if name in ("place", "put", "leave", "pickup", "take"):
+                mode = "place" if name in ("place", "put", "leave") else "take"
+                acts.append([t_at, "reach", "r"]); placed.append({"id": arg or "phone", "at": target, "mode": mode, "t": round(t_at + 0.35, 2)})
+                t_at += 1.1; continue
+            if name == "walkTo":
+                acts.append([t_at, "walkTo", "@" + target, None]); t_at += 1.6; continue
         if name not in KNOWN_ACTS:
             print(f"coverage: unknown action '{d}' skipped (known: {', '.join(sorted(KNOWN_ACTS))})"); continue
         if name == "walkTo": acts.append([t_at, "walkTo", int(float(arg or 300)), None])
@@ -147,6 +180,31 @@ def _apply_beat(shots, cue, focus_key):
         else: acts.append([t_at, name])
         t_at += 1.1          # several actions on one line play one after another, not on top of each other
     if cue.get("emote"): acts.append([0.15, "emote", cue["emote"]])
+    fk = focus_key
+    if fk and any(a_[1] in BREAKS_HOLD for a_ in acts):
+        STATE["pose"].pop(fk, None)
+    walked = next((a_[2][1:] for a_ in acts if a_[1] == "walkTo" and isinstance(a_[2], str) and a_[2].startswith("@")), None)
+    for sh in shots:      # continuity: a pose held from an earlier line, props left on furniture earlier in the scene
+        for ch in sh.get("chars", []):
+            held = STATE["pose"].get(ch["k"])
+            if held and held["setting"] == sh.get("setting") and not ch.get("anchor") and ch.get("by", 0) < (1900 if PORTRAIT[0] else 1060):
+                ch["anchor"] = dict(held)
+        for lp in STATE["left"].get(sh.get("setting"), []):
+            sh.setdefault("props", []).append(dict(lp, mode="on"))
+    if walked and fk:
+        STATE["pose"][fk] = {"pose": "stand", "to": walked, "setting": shots[0].get("setting")}
+        for sh in shots[1:]:      # later shots of the same line: already there
+            for ch in sh.get("chars", []):
+                if ch["k"] == fk: ch["anchor"] = {"pose": "stand", "to": walked}
+    if anchor_set and fk:
+        for sh in shots:
+            for ch in sh.get("chars", []):
+                if ch["k"] == fk: ch["anchor"] = dict(anchor_set)
+        STATE["pose"][fk] = dict(anchor_set, setting=shots[0].get("setting"))
+    for pl in placed:
+        shots[0].setdefault("props", []).append(dict(pl, hand=fk))
+        if pl["mode"] == "place":
+            STATE["left"].setdefault(shots[0].get("setting"), []).append({"id": pl["id"], "at": pl["at"]})
     for sh in shots:
         if acts and focus_key: _set_acts(sh, focus_key, copy.deepcopy(acts))
         if cue.get("crowd") is False: sh["crowd"] = None
@@ -158,6 +216,9 @@ def _apply_beat(shots, cue, focus_key):
         for sh in shots:
             for ch in sh.get("chars", []):
                 if ch["k"] in cue["tag"]: ch["tag"] = cue["tag"][ch["k"]]
+    if cue.get("hud") and any(isinstance(h, dict) and h.get("type") == "screen" for h in (cue["hud"] if isinstance(cue["hud"], list) else [cue["hud"]])):
+        for sh in shots:
+            if not sh.get("chars"): sh["props"] = [p_ for p_ in sh.get("props", []) if p_.get("id") not in ("phone", "laptop", "computer")]
     if cue.get("hud"):          # on-screen numbers, labels, title cards (chip / counter / burst / bubble / title)
         huds = cue["hud"] if isinstance(cue["hud"], list) else [cue["hud"]]
         shots[0].setdefault("overlays", []).extend(copy.deepcopy(h) for h in huds if isinstance(h, dict))
@@ -214,10 +275,10 @@ def narration(seq, rnd):
                 _set_acts(sh, a["k"], [[0.0, "turn", rnd.choice([-0.5, 0.5]), 0.45], [0.2, "emote", {"warm": "joy", "tense": "doubt", "sad": "sad", "funny": "smirk"}.get(mood, "neutral")]])
         else:
             sh = _shot(st, chars, cues=[cue], cam=rnd.choice(["pan_left", "pan_right"]), trans="cut", sway=True)
-        if not beat.get("do") and kind not in ("insert",):                       # only invent motion when the line gives none
-            if kind in ("wide", "wide2", "establish") and rnd.random() < 0.5:
-                _set_acts(sh, a["k"], [[0.3, "walkTo", rnd.choice([-1, 1]) * rnd.choice([220, 300, 380]), None]])
-            elif kind != "cu": _set_acts(sh, a["k"], [[rnd.choice([0.3, 0.6, 1.0]), rnd.choice(pool)]])
+        if not beat.get("do") and kind not in ("insert",) and rnd.random() < 0.35:
+            # Act small, like the reference films: a look, a nod, a thought - never a random walk across the room
+            # (an unmotivated walkTo made people wander off mid-sentence). Most shots just breathe and blink.
+            _set_acts(sh, a["k"], [[rnd.choice([0.4, 0.8]), rnd.choice(["look", "nod", "think"] if mood != "warm" else ["look", "nod", "happy"])]])
         made = [sh]
         out.append(sh)
         if line_props and kind not in ("insert",) and not beat.get("shot") and n >= 8:
@@ -245,6 +306,7 @@ def expand(spec, spec_dir):
         if name.startswith("lib:"): settings[sid] = str(LIB / (name[4:] + ".json"))
         return sid
     for sc in spec["scenes"]:
+        STATE["pose"].clear(); STATE["left"].clear()
         shots = []
         for item in sc["shots"]:
             if "sequence" in item:

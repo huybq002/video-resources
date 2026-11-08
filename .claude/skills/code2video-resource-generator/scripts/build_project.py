@@ -62,6 +62,87 @@ def main():
     GS = "assets/vendor/gsap.min.js"
     next_cue = 1; root_hosts = []
 
+    import anchors as AN, characters_stick as CS
+    _anch = {}
+    def anchors_of(sid):
+        if sid not in _anch:
+            f = assets / f"anchors_{sid}.json"
+            _anch[sid] = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+        return _anch[sid]
+
+    def resolve(sh):
+        """put characters and props ON the furniture the line talks about (anchors.py)."""
+        A = anchors_of(sh.get("setting"))
+        if not A:
+            return sh
+        sh = dict(sh); chars = []
+        for ch in sh.get("chars", []):
+            ch = dict(ch); an = ch.get("anchor"); cc = cast.get(ch["k"], {})
+            if an:
+                a = AN.find(A, an["to"], ch.get("x"))
+                if a and an["pose"] == "lie" and "head" in a:
+                    hx, hy = a["head"]; fx, fy = a["foot"]; ppm = a.get("top_ppm") or a["floor_ppm"]
+                    sc_ = min(AN.scale_at(ppm), abs(fx - hx) * 0.95 / 706)
+                    ch.update(x=round(fx - 0 * sc_, 1), by=round((hy + fy) / 2 - 55 * sc_, 1), s=round(sc_, 3), flip=hx > fx, hold="lie", awake=an.get("awake", True))
+                    ch["acts"] = [a_ for a_ in ch.get("acts", []) if a_[1] in ("emote", "look", "talk", "phone", "surprise", "blink", "worry", "relief", "think")]
+                elif a and an["pose"] == "stand":   # standing beside it (arrived there on an earlier line)
+                    ppm = a["floor_ppm"]; side = 1 if a["floor"][0] >= ch.get("x", 960) else -1
+                    ch.update(x=round(a["floor"][0] - side * 0.55 * ppm, 1), by=round(a["floor"][1] + 0.35 * ppm, 1), s=AN.scale_at(ppm))
+                    ch["acts"] = [a_ for a_ in ch.get("acts", []) if not (a_[1] == "walkTo" and isinstance(a_[2], str))]
+                elif a and an["pose"] == "sit" and "seat" in a:
+                    sx_, sy_ = a["seat"]; sc_ = AN.scale_at(a.get("seat_ppm") or a["floor_ppm"])
+                    hip, knee = CS.leg_geo(cc)
+                    ch.update(x=round(sx_, 1), by=round(sy_ - knee * sc_ + 782 * sc_, 1), s=sc_, hold="sit", holdDir=a.get("face", 1), flip=False)
+                    ch["acts"] = [a_ for a_ in ch.get("acts", []) if a_[1] not in ("sit", "walkTo", "run", "walk", "jump", "crouch", "bend", "pickup")]
+            if not an:   # standing on the floor: the set decides the size (feet lower on screen = nearer = bigger)
+                pp = AN.ppm_at_y(A, ch.get("by", 900))
+                if pp and ch.get("by", 900) < H * 0.97:
+                    ch["s"] = AN.scale_at(pp)
+            acts = []
+            for a_ in ch.get("acts", []):
+                if a_[1] == "walkTo" and isinstance(a_[2], str) and a_[2].startswith("@"):
+                    a = AN.find(A, a_[2][1:], ch.get("x"))
+                    if not a:
+                        continue
+                    ppm = a["floor_ppm"]; side = 1 if a["floor"][0] >= ch.get("x", 960) else -1
+                    if not an:   # walk on the floor line of the target, at its depth and scale
+                        ch["s"] = AN.scale_at(ppm); ch["by"] = round(a["floor"][1] + 0.35 * ppm, 1)
+                    dest = a["floor"][0] - side * 0.55 * ppm
+                    a_ = [a_[0], "walkTo", int(dest - ch.get("x", 960)), a_[3] if len(a_) > 3 else None]
+                    ch["_end_x"] = dest
+                acts.append(a_)
+            ch["acts"] = acts
+            chars.append(ch)
+        sh["chars"] = chars
+        props = []
+        for pr in sh.get("props", []):
+            pr = dict(pr)
+            if pr.get("at"):
+                a = AN.find(A, pr["at"])
+                pt = a and (a.get("top") or a.get("seat") or a.get("front"))
+                if pt:
+                    ppm = a.get("top_ppm") or a.get("seat_ppm") or a["floor_ppm"]
+                    w = max(28, int(ppm * {"phone": .2, "coffee": .2, "cup": .2, "document": .4, "book": .32, "keys": .14, "laptop": .45}.get(pr["id"], .3)))
+                    pr.update(x=round(pt[0], 1), y=round(pt[1] - 0.3 * w, 1), w=w)
+                    hk = pr.get("hand"); hc = next((c for c in chars if c["k"] == hk), None)
+                    if hc and pr.get("mode") in ("place", "take"):
+                        hs = hc.get("s", 0.8); hx = hc.get("_end_x", hc["x"]) + (90 * hs if pt[0] >= hc.get("_end_x", hc["x"]) else -90 * hs)
+                        hy = hc.get("by", 900) - 380 * hs
+                        pr["fx"], pr["fy"] = round(hx - pr["x"], 1), round(hy - pr["y"], 1)
+                else:
+                    continue
+            elif pr.get("hand"):   # an object in someone's hand follows that person after posing/scaling
+                hc = next((c for c in chars if c["k"] == pr["hand"]), None)
+                if hc:
+                    hs = hc.get("s", 0.8); side = -1 if hc.get("flip") else 1
+                    if hc.get("hold") == "sit": side = hc.get("holdDir", 1) or 1
+                    drop = (CS.leg_geo(cast.get(hc["k"], {}))[1] - CS.leg_geo(cast.get(hc["k"], {}))[0]) if hc.get("hold") == "sit" else 0
+                    w = int(hs * 400 * {"phone": .22, "coffee": .26, "cup": .26, "document": .42, "clock": .4, "book": .36, "keys": .16}.get(pr["id"], .3))
+                    pr.update(x=round(hc["x"] + side * 105 * hs, 1), y=round(hc.get("by", 900) - (400 - drop) * hs, 1), w=max(24, w))
+            props.append(pr)
+        sh["props"] = props
+        return sh
+
     for sc in spec["scenes"]:
         n = sc["id"]; tsc = sc_by[n]; s0 = tsc["startMs"]; dur = tsc["sceneDurationMs"] / 1000; cid = f"scene-{n}"
         shots_html, shots_data, caps_html, caps_data = [], [], [], []; prev = None; prev_ids = []; prev_full = (0, 1)
@@ -74,6 +155,7 @@ def main():
                 prev_ids, prev_full = cue_ids, (f0, f1)
             por = sh.get("portion", [0, 1]); t0 = f0 + (f1 - f0) * por[0]; t1 = f0 + (f1 - f0) * por[1]
             dom = f"s{n}{chr(65+si)}"; chars_html, chars_data = [], []
+            sh = resolve(sh)
             if sh.get("focus") and not sh.get("split"):      # close-ups: drop characters that end up outside the frame (fewer DOM nodes = faster render)
                 _f = sh["focus"]; _z = min(_f.get("zoom", 2.4), _f.get("to", _f.get("zoom", 2.4) * 1.07)); _hx = next(x["x"] for x in sh["chars"] if x["k"] == _f["k"])
                 sh = dict(sh, chars=[x for x in sh["chars"] if x["k"] == _f["k"] or x.get("enter") is not None or abs(_z * (x["x"] - _hx)) < W / 2 + _z * 200 * x.get("s", 0.8) + 60])
@@ -86,7 +168,7 @@ def main():
                 w, h = 400 * s, 800 * s; left, top = ch["x"] - w / 2, ch.get("by", 900) - 782 * s
                 flip = ("transform:scaleX(-1);" if ch.get("flip") else "") + (("filter:drop-shadow(-3px -2px 0 rgba(255,214,160,.9)) drop-shadow(0 0 5px rgba(255,190,130,.3));") if (ch.get("glow") or cast[ch["k"]].get("glow") or spec.get("rim", True)) else "")
                 acts_ = ch.get("acts", [])
-                views_ = ["f"] + (["s"] if (ch.get("enter") is not None or any(a_[1] == "walkTo" or (a_[1] == "view" and a_[2] in ("side", "s")) for a_ in acts_)) else []) \
+                views_ = ["f"] + (["s"] if (ch.get("enter") is not None or ch.get("hold") == "sit" or ch.get("face") or any(a_[1] in ("walkTo", "sit") or (a_[1] == "view" and a_[2] in ("side", "s")) for a_ in acts_)) else []) \
                                  + (["b"] if any(a_[1] == "view" and a_[2] in ("back", "b") for a_ in acts_) else [])
                 ext_ = bool(cast[ch["k"]].get("external")) and (assets / f"{ch['k']}.svg").exists()
                 svg = (f"<img id='{ccid}-ext' src='assets/{ch['k']}.svg' alt='' style='width:100%;height:100%;display:block'>" if ext_ else
@@ -98,13 +180,14 @@ def main():
                             f"background:rgba(24,20,32,.88);color:#ffd27a;font-weight:700;font-size:{max(18, 46 * s):.0f}px;line-height:1;padding:{6 * s + 3:.0f}px {14 * s + 6:.0f}px;"
                             f"border:2px solid #ffd27a;border-radius:999px;white-space:nowrap;font-variant-numeric:tabular-nums'>{html.escape(str(tag_))}</div>") if tag_ not in (None, "") else ""
                 pane_chars_html[pn["idx"]].append(f"<div id='{ccid}-wrap' class='char' style='left:{left:.1f}px;top:{top:.1f}px;width:{w:.1f}px;height:{h:.1f}px'><div class='flip' style='{flip}'>{svg}</div>{tag_html}</div>")
-                chars_data.append(dict(k=ch["k"], cid=ccid, acts=ch.get("acts", []), enter=ch.get("enter"), flip=bool(ch.get("flip")), ext=ext_))
+                chars_data.append(dict(k=ch["k"], cid=ccid, acts=ch.get("acts", []), enter=ch.get("enter"), flip=bool(ch.get("flip")), ext=ext_,
+                                       hold=ch.get("hold"), holdDir=ch.get("holdDir"), awake=ch.get("awake", True), face=ch.get("face")))
             chars_html = pane_chars_html[None] if None in pane_chars_html else []
             props_html, props_data = [], []
             for pi, p in enumerate(sh.get("props", [])):
                 pid = f"{dom}-prop{pi}"; w = p.get("w", 170)
                 props_html.append(f"<img id='{pid}' class='prop' src='assets/props/{p['id']}.svg' style='left:{p['x']-w/2:.0f}px;top:{p['y']-w*0.7:.0f}px;width:{w}px;opacity:0'>")
-                props_data.append(dict(dom=pid, mode=p.get("mode", "drop"), t=p.get("t", 0), lift=p.get("lift")))
+                props_data.append(dict(dom=pid, mode=p.get("mode", "drop"), t=p.get("t", 0), lift=p.get("lift"), fx=p.get("fx"), fy=p.get("fy")))
             # crowd: seeded silhouettes in perspective rows
             crowd_html, crowd_data = [], []
             cr = sh.get("crowd")
@@ -175,6 +258,10 @@ def main():
             if foc and not sh.get("split"):   # zoom on a character's head (medium close-up 1.8, close-up 2.6, extreme 3.6)
                 chf = next(x for x in sh["chars"] if x["k"] == foc["k"]); sf = chf.get("s", 0.8)
                 hx = chf["x"] + foc.get("dx", 0); hy = chf.get("by", 900) - 782 * sf + 176 * sf + foc.get("dy", 0)
+                if chf.get("hold") == "lie":
+                    hx = chf["x"] + (1 if chf.get("flip") else -1) * 600 * sf + foc.get("dx", 0); hy = chf.get("by", 900) - 40 * sf
+                elif chf.get("hold") == "sit":
+                    _hp, _kn = CS.leg_geo(cast.get(chf["k"], {})); hy += (_kn - _hp) * sf
                 Z0 = foc.get("zoom", 2.4); Z1 = foc.get("to", round(Z0 * 1.07, 3))
                 tgt = foc.get("target_y", int(H * 0.44))
                 kx = lambda Z: round(-Z * (hx - W / 2), 1); ky = lambda Z: round(tgt - 0.62 * H - Z * (hy - 0.62 * H), 1)

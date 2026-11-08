@@ -78,8 +78,9 @@
     {
      "t": "furn",
      "n": "chair",
-     "x": 0.15,
-     "z": 1.3,
+     "x": 0.35,
+     "z": 1.0,
+     "ry": 1.5708,
      "c": "#3e5c8a"
     }
    ]
@@ -141,7 +142,7 @@
         ],
         "shot": "wide",
         "emote": "sleepy",
-        "do": "sleep:150",
+        "do": "lie@bed",
         "hud": {
          "type": "chip",
          "text": "2:00 AM",
@@ -171,7 +172,7 @@
         "props": [
          "clock"
         ],
-        "shot": "cu",
+        "shot": "insert",
         "emote": "fear",
         "hud": [
          {
@@ -230,7 +231,7 @@
          "coffee"
         ],
         "do": [
-         "sit",
+         "sit@chair",
          "drink"
         ],
         "hud": [
@@ -315,8 +316,8 @@
          "lena"
         ],
         "do": [
-         "walkTo:300",
-         "pickup"
+         "walkTo@oven",
+         "place:phone@oven"
         ],
         "props": [
          "phone"

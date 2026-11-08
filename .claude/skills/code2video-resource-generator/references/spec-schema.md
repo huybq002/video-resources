@@ -72,6 +72,11 @@ Acts for faces: `["t","turn", yaw, secs]` (0 front, ±0.5 three-quarter, ±1 ful
   //          {"type":"flash","t":0,"dur":0.5}   (white frame: impact, power on, time jump)   {"type":"speedlines","t":0.2,"dur":1.2}  (action lines)
   // per character: "tag": "LEVEL 1" on a cast entry or an actor = a label floating over the head that follows them; a line can change it:
   //          {"t":"Your cab driver is six hundred.", "tag": {"driver": "600"}}
+  // USING FURNITURE (anchors.py projects every furniture piece of the 3D set to the screen):
+  //   "do": "lie@bed" (lying on the mattress, eyes open) | "sleep@bed" (eyes closed) | "sit@chair" (seated in profile, facing the desk)
+  //   "do": "walkTo@oven" (walks to stand beside it) | "place:phone@counter" (puts it down; it stays there for the scene) | "pickup:keys@table"
+  //   A lie/sit pose is HELD across the following cuts of the scene until "stand" / "walkTo" / "run"; never write a bare
+  //   "sleep" or "sit" when the setting has a bed/chair: the character would lie on the floor or stand in front of the desk.
   // per line:  "plant": "yellow_coat" ... later "payoff": "yellow_coat"   (spec_lint checks every plant is paid off)
   //   focus  cast key the camera favours
   //   do     an action or a list, played in order (about 1 s apart). FILM ACTIONS: "sit" "stand" "run:500" "jump:80"

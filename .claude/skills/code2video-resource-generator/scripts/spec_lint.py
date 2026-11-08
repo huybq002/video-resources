@@ -209,7 +209,7 @@ ACT_WORDS = {"sits": "sit", "sitdown": "sit", "stands": "stand", "getup": "stand
 def _beat_acts(beat):
     out = set()
     for d in ([beat["do"]] if isinstance(beat.get("do"), str) else beat.get("do", []) or []):
-        n = str(d).split(":")[0].strip()
+        n = str(d).split("@")[0].split(":")[0].strip()
         out.add(ACT_WORDS.get(n.lower(), n))
     return out
 
@@ -384,6 +384,13 @@ def script_craft(spec):
     nums = sum(1 for _f, t, b in lines if re.search(r"\d|\b(one|two|three|ten|hundred|thousand|million|percent|half)\b", t, re.I))
     if total_s >= 60 and nums < max(2, len(lines) // 8):
         notes.append("WARNING: almost no numbers in the script. Make the idea measurable (a test, a score, a price, a count) and put the numbers on screen.")
+    # furniture actions must be anchored, or the character lies on the floor / stands in front of the chair
+    for _f, t, b in lines:
+        for d in ([b["do"]] if isinstance(b.get("do"), str) else b.get("do") or []):
+            n = str(d).split(":")[0]
+            if n in ("sleep", "lie", "sit") and "@" not in str(d):
+                notes.append(f"WARNING: line '{t[:40]}' does \"{d}\" with no furniture: write \"{n}@bed\" / \"{n}@chair\" / \"sit@sofa\" so the "
+                             f"character is placed ON it (anchors.py), not on the floor in front of it.")
     return notes
 
 

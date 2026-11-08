@@ -188,6 +188,17 @@ def _glasses(c, front=True):
 def _mustache(c):
     return '' if not c.get("mustache") else f'<path d="M172 226 Q186 219 200 226 Q214 219 228 226 Q214 234 200 231 Q186 234 172 226 Z" fill="{c.get("mustache_color", INK)}" stroke="{INK}" stroke-width="3" stroke-linejoin="round"/>'
 
+def leg_geo(c):
+    """(hip_y, knee_y) where the drawn legs really bend. The rig's leg/shin pivots MUST be these points: with fixed
+    pivots (540/650) a thigh that starts at y=468 swung around a point below the hip, so the hip slid out and the
+    knees crossed (the broken seated pose of 2026-11-08)."""
+    w = wardrobe(c); TOP, BOT = w["top"], w["bottom"]; hem = HEM.get(TOP, (480, 4))[0]
+    pel_bot = {"pants": hem + 24, "shorts": hem + 82, "skirt": hem + 104}.get(BOT, hem)
+    hip = (pel_bot - 14) if BOT in ("pants", "shorts", "skirt") else (hem - 26)
+    hip = max(430, min(hip, 600))
+    return hip, round(hip + (760 - hip) * 0.52)
+
+
 def figure(pid, gid, c, view="front"):
     """view: front | back | side. pid = id prefix, gid = gradient prefix"""
     _INK_MODE[0] = is_ink(c)
@@ -248,7 +259,7 @@ def figure(pid, gid, c, view="front"):
 
     def leg(sd, near=True):
         sg = -1 if sd == "l" else 1
-        knee_y = round(HIP_Y + (760 - HIP_Y) * 0.52)
+        knee_y = leg_geo(c)[1]
         if side: dx = 7 if near else -7; Hh, K, A = (200 + dx, HIP_Y), (204 + dx, knee_y), (208 + dx, 760)
         else: Hh, K, A = (200 + sg * 27, HIP_Y), (200 + sg * 33, knee_y), (200 + sg * 37, 760)
         pant = BOT in ("pants",)
@@ -425,22 +436,23 @@ def build_svg(cid, c, views=("f", "s", "b")):
 
 def rig(c, view="front"):
     tf = c.get("torso_w", 1.0); eg = c.get("eye_gap", 44)
+    hip, knee = leg_geo(c)
     if view == "side":
         P = {"root": {"pivot": [200, 780]}, "turn": {"pivot": [200, 780]}, "life": {"pivot": [200, 780]}, "body": {"pivot": [200, 540]}, "torso": {"pivot": [204, 540]},
              "headsway": {"pivot": [204, 270]}, "head": {"pivot": [204, 270]},
              "arm-l": {"pivot": [204, 318]}, "forearm-l": {"pivot": [208, 414]}, "arm-r": {"pivot": [204, 318]}, "forearm-r": {"pivot": [208, 414]},
-             "leg-l": {"pivot": [207, 540]}, "shin-l": {"pivot": [211, 650]}, "foot-l": {"pivot": [215, 760]},
-             "leg-r": {"pivot": [193, 540]}, "shin-r": {"pivot": [197, 650]}, "foot-r": {"pivot": [201, 760]},
+             "leg-l": {"pivot": [207, hip]}, "shin-l": {"pivot": [211, knee]}, "foot-l": {"pivot": [215, 760]},
+             "leg-r": {"pivot": [193, hip]}, "shin-r": {"pivot": [197, knee]}, "foot-r": {"pivot": [201, 760]},
              "lid-l": {"pivot": [262, 154]}, "lidp-l": {"pivot": [262, 154]}, "pupil-l": {"pivot": [262, 180]}, "brow-l": {"pivot": [262, 150]},
              "mouth-open": {"pivot": [284, 240]}, "mouth-e": {"pivot": [284, 240]}, "mouth-o": {"pivot": [284, 250]}}
-        return {"viewBox": [0, 0, 400, 800], "restPose": "profile facing right", "parts": P}
+        return {"viewBox": [0, 0, 400, 800], "restPose": "profile facing right", "parts": P, "hip": hip, "knee": knee}
     sw = 44 * tf
     P = {"root": {"pivot": [200, 780]}, "turn": {"pivot": [200, 780]}, "life": {"pivot": [200, 780]}, "body": {"pivot": [200, 540]}, "torso": {"pivot": [200, 540]},
          "headsway": {"pivot": [200, 270]}, "head": {"pivot": [200, 270]}, "face": {"pivot": [200, 178]}, "profile": {"pivot": [200, 178]}, "nose": {"pivot": [200, 200]},
          "tears": {"pivot": [200, 200]}, "mouth-open": {"pivot": [200, 240]}, "mouth-e": {"pivot": [200, 240]}, "mouth-o": {"pivot": [200, 250]}}
     for side, sg in (("l", -1), ("r", 1)):
         P[f"arm-{side}"] = {"pivot": [200 + sg * (sw + 4), 318]}; P[f"forearm-{side}"] = {"pivot": [200 + sg * (sw + 10), 414]}
-        P[f"leg-{side}"] = {"pivot": [200 + sg * 24, 540]}; P[f"shin-{side}"] = {"pivot": [200 + sg * 28, 650]}; P[f"foot-{side}"] = {"pivot": [200 + sg * 32, 760]}
+        P[f"leg-{side}"] = {"pivot": [200 + sg * 27, hip]}; P[f"shin-{side}"] = {"pivot": [200 + sg * 33, knee]}; P[f"foot-{side}"] = {"pivot": [200 + sg * 37, 760]}
         P[f"lid-{side}"] = {"pivot": [200 + sg * eg, 154]}; P[f"lidp-{side}"] = {"pivot": [200 + sg * eg, 154]}
         P[f"pupil-{side}"] = {"pivot": [200 + sg * eg, 180]}; P[f"brow-{side}"] = {"pivot": [200 + sg * eg, 150]}
-    return {"viewBox": [0, 0, 400, 800], "restPose": "standing, arms hanging", "parts": P, "mouthShapes": ["closed", "smile", "open", "e", "o", "smirk", "sad"]}
+    return {"viewBox": [0, 0, 400, 800], "restPose": "standing, arms hanging", "parts": P, "hip": hip, "knee": knee, "mouthShapes": ["closed", "smile", "open", "e", "o", "smirk", "sad"]}

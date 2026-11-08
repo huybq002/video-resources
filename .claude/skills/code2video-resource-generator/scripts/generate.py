@@ -24,7 +24,7 @@ bible = SER.load(a.series) if a.series else None
 if bible:
     spec0, _w = SER.merge(spec0, bible)                           # recurring characters/settings keep their look across episodes
     for _m in _w: print("SERIES WARNING:", _m)
-import coverage, srt_tools, docs_gen, spec_lint, furniture, sets
+import coverage, srt_tools, docs_gen, spec_lint, furniture, sets, anchors
 for _m in spec_lint.lint(spec0): print(_m)                 # settings variety, cast, crowds, static scenes, wardrobe
 spec = coverage.expand(spec0, spec_path.parent)            # sequences -> many shots, lib:/relative settings resolved
 tmp = pathlib.Path(tempfile.mkdtemp(prefix="c2v_")); exp = tmp / "spec.expanded.json"; exp.write_text(json.dumps(spec, ensure_ascii=False), encoding="utf-8")
@@ -67,11 +67,16 @@ if not a.skip_bg:
         s = spec["settings"][sid]
         data = dict(s if isinstance(s, dict) else json.load(open(s, encoding="utf-8")))
         data = sets.expand(data)                                         # {"set": {"type": "room", ...}} -> a dressed room/street
+        _furn_src = dict(data)
         data["objects"] = furniture.expand(data.get("objects", []))      # {"t":"furn","n":"bed"} -> primitives
         if spec.get("aspect") == "9:16":                      # portrait: render 1080x1920 and pull the camera back to keep the scene readable
             data["width"], data["height"] = 1080, 1920; cam = dict(data["camera"]); lk = cam["look"]
             cam["pos"] = [lk[i] + (cam["pos"][i] - lk[i]) * 1.4 for i in range(3)]; cam["fov"] = cam.get("fov", 40) + 6; data["camera"] = cam
         (bgs / f"{sid}.json").write_text(json.dumps(data), encoding="utf-8")
+        # where each furniture piece lands on screen, for lie@bed / sit@chair / place:phone@counter (anchors.py)
+        _W, _H = (data.get("width", 1920), data.get("height", 1080))
+        (out / "assets").mkdir(parents=True, exist_ok=True)
+        (out / "assets" / f"anchors_{sid}.json").write_text(json.dumps(anchors.compute(dict(_furn_src, camera=data["camera"]), _W, _H)), encoding="utf-8")
     bgdir = HERE / "bg_renderer"
     if not (bgdir / "node_modules").exists(): run(["npm", "install", "--no-audit", "--no-fund"], cwd=bgdir, shell=(sys.platform == "win32"))
     (out / "assets").mkdir(exist_ok=True)
