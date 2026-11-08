@@ -1,0 +1,343 @@
+{
+ "id": "demo-2am-scroll",
+ "title": "The Two A.M. Scroll",
+ "lang": "en",
+ "aspect": "16:9",
+ "duration_s": 33,
+ "idea": "Demo: an invented woman scrolls her phone in bed at 2 a.m., pays for it at work, and tries one small fix",
+ "narrator": "narrator",
+ "narrator_name": "Narrator",
+ "narrator_gender": "male",
+ "cast": [
+  {
+   "id": "narrator",
+   "name": "Narrator",
+   "narrator": true,
+   "gender": "male"
+  },
+  {
+   "id": "lena",
+   "name": "Lena",
+   "gender": "female",
+   "style": "stick",
+   "top": "hoodie",
+   "top_color": "#c4577a",
+   "bottom": "none",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#2a2230",
+   "hair_style": "bun",
+   "hair": "#2a1f24",
+   "glasses": true,
+   "look": "young office worker in a rose hoodie, hair in a bun, round glasses"
+  },
+  {
+   "id": "boss",
+   "name": "Mr. Hale",
+   "gender": "male",
+   "style": "stick",
+   "top": "shirt",
+   "top_color": "#e9edf2",
+   "top2": "#3e5c8a",
+   "tie": "#3e5c8a",
+   "bottom": "none",
+   "sock": "#2f3646",
+   "shoes": "boots",
+   "shoe_color": "#2a2230",
+   "belt": "#2a2230",
+   "badge": true,
+   "hair_style": "short",
+   "hair": "#6c6a68",
+   "mustache": true,
+   "look": "tidy office manager in a white shirt and blue tie, grey hair, mustache"
+  }
+ ],
+ "settings": {
+  "bedroom": {
+   "set": {
+    "type": "room",
+    "style": "bedroom",
+    "time": "night",
+    "key": {
+     "x": 1.0,
+     "z": 1.0
+    }
+   }
+  },
+  "office": {
+   "set": {
+    "type": "room",
+    "style": "office",
+    "time": "day",
+    "key": {
+     "x": 1.4,
+     "z": 1.0
+    }
+   },
+   "objects": [
+    {
+     "t": "furn",
+     "n": "chair",
+     "x": 0.35,
+     "z": 1.0,
+     "ry": 1.5708,
+     "c": "#3e5c8a"
+    }
+   ]
+  },
+  "kitchen": {
+   "set": {
+    "type": "room",
+    "style": "kitchen",
+    "time": "night",
+    "window": "left",
+    "key": {
+     "x": -3.6,
+     "z": -3.0
+    }
+   },
+   "objects": [
+    {
+     "t": "furn",
+     "n": "kitchen_counter",
+     "x": -2.2,
+     "z": 0.8
+    },
+    {
+     "t": "furn",
+     "n": "oven",
+     "x": 0.2,
+     "z": 0.8
+    }
+   ]
+  }
+ },
+ "scenes": [
+  {
+   "id": 1,
+   "title": "Two A.M.",
+   "goal": "She is awake, the phone is why, the alarm is close.",
+   "target_s": 12,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "bedroom"
+      ],
+      "mood": "tense",
+      "seed": 1,
+      "actors": [
+       {
+        "k": "lena",
+        "x": 1390
+       }
+      ],
+      "cues": [
+       {
+        "t": "Two in the morning. Lena is still awake in bed.",
+        "at": "bedroom",
+        "on": [
+         "lena"
+        ],
+        "shot": "wide",
+        "emote": "sleepy",
+        "do": "lie@bed",
+        "hud": {
+         "type": "chip",
+         "text": "2:00 AM",
+         "pos": "tl"
+        }
+       },
+       {
+        "t": "Her phone glows. One more video, she promises herself, again.",
+        "props": [
+         "phone"
+        ],
+        "shot": "insert",
+        "emote": "doubt",
+        "hud": {
+         "type": "screen",
+         "app": "ScrollTube",
+         "label": "Screen time tonight",
+         "value": "3h 12m",
+         "trend": "up",
+         "pos": "cc",
+         "t": 0.4,
+         "dur": 3.2
+        }
+       },
+       {
+        "t": "The alarm on her clock is set for six. Why does she keep scrolling?",
+        "props": [
+         "clock"
+        ],
+        "shot": "insert",
+        "emote": "fear",
+        "hud": [
+         {
+          "type": "chip",
+          "text": "ALARM  6:00",
+          "pos": "tr"
+         },
+         {
+          "type": "title",
+          "text": "THE 2 A.M. SCROLL",
+          "pos": "cc",
+          "t": 2.2,
+          "dur": 1.8
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "title": "Nine A.M.",
+   "goal": "The cost lands at work.",
+   "target_s": 13,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "office"
+      ],
+      "mood": "tense",
+      "seed": 2,
+      "actors": [
+       {
+        "k": "lena",
+        "x": 990
+       },
+       {
+        "k": "boss",
+        "x": 1560
+       }
+      ],
+      "cues": [
+       {
+        "t": "Nine o'clock. She sits at her desk on three hours of sleep.",
+        "at": "office",
+        "on": [
+         "lena"
+        ],
+        "shot": "wide",
+        "emote": "sleepy",
+        "props": [
+         "coffee"
+        ],
+        "do": [
+         "sit@chair",
+         "drink"
+        ],
+        "hud": [
+         {
+          "type": "chip",
+          "text": "9:00 AM",
+          "pos": "tl"
+         },
+         {
+          "type": "counter",
+          "from": 0,
+          "to": 3,
+          "label": "hours of sleep",
+          "pos": "tr",
+          "t": 0.6,
+          "dur": 2.2
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "sequence": {
+      "type": "dialogue",
+      "setting": "office",
+      "mood": "tense",
+      "seed": 4,
+      "a": {
+       "k": "boss",
+       "x": 1500
+      },
+      "b": {
+       "k": "lena",
+       "x": 760
+      },
+      "lines": [
+       {
+        "who": "boss",
+        "t": "Lena, I need this report summarised by noon.",
+        "props": [
+         "document"
+        ],
+        "do": "offer"
+       },
+       {
+        "who": "lena",
+        "t": "By noon. Of course. I am already on it.",
+        "emote": "worry",
+        "do": "type:2"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "title": "One small change",
+   "goal": "A tiny fix, and the question to the viewer.",
+   "target_s": 8,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "kitchen"
+      ],
+      "mood": "warm",
+      "seed": 3,
+      "actors": [
+       {
+        "k": "lena",
+        "x": 620
+       }
+      ],
+      "cues": [
+       {
+        "t": "That night she leaves her phone in the kitchen, by the oven.",
+        "at": "kitchen",
+        "on": [
+         "lena"
+        ],
+        "do": [
+         "walkTo@oven",
+         "place:phone@oven"
+        ],
+        "props": [
+         "phone"
+        ],
+        "shot": "wide"
+       },
+       {
+        "t": "Would you try it for just one week? Tell me below.",
+        "on": [
+         "lena"
+        ],
+        "emote": "joy",
+        "do": "wave",
+        "shot": "medium"
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ],
+ "format": "explainer"
+}

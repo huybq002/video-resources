@@ -48,6 +48,8 @@
   const fore = (c, s, t, rot, d, ease) => tl.to(part(c, "forearm-" + s), { rotation: rot, duration: d || 0.3, ease: ease || "sine.inOut" }, t);
   const head = (c, t, rot, d) => tl.to(part(c, "head"), { rotation: rot, duration: d || 0.35, ease: "sine.inOut" }, t);
   const body = (c, t, rot, d) => tl.to(part(c, "body"), { rotation: rot, duration: d || 0.45, ease: "sine.inOut" }, t);
+  const viewSet = (c, t, to, dir) => { const cur = c.view || "f"; if (cur === to) return; const oldG = $(c.cid + "-" + VROOT[cur]), newG = $(c.cid + "-" + VROOT[to]); if (!newG) return;
+    const dsg = (dir == null ? 1 : dir) * (c.flip ? -1 : 1); tl.set(oldG, { opacity: 0 }, t); tl.set(newG, { opacity: 1, scaleX: to === "s" ? dsg : 1 }, t); c.view = to; };
   const rootTo = (c, t, props, d, ease) => tl.to(part(c, "root"), Object.assign({ duration: d || 0.2, ease: ease || "power2.out" }, props), t);
   // squash before a jump / stretch in the air / squash on landing
   const jump = (c, t, h) => { rootTo(c, t, { scaleY: 0.92, scaleX: 1.05, y: 8 }, 0.12, "power1.in"); rootTo(c, t + 0.12, { scaleY: 1.06, scaleX: 0.96, y: -h }, 0.2, "power2.out");
@@ -141,6 +143,70 @@
     glare(c, t) { eyes(c, t, "angry"); brows(c, t, -13); head(c, t, 4, 0.3); },
     normal(c, t) { eyes(c, t, "normal"); brows(c, t, 0); mouth(c, t, "closed"); head(c, t, 0, 0.3); body(c, t, 0, 0.3); },
     offer(c, t) { arm(c, "r", t, -62, 0.7); arm(c, "l", t, 62, 0.7); fore(c, "r", t + 0.2, -20, 0.5); fore(c, "l", t + 0.2, 20, 0.5); head(c, t, 4, 0.7); mouth(c, t + 0.2, "closed"); brows(c, t, 5); },
+    // ---- film actions (2026-11-08): what the narration says a character DOES, they now do on screen ----
+    // sit on an (implied or drawn) seat: body drops, knees out, feet in
+    // Sitting is drawn in profile: in a front view the thigh points at the camera and cannot be drawn without
+    // foreshortening, which is what broke the knees before. Hips drop by exactly the thigh length (rig "hip"/"knee"),
+    // so the knee ends level with the hip and the foot stays on the floor. inst = already seated when the shot opens.
+    sit(c, t, dir, inst) { const has = !!$(c.cid + "-vs"), d = inst ? 0.001 : 0.45;
+      if (has) { if (inst) viewSet(c, t, "s", dir); else ACT.view(c, t, "side", dir == null ? 1 : dir); }
+      const t1 = (has && !inst) ? t + 0.3 : t, rg = R[c.k + (c.view === "s" ? ":s" : "")] || {}, L = (rg.knee || 650) - (rg.hip || 540);
+      if (c.view === "s") {
+        rootTo(c, t1, { y: L }, d, "power2.inOut");
+        tl.to(part(c, "leg-l"), { rotation: -88, duration: d, ease: "power2.inOut" }, t1); tl.to(part(c, "shin-l"), { rotation: 88, duration: d, ease: "power2.inOut" }, t1);
+        tl.to(part(c, "leg-r"), { rotation: -82, duration: d, ease: "power2.inOut" }, t1); tl.to(part(c, "shin-r"), { rotation: 82, duration: d, ease: "power2.inOut" }, t1);
+        tl.to([part(c, "foot-l"), part(c, "foot-r")], { rotation: 0, duration: d }, t1); body(c, t1, -3, d);
+      } else {   // no profile drawing: knees out, shins straight down, a small drop (a perch, never crossed legs)
+        rootTo(c, t1, { y: L * 0.14 }, d, "power2.inOut");
+        tl.to(part(c, "leg-l"), { rotation: 30, duration: d }, t1); tl.to(part(c, "shin-l"), { rotation: -30, duration: d }, t1);
+        tl.to(part(c, "leg-r"), { rotation: -30, duration: d }, t1); tl.to(part(c, "shin-r"), { rotation: 30, duration: d }, t1);
+      } c.seated = true; },
+    // back to standing from sit / crouch / lie
+    stand(c, t) { tl.set(part(c, "root"), { transformOrigin: "50% 100%" }, t); rootTo(c, t, { y: 0, rotation: 0, scaleX: 1, scaleY: 1 }, 0.45, "power2.out");
+      tl.to([part(c, "leg-l"), part(c, "leg-r"), part(c, "shin-l"), part(c, "shin-r"), part(c, "body"), part(c, "head")], { rotation: 0, duration: 0.4, ease: "power2.out" }, t); lids(c, t, 0);
+      if (c.seated && c.view === "s") ACT.view(c, t + 0.45, "front", 1); c.seated = false; },
+    // run across the frame: fast cycle, forward lean, bigger arm swing
+    run(c, t, dx, d) { const dist = dx || 500, dd = d || Math.max(0.8, Math.abs(dist) / 600), has = !!$(c.cid + "-vs"); if (has) ACT.view(c, t, "side", dist >= 0 ? 1 : -1);
+      const t1 = t + (has ? 0.15 : 0); tl.to($(c.cid + "-wrap"), { x: "+=" + dist, duration: dd, ease: "power1.inOut" }, t1);
+      walkCycle(c, t1, dd - 0.1, 0.24); body(c, t1, (dist >= 0 ? 1 : -1) * -8, 0.2); body(c, t1 + dd, 0, 0.3); if (has) ACT.view(c, t1 + dd, "front", 1); },
+    // a real jump with squash and stretch
+    jump(c, t, h) { jump(c, t, h || 70); arm(c, "l", t + 0.1, 120, 0.25); arm(c, "r", t + 0.1, -120, 0.25); arm(c, "l", t + 0.6, 0, 0.3); arm(c, "r", t + 0.6, 0, 0.3); },
+    // fall over (trip, faint, shock): pivots on the feet and lands on the floor; stays down until "stand"
+    fall(c, t, dir) { const g = dir || 1; tl.set(part(c, "root"), { transformOrigin: "50% 100%" }, t); mouth(c, t, "open"); brows(c, t, -8);
+      arm(c, "l", t, 130, 0.25); arm(c, "r", t, -130, 0.25); rootTo(c, t + 0.1, { rotation: 84 * g, y: 26 }, 0.55, "power2.in");
+      tl.to(part(c, "root"), { y: 18, duration: 0.08, yoyo: true, repeat: 1 }, t + 0.65); arm(c, "l", t + 0.7, 40, 0.3); arm(c, "r", t + 0.7, -40, 0.3); },
+    // lie down (sleep, collapse onto a bed): horizontal, eyes closed; h lifts the body onto a bed (px, default 0 = floor)
+    lie(c, t, h, inst) { const d = inst ? 0.001 : 0.7; tl.set(part(c, "root"), { transformOrigin: "50% 100%" }, t); rootTo(c, t, { rotation: -88, y: -(h || 0) }, d, "power2.inOut");
+      if (!c.awake) { lids(c, t + (inst ? 0 : 0.4), 1); mouth(c, t + (inst ? 0 : 0.4), "closed"); } arm(c, "l", t, 10, inst ? 0.001 : 0.6); arm(c, "r", t, -10, inst ? 0.001 : 0.6); },
+    sleep(c, t, h) { ACT.lie(c, t, h == null ? 120 : h); },
+    // bend down and pick something up, then stand again
+    pickup(c, t) { rootTo(c, t, { y: 34 }, 0.35); body(c, t, 26, 0.4); head(c, t, 14, 0.4); arm(c, "r", t + 0.1, -18, 0.4); fore(c, "r", t + 0.2, -10, 0.3);
+      rootTo(c, t + 1.2, { y: 0 }, 0.4); body(c, t + 1.2, 0, 0.4); head(c, t + 1.2, 0, 0.4); arm(c, "r", t + 1.25, -55, 0.4); },
+    // typing on a keyboard / phone: both forearms forward, fingers tapping
+    type(c, t, dur) { const D = dur || 2.4; arm(c, "l", t, 30, 0.3); arm(c, "r", t, -30, 0.3); head(c, t, 6, 0.4);
+      for (let i = 0; i < Math.floor(D / 0.18); i++) { fore(c, i % 2 ? "l" : "r", t + 0.3 + i * 0.18, (i % 2 ? 1 : -1) * 28, 0.09); fore(c, i % 2 ? "l" : "r", t + 0.39 + i * 0.18, (i % 2 ? 1 : -1) * 14, 0.09); }
+      arm(c, "l", t + D + 0.3, 0, 0.4); arm(c, "r", t + D + 0.3, 0, 0.4); head(c, t + D + 0.3, 0, 0.4); },
+    // texting on a phone held in front of the chest: both forearms up and in, head down, thumbs tapping
+    text(c, t, dur) { const D = dur || 2.4; arm(c, "r", t, 16, 0.35); arm(c, "l", t, -16, 0.35); fore(c, "r", t + 0.05, 112, 0.35); fore(c, "l", t + 0.05, -112, 0.35); head(c, t, 10, 0.4);
+      for (let i = 0; i < Math.floor(D / 0.22); i++) fore(c, i % 2 ? "l" : "r", t + 0.45 + i * 0.22, (i % 2 ? -1 : 1) * (i % 4 < 2 ? 104 : 116), 0.11);
+      arm(c, "l", t + D + 0.3, 0, 0.4); arm(c, "r", t + D + 0.3, 0, 0.4); fore(c, "l", t + D + 0.3, 0, 0.4); fore(c, "r", t + D + 0.3, 0, 0.4); head(c, t + D + 0.3, 0, 0.4); },
+    // drink from a cup in the right hand
+    drink(c, t) { arm(c, "r", t, -150, 0.45, "power2.out"); fore(c, "r", t + 0.1, -105, 0.35); head(c, t + 0.3, -10, 0.35);
+      arm(c, "r", t + 1.6, -40, 0.45); fore(c, "r", t + 1.6, 0, 0.4); head(c, t + 1.6, 0, 0.4); },
+    // phone held to the ear for dur seconds
+    phone(c, t, dur) { const D = dur || 2.6; arm(c, "r", t, -152, 0.45, "power2.out"); fore(c, "r", t + 0.1, -118, 0.35); head(c, t + 0.2, 9, 0.35);
+      arm(c, "r", t + D, -20, 0.45); fore(c, "r", t + D, 0, 0.4); head(c, t + D, 0, 0.4); },
+    // throw: wind up behind, release forward
+    throw(c, t) { arm(c, "r", t, -160, 0.28, "power2.out"); body(c, t, 6, 0.28); arm(c, "r", t + 0.3, -40, 0.14, "power4.in"); body(c, t + 0.3, -8, 0.16);
+      arm(c, "r", t + 1.0, 0, 0.4); body(c, t + 1.0, 0, 0.4); },
+    // crouch / hide: small, head down, arms over the head
+    crouch(c, t, dur) { const D = dur || 2.2; rootTo(c, t, { scaleY: 0.8, y: 42 }, 0.3); arm(c, "l", t, 140, 0.3); arm(c, "r", t, -140, 0.3);
+      fore(c, "l", t + 0.1, 70, 0.25); fore(c, "r", t + 0.1, -70, 0.25); head(c, t, 12, 0.3); sweat(c, t + 0.3);
+      rootTo(c, t + D, { scaleY: 1, y: 0 }, 0.35); arm(c, "l", t + D, 0, 0.35); arm(c, "r", t + D, 0, 0.35); fore(c, "l", t + D, 0, 0.3); fore(c, "r", t + D, 0, 0.3); head(c, t + D, 0, 0.3); },
+    // panic: arms flailing, body shaking, sweat, open mouth
+    panic(c, t) { mouth(c, t, "open"); brows(c, t, 12); sweat(c, t);
+      for (let i = 0; i < 6; i++) { arm(c, "l", t + i * 0.22, i % 2 ? 150 : 95, 0.18); arm(c, "r", t + i * 0.22, i % 2 ? -95 : -150, 0.18); body(c, t + i * 0.22, i % 2 ? 5 : -5, 0.18); }
+      arm(c, "l", t + 1.5, 0, 0.4); arm(c, "r", t + 1.5, 0, 0.4); body(c, t + 1.5, 0, 0.4); mouth(c, t + 1.6, "closed"); },
   };
   const camShake = (cam, t) => { for (let i = 0; i < 6; i++) tl.to(cam, { x: "+=" + (i % 2 ? 12 : -12) * (1 - i / 6), duration: 0.04 }, t + i * 0.04); };
 
@@ -176,13 +242,25 @@
       tl.to(e, { y: -(5 + f.a * 7), duration: per, yoyo: true, repeat: 2 * n - 1, ease: "sine.inOut" }, t0 + f.d); });
     // overlays: chips, counters, bursts, bubbles, titles
     for (const o of sh.overlays || []) { const e = $(o.id), T = t0 + o.t, end = T + o.dur; if (o.abs) gsap.set(e, { xPercent: -50, yPercent: -50 });
-      if (o.type === "chip") { tl.fromTo(e, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, T); tl.to(e, { opacity: 0, y: -6, duration: 0.2 }, end - 0.2); }
+      if (o.type === "screen") { tl.fromTo(e, { opacity: 0, y: 60, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.4)" }, T); tl.to(e, { opacity: 0, y: -20, duration: 0.25 }, end - 0.25); }
+      else if (o.type === "chip") { tl.fromTo(e, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, T); tl.to(e, { opacity: 0, y: -6, duration: 0.2 }, end - 0.2); }
       else if (o.type === "counter") { const num = $(o.id + "-n"), pr = { v: o.from }; const fmt = (v) => String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         num.textContent = fmt(o.from);
         tl.fromTo(e, { opacity: 0, y: 16, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(1.5)" }, T);
         tl.to(pr, { v: o.to, duration: Math.max(0.4, o.dur - 0.9), ease: "power2.out", onUpdate: () => { num.textContent = fmt(pr.v); } }, T + 0.25);
         tl.to(e, { opacity: 0, duration: 0.25 }, end - 0.25); }
       else if (o.type === "burst") { tl.fromTo(e, { opacity: 0, scale: 0.2, rotation: -14 }, { opacity: 1, scale: 1.12, rotation: -5, duration: 0.22, ease: "power3.out" }, T); tl.to(e, { scale: 1, duration: 0.15 }, T + 0.22); tl.to(e, { opacity: 0, scale: 0.9, duration: 0.18 }, end - 0.18); }
+      else if (o.type === "graph") { tl.fromTo(e, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" }, T);
+        const pl = e.querySelector("polyline"); if (pl && pl.getTotalLength) { const L = pl.getTotalLength(); gsap.set(pl, { strokeDasharray: L, strokeDashoffset: L }); tl.to(pl, { strokeDashoffset: 0, duration: Math.max(0.6, o.dur * 0.5), ease: "power2.out" }, T + 0.3); }
+        tl.to(e, { opacity: 0, duration: 0.25 }, end - 0.25); }
+      else if (o.type === "clock") { tl.fromTo(e, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.6)" }, T); tl.to(e, { opacity: 0, duration: 0.2 }, end - 0.2); }
+      else if (o.type === "flash") { tl.fromTo(e, { opacity: 0.95 }, { opacity: 0, duration: Math.min(0.6, o.dur), ease: "power2.out" }, T); }
+      else if (o.type === "speedlines") { tl.fromTo(e, { opacity: 0, scale: 1.25 }, { opacity: 0.85, scale: 1, duration: 0.18, ease: "power3.out" }, T);
+        tl.to(e, { scale: 1.04, duration: 0.12, yoyo: true, repeat: Math.max(1, Math.floor((o.dur - 0.4) / 0.12)), ease: "none" }, T + 0.18); tl.to(e, { opacity: 0, duration: 0.2 }, end - 0.2); }
+      else if (o.type === "chain") { const ch = e.querySelectorAll(".ch");
+        tl.fromTo(e, { opacity: 0 }, { opacity: 1, duration: 0.15 }, T);
+        tl.fromTo(ch, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out", stagger: Math.min(0.45, (o.dur * 0.6) / Math.max(1, ch.length)) }, T + 0.1);
+        tl.to(e, { opacity: 0, duration: 0.25 }, end - 0.25); }
       else if (o.type === "bubble" || o.type === "title") { const ch = e.querySelectorAll(".ch");
         tl.fromTo(e, { opacity: 0, y: 10, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "power2.out" }, T);
         tl.fromTo(ch, { opacity: 0 }, { opacity: 1, duration: 0.01, stagger: Math.min(0.06, (o.dur * 0.6) / Math.max(1, ch.length)) }, T + 0.15);
@@ -193,14 +271,29 @@
       if (c.enter != null) { const D = Math.max(1.8, Math.abs(c.enter) / 230);
         const has = !!$(c.cid + "-vs"); if (has) ACT.view(c, t0, "side", c.enter < 0 ? 1 : -1);
         tl.fromTo(w, { x: c.enter }, { x: 0, duration: D, ease: "power1.out" }, t0 + (has ? 0.2 : 0)); walkCycle(c, t0 + (has ? 0.2 : 0), D - (has ? 0.3 : 0)); if (has) ACT.view(c, t0 + D, "front", 1); }
-      let b = 0.9 + rnd(); while (b < dur - 0.3) { blink(c, t0 + b); b += 2.3 + rnd() * 2.2; }
+      if (c.face && !c.hold) viewSet(c, t0, "s", c.face);     // two-shot: in profile, facing the other person
+      if (c.back && !c.path) viewSet(c, t0, "b", 1);
+      if (c.path) { const p = c.path, wv = $(c.cid + "-wrap");   // an extra walking through: across, toward or away from the camera
+        if (p.view === "s") viewSet(c, t0, "s", p.dir || 1); else if (p.view === "b") viewSet(c, t0, "b", 1);
+        gsap.set(wv, { transformOrigin: "50% 97%" });
+        tl.fromTo(wv, { x: 0, y: 0, scale: 1 }, { x: p.dx, y: p.dy, scale: p.k, duration: p.d, ease: "none" }, t0); walkCycle(c, t0, p.d); }
+      if (c.hold === "lie") ACT.lie(c, t0, 0, true);
+      else if (c.hold === "sit") ACT.sit(c, t0, c.holdDir, true);
+      let b = 0.9 + rnd(); while (b < dur - 0.3) { if (c.hold !== "lie" || c.awake) blink(c, t0 + b); b += 2.3 + rnd() * 2.2; }
       let hasBreath = false;
-      for (const a of c.acts) { if (a[1] === "breathe") hasBreath = true; ACT[a[1]](c, t0 + a[0], a[1] === "breathe" ? dur - a[0] : a[2], a[3]); }
+      for (const a of c.acts) { if (a[1] === "breathe") hasBreath = true; if (!ACT[a[1]]) { console.warn("unknown act", a[1]); continue; } ACT[a[1]](c, t0 + a[0], a[1] === "breathe" ? dur - a[0] : a[2], a[3]); }
       if (!hasBreath) ACT.breathe(c, t0 + 0.2, dur - 0.2);
     }
+    for (const v of sh.vehicles || []) { const e = $(v.dom);   // traffic: a car drives along its lane
+      tl.set(e, { opacity: 1 }, t0 + v.t); tl.fromTo(e, { x: 0, y: 0, scale: 1 }, { x: v.dx, y: v.dy, scale: v.k, duration: v.d, ease: v.back ? "power2.out" : "power2.in" }, t0 + v.t);
+      tl.set(e, { opacity: 0 }, t0 + v.t + v.d); }
     for (const L of sh.lip || []) { const c = sh.chars.find((x) => x.k === L.k); if (!c) continue; for (const ev of L.ev) viseme(c, t0 + ev[0], ev[1], ev[2]); }
     for (const p of sh.props || []) { const e = $(p.dom);
-      if (p.mode === "static") { gsap.set(e, { opacity: 1 }); tl.fromTo(e, { scale: 1 }, { scale: 1.06, duration: 1.2, yoyo: true, repeat: Math.max(1, Math.floor(dur / 2.4) * 2 - 1), ease: "sine.inOut" }, t0 + (p.t || 0)); }
+      if (p.mode === "place") { gsap.set(e, { opacity: 0 }); tl.fromTo(e, { opacity: 1, x: p.fx || 0, y: p.fy || 0, scale: 0.9 }, { x: 0, y: 0, scale: 1, duration: 0.55, ease: "power2.inOut" }, t0 + (p.t || 0)); }
+      else if (p.mode === "take") { gsap.set(e, { opacity: 1 }); tl.to(e, { x: p.fx || 0, y: p.fy || 0, duration: 0.5, ease: "power2.inOut" }, t0 + (p.t || 0)); tl.to(e, { opacity: 0, duration: 0.2 }, t0 + (p.t || 0) + 0.5); }
+      else if (p.mode === "pop") { tl.fromTo(e, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, t0 + (p.t || 0)); }
+      else if (p.mode === "on") { gsap.set(e, { opacity: 1 }); }
+      else if (p.mode === "static") { gsap.set(e, { opacity: 1 }); tl.fromTo(e, { scale: 1 }, { scale: 1.06, duration: 1.2, yoyo: true, repeat: Math.max(1, Math.floor(dur / 2.4) * 2 - 1), ease: "sine.inOut" }, t0 + (p.t || 0)); }
       else tl.fromTo(e, { opacity: 0, y: -260, rotation: 14 }, { opacity: 1, y: 0, rotation: -3, duration: 0.55, ease: "bounce.out" }, t0 + (p.t || 0));
       if (p.lift != null) tl.to(e, { y: -30, rotation: -4, duration: 0.5, ease: "power2.out" }, t0 + p.lift); }
     if (sh.rain) { const rs = document.querySelectorAll("#" + sh.dom + " .rain");

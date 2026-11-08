@@ -62,6 +62,146 @@ def main():
     GS = "assets/vendor/gsap.min.js"
     next_cue = 1; root_hosts = []
 
+    import anchors as AN, characters_stick as CS
+    _anch = {}
+    def anchors_of(sid):
+        if sid not in _anch:
+            f = assets / f"anchors_{sid}.json"
+            _anch[sid] = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+        return _anch[sid]
+
+    import extras as EX
+
+    def held_item(svg, item):
+        """draw a phone / cup INSIDE the right hand of every view, so it rises with the arm (to the ear, to the mouth)."""
+        import re as _re
+
+        def put(m):     # groups: 1 forearm..hand, 2 hand circle, 3 cx, 4 cy
+            x, y = float(m.group(3)), float(m.group(4)) + 9
+            if item == "phone":     # big enough to read at wide-shot scale
+                g = (f'<rect x="{x - 17:.0f}" y="{y - 52:.0f}" width="34" height="60" rx="7" fill="#2b2f3a" stroke="#15121b" stroke-width="4"/>'
+                     f'<rect x="{x - 11:.0f}" y="{y - 45:.0f}" width="22" height="42" rx="3" fill="#8fd3ff"/>')
+            else:
+                g = (f'<path d="M{x - 21:.0f} {y - 50:.0f} L{x + 21:.0f} {y - 50:.0f} L{x + 16:.0f} {y + 6:.0f} L{x - 16:.0f} {y + 6:.0f} Z" fill="#f4efe0" stroke="#15121b" stroke-width="4"/>'
+                     f'<rect x="{x - 19:.0f}" y="{y - 34:.0f}" width="38" height="14" fill="#b0623d"/>'
+                     f'<path d="M{x + 19:.0f} {y - 40:.0f} q17 3 14 17 q-3 11 -16 9" fill="none" stroke="#15121b" stroke-width="5"/>')
+            return m.group(1)[:-len(m.group(2))] + g + m.group(2)
+        return _re.sub(r'(<g id="[^"]*-forearm-r">(?:(?!</g>).)*?(<circle cx="([-\d.]+)" cy="([-\d.]+)" r="1[12]" fill="[^"]+"/>))',
+                       put, svg, flags=_re.S)
+
+    def add_extras(sh, A, dur):
+        """the colleagues, customers, passers-by, swimmers and cars of this place (extras.py)"""
+        items = (spec.get("extras_plan") or {}).get(sh.get("setting"))
+        if not items or sh.get("split") or any(p_.get("mode") == "static" for p_ in sh.get("props", [])):
+            return sh
+        ex, cars = EX.place(items, A, sh, W, H, dur, cast, sh.get("chars", []), AN.scale_at, AN.ppm_at_y, None)
+        out_chars = []
+        for c in ex:
+            cc = cast.get(c["k"], {}); an = c.pop("anchor", None)
+            if an and an["pose"] == "sit":
+                hip, knee = CS.leg_geo(cc); s_ = an["s"]
+                c.update(x=round(an["seat"][0], 1), by=round(an["seat"][1] - knee * s_ + 782 * s_, 1), s=s_, hold="sit", holdDir=an["face"])
+            elif an and an["pose"] == "lie":
+                (hx, hy), (fx, fy) = an["head"], an["foot"]; s_ = min(AN.scale_at(an["ppm"]), abs(fx - hx) * 0.95 / 706 + 0.02)
+                c.update(x=round(fx, 1), by=round((hy + fy) / 2 - 55 * s_, 1), s=round(s_, 3), flip=hx > fx, hold="lie", awake=False)
+            out_chars.append(c)
+        sh = dict(sh); sh["chars"] = out_chars + list(sh.get("chars", [])); sh["vehicles"] = cars
+        return sh
+
+    def _rim_col(sid):
+        st = spec.get("settings", {}).get((sid or "").split("__")[0])
+        tm = (st.get("set") or {}).get("time") if isinstance(st, dict) and isinstance(st.get("set"), dict) else None
+        return {"night": "rgba(150,195,255,.92)", "day": "rgba(255,240,215,.9)"}.get(tm, "rgba(255,214,160,.9)")
+
+    def resolve(sh, dur=4.0):
+        """put characters and props ON the furniture the line talks about (anchors.py)."""
+        A = anchors_of(sh.get("setting"))
+        if not A:
+            return sh
+        sh = dict(sh); chars = []
+        for ch in sh.get("chars", []):
+            ch = dict(ch); an = ch.get("anchor"); cc = cast.get(ch["k"], {})
+            if an:
+                a = AN.find(A, an["to"], ch.get("x"))
+                if a and an["pose"] == "lie" and "head" in a:
+                    hx, hy = a["head"]; fx, fy = a["foot"]; ppm = a.get("top_ppm") or a["floor_ppm"]
+                    sc_ = min(AN.scale_at(ppm), abs(fx - hx) * 0.95 / 706)
+                    ch.update(x=round(fx - 0 * sc_, 1), by=round((hy + fy) / 2 - 55 * sc_, 1), s=round(sc_, 3), flip=hx > fx, hold="lie", awake=an.get("awake", True))
+                    ch["acts"] = [a_ for a_ in ch.get("acts", []) if a_[1] in ("emote", "look", "talk", "phone", "surprise", "blink", "worry", "relief", "think")]
+                elif a and an["pose"] == "stand":   # standing beside it (arrived there on an earlier line)
+                    ppm = a["floor_ppm"]; side = 1 if a["floor"][0] >= ch.get("x", 960) else -1
+                    ch.update(x=round(a["floor"][0] - side * 0.55 * ppm, 1), by=round(a["floor"][1] + 0.35 * ppm, 1), s=AN.scale_at(ppm))
+                    ch["acts"] = [a_ for a_ in ch.get("acts", []) if not (a_[1] == "walkTo" and isinstance(a_[2], str))]
+                elif a and an["pose"] == "sit" and "seat" in a:
+                    sx_, sy_ = a["seat"]; sc_ = AN.scale_at(a.get("seat_ppm") or a["floor_ppm"])
+                    hip, knee = CS.leg_geo(cc)
+                    face_ = a.get("face", 1)
+                    for wk in ("desk", "table"):      # seated at a desk/table: face it (the screen, the laptop, the cup), never sit with the back to it
+                        d_ = AN.find(A, wk, sx_)
+                        if d_ and abs((d_.get("top") or d_["floor"])[0] - sx_) < 1.6 * (a.get("seat_ppm") or a["floor_ppm"]):
+                            dx_ = (d_.get("top") or d_["floor"])[0] - sx_
+                            if abs(dx_) > 4: face_ = 1 if dx_ > 0 else -1
+                            break
+                    ch.update(x=round(sx_, 1), by=round(sy_ - knee * sc_ + 782 * sc_, 1), s=sc_, hold="sit", holdDir=face_, flip=False)
+                    ch["acts"] = [a_ for a_ in ch.get("acts", []) if a_[1] not in ("sit", "walkTo", "run", "walk", "jump", "crouch", "bend", "pickup")]
+            if not an and A.get("_pave") and not ch.get("extra") and ch.get("by", 900) < H * 0.97:
+                by_ = ch.get("by", 900)
+                # only pavement that is ON screen (in 9:16 the pavement at the hero's depth can lie outside the frame:
+                # then the hero walks back along it to where it is visible, instead of being snapped out of the picture)
+                rows = [r for r in A["_pave"] if W * 0.1 < r[1] + (40 if r[2] < 0 else -40) < W * 0.9 and r[0] < H * 0.95]
+                if rows:
+                    best = min(rows, key=lambda r: 3 * abs(r[0] - by_) / H + abs(r[1] - ch.get("x", W / 2)) / W)
+                    ch["x"] = round(best[1] + (40 if best[2] < 0 else -40), 1); ch["by"] = round(best[0], 1)
+            if not an:   # standing on the floor: the set decides the size (feet lower on screen = nearer = bigger)
+                pp = AN.ppm_at_y(A, ch.get("by", 900))
+                if pp and ch.get("by", 900) < H * 0.97:
+                    ch["s"] = AN.scale_at(pp)
+            acts = []
+            for a_ in ch.get("acts", []):
+                if a_[1] == "walkTo" and isinstance(a_[2], str) and a_[2].startswith("@"):
+                    a = AN.find(A, a_[2][1:], ch.get("x"))
+                    if not a:
+                        continue
+                    ppm = a["floor_ppm"]; side = 1 if a["floor"][0] >= ch.get("x", 960) else -1
+                    if not an:   # walk on the floor line of the target, at its depth and scale
+                        ch["s"] = AN.scale_at(ppm); ch["by"] = round(a["floor"][1] + 0.35 * ppm, 1)
+                    dest = a["floor"][0] - side * 0.55 * ppm
+                    a_ = [a_[0], "walkTo", int(dest - ch.get("x", 960)), a_[3] if len(a_) > 3 else None]
+                    ch["_end_x"] = dest
+                acts.append(a_)
+            ch["acts"] = acts
+            chars.append(ch)
+        sh["chars"] = chars
+        props = []
+        for pr in sh.get("props", []):
+            pr = dict(pr)
+            if pr.get("at"):
+                hc0 = next((c for c in chars if c["k"] == pr.get("hand")), None)
+                a = AN.find(A, pr["at"], hc0.get("_end_x", hc0["x"]) if hc0 else None)
+                pt = a and (a.get("top") or a.get("seat") or a.get("front"))
+                if pt:
+                    ppm = a.get("top_ppm") or a.get("seat_ppm") or a["floor_ppm"]
+                    w = max(28, int(ppm * {"phone": .2, "coffee": .2, "cup": .2, "document": .4, "book": .32, "keys": .14, "laptop": .45}.get(pr["id"], .3)))
+                    pr.update(x=round(pt[0], 1), y=round(pt[1] - 0.3 * w, 1), w=w)
+                    hk = pr.get("hand"); hc = next((c for c in chars if c["k"] == hk), None)
+                    if hc and pr.get("mode") in ("place", "take"):
+                        hs = hc.get("s", 0.8); hx = hc.get("_end_x", hc["x"]) + (90 * hs if pt[0] >= hc.get("_end_x", hc["x"]) else -90 * hs)
+                        hy = hc.get("by", 900) - 380 * hs
+                        pr["fx"], pr["fy"] = round(hx - pr["x"], 1), round(hy - pr["y"], 1)
+                else:
+                    continue
+            elif pr.get("hand"):   # an object in someone's hand follows that person after posing/scaling
+                hc = next((c for c in chars if c["k"] == pr["hand"]), None)
+                if hc:
+                    hs = hc.get("s", 0.8); side = -1 if hc.get("flip") else 1
+                    if hc.get("hold") == "sit": side = hc.get("holdDir", 1) or 1
+                    drop = (CS.leg_geo(cast.get(hc["k"], {}))[1] - CS.leg_geo(cast.get(hc["k"], {}))[0]) if hc.get("hold") == "sit" else 0
+                    w = int(hs * 400 * {"phone": .22, "coffee": .26, "cup": .26, "document": .42, "clock": .4, "book": .36, "keys": .16}.get(pr["id"], .3))
+                    pr.update(x=round(hc["x"] + side * 105 * hs, 1), y=round(hc.get("by", 900) - (400 - drop) * hs, 1), w=max(24, w))
+            props.append(pr)
+        sh["props"] = props
+        return add_extras(sh, A, dur)
+
     for sc in spec["scenes"]:
         n = sc["id"]; tsc = sc_by[n]; s0 = tsc["startMs"]; dur = tsc["sceneDurationMs"] / 1000; cid = f"scene-{n}"
         shots_html, shots_data, caps_html, caps_data = [], [], [], []; prev = None; prev_ids = []; prev_full = (0, 1)
@@ -74,6 +214,7 @@ def main():
                 prev_ids, prev_full = cue_ids, (f0, f1)
             por = sh.get("portion", [0, 1]); t0 = f0 + (f1 - f0) * por[0]; t1 = f0 + (f1 - f0) * por[1]
             dom = f"s{n}{chr(65+si)}"; chars_html, chars_data = [], []
+            sh = resolve(sh, t1 - t0)
             if sh.get("focus") and not sh.get("split"):      # close-ups: drop characters that end up outside the frame (fewer DOM nodes = faster render)
                 _f = sh["focus"]; _z = min(_f.get("zoom", 2.4), _f.get("to", _f.get("zoom", 2.4) * 1.07)); _hx = next(x["x"] for x in sh["chars"] if x["k"] == _f["k"])
                 sh = dict(sh, chars=[x for x in sh["chars"] if x["k"] == _f["k"] or x.get("enter") is not None or abs(_z * (x["x"] - _hx)) < W / 2 + _z * 200 * x.get("s", 0.8) + 60])
@@ -84,22 +225,41 @@ def main():
               for ch in pn["chars"]:
                 ccid = f"{dom}-{ch['k']}" if pn["idx"] is None else f"{dom}p{pn['idx']}-{ch['k']}"; s = ch.get("s", 0.8)
                 w, h = 400 * s, 800 * s; left, top = ch["x"] - w / 2, ch.get("by", 900) - 782 * s
-                flip = ("transform:scaleX(-1);" if ch.get("flip") else "") + ("filter:drop-shadow(0 0 7px rgba(255,205,150,.75));" if (ch.get("glow") or cast[ch["k"]].get("glow")) else "")
+                flip = ("transform:scaleX(-1);" if ch.get("flip") else "") + ((f"filter:drop-shadow(-3px -2px 0 {_rim_col(sh.get('setting'))}) drop-shadow(0 0 5px rgba(255,190,130,.25));") if (ch.get("glow") or cast[ch["k"]].get("glow") or (spec.get("rim", True) and not ch.get("extra"))) else "")
+                if ch.get("extra"): flip += "filter:saturate(.8) brightness(.96);"
                 acts_ = ch.get("acts", [])
-                views_ = ["f"] + (["s"] if (ch.get("enter") is not None or any(a_[1] == "walkTo" or (a_[1] == "view" and a_[2] in ("side", "s")) for a_ in acts_)) else []) \
-                                 + (["b"] if any(a_[1] == "view" and a_[2] in ("back", "b") for a_ in acts_) else [])
+                views_ = ["f"] + (["s"] if (ch.get("enter") is not None or ch.get("hold") == "sit" or ch.get("face") or (ch.get("path") or {}).get("view") == "s" or any(a_[1] in ("walkTo", "sit") or (a_[1] == "view" and a_[2] in ("side", "s")) for a_ in acts_)) else []) \
+                                 + (["b"] if (ch.get("back") or (ch.get("path") or {}).get("view") == "b" or any(a_[1] == "view" and a_[2] in ("back", "b") for a_ in acts_)) else [])
                 ext_ = bool(cast[ch["k"]].get("external")) and (assets / f"{ch['k']}.svg").exists()
                 svg = (f"<img id='{ccid}-ext' src='assets/{ch['k']}.svg' alt='' style='width:100%;height:100%;display:block'>" if ext_ else
                        CH.build_svg(ccid, cast[ch["k"]], tuple(views_)).replace("<svg xmlns", '<svg preserveAspectRatio="xMidYMax meet" xmlns', 1))
-                pane_chars_html[pn["idx"]].append(f"<div id='{ccid}-wrap' class='char' style='left:{left:.1f}px;top:{top:.1f}px;width:{w:.1f}px;height:{h:.1f}px'><div class='flip' style='{flip}'>{svg}</div></div>")
-                chars_data.append(dict(k=ch["k"], cid=ccid, acts=ch.get("acts", []), enter=ch.get("enter"), flip=bool(ch.get("flip")), ext=ext_))
+                if ch.get("item") and not ext_: svg = held_item(svg, ch["item"])
+                # a label that floats over the head and follows the character (a stat, a level, a name, "100%"):
+                # the reference films keep a number over every person for the whole story
+                tag_ = ch.get("tag", cast[ch["k"]].get("tag"))
+                tag_html = (f"<div class='ctag' style='position:absolute;left:50%;top:{4 - 2 * (cast[ch['k']].get('hat', 'none') != 'none')}%;transform:translate(-50%,-100%);"
+                            f"background:rgba(24,20,32,.88);color:#ffd27a;font-weight:700;font-size:{max(18, 46 * s):.0f}px;line-height:1;padding:{6 * s + 3:.0f}px {14 * s + 6:.0f}px;"
+                            f"border:2px solid #ffd27a;border-radius:999px;white-space:nowrap;font-variant-numeric:tabular-nums'>{html.escape(str(tag_))}</div>") if tag_ not in (None, "") else ""
+                clip_ = ""
+                if ch.get("clip_y") is not None:     # hidden below a counter top or the water line
+                    cut = max(0.0, min(100.0, (top + h - ch["clip_y"]) / h * 100))
+                    clip_ = f"clip-path:inset(0 0 {cut:.1f}% 0);"
+                pane_chars_html[pn["idx"]].append(f"<div id='{ccid}-wrap' class='char' style='left:{left:.1f}px;top:{top:.1f}px;width:{w:.1f}px;height:{h:.1f}px;z-index:{int(ch.get('by', 900)) + (2000 if not ch.get('extra') and ch.get('by', 900) > H * 1.0 else 0)};{clip_}'><div class='flip' style='{flip}'>{svg}</div>{tag_html}</div>")
+                chars_data.append(dict(k=ch["k"], cid=ccid, acts=ch.get("acts", []), enter=ch.get("enter"), flip=bool(ch.get("flip")), ext=ext_,
+                                       hold=ch.get("hold"), holdDir=ch.get("holdDir"), awake=ch.get("awake", True), face=ch.get("face"),
+                                       path=ch.get("path"), back=ch.get("back"), extra=ch.get("extra")))
             chars_html = pane_chars_html[None] if None in pane_chars_html else []
             props_html, props_data = [], []
             for pi, p in enumerate(sh.get("props", [])):
                 pid = f"{dom}-prop{pi}"; w = p.get("w", 170)
-                props_html.append(f"<img id='{pid}' class='prop' src='assets/props/{p['id']}.svg' style='left:{p['x']-w/2:.0f}px;top:{p['y']-w*0.7:.0f}px;width:{w}px;opacity:0'>")
-                props_data.append(dict(dom=pid, mode=p.get("mode", "drop"), t=p.get("t", 0), lift=p.get("lift")))
+                props_html.append(f"<img id='{pid}' class='prop' src='assets/props/{p['id']}.svg' style='left:{p['x']-w/2:.0f}px;top:{p['y']-w*0.7:.0f}px;width:{w}px;opacity:0;z-index:5000'>")
+                props_data.append(dict(dom=pid, mode=p.get("mode", "drop"), t=p.get("t", 0), lift=p.get("lift"), fx=p.get("fx"), fy=p.get("fy")))
             # crowd: seeded silhouettes in perspective rows
+            veh_html, veh_data = [], []
+            for vi, v in enumerate(sh.get("vehicles", []) or []):
+                vid = f"{dom}-car{vi}"; vw = v["w"]; vh = vw * 0.65
+                veh_html.append(f"<div id='{vid}' class='veh' style='position:absolute;left:{v['x'] - vw / 2:.1f}px;top:{v['y'] - vh:.1f}px;width:{vw:.1f}px;height:{vh:.1f}px;opacity:0;transform-origin:50% 100%;z-index:{int(v['y'] + v['dy'] * 0.6)}'>{EX.car_svg(v['color'], v.get('back'))}</div>")
+                veh_data.append(dict(dom=vid, dx=round(v["dx"], 1), dy=round(v["dy"], 1), k=round(v["k"], 3), d=round(v["d"], 2), t=round(v["t"], 2), back=bool(v.get("back"))))
             crowd_html, crowd_data = [], []
             cr = sh.get("crowd")
             if cr:
@@ -132,8 +292,47 @@ def main():
                 elif ty == "counter": inner = f"<div class='num' id='{oid}-n'></div><div class='lbl'>{html.escape(o.get('label', ''))}</div>"
                 elif ty == "burst": inner = html.escape(o["text"])
                 elif ty in ("bubble", "title"): inner = "".join(f"<span class='ch'>{html.escape(ch)}</span>" for ch in o["text"])
+                elif ty == "chain":   # EYES -> BRAIN -> MUSCLES: a cause chain spelled out word by word
+                    its = [html.escape(str(x)) for x in o.get("items", [])]
+                    inner = "<span class='ch arrow'> &#8594; </span>".join(f"<span class='ch'>{x}</span>" for x in its)
+                elif ty == "flash": inner = ""       # white frame: impact, a power switching on, a time jump
+                elif ty == "graph":   # full-frame stat panel: "SUBJECT 11 - MAX  12.4x" with a rising line and labelled points
+                    pts_ = [float(v) for v in o.get("points", [1, 2, 3])]; lo, hi = min(pts_), max(pts_); n_ = max(1, len(pts_) - 1)
+                    gw, gh = (900, 420) if W > H else (820, 520)
+                    xy = [(40 + i * (gw - 80) / n_, gh - 40 - (v - lo) / ((hi - lo) or 1) * (gh - 100)) for i, v in enumerate(pts_)]
+                    col_ = {"up": "#ff6a6a", "down": "#3ccf9e"}.get(o.get("trend"), "#ffd27a")
+                    inner = (f"<div class='g-h'><span>{html.escape(o.get('title', ''))}</span><b style='color:{col_}'>{html.escape(str(o.get('value', '')))} {'&#9650;' if o.get('trend') == 'up' else ('&#9660;' if o.get('trend') == 'down' else '')}</b></div>"
+                             f"<div class='g-l'>{html.escape(o.get('label', ''))}</div><svg viewBox='0 0 {gw} {gh}' width='{gw}' height='{gh}'>"
+                             f"<polyline points='{' '.join(f'{x:.0f},{y:.0f}' for x, y in xy)}' fill='none' stroke='{col_}' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/>"
+                             + "".join(f"<text x='{x + 8:.0f}' y='{y - 12:.0f}' fill='#d9d2c0' font-size='26'>{html.escape(str(o.get('marks', pts_)[i]))}</text>" for i, (x, y) in enumerate(xy)) + "</svg>")
+                elif ty == "clock":   # an analog clock that shows the time the line says
+                    hh, mm = [int(x) for x in str(o.get("time", "6:00")).split(":")[:2]]
+                    ah, am = (hh % 12 + mm / 60) * 30, mm * 6
+                    inner = (f"<svg viewBox='0 0 300 300' width='{360 if W > H else 420}' height='{360 if W > H else 420}'><circle cx='150' cy='150' r='140' fill='#fbf8f1' stroke='#15121b' stroke-width='12'/>"
+                             + "".join(f"<line x1='150' y1='22' x2='150' y2='{44 if k % 3 == 0 else 36}' stroke='#15121b' stroke-width='{9 if k % 3 == 0 else 5}' transform='rotate({k * 30} 150 150)'/>" for k in range(12))
+                             + f"<line x1='150' y1='150' x2='150' y2='78' stroke='#15121b' stroke-width='12' stroke-linecap='round' transform='rotate({ah:.1f} 150 150)'/>"
+                             f"<line x1='150' y1='150' x2='150' y2='46' stroke='#15121b' stroke-width='7' stroke-linecap='round' transform='rotate({am:.1f} 150 150)'/><circle cx='150' cy='150' r='10' fill='#e35d4f'/></svg>")
+                elif ty == "speedlines":             # comic action lines rushing to the centre: the moment the power fires
+                    import math as _m
+                    cxs, cys = W / 2, H / 2
+                    ln = "".join(f"<line x1='{cxs + _m.cos(a_) * (W * .2 + (k % 3) * 40):.0f}' y1='{cys + _m.sin(a_) * (H * .2 + (k % 3) * 40):.0f}' "
+                                 f"x2='{cxs + _m.cos(a_) * W:.0f}' y2='{cys + _m.sin(a_) * W:.0f}' stroke='#15121b' stroke-width='{4 + (k * 7) % 9}' stroke-linecap='round'/>"
+                                 for k, a_ in enumerate([i * 2 * _m.pi / 56 + (i % 5) * .02 for i in range(56)]))
+                    inner = f"<svg viewBox='0 0 {W} {H}' width='{W}' height='{H}'>{ln}</svg>"
+                elif ty == "screen":
+                    tr = o.get("trend")
+                    pts = {"up": "0,90 60,82 120,86 180,70 240,74 300,40 360,8", "down": "0,10 60,22 120,16 180,44 240,40 300,70 360,92",
+                           "flat": "0,50 60,48 120,52 180,49 240,51 300,50 360,49"}.get(tr, "")
+                    colr = {"up": "#3ccf6e", "down": "#ff5a5a"}.get(tr, "#9aa3ad")
+                    inner = (f"<div class='scr-h'><span class='dot'></span>{html.escape(o.get('app', ''))}</div>"
+                             f"<div class='scr-l'>{html.escape(o.get('label', ''))}</div>"
+                             f"<div class='scr-v' style='color:{colr if tr else '#f6f0e4'}'>{html.escape(str(o.get('value', '')))}</div>"
+                             + (f"<svg class='scr-c' viewBox='0 0 360 100'><polyline points='{pts}' fill='none' stroke='{colr}' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/></svg>" if pts else ""))
                 top_css = "160px" if (spec.get("letterbox") and pos[0] == "t") else "%s%%" % POS[pos[0]]
-                if "x" in o:   # absolute centre placement
+                if ty in ("flash", "speedlines"):   # full frame
+                    ov_html.append(f"<div id='{oid}' class='{cls}' style='opacity:0;position:absolute;left:0;top:0;width:{W}px;height:{H}px;pointer-events:none;"
+                                   f"{'background:#fffaf0;' if ty == 'flash' else ''}'>{inner}</div>")
+                elif "x" in o:   # absolute centre placement
                     ov_html.append(f"<div class='ovabs' style='left:{o['x']}px;top:{o['y']}px'><div id='{oid}' class='{cls}' style='opacity:0'>{inner}</div></div>")
                 else:
                     ov_html.append(f"<div class='ovw' style='top:{top_css};justify-content:{COL[pos[1]]}'><div id='{oid}' class='{cls}' style='opacity:0'>{inner}</div></div>")
@@ -141,12 +340,41 @@ def main():
                 ov_data.append(dict(id=oid, type=ty, t=o.get("t", 0), dur=o.get("dur", 3), abs=("x" in o), **extra))
             rain = "".join(f"<div class='rain' style='left:{(i*97)%{W+40}-20}px;height:{70+(i*13)%60}px;opacity:0'></div>" for i in range(70)) if sh.get("rain") else ""
             rays = "<div class='rays'></div>" if sh.get("rays") else ""
+            GRADES = {"flashback": ("sepia(.5) saturate(.85) brightness(1.05) contrast(.94)", "radial-gradient(ellipse at 50% 45%, rgba(255,220,160,.10) 30%, rgba(70,38,12,.55) 100%)"),
+                      "night": ("saturate(.78) brightness(.9) hue-rotate(-6deg)", "linear-gradient(rgba(30,50,130,.22), rgba(10,14,40,.35))"),
+                      "tense": ("contrast(1.12) saturate(.8)", "radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0) 40%, rgba(0,0,0,.5) 100%)"),
+                      "dream": ("saturate(1.1) brightness(1.08) blur(.6px)", "radial-gradient(ellipse at 50% 50%, rgba(255,255,255,.12) 30%, rgba(160,140,255,.3) 100%)")}
+            grade = GRADES.get(sh.get("grade")); grade_css = f"filter:{grade[0]};" if grade else ""
+            if grade: rays += f"<div style='position:absolute;inset:0;pointer-events:none;background:{grade[1]}'></div>"
+            if sh.get("spot"):   # one cone of light on the person, darkness around (interrogation, a decision, a memory)
+                mc = next((c for c in sh.get("chars", []) if not c.get("extra")), None)
+                if mc:
+                    sx_, sy_ = mc["x"], mc.get("by", 900) - 420 * mc.get("s", 0.8); r_ = 520 * mc.get("s", 0.8)
+                    rays += (f"<div style='position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse {r_:.0f}px {r_ * 1.25:.0f}px at {sx_:.0f}px {sy_:.0f}px,"
+                             f" rgba(0,0,0,0) 0%, rgba(0,0,0,0) 55%, rgba(4,4,12,.78) 100%)'></div>"
+                             f"<div style='position:absolute;left:{sx_ - r_ * .5:.0f}px;top:0;width:{r_:.0f}px;height:{sy_ + r_:.0f}px;pointer-events:none;"
+                             f"background:linear-gradient(rgba(255,240,210,.18), rgba(255,240,210,0));clip-path:polygon(40% 0,60% 0,100% 100%,0 100%)'></div>")
+            if sh.get("pov") and sh.get("props"):   # first-person insert: an arm from the corner holds the object
+                pr0 = sh["props"][0]; hero = cast.get(sh["pov"]) or next((c for c in spec["cast"] if not c.get("narrator") and not c.get("extra")), {})
+                sl = hero.get("top_color", "#3e7cb1"); px_, py_ = pr0["x"], pr0["y"] + pr0.get("w", 170) * 0.15
+                ax, ay = W * 0.86, H * 1.12; aw = W * (0.06 if W > H else 0.1)   # forearm rising from the bottom edge, hand gripping the lower edge
+                rays += (f"<svg style='position:absolute;left:0;top:0;z-index:4000;pointer-events:none' width='{W}' height='{H}' viewBox='0 0 {W} {H}'>"
+                         f"<path d='M{ax:.0f} {ay:.0f} L{px_ + aw * .4:.0f} {py_ + aw * .5:.0f}' stroke='#15121b' stroke-width='{aw + 8:.0f}' stroke-linecap='round'/>"
+                         f"<path d='M{ax:.0f} {ay:.0f} L{px_ + aw * .4:.0f} {py_ + aw * .5:.0f}' stroke='{sl}' stroke-width='{aw:.0f}' stroke-linecap='round'/>"
+                         f"</svg><svg style='position:absolute;left:0;top:0;z-index:6000;pointer-events:none' width='{W}' height='{H}' viewBox='0 0 {W} {H}'>"
+                         f"<ellipse cx='{px_ + aw * .1:.0f}' cy='{py_ + aw * .15:.0f}' rx='{aw * .42:.0f}' ry='{aw * .3:.0f}' fill='#15121b'/>"
+                         f"<ellipse cx='{px_ - aw * .22:.0f}' cy='{py_ - aw * .02:.0f}' rx='{aw * .16:.0f}' ry='{aw * .1:.0f}' fill='#15121b' transform='rotate(-30 {px_ - aw * .22:.0f} {py_ - aw * .02:.0f})'/></svg>")
             cam = sh.get("cam", "push"); cam = CAMS[cam] if isinstance(cam, str) else cam
             foc = sh.get("focus")
             if foc and not sh.get("split"):   # zoom on a character's head (medium close-up 1.8, close-up 2.6, extreme 3.6)
                 chf = next(x for x in sh["chars"] if x["k"] == foc["k"]); sf = chf.get("s", 0.8)
                 hx = chf["x"] + foc.get("dx", 0); hy = chf.get("by", 900) - 782 * sf + 176 * sf + foc.get("dy", 0)
+                if chf.get("hold") == "lie":
+                    hx = chf["x"] + (1 if chf.get("flip") else -1) * 600 * sf + foc.get("dx", 0); hy = chf.get("by", 900) - 40 * sf
+                elif chf.get("hold") == "sit":
+                    _hp, _kn = CS.leg_geo(cast.get(chf["k"], {})); hy += (_kn - _hp) * sf
                 Z0 = foc.get("zoom", 2.4); Z1 = foc.get("to", round(Z0 * 1.07, 3))
+                _zm = max(1.0, min(Z0, Z1)); hx = min(max(hx, W / (2 * _zm)), W - W / (2 * _zm))   # never pan past the picture's edge (black bar)
                 tgt = foc.get("target_y", int(H * 0.44))
                 kx = lambda Z: round(-Z * (hx - W / 2), 1); ky = lambda Z: round(tgt - 0.62 * H - Z * (hy - 0.62 * H), 1)
                 cam = [Z0, kx(Z0), ky(Z0), Z1, kx(Z1), ky(Z1)]
@@ -161,21 +389,24 @@ def main():
                 scene_html = "".join(parts) + "<div class='pdiv'></div>" + "".join(crowd_html) + "".join(props_html)
             _ext = spec.get("external_bg", []); _ext = _ext is True or sh["setting"] in _ext
             layered = all((assets / f"bg_{sh['setting']}{suf}.png").exists() for suf in ("_far", "_mid", "_near")) and not sh.get("flat") and not _ext
-            dof_far = "filter:blur(8px);" if (sh.get("dof") or foc) else ""; dof_mid = "filter:blur(3px);" if (sh.get("dof") or foc) else ""
+            # depth of field only on a real close-up (zoom >= 2.2) or when a shot asks for it, and gently:
+            # blurring the setting on every medium shot turned the story's places into colour blocks
+            close = bool(foc) and float((foc or {}).get("zoom", 1)) >= 2.2
+            dof_far = "filter:blur(2.5px);" if (sh.get("dof") or close) else ""; dof_mid = "filter:blur(1px);" if (sh.get("dof") or close) else ""
             if panes_data:
                 layers_data = None
             elif layered:
                 lid = lambda n: f"{dom}-{n}"
                 scene_html = (f"<img id='{lid('L0')}' class='bg lay' style='{dof_far}' src='assets/bg_{sh['setting']}_far.png'><img id='{lid('L1')}' class='bg lay' style='{dof_mid}' src='assets/bg_{sh['setting']}_mid.png'>"
-                              f"<div id='{lid('chars')}' class='lay'>{''.join(crowd_html)}{''.join(props_html)}{''.join(chars_html)}</div>"
-                              f"<img id='{lid('L2')}' class='bg lay' src='assets/bg_{sh['setting']}_near.png'>")
+                              f"<div id='{lid('chars')}' class='lay'>{''.join(veh_html)}{''.join(crowd_html)}{''.join(props_html)}{''.join(chars_html)}</div>"
+                              f"<img id='{lid('L2')}' class='bg lay' style='filter:blur({spec.get('fg_blur', 5)}px);' src='assets/bg_{sh['setting']}_near.png'>")
                 layers_data = [dict(dom=lid("L0"), k=0.35 if not foc else 0.6), dict(dom=lid("L1"), k=0.7 if not foc else 0.85), dict(dom=lid("chars"), k=0.85 if not foc else 1.0), dict(dom=lid("L2"), k=1.2)]
             else:
-                scene_html = f"<img class='bg' style='{'filter:blur(5px);' if foc else ''}' src='assets/bg_{sh['setting']}.png'>{''.join(crowd_html)}{''.join(props_html)}{''.join(chars_html)}"
+                scene_html = f"<img class='bg' style='{'filter:blur(1.5px);' if (foc and float((foc or {}).get('zoom', 1)) >= 2.2) else ''}' src='assets/bg_{sh['setting']}.png'>{''.join(veh_html)}{''.join(crowd_html)}{''.join(props_html)}{''.join(chars_html)}"
                 layers_data = None
-            shots_html.append(f"<div id='{dom}' class='shot' style='z-index:{si+1}'><div id='{dom}-sway' class='cam'><div id='{dom}-cam' class='cam'>{scene_html}</div></div>{rays}{rain}{''.join(ov_html)}</div>")
+            shots_html.append(f"<div id='{dom}' class='shot' style='z-index:{si+1}'><div id='{dom}-sway' class='cam'><div id='{dom}-cam' class='cam' style='{grade_css}'>{scene_html}</div></div>{rays}{rain}{''.join(ov_html)}</div>")
             d = dict(dom=dom, t0=round(t0, 3), t1=round(t1, 3), cam=cam, chars=chars_data, props=props_data, first=(si == 0), prev=prev,
-                     cut=bool(sh.get("cut")), trans=sh.get("trans"), crowd=crowd_data, overlays=ov_data)
+                     cut=bool(sh.get("cut")), trans=sh.get("trans"), crowd=crowd_data, overlays=ov_data, vehicles=veh_data)
             lip = []
             for ci in cue_ids:
                 who = cue_who.get(ci)
@@ -220,16 +451,29 @@ def main():
     {sel} .ovw {{ position:absolute; left:0; right:0; display:flex; padding:0 72px; z-index:22; pointer-events:none; box-sizing:border-box; }}
     {sel} .ovabs {{ position:absolute; width:0; height:0; z-index:22; pointer-events:none; }}
     {sel} .ov.chip {{ padding:10px 26px; border-radius:999px; background:rgba(8,10,24,.72); border:1.5px solid rgba(255,255,255,.35); color:#f6f0e4; font-size:28px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; white-space:nowrap; }}
+    {sel} .ov.screen {{ width:{560 if H > W else 760}px; padding:26px 34px 30px; border-radius:26px; background:#10141d; border:3px solid #2b3240; box-shadow:0 30px 80px rgba(0,0,0,.55); color:#f6f0e4; }}
+    {sel} .ov.screen .scr-h {{ display:flex; align-items:center; gap:12px; font-size:24px; letter-spacing:.08em; color:#aeb6c2; text-transform:uppercase; }}
+    {sel} .ov.screen .dot {{ width:18px; height:18px; border-radius:50%; background:#3ccf6e; display:inline-block; }}
+    {sel} .ov.screen .scr-l {{ margin-top:18px; font-size:28px; color:#cfd6e0; }}
+    {sel} .ov.screen .scr-v {{ font-size:{84 if H > W else 96}px; font-weight:700; line-height:1.05; font-variant-numeric:tabular-nums; }}
+    {sel} .ov.screen .scr-c {{ width:100%; height:110px; margin-top:14px; }}
     {sel} .ov.counter {{ padding:12px 34px 14px; border-radius:18px; background:rgba(8,10,24,.74); border:1.5px solid rgba(232,184,74,.55); text-align:center; }}
     {sel} .ov.counter .num {{ font-size:78px; font-weight:700; color:#f0c75a; text-shadow:0 0 22px rgba(240,199,90,.55); font-variant-numeric:tabular-nums; line-height:1.05; }}
     {sel} .ov.counter .lbl {{ font-size:22px; letter-spacing:.14em; text-transform:uppercase; color:#d9d2c0; }}
     {sel} .ov.burst {{ width:340px; height:300px; display:grid; place-items:center; text-align:center; background:#ffd23a; clip-path:polygon(100.0% 50.0%,82.3% 60.5%,90.5% 79.4%,70.0% 77.5%,65.5% 97.6%,50.0% 84.0%,34.5% 97.6%,30.0% 77.5%,9.5% 79.4%,17.7% 60.5%,0.0% 50.0%,17.7% 39.5%,9.5% 20.6%,30.0% 22.5%,34.5% 2.4%,50.0% 16.0%,65.5% 2.4%,70.0% 22.5%,90.5% 20.6%,82.3% 39.5%); color:#c2262e; font-size:52px; font-weight:700; line-height:1; padding:40px; box-sizing:border-box; }}
     {sel} .ov.bubble {{ width:560px; padding:20px 28px; border-radius:26px; background:#fff; color:#241726; font-size:34px; line-height:1.25; font-weight:700; box-sizing:border-box; box-shadow:0 6px 0 rgba(0,0,0,.25); }}
+    {sel} .ov.chain {{ font-size:{64 if H > W else 72}px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#f6f0e4; text-shadow:0 4px 18px rgba(0,0,0,.55); text-align:center; }}
+    {sel} .ov.chain .arrow {{ color:#ffd27a; }}
+    {sel} .ov.graph {{ padding:28px 36px; border-radius:22px; background:linear-gradient(#1c2a3e,#14202f); border:2px solid #2d4058; box-shadow:0 30px 80px rgba(0,0,0,.5); }}
+    {sel} .ov.graph .g-h {{ display:flex; justify-content:space-between; align-items:baseline; gap:40px; font-size:30px; letter-spacing:.08em; color:#aeb9c8; text-transform:uppercase; }}
+    {sel} .ov.graph .g-h b {{ font-size:56px; letter-spacing:0; }}
+    {sel} .ov.graph .g-l {{ font-size:20px; letter-spacing:.14em; color:#7f8ca0; text-transform:uppercase; margin-bottom:8px; }}
+    {sel} .ov.clock {{ filter:drop-shadow(0 20px 40px rgba(0,0,0,.45)); }}
     {sel} .ov.title {{ font-size:104px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; color:#ff9ad0; text-shadow:0 0 24px rgba(255,120,190,.7); text-align:center; max-width:1500px; }}
     {sel} .vig {{ position:absolute; inset:0; z-index:20; pointer-events:none; background:radial-gradient(ellipse at 50% 46%, transparent 52%, rgba(3,2,10,.62) 100%); }}
     {sel} .flash {{ position:absolute; inset:0; z-index:30; background:#fff; opacity:0; }}
     {sel} .caption {{ position:absolute; left:{6 if H > W else 8}%; right:{6 if H > W else 8}%; bottom:{16 if H > W else 5.5}%; z-index:40; display:grid; place-items:center; text-align:center; opacity:0; }}
-    {sel} .caption span {{ max-width:{980 if H > W else 1500}px; padding:14px 32px; border-radius:14px; background:rgba(8,6,16,.66); color:#f6f0e4; font-size:{62 if H > W else 54}px; line-height:1.25; font-weight:700; text-shadow:0 2px 6px #000; }}
+    {sel} .caption span {{ max-width:{980 if H > W else 1500}px; padding:14px 32px; border-radius:14px; background:rgba(8,6,16,.66); color:#f6f0e4; font-size:{62 if H > W else 44}px; line-height:1.25; font-weight:700; text-shadow:0 2px 6px #000; }}
     """
         lb_html = "<div class='lb' data-layout-allow-occlusion='true' style='top:0'></div><div class='lb' data-layout-allow-occlusion='true' style='bottom:0'></div>" if spec.get("letterbox") else ""
         script = engine.replace("__DATA__", data.replace("</", "<\\/"))

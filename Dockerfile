@@ -44,6 +44,9 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg -o 
 
 RUN git config --system --add safe.directory '*'
 
+# The job's commands say `python`; Ubuntu only ships `python3`. Without this the night job had to shim it.
+RUN ln -sf /usr/bin/python3 /usr/local/bin/python && python --version
+
 # Python deps for the skills (edge-tts fallback, thumbnails, ...)
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt

@@ -35,7 +35,17 @@ def display_name(spec, cid):
 def min_len(text):
     return 0.5 + 0.3 * len(text.split())
 
-def plan(spec, rate=2.55):
+# Words per second the voice-over ACTUALLY speaks, by language. Measured, not guessed:
+#   en 3.79 w/s on the 2026-11-07 night job (edge-tts English voice), which left 37% of the film silent
+#   while the planner still assumed 2.55. Override per spec with "speech_rate". vi is an estimate until measured.
+# Capped at 3.3 by the contract's caption reading rule (>= 0.5 s + 0.3 s per word, i.e. at most ~3.33 w/s):
+# planning faster than that makes validate.py reject the cues. The voice is a little faster still, so expect
+# ~10-13 % natural pauses, not the 37 % we had at 2.55.
+SPEECH_RATE = {"en": 3.3, "vi": 3.0}
+
+
+def plan(spec, rate=None):
+    rate = float(spec.get("speech_rate") or rate or SPEECH_RATE.get(spec.get("lang", "vi"), 3.0))
     """returns dict(cues=[{index,text,who,speaker,scene,startMs,endMs,words}], scenes=[{id,startMs,endMs}], notes=[...])"""
     items = cue_items(spec); n = len(items); notes = []
     if not n:

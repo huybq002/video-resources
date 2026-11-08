@@ -1,0 +1,39 @@
+{
+ "id": "extras-demo",
+ "title": "A Week of Small Places",
+ "lang": "en",
+ "aspect": "16:9",
+ "duration_s": 26,
+ "idea": "Demo of extras: one invented man moves through a busy street, an office, a packed cafe and a sunny beach",
+ "narrator": "narrator",
+ "narrator_name": "Narrator",
+ "narrator_gender": "male",
+ "format": "explainer",
+ "cast": [
+  {"id": "narrator", "name": "Narrator", "narrator": true, "gender": "male"},
+  {"id": "tom", "name": "Tom", "gender": "male", "top": "jacket", "top_color": "#3e7cb1", "top2": "#f2efe6", "bottom": "none", "shoes": "sneakers",
+   "hair_style": "short", "hair": "#2a2230", "look": "young man in a blue jacket"}
+ ],
+ "settings": {
+  "street": {"set": {"type": "street", "time": "day", "seed": 4}},
+  "office": {"set": {"type": "room", "style": "office", "time": "day", "key": {"x": 1.4, "z": 1.0}},
+             "objects": [{"t": "furn", "n": "chair", "x": 0.35, "z": 1.0, "ry": 1.5708, "c": "#3e5c8a"}]},
+  "cafe": {"set": {"type": "room", "style": "cafe", "time": "day", "seed": 3}},
+  "beach": {"set": {"type": "beach", "time": "day", "seed": 2}}
+ },
+ "scenes": [
+  {"id": 1, "title": "Rush", "goal": "the busy city", "target_s": 7, "shots": [{"sequence": {"type": "narration", "settings": ["street"], "mood": "warm", "seed": 1,
+    "actors": [{"k": "tom", "x": 760}],
+    "cues": [{"t": "Every morning the city rushes past Tom. Cars, buses, a thousand people.", "at": "street", "on": ["tom"], "shot": "wide", "do": "look",
+              "hud": {"type": "chip", "text": "8:10 AM", "pos": "tl"}}]}}]},
+  {"id": 2, "title": "Desk", "goal": "colleagues already working", "target_s": 6, "shots": [{"sequence": {"type": "narration", "settings": ["office"], "mood": "warm", "seed": 2,
+    "actors": [{"k": "tom", "x": 990}],
+    "cues": [{"t": "At the office, his colleagues are already typing.", "at": "office", "on": ["tom"], "shot": "wide", "do": ["sit@chair", "type:2"]}]}}]},
+  {"id": 3, "title": "Lunch", "goal": "a packed cafe", "target_s": 6, "shots": [{"sequence": {"type": "narration", "settings": ["cafe"], "mood": "warm", "seed": 3,
+    "actors": [{"k": "tom", "x": 900}],
+    "cues": [{"t": "At lunch the cafe is packed with people.", "at": "cafe", "on": ["tom"], "shot": "wide", "do": ["sit@chair", "drink"], "props": ["coffee"]}]}}]},
+  {"id": 4, "title": "Sunday", "goal": "the beach", "target_s": 7, "shots": [{"sequence": {"type": "narration", "settings": ["beach"], "mood": "warm", "seed": 4,
+    "actors": [{"k": "tom", "x": 960}],
+    "cues": [{"t": "On Sunday he finally lies down on the beach. Would you?", "at": "beach", "on": ["tom"], "shot": "wide", "do": "lie@towel"}]}}]}
+ ]
+}

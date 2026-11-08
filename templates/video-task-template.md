@@ -6,6 +6,7 @@ status: pending        # pending | in-progress | done | blocked
 # --- video fields (skill: code2video-resource-generator, CI mode) ---
 topic: ""              # topic id from channel.json (money | psychology | mystery)
 keyword: ""            # the target search keyword this video is built around
+format: ""             # what_if | character | episode | days | dilemma | explainer | wordless (skill references/story-formats.md)
 idea: "One-sentence idea or topic"
 lang: en               # script language (channel.json lang)
 only_aspect: ""        # leave empty: every task builds BOTH 16:9 and 9:16 (own assets per frame). "16:9" or "9:16" to build just one.

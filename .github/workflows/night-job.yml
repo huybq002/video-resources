@@ -1,18 +1,18 @@
 name: Night job
 
-# Starts 00:00 Asia/Ho_Chi_Minh (UTC+7) = 17:00 UTC, once per night. GitHub often delays cron, so the
-# deadline step below works from the real clock: a late start just gets less time, never a run past 06:00. The whole job ends by 06:00 ICT (job timeout 360 min).
-# The Claude step is stopped at 05:45 ICT (22:45 UTC) so the last 15 min are left to save work and upload logs. If Claude runs out of usage (rate limit)
-# the step ends at once and the job stops; unfinished tasks stay in tasks/pending and are picked up again the next night.
+# Works 00:00-06:00 Asia/Ho_Chi_Minh (UTC+7) = 17:00-23:00 UTC, once per night.
+# GitHub starts scheduled runs late: measured 3h16m to 4h56m on this repo (2026-11-06/07), so a cron
+# at 17:xx UTC began work at ~03:50 ICT with two hours left. The crons therefore fire EARLY
+# (20:17 / 21:17 / 22:17 ICT); whichever starts first waits inside the job until 00:00 ICT, then works.
+# A run that fires too early to wait inside the 6 h job limit stands down and leaves the night to a later cron.
+# The Claude step stops at 05:45 ICT (22:45 UTC) or 350 min after the job started, whichever is first.
+# If Claude runs out of usage (rate limit) the step ends at once; unfinished tasks are picked up next night.
 # Runs inside the prebuilt image (see Dockerfile / build-image.yml): nothing is installed at night.
 on:
   schedule:
-    # GitHub documents the worst cron delays at the top of every hour, so these use odd minutes.
-    # Three attempts (00:07 / 01:23 / 02:41 ICT); the first real run wins, later ones stand down.
-    # This lowers the odds of a lost night, it cannot guarantee a start time.
-    - cron: "7 17 * * *"
-    - cron: "23 18 * * *"
-    - cron: "41 19 * * *"
+    - cron: "17 13 * * *"
+    - cron: "17 14 * * *"
+    - cron: "17 15 * * *"
   workflow_dispatch:
 
 concurrency:
@@ -43,6 +43,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Job start
+        run: echo "JOB_START=$(date -u +%s)" >> "$GITHUB_ENV"
       - name: Check for tasks
         id: check
         run: |
@@ -65,18 +67,39 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # The cron fires three times (17, 18, 19 UTC) so one late start cannot lose the night.
-          # Only the first real run may build; any later one sees it here and stands down.
-          start=$(date -u -d "$(date -u +%F) 16:00:00" +%s)
+          # Three crons fire each evening. Only one run may work the night: a run that is still going
+          # (it may be waiting for 00:00) or one whose Claude step succeeded blocks this one. Runs that
+          # stood down (too early, too late, or failed) do not, so a later cron can still take the night.
+          start=$(date -u -d "$(date -u +%F) 12:00:00" +%s)
+          gh run list --workflow night-job.yml --repo "$GITHUB_REPOSITORY" --limit 20             --json databaseId,createdAt,status > /tmp/runs.json
           n=0
-          while read -r id created status concl; do
-            [ "$id" = "${{ github.run_id }}" ] && continue
-            t=$(date -u -d "$created" +%s)
-            [ "$t" -lt "$start" ] && continue
-            if [ "$status" = "in_progress" ] || [ "$status" = "queued" ] || [ "$concl" = "success" ]; then n=$((n+1)); fi
-          done < <(gh run list --workflow night-job.yml --repo "$GITHUB_REPOSITORY" --limit 20                      --json databaseId,createdAt,status,conclusion -q '.[] | "\(.databaseId) \(.createdAt) \(.status) \(.conclusion)"')
-          echo "other runs this night: $n"
+          for row in $(python3 -c "import json; [print(f\"{r['databaseId']},{r['createdAt']},{r['status']}\") for r in json.load(open('/tmp/runs.json'))]"); do
+            IFS=, read -r id created status <<< "$row"
+            [ "$id" = "$GITHUB_RUN_ID" ] && continue
+            t=$(date -u -d "$created" +%s); [ "$t" -lt "$start" ] && continue
+            if [ "$status" != "completed" ]; then n=$((n+1)); echo "run $id is $status"; continue; fi
+            did=$(gh run view "$id" --repo "$GITHUB_REPOSITORY" --json jobs                   -q '[.jobs[].steps[] | select(.name=="Run Claude") | .conclusion] | first // "none"')
+            echo "run $id: Claude step $did"
+            [ "$did" = "success" ] && n=$((n+1))
+          done
+          echo "runs that own this night: $n"
           if [ "$n" -gt 0 ]; then echo "skip=true" >> "$GITHUB_OUTPUT"; else echo "skip=false" >> "$GITHUB_OUTPUT"; fi
+      - name: Wait for 00:00 Vietnam time
+        id: wait
+        if: github.event_name == 'schedule' && steps.guard.outputs.skip != 'true'
+        shell: bash
+        run: |
+          now=$(date -u +%s); t17=$(date -u -d "$(date -u +%F) 17:00:00" +%s)
+          if [ "$now" -ge "$t17" ]; then
+            echo "already past 00:00 ICT"; echo "early=false" >> "$GITHUB_OUTPUT"
+          elif [ "$now" -lt $((t17 - 150*60)) ]; then
+            echo "fired $(( (t17 - now) / 60 )) min before 00:00 ICT: too early to wait inside the 6 h job limit."
+            echo "Standing down; a later cron takes the night."
+            echo "early=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "waiting $(( (t17 - now) / 60 )) min for 00:00 ICT"; sleep $((t17 - now))
+            echo "early=false" >> "$GITHUB_OUTPUT"
+          fi
       - name: Test dependencies for the improvement phase
         run: pip install --quiet pytest
       - name: Deadline (05:45 Asia/Ho_Chi_Minh = 22:45 UTC, job ends by 06:00)
@@ -91,6 +114,8 @@ jobs:
           else
             end=$((now + 300*60))                                 # manual run outside the window: 5 h
           fi
+          cap=$(( ${JOB_START:-$now} + 350*60 ))                # the job is killed at 360 min: leave 10 for saving
+          [ "$end" -gt "$cap" ] && end=$cap
           mins=$(( (end - now) / 60 ))
           [ "$mins" -lt 0 ] && mins=0
           # too little time for a render: skip Claude (task stays pending for the next run)
@@ -98,6 +123,15 @@ jobs:
           echo "minutes=$mins" >> "$GITHUB_OUTPUT"
           echo "DEADLINE_EPOCH=$end" >> "$GITHUB_ENV"
           echo "Minutes until deadline: $mins (deadline $(date -u -d @$end +%FT%TZ))"
+      - name: Approval gate (demo until the owner approves the look)
+        shell: bash
+        run: |
+          now_hash=$(python3 scripts/skill_hash.py)
+          ok=$(python3 -c "import json,sys; a=json.load(open('data/approval.json')); print('true' if a.get('approved') and a.get('skill_hash')=='$now_hash' else 'false')" 2>/dev/null || echo false)
+          echo "SKILL_HASH=$now_hash" >> "$GITHUB_ENV"
+          echo "APPROVED=$ok" >> "$GITHUB_ENV"
+          if [ "$ok" = "true" ]; then echo "Approved look ($now_hash): full production tonight."
+          else echo "Look $now_hash is NOT approved: demo mode tonight (a short demo for the owner, no full video)."; fi
       - name: Restore unfinished work (bundles, voice-over)
         uses: actions/cache/restore@v4
         with:
@@ -108,7 +142,7 @@ jobs:
           key: bundle-${{ github.run_id }}
           restore-keys: bundle-
       - name: Run Claude
-        if: steps.deadline.outputs.minutes != '0' && steps.guard.outputs.skip != 'true'
+        if: steps.deadline.outputs.minutes != '0' && steps.guard.outputs.skip != 'true' && steps.wait.outputs.early != 'true'
         timeout-minutes: ${{ fromJSON(steps.deadline.outputs.minutes) }}
         uses: anthropics/claude-code-action@v1
         env:
@@ -121,6 +155,21 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: |
             Follow tasks/README.md.
+            0. APPROVAL GATE: APPROVED=$APPROVED (look fingerprint $SKILL_HASH, see data/approval.json).
+               If APPROVED is not "true", tonight is DEMO MODE. The owner must see and approve the look before any full
+               video is published. In demo mode:
+               - do steps 1, 1b and 2 as usual (policy, research, pick the idea, write the full task in tasks/pending/),
+               - then build ONLY a demo of that video: a separate spec specs/<id>-demo.json of 30-45 s (2-3 scenes taken
+                 from the planned story: the hook plus one scene with two people talking), following every rule of the skill
+                 (visual beats on every line, furniture at the characters' depth, film actions, hud, establishing/insert/ots shots).
+                 Build both cuts, voice and render them exactly as step 5 says, verify both videos,
+               - publish them as a Release tagged demo-<YYYY-MM-DD>-<run id> with landscape.mp4, portrait.mp4 and 6 snapshot
+                 frames (`npx hyperframes snapshot`), and write reports/<YYYY-MM-DD>.md that starts with:
+                 "DEMO ONLY - waiting for approval", the release link, the look fingerprint, and the exact command to approve:
+                 `python scripts/approve_demo.py --demo <release url>` then commit and push data/approval.json to main,
+               - leave the full task in tasks/pending/ (status: pending) so the first approved night makes it,
+               - then go to the improvement phase (step 12) if time remains. Never publish the full video in demo mode.
+               If APPROVED is "true", carry on normally.
             1. Switch to branch `night`: continue it if origin/night exists, else create it from main.
                Then merge origin/main into it so new tasks appear.
             1b. POLICY FIRST, before any idea exists. Read data/platform-policy.md and channel.json
@@ -260,7 +309,8 @@ jobs:
                     if the tool was touched; `python $SKILL/scripts/build_both.py $SKILL/examples/zombie-portrait/spec.json /tmp/smoke --check`
                     must still end with contract OK for both cuts; `python scripts/policy_check.py` must still pass.
                   - Edit only: .claude/skills/, tools/code2video/, scripts/, templates/, data/learnings.md, reports/.
-                    Never .github/, secrets, channel.json, or the rules of data/platform-policy.md.
+                    Never .github/, secrets, channel.json, the rules of data/platform-policy.md, data/approval.json,
+                    scripts/skill_hash.py or scripts/approve_demo.py (only the owner approves how videos look).
                   - Never weaken scripts/policy_check.py, scripts/verify_bundle.py or any lint rule that guards a platform
                     policy. You may add checks.
                   - Look at what you change: for an asset, character or setting, render a snapshot (`npx hyperframes snapshot`)

@@ -11,8 +11,60 @@ Cast fields (all optional):
 Legacy fields shirt / pants / coat / bag are still understood.
 """
 import math
+import re
 
 INK = "#1c1626"
+# Our own look stays: big white head with a full expressive face. From the reference films (IfverseTales frame
+# study, 2026-11-08) we take only what makes their figures read as smooth, not their design:
+#   - limbs a little thicker, one continuous round-capped line, bigger round hands (no joints, no seams);
+#   - clothes without the heavy black outline: a soft edge in a darker shade of the cloth (looks painted, not traced);
+#   - a thinner head outline, softer blush, no nose line: a cleaner face that reads at small sizes;
+#   - a crisp warm rim light on one side of the figure (build_project.py).
+# `"style": "ink"` (opt-in) is an all-dark silhouette variant with a warm-white face, for night/mystery stories.
+INK_SKIN = "#15121b"
+FEAT = "#f6f0e4"
+_INK_MODE = [False]
+
+
+def is_ink(c):
+    return c.get("style") == "ink"
+
+
+def _featurise(svg):
+    """face parts drawn in INK -> warm white, mouth interiors -> white, highlights dropped (ink style)."""
+    svg = svg.replace(f'"{INK}"', f'"{FEAT}"')
+    for dark_red in ("#7a1f2e", "#6a1626", "#5a1220"):
+        svg = svg.replace(f'fill="{dark_red}"', f'fill="{FEAT}"')
+    svg = svg.replace('fill="#e8687a"', 'fill="#c9b9a8"').replace('fill="#ff8f9a" opacity=".28"', 'fill="none" opacity="0"')
+    svg = svg.replace('fill="#cfe9ff" fill-opacity=".2"', 'fill="none"')
+    svg = re.sub(r'<circle cx="[^"]+" cy="[^"]+" r="(?:4|1\.8)" fill="#fff"/>', "", svg)
+    return svg
+
+
+def _no_outline(svg):
+    """ink style: filled shapes (clothes, shoes, hair, hats) lose their black outline; limb lines keep theirs."""
+    def fix(m):
+        tag = m.group(0)
+        f = re.search(r'fill="([^"]+)"', tag)
+        if f and f.group(1) != "none" and f'stroke="{INK}"' in tag:
+            tag = tag.replace(f'stroke="{INK}"', 'stroke="none"')
+        return tag
+    return re.sub(r"<(?:path|circle|ellipse|rect)\b[^>]*>", fix, svg)
+
+
+def _soft_outline(svg):
+    """default style: filled clothes/shoes/hair get a soft edge in a darker shade of their own colour instead of
+    the black ink line; the head keeps a thin ink outline so the white head still reads on light backgrounds."""
+    def fix(m):
+        tag = m.group(0)
+        if f'stroke="{INK}"' not in tag or "-head-shape" in tag or "-profile" in tag or "fill-opacity" in tag:
+            return tag
+        f = re.search(r'fill="(#[0-9a-fA-F]{6})"', tag)
+        if not f:
+            return tag
+        tag = tag.replace(f'stroke="{INK}"', f'stroke="{dark(f.group(1), .32)}"')
+        return re.sub(r'stroke-width="[0-9.]+"', 'stroke-width="3"', tag, count=1)
+    return re.sub(r"<(?:path|circle|ellipse|rect)\b[^>]*>", fix, svg)
 
 def _h():
     import characters as C
@@ -32,7 +84,12 @@ def lerp(a, b, t): return (a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t)
 
 def wardrobe(c):
     top = c.get("top") or ("coat" if c.get("coat") else "shirt")
-    bottom = c.get("bottom") or ("none" if top in ("dress", "coat") else "pants")   # long garments cover the hips: only the garment + thin bare legs
+    # House rule (owner, 2026-11-08): every character is a full stick figure. No long trousers for anyone:
+    # the hip of a trouser under a top never reads well at this scale. Bare thin legs by default, shorts
+    # or a skirt only when asked; a "pants" request is drawn as bare legs.
+    bottom = c.get("bottom") or "none"
+    if bottom == "pants":
+        bottom = "none"
     return dict(
         top=top, bottom=bottom, shoes=c.get("shoes", "sneakers"),
         top_color=c.get("top_color") or c.get("shirt") or "#5b6f9a", top2=c.get("top2") or "#f2efe6",
@@ -98,7 +155,7 @@ def _face(pid, c, skin, eg=44):
     def brw(side, x, sg):
         return f'<g id="{pid}-brow-{side}"><path d="M{x-21*sg} 152 Q{x} 138 {x+19*sg} 148" stroke="{brow}" stroke-width="6" fill="none" stroke-linecap="round"/></g>'
     ex = 200 - eg, 200 + eg
-    blush = '' if c.get("blush") is False else f'<ellipse cx="{200-eg-22}" cy="214" rx="20" ry="12" fill="#ff7f8c" opacity=".45"/><ellipse cx="{200+eg+22}" cy="214" rx="20" ry="12" fill="#ff7f8c" opacity=".45"/>'
+    blush = '' if c.get("blush") is False else f'<ellipse cx="{200-eg-22}" cy="214" rx="20" ry="12" fill="#ff8f9a" opacity=".28"/><ellipse cx="{200+eg+22}" cy="214" rx="20" ry="12" fill="#ff8f9a" opacity=".28"/>'
     return f'''<g id="{pid}-face">
     {blush}{brw("l", ex[0], 1)}{brw("r", ex[1], -1)}{eye("l", ex[0])}{eye("r", ex[1])}
     <g id="{pid}-eyes-happy" style="opacity:0"><path d="M{ex[0]-18} 188 Q{ex[0]} 156 {ex[0]+18} 188" stroke="{INK}" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M{ex[1]-18} 188 Q{ex[1]} 156 {ex[1]+18} 188" stroke="{INK}" stroke-width="7" fill="none" stroke-linecap="round"/></g>
@@ -106,7 +163,7 @@ def _face(pid, c, skin, eg=44):
     <g id="{pid}-eyes-angry" style="opacity:0"><ellipse cx="{ex[0]}" cy="182" rx="12" ry="12" fill="{INK}"/><ellipse cx="{ex[1]}" cy="182" rx="12" ry="12" fill="{INK}"/><path d="M{ex[0]-22} 156 L{ex[0]+20} 176" stroke="{INK}" stroke-width="12" stroke-linecap="round"/><path d="M{ex[1]+22} 156 L{ex[1]-20} 176" stroke="{INK}" stroke-width="12" stroke-linecap="round"/></g>
     <g id="{pid}-tears" style="opacity:0"><path id="{pid}-tear-l" d="M{ex[0]-8} 202 Q{ex[0]-16} 222 {ex[0]-8} 230 Q{ex[0]} 222 {ex[0]-8} 202 Z" fill="#8fd3ff" stroke="{INK}" stroke-width="2.5"/><path id="{pid}-tear-r" d="M{ex[1]+8} 202 Q{ex[1]+16} 222 {ex[1]+8} 230 Q{ex[1]} 222 {ex[1]+8} 202 Z" fill="#8fd3ff" stroke="{INK}" stroke-width="2.5"/></g>
     <path id="{pid}-sweat" d="M268 108 Q280 132 268 146 Q256 132 268 108 Z" fill="#8fd3ff" stroke="{INK}" stroke-width="3" style="opacity:0"/>
-    <path id="{pid}-nose" d="M200 196 Q206 208 198 212" stroke="{INK}" stroke-width="3" fill="none" opacity=".35"/>
+    <path id="{pid}-nose" d="M200 196 Q206 208 198 212" stroke="{INK}" stroke-width="3" fill="none" opacity="0"/>
     <g id="{pid}-mouth">
      <path id="{pid}-mouth-closed" d="M176 238 Q200 252 224 238" stroke="{INK}" stroke-width="6" fill="none" stroke-linecap="round"/>
      <path id="{pid}-mouth-smile" d="M162 230 Q200 296 238 230 Q200 244 162 230 Z" fill="#7a1f2e" stroke="{INK}" stroke-width="5" stroke-linejoin="round" style="opacity:0"/>
@@ -131,8 +188,22 @@ def _glasses(c, front=True):
 def _mustache(c):
     return '' if not c.get("mustache") else f'<path d="M172 226 Q186 219 200 226 Q214 219 228 226 Q214 234 200 231 Q186 234 172 226 Z" fill="{c.get("mustache_color", INK)}" stroke="{INK}" stroke-width="3" stroke-linejoin="round"/>'
 
+def leg_geo(c):
+    """(hip_y, knee_y) where the drawn legs really bend. The rig's leg/shin pivots MUST be these points: with fixed
+    pivots (540/650) a thigh that starts at y=468 swung around a point below the hip, so the hip slid out and the
+    knees crossed (the broken seated pose of 2026-11-08)."""
+    w = wardrobe(c); TOP, BOT = w["top"], w["bottom"]; hem = HEM.get(TOP, (480, 4))[0]
+    pel_bot = {"pants": hem + 24, "shorts": hem + 82, "skirt": hem + 104}.get(BOT, hem)
+    hip = (pel_bot - 14) if BOT in ("pants", "shorts", "skirt") else (hem - 26)
+    hip = max(430, min(hip, 600))
+    return hip, round(hip + (760 - hip) * 0.52)
+
+
 def figure(pid, gid, c, view="front"):
     """view: front | back | side. pid = id prefix, gid = gradient prefix"""
+    _INK_MODE[0] = is_ink(c)
+    if _INK_MODE[0]:
+        c = dict(c, skin=c.get("skin") if c.get("skin") not in (None, "#ffffff", "#fff") else INK_SKIN)
     w = wardrobe(c); skin = c.get("skin", "#ffffff"); tf = c.get("torso_w", 1.0); eg = c.get("eye_gap", 44)
     TOP, BOT = w["top"], w["bottom"]; hem, flare = HEM.get(TOP, (480, 4)); sleeve = SLEEVE.get(TOP, "long")
     TG, BG = f"url(#{gid}-topG)", f"url(#{gid}-botG)"; tc, bc = w["top_color"], w["bottom_color"]
@@ -147,18 +218,36 @@ def figure(pid, gid, c, view="front"):
         if side: S, E, Wr = (204, 318), (208, 414), (218, 498)
         else: S, E, Wr = (200 + sg * (sw + 4), 318), (200 + sg * (sw + 10), 414), (200 + sg * (sw + 15), 498)
         col = tc if near else dark(tc, .22)
-        line = lambda a, b: f'<path d="M{a[0]} {a[1]} L{b[0]} {b[1]}" stroke="{INK}" stroke-width="9" fill="none" stroke-linecap="round"/>'
-        up = line(S, E)
-        if sleeve == "short": mid = lerp(S, E, .6); up += f'<path d="{taper(S, mid, 34, 30)}" fill="{col}" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/><circle cx="{S[0]}" cy="{S[1]}" r="17" fill="{col}"/>'
-        elif sleeve == "long": up += f'<path d="{taper(S, E, 30, 26)}" fill="{col}" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/><circle cx="{S[0]}" cy="{S[1]}" r="15" fill="{col}"/><circle cx="{E[0]}" cy="{E[1]}" r="13" fill="{col}" stroke="{INK}" stroke-width="4"/>'
-        up += f'<circle cx="{E[0]}" cy="{E[1]}" r="{6 if sleeve != "long" else 0.1}" fill="{INK}"/>'
+        lw = 12 if _INK_MODE[0] else 11
+        line = lambda a, b: f'<path d="M{a[0]} {a[1]} L{b[0]} {b[1]}" stroke="{INK}" stroke-width="{lw}" fill="none" stroke-linecap="round"/>'
+        # Smooth, jointless limbs (owner, 2026-11-08, after the IfverseTales reference): a sleeve is a round-capped
+        # tube, not two outlined polygons. Ink layers go under the colour layers, and the upper sleeve's colour is
+        # drawn AFTER the forearm group, so the elbow has no seam, no ring and no joint dot; only the silhouette is inked.
+        def tube(a, b, w, colour):
+            ink_ = (f'<path d="M{a[0]} {a[1]} L{b[0]} {b[1]}" stroke="{dark(colour, .18)}" stroke-width="{w + 1}" stroke-linecap="round" fill="none"/>' if _INK_MODE[0] else
+                    f'<path d="M{a[0]} {a[1]} L{b[0]} {b[1]}" stroke="{dark(colour, .32)}" stroke-width="{w + 4}" stroke-linecap="round" fill="none"/>')
+            col_ = f'<path d="M{a[0]} {a[1]} L{b[0]} {b[1]}" stroke="{colour}" stroke-width="{w - 2}" stroke-linecap="round" fill="none"/>'
+            return ink_, col_
+        up, up_top = "", ""
+        if sleeve == "long":
+            ui, uc = tube(S, E, 28, col)
+            up = ui
+            up_top = uc + f'<circle cx="{S[0]}" cy="{S[1]}" r="14" fill="{col}"/>'
+        elif sleeve == "short":
+            mid = lerp(S, E, .6); ui, uc = tube(S, mid, 30, col)
+            up = line(S, E) + ui
+            up_top = uc + f'<circle cx="{S[0]}" cy="{S[1]}" r="15" fill="{col}"/>'
+        else:
+            up = line(S, E)
         fo = line(E, Wr)
-        if sleeve == "long": fo += f'<path d="{taper(E, lerp(E, Wr, .9), 26, 22)}" fill="{col}" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/><path d="{taper(lerp(E, Wr, .78), lerp(E, Wr, .92), 25, 24)}" fill="{dark(col, .25)}"/>'
+        if sleeve == "long":
+            fi, fc = tube(E, lerp(E, Wr, .88), 25, col)
+            fo += fi + fc + f'<path d="M{lerp(E, Wr, .8)[0]} {lerp(E, Wr, .8)[1]} L{lerp(E, Wr, .9)[0]} {lerp(E, Wr, .9)[1]}" stroke="{dark(col, .22)}" stroke-width="22" fill="none"/>'
         watch = ''
         if c.get("watch") and sd == "l" and not side and not back:
             watch = f'<g id="{pid}-watch"><circle cx="{Wr[0]}" cy="{Wr[1]-12}" r="12" fill="#f4efe0" stroke="{INK}" stroke-width="4"/><path d="M{Wr[0]} {Wr[1]-12} L{Wr[0]} {Wr[1]-21} M{Wr[0]} {Wr[1]-12} L{Wr[0]-5} {Wr[1]-7}" stroke="{INK}" stroke-width="3" stroke-linecap="round"/></g>'
-        hand = f'<circle cx="{Wr[0]}" cy="{Wr[1]+9}" r="9" fill="{INK}"/>'
-        return f'<g id="{pid}-arm-{sd}">{up}<g id="{pid}-forearm-{sd}">{fo}{hand}{watch}</g></g>'
+        hand = f'<circle cx="{Wr[0]}" cy="{Wr[1]+9}" r="{12 if _INK_MODE[0] else 11}" fill="{INK}"/>'
+        return f'<g id="{pid}-arm-{sd}">{up}<g id="{pid}-forearm-{sd}">{fo}{hand}{watch}</g>{up_top}</g>'
     # ---------------------------------------------------------------- legs
     # The legs hang from the hem of whatever covers the hips, never from a fixed y: a gap between the
     # garment and the legs makes the figure look cut in half, and a pelvis that pokes out below the hem
@@ -170,13 +259,14 @@ def figure(pid, gid, c, view="front"):
 
     def leg(sd, near=True):
         sg = -1 if sd == "l" else 1
-        knee_y = round(HIP_Y + (760 - HIP_Y) * 0.52)
+        knee_y = leg_geo(c)[1]
         if side: dx = 7 if near else -7; Hh, K, A = (200 + dx, HIP_Y), (204 + dx, knee_y), (208 + dx, 760)
         else: Hh, K, A = (200 + sg * 27, HIP_Y), (200 + sg * 33, knee_y), (200 + sg * 37, 760)
         pant = BOT in ("pants",)
         pcol = bc if near else dark(bc, .22)
-        thigh = f'<path d="M{Hh[0]} {Hh[1]} L{K[0]} {K[1]}" stroke="{INK}" stroke-width="9" fill="none" stroke-linecap="round"/>'
-        shin = f'<path d="M{K[0]} {K[1]} L{A[0]} {A[1]}" stroke="{INK}" stroke-width="9" fill="none" stroke-linecap="round"/>'
+        lw = 12 if _INK_MODE[0] else 11
+        thigh = f'<path d="M{Hh[0]} {Hh[1]} L{K[0]} {K[1]}" stroke="{INK}" stroke-width="{lw}" fill="none" stroke-linecap="round"/>'
+        shin = f'<path d="M{K[0]} {K[1]} L{A[0]} {A[1]}" stroke="{INK}" stroke-width="{lw}" fill="none" stroke-linecap="round"/>'
         if pant:
             # narrower than the stance, so the two trouser legs never merge into one dark slab
             thigh += f'<path d="{taper(Hh, K, 32, 27)}" fill="{pcol}" stroke="{INK}" stroke-width="4" stroke-linejoin="round"/><circle cx="{K[0]}" cy="{K[1]}" r="13" fill="{pcol}"/>'
@@ -277,8 +367,8 @@ def figure(pid, gid, c, view="front"):
     # head
     sk = c.get("skin", "#ffffff")
     if side:
-        head = f'''<path id="{pid}-head-shape" d="M200 76 C262 70 304 112 302 176 C300 240 258 282 200 280 C142 278 102 236 102 176 C102 114 142 78 200 76 Z" fill="url(#{gid}-skinG)" stroke="{INK}" stroke-width="6" stroke-linejoin="round"/>
-   <ellipse cx="272" cy="214" rx="18" ry="11" fill="#ff7f8c" opacity=".45"/>
+        head = f'''<path id="{pid}-head-shape" d="M200 76 C262 70 304 112 302 176 C300 240 258 282 200 280 C142 278 102 236 102 176 C102 114 142 78 200 76 Z" fill="url(#{gid}-skinG)" stroke="{INK}" stroke-width="4.5" stroke-linejoin="round"/>
+   <ellipse cx="272" cy="214" rx="18" ry="11" fill="#ff8f9a" opacity=".28"/>
    <path d="M252 198 Q262 210 254 216" stroke="{INK}" stroke-width="3" fill="none" opacity=".4"/>
    <g id="{pid}-brow-l"><path d="M234 150 Q256 136 282 148" stroke="{c.get('brow', INK)}" stroke-width="6" fill="none" stroke-linecap="round"/></g>
    <g id="{pid}-eye-l"><g id="{pid}-pupil-l"><ellipse cx="262" cy="180" rx="11.5" ry="16" fill="{INK}"/><circle cx="258" cy="174" r="4" fill="#fff"/></g>
@@ -294,6 +384,9 @@ def figure(pid, gid, c, view="front"):
     <path id="{pid}-mouth-sad" d="M266 254 Q284 236 302 252" stroke="{INK}" stroke-width="6" fill="none" stroke-linecap="round" style="opacity:0"/></g>
    {('<ellipse cx="262" cy="180" rx="30" ry="30" fill="#cfe9ff" fill-opacity=".2" stroke="'+INK+'" stroke-width="5"/><path d="M232 178 L170 186" stroke="'+INK+'" stroke-width="5" fill="none" stroke-linecap="round"/>') if c.get("glasses") else ""}
    {_extras_head(c, pid)}'''
+        if _INK_MODE[0]:   # keep the head shape black, draw the profile features in warm white
+            k = head.index("/>", head.index("-head-shape")) + 2
+            head = head[:k] + _featurise(head[k:])
         head_wrap_id = ("headsway", "head")
     elif back:
         style = c.get("hair_style", "none"); hc = c.get("hair", INK) if style != "none" else sk
@@ -302,10 +395,10 @@ def figure(pid, gid, c, view="front"):
                 + (_hair(style, hc, pid) if style != "none" else "") + _hat(c.get("hat", "none"), c.get("hat_color", "#3a3f55")))
     else:
         head = (f'<g id="{pid}-ears"><path id="{pid}-ear-l" d="M100 190 Q96 190 100 190" fill="none"/><path id="{pid}-ear-r" d="M300 190 Q304 190 300 190" fill="none"/></g>'
-                f'<path id="{pid}-head-shape" d="M200 74 C268 70 304 114 302 178 C300 242 258 284 200 282 C142 284 100 242 98 178 C96 114 132 70 200 74 Z" fill="url(#{gid}-skinG)" stroke="{INK}" stroke-width="6" stroke-linejoin="round"/>'
-                + _face(pid, c, sk, eg) + _glasses(c) + _mustache(c) +
-                f'<g id="{pid}-profile" style="opacity:0"><path d="M200 76 C262 70 304 112 302 176 C300 240 258 282 200 280 C142 278 102 236 102 176 C102 114 142 78 200 76 Z" fill="url(#{gid}-skinG)" stroke="{INK}" stroke-width="6"/>'
-                f'<ellipse cx="272" cy="214" rx="18" ry="11" fill="#ff7f8c" opacity=".45"/><path d="M234 150 Q256 136 282 148" stroke="{INK}" stroke-width="6" fill="none" stroke-linecap="round"/>'
+                f'<path id="{pid}-head-shape" d="M200 74 C268 70 304 114 302 178 C300 242 258 284 200 282 C142 284 100 242 98 178 C96 114 132 70 200 74 Z" fill="url(#{gid}-skinG)" stroke="{INK}" stroke-width="4.5" stroke-linejoin="round"/>'
+                + (_featurise(_face(pid, c, sk, eg) + _glasses(c) + _mustache(c)) if _INK_MODE[0] else (_face(pid, c, sk, eg) + _glasses(c) + _mustache(c))) +
+                f'<g id="{pid}-profile" style="opacity:0"><path d="M200 76 C262 70 304 112 302 176 C300 240 258 282 200 280 C142 278 102 236 102 176 C102 114 142 78 200 76 Z" fill="url(#{gid}-skinG)" stroke="{INK}" stroke-width="4.5"/>'
+                f'<ellipse cx="272" cy="214" rx="18" ry="11" fill="#ff8f9a" opacity=".28"/><path d="M234 150 Q256 136 282 148" stroke="{INK}" stroke-width="6" fill="none" stroke-linecap="round"/>'
                 f'<ellipse cx="262" cy="180" rx="11.5" ry="16" fill="{INK}"/><circle cx="258" cy="174" r="4" fill="#fff"/><path d="M268 242 Q282 250 296 240" stroke="{INK}" stroke-width="6" fill="none" stroke-linecap="round"/></g>'
                 + _extras_head(c, pid))
     hood = ""
@@ -318,15 +411,22 @@ def figure(pid, gid, c, view="front"):
                   f'<g id="{pid}-headsway"><g id="{pid}-head">{head}</g></g>')
     shadow = f'<ellipse id="{pid}-shadow" cx="{214 if side else 200}" cy="786" rx="{96 if side else 100}" ry="11" fill="#000" opacity="0.28"/>'
     legs = (leg("r", False) + leg("l", True)) if side else (leg("r") + leg("l"))
-    return f'''<g id="{pid}-root" stroke-linecap="round" stroke-linejoin="round">
+    out = f'''<g id="{pid}-root" stroke-linecap="round" stroke-linejoin="round">
  {shadow}
  <g id="{pid}-turn"><g id="{pid}-life">
  {legs}{pelvis}
  <g id="{pid}-body">{body_inner}</g>
  </g></g>
 </g>'''
+    if _INK_MODE[0]:
+        return _no_outline(out)
+    out = out.replace(f'fill="{TG}" stroke="{INK}" stroke-width="5"', f'fill="{TG}" stroke="{dark(tc, .32)}" stroke-width="3"')
+    out = out.replace(f'fill="{BG}" stroke="{INK}" stroke-width="4"', f'fill="{BG}" stroke="{dark(bc, .32)}" stroke-width="3"')
+    return _soft_outline(out)
 
 def build_svg(cid, c, views=("f", "s", "b")):
+    if is_ink(c) and c.get("skin") in (None, "#ffffff", "#fff"):
+        c = dict(c, skin=INK_SKIN)
     w = wardrobe(c)
     parts = [f'<g id="{cid}-vf">{figure(cid, cid, c, "front")}</g>']
     if "s" in views: parts.append(f'<g id="{cid}-vs" style="opacity:0">{figure(cid + "-s", cid, c, "side")}</g>')
@@ -336,22 +436,23 @@ def build_svg(cid, c, views=("f", "s", "b")):
 
 def rig(c, view="front"):
     tf = c.get("torso_w", 1.0); eg = c.get("eye_gap", 44)
+    hip, knee = leg_geo(c)
     if view == "side":
         P = {"root": {"pivot": [200, 780]}, "turn": {"pivot": [200, 780]}, "life": {"pivot": [200, 780]}, "body": {"pivot": [200, 540]}, "torso": {"pivot": [204, 540]},
              "headsway": {"pivot": [204, 270]}, "head": {"pivot": [204, 270]},
              "arm-l": {"pivot": [204, 318]}, "forearm-l": {"pivot": [208, 414]}, "arm-r": {"pivot": [204, 318]}, "forearm-r": {"pivot": [208, 414]},
-             "leg-l": {"pivot": [207, 540]}, "shin-l": {"pivot": [211, 650]}, "foot-l": {"pivot": [215, 760]},
-             "leg-r": {"pivot": [193, 540]}, "shin-r": {"pivot": [197, 650]}, "foot-r": {"pivot": [201, 760]},
+             "leg-l": {"pivot": [207, hip]}, "shin-l": {"pivot": [211, knee]}, "foot-l": {"pivot": [215, 760]},
+             "leg-r": {"pivot": [193, hip]}, "shin-r": {"pivot": [197, knee]}, "foot-r": {"pivot": [201, 760]},
              "lid-l": {"pivot": [262, 154]}, "lidp-l": {"pivot": [262, 154]}, "pupil-l": {"pivot": [262, 180]}, "brow-l": {"pivot": [262, 150]},
              "mouth-open": {"pivot": [284, 240]}, "mouth-e": {"pivot": [284, 240]}, "mouth-o": {"pivot": [284, 250]}}
-        return {"viewBox": [0, 0, 400, 800], "restPose": "profile facing right", "parts": P}
+        return {"viewBox": [0, 0, 400, 800], "restPose": "profile facing right", "parts": P, "hip": hip, "knee": knee}
     sw = 44 * tf
     P = {"root": {"pivot": [200, 780]}, "turn": {"pivot": [200, 780]}, "life": {"pivot": [200, 780]}, "body": {"pivot": [200, 540]}, "torso": {"pivot": [200, 540]},
          "headsway": {"pivot": [200, 270]}, "head": {"pivot": [200, 270]}, "face": {"pivot": [200, 178]}, "profile": {"pivot": [200, 178]}, "nose": {"pivot": [200, 200]},
          "tears": {"pivot": [200, 200]}, "mouth-open": {"pivot": [200, 240]}, "mouth-e": {"pivot": [200, 240]}, "mouth-o": {"pivot": [200, 250]}}
     for side, sg in (("l", -1), ("r", 1)):
         P[f"arm-{side}"] = {"pivot": [200 + sg * (sw + 4), 318]}; P[f"forearm-{side}"] = {"pivot": [200 + sg * (sw + 10), 414]}
-        P[f"leg-{side}"] = {"pivot": [200 + sg * 24, 540]}; P[f"shin-{side}"] = {"pivot": [200 + sg * 28, 650]}; P[f"foot-{side}"] = {"pivot": [200 + sg * 32, 760]}
+        P[f"leg-{side}"] = {"pivot": [200 + sg * 27, hip]}; P[f"shin-{side}"] = {"pivot": [200 + sg * 33, knee]}; P[f"foot-{side}"] = {"pivot": [200 + sg * 37, 760]}
         P[f"lid-{side}"] = {"pivot": [200 + sg * eg, 154]}; P[f"lidp-{side}"] = {"pivot": [200 + sg * eg, 154]}
         P[f"pupil-{side}"] = {"pivot": [200 + sg * eg, 180]}; P[f"brow-{side}"] = {"pivot": [200 + sg * eg, 150]}
-    return {"viewBox": [0, 0, 400, 800], "restPose": "standing, arms hanging", "parts": P, "mouthShapes": ["closed", "smile", "open", "e", "o", "smirk", "sad"]}
+    return {"viewBox": [0, 0, 400, 800], "restPose": "standing, arms hanging", "parts": P, "hip": hip, "knee": knee, "mouthShapes": ["closed", "smile", "open", "e", "o", "smirk", "sad"]}

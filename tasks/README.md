@@ -46,6 +46,20 @@ spec in `specs/<id>.json`, then ONE command `ci/run_pipeline.py` (resources, voi
 
 - `renderer: tool` (default) uses `code2video-job` (VieNeu voice, Whisper alignment, HyperFrames) for the best voice and video quality; `renderer: skill` uses the skill's own edge-tts + render as a fallback.
 
+## Demo first, then production
+
+Any change to how videos look (the generator skill or the render tool) changes a fingerprint
+(`scripts/skill_hash.py`). Until you approve that fingerprint, the night job only makes a 30-45 s
+**demo** of the next video, both cuts, published as a `demo-...` Release, and its report starts with
+"DEMO ONLY - waiting for approval". Watch it, then approve:
+
+```
+python scripts/approve_demo.py --demo <release url>
+git add data/approval.json && git commit -m "Approve look" && git push
+```
+
+The next night publishes full videos again, until the skill or tool changes.
+
 ## Time and usage limits
 
 - The job starts at 00:00 Vietnam time. Claude stops at 05:45 and the whole job ends by 06:00 at the latest.
