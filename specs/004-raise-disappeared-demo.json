@@ -1,0 +1,331 @@
+{
+ "id": "004-raise-disappeared-demo",
+ "title": "The Raise That Disappeared (demo)",
+ "lang": "en",
+ "aspect": "16:9",
+ "duration_s": 40,
+ "idea": "Demo of: Nora gets a raise and lifestyle creep eats it, one invented year",
+ "narrator": "narrator",
+ "narrator_name": "Narrator",
+ "narrator_gender": "male",
+ "format": "character",
+ "cast": [
+  {
+   "id": "narrator",
+   "name": "Narrator",
+   "narrator": true,
+   "gender": "male"
+  },
+  {
+   "id": "nora",
+   "name": "Nora",
+   "gender": "female",
+   "style": "stick",
+   "top": "shirt",
+   "top_color": "#2f7f6f",
+   "top2": "#e9edf2",
+   "bottom": "skirt",
+   "bottom_color": "#3a3a52",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#2a2230",
+   "hair_style": "bun",
+   "hair": "#3b2417",
+   "look": "young woman in a teal blouse and dark skirt, hair in a bun"
+  },
+  {
+   "id": "sam",
+   "name": "Sam",
+   "gender": "male",
+   "style": "stick",
+   "top": "hoodie",
+   "top_color": "#d98a2b",
+   "bottom": "none",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#2a2230",
+   "hair_style": "short",
+   "hair": "#2a1f24",
+   "look": "relaxed man in an orange hoodie, short dark hair"
+  }
+ ],
+ "settings": {
+  "office": {
+   "set": {
+    "type": "room",
+    "style": "office",
+    "time": "day",
+    "key": {
+     "x": 1.4,
+     "z": 1.0
+    }
+   },
+   "objects": [
+    {
+     "t": "furn",
+     "n": "chair",
+     "x": 0.35,
+     "z": 1.0,
+     "ry": 1.5708,
+     "c": "#3e5c8a"
+    }
+   ]
+  },
+  "kitchen": {
+   "set": {
+    "type": "room",
+    "style": "kitchen",
+    "time": "night",
+    "window": "left",
+    "key": {
+     "x": -3.6,
+     "z": -3.0
+    }
+   },
+   "objects": [
+    {
+     "t": "furn",
+     "n": "kitchen_counter",
+     "x": -2.2,
+     "z": 0.8
+    },
+    {
+     "t": "furn",
+     "n": "oven",
+     "x": 0.2,
+     "z": 0.8
+    }
+   ]
+  },
+  "street": {
+   "set": {
+    "type": "street",
+    "time": "dusk"
+   }
+  }
+ },
+ "scenes": [
+  {
+   "id": 1,
+   "title": "The raise",
+   "goal": "Hook: a raise that will vanish",
+   "target_s": 16,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "office",
+       "street"
+      ],
+      "mood": "warm",
+      "seed": 1,
+      "actors": [
+       {
+        "k": "nora",
+        "x": 1390
+       }
+      ],
+      "cues": [
+       {
+        "t": "Her raise: eight hundred a month. By December, gone.",
+        "at": "office",
+        "on": [
+         "nora"
+        ],
+        "shot": "wide",
+        "emote": "joy",
+        "do": [
+         "sit@chair",
+         "type:2"
+        ],
+        "hud": [
+         {
+          "type": "chip",
+          "text": "JANUARY",
+          "pos": "tl"
+         },
+         {
+          "type": "counter",
+          "from": 0,
+          "to": 800,
+          "label": "raise per month",
+          "pos": "tr",
+          "t": 0.5,
+          "dur": 2.5
+         }
+        ]
+       },
+       {
+        "t": "Nora got the news on a Monday morning.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "emote": "surprise",
+        "props": [
+         "document",
+         "calendar"
+        ]
+       },
+       {
+        "t": "That night she walked home and bought dinner out, to celebrate.",
+        "at": "street",
+        "on": [
+         "nora"
+        ],
+        "shot": "wide",
+        "do": [
+         "walk",
+         "cheer"
+        ],
+        "emote": "joy",
+        "hud": {
+         "type": "chip",
+         "text": "NIGHT ONE",
+         "pos": "tl"
+        }
+       },
+       {
+        "t": "One dinner is nothing. Remember that sentence.",
+        "shot": "close",
+        "on": [
+         "nora"
+        ],
+        "emote": "doubt",
+        "hud": {
+         "type": "title",
+         "text": "THE RAISE THAT DISAPPEARED",
+         "pos": "cc",
+         "t": 1.0,
+         "dur": 1.8
+        }
+       },
+       {
+        "t": "Where does a raise actually go?",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "emote": "worry",
+        "do": "think"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "title": "Month twelve",
+   "goal": "Two people talk: each upgrade sounds fine",
+   "target_s": 24,
+   "shots": [
+    {
+     "sequence": {
+      "type": "dialogue",
+      "setting": "kitchen",
+      "mood": "warm",
+      "seed": 2,
+      "a": {
+       "k": "sam",
+       "x": 1500
+      },
+      "b": {
+       "k": "nora",
+       "x": 760
+      },
+      "lines": [
+       {
+        "who": "sam",
+        "t": "Let's get the better apartment. You can afford it now.",
+        "do": "offer",
+        "emote": "joy"
+       },
+       {
+        "who": "nora",
+        "t": "It is only a little more each month, right?",
+        "emote": "doubt",
+        "do": "think"
+       },
+       {
+        "who": "sam",
+        "t": "Exactly. Plus a nicer phone plan, a bit more each month.",
+        "emote": "joy",
+        "props": [
+         "phone"
+        ]
+       },
+       {
+        "who": "nora",
+        "t": "Fine. But I will track it.",
+        "emote": "worry",
+        "do": "shrug"
+       }
+      ]
+     }
+    },
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "kitchen"
+      ],
+      "mood": "tense",
+      "seed": 3,
+      "actors": [
+       {
+        "k": "nora",
+        "x": 620
+       }
+      ],
+      "cues": [
+       {
+        "t": "Months later, her bank app showed it. The raise was gone.",
+        "at": "kitchen",
+        "on": [
+         "nora"
+        ],
+        "shot": "wide",
+        "do": [
+         "walkTo@counter",
+         "place:phone@counter"
+        ],
+        "props": [
+         "phone"
+        ],
+        "emote": "fear"
+       },
+       {
+        "t": "Nothing big had happened. Just small upgrades, each one reasonable.",
+        "shot": "insert",
+        "props": [
+         "phone"
+        ],
+        "hud": {
+         "type": "screen",
+         "app": "Bank",
+         "label": "Left at month end",
+         "value": "0",
+         "trend": "down",
+         "pos": "cc",
+         "t": 0.4,
+         "dur": 3.0
+        }
+       },
+       {
+        "t": "Which small upgrade could be eating your raise? Tell me below.",
+        "on": [
+         "nora"
+        ],
+        "shot": "medium",
+        "emote": "doubt",
+        "do": "think"
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}
