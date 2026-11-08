@@ -77,6 +77,12 @@ Acts for faces: `["t","turn", yaw, secs]` (0 front, ±0.5 three-quarter, ±1 ful
   //   "do": "walkTo@oven" (walks to stand beside it) | "place:phone@counter" (puts it down; it stays there for the scene) | "pickup:keys@table"
   //   A lie/sit pose is HELD across the following cuts of the scene until "stand" / "walkTo" / "run"; never write a bare
   //   "sleep" or "sit" when the setting has a bed/chair: the character would lie on the floor or stand in front of the desk.
+  // ACTIONS BRING THEIR OBJECT (coverage.py ACT_ITEM / _furniture; nobody types on air or drinks from nothing):
+  //   "type"  -> sits at the desk/table of the place, facing it; a laptop is put on it when the set has no computer;
+  //              with nowhere to sit (street, beach) it becomes "text": a phone held in front of the chest, thumbs tapping
+  //   "drink" -> a cup in the hand (seated at the table in a cafe/kitchen)     "phone" -> a phone in the hand, at the ear
+  //   held items are drawn inside the rig's hand, so they rise with the arm. Seated extras drinking hold cups too.
+  //   Name the object yourself ("props") only when it is something else (a tablet, a book).
   // FILM DEVICES per line (from "One Second Felt Like Forever"):
   //   "look": "flashback" | "night" | "tense" | "dream"   colour grade + haze for that line's shots (memories in warm sepia)
   //   "spot": true                                         a single cone of light on the person, darkness around

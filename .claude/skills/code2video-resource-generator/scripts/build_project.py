@@ -72,6 +72,23 @@ def main():
 
     import extras as EX
 
+    def held_item(svg, item):
+        """draw a phone / cup INSIDE the right hand of every view, so it rises with the arm (to the ear, to the mouth)."""
+        import re as _re
+
+        def put(m):     # groups: 1 forearm..hand, 2 hand circle, 3 cx, 4 cy
+            x, y = float(m.group(3)), float(m.group(4)) + 9
+            if item == "phone":     # big enough to read at wide-shot scale
+                g = (f'<rect x="{x - 17:.0f}" y="{y - 52:.0f}" width="34" height="60" rx="7" fill="#2b2f3a" stroke="#15121b" stroke-width="4"/>'
+                     f'<rect x="{x - 11:.0f}" y="{y - 45:.0f}" width="22" height="42" rx="3" fill="#8fd3ff"/>')
+            else:
+                g = (f'<path d="M{x - 21:.0f} {y - 50:.0f} L{x + 21:.0f} {y - 50:.0f} L{x + 16:.0f} {y + 6:.0f} L{x - 16:.0f} {y + 6:.0f} Z" fill="#f4efe0" stroke="#15121b" stroke-width="4"/>'
+                     f'<rect x="{x - 19:.0f}" y="{y - 34:.0f}" width="38" height="14" fill="#b0623d"/>'
+                     f'<path d="M{x + 19:.0f} {y - 40:.0f} q17 3 14 17 q-3 11 -16 9" fill="none" stroke="#15121b" stroke-width="5"/>')
+            return m.group(1)[:-len(m.group(2))] + g + m.group(2)
+        return _re.sub(r'(<g id="[^"]*-forearm-r">(?:(?!</g>).)*?(<circle cx="([-\d.]+)" cy="([-\d.]+)" r="1[12]" fill="[^"]+"/>))',
+                       put, svg, flags=_re.S)
+
     def add_extras(sh, A, dur):
         """the colleagues, customers, passers-by, swimmers and cars of this place (extras.py)"""
         items = (spec.get("extras_plan") or {}).get(sh.get("setting"))
@@ -118,13 +135,23 @@ def main():
                 elif a and an["pose"] == "sit" and "seat" in a:
                     sx_, sy_ = a["seat"]; sc_ = AN.scale_at(a.get("seat_ppm") or a["floor_ppm"])
                     hip, knee = CS.leg_geo(cc)
-                    ch.update(x=round(sx_, 1), by=round(sy_ - knee * sc_ + 782 * sc_, 1), s=sc_, hold="sit", holdDir=a.get("face", 1), flip=False)
+                    face_ = a.get("face", 1)
+                    for wk in ("desk", "table"):      # seated at a desk/table: face it (the screen, the laptop, the cup), never sit with the back to it
+                        d_ = AN.find(A, wk, sx_)
+                        if d_ and abs((d_.get("top") or d_["floor"])[0] - sx_) < 1.6 * (a.get("seat_ppm") or a["floor_ppm"]):
+                            dx_ = (d_.get("top") or d_["floor"])[0] - sx_
+                            if abs(dx_) > 4: face_ = 1 if dx_ > 0 else -1
+                            break
+                    ch.update(x=round(sx_, 1), by=round(sy_ - knee * sc_ + 782 * sc_, 1), s=sc_, hold="sit", holdDir=face_, flip=False)
                     ch["acts"] = [a_ for a_ in ch.get("acts", []) if a_[1] not in ("sit", "walkTo", "run", "walk", "jump", "crouch", "bend", "pickup")]
             if not an and A.get("_pave") and not ch.get("extra") and ch.get("by", 900) < H * 0.97:
-                by_ = ch.get("by", 900); rows = [r for r in A["_pave"] if abs(r[0] - by_) < H * 0.04]
+                by_ = ch.get("by", 900)
+                # only pavement that is ON screen (in 9:16 the pavement at the hero's depth can lie outside the frame:
+                # then the hero walks back along it to where it is visible, instead of being snapped out of the picture)
+                rows = [r for r in A["_pave"] if W * 0.1 < r[1] + (40 if r[2] < 0 else -40) < W * 0.9 and r[0] < H * 0.95]
                 if rows:
-                    best = min(rows, key=lambda r: abs(r[1] - ch.get("x", W / 2)))
-                    ch["x"] = round(best[1] + (40 if best[2] < 0 else -40), 1)
+                    best = min(rows, key=lambda r: 3 * abs(r[0] - by_) / H + abs(r[1] - ch.get("x", W / 2)) / W)
+                    ch["x"] = round(best[1] + (40 if best[2] < 0 else -40), 1); ch["by"] = round(best[0], 1)
             if not an:   # standing on the floor: the set decides the size (feet lower on screen = nearer = bigger)
                 pp = AN.ppm_at_y(A, ch.get("by", 900))
                 if pp and ch.get("by", 900) < H * 0.97:
@@ -149,7 +176,8 @@ def main():
         for pr in sh.get("props", []):
             pr = dict(pr)
             if pr.get("at"):
-                a = AN.find(A, pr["at"])
+                hc0 = next((c for c in chars if c["k"] == pr.get("hand")), None)
+                a = AN.find(A, pr["at"], hc0.get("_end_x", hc0["x"]) if hc0 else None)
                 pt = a and (a.get("top") or a.get("seat") or a.get("front"))
                 if pt:
                     ppm = a.get("top_ppm") or a.get("seat_ppm") or a["floor_ppm"]
@@ -205,6 +233,7 @@ def main():
                 ext_ = bool(cast[ch["k"]].get("external")) and (assets / f"{ch['k']}.svg").exists()
                 svg = (f"<img id='{ccid}-ext' src='assets/{ch['k']}.svg' alt='' style='width:100%;height:100%;display:block'>" if ext_ else
                        CH.build_svg(ccid, cast[ch["k"]], tuple(views_)).replace("<svg xmlns", '<svg preserveAspectRatio="xMidYMax meet" xmlns', 1))
+                if ch.get("item") and not ext_: svg = held_item(svg, ch["item"])
                 # a label that floats over the head and follows the character (a stat, a level, a name, "100%"):
                 # the reference films keep a number over every person for the whole story
                 tag_ = ch.get("tag", cast[ch["k"]].get("tag"))

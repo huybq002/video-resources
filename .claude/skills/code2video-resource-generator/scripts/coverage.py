@@ -128,11 +128,11 @@ BEAT_KEYS = ("at", "on", "shot", "focus", "do", "emote", "props", "crowd", "hud"
 KNOWN_ACTS = {"breathe", "bend", "nod", "shake", "think", "worry", "relief", "lean", "sad", "surprise", "wave", "stir",
               "receive", "stamp", "point", "cheer", "laugh", "angry", "cry", "walk", "walkTo", "look", "reach", "shrug",
               "talk", "turn", "gesture", "happy", "heart", "glare", "normal", "offer",
-              "sit", "stand", "run", "jump", "fall", "lie", "sleep", "pickup", "type", "drink", "phone", "throw", "crouch", "panic"}
+              "sit", "stand", "run", "jump", "fall", "lie", "sleep", "pickup", "type", "text", "drink", "phone", "throw", "crouch", "panic"}
 ACT_ALIASES = {"sits": "sit", "sitdown": "sit", "sit_down": "sit", "stands": "stand", "getup": "stand", "get_up": "stand",
                "runs": "run", "rush": "run", "sprint": "run", "jumps": "jump", "leap": "jump", "falls": "fall", "trip": "fall",
                "faint": "fall", "collapse": "fall", "liedown": "lie", "lie_down": "lie", "sleeps": "sleep", "nap": "sleep",
-               "pick": "pickup", "pick_up": "pickup", "grab": "pickup", "types": "type", "typing": "type", "drinks": "drink",
+               "pick": "pickup", "pick_up": "pickup", "grab": "pickup", "types": "type", "typing": "type", "texts": "text", "texting": "text", "drinks": "drink",
                "sip": "drink", "call": "phone", "calls": "phone", "throws": "throw", "toss": "throw", "hide": "crouch",
               "duck": "crouch", "scream": "panic", "panics": "panic", "walks": "walkTo", "walkto": "walkTo", "walk_to": "walkTo",
                "nods": "nod", "waves": "wave", "points": "point", "laughs": "laugh", "cries": "cry", "shrugs": "shrug",
@@ -145,6 +145,35 @@ PROP_SIZE = {"phone": .45, "coffee": .62, "cup": .62, "clock": .7, "document": .
 # pose held across cuts inside one scene: {char_key: {"pose": "lie"|"sit", "to": "bed", "setting": sid, "awake": bool}}
 # and props left on furniture: {setting: [{"id", "at"}]}. Reset at every scene (expand()).
 STATE = {"pose": {}, "left": {}}
+SETTINGS = [{}, pathlib.Path(".")]      # the spec's settings (expand() fills it) so a line can ask what furniture a place has
+
+
+def _furniture(sid):
+    """names of the furniture a setting has: {"desk", "computer", "chair", ...}"""
+    v = SETTINGS[0].get(_base(sid or ""))
+    if isinstance(v, str):
+        try:
+            p = pathlib.Path(v); v = json.load(open(p if p.is_absolute() else SETTINGS[1] / p, encoding="utf-8"))
+        except Exception:
+            return set()
+    if not isinstance(v, dict):
+        return set()
+    names = {o.get("n") for o in v.get("objects", []) if isinstance(o, dict) and o.get("t") == "furn"}
+    if isinstance(v.get("set"), dict):
+        try:
+            import sets as _sets
+            names |= _sets.contents(v)
+        except Exception:
+            pass
+    return names
+
+
+# an action needs its object on screen: nobody types on air, drinks from nothing or talks into an empty hand.
+#   type  -> sits at the desk/table of the place (laptop put on it when the place has no computer),
+#            or types on a phone when there is nowhere to sit
+#   drink -> a cup in the hand        phone -> a phone in the hand
+# held items are drawn INSIDE the hand (build_project, "item"), so they follow the arm to the ear or the mouth.
+ACT_ITEM = {"drink": "cup", "phone": "phone"}
 HOLD_POSES = {"lie": ("lie", True), "sleep": ("lie", False), "sit": ("sit", True)}
 BREAKS_HOLD = {"stand", "walkTo", "run", "walk", "jump", "fall"}
 
@@ -196,6 +225,33 @@ def _apply_beat(shots, cue, focus_key):
         t_at += 1.1          # several actions on one line play one after another, not on top of each other
     if cue.get("emote"): acts.append([0.15, "emote", cue["emote"]])
     fk = focus_key
+    item = None
+    names_ = {a_[1] for a_ in acts}
+    if fk and names_ & {"type", "drink", "phone"}:
+        furn = _furniture(shots[0].get("setting"))
+        cue_props = {p if isinstance(p, str) else (p or {}).get("id") for p in (cue.get("props") or [])}
+        held_ = anchor_set or (None if names_ & BREAKS_HOLD else STATE["pose"].get(fk))
+        sitting = bool(held_ and held_.get("pose") == "sit")
+        walking = any(a_[1] == "walkTo" for a_ in acts)
+        if "drink" in names_ and not sitting and not walking and "chair" in furn and furn & {"table", "desk"}:
+            anchor_set = {"pose": "sit", "to": "chair", "awake": True}; sitting = True     # a coffee at a cafe/kitchen is drunk sitting down
+        if "type" in names_ and not cue_props & {"laptop", "phone", "computer", "tablet"}:
+            work = sorted(furn & {"desk", "table"})
+            if not sitting and not walking and "chair" in furn and work:
+                anchor_set = {"pose": "sit", "to": "chair", "awake": True}; sitting = True
+            if sitting and work and "computer" not in furn:
+                left = STATE["left"].setdefault(_base(shots[0].get("setting")), [])
+                if not any(l_["id"] == "laptop" for l_ in left):
+                    left.append({"id": "laptop", "at": work[0], "hand": fk})
+            elif not sitting or not work:
+                item = "phone"      # nowhere to sit: texting on a phone held in front of the chest
+                for a_ in acts:
+                    if a_[1] == "type": a_[1] = "text"
+        if "text" in {a_[1] for a_ in acts}:
+            item = item or "phone"
+        for nm, it in ACT_ITEM.items():
+            if nm in names_ and not cue_props & ({"cup", "coffee", "mug"} if it == "cup" else {"phone"}):
+                item = item or it
     if fk and any(a_[1] in BREAKS_HOLD for a_ in acts):
         STATE["pose"].pop(fk, None)
     walked = next((a_[2][1:] for a_ in acts if a_[1] == "walkTo" and isinstance(a_[2], str) and a_[2].startswith("@")), None)
@@ -221,6 +277,9 @@ def _apply_beat(shots, cue, focus_key):
         if pl["mode"] == "place":
             STATE["left"].setdefault(_base(shots[0].get("setting")), []).append({"id": pl["id"], "at": pl["at"]})
     for sh in shots:
+        if item:
+            for ch in sh.get("chars", []):
+                if ch["k"] == fk: ch["item"] = item
         if acts and focus_key: _set_acts(sh, focus_key, copy.deepcopy(acts))
         if cue.get("crowd") is False: sh["crowd"] = None
         elif isinstance(cue.get("crowd"), dict): sh["crowd"] = copy.deepcopy(cue["crowd"])
@@ -328,7 +387,7 @@ EXPAND = {"dialogue": dialogue, "narration": narration}
 
 def expand(spec, spec_dir):
     spec = copy.deepcopy(spec); spec_dir = pathlib.Path(spec_dir); PORTRAIT[0] = spec.get("aspect", "16:9") == "9:16"
-    settings = dict(spec.get("settings", {}))
+    settings = dict(spec.get("settings", {})); SETTINGS[0] = settings; SETTINGS[1] = spec_dir
     def reg(name):
         sid = _sid(name)
         if name.startswith("lib:"): settings[sid] = str(LIB / (name[4:] + ".json"))

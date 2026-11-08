@@ -191,6 +191,7 @@ def place(items, A, sh, W, H, dur, cast, main_chars, scale_at, ppm_at_y, find_al
             a = free[si]; si += 1; s = scale_at(a.get("seat_ppm") or a["floor_ppm"])
             c.update(anchor={"pose": "sit", "to": "_seat", "seat": a["seat"], "face": a.get("face", 1), "s": s})
             c["acts"] = [[rnd.uniform(0.2, 1.2), {"sit_work": "type", "sit_drink": "drink", "sit_listen": "look"}[role], round(max(1.5, dur - 1), 2)]]
+            if role == "sit_drink": c["item"] = "cup"
             taken_x.append(a["seat"][0])
         elif role == "behind":
             if ci >= len(counters):
@@ -227,6 +228,16 @@ def place(items, A, sh, W, H, dur, cast, main_chars, scale_at, ppm_at_y, find_al
                 f0 = rnd.uniform(0, 0.5); xa, ya, pa = x0 + (x1 - x0) * f0, y0 + (y1 - y0) * f0, p0 + (p1 - p0) * f0
                 frac = min(1, 1.3 * dur / max(1, wv["len_m"]))
                 xb, yb, pb = xa + (x1 - x0) * frac, ya + (y1 - y0) * frac, pa + (p1 - p0) * frac
+                # never walk down the pavement IN FRONT of the hero (nearer the camera than their feet): cut the path there
+                hero_by = min([m.get("by", H) for m in main_chars if m.get("by", H) < H] or [H * 1.5])
+                lim = hero_by - 0.05 * H
+                if ya > lim and yb > lim:
+                    continue
+                if max(ya, yb) > lim and abs(yb - ya) > 1:
+                    u = (lim - ya) / (yb - ya)
+                    xm, pm = xa + (xb - xa) * u, pa + (pb - pa) * u
+                    if yb > lim: xb, yb, pb = xm, lim, pm
+                    else: xa, ya, pa = xm, lim, pm
                 c.update(x=xa, by=ya, s=scale_at(pa), path={"dx": xb - xa, "dy": yb - ya, "k": pb / pa, "d": dur, "view": "f" if pb > pa else "b"})
             else:                                     # across the frame on the floor / the crosswalk
                 rows = A.get("_floor") or []

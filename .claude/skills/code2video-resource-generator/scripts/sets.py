@@ -177,14 +177,14 @@ def room(cfg, P, rnd):
 
 def street(cfg, P, rnd):
     time = cfg.get("time", "dusk"); o = []
-    o.append(_box(0, -0.05, -35, 8.5, 0.05, 100, "#3b3a45" if time != "day" else "#5a5c66", ink=0))
+    o.append(_box(0, -0.05, -30, 8.5, 0.05, 120, "#3b3a45" if time != "day" else "#5a5c66", ink=0))
     for z in range(8, -80, -6):
         o.append(_box(0, 0.002, z, 0.16, 0.004, 2.6, "#e9e4d8", ink=0, op=0.85))
     for k in range(8):   # crosswalk
         o.append(_box(-3.5 + k, 0.003, 3.0, 0.55, 0.004, 3.0, "#ece7dc", ink=0, op=0.9))
     for sx in (-1, 1):
-        o.append(_box(sx * 6.0, 0, -35, 3.4, 0.16, 100, "#8a8794" if time != "day" else "#b9b5ad", ink=0.01))
-        o.append(_box(sx * 4.3, 0, -35, 0.12, 0.17, 100, "#5c5965", ink=0))
+        o.append(_box(sx * 6.0, 0, -30, 3.4, 0.16, 120, "#8a8794" if time != "day" else "#b9b5ad", ink=0.01))
+        o.append(_box(sx * 4.3, 0, -30, 0.12, 0.17, 120, "#5c5965", ink=0))
         z = 6.0
         while z > -75:   # building row facing the road
             dz = rnd.uniform(6, 10); h = rnd.uniform(7, 15)

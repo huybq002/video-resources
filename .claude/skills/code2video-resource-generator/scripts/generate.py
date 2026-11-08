@@ -86,6 +86,8 @@ if not a.skip_bg:
             data["width"], data["height"] = 1080, 1920; cam = dict(data["camera"]); lk = cam["look"]
             cam["pos"] = [lk[i] + (cam["pos"][i] - lk[i]) * 1.4 for i in range(3)]; cam["fov"] = cam.get("fov", 40) + 6
             if (data.get("_kind") or {}).get("type") == "room": cam["pos"][1] = min(cam["pos"][1], 3.6)   # stay under the ceiling
+            if (data.get("_kind") or {}).get("type") == "street":   # a tall frame cannot hold road AND pavement up close: stand over the pavement,
+                cam["pos"][0] += 3.6; cam["look"] = [lk[0] + 2.4, lk[1], lk[2]]    # road on the left, people walk on the near pavement
             data["camera"] = cam
         (bgs / f"{sid}.json").write_text(json.dumps(data), encoding="utf-8")
         # where each furniture piece lands on screen, for lie@bed / sit@chair / place:phone@counter (anchors.py)

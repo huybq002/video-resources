@@ -186,6 +186,10 @@
     type(c, t, dur) { const D = dur || 2.4; arm(c, "l", t, 30, 0.3); arm(c, "r", t, -30, 0.3); head(c, t, 6, 0.4);
       for (let i = 0; i < Math.floor(D / 0.18); i++) { fore(c, i % 2 ? "l" : "r", t + 0.3 + i * 0.18, (i % 2 ? 1 : -1) * 28, 0.09); fore(c, i % 2 ? "l" : "r", t + 0.39 + i * 0.18, (i % 2 ? 1 : -1) * 14, 0.09); }
       arm(c, "l", t + D + 0.3, 0, 0.4); arm(c, "r", t + D + 0.3, 0, 0.4); head(c, t + D + 0.3, 0, 0.4); },
+    // texting on a phone held in front of the chest: both forearms up and in, head down, thumbs tapping
+    text(c, t, dur) { const D = dur || 2.4; arm(c, "r", t, 16, 0.35); arm(c, "l", t, -16, 0.35); fore(c, "r", t + 0.05, 112, 0.35); fore(c, "l", t + 0.05, -112, 0.35); head(c, t, 10, 0.4);
+      for (let i = 0; i < Math.floor(D / 0.22); i++) fore(c, i % 2 ? "l" : "r", t + 0.45 + i * 0.22, (i % 2 ? -1 : 1) * (i % 4 < 2 ? 104 : 116), 0.11);
+      arm(c, "l", t + D + 0.3, 0, 0.4); arm(c, "r", t + D + 0.3, 0, 0.4); fore(c, "l", t + D + 0.3, 0, 0.4); fore(c, "r", t + D + 0.3, 0, 0.4); head(c, t + D + 0.3, 0, 0.4); },
     // drink from a cup in the right hand
     drink(c, t) { arm(c, "r", t, -150, 0.45, "power2.out"); fore(c, "r", t + 0.1, -105, 0.35); head(c, t + 0.3, -10, 0.35);
       arm(c, "r", t + 1.6, -40, 0.45); fore(c, "r", t + 1.6, 0, 0.4); head(c, t + 1.6, 0, 0.4); },

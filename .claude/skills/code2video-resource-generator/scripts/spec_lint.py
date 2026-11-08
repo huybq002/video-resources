@@ -201,7 +201,7 @@ ACTION_NEEDS = [
 ]
 ACT_WORDS = {"sits": "sit", "sitdown": "sit", "stands": "stand", "getup": "stand", "runs": "run", "rush": "run", "sprint": "run",
              "jumps": "jump", "leap": "jump", "falls": "fall", "trip": "fall", "faint": "fall", "collapse": "fall",
-             "liedown": "lie", "sleeps": "sleep", "nap": "sleep", "pick": "pickup", "grab": "pickup", "types": "type",
+             "liedown": "lie", "sleeps": "sleep", "nap": "sleep", "pick": "pickup", "grab": "pickup", "types": "type", "texts": "text", "texting": "text",
              "typing": "type", "drinks": "drink", "sip": "drink", "call": "phone", "calls": "phone", "throws": "throw",
              "toss": "throw", "hide": "crouch", "duck": "crouch", "scream": "panic", "walks": "walkTo", "walkto": "walkTo"}
 
@@ -259,6 +259,8 @@ def script_visual_match(spec):
                         misses.append(f"{where} says '{m.group(0)}' but its setting {sets or '?'} does not show {what}: "
                                       f"shoot that line in a setting that has one (line \"at\", furniture in scene-dsl.md)")
                 acts = _beat_acts(beat)
+                # the action brings its own object (coverage.ACT_ITEM): a drink puts a cup in the hand, a call a phone, typing a laptop/phone
+                props = props | ({"coffee", "cup", "mug", "tea"} if "drink" in acts else set()) | ({"phone"} if acts & {"phone", "text", "type"} else set())                     | ({"laptop", "computer"} if "type" in acts else set())
                 for rx, need in ACTION_NEEDS:
                     m = re.search(rx, text, re.I)
                     if m and not (acts & need):
