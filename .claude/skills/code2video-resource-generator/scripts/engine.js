@@ -264,6 +264,11 @@
         const has = !!$(c.cid + "-vs"); if (has) ACT.view(c, t0, "side", c.enter < 0 ? 1 : -1);
         tl.fromTo(w, { x: c.enter }, { x: 0, duration: D, ease: "power1.out" }, t0 + (has ? 0.2 : 0)); walkCycle(c, t0 + (has ? 0.2 : 0), D - (has ? 0.3 : 0)); if (has) ACT.view(c, t0 + D, "front", 1); }
       if (c.face && !c.hold) viewSet(c, t0, "s", c.face);     // two-shot: in profile, facing the other person
+      if (c.back && !c.path) viewSet(c, t0, "b", 1);
+      if (c.path) { const p = c.path, wv = $(c.cid + "-wrap");   // an extra walking through: across, toward or away from the camera
+        if (p.view === "s") viewSet(c, t0, "s", p.dir || 1); else if (p.view === "b") viewSet(c, t0, "b", 1);
+        gsap.set(wv, { transformOrigin: "50% 97%" });
+        tl.fromTo(wv, { x: 0, y: 0, scale: 1 }, { x: p.dx, y: p.dy, scale: p.k, duration: p.d, ease: "none" }, t0); walkCycle(c, t0, p.d); }
       if (c.hold === "lie") ACT.lie(c, t0, 0, true);
       else if (c.hold === "sit") ACT.sit(c, t0, c.holdDir, true);
       let b = 0.9 + rnd(); while (b < dur - 0.3) { if (c.hold !== "lie" || c.awake) blink(c, t0 + b); b += 2.3 + rnd() * 2.2; }
@@ -271,6 +276,9 @@
       for (const a of c.acts) { if (a[1] === "breathe") hasBreath = true; if (!ACT[a[1]]) { console.warn("unknown act", a[1]); continue; } ACT[a[1]](c, t0 + a[0], a[1] === "breathe" ? dur - a[0] : a[2], a[3]); }
       if (!hasBreath) ACT.breathe(c, t0 + 0.2, dur - 0.2);
     }
+    for (const v of sh.vehicles || []) { const e = $(v.dom);   // traffic: a car drives along its lane
+      tl.set(e, { opacity: 1 }, t0 + v.t); tl.fromTo(e, { x: 0, y: 0, scale: 1 }, { x: v.dx, y: v.dy, scale: v.k, duration: v.d, ease: v.back ? "power2.out" : "power2.in" }, t0 + v.t);
+      tl.set(e, { opacity: 0 }, t0 + v.t + v.d); }
     for (const L of sh.lip || []) { const c = sh.chars.find((x) => x.k === L.k); if (!c) continue; for (const ev of L.ev) viseme(c, t0 + ev[0], ev[1], ev[2]); }
     for (const p of sh.props || []) { const e = $(p.dom);
       if (p.mode === "place") { gsap.set(e, { opacity: 0 }); tl.fromTo(e, { opacity: 1, x: p.fx || 0, y: p.fy || 0, scale: 0.9 }, { x: 0, y: 0, scale: 1, duration: 0.55, ease: "power2.inOut" }, t0 + (p.t || 0)); }

@@ -141,7 +141,8 @@ def room(cfg, P, rnd):
         "office": [_f("desk", kx, kz), _f("computer", kx, kz), _f("chair", kx, kz + 0.75, ry=math.pi),
                    _f("whiteboard", side * 3.6, BZ + 0.2), _f("bookshelf", -side * (hw - 0.9), BZ + 0.6),
                    _f("plant", side * (hw - 0.9), BZ + 0.7), _f("plant", -side * (hw - 2.1), BZ + 0.6, s=0.8)]
-                  + [_f(n, x, BZ + 2.2) for x in (-3.2, 0.0, 3.2) for n in ("desk", "computer")],
+                  + [_f(n, x, BZ + 2.2) for x in (-3.2, 0.0, 3.2) for n in ("desk", "computer")]
+                  + [_f("chair", x - 1.0, BZ + 2.2, ry=math.pi / 2) for x in (-3.2, 0.0, 3.2)],   # colleagues sit here (extras.py)
         "lab": [_box(0, 0, BZ + 1.6, ww + 2.5 if ww else 8, 0.95, 0.9, "#2a2633", ink=0.02),
                 _box(0, 0.95, BZ + 1.6, (ww + 2.5 if ww else 8) + 0.1, 0.05, 0.95, "#4a4456", ink=0.015),
                 _f("computer", side * 2.4, BZ + 1.75, y=0.28), _f("whiteboard", -side * (hw - 1.6), BZ + 0.2), _f("bookshelf", side * (hw - 0.9), BZ + 0.6)]
@@ -248,7 +249,28 @@ def shopfront(cfg, P, rnd):
     return base, o
 
 
-TYPES = {"room": room, "street": street, "shopfront": shopfront}
+def beach(cfg, P, rnd):
+    time = cfg.get("time", "day"); o = []
+    sand = {"day": "#e8cf9a", "dusk": "#d9a878", "night": "#5a5068"}.get(time, "#e8cf9a")
+    sea = {"day": "#3fa7c9", "dusk": "#7a6aa8", "night": "#232a55"}.get(time, "#3fa7c9")
+    o.append(_box(0, -0.05, 0, 120, 0.05, 30, sand, ink=0))                       # sand from the camera to the waterline at z=-15
+    o.append(_box(0, -0.02, -60, 260, 0.03, 90, sea, ink=0))                      # sea to the horizon
+    for k in range(7):                                                             # foam lines
+        o.append(_box(rnd.uniform(-20, 20), 0.012, -15.2 - k * 2.6, rnd.uniform(4, 12), 0.004, 0.25, "#f3f7fa", ink=0, op=0.7))
+    o.append(_box(0, 0.011, -15.1, 120, 0.004, 0.5, "#f3f7fa", ink=0, op=0.85))
+    for i, x in enumerate((-6.5, -2.0, 3.0, 7.0)):                                 # umbrellas and towels on the sand
+        o.append(_f("umbrella", x, -6.5 + (i % 2) * 2.5, c=POSTER[(i * 3) % 7]))
+        o.append(_f("towel", x + 0.9, -6.0 + (i % 2) * 2.5, ry=0.15 * (i - 1.5), c=POSTER[(i * 2 + 1) % 7]))
+    for x, z in ((-11, -4), (12, -6), (-14, -12)):
+        o.append(_f("palm", x, z))
+    o += _sky_and_sun(P, 0, -140, 300, 120, 6, 9 if time != "dusk" else 4, time)
+    base = dict(sky=P["sky"] if time != "day" else ["#5aa6e8", "#d8eef8"], fog={"near": 40, "far": 160, "c": P["sky"][1]}, exposure=1.15,
+                ambient={"c": P["amb"][0], "i": P["amb"][1] * 1.1}, sun={"c": P["sun"], "i": 0.7, "pos": [-6, 10, 4]},
+                stars=120 if time == "night" else 0, camera={"pos": [0, 2.8, 10.0], "look": [0, 0.6, -20], "fov": 46}, layers=[9.0, 30.0])
+    return base, o
+
+
+TYPES = {"room": room, "street": street, "shopfront": shopfront, "beach": beach}
 STYLES = ["bedroom", "office", "lab", "kitchen", "living", "classroom", "cafe", "shop"]
 
 
@@ -267,6 +289,7 @@ def expand(setting):
         if k not in ("set", "objects"):
             out[k] = v
     out["objects"] = objs + list(setting.get("objects", []))
+    out["_kind"] = {"type": cfg.get("type", "room"), "style": cfg.get("style"), "time": cfg.get("time", "dusk")}   # anchors/extras read this
     return out
 
 

@@ -70,7 +70,28 @@ def main():
             _anch[sid] = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
         return _anch[sid]
 
-    def resolve(sh):
+    import extras as EX
+
+    def add_extras(sh, A, dur):
+        """the colleagues, customers, passers-by, swimmers and cars of this place (extras.py)"""
+        items = (spec.get("extras_plan") or {}).get(sh.get("setting"))
+        if not items or sh.get("split") or any(p_.get("mode") == "static" for p_ in sh.get("props", [])):
+            return sh
+        ex, cars = EX.place(items, A, sh, W, H, dur, cast, sh.get("chars", []), AN.scale_at, AN.ppm_at_y, None)
+        out_chars = []
+        for c in ex:
+            cc = cast.get(c["k"], {}); an = c.pop("anchor", None)
+            if an and an["pose"] == "sit":
+                hip, knee = CS.leg_geo(cc); s_ = an["s"]
+                c.update(x=round(an["seat"][0], 1), by=round(an["seat"][1] - knee * s_ + 782 * s_, 1), s=s_, hold="sit", holdDir=an["face"])
+            elif an and an["pose"] == "lie":
+                (hx, hy), (fx, fy) = an["head"], an["foot"]; s_ = min(AN.scale_at(an["ppm"]), abs(fx - hx) * 0.95 / 706 + 0.02)
+                c.update(x=round(fx, 1), by=round((hy + fy) / 2 - 55 * s_, 1), s=round(s_, 3), flip=hx > fx, hold="lie", awake=False)
+            out_chars.append(c)
+        sh = dict(sh); sh["chars"] = out_chars + list(sh.get("chars", [])); sh["vehicles"] = cars
+        return sh
+
+    def resolve(sh, dur=4.0):
         """put characters and props ON the furniture the line talks about (anchors.py)."""
         A = anchors_of(sh.get("setting"))
         if not A:
@@ -94,6 +115,11 @@ def main():
                     hip, knee = CS.leg_geo(cc)
                     ch.update(x=round(sx_, 1), by=round(sy_ - knee * sc_ + 782 * sc_, 1), s=sc_, hold="sit", holdDir=a.get("face", 1), flip=False)
                     ch["acts"] = [a_ for a_ in ch.get("acts", []) if a_[1] not in ("sit", "walkTo", "run", "walk", "jump", "crouch", "bend", "pickup")]
+            if not an and A.get("_pave") and not ch.get("extra") and ch.get("by", 900) < H * 0.97:
+                by_ = ch.get("by", 900); rows = [r for r in A["_pave"] if abs(r[0] - by_) < H * 0.04]
+                if rows:
+                    best = min(rows, key=lambda r: abs(r[1] - ch.get("x", W / 2)))
+                    ch["x"] = round(best[1] + (40 if best[2] < 0 else -40), 1)
             if not an:   # standing on the floor: the set decides the size (feet lower on screen = nearer = bigger)
                 pp = AN.ppm_at_y(A, ch.get("by", 900))
                 if pp and ch.get("by", 900) < H * 0.97:
@@ -141,7 +167,7 @@ def main():
                     pr.update(x=round(hc["x"] + side * 105 * hs, 1), y=round(hc.get("by", 900) - (400 - drop) * hs, 1), w=max(24, w))
             props.append(pr)
         sh["props"] = props
-        return sh
+        return add_extras(sh, A, dur)
 
     for sc in spec["scenes"]:
         n = sc["id"]; tsc = sc_by[n]; s0 = tsc["startMs"]; dur = tsc["sceneDurationMs"] / 1000; cid = f"scene-{n}"
@@ -155,7 +181,7 @@ def main():
                 prev_ids, prev_full = cue_ids, (f0, f1)
             por = sh.get("portion", [0, 1]); t0 = f0 + (f1 - f0) * por[0]; t1 = f0 + (f1 - f0) * por[1]
             dom = f"s{n}{chr(65+si)}"; chars_html, chars_data = [], []
-            sh = resolve(sh)
+            sh = resolve(sh, t1 - t0)
             if sh.get("focus") and not sh.get("split"):      # close-ups: drop characters that end up outside the frame (fewer DOM nodes = faster render)
                 _f = sh["focus"]; _z = min(_f.get("zoom", 2.4), _f.get("to", _f.get("zoom", 2.4) * 1.07)); _hx = next(x["x"] for x in sh["chars"] if x["k"] == _f["k"])
                 sh = dict(sh, chars=[x for x in sh["chars"] if x["k"] == _f["k"] or x.get("enter") is not None or abs(_z * (x["x"] - _hx)) < W / 2 + _z * 200 * x.get("s", 0.8) + 60])
@@ -168,8 +194,8 @@ def main():
                 w, h = 400 * s, 800 * s; left, top = ch["x"] - w / 2, ch.get("by", 900) - 782 * s
                 flip = ("transform:scaleX(-1);" if ch.get("flip") else "") + (("filter:drop-shadow(-3px -2px 0 rgba(255,214,160,.9)) drop-shadow(0 0 5px rgba(255,190,130,.3));") if (ch.get("glow") or cast[ch["k"]].get("glow") or spec.get("rim", True)) else "")
                 acts_ = ch.get("acts", [])
-                views_ = ["f"] + (["s"] if (ch.get("enter") is not None or ch.get("hold") == "sit" or ch.get("face") or any(a_[1] in ("walkTo", "sit") or (a_[1] == "view" and a_[2] in ("side", "s")) for a_ in acts_)) else []) \
-                                 + (["b"] if any(a_[1] == "view" and a_[2] in ("back", "b") for a_ in acts_) else [])
+                views_ = ["f"] + (["s"] if (ch.get("enter") is not None or ch.get("hold") == "sit" or ch.get("face") or (ch.get("path") or {}).get("view") == "s" or any(a_[1] in ("walkTo", "sit") or (a_[1] == "view" and a_[2] in ("side", "s")) for a_ in acts_)) else []) \
+                                 + (["b"] if (ch.get("back") or (ch.get("path") or {}).get("view") == "b" or any(a_[1] == "view" and a_[2] in ("back", "b") for a_ in acts_)) else [])
                 ext_ = bool(cast[ch["k"]].get("external")) and (assets / f"{ch['k']}.svg").exists()
                 svg = (f"<img id='{ccid}-ext' src='assets/{ch['k']}.svg' alt='' style='width:100%;height:100%;display:block'>" if ext_ else
                        CH.build_svg(ccid, cast[ch["k"]], tuple(views_)).replace("<svg xmlns", '<svg preserveAspectRatio="xMidYMax meet" xmlns', 1))
@@ -179,16 +205,26 @@ def main():
                 tag_html = (f"<div class='ctag' style='position:absolute;left:50%;top:{4 - 2 * (cast[ch['k']].get('hat', 'none') != 'none')}%;transform:translate(-50%,-100%);"
                             f"background:rgba(24,20,32,.88);color:#ffd27a;font-weight:700;font-size:{max(18, 46 * s):.0f}px;line-height:1;padding:{6 * s + 3:.0f}px {14 * s + 6:.0f}px;"
                             f"border:2px solid #ffd27a;border-radius:999px;white-space:nowrap;font-variant-numeric:tabular-nums'>{html.escape(str(tag_))}</div>") if tag_ not in (None, "") else ""
-                pane_chars_html[pn["idx"]].append(f"<div id='{ccid}-wrap' class='char' style='left:{left:.1f}px;top:{top:.1f}px;width:{w:.1f}px;height:{h:.1f}px'><div class='flip' style='{flip}'>{svg}</div>{tag_html}</div>")
+                clip_ = ""
+                if ch.get("clip_y") is not None:     # hidden below a counter top or the water line
+                    cut = max(0.0, min(100.0, (top + h - ch["clip_y"]) / h * 100))
+                    clip_ = f"clip-path:inset(0 0 {cut:.1f}% 0);"
+                pane_chars_html[pn["idx"]].append(f"<div id='{ccid}-wrap' class='char' style='left:{left:.1f}px;top:{top:.1f}px;width:{w:.1f}px;height:{h:.1f}px;z-index:{int(ch.get('by', 900)) + (2000 if not ch.get('extra') and ch.get('by', 900) > H * 1.0 else 0)};{clip_}'><div class='flip' style='{flip}'>{svg}</div>{tag_html}</div>")
                 chars_data.append(dict(k=ch["k"], cid=ccid, acts=ch.get("acts", []), enter=ch.get("enter"), flip=bool(ch.get("flip")), ext=ext_,
-                                       hold=ch.get("hold"), holdDir=ch.get("holdDir"), awake=ch.get("awake", True), face=ch.get("face")))
+                                       hold=ch.get("hold"), holdDir=ch.get("holdDir"), awake=ch.get("awake", True), face=ch.get("face"),
+                                       path=ch.get("path"), back=ch.get("back"), extra=ch.get("extra")))
             chars_html = pane_chars_html[None] if None in pane_chars_html else []
             props_html, props_data = [], []
             for pi, p in enumerate(sh.get("props", [])):
                 pid = f"{dom}-prop{pi}"; w = p.get("w", 170)
-                props_html.append(f"<img id='{pid}' class='prop' src='assets/props/{p['id']}.svg' style='left:{p['x']-w/2:.0f}px;top:{p['y']-w*0.7:.0f}px;width:{w}px;opacity:0'>")
+                props_html.append(f"<img id='{pid}' class='prop' src='assets/props/{p['id']}.svg' style='left:{p['x']-w/2:.0f}px;top:{p['y']-w*0.7:.0f}px;width:{w}px;opacity:0;z-index:5000'>")
                 props_data.append(dict(dom=pid, mode=p.get("mode", "drop"), t=p.get("t", 0), lift=p.get("lift"), fx=p.get("fx"), fy=p.get("fy")))
             # crowd: seeded silhouettes in perspective rows
+            veh_html, veh_data = [], []
+            for vi, v in enumerate(sh.get("vehicles", []) or []):
+                vid = f"{dom}-car{vi}"; vw = v["w"]; vh = vw * 0.65
+                veh_html.append(f"<div id='{vid}' class='veh' style='position:absolute;left:{v['x'] - vw / 2:.1f}px;top:{v['y'] - vh:.1f}px;width:{vw:.1f}px;height:{vh:.1f}px;opacity:0;transform-origin:50% 100%;z-index:{int(v['y'] + v['dy'] * 0.6)}'>{EX.car_svg(v['color'], v.get('back'))}</div>")
+                veh_data.append(dict(dom=vid, dx=round(v["dx"], 1), dy=round(v["dy"], 1), k=round(v["k"], 3), d=round(v["d"], 2), t=round(v["t"], 2), back=bool(v.get("back"))))
             crowd_html, crowd_data = [], []
             cr = sh.get("crowd")
             if cr:
@@ -263,6 +299,7 @@ def main():
                 elif chf.get("hold") == "sit":
                     _hp, _kn = CS.leg_geo(cast.get(chf["k"], {})); hy += (_kn - _hp) * sf
                 Z0 = foc.get("zoom", 2.4); Z1 = foc.get("to", round(Z0 * 1.07, 3))
+                _zm = max(1.0, min(Z0, Z1)); hx = min(max(hx, W / (2 * _zm)), W - W / (2 * _zm))   # never pan past the picture's edge (black bar)
                 tgt = foc.get("target_y", int(H * 0.44))
                 kx = lambda Z: round(-Z * (hx - W / 2), 1); ky = lambda Z: round(tgt - 0.62 * H - Z * (hy - 0.62 * H), 1)
                 cam = [Z0, kx(Z0), ky(Z0), Z1, kx(Z1), ky(Z1)]
@@ -286,15 +323,15 @@ def main():
             elif layered:
                 lid = lambda n: f"{dom}-{n}"
                 scene_html = (f"<img id='{lid('L0')}' class='bg lay' style='{dof_far}' src='assets/bg_{sh['setting']}_far.png'><img id='{lid('L1')}' class='bg lay' style='{dof_mid}' src='assets/bg_{sh['setting']}_mid.png'>"
-                              f"<div id='{lid('chars')}' class='lay'>{''.join(crowd_html)}{''.join(props_html)}{''.join(chars_html)}</div>"
+                              f"<div id='{lid('chars')}' class='lay'>{''.join(veh_html)}{''.join(crowd_html)}{''.join(props_html)}{''.join(chars_html)}</div>"
                               f"<img id='{lid('L2')}' class='bg lay' style='filter:blur({spec.get('fg_blur', 5)}px);' src='assets/bg_{sh['setting']}_near.png'>")
                 layers_data = [dict(dom=lid("L0"), k=0.35 if not foc else 0.6), dict(dom=lid("L1"), k=0.7 if not foc else 0.85), dict(dom=lid("chars"), k=0.85 if not foc else 1.0), dict(dom=lid("L2"), k=1.2)]
             else:
-                scene_html = f"<img class='bg' style='{'filter:blur(1.5px);' if (foc and float((foc or {}).get('zoom', 1)) >= 2.2) else ''}' src='assets/bg_{sh['setting']}.png'>{''.join(crowd_html)}{''.join(props_html)}{''.join(chars_html)}"
+                scene_html = f"<img class='bg' style='{'filter:blur(1.5px);' if (foc and float((foc or {}).get('zoom', 1)) >= 2.2) else ''}' src='assets/bg_{sh['setting']}.png'>{''.join(veh_html)}{''.join(crowd_html)}{''.join(props_html)}{''.join(chars_html)}"
                 layers_data = None
             shots_html.append(f"<div id='{dom}' class='shot' style='z-index:{si+1}'><div id='{dom}-sway' class='cam'><div id='{dom}-cam' class='cam'>{scene_html}</div></div>{rays}{rain}{''.join(ov_html)}</div>")
             d = dict(dom=dom, t0=round(t0, 3), t1=round(t1, 3), cam=cam, chars=chars_data, props=props_data, first=(si == 0), prev=prev,
-                     cut=bool(sh.get("cut")), trans=sh.get("trans"), crowd=crowd_data, overlays=ov_data)
+                     cut=bool(sh.get("cut")), trans=sh.get("trans"), crowd=crowd_data, overlays=ov_data, vehicles=veh_data)
             lip = []
             for ci in cue_ids:
                 who = cue_who.get(ci)

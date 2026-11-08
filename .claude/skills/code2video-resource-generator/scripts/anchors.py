@@ -33,6 +33,8 @@ POINTS = {
     "tv": {"top": (0, .55, .1)},
     "bench": {"seat": (0, .49, 0), "facing": (0, 0, 1)},
     "bookshelf": {"front": (0, 1.0, .2)},
+    "towel": {"top": (0, .05, 0), "head": (0, .05, -.8), "foot": (0, .05, .8)},
+    "shelf_goods": {"front": (0, 1.0, .3)},
 }
 ALIAS = {"counter": ["kitchen_counter", "shop_counter"], "nightstand": ["bedside_table"], "bedside": ["bedside_table"],
          "couch": ["sofa"], "stove": ["oven"], "computer": ["desk"], "laptop": ["desk"], "seat": ["chair", "sofa", "bench"]}
@@ -94,6 +96,17 @@ def compute(setting, W, H):
         if 0 <= sy <= H * 1.3:
             rows.append([round(sy, 1), round(cam.ppm(d), 2)])
     out["_floor"] = sorted(rows)
+    kind = setting.get("_kind") or {}
+    if kind.get("type") == "street":    # cars come toward the camera in the left lane and drive away in the right one
+        def pt(x, z):
+            sx, sy, d = cam.project((x, 0, z)); return [round(sx, 1), round(sy, 1), round(cam.ppm(d), 2)]
+        out["_lanes"] = [{"from": pt(-2.1, -55), "to": pt(-2.1, P[2] - 3)}, {"from": pt(2.1, P[2] - 4), "to": pt(2.1, -55), "away": True}]
+        out["_walks"] = [{"from": pt(sx_, -40), "to": pt(sx_, P[2] - 3.5), "len_m": 40 + P[2]} for sx_ in (-5.6, 5.6)]
+        out["_cross"] = pt(0, 3.0)[1]
+        out["_pave"] = [[pt(sx_, z)[1], pt(sx_, z)[0], sx_] for sx_ in (-5.4, 5.4) for z in range(-40, int(P[2] - 2))]   # [y, x, side]
+    if kind.get("type") == "beach":
+        y0 = cam.project((0, 0, -16))[1]; y1 = cam.project((0, 0, -40))[1]
+        out["_sea"] = {"y0": round(min(y0, y1), 1), "y1": round(max(y0, y1), 1), "ppm": round(cam.ppm(28), 2)}
     return out
 
 

@@ -91,7 +91,7 @@ def character_prompts(spec, path, settings=None):
          "Lưu **chỉ phần `<svg>...</svg>`** vào đúng đường dẫn ở tiêu đề mỗi prompt (thư mục `assets/` của project), rồi trong spec đặt `\"external\": true` cho nhân vật đó và chạy lại `generate.py --keep-srt --skip-bg`.",
          "Nhân vật dùng file ngoài được di chuyển/nghiêng/nhún/đi ngang như một khối (không có khớp riêng); các file `talk`, `happy`, `sad`, `side`, `back` là bộ biến thể tùy chọn để thay khi cần (chưa tự động đổi trong render hiện tại).", "",
          "Kiểm tra file: nền trong suốt, nhân vật ở giữa canvas 400×800, chân chạm đáy (y≈780), đầu tròn tâm (200,175).", ""]
-    for c in spec.get("cast", []):
+    for c in [c_ for c_ in spec.get("cast", []) if not c_.get("extra")]:
         if c.get("narrator") or c.get("id") == spec.get("narrator", "narrator"): continue
         L += [f"## {c.get('name', c['id'])} (id `{c['id']}`)", "", f"- Vai trò: {c.get('role', '')}", f"- Trang phục: {c.get('look') or auto_look(c)}", ""]
         for v in VIEWS:
@@ -124,7 +124,7 @@ def checklist(spec, out_dir, path):
         L.append(f"| `{rel}` | {who} | {'có' if (out / rel).exists() else 'chưa (app sinh khi render)' if 'wav' in rel else 'THIẾU'} |")
     for f in sorted((out / "compositions").glob("*.html")): L.append(f"| `compositions/{f.name}` | skill | có |")
     for f in sorted((out / "assets").glob("bg_*.png")): L.append(f"| `assets/{f.name}` | skill (3D) | có |")
-    for c in spec.get("cast", []):
+    for c in [c_ for c_ in spec.get("cast", []) if not c_.get("extra")]:
         if c.get("narrator"): continue
         ext = c.get("external")
         L.append(f"| `assets/{c['id']}.svg` | {'Gemini (bạn)' if ext else 'skill (nhân vật dựng sẵn)'} | {'có' if (out/'assets'/(c['id']+'.svg')).exists() else ('CẦN ĐẶT' if ext else 'có')} |")

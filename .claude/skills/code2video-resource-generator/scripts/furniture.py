@@ -80,6 +80,12 @@ def _parts(n, c, c2):
                  + [B(-1.4 + .7 * k, 0, 0, .1, 1.1, .1, c or wood) for k in range(5)],
         "crate": [B(0, 0, 0, .8, .8, .8, c or "#a8743f")],
         "barrel": [C(0, 0, 0, .35, .95, c or "#7a4e32")],
+        "towel": [B(0, 0, 0, .8, .02, 1.8, c or "#e35d4f", ink=0), B(0, .021, -.5, .8, .004, .12, c2 or "#ffffff", ink=0),
+                  B(0, .021, .5, .8, .004, .12, c2 or "#ffffff", ink=0)],
+        "umbrella": [C(0, 0, 0, .03, 2.1, "#f3eee4"), dict(t="cylinder", x=0, y=1.85, z=0, rt=.02, rb=1.15, h=.45, c=c or "#e35d4f", seg=12)],
+        "palm": [dict(t="cylinder", x=0, y=0, z=0, rt=.1, rb=.18, h=4.2, c=c2 or "#8a6a3c")]
+                + [dict(t="cylinder", x=math.cos(a) * .9, y=4.0, z=math.sin(a) * .9, rt=.02, rb=.35, h=.12, c=c or "#3aa65a", ink=.02, rz=0)
+                   for a in [i * math.pi / 3 for i in range(6)]] + [dict(t="sphere", x=0, y=4.2, z=0, r=.45, c=c or "#3aa65a")],
         "whiteboard": [B(0, .9, 0, 1.8, 1.1, .05, "#f6f6f2"), B(0, .85, .03, 1.8, .06, .1, c2 or "#9aa3ad"),
                        B(-.3, 1.5, .03, .9, .04, .01, c or "#4f6bd8"), B(-.1, 1.3, .03, 1.1, .04, .01, c or "#4f6bd8")],
     }
@@ -89,7 +95,7 @@ def _parts(n, c, c2):
 FURNITURE = sorted([
     "bed", "bedside_table", "desk", "computer", "chair", "sofa", "table", "bookshelf", "kitchen_counter", "oven", "fridge",
     "window", "night_window", "door", "tv", "lamp_floor", "plant", "rug", "picture", "wall_clock", "shop_counter",
-    "shelf_goods", "car", "bench", "trash_bin", "building", "street_sign", "fence", "crate", "barrel", "whiteboard"])
+    "shelf_goods", "car", "bench", "trash_bin", "building", "street_sign", "fence", "crate", "barrel", "whiteboard", "towel", "umbrella", "palm"])
 
 
 def expand(objects):

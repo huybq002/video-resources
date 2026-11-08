@@ -48,3 +48,35 @@ Forever", the stickman Shorts) next to our own night-job videos (2026-11-07/08).
    street, `pickup` from the counter, `type` at the computer (spec-schema.md actions).
 5. Use two or three times of day in a film (a day office, a dusk street, a night bedroom). Contrast between scenes reads as
    time passing.
+
+
+## Scene logic and extras (extras.py)
+
+Before writing a scene, answer three questions from the script, and let the answers pick the set:
+1. **Where and when?** The place the line names, the time it says or implies ("2 a.m." = night, "lunch" = day).
+2. **Who else would be there?** An office at 9 a.m. has colleagues; a street has cars and people; a cafe has customers
+   and a barista; a beach has swimmers and people on towels; a home at night has nobody else.
+3. **What are they doing?** Something the place explains: typing at the other desks, drinking coffee, crossing the
+   road, swimming, sunbathing - never standing still facing the camera.
+
+The skill does 2 and 3 for you: `extras.py` reads each setting's set type, style and time, and the words of its lines
+("alone", "empty", "nobody" -> nobody; "busy", "packed", "colleagues", "people", "traffic" -> more), adds extras to the
+cast with clothes that fit the place, and places them on the set: seated at the free chairs (typing / drinking /
+listening), behind the counter (legs hidden), browsing the shelves, lying on towels, swimming (cut at the water line),
+walking across the floor, crossing the street or walking along the pavement toward/away from the camera, and cars
+driving along the lanes. Seated extras keep their seat in every shot of the setting.
+
+| set | day | dusk | night |
+|---|---|---|---|
+| office | 3 colleagues typing + 1 walking | 1 working late | empty |
+| classroom | 5 students | 2 | empty |
+| cafe | 3 customers, barista, 1 walking | 2 + barista | 1 + barista |
+| shop | cashier, 2 browsing | cashier, 1 | cashier |
+| street | 4 on the pavements, 2 crossing, 4 cars | 3, 1, 3 cars | 1 walker, 2 cars |
+| shopfront | 3 walking, 1 on the bench | 2, 1 | 1 |
+| beach (`{"type": "beach"}`) | 4 swimming, 3 on towels, 2 walking | 1, 1, 2 | empty |
+| bedroom / kitchen / living | nobody unless the script brings someone | | |
+
+Override on the setting: `"extras": "none"` (a deliberately empty place), `0.5` / `2` (fewer / more), or an explicit
+list `[{"role": "walk", "n": 3}, {"role": "sit_work", "n": 2}]`. Roles: sit_work, sit_drink, sit_listen, behind, browse,
+walk, walk_street, cross, swim, sunbathe, traffic, bench.

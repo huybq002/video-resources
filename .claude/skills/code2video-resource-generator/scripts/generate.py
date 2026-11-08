@@ -27,6 +27,8 @@ if bible:
 import coverage, srt_tools, docs_gen, spec_lint, furniture, sets, anchors
 for _m in spec_lint.lint(spec0): print(_m)                 # settings variety, cast, crowds, static scenes, wardrobe
 spec = coverage.expand(spec0, spec_path.parent)            # sequences -> many shots, lib:/relative settings resolved
+import extras
+spec = extras.plan(spec)                                     # colleagues, customers, passers-by, traffic (extras.py)
 tmp = pathlib.Path(tempfile.mkdtemp(prefix="c2v_")); exp = tmp / "spec.expanded.json"; exp.write_text(json.dumps(spec, ensure_ascii=False), encoding="utf-8")
 py = sys.executable
 def run(cmd, **k):
