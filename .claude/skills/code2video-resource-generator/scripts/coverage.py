@@ -21,7 +21,7 @@ def _actor(a, default_flip=False):
     x, by, s = a.get("x", 960), a.get("by", 905), a.get("s", 0.82)
     if PORTRAIT[0]: x, by, s = int(540 + (x - 960) * 0.62), a.get("by", 1560), round(s * 1.25, 2)   # sequences are authored in landscape coordinates
     d = {"k": a["k"], "x": x, "by": by, "s": s, "flip": a.get("flip", default_flip)}
-    for k in ("glow", "enter"):
+    for k in ("glow", "enter", "tag"):
         if k in a: d[k] = a[k]
     return d
 
@@ -96,7 +96,7 @@ def dialogue(seq, rnd):
 
 MOOD_ACTS = {"warm": ["nod", "wave", "gesture", "happy"], "tense": ["look", "worry", "think", "shake"], "sad": ["sad", "look", "think", "shrug"], "funny": ["shrug", "happy", "reach", "surprise"]}
 
-BEAT_KEYS = ("at", "on", "shot", "focus", "do", "emote", "props", "crowd", "hud")
+BEAT_KEYS = ("at", "on", "shot", "focus", "do", "emote", "props", "crowd", "hud", "tag")
 
 # actions the rig can play (scripts/engine.js ACT) and the words people actually write for them
 KNOWN_ACTS = {"breathe", "bend", "nod", "shake", "think", "worry", "relief", "lean", "sad", "surprise", "wave", "stir",
@@ -154,6 +154,10 @@ def _apply_beat(shots, cue, focus_key):
     if cue.get("props") and not shots[0].get("props"):
         a = next((c for c in shots[0]["chars"] if c["k"] == focus_key), shots[0]["chars"][0] if shots[0]["chars"] else None)
         shots[0]["props"] = _line_props(cue["props"], a)
+    if isinstance(cue.get("tag"), dict):   # {"tag": {"lena": "LEVEL 2"}}: the label over a head changes on this line
+        for sh in shots:
+            for ch in sh.get("chars", []):
+                if ch["k"] in cue["tag"]: ch["tag"] = cue["tag"][ch["k"]]
     if cue.get("hud"):          # on-screen numbers, labels, title cards (chip / counter / burst / bubble / title)
         huds = cue["hud"] if isinstance(cue["hud"], list) else [cue["hud"]]
         shots[0].setdefault("overlays", []).extend(copy.deepcopy(h) for h in huds if isinstance(h, dict))

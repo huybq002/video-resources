@@ -231,6 +231,13 @@
         tl.to(pr, { v: o.to, duration: Math.max(0.4, o.dur - 0.9), ease: "power2.out", onUpdate: () => { num.textContent = fmt(pr.v); } }, T + 0.25);
         tl.to(e, { opacity: 0, duration: 0.25 }, end - 0.25); }
       else if (o.type === "burst") { tl.fromTo(e, { opacity: 0, scale: 0.2, rotation: -14 }, { opacity: 1, scale: 1.12, rotation: -5, duration: 0.22, ease: "power3.out" }, T); tl.to(e, { scale: 1, duration: 0.15 }, T + 0.22); tl.to(e, { opacity: 0, scale: 0.9, duration: 0.18 }, end - 0.18); }
+      else if (o.type === "flash") { tl.fromTo(e, { opacity: 0.95 }, { opacity: 0, duration: Math.min(0.6, o.dur), ease: "power2.out" }, T); }
+      else if (o.type === "speedlines") { tl.fromTo(e, { opacity: 0, scale: 1.25 }, { opacity: 0.85, scale: 1, duration: 0.18, ease: "power3.out" }, T);
+        tl.to(e, { scale: 1.04, duration: 0.12, yoyo: true, repeat: Math.max(1, Math.floor((o.dur - 0.4) / 0.12)), ease: "none" }, T + 0.18); tl.to(e, { opacity: 0, duration: 0.2 }, end - 0.2); }
+      else if (o.type === "chain") { const ch = e.querySelectorAll(".ch");
+        tl.fromTo(e, { opacity: 0 }, { opacity: 1, duration: 0.15 }, T);
+        tl.fromTo(ch, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out", stagger: Math.min(0.45, (o.dur * 0.6) / Math.max(1, ch.length)) }, T + 0.1);
+        tl.to(e, { opacity: 0, duration: 0.25 }, end - 0.25); }
       else if (o.type === "bubble" || o.type === "title") { const ch = e.querySelectorAll(".ch");
         tl.fromTo(e, { opacity: 0, y: 10, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "power2.out" }, T);
         tl.fromTo(ch, { opacity: 0 }, { opacity: 1, duration: 0.01, stagger: Math.min(0.06, (o.dur * 0.6) / Math.max(1, ch.length)) }, T + 0.15);

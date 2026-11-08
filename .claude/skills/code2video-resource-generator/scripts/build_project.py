@@ -84,14 +84,20 @@ def main():
               for ch in pn["chars"]:
                 ccid = f"{dom}-{ch['k']}" if pn["idx"] is None else f"{dom}p{pn['idx']}-{ch['k']}"; s = ch.get("s", 0.8)
                 w, h = 400 * s, 800 * s; left, top = ch["x"] - w / 2, ch.get("by", 900) - 782 * s
-                flip = ("transform:scaleX(-1);" if ch.get("flip") else "") + ("filter:drop-shadow(0 0 7px rgba(255,205,150,.75));" if (ch.get("glow") or cast[ch["k"]].get("glow") or spec.get("rim", True)) else "")
+                flip = ("transform:scaleX(-1);" if ch.get("flip") else "") + (("filter:drop-shadow(-3px -2px 0 rgba(255,214,160,.9)) drop-shadow(0 0 5px rgba(255,190,130,.3));") if (ch.get("glow") or cast[ch["k"]].get("glow") or spec.get("rim", True)) else "")
                 acts_ = ch.get("acts", [])
                 views_ = ["f"] + (["s"] if (ch.get("enter") is not None or any(a_[1] == "walkTo" or (a_[1] == "view" and a_[2] in ("side", "s")) for a_ in acts_)) else []) \
                                  + (["b"] if any(a_[1] == "view" and a_[2] in ("back", "b") for a_ in acts_) else [])
                 ext_ = bool(cast[ch["k"]].get("external")) and (assets / f"{ch['k']}.svg").exists()
                 svg = (f"<img id='{ccid}-ext' src='assets/{ch['k']}.svg' alt='' style='width:100%;height:100%;display:block'>" if ext_ else
                        CH.build_svg(ccid, cast[ch["k"]], tuple(views_)).replace("<svg xmlns", '<svg preserveAspectRatio="xMidYMax meet" xmlns', 1))
-                pane_chars_html[pn["idx"]].append(f"<div id='{ccid}-wrap' class='char' style='left:{left:.1f}px;top:{top:.1f}px;width:{w:.1f}px;height:{h:.1f}px'><div class='flip' style='{flip}'>{svg}</div></div>")
+                # a label that floats over the head and follows the character (a stat, a level, a name, "100%"):
+                # the reference films keep a number over every person for the whole story
+                tag_ = ch.get("tag", cast[ch["k"]].get("tag"))
+                tag_html = (f"<div class='ctag' style='position:absolute;left:50%;top:{4 - 2 * (cast[ch['k']].get('hat', 'none') != 'none')}%;transform:translate(-50%,-100%);"
+                            f"background:rgba(24,20,32,.88);color:#ffd27a;font-weight:700;font-size:{max(18, 46 * s):.0f}px;line-height:1;padding:{6 * s + 3:.0f}px {14 * s + 6:.0f}px;"
+                            f"border:2px solid #ffd27a;border-radius:999px;white-space:nowrap;font-variant-numeric:tabular-nums'>{html.escape(str(tag_))}</div>") if tag_ not in (None, "") else ""
+                pane_chars_html[pn["idx"]].append(f"<div id='{ccid}-wrap' class='char' style='left:{left:.1f}px;top:{top:.1f}px;width:{w:.1f}px;height:{h:.1f}px'><div class='flip' style='{flip}'>{svg}</div>{tag_html}</div>")
                 chars_data.append(dict(k=ch["k"], cid=ccid, acts=ch.get("acts", []), enter=ch.get("enter"), flip=bool(ch.get("flip")), ext=ext_))
             chars_html = pane_chars_html[None] if None in pane_chars_html else []
             props_html, props_data = [], []
@@ -132,6 +138,17 @@ def main():
                 elif ty == "counter": inner = f"<div class='num' id='{oid}-n'></div><div class='lbl'>{html.escape(o.get('label', ''))}</div>"
                 elif ty == "burst": inner = html.escape(o["text"])
                 elif ty in ("bubble", "title"): inner = "".join(f"<span class='ch'>{html.escape(ch)}</span>" for ch in o["text"])
+                elif ty == "chain":   # EYES -> BRAIN -> MUSCLES: a cause chain spelled out word by word
+                    its = [html.escape(str(x)) for x in o.get("items", [])]
+                    inner = "<span class='ch arrow'> &#8594; </span>".join(f"<span class='ch'>{x}</span>" for x in its)
+                elif ty == "flash": inner = ""       # white frame: impact, a power switching on, a time jump
+                elif ty == "speedlines":             # comic action lines rushing to the centre: the moment the power fires
+                    import math as _m
+                    cxs, cys = W / 2, H / 2
+                    ln = "".join(f"<line x1='{cxs + _m.cos(a_) * (W * .2 + (k % 3) * 40):.0f}' y1='{cys + _m.sin(a_) * (H * .2 + (k % 3) * 40):.0f}' "
+                                 f"x2='{cxs + _m.cos(a_) * W:.0f}' y2='{cys + _m.sin(a_) * W:.0f}' stroke='#15121b' stroke-width='{4 + (k * 7) % 9}' stroke-linecap='round'/>"
+                                 for k, a_ in enumerate([i * 2 * _m.pi / 56 + (i % 5) * .02 for i in range(56)]))
+                    inner = f"<svg viewBox='0 0 {W} {H}' width='{W}' height='{H}'>{ln}</svg>"
                 elif ty == "screen":
                     tr = o.get("trend")
                     pts = {"up": "0,90 60,82 120,86 180,70 240,74 300,40 360,8", "down": "0,10 60,22 120,16 180,44 240,40 300,70 360,92",
@@ -142,7 +159,10 @@ def main():
                              f"<div class='scr-v' style='color:{colr if tr else '#f6f0e4'}'>{html.escape(str(o.get('value', '')))}</div>"
                              + (f"<svg class='scr-c' viewBox='0 0 360 100'><polyline points='{pts}' fill='none' stroke='{colr}' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/></svg>" if pts else ""))
                 top_css = "160px" if (spec.get("letterbox") and pos[0] == "t") else "%s%%" % POS[pos[0]]
-                if "x" in o:   # absolute centre placement
+                if ty in ("flash", "speedlines"):   # full frame
+                    ov_html.append(f"<div id='{oid}' class='{cls}' style='opacity:0;position:absolute;left:0;top:0;width:{W}px;height:{H}px;pointer-events:none;"
+                                   f"{'background:#fffaf0;' if ty == 'flash' else ''}'>{inner}</div>")
+                elif "x" in o:   # absolute centre placement
                     ov_html.append(f"<div class='ovabs' style='left:{o['x']}px;top:{o['y']}px'><div id='{oid}' class='{cls}' style='opacity:0'>{inner}</div></div>")
                 else:
                     ov_html.append(f"<div class='ovw' style='top:{top_css};justify-content:{COL[pos[1]]}'><div id='{oid}' class='{cls}' style='opacity:0'>{inner}</div></div>")
@@ -243,6 +263,8 @@ def main():
     {sel} .ov.counter .lbl {{ font-size:22px; letter-spacing:.14em; text-transform:uppercase; color:#d9d2c0; }}
     {sel} .ov.burst {{ width:340px; height:300px; display:grid; place-items:center; text-align:center; background:#ffd23a; clip-path:polygon(100.0% 50.0%,82.3% 60.5%,90.5% 79.4%,70.0% 77.5%,65.5% 97.6%,50.0% 84.0%,34.5% 97.6%,30.0% 77.5%,9.5% 79.4%,17.7% 60.5%,0.0% 50.0%,17.7% 39.5%,9.5% 20.6%,30.0% 22.5%,34.5% 2.4%,50.0% 16.0%,65.5% 2.4%,70.0% 22.5%,90.5% 20.6%,82.3% 39.5%); color:#c2262e; font-size:52px; font-weight:700; line-height:1; padding:40px; box-sizing:border-box; }}
     {sel} .ov.bubble {{ width:560px; padding:20px 28px; border-radius:26px; background:#fff; color:#241726; font-size:34px; line-height:1.25; font-weight:700; box-sizing:border-box; box-shadow:0 6px 0 rgba(0,0,0,.25); }}
+    {sel} .ov.chain {{ font-size:{64 if H > W else 72}px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#f6f0e4; text-shadow:0 4px 18px rgba(0,0,0,.55); text-align:center; }}
+    {sel} .ov.chain .arrow {{ color:#ffd27a; }}
     {sel} .ov.title {{ font-size:104px; letter-spacing:.06em; text-transform:uppercase; font-weight:700; color:#ff9ad0; text-shadow:0 0 24px rgba(255,120,190,.7); text-align:center; max-width:1500px; }}
     {sel} .vig {{ position:absolute; inset:0; z-index:20; pointer-events:none; background:radial-gradient(ellipse at 50% 46%, transparent 52%, rgba(3,2,10,.62) 100%); }}
     {sel} .flash {{ position:absolute; inset:0; z-index:30; background:#fff; opacity:0; }}

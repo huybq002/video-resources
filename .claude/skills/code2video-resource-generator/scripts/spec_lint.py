@@ -321,6 +321,72 @@ def film_pace(spec):
     return notes
 
 
+# ---- script craft (references/story-formats.md, measured on the reference channel) ----------------------------
+FORMATS = ("what_if", "character", "episode", "days", "dilemma", "explainer", "wordless")
+TURN_WORDS = re.compile(r"\b(but|until|except|cost|price|then one day|that's when|the problem|unless|instead)\b", re.I)
+
+
+def _lines_timed(spec):
+    """-> [(t_mid_fraction, text, beat_dict)] across the film, spread evenly inside each scene."""
+    rows = _timeline(spec)
+    total = sum(r[2] - r[1] for r in rows) or 1
+    out = []
+    for sc, t0, t1, texts, _n, _s in rows:
+        beats = []
+        for item in sc.get("shots", []):
+            seq = item.get("sequence") or {}
+            beats += [c if isinstance(c, dict) else {"t": c} for c in list(seq.get("cues", [])) + list(seq.get("lines", [])) + list(item.get("cues") or [])]
+        for i, b in enumerate(beats):
+            out.append(((t0 + (i + 0.5) * (t1 - t0) / max(1, len(beats))) / total, b.get("t", ""), b))
+    return out
+
+
+def script_craft(spec):
+    notes = []
+    fmt = spec.get("format")
+    lines = _lines_timed(spec)
+    if not lines:
+        return notes
+    if fmt not in FORMATS:
+        notes.append(f"WARNING: set \"format\" to one of {', '.join(FORMATS)} (references/story-formats.md): the format decides "
+                     f"the voice, the shape of the story and the cast.")
+    if fmt == "wordless":
+        return notes
+    sents = [x for _f, t, _b in lines for x in re.split(r"[.?!]+", t) if x.strip()]
+    words = sum(len(x.split()) for x in sents)
+    if sents and words / len(sents) > 9:
+        notes.append(f"WARNING: sentences average {words / len(sents):.1f} words (the reference films: 5-7). Cut them: short lines, "
+                     f"one-word payoffs (\"Caught.\"), and let actions carry the rest.")
+    total_s = sum(r[2] - r[1] for r in _timeline(spec))
+    if fmt in ("what_if", "days", "dilemma", "episode"):
+        you = sum(1 for _f, t, b in lines if re.search(r"\byou(r|'re|'ve|'ll)?\b", t, re.I) and not b.get("who"))
+        narr = sum(1 for _f, _t, b in lines if not b.get("who")) or 1
+        if you / narr < 0.4:
+            notes.append(f"WARNING: format '{fmt}' is told to the viewer as \"you\", but only {you} of {narr} narration lines say you/your.")
+    if fmt == "what_if" and total_s > 90:
+        early = [t for f, t, _b in lines if f * total_s <= 45]
+        if not any("?" in t for t in early):
+            notes.append("WARNING: 'what_if' needs its title question (\"So what if...?\") in the first 45 s, after 2-3 demonstrations, with a title card.")
+    if fmt == "character":
+        cast_names = [str(c.get("name") or c.get("id", "")).split()[0].lower() for c in spec.get("cast", []) if c.get("name") or c.get("id")]
+        first = " ".join(t for f, t, _b in lines[:3]).lower()
+        if not any(n and n in first for n in cast_names):
+            notes.append("WARNING: 'character' format introduces the hero by name in the first lines (\"This is Jonah Pike.\").")
+    if total_s >= 60:
+        mid = [t for f, t, _b in lines if 0.45 <= f <= 0.8]
+        if mid and not any(TURN_WORDS.search(t) for t in mid):
+            notes.append("WARNING: no turn between 45 % and 80 % of the film (no 'but', 'until', 'the cost'...). The power/plan must show "
+                         "its price there; without it the second half is a list.")
+    plants = {b["plant"] for _f, _t, b in lines if b.get("plant")}
+    payoffs = {b["payoff"] for _f, _t, b in lines if b.get("payoff")}
+    for pl in sorted(plants - payoffs):
+        notes.append(f"WARNING: plant '{pl}' is never paid off: add a line with \"payoff\": \"{pl}\" in the last third.")
+    nums = sum(1 for _f, t, b in lines if re.search(r"\d|\b(one|two|three|ten|hundred|thousand|million|percent|half)\b", t, re.I))
+    if total_s >= 60 and nums < max(2, len(lines) // 8):
+        notes.append("WARNING: almost no numbers in the script. Make the idea measurable (a test, a score, a price, a count) and put the numbers on screen.")
+    return notes
+
+
 def lint(spec):
     notes = []
     scenes = spec.get("scenes", [])
@@ -396,6 +462,7 @@ def lint(spec):
     notes += hook_and_ending(spec)
     notes += script_visual_match(spec)
     notes += film_pace(spec)
+    notes += script_craft(spec)
     return notes
 
 

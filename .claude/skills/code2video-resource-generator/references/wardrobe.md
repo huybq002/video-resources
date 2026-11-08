@@ -46,3 +46,11 @@ Default style (`"style": "stick"`): round head (white by default, any tone via `
 3. Match period/place through shape (coat, scarf, apron), not logos or real brand marks; no real team kits, names or numbers.
 4. Close-ups show only the head + collar: put identity there (glasses, hat, hair, collar colour, tie).
 5. The head is the star: keep `skin` white or one flat tone so the expressions (blush, tears, ^ ^ eyes) read at any distance.
+
+
+## Smooth figures (2026-11-08, after the reference frame study)
+We keep our own design (big white head, full face). What we took from the reference films is only what makes a figure read
+as smooth and finished: thicker one-piece limbs with round ends and round hands (no joints), clothes edged in a darker shade
+of their own colour instead of a black ink line, a thinner head outline with a softer blush and no nose line, and a crisp
+warm rim light on one side. `"style": "ink"` on a cast entry is an optional all-dark silhouette variant with a warm-white face
+(night or mystery stories); do not make it the channel's main look.

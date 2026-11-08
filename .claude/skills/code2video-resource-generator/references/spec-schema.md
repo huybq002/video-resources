@@ -68,6 +68,11 @@ Acts for faces: `["t","turn", yaw, secs]` (0 front, ±0.5 three-quarter, ±1 ful
   //   hud    an overlay or a list for this line: {"type":"counter","from":0,"to":7,"label":"hours","pos":"tr"} {"type":"chip","text":"2:14 AM","pos":"tl"}
   //          {"type":"title","text":"WHAT IF YOU NEVER SLEPT?","pos":"cc"} {"type":"burst","text":"BUZZ!","x":1200,"y":380}   (t / dur optional)
   //          {"type":"screen","app":"Ribbit","label":"Balance","value":"$9,000,000","trend":"up|down|flat","pos":"cc"}  (a phone/laptop app)
+  //          {"type":"chain","items":["eyes","brain","muscles"],"pos":"tc"}   (a cause in 3 steps, word by word with arrows)
+  //          {"type":"flash","t":0,"dur":0.5}   (white frame: impact, power on, time jump)   {"type":"speedlines","t":0.2,"dur":1.2}  (action lines)
+  // per character: "tag": "LEVEL 1" on a cast entry or an actor = a label floating over the head that follows them; a line can change it:
+  //          {"t":"Your cab driver is six hundred.", "tag": {"driver": "600"}}
+  // per line:  "plant": "yellow_coat" ... later "payoff": "yellow_coat"   (spec_lint checks every plant is paid off)
   //   focus  cast key the camera favours
   //   do     an action or a list, played in order (about 1 s apart). FILM ACTIONS: "sit" "stand" "run:500" "jump:80"
   //          "fall:1" (stays down until "stand") "lie" "sleep" (lies on a bed, eyes shut) "pickup" "type:3" "drink" "phone:3"
