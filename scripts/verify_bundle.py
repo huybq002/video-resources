@@ -61,7 +61,24 @@ def check_bundle(proj, spec, minutes):
     if want and len(scenes) != len(want): err(f"{len(scenes)} scene files but the spec has {len(want)} scenes")
     tgt = [s.get("target_s") for s in want]
     if all(t is not None for t in tgt) and tgt and abs(sum(tgt) - total) > 0.5: err(f"scene target_s add up to {sum(tgt)}s, not {total:.0f}s")
+    lint_gate(spec)
     notes.append(f"bundle: {len(cues)} cues, {len(scenes)} scenes, script ends {cues[-1][2]/1000:.1f}s, expected {total:.0f}s")
+
+def lint_gate(spec):
+    """The spec lint (picture follows words, sets, voice, story craft) must be clean before anything is rendered.
+    Night 003 rendered an hour of boxes with every warning open; warnings are now PROBLEMS here."""
+    sk = pathlib.Path(__file__).resolve().parent.parent / ".claude/skills/code2video-resource-generator/scripts"
+    sys.path.insert(0, str(sk))
+    try:
+        import copy, io, contextlib, autofill, spec_lint
+        sp = copy.deepcopy(spec)
+        with contextlib.redirect_stdout(io.StringIO()):
+            autofill.run(sp)              # generate.py fills the same gaps before it lints
+        w = [l for l in spec_lint.lint(sp) if l.startswith("WARNING")]
+    except Exception as e:                # never let the gate itself break a night: report it instead
+        notes.append(f"lint gate skipped: {e}"); return
+    if len(w) > MAX_WARN:
+        err(f"spec lint: {len(w)} WARNING(s) still open (allowed {MAX_WARN}); fix the spec. First: {w[0][9:160]}")
 
 def probe(video):
     if not shutil.which("ffprobe"): err("ffprobe not found"); return None
@@ -93,7 +110,9 @@ def check_video(video, spec, minutes, allow_silent):
 ap = argparse.ArgumentParser(); ap.add_argument("kind", choices=["bundle", "video"]); ap.add_argument("path")
 ap.add_argument("--spec", required=True); ap.add_argument("--expect-minutes"); ap.add_argument("--allow-silent", action="store_true")
 ap.add_argument("--aspect", choices=["16:9", "9:16"], help="which cut this is (one spec builds both)")
+ap.add_argument("--max-warnings", type=int, default=0, help="spec lint WARNINGs tolerated (default 0; raise only for one that cannot be fixed, and say so in the report)")
 a = ap.parse_args()
+MAX_WARN = a.max_warnings
 spec = load_spec(a.spec)
 if a.aspect: spec["aspect"] = a.aspect
 (check_bundle if a.kind == "bundle" else lambda p, s, m: check_video(p, s, m, a.allow_silent))(a.path, spec, a.expect_minutes)

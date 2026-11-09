@@ -15,12 +15,17 @@ The pose is held across the following cuts of the scene until a "stand"/"walkTo"
 """
 import math
 
+try:
+    import catalog as CAT
+except ImportError:
+    from scripts import catalog as CAT
+
 PERSON_M = 1.65          # a standing adult; the drawing is 720 units tall in a 400x800 box
 FIG_UNITS = 720.0
 
 # local anchor points per furniture piece (metres, before the piece's rotation/scale; y up)
 POINTS = {
-    "bed": {"top": (0, .68, .05), "head": (0, .68, -.92), "foot": (0, .68, .98)},
+    "bed": {"top": (0, .68, .05), "head": (0, .68, -.92), "foot": (0, .68, .98), "seat": (.78, .58, .35), "facing": (1, 0, 0)},
     "chair": {"seat": (0, .52, 0), "floor": (0, 0, 0), "facing": (0, 0, 1)},
     "desk": {"top": (0, .75, 0), "front": (0, .75, .38)},
     "table": {"top": (0, .77, 0), "front": (0, .77, .45)},
@@ -29,9 +34,11 @@ POINTS = {
     "oven": {"top": (0, .93, 0), "front": (0, .45, .32)},
     "fridge": {"front": (0, 1.0, .36)},
     "bedside_table": {"top": (0, .57, 0)},
-    "sofa": {"seat": (0, .45, .12), "facing": (0, 0, 1)},
+    "sofa": {"seat": (0, .45, .12), "facing": (0, 0, 1), "head": (-.85, .4, .26), "foot": (.85, .4, .26), "top": (0, .45, .2)},   # lying ON the cushion, not on the back
     "tv": {"top": (0, .55, .1)},
-    "bench": {"seat": (0, .49, 0), "facing": (0, 0, 1)},
+    "bench": {"seat": (0, .49, 0), "facing": (0, 0, 1), "head": (-.8, .5, 0), "foot": (.8, .5, 0), "top": (0, .5, 0)},
+    "bathtub": {"head": (-.65, .45, 0), "foot": (.65, .45, 0), "top": (0, .45, 0)},
+    "toilet": {"seat": (0, .45, .08), "facing": (0, 0, 1)},
     "bookshelf": {"front": (0, 1.0, .2)},
     "towel": {"top": (0, .05, 0), "head": (0, .05, -.8), "foot": (0, .05, .8)},
     "shelf_goods": {"front": (0, 1.0, .3)},
@@ -73,6 +80,11 @@ def compute(setting, W, H):
         if o.get("t") != "furn":
             continue
         n = o.get("n"); pts = dict(POINTS.get(n, {})); pts.setdefault("floor", (0, 0, 0)); pts.setdefault("near", (0, 0, .9))
+        # where a person stands to USE it: on the floor in front of it (catalog footprint), any object, no table to fill in
+        pts.setdefault("approach", (0, 0, CAT.C.get(n, {}).get("d", .6) / 2 + .4))
+        if CAT.C.get(n, {}).get("stand") == "behind":   # a podium, a till: the user stands behind it, facing the room
+            pts.setdefault("behind", (0, 0, -(CAT.C[n].get("d", .6) / 2 + .3)))
+            pts.setdefault("top", (0, CAT.C[n].get("h", 1.0), 0))
         s, ry = float(o.get("s", 1)), float(o.get("ry", 0)); bx, by, bz = float(o.get("x", 0)), float(o.get("y", 0)), float(o.get("z", 0))
         a = {"n": n}
         for k, (lx, ly, lz) in pts.items():
@@ -80,10 +92,12 @@ def compute(setting, W, H):
             if k == "facing":    # a direction, not a point: which way the seat faces on screen (+1 right, -1 left)
                 p0 = cam.project((bx, 0, bz)); p1 = cam.project((bx + dx, 0, bz + dz))
                 a["face"] = 1 if p1[0] >= p0[0] else -1
+                if dz < -0.6 * math.hypot(dx, dz):   # the seat faces away from the camera (audience rows, a desk chair)
+                    a["face_back"] = True
                 continue
             sx, sy, z = cam.project((bx + dx, by + ly * s, bz + dz))
             a[k] = [round(sx, 1), round(sy, 1)]
-            if k in ("floor", "top", "seat", "foot"):
+            if k in ("floor", "top", "seat", "foot", "approach", "behind"):
                 a[k + "_ppm"] = round(cam.ppm(z), 2)
         fx, fy, _ = cam.project((bx, 0, bz)); a["on_screen"] = 0 <= fx <= W and 0 <= fy <= H * 1.05
         out.setdefault(n, []).append(a)

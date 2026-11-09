@@ -149,6 +149,13 @@
     // foreshortening, which is what broke the knees before. Hips drop by exactly the thigh length (rig "hip"/"knee"),
     // so the knee ends level with the hip and the foot stays on the floor. inst = already seated when the shot opens.
     sit(c, t, dir, inst) { const has = !!$(c.cid + "-vs"), d = inst ? 0.001 : 0.45;
+      if (dir === "b" && $(c.cid + "-vb")) {   // seated at a desk against the back wall: seen from behind. The thighs point
+        // away from the camera (foreshortened to almost nothing), the shins hang from the seat to the floor.
+        viewSet(c, t, "b", 1); const rg = R[c.k + ":b"] || R[c.k] || {}, L = (rg.knee || 650) - (rg.hip || 540), k = 0.12;
+        rootTo(c, t, { y: c.seatDrop != null ? c.seatDrop : L * (1 - k) }, d, "power2.inOut");
+        tl.to([part(c, "leg-l"), part(c, "leg-r")], { scaleY: k, duration: d }, t);
+        tl.to([part(c, "shin-l"), part(c, "shin-r")], { scaleY: (c.shinK || 1) / k, duration: d }, t);
+        c.seated = true; c.seatBack = true; return; }
       if (has) { if (inst) viewSet(c, t, "s", dir); else ACT.view(c, t, "side", dir == null ? 1 : dir); }
       const t1 = (has && !inst) ? t + 0.3 : t, rg = R[c.k + (c.view === "s" ? ":s" : "")] || {}, L = (rg.knee || 650) - (rg.hip || 540);
       if (c.view === "s") {
@@ -164,7 +171,8 @@
     // back to standing from sit / crouch / lie
     stand(c, t) { tl.set(part(c, "root"), { transformOrigin: "50% 100%" }, t); rootTo(c, t, { y: 0, rotation: 0, scaleX: 1, scaleY: 1 }, 0.45, "power2.out");
       tl.to([part(c, "leg-l"), part(c, "leg-r"), part(c, "shin-l"), part(c, "shin-r"), part(c, "body"), part(c, "head")], { rotation: 0, duration: 0.4, ease: "power2.out" }, t); lids(c, t, 0);
-      if (c.seated && c.view === "s") ACT.view(c, t + 0.45, "front", 1); c.seated = false; },
+      if (c.seatBack) { tl.to([part(c, "leg-l"), part(c, "leg-r"), part(c, "shin-l"), part(c, "shin-r")], { scaleY: 1, duration: 0.4 }, t); c.seatBack = false; }
+      if (c.seated && (c.view === "s" || c.view === "b")) ACT.view(c, t + 0.45, "front", 1); c.seated = false; },
     // run across the frame: fast cycle, forward lean, bigger arm swing
     run(c, t, dx, d) { const dist = dx || 500, dd = d || Math.max(0.8, Math.abs(dist) / 600), has = !!$(c.cid + "-vs"); if (has) ACT.view(c, t, "side", dist >= 0 ? 1 : -1);
       const t1 = t + (has ? 0.15 : 0); tl.to($(c.cid + "-wrap"), { x: "+=" + dist, duration: dd, ease: "power1.inOut" }, t1);

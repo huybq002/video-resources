@@ -213,7 +213,9 @@ jobs:
                  1. Write specs/<id>.json (duration_s = duration_min*60 exactly; scenes[].target_s must add up to it).
                     Follow the skill's six rules: a hook that lands in the first 30 s, words per scene = target_s * 2.4,
                     its own settings written with scene-dsl (not only `lib:`), supporting cast and `crowd` for groups,
-                    2-3 shots per long scene, male characters with bare stick legs. Set `aspect` to "16:9" in the spec;
+                    2-3 shots per long scene, male characters with bare stick legs. Write the `spine` and each scene's
+                    goal/turn/value first (references/short-film-craft.md), spoken lines (references/spoken-voice.md), and
+                    start every place from a `set` (rooms now include laundry, meeting, bathroom, grocery). Set `aspect` to "16:9" in the spec;
                     build_both.py overrides it per cut. If series is set, first run
                     `python $SKILL/scripts/series.py brief series/<series>/series-bible.json` and continue that story.
                  2. Generate both cuts:
@@ -227,6 +229,7 @@ jobs:
                     `python scripts/verify_bundle.py bundle outputs/<id>/landscape --spec specs/<id>.json --expect-minutes <duration_min> --aspect 16:9`
                     `python scripts/verify_bundle.py bundle outputs/<id>/portrait  --spec specs/<id>.json --expect-minutes <duration_min> --aspect 9:16`
                     If either prints PROBLEMS, fix the spec and go back to step 2. Never render a bundle that fails.
+                    The bundle check runs the spec lint too: every open WARNING is a PROBLEM.
                  4. Voice-over once, then render both. script.srt is identical in the two cuts, so:
                     * `renderer: tool` (default, best quality: VieNeu voice, Whisper alignment, HyperFrames):
                       a. job file outputs/<id>/job-landscape.json:

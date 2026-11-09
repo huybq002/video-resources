@@ -125,7 +125,7 @@ MOOD_ACTS = {"warm": ["nod", "wave", "gesture", "happy"], "tense": ["look", "wor
 BEAT_KEYS = ("at", "on", "shot", "focus", "do", "emote", "props", "crowd", "hud", "tag", "look", "spot", "angle", "plant", "payoff")
 
 # actions the rig can play (scripts/engine.js ACT) and the words people actually write for them
-KNOWN_ACTS = {"breathe", "bend", "nod", "shake", "think", "worry", "relief", "lean", "sad", "surprise", "wave", "stir",
+KNOWN_ACTS = {"use", "breathe", "bend", "nod", "shake", "think", "worry", "relief", "lean", "sad", "surprise", "wave", "stir",
               "receive", "stamp", "point", "cheer", "laugh", "angry", "cry", "walk", "walkTo", "look", "reach", "shrug",
               "talk", "turn", "gesture", "happy", "heart", "glare", "normal", "offer",
               "sit", "stand", "run", "jump", "fall", "lie", "sleep", "pickup", "type", "text", "drink", "phone", "throw", "crouch", "panic"}
@@ -206,6 +206,8 @@ def _apply_beat(shots, cue, focus_key):
         name, _, arg = d.partition(":")
         name = ACT_ALIASES.get(name.lower(), name)
         if target:      # the action uses a piece of furniture (anchors.py resolves where it is on screen)
+            if name == "use":       # stand at its front, turned to it, hands busy: "use:stir@oven", "use:reach@washer"
+                anchor_set = {"pose": "use", "to": target, "awake": True, "act": arg or "reach"}; continue
             if name in HOLD_POSES:
                 pose, awake = HOLD_POSES[name]; anchor_set = {"pose": pose, "to": target, "awake": awake}; continue
             if name in ("place", "put", "leave", "pickup", "take"):
@@ -383,6 +385,33 @@ def narration(seq, rnd):
         _apply_beat(made, cue, a["k"])
     return out
 
+
+def _cinematic_pass(shots):
+    """Editing grammar on the finished shot list of ONE scene (short-film-craft.md):
+    - 30-degree rule: two cuts in a row on the same person at (nearly) the same size read as a jump cut. The second
+      one is pushed to a clearly different size (wider or tighter by >= 0.7 zoom) or turned to the other side.
+    - eyeline match: an insert of an object is preceded by the person LOOKING at it (a look act in the shot before),
+      so the cut shows what they see instead of an object that appears from nowhere.
+    - the last shot of a scene is a slow push (a held beat) unless the author chose a camera move."""
+    W_ = 1080 if PORTRAIT[0] else 1920
+    for i, sh in enumerate(shots):
+        f = sh.get("focus") if isinstance(sh.get("focus"), dict) else None
+        if i and f and not sh.get("share"):
+            pf = shots[i - 1].get("focus") if isinstance(shots[i - 1].get("focus"), dict) else None
+            if pf and pf.get("k") == f.get("k") and abs(float(pf.get("zoom", 1)) - float(f.get("zoom", 1))) < 0.7 and not f.get("fixed"):
+                z = float(f.get("zoom", 1)); f["zoom"] = round(z - 0.9 if z > 2.0 else z + 0.9, 2)
+                if isinstance(f.get("to"), (int, float)): f["to"] = round(f["zoom"] * 1.07, 2)
+        if sh.get("props") and not sh.get("chars") and i:
+            prev = shots[i - 1]
+            for c in prev.get("chars", []):
+                if prev.get("share") or c.get("acts") and any(a[1] == "look" for a in c["acts"]):
+                    continue
+                if not (sh.get("props") or [{}])[0].get("pov") and c is prev["chars"][0]:
+                    c.setdefault("acts", []).append([0.1, "look", 1 if c.get("x", W_ / 2) < W_ / 2 else -1, 0])
+    if shots and not shots[-1].get("cam") and not shots[-1].get("focus"):
+        shots[-1]["cam"] = "push_slow"
+    return shots
+
 EXPAND = {"dialogue": dialogue, "narration": narration}
 
 def expand(spec, spec_dir):
@@ -415,7 +444,7 @@ def expand(spec, spec_dir):
                 for pn in item.get("split", []):
                     if pn["setting"].startswith("lib:"): pn["setting"] = reg(pn["setting"])
                 shots.append(item)
-        sc["shots"] = shots
+        sc["shots"] = _cinematic_pass(shots)
     for sc in spec["scenes"]:     # camera-angle variants share the base setting, with another camera (generate.py)
         for sh in sc["shots"]:
             sid = sh.get("setting") or ""

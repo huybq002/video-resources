@@ -62,7 +62,7 @@ def main():
     GS = "assets/vendor/gsap.min.js"
     next_cue = 1; root_hosts = []
 
-    import anchors as AN, characters_stick as CS
+    import anchors as AN, characters_stick as CS, catalog as CAT
     _anch = {}
     def anchors_of(sid):
         if sid not in _anch:
@@ -89,6 +89,15 @@ def main():
         return _re.sub(r'(<g id="[^"]*-forearm-r">(?:(?!</g>).)*?(<circle cx="([-\d.]+)" cy="([-\d.]+)" r="1[12]" fill="[^"]+"/>))',
                        put, svg, flags=_re.S)
 
+    def back_sit(seat_y, floor_y, sc_, hip, knee, k_=0.12):
+        """seated, seen from behind (engine sit dir "b"): feet on the floor under the seat, hips on the seat, the shins
+        stretched to reach (a stick figure's legs are shorter than a chair is high); thighs point away, scaled by k_."""
+        u_seat = 782 - (floor_y - seat_y) / sc_
+        # the chair is part of the background and cannot cover the person: cut the figure at the seat instead, so the
+        # chair's legs show below the body as they would under someone sitting in it
+        return dict(by=round(floor_y, 1), seatDrop=round(u_seat - hip, 1), clip_y=round(seat_y + 22 * sc_, 1),
+                    shinK=round(max(0.6, (760 - (u_seat + k_ * (knee - hip))) / max(1, 760 - knee)), 3))
+
     def add_extras(sh, A, dur):
         """the colleagues, customers, passers-by, swimmers and cars of this place (extras.py)"""
         items = (spec.get("extras_plan") or {}).get(sh.get("setting"))
@@ -101,9 +110,11 @@ def main():
             if an and an["pose"] == "sit":
                 hip, knee = CS.leg_geo(cc); s_ = an["s"]
                 c.update(x=round(an["seat"][0], 1), by=round(an["seat"][1] - knee * s_ + 782 * s_, 1), s=s_, hold="sit", holdDir=an["face"])
+                if an["face"] == "b" and an.get("floor"):
+                    c.update(back_sit(an["seat"][1], an["floor"][1], s_, hip, knee))
             elif an and an["pose"] == "lie":
                 (hx, hy), (fx, fy) = an["head"], an["foot"]; s_ = min(AN.scale_at(an["ppm"]), abs(fx - hx) * 0.95 / 706 + 0.02)
-                c.update(x=round(fx, 1), by=round((hy + fy) / 2 - 55 * s_, 1), s=round(s_, 3), flip=hx > fx, hold="lie", awake=False)
+                c.update(x=round(fx, 1), by=round((hy + fy) / 2 + 40 * s_, 1), s=round(s_, 3), flip=hx > fx, hold="lie", awake=False)
             out_chars.append(c)
         sh = dict(sh); sh["chars"] = out_chars + list(sh.get("chars", [])); sh["vehicles"] = cars
         return sh
@@ -123,11 +134,54 @@ def main():
             ch = dict(ch); an = ch.get("anchor"); cc = cast.get(ch["k"], {})
             if an:
                 a = AN.find(A, an["to"], ch.get("x"))
+                if an["pose"] == "sit" and an["to"] in ("chair", "seat") and any(a_[1] in ("type", "text", "drink") for a_ in ch.get("acts", [])):
+                    # working or drinking: the chair at a desk/table, not a loose one in the middle of the room
+                    works = [w for n_ in ("desk", "table") for w in A.get(n_, []) if w.get("on_screen")]
+                    chairs = [c_ for c_ in A.get("chair", []) if c_.get("on_screen") and c_.get("seat")]
+                    if works and chairs:
+                        a = min(chairs, key=lambda c_: min(abs(c_["seat"][0] - (w.get("top") or w["floor"])[0]) / max(1, c_.get("seat_ppm") or c_["floor_ppm"])
+                                                            + abs(c_["floor"][1] - w["floor"][1]) / max(1, c_["floor_ppm"]) for w in works))
                 if a and an["pose"] == "lie" and "head" in a:
                     hx, hy = a["head"]; fx, fy = a["foot"]; ppm = a.get("top_ppm") or a["floor_ppm"]
                     sc_ = min(AN.scale_at(ppm), abs(fx - hx) * 0.95 / 706)
-                    ch.update(x=round(fx - 0 * sc_, 1), by=round((hy + fy) / 2 - 55 * sc_, 1), s=round(sc_, 3), flip=hx > fx, hold="lie", awake=an.get("awake", True))
+                    ch.update(x=round(fx - 0 * sc_, 1), by=round((hy + fy) / 2 + 40 * sc_, 1), s=round(sc_, 3), flip=hx > fx, hold="lie", awake=an.get("awake", True))
                     ch["acts"] = [a_ for a_ in ch.get("acts", []) if a_[1] in ("emote", "look", "talk", "phone", "surprise", "blink", "worry", "relief", "think")]
+                elif a and an["pose"] == "use" and "behind" in a:
+                    # an object used from behind (catalog stand="behind": podium, lectern): the person stands behind it,
+                    # faces the room, and the object hides the legs (clip at its top edge)
+                    ppm = a.get("behind_ppm") or a["floor_ppm"]
+                    ch.update(x=round(a["behind"][0], 1), by=round(a["behind"][1], 1), s=AN.scale_at(ppm), flip=False,
+                              clip_y=round(a["top"][1] + 0.02 * ppm, 1))
+                    ch.pop("face", None)
+                    keep = [a_ for a_ in ch.get("acts", []) if a_[1] in ("emote", "talk", "worry", "think", "surprise", "relief", "sad", "happy")]
+                    act = an.get("act", "point"); act = "gesture" if act in ("stir", "reach", "type") else act
+                    if act == "look":
+                        keep.append([0.2, "look", 1, 0])
+                    elif act == "gesture":
+                        keep.append([0.3, "gesture", max(1.0, dur - 0.6)])
+                    else:
+                        k_ = 0
+                        while 0.3 + k_ * 2.2 < dur - 0.4:      # point at the slides, talk to the room, point again
+                            t_ = round(0.3 + k_ * 2.2, 2)
+                            keep.append([t_, "gesture", 1.4] if k_ % 2 else [t_, act]); k_ += 1
+                    ch["acts"] = keep
+                elif a and an["pose"] == "use" and "approach" in a:
+                    # standing at the object's front, a little to the side so the object stays visible, turned to it,
+                    # the hands doing the job for the whole shot (any catalog object: oven, washer, shelf, podium, sink...)
+                    ppm = a.get("approach_ppm") or a["floor_ppm"]; ox = a["floor"][0]
+                    wob = CAT.C.get(a.get("n"), {}).get("w", .8)
+                    side = -1 if ox > W / 2 else 1
+                    sx_ = a["approach"][0] + side * (wob / 2 * 0.7 + 0.2) * ppm
+                    ch.update(x=round(sx_, 1), by=round(a["approach"][1], 1), s=AN.scale_at(ppm), face=-side, flip=False)
+                    keep = [a_ for a_ in ch.get("acts", []) if a_[1] in ("emote", "talk", "worry", "think", "surprise", "relief", "sad", "happy")]
+                    act = an.get("act", "reach")
+                    if act == "look":
+                        keep.append([0.2, "look", -side, 0])
+                    elif act in ("stir", "reach", "point", "type"):
+                        k_ = 0
+                        while 0.3 + k_ * 1.5 < dur - 0.4:
+                            keep.append([round(0.3 + k_ * 1.5, 2), act]); k_ += 1
+                    ch["acts"] = keep
                 elif a and an["pose"] == "stand":   # standing beside it (arrived there on an earlier line)
                     ppm = a["floor_ppm"]; side = 1 if a["floor"][0] >= ch.get("x", 960) else -1
                     ch.update(x=round(a["floor"][0] - side * 0.55 * ppm, 1), by=round(a["floor"][1] + 0.35 * ppm, 1), s=AN.scale_at(ppm))
@@ -135,14 +189,18 @@ def main():
                 elif a and an["pose"] == "sit" and "seat" in a:
                     sx_, sy_ = a["seat"]; sc_ = AN.scale_at(a.get("seat_ppm") or a["floor_ppm"])
                     hip, knee = CS.leg_geo(cc)
-                    face_ = a.get("face", 1)
+                    face_ = "b" if a.get("face_back") else a.get("face", 1)
                     for wk in ("desk", "table"):      # seated at a desk/table: face it (the screen, the laptop, the cup), never sit with the back to it
                         d_ = AN.find(A, wk, sx_)
                         if d_ and abs((d_.get("top") or d_["floor"])[0] - sx_) < 1.6 * (a.get("seat_ppm") or a["floor_ppm"]):
                             dx_ = (d_.get("top") or d_["floor"])[0] - sx_
                             if abs(dx_) > 4: face_ = 1 if dx_ > 0 else -1
+                            # desk straight behind the chair (back-wall desk): seen from behind, not in profile
+                            if abs(dx_) < 0.6 * (a.get("seat_ppm") or a["floor_ppm"]) and d_["floor"][1] < a["floor"][1] - 4: face_ = "b"
                             break
                     ch.update(x=round(sx_, 1), by=round(sy_ - knee * sc_ + 782 * sc_, 1), s=sc_, hold="sit", holdDir=face_, flip=False)
+                    if face_ == "b":
+                        ch.update(back_sit(sy_, a["floor"][1], sc_, hip, knee))
                     ch["acts"] = [a_ for a_ in ch.get("acts", []) if a_[1] not in ("sit", "walkTo", "run", "walk", "jump", "crouch", "bend", "pickup")]
             if not an and A.get("_pave") and not ch.get("extra") and ch.get("by", 900) < H * 0.97:
                 by_ = ch.get("by", 900)
@@ -194,7 +252,7 @@ def main():
                 hc = next((c for c in chars if c["k"] == pr["hand"]), None)
                 if hc:
                     hs = hc.get("s", 0.8); side = -1 if hc.get("flip") else 1
-                    if hc.get("hold") == "sit": side = hc.get("holdDir", 1) or 1
+                    if hc.get("hold") == "sit": side = hc.get("holdDir", 1) if hc.get("holdDir") in (1, -1) else 1
                     drop = (CS.leg_geo(cast.get(hc["k"], {}))[1] - CS.leg_geo(cast.get(hc["k"], {}))[0]) if hc.get("hold") == "sit" else 0
                     w = int(hs * 400 * {"phone": .22, "coffee": .26, "cup": .26, "document": .42, "clock": .4, "book": .36, "keys": .16}.get(pr["id"], .3))
                     pr.update(x=round(hc["x"] + side * 105 * hs, 1), y=round(hc.get("by", 900) - (400 - drop) * hs, 1), w=max(24, w))
@@ -229,7 +287,7 @@ def main():
                 if ch.get("extra"): flip += "filter:saturate(.8) brightness(.96);"
                 acts_ = ch.get("acts", [])
                 views_ = ["f"] + (["s"] if (ch.get("enter") is not None or ch.get("hold") == "sit" or ch.get("face") or (ch.get("path") or {}).get("view") == "s" or any(a_[1] in ("walkTo", "sit") or (a_[1] == "view" and a_[2] in ("side", "s")) for a_ in acts_)) else []) \
-                                 + (["b"] if (ch.get("back") or (ch.get("path") or {}).get("view") == "b" or any(a_[1] == "view" and a_[2] in ("back", "b") for a_ in acts_)) else [])
+                                 + (["b"] if (ch.get("back") or ch.get("holdDir") == "b" or (ch.get("path") or {}).get("view") == "b" or any(a_[1] == "view" and a_[2] in ("back", "b") for a_ in acts_)) else [])
                 ext_ = bool(cast[ch["k"]].get("external")) and (assets / f"{ch['k']}.svg").exists()
                 svg = (f"<img id='{ccid}-ext' src='assets/{ch['k']}.svg' alt='' style='width:100%;height:100%;display:block'>" if ext_ else
                        CH.build_svg(ccid, cast[ch["k"]], tuple(views_)).replace("<svg xmlns", '<svg preserveAspectRatio="xMidYMax meet" xmlns', 1))
@@ -246,7 +304,7 @@ def main():
                     clip_ = f"clip-path:inset(0 0 {cut:.1f}% 0);"
                 pane_chars_html[pn["idx"]].append(f"<div id='{ccid}-wrap' class='char' style='left:{left:.1f}px;top:{top:.1f}px;width:{w:.1f}px;height:{h:.1f}px;z-index:{int(ch.get('by', 900)) + (2000 if not ch.get('extra') and ch.get('by', 900) > H * 1.0 else 0)};{clip_}'><div class='flip' style='{flip}'>{svg}</div>{tag_html}</div>")
                 chars_data.append(dict(k=ch["k"], cid=ccid, acts=ch.get("acts", []), enter=ch.get("enter"), flip=bool(ch.get("flip")), ext=ext_,
-                                       hold=ch.get("hold"), holdDir=ch.get("holdDir"), awake=ch.get("awake", True), face=ch.get("face"),
+                                       hold=ch.get("hold"), holdDir=ch.get("holdDir"), seatDrop=ch.get("seatDrop"), shinK=ch.get("shinK"), awake=ch.get("awake", True), face=ch.get("face"),
                                        path=ch.get("path"), back=ch.get("back"), extra=ch.get("extra")))
             chars_html = pane_chars_html[None] if None in pane_chars_html else []
             props_html, props_data = [], []

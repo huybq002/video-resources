@@ -192,7 +192,9 @@
       ]
      }
     }
-   ]
+   ],
+   "turn": "she knows the alarm will win",
+   "value": "-"
   },
   {
    "id": 2,
@@ -279,14 +281,16 @@
        },
        {
         "who": "lena",
-        "t": "By noon. Of course. I am already on it.",
+        "t": "By noon. Of course. I'm already on it.",
         "emote": "worry",
         "do": "type:2"
        }
       ]
      }
     }
-   ]
+   ],
+   "turn": "the boss sees the cost; she says she's fine",
+   "value": "-"
   },
   {
    "id": 3,
@@ -336,8 +340,19 @@
       ]
      }
     }
-   ]
+   ],
+   "turn": "she puts the phone down on purpose",
+   "value": "+"
   }
  ],
- "format": "explainer"
+ "format": "explainer",
+ "spine": {
+  "want": "get through the workday on three hours of sleep",
+  "obstacle": "the phone she cannot put down at night",
+  "turn": "she sees the cost at her desk",
+  "choice": "phone stays in the kitchen tonight",
+  "opening_image": "Lena in bed, phone lit, 2 AM",
+  "ending_image": "Lena in the kitchen, phone set down, light off",
+  "motif": "phone"
+ }
 }

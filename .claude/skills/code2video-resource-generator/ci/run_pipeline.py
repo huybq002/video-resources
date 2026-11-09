@@ -10,6 +10,7 @@ import argparse, concurrent.futures as cf, json, os, pathlib, subprocess, sys, t
 
 HERE = pathlib.Path(__file__).resolve().parent; SK = HERE.parent; PY = sys.executable
 ap = argparse.ArgumentParser(); ap.add_argument("spec"); ap.add_argument("out"); ap.add_argument("--series"); ap.add_argument("--jobs", type=int, default=max(1, min(4, (os.cpu_count() or 2) // 2)))
+ap.add_argument("--max-warnings", type=int, default=0, help="stop after generate when the spec lint prints more WARNINGs than this (default 0)")
 ap.add_argument("--chunk", type=float, default=120); ap.add_argument("--upload", action="store_true"); ap.add_argument("--privacy", default="private"); ap.add_argument("--allow-public", action="store_true")
 ap.add_argument("--stop-after", choices=["generate", "tts", "render"])
 ap.add_argument("--aspect", choices=["16:9", "9:16"], help="override spec.aspect for this build (one aspect per run; build both by calling twice)")
@@ -32,8 +33,13 @@ gen = ([PY, str(SK / "scripts" / "generate.py"), str(spec), str(proj)]
        + (["--aspect", a.aspect] if a.aspect else [])
        + (["--no-series-update"] if a.no_series_update else []))
 run("generate", gen); say("generate ok: " + next((l for l in pathlib.Path(log).read_text(encoding="utf-8", errors="replace").splitlines() if l.startswith("script.srt:")), "script.srt written"))
-for l in pathlib.Path(log).read_text(encoding="utf-8", errors="replace").splitlines():
-    if l.startswith(("WARNING", "SERIES WARNING")): say(l)
+_warn = [l for l in pathlib.Path(log).read_text(encoding="utf-8", errors="replace").splitlines() if l.startswith(("WARNING", "SERIES WARNING"))]
+for l in _warn: say(l)
+# Night 003 rendered for an hour with every picture/script warning still open and came out as a slideshow of boxes.
+# The voice-over and the render cost far more than fixing the spec, so stop here until the spec is clean.
+if len(_warn) > a.max_warnings:
+    sys.exit(f"STOPPED after generate: {len(_warn)} WARNING(s) (allowed {a.max_warnings}). Fix the spec and re-run; "
+             f"pass --max-warnings N only for a warning that cannot be fixed, and say which one in the report.")
 if a.stop_after == "generate": sys.exit(0)
 # 2 voice-over
 run("tts", [PY, str(HERE / "tts.py"), str(proj), "--spec", str(spec)]); say("tts ok: " + [l for l in pathlib.Path(log).read_text(encoding="utf-8", errors="replace").splitlines() if l.startswith("voiceover.wav")][-1])

@@ -26,12 +26,15 @@ RULES = {
     ("room", "classroom"): {"day": [("sit_listen", 5)], "dusk": [("sit_listen", 2)], "night": []},
     ("room", "cafe"): {"day": [("sit_drink", 3), ("behind", 1), ("walk", 1)], "dusk": [("sit_drink", 2), ("behind", 1)], "night": [("sit_drink", 1), ("behind", 1)]},
     ("room", "shop"): {"day": [("behind", 1), ("browse", 2)], "dusk": [("behind", 1), ("browse", 1)], "night": [("behind", 1)]},
+    ("room", "meeting"): {"day": [("sit_listen", 6)], "dusk": [("sit_listen", 4)], "night": [("sit_listen", 2)]},
+    ("room", "laundry"): {"day": [("browse", 1), ("sit_listen", 1)], "dusk": [("sit_listen", 1)], "night": []},
+    ("room", "grocery"): {"day": [("behind", 1), ("browse", 3)], "dusk": [("behind", 1), ("browse", 2)], "night": [("behind", 1), ("browse", 1)]},
     ("room", "lab"): {"day": [("browse", 1)], "dusk": [("browse", 1)], "night": []},
     ("street", None): {"day": [("walk_street", 4), ("cross", 2), ("traffic", 4)], "dusk": [("walk_street", 3), ("cross", 1), ("traffic", 3)], "night": [("walk_street", 1), ("traffic", 2)]},
     ("shopfront", None): {"day": [("walk", 3), ("bench", 1)], "dusk": [("walk", 2), ("bench", 1)], "night": [("walk", 1)]},
     ("beach", None): {"day": [("swim", 4), ("sunbathe", 3), ("walk", 2)], "dusk": [("swim", 1), ("sunbathe", 1), ("walk", 2)], "night": []},
 }
-PRIVATE = {"bedroom", "kitchen", "living"}         # homes: nobody else unless the script brings them
+PRIVATE = {"bedroom", "kitchen", "living", "bathroom"}         # homes: nobody else unless the script brings them
 ALONE = re.compile(r"\b(alone|empty|nobody|no one|deserted|quiet office|by herself|by himself|on (?:her|his) own|abandoned|lonely)\b", re.I)
 BUSY = re.compile(r"\b(busy|crowd(?:ed)?|packed|rush(?: hour)?|colleagues?|co-?workers?|everyone|people|customers|tourists|traffic|queue)\b", re.I)
 
@@ -189,7 +192,7 @@ def place(items, A, sh, W, H, dur, cast, main_chars, scale_at, ppm_at_y, find_al
             if si >= len(free):
                 continue
             a = free[si]; si += 1; s = scale_at(a.get("seat_ppm") or a["floor_ppm"])
-            c.update(anchor={"pose": "sit", "to": "_seat", "seat": a["seat"], "face": a.get("face", 1), "s": s})
+            c.update(anchor={"pose": "sit", "to": "_seat", "seat": a["seat"], "face": "b" if a.get("face_back") else a.get("face", 1), "floor": a["floor"], "s": s})
             c["acts"] = [[rnd.uniform(0.2, 1.2), {"sit_work": "type", "sit_drink": "drink", "sit_listen": "look"}[role], round(max(1.5, dur - 1), 2)]]
             if role == "sit_drink": c["item"] = "cup"
             taken_x.append(a["seat"][0])
@@ -253,7 +256,7 @@ def place(items, A, sh, W, H, dur, cast, main_chars, scale_at, ppm_at_y, find_al
             free = [a for a in seats]
             if not free:
                 continue
-            a = free[0]; c.update(anchor={"pose": "sit", "to": "_seat", "seat": a["seat"], "face": a.get("face", 1), "s": scale_at(a.get("seat_ppm") or a["floor_ppm"])})
+            a = free[0]; c.update(anchor={"pose": "sit", "to": "_seat", "seat": a["seat"], "face": "b" if a.get("face_back") else a.get("face", 1), "floor": a["floor"], "s": scale_at(a.get("seat_ppm") or a["floor_ppm"])})
         else:
             continue
         chars.append(c)

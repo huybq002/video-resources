@@ -24,7 +24,8 @@ bible = SER.load(a.series) if a.series else None
 if bible:
     spec0, _w = SER.merge(spec0, bible)                           # recurring characters/settings keep their look across episodes
     for _m in _w: print("SERIES WARNING:", _m)
-import coverage, srt_tools, docs_gen, spec_lint, furniture, sets, anchors
+import coverage, srt_tools, docs_gen, spec_lint, furniture, sets, anchors, autofill
+spec0 = autofill.run(spec0)                                 # picture follows the words: sets, at, do, props, emote from the text
 for _m in spec_lint.lint(spec0): print(_m)                 # settings variety, cast, crowds, static scenes, wardrobe
 spec = coverage.expand(spec0, spec_path.parent)            # sequences -> many shots, lib:/relative settings resolved
 import extras
