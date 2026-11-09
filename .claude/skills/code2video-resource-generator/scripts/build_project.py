@@ -499,6 +499,13 @@ def main():
                          f"<ellipse cx='{px_ - aw * .22:.0f}' cy='{py_ - aw * .02:.0f}' rx='{aw * .16:.0f}' ry='{aw * .1:.0f}' fill='#15121b' transform='rotate(-30 {px_ - aw * .22:.0f} {py_ - aw * .02:.0f})'/></svg>")
             cam = sh.get("cam", "push"); cam = CAMS[cam] if isinstance(cam, str) else cam
             foc = sh.get("focus")
+            mains_ = [c for c in sh.get("chars", []) if not c.get("extra") and c.get("by", 0) < H * 1.02]
+            if H > W and not foc and not sh.get("split") and mains_ and not isinstance(sh.get("cam"), list):
+                # 9:16 wide: the tall frame was 40 % empty ceiling. Frame the people instead: a gentle zoom on the group,
+                # their heads a little above the middle, the room still around them (reference shorts)
+                lead = max(mains_, key=lambda c: c.get("s", .8))
+                gx = sum(c["x"] for c in mains_) / len(mains_)
+                foc = {"k": lead["k"], "zoom": 1.32, "to": 1.4, "dx": round(gx - lead["x"], 1), "target_y": int(H * 0.5)}
             if foc and not sh.get("split"):   # zoom on a character's head (medium close-up 1.8, close-up 2.6, extreme 3.6)
                 chf = next(x for x in sh["chars"] if x["k"] == foc["k"]); sf = chf.get("s", 0.8)
                 hx = chf["x"] + foc.get("dx", 0); hy = chf.get("by", 900) - 782 * sf + 176 * sf + foc.get("dy", 0)
