@@ -52,7 +52,9 @@
   const fore = (c, s, t, rot, d, ease) => tl.to(part(c, "forearm-" + s), { rotation: rot, duration: d || 0.3, ease: ease || "sine.inOut" }, t);
   const head = (c, t, rot, d) => tl.to(part(c, "head"), { rotation: rot, duration: d || 0.35, ease: "sine.inOut" }, t);
   const body = (c, t, rot, d) => tl.to(part(c, "body"), { rotation: rot, duration: d || 0.45, ease: "sine.inOut" }, t);
-  const viewSet = (c, t, to, dir) => { const cur = c.view || "f"; if (cur === to) return; const oldG = $(c.cid + "-" + VROOT[cur]), newG = $(c.cid + "-" + VROOT[to]); if (!newG) return;
+  const viewSet = (c, t, to, dir) => { const cur = c.view || "f";
+    if (cur === to) { if (to === "s" && dir != null && c.vdir !== dir) { tl.set($(c.cid + "-vs"), { scaleX: dir * (c.flip ? -1 : 1) }, t); c.vdir = dir; } return; }
+    if (to === "s") c.vdir = dir == null ? 1 : dir; const oldG = $(c.cid + "-" + VROOT[cur]), newG = $(c.cid + "-" + VROOT[to]); if (!newG) return;
     const dsg = (dir == null ? 1 : dir) * (c.flip ? -1 : 1); tl.set(oldG, { opacity: 0 }, t); tl.set(newG, { opacity: 1, scaleX: to === "s" ? dsg : 1 }, t); c.view = to; };
   const rootTo = (c, t, props, d, ease) => tl.to(part(c, "root"), Object.assign({ duration: d || 0.2, ease: ease || "power2.out" }, props), t);
   // squash before a jump / stretch in the air / squash on landing
@@ -120,7 +122,11 @@
       for (let b = 0; b < dur / 0.55; b++) tl.to(part(c, "headsway"), { y: -3, duration: 0.14, yoyo: true, repeat: 1, ease: "sine.out" }, t + b * 0.55);
       for (let g = 0; g < Math.floor(dur / 1.4); g++) { const s = g % 2 ? "l" : "r", T = t + 0.3 + g * 1.4; arm(c, s, T, SG[s] * (28 + rnd() * 22), 0.32, "power2.out"); fore(c, s, T + 0.2, SG[s] * 20, 0.3); arm(c, s, T + 0.75, 0, 0.45, "power2.inOut"); } },
     // yaw -1 (looks to screen-left, profile) … 0 front … +1 (profile right). 0.5 = three-quarter view.
-    turn(c, t, yaw, d) { d = d || 0.55; const a = Math.abs(yaw), prof = a >= 0.85, ez = "power2.inOut";
+    turn(c, t, yaw, d) {
+      // a real 3/4 turn: switch to the drawn 3/4 view (face, hair and body all turn together). The old fake turn slid
+      // the face sideways UNDER a front hairstyle, so long hair cut across the eye and the face looked broken (2026-11-09).
+      if ($(c.cid + "-vs") && !c.hold) { if (Math.abs(yaw) >= 0.3) viewSet(c, t + 0.04, "s", yaw > 0 ? 1 : -1); else if (!c.face) viewSet(c, t + 0.04, "f", 1); return; }
+      d = d || 0.55; const a = Math.abs(yaw), prof = a >= 0.85, ez = "power2.inOut";
       tl.to(part(c, "turn"), { scaleX: 1 - 0.34 * a, x: yaw * 10, duration: d, ease: ez }, t);
       tl.to(part(c, "face"), { x: yaw * 34, scaleX: 1 - 0.2 * a, duration: d, ease: ez }, t);
       tl.to(part(c, "nose"), { x: yaw * 10, duration: d, ease: ez }, t);
