@@ -43,6 +43,11 @@ def main():
                     if lp.exists(): shutil.copy(lp, assets / lp.name)
           if True:
             for p in sh.get("props", []):
+                # the words writers use for the objects we draw (a missing alias used to stop the build)
+                p["id"] = {"money": "cash", "cup": "coffee", "mug": "coffee", "tea": "coffee", "keys": "key", "letter": "envelope", "mail": "envelope",
+                           "ticket": "card", "id": "card", "bill": "receipt", "notes": "document", "report": "document", "paper": "document",
+                           "smartphone": "phone", "mobile": "phone", "computer": "laptop", "present": "gift", "bag": "shopping_bag",
+                           "purse": "wallet", "watch": "clock", "alarm": "clock", "picture": "photo"}.get(p["id"], p["id"])
                 src = SKILL / "assets/props" / f"{p['id']}.svg"
                 if src.exists(): (assets / "props").mkdir(exist_ok=True); shutil.copy(src, assets / "props" / src.name)
                 elif not (assets / "props" / f"{p['id']}.svg").exists(): sys.exit(f"unknown prop {p['id']}")
@@ -147,15 +152,29 @@ def main():
             return ix * iy / area
         mains = [c for c in chars if not c.get("extra") and c.get("by", 0) < H * 1.02]
         fk = (sh.get("focus") or {}).get("k")
+        def space(c): return 165 * c.get("s", .8)      # half of a person's talking distance (heads never touch)
+        # a walk that would end ON someone stops beside them instead
+        for c in mains:
+            for a_ in c.get("acts", []):
+                if a_[1] == "walkTo" and isinstance(a_[2], (int, float)):
+                    end = c.get("x", 0) + a_[2]
+                    for o in mains:
+                        if o is c or abs(o.get("by", 0) - c.get("by", 0)) > H * .08: continue
+                        if abs(end - o.get("x", 0)) < space(c) + space(o):
+                            end = o.get("x", 0) + (1 if c.get("x", 0) > o.get("x", 0) else -1) * (space(c) + space(o))
+                    a_[2] = round(end - c.get("x", 0), 1)
+        def clash(a, b):
+            if ov(rect(a), rect(b)) >= 0.08: return True
+            return abs(a.get("by", 0) - b.get("by", 0)) < H * .06 and abs(a.get("x", 0) - b.get("x", 0)) < 0.9 * (space(a) + space(b))                 and not any(x_[1] == "walkTo" for x_ in a.get("acts", []) + b.get("acts", []))
         for i, a in enumerate(mains):
             for b in mains[i + 1:]:
-                if ov(rect(a), rect(b)) < 0.08:
+                if not clash(a, b):
                     continue
                 free = [c for c in (a, b) if not c.get("hold") and not c.get("path") and c["k"] != fk]
                 if not free:
                     continue
                 m = max(free, key=lambda c: c.get("by", 0)); o = b if m is a else a      # the nearer one moves
-                need = (105 * m.get("s", .8) + 105 * o.get("s", .8)) * 1.15
+                need = space(m) + space(o)
                 side = 1 if (m.get("x", 0) >= o.get("x", 0)) else -1
                 nx = o.get("x", 0) + side * need
                 if not (W * .07 < nx < W * .93): nx = o.get("x", 0) - side * need

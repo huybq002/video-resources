@@ -372,6 +372,9 @@ def _apply_beat(shots, cue, focus_key):
         a = next((c for c in shots[0]["chars"] if c["k"] == focus_key), shots[0]["chars"][0] if shots[0]["chars"] else None)
         held_ids = {"phone"} if item == "phone" else ({"coffee", "cup", "mug"} if item == "cup" else set())
         lp_ = [p for p in cue["props"] if not (a and a["k"] == fk and (p if isinstance(p, str) else p.get("id")) in held_ids)]
+        # only things a person can hold go in the hand: a calendar, a clock, a lightbulb, a chart is shown as an insert or
+        # a HUD, never floating beside someone's hand (2026-11-09 audit: a calendar held on the sofa)
+        lp_ = [p for p in lp_ if isinstance(p, dict) or (p in HANDHELD and p not in ("calendar", "laptop")) or p in ("coffee", "cup", "mug", "money", "cash", "coins", "book", "gift", "laptop")]
         shots[0]["props"] = _line_props(lp_, a)      # (an object already drawn in the hand is not floated beside it again)
     if isinstance(cue.get("tag"), dict):   # {"tag": {"lena": "LEVEL 2"}}: the label over a head changes on this line
         for sh in shots:
