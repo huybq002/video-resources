@@ -1,6 +1,10 @@
 (function () {
   const D = __DATA__;
   const tl = gsap.timeline({ paused: true });
+  // run timeline-building code so that it applies IMMEDIATELY (base state before the timeline's first frame)
+  const now = (fn) => { const S_ = tl.set, T_ = tl.to, F_ = tl.fromTo, strip = (v) => { const o = { ...v }; for (const k of ["duration", "ease", "yoyo", "repeat", "delay"]) delete o[k]; return o; };
+    tl.set = (g, v) => { gsap.set(g, strip(v)); return tl; }; tl.to = (g, v) => { gsap.set(g, strip(v)); return tl; }; tl.fromTo = (g, a, v) => { gsap.set(g, strip(v)); return tl; };
+    try { fn(); } finally { tl.set = S_; tl.to = T_; tl.fromTo = F_; } };
   const $ = (id) => document.getElementById(id);
   const R = D.rigs;
   let seed = 12345;
@@ -263,6 +267,9 @@
         tl.to(e, { opacity: 0, duration: 0.25 }, end - 0.25); }
       else if (o.type === "clock") { tl.fromTo(e, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.6)" }, T); tl.to(e, { opacity: 0, duration: 0.2 }, end - 0.2); }
       else if (o.type === "flash") { tl.fromTo(e, { opacity: 0.95 }, { opacity: 0, duration: Math.min(0.6, o.dur), ease: "power2.out" }, T); }
+      else if (o.type === "ripple") { tl.set(e, { opacity: 1 }, T); e.querySelectorAll(".rp").forEach((r, k) => {
+          tl.fromTo(r, { scale: 0.08, opacity: 0.95 }, { scale: 1.5 + k * 0.35, opacity: 0, duration: Math.min(1.1, o.dur), ease: "power2.out" }, T + k * 0.14); });
+        tl.set(e, { opacity: 0 }, end); }
       else if (o.type === "speedlines") { tl.fromTo(e, { opacity: 0, scale: 1.25 }, { opacity: 0.85, scale: 1, duration: 0.18, ease: "power3.out" }, T);
         tl.to(e, { scale: 1.04, duration: 0.12, yoyo: true, repeat: Math.max(1, Math.floor((o.dur - 0.4) / 0.12)), ease: "none" }, T + 0.18); tl.to(e, { opacity: 0, duration: 0.2 }, end - 0.2); }
       else if (o.type === "chain") { const ch = e.querySelectorAll(".ch");
@@ -285,8 +292,13 @@
         if (p.view === "s") viewSet(c, t0, "s", p.dir || 1); else if (p.view === "b") viewSet(c, t0, "b", 1);
         gsap.set(wv, { transformOrigin: "50% 97%" });
         tl.fromTo(wv, { x: 0, y: 0, scale: 1 }, { x: p.dx, y: p.dy, scale: p.k, duration: p.d, ease: "none" }, t0); walkCycle(c, t0, p.d); }
-      if (c.hold === "lie") ACT.lie(c, t0, 0, true);
-      else if (c.hold === "sit") ACT.sit(c, t0, c.holdDir, true);
+      // a HELD pose must already be there on the shot's first frame: an "instant" tween starting AT t0 is still at
+      // progress 0 on that frame, so every cut flashed the person standing for one frame (2026-11-09 audit).
+      // Pose them just before the cut (the shot is still hidden then); at the very start of a scene, set it outright.
+      if (c.hold) { const tH = t0 > 0.02 ? t0 - 0.012 : 0;
+        const pose = () => { if (c.hold === "lie") ACT.lie(c, tH, 0, true); else if (c.hold === "sit") ACT.sit(c, tH, c.holdDir, true); };
+        if (t0 <= 0.02) now(pose);
+        pose(); }
       let b = 0.9 + rnd(); while (b < dur - 0.3) { if (c.hold !== "lie" || c.awake) blink(c, t0 + b); b += 2.3 + rnd() * 2.2; }
       let hasBreath = false;
       for (const a of c.acts) { if (a[1] === "breathe") hasBreath = true; if (!ACT[a[1]]) { console.warn("unknown act", a[1]); continue; } ACT[a[1]](c, t0 + a[0], a[1] === "breathe" ? dur - a[0] : a[2], a[3]); }

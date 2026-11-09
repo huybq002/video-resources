@@ -58,7 +58,9 @@ Acts for faces: `["t","turn", yaw, secs]` (0 front, ±0.5 three-quarter, ±1 ful
 ## Motion features (from the reference-video analysis, see motion-language.md)
 ```jsonc
 { // inside a shot:
-  "trans": "fade|cut|whip|flash|zoom|dip",   // how this shot ENTERS (default fade; cut:true = cut)
+  "trans": "fade|cut|whip|flash|zoom|dip|power",   // how this shot ENTERS (default fade; cut:true = cut). "power" = white flash +
+                                                    // action lines + rings rippling from the focus person (the moment a power fires);
+                                                    // also per narration line: {"t": "...", "trans": "power"}
   "rays": true,                               // god-ray overlay (golden light)
   "flat": false,                              // true = ignore depth layers, use the single bg image
   "crowd": { "n": 40, "x": [120, 1800], "by": [600, 720], "s": [0.12, 0.22], "seed": 3, "colors": ["#c0577a", "#e0b83a"] },
@@ -75,7 +77,7 @@ Acts for faces: `["t","turn", yaw, secs]` (0 front, ±0.5 three-quarter, ±1 ful
   //          {"t":"Your cab driver is six hundred.", "tag": {"driver": "600"}}
   // USING FURNITURE (anchors.py projects every furniture piece of the 3D set to the screen):
   //   "do": "lie@bed" (lying on the mattress, eyes open) | "sleep@bed" (eyes closed) | "sit@chair" (seated in profile, facing the desk)
-  //   "do": "walkTo@oven" (walks to stand beside it) | "place:phone@counter" (puts it down; it stays there for the scene) | "pickup:keys@table"
+  //   "do": "walkTo@ana" (walks to stand beside Ana; both turn to face each other) | "walkTo@oven" (walks to stand beside it) | "place:phone@counter" (puts it down; it stays there for the scene) | "pickup:keys@table"
   //   A lie/sit pose is HELD across the following cuts of the scene until "stand" / "walkTo" / "run"; never write a bare
   //   "sleep" or "sit" when the setting has a bed/chair: the character would lie on the floor or stand in front of the desk.
   // ACTIONS BRING THEIR OBJECT (coverage.py ACT_ITEM / _furniture; nobody types on air or drinks from nothing):

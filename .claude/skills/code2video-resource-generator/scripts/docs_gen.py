@@ -20,7 +20,7 @@ def auto_look(c):
            "dress": "knee-length dress (worn alone, bare thin legs below the hem)", "tank": "sleeveless top"}[w["top"]]
     p.append(f"{cname(w['top_color'])} {top}")
     if w["bottom"] != "none": p.append({"pants": "long trousers", "shorts": "shorts", "skirt": "A-line skirt"}[w["bottom"]] + f" in {cname(w['bottom_color'])}")
-    p.append({"sneakers": "sneakers", "boots": "ankle boots", "heels": "high heels", "none": "bare feet"}[w["shoes"]] + f" in {cname(w['shoe_color'])}")
+    p.append({"sneakers": "sneakers", "boots": "ankle boots", "heels": "high heels", "none": "bare feet"}.get(w["shoes"], str(w["shoes"])) + f" in {cname(w['shoe_color'])}")
     if c.get("hat", "none") != "none": p.append({"fedora": "fedora hat", "deerstalker": "deerstalker detective cap", "cap": "baseball cap", "beanie": "knitted beanie", "scarf": "headscarf"}[c["hat"]] + f" in {cname(c.get('hat_color', '#3a3f55'))}")
     if c.get("hair_style", "none") != "none": p.append(f"{c['hair_style']} hair in {cname(c.get('hair', '#1c1626'))}")
     for k, t in (("glasses", "round glasses"), ("mustache", "small mustache"), ("badge", "name badge"), ("bag", "shoulder bag"), ("watch", "wristwatch")):

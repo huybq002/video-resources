@@ -72,3 +72,29 @@ question. Titles: "What If You ...?" with the number in it.
 - Bedrooms and labs are also shown from above (`"angle": "high"`), and the hero from below in moments of power (`"low"`).
 - Objects are shown first-person: a hand from the frame edge holding the photo, the tablet, the phone (automatic on inserts).
 - Progress is a full-frame stat panel with a rising line and labelled points (`graph` HUD), the number big in the corner.
+
+## Logic and framing rules (study of Stick Saga, IFNation, The If Lab, Nobody Gets In + the five reference films, 2026-11-09)
+The tool enforces these by itself; a spec does not have to ask for them.
+- Turned people are drawn in 3/4, not as a plank: chest a little narrower, one arm on each edge, two legs apart,
+  both eyes shifted toward the direction they face, ear and the hair mass at the back of the head.
+- Nobody is ever hidden by someone else. A main character who would stand on top of another steps aside; a background
+  person who overlaps a main character leaves the shot (no second head sticking out behind the hero).
+- Background people support, never crowd: not at the hero's table, the far side of the room first, at most 3 (9:16)
+  or 5 (16:9) in frame, out of focus in medium and close shots.
+- Furniture between the camera and a person covers them: a chair seen from behind hides the sitter's back (the
+  backrest is cut from the rendered background, so colour and outline match exactly).
+- People and the furniture/floor they use move as one under camera moves (no sitter sliding off a chair, no feet
+  skating); parallax only between far walls/sky and the blurred near foreground.
+- An object put down lies flat on the surface; an object being used is in the hand, drawn inside the hand so it
+  follows the arm (phone at the ear, cup at the mouth); an action brings its object (type -> desk + computer/laptop or
+  a phone, drink -> cup, phone -> phone).
+- An insert (screen, clock, object with nobody in frame) is a close shot: the room behind it is a soft blur.
+- Walking has a goal: "walks (back) to Ana" goes to Ana, stops beside her, both turn to face each other; a walk never
+  leaves the frame; where a walk ends is where that person stands on the next line; a line that names someone puts
+  them in the shot; "they" puts everyone of the sequence in it.
+- Conversation: in every framing the two turn toward each other (3/4), never to the lens; the other person in a
+  close-up is a soft foreground shape.
+- Faces: the speaker's face fills the frame for part of the line (CU), a feeling line gets a slow push in, a shock
+  line an extreme close-up on the eyes (ECU); a master/two-shot held for a whole line cuts in to the speaker's face.
+- A held pose (lying, seated) is already there on the first frame of every shot (no one-frame flash of standing).
+- The moment a power fires: white flash + action lines + rings rippling from the person (`"trans": "power"`).

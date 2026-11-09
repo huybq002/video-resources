@@ -112,6 +112,8 @@ def main():
                 c.update(x=round(an["seat"][0], 1), by=round(an["seat"][1] - knee * s_ + 782 * s_, 1), s=s_, hold="sit", holdDir=an["face"])
                 if an["face"] == "b" and an.get("floor"):
                     c.update(back_sit(an["seat"][1], an["floor"][1], s_, hip, knee))
+                if an.get("back_near") and an.get("backrest"):
+                    c["occl"] = {"pts": an["backrest"], "col": an.get("back_col", "#3e5c8a")}
             elif an and an["pose"] == "lie":
                 (hx, hy), (fx, fy) = an["head"], an["foot"]; s_ = min(AN.scale_at(an["ppm"]), abs(fx - hx) * 0.95 / 706 + 0.02)
                 c.update(x=round(fx, 1), by=round((hy + fy) / 2 + 40 * s_, 1), s=round(s_, 3), flip=hx > fx, hold="lie", awake=False)
@@ -123,6 +125,50 @@ def main():
         st = spec.get("settings", {}).get((sid or "").split("__")[0])
         tm = (st.get("set") or {}).get("time") if isinstance(st, dict) and isinstance(st.get("set"), dict) else None
         return {"night": "rgba(150,195,255,.92)", "day": "rgba(255,240,215,.9)"}.get(tm, "rgba(255,214,160,.9)")
+
+    def declutter(sh):
+        """LOGIC rule, every shot: a main character is never hidden by anyone.
+        - two main characters whose bodies overlap on screen: the one who is free to move (standing, not seated/lying,
+          not the camera's focus) steps aside into the emptier side of the frame, same depth;
+        - a background person who overlaps a main character (in front: hides them; behind: a second head sticks out
+          of theirs) leaves the shot.
+        - in a close shot the other main character never stands in front of the focus person's body."""
+        chars = [dict(c) for c in sh.get("chars", [])]
+        if len(chars) < 2:
+            return sh
+        def rect(c):
+            s_ = c.get("s", .8); x_, by_ = c.get("x", W / 2), c.get("by", H * .84)
+            if c.get("hold") == "lie": return (x_ - 380 * s_, by_ - 260 * s_, x_ + 380 * s_, by_)
+            pdx = (c.get("path") or {}).get("dx", 0) or 0     # a walker sweeps the whole path, not just the first mark
+            return (min(x_, x_ + pdx) - 105 * s_, by_ - 790 * s_, max(x_, x_ + pdx) + 105 * s_, by_)
+        def ov(a, b):
+            ix = max(0, min(a[2], b[2]) - max(a[0], b[0])); iy = max(0, min(a[3], b[3]) - max(a[1], b[1]))
+            area = min((a[2] - a[0]) * (a[3] - a[1]), (b[2] - b[0]) * (b[3] - b[1])) or 1
+            return ix * iy / area
+        mains = [c for c in chars if not c.get("extra") and c.get("by", 0) < H * 1.02]
+        fk = (sh.get("focus") or {}).get("k")
+        for i, a in enumerate(mains):
+            for b in mains[i + 1:]:
+                if ov(rect(a), rect(b)) < 0.08:
+                    continue
+                free = [c for c in (a, b) if not c.get("hold") and not c.get("path") and c["k"] != fk]
+                if not free:
+                    continue
+                m = max(free, key=lambda c: c.get("by", 0)); o = b if m is a else a      # the nearer one moves
+                need = (105 * m.get("s", .8) + 105 * o.get("s", .8)) * 1.15
+                side = 1 if (m.get("x", 0) >= o.get("x", 0)) else -1
+                nx = o.get("x", 0) + side * need
+                if not (W * .07 < nx < W * .93): nx = o.get("x", 0) - side * need
+                m["x"] = round(max(W * .07, min(W * .93, nx)), 1)
+                if m.get("face") or m.get("flip") is not None:
+                    m["face"] = 1 if o.get("x", 0) > m["x"] else -1 if m.get("face") else m.get("face")
+        keep = []
+        for c in chars:
+            if c.get("extra") and any(ov(rect(c), rect(m)) > 0.12 for m in mains):
+                continue
+            keep.append(c)
+        sh = dict(sh); sh["chars"] = keep
+        return sh
 
     def resolve(sh, dur=4.0):
         """put characters and props ON the furniture the line talks about (anchors.py)."""
@@ -201,6 +247,8 @@ def main():
                     ch.update(x=round(sx_, 1), by=round(sy_ - knee * sc_ + 782 * sc_, 1), s=sc_, hold="sit", holdDir=face_, flip=False)
                     if face_ == "b":
                         ch.update(back_sit(sy_, a["floor"][1], sc_, hip, knee))
+                    if a.get("back_near") and a.get("backrest"):
+                        ch["occl"] = {"pts": a["backrest"], "col": a["back_col"]}
                     ch["acts"] = [a_ for a_ in ch.get("acts", []) if a_[1] not in ("sit", "walkTo", "run", "walk", "jump", "crouch", "bend", "pickup")]
             if not an and A.get("_pave") and not ch.get("extra") and ch.get("by", 900) < H * 0.97:
                 by_ = ch.get("by", 900)
@@ -240,7 +288,7 @@ def main():
                 if pt:
                     ppm = a.get("top_ppm") or a.get("seat_ppm") or a["floor_ppm"]
                     w = max(28, int(ppm * {"phone": .2, "coffee": .2, "cup": .2, "document": .4, "book": .32, "keys": .14, "laptop": .45}.get(pr["id"], .3)))
-                    pr.update(x=round(pt[0], 1), y=round(pt[1] - 0.3 * w, 1), w=w)
+                    pr.update(x=round(pt[0], 1), y=round(pt[1] - 0.3 * w, 1), w=w, sy=round(pt[1], 1))
                     hk = pr.get("hand"); hc = next((c for c in chars if c["k"] == hk), None)
                     if hc and pr.get("mode") in ("place", "take"):
                         hs = hc.get("s", 0.8); hx = hc.get("_end_x", hc["x"]) + (90 * hs if pt[0] >= hc.get("_end_x", hc["x"]) else -90 * hs)
@@ -272,19 +320,23 @@ def main():
                 prev_ids, prev_full = cue_ids, (f0, f1)
             por = sh.get("portion", [0, 1]); t0 = f0 + (f1 - f0) * por[0]; t1 = f0 + (f1 - f0) * por[1]
             dom = f"s{n}{chr(65+si)}"; chars_html, chars_data = [], []
-            sh = resolve(sh, t1 - t0)
+            sh = declutter(resolve(sh, t1 - t0))
             if sh.get("focus") and not sh.get("split"):      # close-ups: drop characters that end up outside the frame (fewer DOM nodes = faster render)
                 _f = sh["focus"]; _z = min(_f.get("zoom", 2.4), _f.get("to", _f.get("zoom", 2.4) * 1.07)); _hx = next(x["x"] for x in sh["chars"] if x["k"] == _f["k"])
                 sh = dict(sh, chars=[x for x in sh["chars"] if x["k"] == _f["k"] or x.get("enter") is not None or abs(_z * (x["x"] - _hx)) < W / 2 + _z * 200 * x.get("s", 0.8) + 60])
             pane_defs = ([dict(pn, idx=i) for i, pn in enumerate(sh["split"])] if sh.get("split") else [dict(idx=None, chars=sh["chars"])])
-            pane_chars_html = {}
+            pane_chars_html = {}; occ_list = []
             for pn in pane_defs:
               pane_chars_html[pn["idx"]] = []
               for ch in pn["chars"]:
                 ccid = f"{dom}-{ch['k']}" if pn["idx"] is None else f"{dom}p{pn['idx']}-{ch['k']}"; s = ch.get("s", 0.8)
                 w, h = 400 * s, 800 * s; left, top = ch["x"] - w / 2, ch.get("by", 900) - 782 * s
                 flip = ("transform:scaleX(-1);" if ch.get("flip") else "") + ((f"filter:drop-shadow(-3px -2px 0 {_rim_col(sh.get('setting'))}) drop-shadow(0 0 5px rgba(255,190,130,.25));") if (ch.get("glow") or cast[ch["k"]].get("glow") or (spec.get("rim", True) and not ch.get("extra"))) else "")
-                if ch.get("extra"): flip += "filter:saturate(.8) brightness(.96);"
+                if not ch.get("extra") and (sh.get("focus") or {}).get("k") not in (None, ch["k"]) and float((sh.get("focus") or {}).get("zoom", 1) or 1) >= (1.6 if H > W else 2.2):
+                    flip += "filter:blur(3px) brightness(.92);"   # the other person in a close-up is a soft foreground shape (reference framing)
+                if ch.get("extra"):   # background people sit back; in a medium/close shot they fall out of focus (reference depth of field)
+                    zf_ = float((sh.get("focus") or {}).get("zoom", 1) or 1)
+                    flip += f"filter:saturate(.8) brightness(.96){' blur(%.1fpx)' % min(5, (zf_ - 1.3) * 4) if zf_ > 1.4 else ''};"
                 acts_ = ch.get("acts", [])
                 views_ = ["f"] + (["s"] if (ch.get("enter") is not None or ch.get("hold") == "sit" or ch.get("face") or (ch.get("path") or {}).get("view") == "s" or any(a_[1] in ("walkTo", "sit") or (a_[1] == "view" and a_[2] in ("side", "s")) for a_ in acts_)) else []) \
                                  + (["b"] if (ch.get("back") or ch.get("holdDir") == "b" or (ch.get("path") or {}).get("view") == "b" or any(a_[1] == "view" and a_[2] in ("back", "b") for a_ in acts_)) else [])
@@ -303,6 +355,13 @@ def main():
                     cut = max(0.0, min(100.0, (top + h - ch["clip_y"]) / h * 100))
                     clip_ = f"clip-path:inset(0 0 {cut:.1f}% 0);"
                 pane_chars_html[pn["idx"]].append(f"<div id='{ccid}-wrap' class='char' style='left:{left:.1f}px;top:{top:.1f}px;width:{w:.1f}px;height:{h:.1f}px;z-index:{int(ch.get('by', 900)) + (2000 if not ch.get('extra') and ch.get('by', 900) > H * 1.0 else 0)};{clip_}'><div class='flip' style='{flip}'>{svg}</div>{tag_html}</div>")
+                if ch.get("occl"):   # LOGIC: the chair back is between the camera and the sitter, so it covers their back
+                    # cut from the background picture itself (same pixels, light and outline as the chair; a drawn
+                    # polygon never matched the render - owner, 2026-11-09); slightly grown so the ink edge comes too
+                    pts0 = ch["occl"]["pts"]; mx_ = sum(q[0] for q in pts0) / 4; my_ = sum(q[1] for q in pts0) / 4
+                    grow = [(mx_ + (q[0] - mx_) * 1.06 + (3 if q[0] > mx_ else -3), my_ + (q[1] - my_) * 1.04 + (3 if q[1] > my_ else -3)) for q in pts0]
+                    occ_list.append(dict(poly=", ".join(f"{x_:.1f}px {y_:.1f}px" for x_, y_ in grow),
+                                         z=int(ch.get('by', 900)) + (2000 if not ch.get('extra') and ch.get('by', 900) > H * 1.0 else 0) + 1))
                 chars_data.append(dict(k=ch["k"], cid=ccid, acts=ch.get("acts", []), enter=ch.get("enter"), flip=bool(ch.get("flip")), ext=ext_,
                                        hold=ch.get("hold"), holdDir=ch.get("holdDir"), seatDrop=ch.get("seatDrop"), shinK=ch.get("shinK"), awake=ch.get("awake", True), face=ch.get("face"),
                                        path=ch.get("path"), back=ch.get("back"), extra=ch.get("extra")))
@@ -310,7 +369,14 @@ def main():
             props_html, props_data = [], []
             for pi, p in enumerate(sh.get("props", [])):
                 pid = f"{dom}-prop{pi}"; w = p.get("w", 170)
-                props_html.append(f"<img id='{pid}' class='prop' src='assets/props/{p['id']}.svg' style='left:{p['x']-w/2:.0f}px;top:{p['y']-w*0.7:.0f}px;width:{w}px;opacity:0;z-index:5000'>")
+                FLAT = {"phone": 200 / 120, "document": 210 / 170, "book": 140 / 200, "wallet": 170 / 230, "card": 150 / 230}
+                if p.get("sy") is not None and p["id"] in FLAT and p.get("mode") in ("place", "on"):
+                    # put down on a surface it LIES on it: squashed flat, its bottom edge on the top of the counter / oven / table
+                    # (standing upright it read as floating, or as still held in the hand - 2026-11-09 audit)
+                    h_ = w * FLAT[p["id"]]
+                    props_html.append(f"<img id='{pid}' class='prop' src='assets/props/{p['id']}.svg' style='left:{p['x']-w/2:.0f}px;top:{p['sy'] - h_ + 0.12 * h_ + 0.3 * w * FLAT[p['id']] * .3:.0f}px;width:{w}px;opacity:0;z-index:{int(p['sy']) + 30};transform-origin:50% 88%;scale:1 .3;filter:brightness(.9)'>")
+                else:
+                    props_html.append(f"<img id='{pid}' class='prop' src='assets/props/{p['id']}.svg' style='left:{p['x']-w/2:.0f}px;top:{p['y']-w*0.7:.0f}px;width:{w}px;opacity:0;z-index:5000'>")
                 props_data.append(dict(dom=pid, mode=p.get("mode", "drop"), t=p.get("t", 0), lift=p.get("lift"), fx=p.get("fx"), fy=p.get("fy")))
             # crowd: seeded silhouettes in perspective rows
             veh_html, veh_data = [], []
@@ -343,6 +409,11 @@ def main():
             # overlays (HUD language: chip / counter / burst / bubble / title)
             ov_html, ov_data = [], []
             POS = {"t": 5, "c": 40, "b": 70}; COL = {"l": "flex-start", "c": "center", "r": "flex-end"}
+            if sh.get("trans") == "power":   # the reference films' power moment: white flash, action lines, a ring rippling out
+                fc_ = next((c for c in sh.get("chars", []) if c["k"] == (sh.get("focus") or {}).get("k")), None) or next((c for c in sh.get("chars", []) if not c.get("extra")), None)
+                cx_, cy_ = (fc_["x"], fc_.get("by", H * .8) - 640 * fc_.get("s", .8)) if fc_ else (W / 2, H / 2)
+                sh = dict(sh, trans="cut", overlays=[{"type": "flash", "t": 0, "dur": 0.5}, {"type": "speedlines", "t": 0.02, "dur": 0.7},
+                                                     {"type": "ripple", "t": 0.05, "dur": 1.3, "cx": round(cx_), "cy": round(cy_)}] + list(sh.get("overlays", [])))
             for oi, o in enumerate(sh.get("overlays", [])):
                 oid = f"{dom}-ov{oi}"; ty = o["type"]; pos = o.get("pos", "tc")
                 inner = ""; cls = f"ov {ty}"
@@ -370,6 +441,10 @@ def main():
                              + "".join(f"<line x1='150' y1='22' x2='150' y2='{44 if k % 3 == 0 else 36}' stroke='#15121b' stroke-width='{9 if k % 3 == 0 else 5}' transform='rotate({k * 30} 150 150)'/>" for k in range(12))
                              + f"<line x1='150' y1='150' x2='150' y2='78' stroke='#15121b' stroke-width='12' stroke-linecap='round' transform='rotate({ah:.1f} 150 150)'/>"
                              f"<line x1='150' y1='150' x2='150' y2='46' stroke='#15121b' stroke-width='7' stroke-linecap='round' transform='rotate({am:.1f} 150 150)'/><circle cx='150' cy='150' r='10' fill='#e35d4f'/></svg>")
+                elif ty == "ripple":                 # rings spreading from the person (a power switching on, a heartbeat, a realisation)
+                    rx_, ry_ = o.get("cx", W / 2), o.get("cy", H / 2)
+                    inner = (f"<svg viewBox='0 0 {W} {H}' width='{W}' height='{H}'>" + "".join(
+                        f"<circle class='rp' cx='{rx_}' cy='{ry_}' r='{H * .32:.0f}' fill='none' stroke='#fffaf0' stroke-width='{6 - k * 1.5}' opacity='.9' style='transform-origin:{rx_}px {ry_}px'/>" for k in range(3)) + "</svg>")
                 elif ty == "speedlines":             # comic action lines rushing to the centre: the moment the power fires
                     import math as _m
                     cxs, cys = W / 2, H / 2
@@ -387,7 +462,7 @@ def main():
                              f"<div class='scr-v' style='color:{colr if tr else '#f6f0e4'}'>{html.escape(str(o.get('value', '')))}</div>"
                              + (f"<svg class='scr-c' viewBox='0 0 360 100'><polyline points='{pts}' fill='none' stroke='{colr}' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/></svg>" if pts else ""))
                 top_css = "160px" if (spec.get("letterbox") and pos[0] == "t") else "%s%%" % POS[pos[0]]
-                if ty in ("flash", "speedlines"):   # full frame
+                if ty in ("flash", "speedlines", "ripple"):   # full frame
                     ov_html.append(f"<div id='{oid}' class='{cls}' style='opacity:0;position:absolute;left:0;top:0;width:{W}px;height:{H}px;pointer-events:none;"
                                    f"{'background:#fffaf0;' if ty == 'flash' else ''}'>{inner}</div>")
                 elif "x" in o:   # absolute centre placement
@@ -451,16 +526,29 @@ def main():
             # blurring the setting on every medium shot turned the story's places into colour blocks
             close = bool(foc) and float((foc or {}).get("zoom", 1)) >= 2.2
             dof_far = "filter:blur(2.5px);" if (sh.get("dof") or close) else ""; dof_mid = "filter:blur(1px);" if (sh.get("dof") or close) else ""
+            # an insert (object / screen / clock with nobody in frame) is a CLOSE shot: the room behind it is a soft blur,
+            # never a sharp wide of the set with the hero missing from their bed or desk (2026-11-09 audit)
+            insert_ = not sh.get("chars") and bool(sh.get("props") or sh.get("overlays") or sh.get("pov"))
+            if insert_:
+                dof_far = dof_mid = "filter:blur(10px) brightness(.82);"
             if panes_data:
                 layers_data = None
             elif layered:
                 lid = lambda n: f"{dom}-{n}"
                 scene_html = (f"<img id='{lid('L0')}' class='bg lay' style='{dof_far}' src='assets/bg_{sh['setting']}_far.png'><img id='{lid('L1')}' class='bg lay' style='{dof_mid}' src='assets/bg_{sh['setting']}_mid.png'>"
                               f"<div id='{lid('chars')}' class='lay'>{''.join(veh_html)}{''.join(crowd_html)}{''.join(props_html)}{''.join(chars_html)}</div>"
-                              f"<img id='{lid('L2')}' class='bg lay' style='filter:blur({spec.get('fg_blur', 5)}px);' src='assets/bg_{sh['setting']}_near.png'>")
-                layers_data = [dict(dom=lid("L0"), k=0.35 if not foc else 0.6), dict(dom=lid("L1"), k=0.7 if not foc else 0.85), dict(dom=lid("chars"), k=0.85 if not foc else 1.0), dict(dom=lid("L2"), k=1.2)]
+                              + (f"<div id='{lid('OC')}' class='lay' style='{dof_mid}'>" + "".join(
+                                  f"<div style='position:absolute;left:0;top:0;width:{W}px;height:{H}px;background:url(assets/bg_{sh['setting']}_mid.png) 0 0/{W}px {H}px no-repeat;clip-path:polygon({o_['poly']})'></div>" for o_ in occ_list) + "</div>" if occ_list else "")
+                              + f"<img id='{lid('L2')}' class='bg lay' style='filter:blur({spec.get('fg_blur', 5)}px);' src='assets/bg_{sh['setting']}_near.png'>")
+                # the people stand on the floor and sit on the furniture of the MID layer: those two must move as one,
+                # or under a push/pan the sitter slides off the chair and feet skate on the floor (2026-11-09 audit).
+                # Parallax stays between the far wall/sky and the blurred near foreground only.
+                k_on = 0.85 if not foc else 1.0
+                layers_data = [dict(dom=lid("L0"), k=0.35 if not foc else 0.6), dict(dom=lid("L1"), k=k_on), dict(dom=lid("chars"), k=k_on), dict(dom=lid("L2"), k=1.2)]
+                if occ_list: layers_data.insert(3, dict(dom=lid("OC"), k=k_on))
             else:
-                scene_html = f"<img class='bg' style='{'filter:blur(1.5px);' if (foc and float((foc or {}).get('zoom', 1)) >= 2.2) else ''}' src='assets/bg_{sh['setting']}.png'>{''.join(veh_html)}{''.join(crowd_html)}{''.join(props_html)}{''.join(chars_html)}"
+                scene_html = f"<img class='bg' style='{'filter:blur(10px) brightness(.82);transform:scale(1.15);' if insert_ else ('filter:blur(1.5px);' if (foc and float((foc or {}).get('zoom', 1)) >= 2.2) else '')}' src='assets/bg_{sh['setting']}.png'>{''.join(veh_html)}{''.join(crowd_html)}{''.join(props_html)}{''.join(chars_html)}" + "".join(
+                    f"<div style='position:absolute;left:0;top:0;width:{W}px;height:{H}px;z-index:{o_['z']};background:url(assets/bg_{sh['setting']}.png) 0 0/{W}px {H}px no-repeat;clip-path:polygon({o_['poly']})'></div>" for o_ in occ_list)
                 layers_data = None
             shots_html.append(f"<div id='{dom}' class='shot' style='z-index:{si+1}'><div id='{dom}-sway' class='cam'><div id='{dom}-cam' class='cam' style='{grade_css}'>{scene_html}</div></div>{rays}{rain}{''.join(ov_html)}</div>")
             d = dict(dom=dom, t0=round(t0, 3), t1=round(t1, 3), cam=cam, chars=chars_data, props=props_data, first=(si == 0), prev=prev,

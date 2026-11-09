@@ -31,7 +31,7 @@ POINTS = {
     "table": {"top": (0, .77, 0), "front": (0, .77, .45)},
     "kitchen_counter": {"top": (0, .93, .05), "front": (0, .93, .32)},
     "shop_counter": {"top": (0, 1.06, 0), "front": (0, 1.06, .35)},
-    "oven": {"top": (0, .93, 0), "front": (0, .45, .32)},
+    "oven": {"top": (0, .88, 0), "front": (0, .45, .32)},
     "fridge": {"front": (0, 1.0, .36)},
     "bedside_table": {"top": (0, .57, 0)},
     "sofa": {"seat": (0, .45, .12), "facing": (0, 0, 1), "head": (-.85, .4, .26), "foot": (.85, .4, .26), "top": (0, .45, .2)},   # lying ON the cushion, not on the back
@@ -73,6 +73,11 @@ class Cam:
         return self.H / (2 * z * self.t)
 
 
+# backrests (furniture.py parts, local metres: half width, bottom, top, z of the panel). A backrest that is NEARER the
+# camera than the person sitting in front of it hides their back - build_project draws it over them (occluder).
+BACKREST = {"chair": (.25, .52, 1.07, -.22, "#3e5c8a"), "bench": (.9, .5, .9, -.2, "#8a5a3c"), "sofa": (1.05, .45, 1.0, -.36, "#7a5c9a")}
+
+
 def compute(setting, W, H):
     """setting = expanded setting dict (sets.expand done, furniture NOT yet expanded). -> {name: [anchor, ...]}"""
     cam = Cam(setting["camera"], W, H); out = {}
@@ -100,6 +105,14 @@ def compute(setting, W, H):
             if k in ("floor", "top", "seat", "foot", "approach", "behind"):
                 a[k + "_ppm"] = round(cam.ppm(z), 2)
         fx, fy, _ = cam.project((bx, 0, bz)); a["on_screen"] = 0 <= fx <= W and 0 <= fy <= H * 1.05
+        if n in BACKREST:
+            hw, y0, y1, bzl, col = BACKREST[n]
+            quad, zs = [], []
+            for (lx, ly) in ((-hw, y0), (hw, y0), (hw, y1), (-hw, y1)):
+                dx, dz = _rot(lx * s, bzl * s, ry); px, py, pz = cam.project((bx + dx, by + ly * s, bz + dz)); quad.append([round(px, 1), round(py, 1)]); zs.append(pz)
+            sdx, sdz = _rot(0, 0, ry); _, _, seat_z = cam.project((bx + sdx, by + .5 * s, bz + sdz))
+            a["backrest"] = quad; a["back_col"] = o.get("c") or col
+            a["back_near"] = sum(zs) / 4 < seat_z - 0.05      # the panel is between the camera and the sitter
         out.setdefault(n, []).append(a)
     # floor depth scale: screen y of a point on the floor -> pixels per metre there (so a person standing with feet
     # at that y is drawn at the right size for the set)

@@ -188,11 +188,18 @@ def place(items, A, sh, W, H, dur, cast, main_chars, scale_at, ppm_at_y, find_al
             continue
         c = {"k": k, "acts": [], "extra": True}
         if role in ("sit_work", "sit_drink", "sit_listen"):
-            free = [a for a in seats if all(abs(a["seat"][0] - x) > 0.7 * a.get("seat_ppm", 100) for x in taken_x)]
+            # not at the hero's table (a stranger opposite reads as their date), and the far side of the room first:
+            # the reference films balance the hero with background people on the OTHER third of the frame
+            mains_ = [m for m in main_chars if not m.get("extra")]
+            free = [a for a in seats if all(abs(a["seat"][0] - x) > 0.7 * a.get("seat_ppm", 100) for x in taken_x)
+                    and all(abs(a["seat"][0] - m.get("x", 0)) > 1.7 * a.get("seat_ppm", 100) or abs(a["seat"][1] - (m.get("by", 0) - 300 * m.get("s", .8))) > 1.2 * a.get("seat_ppm", 100) for m in mains_)]
+            if mains_:
+                hx_ = sum(m.get("x", W / 2) for m in mains_) / len(mains_)
+                free.sort(key=lambda a: -abs(a["seat"][0] - hx_))
             if si >= len(free):
                 continue
             a = free[si]; si += 1; s = scale_at(a.get("seat_ppm") or a["floor_ppm"])
-            c.update(anchor={"pose": "sit", "to": "_seat", "seat": a["seat"], "face": "b" if a.get("face_back") else a.get("face", 1), "floor": a["floor"], "s": s})
+            c.update(anchor={"pose": "sit", "to": "_seat", "seat": a["seat"], "face": "b" if a.get("face_back") else a.get("face", 1), "floor": a["floor"], "s": s, "backrest": a.get("backrest"), "back_near": a.get("back_near"), "back_col": a.get("back_col")})
             c["acts"] = [[rnd.uniform(0.2, 1.2), {"sit_work": "type", "sit_drink": "drink", "sit_listen": "look"}[role], round(max(1.5, dur - 1), 2)]]
             if role == "sit_drink": c["item"] = "cup"
             taken_x.append(a["seat"][0])
@@ -256,8 +263,25 @@ def place(items, A, sh, W, H, dur, cast, main_chars, scale_at, ppm_at_y, find_al
             free = [a for a in seats]
             if not free:
                 continue
-            a = free[0]; c.update(anchor={"pose": "sit", "to": "_seat", "seat": a["seat"], "face": "b" if a.get("face_back") else a.get("face", 1), "floor": a["floor"], "s": scale_at(a.get("seat_ppm") or a["floor_ppm"])})
+            a = free[0]; c.update(anchor={"pose": "sit", "to": "_seat", "seat": a["seat"], "face": "b" if a.get("face_back") else a.get("face", 1), "floor": a["floor"], "s": scale_at(a.get("seat_ppm") or a["floor_ppm"]), "backrest": a.get("backrest"), "back_near": a.get("back_near"), "back_col": a.get("back_col")})
         else:
             continue
         chars.append(c)
-    return chars, cars
+    return _balance(chars, main_chars, W, H), cars
+
+
+def _balance(chars, main_chars, W, H):
+    """Background people support the hero, they never crowd them (frame study of the reference channels):
+    - nobody stands at the hero's depth right beside them (that reads as a companion, or hides the hero);
+    - a frame holds only a few: 3 in 9:16, 5 in 16:9 - the ones furthest from the hero stay, they fill the empty third."""
+    mains = [m for m in main_chars if not m.get("extra")]
+    if not mains:
+        return chars
+    def crowding(c):
+        x, by = c.get("x", 0), c.get("by", 0)
+        return min(abs(x - m.get("x", 0)) / W + 2.5 * abs(by - m.get("by", 0)) / H for m in mains)
+    keep = [c for c in chars if c.get("path") or c.get("anchor") or crowding(c) > 0.09]
+    cap = 3 if H > W else 5
+    if len(keep) > cap:
+        keep = sorted(keep, key=crowding, reverse=True)[:cap]
+    return keep
