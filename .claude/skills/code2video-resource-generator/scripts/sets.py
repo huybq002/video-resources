@@ -283,7 +283,7 @@ def room(cfg, P, rnd):
     base = dict(bg=P["wall2"], fog={"near": P["fog"][0], "far": P["fog"][1], "c": P["sky"][1]}, exposure=0.95 if time == "day" else 1.15,
                 ambient={"c": P["amb"][0], "i": P["amb"][1]}, sun={"c": P["sun"], "i": 0.35, "pos": [wx, 5, -10]},
                 camera={"pos": [0, 2.0, 8.4], "look": [0, 1.65, -3], "fov": 46},
-                layers=[6.0, 15.0] if cfg.get("fg", True) else None)
+                layers=[6.0, 15.0] if cfg.get("fg", True) else None, _win=(wx if ww else None))
     return base, o
 
 

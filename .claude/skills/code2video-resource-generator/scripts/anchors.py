@@ -91,7 +91,7 @@ def compute(setting, W, H):
             pts.setdefault("behind", (0, 0, -(CAT.C[n].get("d", .6) / 2 + .3)))
             pts.setdefault("top", (0, CAT.C[n].get("h", 1.0), 0))
         s, ry = float(o.get("s", 1)), float(o.get("ry", 0)); bx, by, bz = float(o.get("x", 0)), float(o.get("y", 0)), float(o.get("z", 0))
-        a = {"n": n}
+        a = {"n": n, "c": o.get("c")}
         for k, (lx, ly, lz) in pts.items():
             dx, dz = _rot(lx * s, lz * s, ry)
             if k == "facing":    # a direction, not a point: which way the seat faces on screen (+1 right, -1 left)
@@ -114,6 +114,14 @@ def compute(setting, W, H):
             a["backrest"] = quad; a["back_col"] = o.get("c") or col
             a["back_near"] = sum(zs) / 4 < seat_z - 0.05      # the panel is between the camera and the sitter
         out.setdefault(n, []).append(a)
+    wx_ = setting.get("_win")
+    if wx_ is not None and "window" not in out:   # the window is part of the wall, not a furniture piece: stand in front of it
+        wz = -6.0
+        a = {"n": "window"}
+        for k, z_ in (("floor", wz + 0.4), ("approach", wz + 1.7)):
+            sx, sy, z = cam.project((wx_, 0, z_)); a[k] = [round(sx, 1), round(sy, 1)]; a[k + "_ppm"] = round(cam.ppm(z), 2)
+        fx, fy, _ = cam.project((wx_, 0, wz + 1.7)); a["on_screen"] = 0 <= fx <= W and 0 <= fy <= H * 1.05
+        out["window"] = [a]
     # floor depth scale: screen y of a point on the floor -> pixels per metre there (so a person standing with feet
     # at that y is drawn at the right size for the set)
     L = setting["camera"]["look"]; P = setting["camera"]["pos"]; rows = []

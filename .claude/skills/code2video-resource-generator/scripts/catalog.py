@@ -129,6 +129,7 @@ VERBS = [
     (r"\b(pays?|paid|checkout|cashier|scans?)\b", "use:reach", ["checkout", "shop_counter"]),
     (r"\b(present(s|ed|ing)?|pitch(es|ed|ing)|lectur\w*|teach(es|ing)?|gives? (a|the|her|his) talk|on stage)\b", "use:point", ["podium", "projector_screen", "whiteboard"]),
     (r"\b(writes? on the board|draws? on the board)\b", "use:point", ["whiteboard"]),
+    (r"\b(looks?|stares?|gazes?|peers?|watches?) (out|outside|through)\b", "use:look", ["window"]),
     (r"\b(looks?|stares?|gazes?|peers?) (out|through)( of)? the window\b", "use:look", ["window"]),
     (r"\b(looks?|stares?) (at herself|at himself|in(to)? the mirror)\b", "use:look", ["mirror"]),
     (r"\b(opens? the fridge|raids? the fridge|grabs? (a|the) (drink|snack|beer|milk))\b", "use:reach", ["fridge", "fridge_display"]),

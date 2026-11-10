@@ -13,7 +13,9 @@ machine-checked. This looks for the four things that actually get a channel stru
   3. graphic injury or death detail
   4. advice where the channel promised a story (buy this, guaranteed returns, diagnose, cure)
 
-plus the AI disclosure that both YouTube and TikTok expect on synthetic voice-overs.
+plus the AI disclosure that both YouTube and TikTok expect on synthetic voice-overs, and (spec mode) the
+"generic, repetitive or template-based" test of YouTube's inauthentic-content policy (updated 16 July 2026):
+a new spec is compared with the last specs in its folder and fails when it is the same film with new nouns.
 
 Exit 1 and one line per problem. It cannot read intent, so it is a floor, not a guarantee:
 a passing check still means the story must be invented, as channel.json requires.
@@ -68,6 +70,62 @@ def scan(text, where):
             problems.append(f"{where}: {msg} -> ...{frag.strip()}...")
 
 
+def _words(t):
+    t = re.sub(r"\d+", "#", str(t or "").lower())
+    return [w for w in re.findall(r"[a-z#']+|[^\W\d_]+", t) if len(w) > 2]
+
+
+def _sim(a, b):
+    a, b = set(_words(a)), set(_words(b))
+    return len(a & b) / max(1, len(a | b))
+
+
+def _first_line(spec):
+    for sc in spec.get("scenes", []):
+        for item in sc.get("shots", []):
+            seq = item.get("sequence") or {}
+            for c in list(seq.get("cues", [])) + list(seq.get("lines", [])) + list(item.get("cues") or []):
+                t = c if isinstance(c, str) else str(c.get("t", ""))
+                if t.strip():
+                    return t
+    return ""
+
+
+def sameness(spec, path, keep=8):
+    """YouTube 2026-07-16: 'generic, repetitive or template-based' videos lose monetization, AI or not. One automated
+    film a night is only safe while each is a different film: different opening, different want, different shape."""
+    folder = path.parent
+    prev = sorted((q for q in folder.glob("*.json") if q.resolve() != path.resolve()), key=lambda q: q.stat().st_mtime)[-keep:]
+    olds = []
+    for q in prev:
+        try:
+            olds.append((q.name, json.load(open(q, encoding="utf-8"))))
+        except (OSError, ValueError):
+            continue
+    if not olds:
+        return
+    first, want = _first_line(spec), (spec.get("spine") or {}).get("want", "")
+    shape = (spec.get("format"), len(spec.get("scenes", [])), tuple(sc.get("target_s") for sc in spec.get("scenes", [])))
+    for name, o in olds:
+        if first and _sim(first, _first_line(o)) >= 0.5:
+            problems.append(f"{path.name}: opening line is almost the one of {name} ({_first_line(o)[:60]!r}): "
+                            f"a repeated template is 'inauthentic content'. Open on a different image")
+        ow = (o.get("spine") or {}).get("want", "")
+        if want and ow and _sim(want, ow) >= 0.6:
+            problems.append(f"{path.name}: spine.want repeats {name} ({ow[:60]!r}): tell a different story")
+        if _sim(spec.get("title", ""), o.get("title", "")) >= 0.6:
+            problems.append(f"{path.name}: title is a copy of {name}'s title pattern ({o.get('title', '')[:60]!r})")
+    same_shape = [n for n, o in olds[-5:] if (o.get("format"), len(o.get("scenes", [])),
+                                               tuple(sc.get("target_s") for sc in o.get("scenes", []))) == shape]
+    if len(same_shape) >= 2:
+        problems.append(f"{path.name}: same format, scene count and scene lengths as {', '.join(same_shape)}: "
+                        f"change the shape (format, number of scenes, where the turn lands)")
+    fmts = [o.get("format") for _, o in olds[-3:]]
+    if spec.get("format") and len(fmts) == 3 and all(f == spec.get("format") for f in fmts):
+        problems.append(f"{path.name}: fourth '{spec.get('format')}' film in a row: rotate formats "
+                        f"(story-formats.md) so the channel is not one template")
+
+
 def spec_text(spec):
     out = [str(spec.get("idea", "")), str(spec.get("title", ""))]
     for sc in spec.get("scenes", []):
@@ -96,6 +154,7 @@ def main() -> int:
     elif a.kind == "spec":
         spec = json.load(open(p, encoding="utf-8"))
         scan(spec_text(spec), p.name)
+        sameness(spec, p)
         for c in spec.get("cast", []):
             if c.get("real") or c.get("real_person"):
                 problems.append(f"{p.name}: cast '{c.get('id')}' is marked as a real person")

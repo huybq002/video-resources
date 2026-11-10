@@ -248,6 +248,13 @@ def beats(spec, log):
                 if aff == "sit" and any(re.search(p2, t, re.I) for p2, a2, _ in CAT.VERBS if a2 == "work"):
                     acts.append("type")                          # "sits down at her desk, opens the file"
                 break
+            if not acts:
+                # no verb group matched, but the line names an object that is used by hand/eye ("reaches inside the fridge",
+                # "stands at the washer"): use it by what the object's own data says (catalog aff "use")
+                for x in named:
+                    u = CAT.C[x].get("aff", {}).get("use")
+                    if u and x in have and not re.search(r"\b(no|not|never|without)\b[^.,;]{0,12}\b" + CAT.C[x]["syn"] + r"\b", t, re.I):
+                        acts.append(f"use:{u}@{x}"); break
             for pat, need in ACTION_NEEDS:                       # hands and face on top of the body action
                 m = re.search(pat, t, re.I)
                 if m and not _negated(t, m):
@@ -264,7 +271,7 @@ def beats(spec, log):
         if not c.get("props") and c.get("shot") != "insert":
             for pat, need in PROP_NEEDS:
                 m = re.search(pat, t, re.I)
-                if m and not _negated(t, m):
+                if m and not _negated(t, m, noun=True):        # a prop is a noun: "a message" is on screen
                     p = next((x for x in sorted(need) if x in PROPS), None)
                     if p:
                         c["props"] = [p]; n["props"] += 1

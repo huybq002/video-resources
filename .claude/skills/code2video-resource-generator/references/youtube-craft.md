@@ -30,6 +30,34 @@ Sources, used selectively and NOT loaded at run time: AgriciDaniel/claude-youtub
 - Energy: strong open, calm-burst rhythm (15-25 s calm, burst every 2-3 min), anchor back to the core question every 2-3 min, strategic pauses before the key reveal, strong payoff at the end. Do not pad: length follows the story.
 - Sentence rhythm for narration: short-short-long-short; one idea per line; vary pace before reveals.
 
+## Payoff ladder (research 2026-11-10)
+Creator retention guides agree on one more rule beyond the hook: **pay something off early, and let each payoff open a
+deeper question.**
+- The first 10 s prove the title/thumbnail is true with one concrete picture (the con already working, the four boxes on
+  the doorstep). Promise, then proof, then the one-line map of the film.
+- First real payoff (a reveal, a number, a small answer) before 60 s. Viewers who get nothing for 30-60 s are the ones who leave.
+- Re-hook around 30 s with a smaller loop or a number that previews the next section.
+- Every payoff hands over the next, deeper question ("so how did nobody check the bridge?" → "who checked, and why did
+  they stay quiet?"). The big question stays open to the turn.
+- Long-form pattern interrupt every 60-90 s at story level (new place, new person, time jump, a counter on screen) on
+  top of the shot cuts every ~3 s.
+
+## Market notes (research 2026-11-10, `scripts/research_youtube.py`, YouTube search, all-time ranking)
+- Demand in this niche is **long-form**: medians 8-40 min, Shorts share ~0 % for every seed keyword. Shorts are for
+  discovery (a 45-60 s teaser), search and suggested traffic come from 8-15 min films.
+- Strongest bets (high median views spread over many channels): money psychology (1.5 M), behavioural psychology (2.9 M),
+  unsolved mystery story (2.2 M), con artist story (1.7 M), why we procrastinate (1.2 M), how the scam worked (0.7 M).
+- What wins: **a story that explains a mechanism** (how a scam worked, why the same income ends rich or broke, the
+  procrastinator's monkey). Animated detective/mystery stories for older kids and teens (English Fairy Tales,
+  Story Time Animated) reach 2-6 M; story-documentaries (fern) 6-13 M.
+- Under-served: sunk cost (explainer 15.8 M, long versions ~44 K median), buy-now-pay-later trap (story version missing),
+  lifestyle inflation. Ideas are in `data/ideas.md`.
+- Title words the audience searches: psychology, why, broke, scam, actually worked, explained, mystery, same income.
+  Use them in the title, never in the story.
+- Policy shapes the format (data/platform-policy.md): since 16 July 2026, template-based, manipulative, and
+  "AI persona on finance/health/legal" videos are not monetizable. Each film is its own story, the narrator tells what
+  happened to invented people and never advises the viewer.
+
 ## CTA
 Dual CTA: first at ~1 min (after first value), second ~4 min or just before the payoff; never only at the end (only 16 % reach the last 10 %). Embedded (spoken + on-screen chip) beats spoken only. Give a specific comment question tied to the story.
 

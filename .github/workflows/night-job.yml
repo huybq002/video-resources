@@ -8,11 +8,21 @@ name: Night job
 # The Claude step stops at 05:45 ICT (22:45 UTC) or 350 min after the job started, whichever is first.
 # If Claude runs out of usage (rate limit) the step ends at once; unfinished tasks are picked up next night.
 # Runs inside the prebuilt image (see Dockerfile / build-image.yml): nothing is installed at night.
+# 2026-11-09: GitHub started the three crons 8.5-9.7 h late (22:58-23:47 UTC), all after the 22:45 deadline, so the
+# whole night was lost. More crons, spread from 16:17 to 00:17 ICT, so that whichever one GitHub starts inside the
+# window takes the night. A cron that fires on time before 14:30 UTC stands down in ~2 min (see "Wait" step); the
+# "Already handled tonight?" guard keeps only one run working. If every cron is late, start it by hand (Run workflow).
 on:
   schedule:
+    - cron: "17 9 * * *"
+    - cron: "17 10 * * *"
+    - cron: "17 11 * * *"
+    - cron: "17 12 * * *"
     - cron: "17 13 * * *"
     - cron: "17 14 * * *"
     - cron: "17 15 * * *"
+    - cron: "17 16 * * *"
+    - cron: "17 17 * * *"
   workflow_dispatch:
 
 concurrency:

@@ -189,6 +189,8 @@ def main():
         sh = dict(sh); sh["chars"] = keep
         return sh
 
+    state = {"use": None}
+
     def resolve(sh, dur=4.0):
         """put characters and props ON the furniture the line talks about (anchors.py)."""
         A = anchors_of(sh.get("setting"))
@@ -210,6 +212,8 @@ def main():
                     hx, hy = a["head"]; fx, fy = a["foot"]; ppm = a.get("top_ppm") or a["floor_ppm"]
                     sc_ = min(AN.scale_at(ppm), abs(fx - hx) * 0.95 / 706)
                     ch.update(x=round(fx - 0 * sc_, 1), by=round((hy + fy) / 2 + 40 * sc_, 1), s=round(sc_, 3), flip=hx > fx, hold="lie", awake=an.get("awake", True))
+                    if a.get("n") in ("bed",):     # in bed: under the cover, chest to feet (the bed's own cover colour)
+                        ch["blanket"] = a.get("c") or "#5b6f9a"
                     ch["acts"] = [a_ for a_ in ch.get("acts", []) if a_[1] in ("emote", "look", "talk", "phone", "surprise", "blink", "worry", "relief", "think")]
                 elif a and an["pose"] == "use" and "behind" in a:
                     # an object used from behind (catalog stand="behind": podium, lectern): the person stands behind it,
@@ -240,12 +244,18 @@ def main():
                     ch.update(x=round(sx_, 1), by=round(a["approach"][1], 1), s=AN.scale_at(ppm), face=-side, flip=False)
                     keep = [a_ for a_ in ch.get("acts", []) if a_[1] in ("emote", "talk", "worry", "think", "surprise", "relief", "sad", "happy")]
                     act = an.get("act", "reach")
+                    # a NEW object this shot (the previous shot of the scene was elsewhere): walk in from the side, then act
+                    t_go = 0.3
+                    key_ = (an.get("to"), round(a["floor"][0]))
+                    if state["use"] != key_ and dur >= 3.2 and ch.get("enter") is None:
+                        ch["enter"] = int(side * 300); t_go = max(1.8, 300 / 230) + 0.15
+                    state["use"] = key_
                     if act == "look":
-                        keep.append([0.2, "look", -side, 0])
+                        keep.append([t_go - 0.1, "look", -side, 0])
                     elif act in ("stir", "reach", "point", "type"):
                         k_ = 0
-                        while 0.3 + k_ * 1.5 < dur - 0.4:
-                            keep.append([round(0.3 + k_ * 1.5, 2), act]); k_ += 1
+                        while t_go + k_ * 1.5 < dur - 0.4:
+                            keep.append([round(t_go + k_ * 1.5, 2), act]); k_ += 1
                     ch["acts"] = keep
                 elif a and an["pose"] == "stand":   # standing beside it (arrived there on an earlier line)
                     ppm = a["floor_ppm"]; side = 1 if a["floor"][0] >= ch.get("x", 960) else -1
@@ -264,6 +274,10 @@ def main():
                             if abs(dx_) < 0.6 * (a.get("seat_ppm") or a["floor_ppm"]) and d_["floor"][1] < a["floor"][1] - 4: face_ = "b"
                             break
                     ch.update(x=round(sx_, 1), by=round(sy_ - knee * sc_ + 782 * sc_, 1), s=sc_, hold="sit", holdDir=face_, flip=False)
+                    if face_ == "b" and (sh.get("focus") or {}).get("k") == ch["k"]:
+                        # a close-up on them: the reverse angle, in profile (a close-up on the back of a head says nothing)
+                        face_ = 1 if sx_ < W / 2 else -1
+                        ch["holdDir"] = face_
                     if face_ == "b":
                         ch.update(back_sit(sy_, a["floor"][1], sc_, hip, knee))
                     if a.get("back_near") and a.get("backrest"):
@@ -329,6 +343,7 @@ def main():
 
     for sc in spec["scenes"]:
         n = sc["id"]; tsc = sc_by[n]; s0 = tsc["startMs"]; dur = tsc["sceneDurationMs"] / 1000; cid = f"scene-{n}"
+        state["use"] = None
         shots_html, shots_data, caps_html, caps_data = [], [], [], []; prev = None; prev_ids = []; prev_full = (0, 1)
         for si, sh in enumerate(sc["shots"]):
             if sh.get("share"):      # reuse the previous shot's cues (cutaway/reaction inside the same line)
@@ -373,6 +388,16 @@ def main():
                 if ch.get("clip_y") is not None:     # hidden below a counter top or the water line
                     cut = max(0.0, min(100.0, (top + h - ch["clip_y"]) / h * 100))
                     clip_ = f"clip-path:inset(0 0 {cut:.1f}% 0);"
+                if ch.get("blanket") and ch.get("hold") == "lie":
+                    # the bed is background and cannot cover the sleeper: a cover drawn over the body, chest to feet
+                    bx0 = ch["x"] - 20 * s if ch.get("flip") else ch["x"] - 480 * s; bw = 500 * s; by0 = ch.get("by", 900) - 78 * s; bh = 130 * s
+                    col = ch["blanket"]
+                    pane_chars_html[pn["idx"]].append(
+                        f"<svg class='blanket' style='position:absolute;left:{bx0:.1f}px;top:{by0:.1f}px;width:{bw:.1f}px;height:{bh:.1f}px;"
+                        f"z-index:{int(ch.get('by', 900)) + 1 + (2000 if ch.get('by', 900) > H * 1.0 else 0)};overflow:visible' viewBox='0 0 100 26' preserveAspectRatio='none'>"
+                        f"<path d='M2 9 Q20 3 40 7 T78 6 Q94 5 98 10 L99 24 Q50 27 1 24 Z' fill='{col}' stroke='#1e1a26' stroke-width='.8' vector-effect='non-scaling-stroke'/>"
+                        f"<path d='M{'86' if not ch.get('flip') else '14'} 7 Q{'84' if not ch.get('flip') else '16'} 16 {'88' if not ch.get('flip') else '12'} 24' fill='none' stroke='rgba(0,0,0,.18)' stroke-width='1.2'/>"
+                        f"<path d='M4 10 Q30 6 60 9 T96 11' fill='none' stroke='rgba(255,255,255,.28)' stroke-width='1.6'/></svg>")
                 pane_chars_html[pn["idx"]].append(f"<div id='{ccid}-wrap' class='char' style='left:{left:.1f}px;top:{top:.1f}px;width:{w:.1f}px;height:{h:.1f}px;z-index:{int(ch.get('by', 900)) + (2000 if not ch.get('extra') and ch.get('by', 900) > H * 1.0 else 0)};{clip_}'><div class='flip' style='{flip}'>{svg}</div>{tag_html}</div>")
                 if ch.get("occl"):   # LOGIC: the chair back is between the camera and the sitter, so it covers their back
                     # cut from the background picture itself (same pixels, light and outline as the chair; a drawn

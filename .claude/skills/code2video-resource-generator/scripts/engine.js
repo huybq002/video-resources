@@ -96,7 +96,9 @@
     stir(c, t, n) { arm(c, "r", t, -48, 0.4); for (let i = 0; i < (n || 3); i++) { fore(c, "r", t + 0.5 + i * 0.7, -30, 0.35); fore(c, "r", t + 0.85 + i * 0.7, 6, 0.35); } },
     receive(c, t) { arm(c, "l", t, 55, 0.4); head(c, t, -6, 0.4); mouth(c, t + 0.4, "open"); mouth(c, t + 1.4, "closed"); },
     stamp(c, t) { arm(c, "r", t - 0.5, -125, 0.45, "power2.out"); arm(c, "r", t, -12, 0.12, "power4.in"); tl.to(part(c, "body"), { y: 12, duration: 0.08, yoyo: true, repeat: 1 }, t); arm(c, "r", t + 0.9, 0, 0.5); },
-    point(c, t) { arm(c, "r", t, -88, 0.45, "power2.out"); fore(c, "r", t + 0.1, -4, 0.3); head(c, t, -4, 0.4); arm(c, "r", t + 2.2, 0, 0.5); head(c, t + 2.2, 0, 0.4); },
+    // anticipation (a small pull-back), overshoot (back.out), then settle: what makes a gesture read as intent
+    point(c, t) { body(c, t, 3, 0.14); arm(c, "r", t + 0.12, -88, 0.5, "back.out(1.6)"); fore(c, "r", t + 0.22, -4, 0.3); head(c, t + 0.12, -4, 0.4); body(c, t + 0.14, 0, 0.3);
+      arm(c, "r", t + 2.2, 0, 0.5); head(c, t + 2.2, 0, 0.4); },
     cheer(c, t) { mouth(c, t, "open"); brows(c, t, -10); arm(c, "l", t, 152, 0.3, "power2.out"); arm(c, "r", t, -152, 0.3, "power2.out");
       jump(c, t, 56); jump(c, t + 0.7, 50); arm(c, "l", t + 1.6, 0, 0.5); arm(c, "r", t + 1.6, 0, 0.5); mouth(c, t + 1.6, "closed"); },
     laugh(c, t) { mouth(c, t, "open"); head(c, t, -8, 0.3); for (let i = 0; i < 6; i++) body(c, t + i * 0.18, i % 2 ? 3 : -3, 0.09); body(c, t + 1.2, 0, 0.3); mouth(c, t + 1.3, "closed"); head(c, t + 1.3, 0, 0.3); },
@@ -112,7 +114,9 @@
     walkTo(c, t, dx, d) { const dd = d || Math.max(1, Math.abs(dx) / 220), has = !!$(c.cid + "-vs"); if (has) ACT.view(c, t, "side", dx >= 0 ? 1 : -1);
       tl.to($(c.cid + "-wrap"), { x: "+=" + dx, duration: dd, ease: "sine.inOut" }, t + (has ? 0.2 : 0)); walkCycle(c, t + (has ? 0.2 : 0), dd - (has ? 0.3 : 0)); if (has) ACT.view(c, t + dd, "front", 1); },
     look(c, t, dx, dy) { for (const s of ["l", "r"]) tl.to(part(c, "pupil-" + s), { x: (dx || 0) * 6, y: (dy || 0) * 5, duration: 0.22, ease: "power2.out" }, t); head(c, t, (dx || 0) * 6, 0.45); },
-    reach(c, t, side) { const s = side || "r"; arm(c, s, t, SG[s] * 75, 0.5, "power2.out"); fore(c, s, t + 0.15, SG[s] * 8, 0.35); body(c, t, SG[s] * -4, 0.5); arm(c, s, t + 1.6, 0, 0.5); body(c, t + 1.6, 0, 0.5); },
+    reach(c, t, side) { const s = side || "r"; arm(c, s, t, SG[s] * -8, 0.14, "power1.out"); body(c, t, SG[s] * 4, 0.14);
+      arm(c, s, t + 0.14, SG[s] * 75, 0.5, "back.out(1.4)"); fore(c, s, t + 0.3, SG[s] * 8, 0.35); body(c, t + 0.14, SG[s] * -4, 0.5);
+      head(c, t + 0.25, SG[s] * -3, 0.4); arm(c, s, t + 1.6, 0, 0.5); body(c, t + 1.6, 0, 0.5); head(c, t + 1.6, 0, 0.4); },
     shrug(c, t) { arm(c, "l", t, 22, 0.3); arm(c, "r", t, -22, 0.3); fore(c, "l", t + 0.1, 55, 0.3); fore(c, "r", t + 0.1, -55, 0.3); head(c, t, 6, 0.3);
       tl.to(part(c, "life"), { y: -8, duration: 0.2, yoyo: true, repeat: 1 }, t); arm(c, "l", t + 0.9, 0, 0.4); arm(c, "r", t + 0.9, 0, 0.4); head(c, t + 0.9, 0, 0.4); },
     // dialogue: mouth flaps per syllable, head beats, alternating hand gestures
@@ -173,6 +177,8 @@
         tl.to(part(c, "leg-l"), { rotation: -88, duration: d, ease: "power2.inOut" }, t1); tl.to(part(c, "shin-l"), { rotation: 88, duration: d, ease: "power2.inOut" }, t1);
         tl.to(part(c, "leg-r"), { rotation: -82, duration: d, ease: "power2.inOut" }, t1); tl.to(part(c, "shin-r"), { rotation: 82, duration: d, ease: "power2.inOut" }, t1);
         tl.to([part(c, "foot-l"), part(c, "foot-r")], { rotation: 0, duration: d }, t1); body(c, t1, -3, d);
+        // hands rest on the lap, not hanging through the seat (a later act - type, drink, phone - moves them again)
+        arm(c, "l", t1, -38, d); arm(c, "r", t1, -32, d); fore(c, "l", t1 + 0.05, -42, d); fore(c, "r", t1 + 0.05, -36, d);
       } else {   // no profile drawing: knees out, shins straight down, a small drop (a perch, never crossed legs)
         rootTo(c, t1, { y: L * 0.14 }, d, "power2.inOut");
         tl.to(part(c, "leg-l"), { rotation: 30, duration: d }, t1); tl.to(part(c, "shin-l"), { rotation: -30, duration: d }, t1);
@@ -291,8 +297,10 @@
       const w = $(c.cid + "-wrap");
       if (c.enter != null) { const D = Math.max(1.8, Math.abs(c.enter) / 230);
         const has = !!$(c.cid + "-vs"); if (has) ACT.view(c, t0, "side", c.enter < 0 ? 1 : -1);
-        tl.fromTo(w, { x: c.enter }, { x: 0, duration: D, ease: "power1.out" }, t0 + (has ? 0.2 : 0)); walkCycle(c, t0 + (has ? 0.2 : 0), D - (has ? 0.3 : 0)); if (has) ACT.view(c, t0 + D, "front", 1); }
-      if (c.face && !c.hold) viewSet(c, t0, "s", c.face);     // two-shot: in profile, facing the other person
+        tl.fromTo(w, { x: c.enter }, { x: 0, duration: D, ease: "power1.out" }, t0 + (has ? 0.2 : 0)); walkCycle(c, t0 + (has ? 0.2 : 0), D - (has ? 0.3 : 0));
+        // arrived at an object: turn to it (profile), not back to the camera, so the act that follows is done AT it
+        if (has) ACT.view(c, t0 + D, c.face ? "side" : "front", c.face || 1); }
+      if (c.face && !c.hold && c.enter == null) viewSet(c, t0, "s", c.face);     // two-shot: in profile, facing the other person
       if (c.back && !c.path) viewSet(c, t0, "b", 1);
       if (c.path) { const p = c.path, wv = $(c.cid + "-wrap");   // an extra walking through: across, toward or away from the camera
         if (p.view === "s") viewSet(c, t0, "s", p.dir || 1); else if (p.view === "b") viewSet(c, t0, "b", 1);
