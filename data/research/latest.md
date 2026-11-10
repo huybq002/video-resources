@@ -1,4 +1,4 @@
-# YouTube research 2026-11-08
+# YouTube research 2026-11-10
 
 niche: Animated short films about decisions and what they cost: money, the mind, and invented mysteries
 language: en
@@ -7,216 +7,280 @@ language: en
 
 | topic | keyword | opp | median views | max views | median len | shorts | channels |
 |---|---|---|---|---|---|---|---|
-| psychology | better | 98 | 2,776,390 | 1,336,610,145 | 248s | 0% | 18/20 |
-| psychology | behavioral psychology | 96 | 2,636,262 | 20,578,869 | 1653s | 0% | 17/20 |
-| money | financial | 93 | 1,682,340 | 5,857,978 | 1771s | 0% | 16/20 |
-| psychology | why we procrastinate | 92 | 1,320,087 | 62,194,713 | 490s | 0% | 17/20 |
-| mystery | mystery story explained | 92 | 1,820,318 | 6,368,443 | 1665s | 0% | 15/20 |
-| money | personal finance story | 91 | 753,090 | 6,820,811 | 1296s | 0% | 19/20 |
-| psychology | course | 91 | 2,791,287 | 49,561,117 | 8461s | 0% | 13/20 |
-| psychology | decisions | 91 | 692,524 | 18,223,214 | 544s | 0% | 20/20 |
-| money | saving money psychology | 90 | 853,391 | 8,397,983 | 1366s | 0% | 18/20 |
-| psychology | biases | 89 | 748,457 | 17,423,713 | 479s | 0% | 18/20 |
-| psychology | crash | 89 | 608,364 | 4,285,162 | 571s | 0% | 19/20 |
-| mystery | how the scam worked | 89 | 501,819 | 13,543,137 | 893s | 0% | 20/20 |
-| mystery | con artist story | 89 | 863,480 | 22,896,213 | 2741s | 0% | 17/20 |
-| mystery | crime investigation story | 88 | 1,354,742 | 21,241,474 | 1957s | 0% | 13/20 |
-| psychology | habits psychology explained | 85 | 502,732 | 22,327,957 | 853s | 0% | 17/20 |
-| mystery | unsolved mystery story | 80 | 489,712 | 9,443,874 | 2325s | 0% | 13/20 |
-| psychology | science | 79 | 523,703 | 3,651,946 | 4425s | 0% | 12/20 |
-| mystery | detective story animated | 79 | 267,643 | 11,710,328 | 825s | 0% | 16/20 |
-| money | why people go broke | 77 | 326,712 | 2,918,445 | 1342s | 0% | 13/20 |
-| psychology | decision making psychology | 77 | 147,950 | 2,448,409 | 734s | 0% | 18/20 |
-| psychology | cognitive bias explained | 76 | 104,140 | 17,423,713 | 432s | 0% | 20/20 |
-| money | debt trap explained | 75 | 143,921 | 6,073,068 | 718s | 0% | 17/20 |
-| money | money mistakes | 73 | 132,048 | 2,177,921 | 1110s | 0% | 16/20 |
-| mystery | mysteries | 73 | 209,167 | 8,076,043 | 5939s | 0% | 13/20 |
-| psychology | sunk cost fallacy | 63 | 43,195 | 1,269,159 | 313s | 10% | 19/20 |
-| money | lifestyle inflation | 51 | 14,071 | 713,704 | 797s | 0% | 20/20 |
+| mystery | cannot | 100 | 26,848,052 | 2,011,158,436 | 219s | 5% | 20/20 |
+| mystery | mystery story explained | 99 | 1,894,995 | 12,490,281 | 2027s | 0% | 20/20 |
+| money | change | 98 | 9,374,446 | 503,283,935 | 221s | 0% | 18/20 |
+| psychology | better | 98 | 4,623,720 | 1,337,520,961 | 242s | 0% | 18/20 |
+| psychology | behavioral psychology | 96 | 2,641,325 | 20,590,470 | 1579s | 0% | 17/20 |
+| psychology | thinking | 96 | 2,050,704 | 442,863,217 | 509s | 0% | 17/20 |
+| psychology | lyrics | 96 | 10,937,194 | 89,260,307 | 198s | 0% | 17/20 |
+| psychology | course | 95 | 3,444,763 | 459,346,120 | 5010s | 0% | 16/20 |
+| psychology | brain | 94 | 3,449,498 | 21,909,290 | 674s | 0% | 15/20 |
+| mystery | crime investigation story | 93 | 1,564,945 | 8,836,558 | 2513s | 0% | 16/20 |
+| money | financial | 92 | 1,498,176 | 13,546,539 | 2637s | 0% | 16/20 |
+| psychology | why we procrastinate | 92 | 1,320,808 | 62,206,092 | 490s | 0% | 17/20 |
+| psychology | decisions | 92 | 901,693 | 29,621,357 | 205s | 0% | 19/20 |
+| mystery | how the scam worked | 92 | 798,605 | 45,649,658 | 712s | 0% | 20/20 |
+| psychology | biases | 91 | 750,061 | 17,424,573 | 491s | 0% | 19/20 |
+| mystery | episodes | 90 | 1,189,832 | 51,207,071 | 2550s | 0% | 16/20 |
+| money | saving money psychology | 89 | 735,339 | 8,404,935 | 1184s | 0% | 18/20 |
+| psychology | crash | 87 | 529,437 | 29,003,487 | 346s | 0% | 18/20 |
+| psychology | official | 87 | 551,177 | 1,646,467,150 | 185s | 5% | 18/20 |
+| mystery | unsolved mystery story | 86 | 809,322 | 8,523,401 | 2660s | 0% | 15/20 |
+| mystery | con artist story | 86 | 473,370 | 8,279,039 | 2741s | 0% | 18/20 |
+| money | income | 84 | 330,366 | 3,323,672 | 1031s | 0% | 19/20 |
+| psychology | habits psychology explained | 84 | 359,511 | 22,332,152 | 1037s | 0% | 18/20 |
+| money | personal finance story | 81 | 213,081 | 6,828,667 | 1318s | 0% | 19/20 |
+| psychology | cognitive bias explained | 80 | 198,388 | 7,487,345 | 520s | 0% | 19/20 |
+| mystery | mysteries | 79 | 273,730 | 8,102,235 | 2444s | 0% | 16/20 |
+| psychology | science | 78 | 440,977 | 2,863,336 | 4230s | 0% | 12/20 |
+| money | why people go broke | 77 | 190,919 | 2,808,030 | 1319s | 0% | 17/20 |
+| money | money mistakes | 76 | 270,093 | 2,179,013 | 1195s | 0% | 14/20 |
+| money | debt trap explained | 75 | 144,297 | 6,075,845 | 684s | 0% | 17/20 |
+| psychology | decision making psychology | 73 | 99,912 | 2,449,089 | 805s | 0% | 18/20 |
+| mystery | detective story animated | 72 | 127,906 | 11,712,371 | 998s | 0% | 15/20 |
+| psychology | sunk cost fallacy | 58 | 24,463 | 1,269,178 | 347s | 10% | 19/20 |
+| money | lifestyle inflation | 48 | 11,317 | 713,743 | 756s | 0% | 19/20 |
 
 ## What is winning right now (top titles per keyword)
 
-**better** — recurring words: better, official, music, feat, khalid, lyrics, audio, nimino, 'better, manta
-- 1,336,610,145 views · 251s · Khalid — Khalid - Better (Official Video)
-- 334,552,443 views · 230s · Khalid — Better
-- 94,094,859 views · 230s · 7clouds — Khalid - Better (Lyrics)
-- 27,538,798 views · 188s · Watermelon Music and bemu — Shawn Mendes - Treat You Better (Lyrics)
-- 16,537,232 views · 284s · Hezekiah Walker — Hezekiah Walker New Video "BETTER"
+**cannot** — recurring words: can't, official, cannot, music, can, problem, from, minecraft, among, song
+- 2,011,158,436 views · 286s · Justin Timberlake — Justin Timberlake - CAN'T STOP THE FEELING! (from DreamWorks Animation's "TROLLS") (Offici
+- 1,504,735,505 views · 208s · Ariana Grande — Ariana Grande - Problem ft. Iggy Azalea
+- 489,903,936 views · 278s · Red Hot Chili Peppers — Red Hot Chili Peppers - Can't Stop [Official Music Video]
+- 271,182,018 views · 267s · Midland Official — Midland - Drinkin' Problem (Official Music Video)
+- 163,301,384 views · 222s · Cody Johnson — Cody Johnson - 'Til You Can't (Official Music Video)
 
-**behavioral psychology** — recurring words: psychology, behavioral, read, behavior, instantly, human, brain, skinner, chase, hughes
-- 20,578,869 views · 3435s · Stanford — 1. Introduction to Human Behavioral Biology
-- 7,828,481 views · 5817s · Stanford — 2. Behavioral Evolution
-- 6,379,570 views · 7517s · The Diary Of A CEO — The Behaviour Expert: Instantly Read Any Room & How To Hack Your Discipline! Chase Hughes
-- 4,728,271 views · 6981s · The Diary Of A CEO and Chase Hughes — Chase Hughes: The 3 "Dark Psychology" Tricks To Read Anyone's Mind!
-- 4,519,122 views · 709s · CrashCourse — How to Train a Brain: Crash Course Psychology #11
+**mystery story explained** — recurring words: mystery, murder, explained, solved, mysteries, most, unsolved, after, years, minutes
+- 12,490,281 views · 489s · BuzzFeed Unsolved Network — The Chilling Mystery Of The Black Dahlia
+- 9,866,365 views · 3535s · Bailey Sarian — Murder on the Web: Catfish Gone Wrong! | Mystery & Makeup | Bailey Sarian
+- 5,756,074 views · 1818s · Maritime Horrors — The Edmund Fitzgerald Mystery
+- 5,105,545 views · 2256s · RetroGamingNow — The Story of OldRoot: Minecraft's Strangest Mystery
+- 3,761,927 views · 2524s · Kallmekris — The IMPOSSIBLE Cold Case That Was Solved By Redditors
 
-**financial** — recurring words: financial, literacy, advice, minutes, freedom, audit, honest, everything, best, money
-- 5,857,978 views · 4756s · Mel Robbins — The Best Financial Advice You’ll Ever Hear
-- 4,710,725 views · 4192s · Mel Robbins and David Bach — 5 Money Rules That Will Change Your Life & Create Financial Freedom
-- 4,373,238 views · 205s · DailyEffectivePrayer — Prayer For Financial Miracle | Powerful Prayers For Financial Miracles
-- 3,139,622 views · 3737s · Tina Huang — Financial Literacy In 63 Minutes
-- 3,020,969 views · 3279s · Nischa — Master Financial Literacy in 54 Minutes: Everything They Never Taught You About Money!
+**change** — recurring words: change, official, deftones, house, flies, music, changes, lyric, steven, universe
+- 503,283,935 views · 271s · 2Pac — 2Pac - Changes ft. Talent
+- 98,354,655 views · 238s · Deftones — Deftones - Change (In The House Of Flies) [Official Music Video]
+- 62,133,711 views · 300s · carro loco — Deftones-Change
+- 52,084,178 views · 113s · Cartoon Network — Change Song | Steven Universe The Movie | Cartoon Network
+- 37,624,207 views · 236s · NFrealmusic — NF - Change (Audio)
 
-**why we procrastinate** — recurring words: procrastinate, procrastination, stop, procrastinator, fuschia, sirois, science, motivation, mel, robbins
-- 62,194,713 views · 844s · TED — Inside the Mind of a Master Procrastinator | Tim Urban | TED
-- 11,055,634 views · 346s · TED-Ed — Why you procrastinate even when it feels bad
-- 6,016,010 views · 485s · Dr. Tracey Marks — Why People with ADHD Procrastinate (And 4 Brain-Based Ways to Get Started)
-- 5,289,032 views · 627s · Better Ideas — The procrastination cure you don't want to hear
-- 4,591,796 views · 217s · Mel Robbins — The ONLY Way To Stop Procrastinating | Mel Robbins
+**better** — recurring words: better, official, feat, music, khalid, lyrics, audio, nimino, 'better, manta
+- 1,337,520,961 views · 251s · Khalid — Khalid - Better (Official Video)
+- 334,586,413 views · 230s · Khalid — Better
+- 94,120,571 views · 230s · 7clouds — Khalid - Better (Lyrics)
+- 27,813,610 views · 188s · Watermelon Music and bemu — Shawn Mendes - Treat You Better (Lyrics)
+- 17,808,340 views · 266s · Bow Wow — Bow Wow - Better (Explicit) ft. T-Pain
 
-**mystery story explained** — recurring words: mysteries, explained, solved, unsolved, most, creepiest, internet, were, finally, mystery
-- 6,368,443 views · 580s · The Paint Explainer — Creepiest Internet Mysteries That Were Finally Solved
-- 3,784,723 views · 1596s · Chilling Scares — Disturbing Internet Mysteries That Have Been Solved
-- 2,812,584 views · 1735s · Visual Venture — Most Disturbing Mysteries Solved By Reddit Users
-- 2,328,579 views · 820s · The Paint Explainer — Creepiest Internet Mysteries That Were Finally Solved (Pt. 3)
-- 2,198,443 views · 3207s · WatchMojo.com — Top 50 Creepiest Mysteries That Were FINALLY Solved
+**behavioral psychology** — recurring words: psychology, human, behavior, read, behavioral, facts, mind, instantly, audiobook, about
+- 20,590,470 views · 3435s · Stanford — 1. Introduction to Human Behavioral Biology
+- 17,974,184 views · 654s · CrashCourse — Intro to Psychology: Crash Course Psychology #1
+- 16,894,243 views · 310s · TED-Ed — The psychology of narcissism - W. Keith Campbell
+- 7,831,254 views · 5817s · Stanford — 2. Behavioral Evolution
+- 4,786,745 views · 6981s · The Diary Of A CEO and Chase Hughes — Chase Hughes: The 3 "Dark Psychology" Tricks To Read Anyone's Mind!
 
-**personal finance story** — recurring words: financial, money, minutes, life, they, debt, personal, finance, every, from
-- 6,820,811 views · 3609s · Caleb Hammer — 27-Year-Old With More Debt Than Anyone Should Ever Have | Financial Audit
-- 5,801,566 views · 935s · The Swedish Investor — THE PSYCHOLOGY OF MONEY (BY MORGAN HOUSEL)
-- 4,710,725 views · 4192s · Mel Robbins and David Bach — 5 Money Rules That Will Change Your Life & Create Financial Freedom
-- 3,020,969 views · 3279s · Nischa — Master Financial Literacy in 54 Minutes: Everything They Never Taught You About Money!
-- 2,630,563 views · 734s · EverythingProfessor — Explaining Basic Financial Concepts YOU Should Understand
+**thinking** — recurring words: thinking, critical, official, improve, level, thinkin, levels, louis, ideas, science
+- 442,863,217 views · 5048s · Google DeepMind and 3 more — The Thinking Game | Full documentary | Tribeca Film Festival official selection
+- 12,076,502 views · 270s · TED-Ed — 5 tips to improve your critical thinking - Samantha Agoos
+- 9,314,117 views · 730s · Veritasium — The Science of Thinking
+- 8,505,581 views · 320s · TED-Ed — This tool will help improve your critical thinking - Erick Wilberding
+- 6,148,464 views · 819s · TEDx Talks — Creative thinking - how to get out of the box and generate ideas: Giovanni Corazza at TEDx
 
-**course** — recurring words: course, crash, hours, harvard, cs50, computer, science, university, intro, philosophy
-- 49,561,117 views · 22447s · Programming with Mosh — Python Full Course for Beginners
-- 20,297,770 views · 23476s · SuperSimpleDev — HTML & CSS Full Course - Beginner to Pro
-- 17,963,688 views · 654s · CrashCourse — Intro to Psychology: Crash Course Psychology #1
-- 14,170,115 views · 89497s · freeCodeCamp.org and CS50 — Harvard CS50 – Full Computer Science University Course
-- 11,797,643 views · 7149s · freeCodeCamp.org — Introduction to Programming and Computer Science - Full Course
+**lyrics** — recurring words: lyrics, lngshot, color, coded, 'bananas', han_rom_eng, shadowbyyoongi, olivia, rodrigo, beep
+- 89,260,307 views · 183s · Sunset Sounds — Iyaz - Replay | Lyrics
+- 47,049,218 views · 197s · 7clouds Rock — WALK THE MOON - Shut Up and Dance (Lyrics)
+- 30,659,223 views · 167s · Creative Chaos and 4 more — pupsies - misery. (Lyrics)
+- 27,813,610 views · 188s · Watermelon Music and bemu — Shawn Mendes - Treat You Better (Lyrics)
+- 22,073,817 views · 203s · Glim — Miley Cyrus - Party In The U.S.A (Lyrics)
 
-**decisions** — recurring words: decisions, making, big, ro6, official, make, decision, lyrics, i'm, directed
-- 18,223,214 views · 192s · Go Ape ENT — Big Ro6 - Decisions ( Directed by @Rozay4K )
-- 17,429,616 views · 253s · Wiz Khalifa — Wiz Khalifa - Decisions [Official Video]
-- 8,436,498 views · 182s · Big Ro6 - Topic — Decisions
-- 3,747,586 views · 2391s · Telemundo English — Decisions 🤔: Ex-Girlfriend's Son Comes To Live With Them🏡👫😱 | Full Episode | Telemundo Eng
-- 2,924,623 views · 160s · Polo G — Polo G - Decisions (Official Audio)
+**course** — recurring words: course, crash, beginners, engineer, complete, philosophy, intro, psychology, hours, can
+- 459,346,120 views · 1705s · MrBeast — World’s Deadliest Obstacle Course!
+- 38,275,426 views · 737s · Red Bull Bike — Can Pro Bikers Beat this IMPOSSIBLE Obstacle Course?
+- 17,974,184 views · 654s · CrashCourse — Intro to Psychology: Crash Course Psychology #1
+- 11,807,451 views · 7149s · freeCodeCamp.org — Introduction to Programming and Computer Science - Full Course
+- 9,088,003 views · 729s · CrashCourse — Intro to Economics: Crash Course Econ #1
 
-**saving money psychology** — recurring words: money, psychology, saving, morgan, housel, financial, expert, save, people, change
-- 8,397,983 views · 7046s · The Diary Of A CEO — The Savings Expert: “Do Not Buy A House!” Do THIS Instead! - Morgan Housel
-- 5,857,978 views · 4756s · Mel Robbins — The Best Financial Advice You’ll Ever Hear
-- 5,801,566 views · 935s · The Swedish Investor — THE PSYCHOLOGY OF MONEY (BY MORGAN HOUSEL)
-- 4,968,234 views · 1132s · Leila Hormozi — The Psychology of Making Money
-- 4,710,725 views · 4192s · Mel Robbins and David Bach — 5 Money Rules That Will Change Your Life & Create Financial Freedom
+**brain** — recurring words: brain, affects, nova, pbs, crash, course, psychology, change, exercise, explained
+- 21,909,290 views · 293s · TED-Ed — How the food you eat affects your brain - Mia Nacamulli
+- 19,655,495 views · 7962s · Rich Roll — Change Your Brain: Neuroscientist Dr. Andrew Huberman | Rich Roll Podcast
+- 19,292,334 views · 303s · TED-Ed — How sugar affects the brain - Nicole Avena
+- 12,567,576 views · 783s · TED — The Brain-Changing Benefits of Exercise | Wendy Suzuki | TED
+- 12,046,553 views · 147s · National Institutes of Health (NIH) — Journey of Sound to the Brain
 
-**biases** — recurring words: bias, cognitive, biases, explained, unconscious, minutes, test, thinking, most, common
-- 17,423,713 views · 284s · Veritasium — The Most Common Cognitive Bias
-- 7,484,913 views · 1316s · Escaping Ordinary (B.C Marx)  — 21 Mind Traps : The Ultimate Guide to your most common Thinking errors
-- 6,297,497 views · 1442s · Veritasium — Why People Are So Confident When They're Wrong
-- 2,849,528 views · 608s · Practical Psychology — 12 Cognitive Biases Explained - How to Think Better and More Logically Removing Bias
-- 1,814,211 views · 490s · The Paint Explainer — Every Bias Explained in 8 Minutes
+**crime investigation story** — recurring words: investigation, crime, true, documentary, case, solved, murder, missing, ever, stories
+- 8,836,558 views · 1972s · EXPLORE WITH US — Cases With The Most INSANE Twists You've Ever Heard
+- 6,007,590 views · 2056s · EXPLORE WITH US — SOLVED Cold Case With A SHOCKING Twist: True Crime Documentary & Solved Missing Persons Ca
+- 4,139,809 views · 3528s · 60 Minutes Australia — Who murdered baby Jaidyn Leskie? Unsolved crime rocks country town | Under Investigation
+- 3,761,927 views · 2524s · Kallmekris — The IMPOSSIBLE Cold Case That Was Solved By Redditors
+- 3,560,079 views · 1681s · EXPLORE WITH US — Solved Cases With The Most INSANE Twists You've Ever Heard
 
-**crash** — recurring words: crash, learjet, plane, fatal, palm, beach, florida, pilot, witness, county
-- 4,285,162 views · 2284s · Pilot Debrief — The Learjet Plane Crash Was Worse Than We Thought!
-- 4,090,067 views · 854s · Captain Steeeve — Learjet Crash Update: NTSB Finds Tail Debris Miles Away | Captain Steeeve
-- 3,343,484 views · 132s · Inside Edition — Learjet Pilot Can Be Heard Praying Moments Before Fatal Crash
-- 2,554,058 views · 117s · SpaceCoastDaily — Chilling Audio Captures The Last Moments of Learjet 60 Plane Crash
-- 2,082,690 views · 829s · Flying for Money — Learjet 60 Crash: What Was She Trying to Tell the Captain?
+**financial** — recurring words: financial, audit, freedom, advice, literacy, minutes, everything, need, know, ever
+- 13,546,539 views · 2637s · Big Think — William Ackman: Everything You Need to Know About Finance and Investing in Under an Hour |
+- 5,873,551 views · 4756s · Mel Robbins — The Best Financial Advice You’ll Ever Hear
+- 4,724,824 views · 4192s · Mel Robbins and David Bach — 5 Money Rules That Will Change Your Life & Create Financial Freedom
+- 4,376,216 views · 205s · DailyEffectivePrayer — Prayer For Financial Miracle | Powerful Prayers For Financial Miracles
+- 3,146,366 views · 3737s · Tina Huang — Financial Literacy In 63 Minutes
 
-**how the scam worked** — recurring words: scam, scams, actually, work, worked, scammer, call, wired, avoid, phishing
-- 13,543,137 views · 1203s · Tommy G — Investigating the Internet's Most Famous Scammer
-- 6,771,372 views · 1618s · WIRED — Scammer Payback Answers Scam Questions | Tech Support | WIRED
-- 4,875,347 views · 610s · How Money Works — How The Wolf of Wall Street Scam Actually Worked
-- 3,699,663 views · 148s · FOX 11 Los Angeles — Criminals using $20 'distraction' tactic to scam victims  | FOX 11 LA
-- 3,027,896 views · 349s · Tom Scott — How the first ever telecoms scam worked
+**why we procrastinate** — recurring words: procrastinate, procrastination, stop, reason, fix, science, fuschia, sirois, brain, motivation
+- 62,206,092 views · 844s · TED — Inside the Mind of a Master Procrastinator | Tim Urban | TED
+- 11,066,181 views · 346s · TED-Ed — Why you procrastinate even when it feels bad
+- 6,018,900 views · 485s · Dr. Tracey Marks — Why People with ADHD Procrastinate (And 4 Brain-Based Ways to Get Started)
+- 5,291,448 views · 627s · Better Ideas — The procrastination cure you don't want to hear
+- 4,594,887 views · 217s · Mel Robbins — The ONLY Way To Stop Procrastinating | Mel Robbins
 
-**con artist story** — recurring words: con, artist, true, man, minutes, crime, artists, episodes, documentary, australia
-- 22,896,213 views · 185s · Key & Peele — You Can’t Con a Con Artist If You’re Also a Con Artist - Key & Peele
-- 8,276,706 views · 1554s · 60 Minutes Australia — How con-artist Anna Sorokin ripped off the New York elite and became a star  | 60 Minutes 
-- 5,960,894 views · 1968s · 60 Minutes Australia — Conman EXPOSED: Meet Australia's answer to the Tinder Swindler | 60 Minutes Australia
-- 4,700,490 views · 2749s · 60 Minutes Australia — New revelations in the outrageous saga of con artist Melissa Caddick | 60 Minutes Australi
-- 2,752,546 views · 3004s · Soft White Underbelly — Con Man interview-Matthew Cox
+**decisions** — recurring words: decisions, official, big, ro6, lyrics, music, rex, orange, county, feat
+- 29,621,357 views · 247s · Borgore — "Decisions" - Borgore feat. Miley Cyrus (Official Music Video)
+- 24,581,521 views · 280s · Alice In Chains — Alice In Chains - Your Decision (Official Music Video)
+- 18,239,077 views · 192s · Go Ape ENT — Big Ro6 - Decisions ( Directed by @Rozay4K )
+- 17,431,129 views · 253s · Wiz Khalifa — Wiz Khalifa - Decisions [Official Video]
+- 8,451,472 views · 182s · Big Ro6 - Topic — Decisions
 
-**crime investigation story** — recurring words: crime, true, documentary, his, secret, ever, case, hours, murder, was
-- 21,241,474 views · 5397s · Dr Insanity — Cops Realize Psycho Daughters Car Is Filled With Bodies
-- 16,924,440 views · 1566s · Dr Insanity — Husband Discovers His Wife Is A Mass Killer
-- 8,825,357 views · 1972s · EXPLORE WITH US — Cases With The Most INSANE Twists You've Ever Heard
-- 3,744,787 views · 2524s · Kallmekris — The IMPOSSIBLE Cold Case That Was Solved By Redditors
-- 3,558,188 views · 1681s · EXPLORE WITH US — Solved Cases With The Most INSANE Twists You've Ever Heard
+**how the scam worked** — recurring words: scam, scams, actually, worked, work, scammer, call, minutes, phishing, wolf
+- 45,649,658 views · 225s · NowThis Impact — Phone Scammer Gets Scammed by Police Captain
+- 13,549,894 views · 1203s · Tommy G — Investigating the Internet's Most Famous Scammer
+- 6,778,507 views · 1618s · WIRED — Scammer Payback Answers Scam Questions | Tech Support | WIRED
+- 4,875,817 views · 610s · How Money Works — How The Wolf of Wall Street Scam Actually Worked
+- 3,701,437 views · 148s · FOX 11 Los Angeles — Criminals using $20 'distraction' tactic to scam victims  | FOX 11 LA
 
-**habits psychology explained** — recurring words: habits, life, science, habit, atomic, change, summary, james, clear, making
-- 22,327,957 views · 1691s · Escaping Ordinary (B.C Marx)  — How to become 37.78 times better at anything | Atomic Habits summary (by James Clear)
-- 5,611,337 views · 6639s · Andrew Huberman — The Science of Making & Breaking Habits
-- 3,177,869 views · 5179s · Mel Robbins — The Science of Making & Breaking Habits: How to Change Your Life in 1 Month
-- 2,613,435 views · 1816s · Antidote — Atomic Habits in 30 Minutes | Animated Book Summary
-- 1,642,313 views · 545s · After Skool — ATOMIC HABITS - Tiny Changes that Create Remarkable Results - James Clear
+**biases** — recurring words: bias, cognitive, biases, explained, unconscious, minutes, think, better, thinking, every
+- 17,424,573 views · 284s · Veritasium — The Most Common Cognitive Bias
+- 7,487,355 views · 1316s · Escaping Ordinary (B.C Marx)  — 21 Mind Traps : The Ultimate Guide to your most common Thinking errors
+- 2,851,217 views · 608s · Practical Psychology — 12 Cognitive Biases Explained - How to Think Better and More Logically Removing Bias
+- 1,814,397 views · 490s · The Paint Explainer — Every Bias Explained in 8 Minutes
+- 1,609,732 views · 179s · The Royal Society — Understanding unconscious bias | The Royal Society
 
-**unsolved mystery story** — recurring words: unsolved, mysteries, mystery, explained, robert, stack, case, murdered, who, episodes
-- 9,443,874 views · 1588s · BuzzFeed Unsolved Network — The Menacing Case of the Monster with 21 Faces
-- 8,076,043 views · 2858s · HISTORY — Greatest Unsolved Mysteries Ever | Mysteries Unearthed with Danny Trejo
-- 7,725,497 views · 11422s · BuzzFeed Unsolved Network — Unsolved Season 4 True Crime Marathon
-- 2,408,510 views · 285s · TWISTA — Unsolved Mystery
-- 1,761,706 views · 1924s · Watcher — He Saw Himself On Unsolved Mysteries
+**episodes** — recurring words: episode, episodes, season, disney, channel, bluey, marathon, bingo, compilation, first
+- 51,207,071 views · 440s · Disney Jr.  — Bluey Full Episode | Cubby | S3 E38 |  Disney Jr.
+- 10,751,710 views · 11212s · SpongeBob SquarePants Official — 3 HOURS of SpongeBob’s BEST Episodes 🧽 | SpongeBob
+- 9,720,386 views · 1398s · Disney Channel — Liv and Maddie Full Episode! | What A Girl Is Episode | Rate a Rooney |  Disney Channel
+- 8,919,623 views · 1625s · Bingo - Official Channel — Bingo Adventure with Friends 🧡 | NEW Bluey Full Episode Compilation! ⭐️ | Bingo - Official
+- 8,804,622 views · 26525s · Disney Channel Animation — Every Gravity Falls Season 1 FULL Episode! 🏕️ | Marathon | Gravity Falls | Disney Channel
 
-**science** — recurring words: science, universe, channel, kids, our, works, hours, space, bbc, earth
-- 3,651,946 views · 3509s · Science Channel — Everything You Want to Know About Planets | How the Universe Works | Science Channel
-- 3,621,299 views · 197s · BBC Earth Science — Inside Japan’s Giant Neutrino Detector | BBC Earth Science
-- 2,643,460 views · 2395s · BBC Earth Science — Five Wonders of our Universe | Universe | BBC Earth Science
-- 1,867,508 views · 8565s · Sleepy Science Channel — The Most Amazing Things That Science Still Can't Explain
-- 1,539,752 views · 151s · Kids Academy — Our Sun | Science videos for kids | Kids Academy
+**saving money psychology** — recurring words: money, psychology, saving, save, expert, morgan, housel, tricks, financial, minutes
+- 8,404,935 views · 7046s · The Diary Of A CEO — The Savings Expert: “Do Not Buy A House!” Do THIS Instead! - Morgan Housel
+- 5,873,551 views · 4756s · Mel Robbins — The Best Financial Advice You’ll Ever Hear
+- 5,804,244 views · 935s · The Swedish Investor — THE PSYCHOLOGY OF MONEY (BY MORGAN HOUSEL)
+- 4,994,058 views · 1132s · Leila Hormozi — The Psychology of Making Money
+- 4,724,824 views · 4192s · Mel Robbins and David Bach — 5 Money Rules That Will Change Your Life & Create Financial Freedom
 
-**detective story animated** — recurring words: stories, detective, animated, crime, story, true, mystery, horror, teenagers, englishfairytales
-- 11,710,328 views · 753s · MSA — Why I'm Afraid Of Heights
-- 6,464,092 views · 784s · English Fairy Tales — The Mind Reader Story | Stories for Teenagers |@EnglishFairyTales
-- 5,944,436 views · 820s · English Fairy Tales — Detective Ace | Stories for Teenagers | @EnglishFairyTales
-- 4,716,629 views · 1013s · Super Simple TV - Kids Shows & Cartoons — Mr. Monkey, Monkey Detective: The Case of the Missing Things
-- 2,029,684 views · 998s · Story Time Animated — I Can Solve Any Crime
+**crash** — recurring words: crash, learjet, plane, palm, beach, killed, florida, from, was, captain
+- 29,003,487 views · 213s · Usher — Usher - Crash (Official Video)
+- 26,863,501 views · 2373s · Midwest Safety — Bodycam Released in Crash of UPS Airlines Flight 2976
+- 4,391,631 views · 2284s · Pilot Debrief — The Learjet Plane Crash Was Worse Than We Thought!
+- 4,183,200 views · 854s · Captain Steeeve — Learjet Crash Update: NTSB Finds Tail Debris Miles Away | Captain Steeeve
+- 3,734,550 views · 1788s · Captain Steeeve — New Learjet Crash Evidence Raises Important Questions
 
-**why people go broke** — recurring words: broke, people, going, minutes, living, above, their, means, rich, watch
-- 2,918,445 views · 535s · Club Shay Shay — Charles Barkley Talks 80% of Professional Athletes Going Broke | CLUB SHAY SHAY
-- 2,796,724 views · 1593s · Zac Rios — Let's Watch 26 Minutes of People Living Above Their Means & Going BROKE
-- 1,273,564 views · 1426s · Zac Rios — 23 Minutes of Celebrities & Influencers Going BROKE in 2026
-- 1,224,832 views · 946s · Humphrey Yang — Why People with the Same Income End Up Rich or Broke
-- 1,063,693 views · 1578s · Zac Rios — 26 Minutes of People Living Above Their Means & Going BROKE
+**official** — recurring words: official, trailer, music, final, blade, runner, hunter, schafer, netflix, godzilla
+- 1,646,467,150 views · 185s · Ariana Grande — Ariana Grande - 7 rings (Official Video)
+- 1,087,547,220 views · 243s · Coldplay — Coldplay - Viva La Vida (Official Video)
+- 46,937,253 views · 284s · Bad Boy Entertainment — Cassie [feat. Lil Wayne] - Official Girl (Official Music Video)
+- 12,407,301 views · 163s · Netflix — THE FURTHER MIS-ADVENTURES OF CLIFF BOOTH | Official Trailer #2 | Netflix
+- 3,244,775 views · 58s · Netflix — Other Worlds: A Stranger Things Adventure | Official Announcement | Netflix
 
-**decision making psychology** — recurring words: decision, making, psychology, decisions, make, brain, michael, platt, better, heuristics
-- 2,448,409 views · 279s · TED-Ed — The psychology behind irrational decisions - Sara Garofalo
-- 2,291,203 views · 316s · TED-Ed — How to make smart decisions more easily
-- 1,014,496 views · 2971s · Mel Robbins — Trust Your Gut: How to Make a Hard Decision
-- 931,508 views · 1798s · Patrick Teahan  — Do You Have Problems Making Decisions? - Childhood Trauma
-- 760,198 views · 229s · Learn Liberty — Heuristics and biases in decision making, explained
+**unsolved mystery story** — recurring words: unsolved, mysteries, explained, episode, robert, stack, season, cold, disturbing, most
+- 8,523,401 views · 2447s · SIRIUS — 6 Disturbing Unsolved Cases With Video Footage
+- 7,728,071 views · 11422s · BuzzFeed Unsolved Network — Unsolved Season 4 True Crime Marathon
+- 6,284,299 views · 2133s · fern — The Unsolved Murder in Room 1046
+- 2,746,155 views · 5371s · Time Of Crime — 5 Cold Cases Finally Solved With The Most INSANE Twists
+- 2,388,719 views · 3964s · Kallmekris — The Most Horrifying Cold Case In Canadian History
 
-**cognitive bias explained** — recurring words: cognitive, bias, explained, biases, minutes, every, thinking, think, introduction, crash
-- 17,423,713 views · 284s · Veritasium — The Most Common Cognitive Bias
-- 7,484,913 views · 1316s · Escaping Ordinary (B.C Marx)  — 21 Mind Traps : The Ultimate Guide to your most common Thinking errors
-- 2,849,528 views · 608s · Practical Psychology — 12 Cognitive Biases Explained - How to Think Better and More Logically Removing Bias
-- 2,448,409 views · 279s · TED-Ed — The psychology behind irrational decisions - Sara Garofalo
-- 1,814,211 views · 490s · The Paint Explainer — Every Bias Explained in 8 Minutes
+**con artist story** — recurring words: con, artist, who, story, true, crime, artists, fake, millions, hours
+- 8,279,039 views · 1554s · 60 Minutes Australia — How con-artist Anna Sorokin ripped off the New York elite and became a star  | 60 Minutes 
+- 4,702,883 views · 2749s · 60 Minutes Australia — New revelations in the outrageous saga of con artist Melissa Caddick | 60 Minutes Australi
+- 3,567,236 views · 551s · Ray William Johnson — This kid stole millions of dollars // The Juan Carlos Betancourt story
+- 2,753,113 views · 3004s · Soft White Underbelly — Con Man interview-Matthew Cox
+- 2,278,209 views · 7989s · Danny Jones — FBI's Most Wanted Con Artist | Matthew Cox | KONCRETE Podcast #40
 
-**debt trap explained** — recurring words: trap, debt, explained, every, people, financial, fall, into, traps, poor
-- 6,073,068 views · 741s · Grant Rudow — The 'Buy Now Pay Later' Trap, Explained
-- 3,620,731 views · 1155s · Bloomberg Originals — The Myth of the Chinese Debt Trap in Africa
-- 2,715,654 views · 1023s · Explains 101 — Why Every Country Is in Debt? And Who Do They Owe?
-- 1,236,824 views · 795s · Grant Rudow — The 'Car Loan' Trap, Explained
-- 1,095,765 views · 913s · EverythingProfessor — Every Financial Trap Middle Class People Fall Into Explained
+**income** — recurring words: income, retirement, nyc, pay, like, real, alone, salary, actually, looks
+- 3,323,672 views · 988s · Business Insider and Insider — Breaking Down My $306,500 Salary In San Francisco | The Pay Check
+- 2,034,216 views · 659s · Nischa — 7 Passive Income Ideas - How I Made $19k in a Week
+- 1,228,027 views · 378s · Numeral Media — What My $251k Salary ACTUALLY Looks Like In NYC (BigLaw Lawyer)
+- 796,138 views · 764s · marcy in china — What is the real life of low-income people in China like?| Real China Vlog 🇨🇳
+- 663,494 views · 510s · Numeral Media — What My $1.1M Income ACTUALLY Looks Like In NYC (Hedge Fund)
 
-**money mistakes** — recurring words: mistakes, money, people, financial, minutes, worst, making, decisions, these, cost
-- 2,177,921 views · 2604s · The Ramsey Show Highlights — These Callers Share Their Worst Mistakes With Money | Ep. 4 | The Best of The Ramsey Show
-- 1,398,705 views · 1676s · Zac Rios — 27 Minutes of People Making Bad Financial Decisions in 2025
-- 1,095,765 views · 913s · EverythingProfessor — Every Financial Trap Middle Class People Fall Into Explained
-- 956,312 views · 1688s · Zac Rios — 30 Minutes of The Most Embarrassing Financial Decisions of 2025
-- 667,733 views · 1761s · I Will Teach You To Be Rich — Money Mistakes That Cost You Millions (What to Avoid)
+**habits psychology explained** — recurring words: habits, life, habit, science, psychology, change, atomic, summary, identity, brain
+- 22,332,152 views · 1691s · Escaping Ordinary (B.C Marx)  — How to become 37.78 times better at anything | Atomic Habits summary (by James Clear)
+- 3,214,902 views · 5179s · Mel Robbins — The Science of Making & Breaking Habits: How to Change Your Life in 1 Month
+- 2,673,761 views · 1816s · Antidote — Atomic Habits in 30 Minutes | Animated Book Summary
+- 1,527,426 views · 304s · TED-Ed — Why is it so hard to break a bad habit?
+- 1,127,853 views · 390s · Be Smart — How Habits Can Change Your Life (and Your Brain)
 
-**mysteries** — recurring words: mysteries, unsolved, mystery, explained, solved, cannot, hours, can, terrifying, who
-- 8,076,043 views · 2858s · HISTORY — Greatest Unsolved Mysteries Ever | Mysteries Unearthed with Danny Trejo
-- 3,784,723 views · 1596s · Chilling Scares — Disturbing Internet Mysteries That Have Been Solved
-- 705,813 views · 2123s · Brew — Investigating The Strangest "Solved" Mystery
-- 537,024 views · 13591s · Unexplained Mysteries — 50 Unsolved Mysteries That Cannot Be Explained
-- 516,994 views · 2158s · Unexplained Mysteries — 10 Unsolved Mysteries That Will Make You Question Reality
+**personal finance story** — recurring words: financial, money, personal, finance, life, have, ever, stories, story, from
+- 6,828,667 views · 3609s · Caleb Hammer — 27-Year-Old With More Debt Than Anyone Should Ever Have | Financial Audit
+- 5,873,551 views · 4756s · Mel Robbins — The Best Financial Advice You’ll Ever Hear
+- 4,724,824 views · 4192s · Mel Robbins and David Bach — 5 Money Rules That Will Change Your Life & Create Financial Freedom
+- 2,018,857 views · 733s · Business Insider and Insider — Money Lessons From Older Americans Who Learned The Hard Way | Life Lessons | Business Insi
+- 1,364,049 views · 3910s · Mel Robbins — If You’re Struggling With Money, Watch This
 
-**sunk cost fallacy** — recurring words: sunk, fallacy, cost, quit, decisions, explained, should, time, make, better
-- 1,269,159 views · 348s · Real Time with Bill Maher — Real Time with Bill Maher: New Rule – The Sunk Cost Fallacy (HBO)
-- 576,251 views · 170s · Big Think — Julia Galef: The Sunk Costs Fallacy | Big Think
-- 175,149 views · 551s · Better Than Yesterday — Know When To Quit - The Sunk Cost Fallacy
-- 159,519 views · 379s · Marginal Revolution University — What Is Thinking on the Margin, and How Does It Solve the Sunk Cost Fallacy?
-- 155,561 views · 271s · Intermittent Diversion — The Sunk Cost Fallacy: What is it and why does it happen?
+**cognitive bias explained** — recurring words: cognitive, bias, explained, biases, minutes, every, crash, course, thinking, psychology
+- 7,487,345 views · 1316s · Escaping Ordinary (B.C Marx)  — 21 Mind Traps : The Ultimate Guide to your most common Thinking errors
+- 6,301,696 views · 1442s · Veritasium — Why People Are So Confident When They're Wrong
+- 3,273,205 views · 642s · CrashCourse — Cognition - How Your Mind Can Amaze and Betray You: Crash Course Psychology #15
+- 2,851,217 views · 608s · Practical Psychology — 12 Cognitive Biases Explained - How to Think Better and More Logically Removing Bias
+- 2,449,089 views · 279s · TED-Ed — The psychology behind irrational decisions - Sara Garofalo
 
-**lifestyle inflation** — recurring words: lifestyle, inflation, avoid, creep, trap, silent, wealth, rich, poor, budget
-- 713,704 views · 590s · CNBC — Why Americans Can’t Keep Their Paychecks
-- 473,025 views · 438s · Caleb Hammer — Why The Middle Class Stays Poor
-- 138,766 views · 1079s · Seve - Sunny Kind Journey — The Harsh Truth About Lifestyle Creep (what 90% never realize)
-- 67,545 views · 902s · According To Nicole — "Lifestyle Inflation" Isn't A Real Thing.
-- 55,755 views · 2153s · Your Rich BFF — How Social Media Fuels Lifestyle Inflation (And What It’s Costing You) | Networth & Chill
+**mysteries** — recurring words: mysteries, unsolved, mystery, strangest, explained, history, solved, can, top, hidden
+- 8,102,235 views · 2858s · HISTORY — Greatest Unsolved Mysteries Ever | Mysteries Unearthed with Danny Trejo
+- 2,822,954 views · 1692s · Chilling Scares — Obscure Internet Mysteries
+- 2,017,494 views · 1829s · Lazy Masquerade — The Claudia Lawrence Mystery is a Rabbit Hole...
+- 850,622 views · 8468s · NORTH 02 — The Ancient Mysteries Iceberg Explained
+- 707,494 views · 2123s · Brew — Investigating The Strangest "Solved" Mystery
+
+**science** — recurring words: science, universe, works, channel, our, universe's, space, biggest, more, hours
+- 2,863,336 views · 592s · Amoeba Sisters — Nature of Science
+- 2,649,190 views · 2395s · BBC Earth Science — Five Wonders of our Universe | Universe | BBC Earth Science
+- 1,909,861 views · 13615s · Spark — 4 More Hours Of Amazing Space & Science Facts To Fall Asleep To
+- 954,379 views · 3845s · Science Channel — Experience the Universe's VIOLENT Extremes | How the Universe Works | Science Channel
+- 791,990 views · 3165s · Science Channel — The Universe's Great IMPOSSIBILITIES! | How the Universe Works | Science Channel
+
+**why people go broke** — recurring words: broke, people, going, rich, still, their, minutes, get, let's, watch
+- 2,808,030 views · 1593s · Zac Rios — Let's Watch 26 Minutes of People Living Above Their Means & Going BROKE
+- 1,300,816 views · 607s · 60+ Life with Bodean — I Retired Broke… And This Is What It Feels Like
+- 667,239 views · 1354s · Zac Rios — 22 Minutes of Celebrities & Influencers Going BROKE in 2026
+- 582,047 views · 1464s · Zac Rios — 25 Minutes of Celebrities & Influencers Going BROKE in 2026
+- 561,300 views · 1044s · YT Wake Em Up — The Music Industry Is Falling... Artists Going Broke  Cancelling Their Tours (HERE'S WHY)
+
+**money mistakes** — recurring words: money, mistakes, people, financial, minutes, making, decisions, avoid, worst, these
+- 2,179,013 views · 2604s · The Ramsey Show Highlights — These Callers Share Their Worst Mistakes With Money | Ep. 4 | The Best of The Ramsey Show
+- 1,400,420 views · 1676s · Zac Rios — 27 Minutes of People Making Bad Financial Decisions in 2025
+- 1,105,674 views · 529s · Alex Hormozi — 14 Money Mistakes to AVOID in Your 20's
+- 1,097,205 views · 913s · EverythingProfessor — Every Financial Trap Middle Class People Fall Into Explained
+- 958,429 views · 1688s · Zac Rios — 30 Minutes of The Most Embarrassing Financial Decisions of 2025
+
+**debt trap explained** — recurring words: debt, trap, explained, credit, every, people, traps, poor, hidden, loan'
+- 6,075,845 views · 741s · Grant Rudow — The 'Buy Now Pay Later' Trap, Explained
+- 3,621,850 views · 1155s · Bloomberg Originals — The Myth of the Chinese Debt Trap in Africa
+- 2,718,193 views · 1023s · Explains 101 — Why Every Country Is in Debt? And Who Do They Owe?
+- 1,237,178 views · 795s · Grant Rudow — The 'Car Loan' Trap, Explained
+- 1,097,208 views · 913s · EverythingProfessor — Every Financial Trap Middle Class People Fall Into Explained
+
+**decision making psychology** — recurring words: making, decision, decisions, psychology, make, michael, platt, heuristics, biases, better
+- 2,449,089 views · 279s · TED-Ed — The psychology behind irrational decisions - Sara Garofalo
+- 2,293,275 views · 316s · TED-Ed — How to make smart decisions more easily
+- 1,015,225 views · 2971s · Mel Robbins — Trust Your Gut: How to Make a Hard Decision
+- 932,037 views · 1798s · Patrick Teahan  — Do You Have Problems Making Decisions? - Childhood Trauma
+- 760,598 views · 229s · Learn Liberty — Heuristics and biases in decision making, explained
+
+**detective story animated** — recurring words: stories, animated, detective, true, story, crime, horror, mystery, teenagers, englishfairytales
+- 11,712,371 views · 753s · MSA — Why I'm Afraid Of Heights
+- 6,464,482 views · 784s · English Fairy Tales — The Mind Reader Story | Stories for Teenagers |@EnglishFairyTales
+- 5,946,610 views · 820s · English Fairy Tales — Detective Ace | Stories for Teenagers | @EnglishFairyTales
+- 4,718,691 views · 1013s · Super Simple TV - Kids Shows & Cartoons — Mr. Monkey, Monkey Detective: The Case of the Missing Things
+- 2,029,743 views · 998s · Story Time Animated — I Can Solve Any Crime
+
+**sunk cost fallacy** — recurring words: sunk, cost, fallacy, explained, decisions, quit, time, fox, stevenson, saul
+- 1,269,178 views · 348s · Real Time with Bill Maher — Real Time with Bill Maher: New Rule – The Sunk Cost Fallacy (HBO)
+- 576,407 views · 170s · Big Think — Julia Galef: The Sunk Costs Fallacy | Big Think
+- 175,159 views · 551s · Better Than Yesterday — Know When To Quit - The Sunk Cost Fallacy
+- 155,642 views · 271s · Intermittent Diversion — The Sunk Cost Fallacy: What is it and why does it happen?
+- 137,714 views · 380s · Fox Stevenson — Fox Stevenson - Sunk Cost Fallacy (Official Audio)
+
+**lifestyle inflation** — recurring words: lifestyle, inflation, trap, broke, silent, wealth, rich, avoid, creep, poor
+- 713,743 views · 590s · CNBC — Why Americans Can’t Keep Their Paychecks
+- 473,031 views · 438s · Caleb Hammer — Why The Middle Class Stays Poor
+- 138,912 views · 1079s · Seve - Sunny Kind Journey — The Harsh Truth About Lifestyle Creep (what 90% never realize)
+- 83,877 views · 563s · Chris Invests — Lifestyle Inflation Will Keep You Broke (No Matter How Much You Earn)
+- 67,569 views · 902s · According To Nicole — "Lifestyle Inflation" Isn't A Real Thing.
 
 ## How to read this
 - `opp` mixes demand (median views) with how many different channels share the results; high views held by
@@ -226,7 +290,7 @@ language: en
 - Numbers come from YouTube search results on the day, not from an ads API: treat them as a direction, not a forecast.
 ## Words the winning titles keep using (candidate keywords per topic)
 
-- **money**: financial, income, change
-- **psychology**: science, biases, crash, decisions, better, thinking, course, brain, official, lyrics
-- **mystery**: mysteries, cannot, episodes
+- **money**: financial, change, avoid, income
+- **psychology**: crash, brain, science, better, official, biases, course, thinking, decisions, lyrics, music, think, change
+- **mystery**: mysteries, season, episodes
 

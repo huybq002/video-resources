@@ -2,7 +2,8 @@
   "money": [
     "financial",
     "income",
-    "change"
+    "change",
+    "avoid"
   ],
   "psychology": [
     "biases",
@@ -14,11 +15,15 @@
     "thinking",
     "brain",
     "official",
-    "lyrics"
+    "lyrics",
+    "music",
+    "think",
+    "change"
   ],
   "mystery": [
     "mysteries",
     "cannot",
-    "episodes"
+    "episodes",
+    "season"
   ]
 }

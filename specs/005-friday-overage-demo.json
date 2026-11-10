@@ -1,0 +1,110 @@
+{
+ "id": "005-friday-overage-demo",
+ "title": "The Friday Overage (demo)",
+ "lang": "en",
+ "aspect": "16:9",
+ "duration_s": 40,
+ "idea": "Demo of: an invented bakery till is over by the same sum every Friday and the owner does not want it counted (fiction)",
+ "narrator": "narrator",
+ "narrator_name": "Narrator",
+ "narrator_gender": "male",
+ "format": "character",
+ "spine": {
+  "want": "Iris wants the till to balance so she can close the shop and go home",
+  "obstacle": "the owner insists the extra money is nothing and tells her to stop counting",
+  "turn": "she sees that the same customer pays in every Friday and the owner never charges him",
+  "choice": "she keeps counting and writes down the next Friday",
+  "opening_image": "Iris alone at the bakery counter with the till drawer open",
+  "ending_image": "the same till drawer, closed, and her notebook open beside it",
+  "motif": "notebook"
+ },
+ "cast": [
+  {"id": "narrator", "name": "Narrator", "narrator": true, "gender": "male"},
+  {"id": "iris", "name": "Iris", "gender": "female", "style": "stick", "top": "shirt", "top_color": "#c2307a", "top2": "#f3e6ee", "bottom": "skirt", "bottom_color": "#2d2d44", "sock": "#2f3646", "shoes": "sneakers", "shoe_color": "#2a2230", "hair_style": "bun", "hair": "#2b1a14", "look": "young woman in a magenta shirt and dark skirt, hair in a bun"},
+  {"id": "pell", "name": "Mr. Pell", "gender": "male", "style": "stick", "top": "shirt", "top_color": "#6d7a6a", "bottom": "none", "sock": "#2f3646", "shoes": "sneakers", "shoe_color": "#3a2f2a", "hair_style": "short", "hair": "#8a8a8a", "look": "heavy-set older man in a grey-green shirt, grey hair"}
+ ],
+ "settings": {
+  "bakery": {
+   "set": {"type": "room", "style": "shop", "time": "night"},
+   "objects": [{"t": "furn", "n": "shop_counter", "x": 0.2, "z": 0.9}]
+  },
+  "street": {"set": {"type": "street", "time": "night"}},
+  "backroom": {
+   "set": {"type": "room", "style": "kitchen", "time": "night", "window": "left"},
+   "objects": [{"t": "furn", "n": "kitchen_counter", "x": -2.0, "z": 0.8}]
+  }
+ },
+ "scenes": [
+  {
+   "id": 1,
+   "title": "Forty-seven",
+   "goal": "Iris wants the till to balance",
+   "turn": "the same extra sum has now come seven Fridays in a row",
+   "value": "-",
+   "target_s": 16,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": ["bakery"],
+      "mood": "tense",
+      "seed": 11,
+      "extras": "none",
+      "actors": [{"k": "iris", "x": 1300}],
+      "cues": [
+       {"t": "Every Friday, the till came out forty-seven dollars over.", "at": "bakery", "on": ["iris"], "shot": "wide", "do": ["walkTo@shop_counter"], "emote": "doubt", "props": ["cash", "calendar"],
+        "hud": [{"type": "chip", "text": "FRIDAY", "pos": "tl"}, {"type": "counter", "from": 0, "to": 47, "label": "dollars over", "pos": "tr", "t": 0.6, "dur": 2.4}]},
+       {"t": "Iris counted it twice. Money does not appear by accident.", "shot": "medium", "on": ["iris"], "emote": "worry", "do": "think"},
+       {"t": "So she wrote the number in a small notebook.", "shot": "insert", "props": ["book"], "on": ["iris"]},
+       {"t": "Seven weeks. Seven Fridays. The same forty-seven.", "shot": "medium", "on": ["iris"], "emote": "surprise", "props": ["calendar"],
+        "hud": {"type": "chip", "text": "WEEK 7", "pos": "tl"}},
+       {"t": "Somebody was paying in. Who pays a bakery extra?", "shot": "close", "on": ["iris"], "emote": "doubt",
+        "hud": {"type": "title", "text": "THE FRIDAY OVERAGE", "pos": "cc", "t": 1.0, "dur": 1.8}}
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "title": "Close the till",
+   "goal": "Iris wants an answer from the owner",
+   "turn": "he orders her to stop counting, which tells her the money matters",
+   "value": "+",
+   "target_s": 24,
+   "shots": [
+    {
+     "sequence": {
+      "type": "dialogue",
+      "setting": "backroom",
+      "mood": "tense",
+      "seed": 12,
+      "a": {"k": "pell", "x": 1500},
+      "b": {"k": "iris", "x": 760},
+      "lines": [
+       {"who": "iris", "t": "Mr. Pell, the till is over again. Forty-seven, like always.", "do": "offer", "emote": "worry", "hud": {"type": "chip", "text": "+47 EVERY FRIDAY", "pos": "tl"}},
+       {"who": "pell", "t": "Well, you counted wrong. Close up and go home, Iris.", "emote": "anger", "do": "shrug"},
+       {"who": "iris", "t": "Seven Fridays in a row. Same sum. To the cent.", "emote": "doubt", "props": ["book"]},
+       {"who": "pell", "t": "Well, good customers round up. Leave it alone, Iris.", "emote": "joy", "do": "wave"},
+       {"who": "iris", "t": "Which one? Who?", "emote": "surprise", "do": "think"},
+       {"who": "pell", "t": "Go home. And don't count the Friday till again.", "emote": "anger", "do": "point", "props": ["calendar"]}
+      ]
+     }
+    },
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": ["street"],
+      "mood": "tense",
+      "seed": 13,
+      "extras": "none",
+      "actors": [{"k": "iris", "x": 1300}],
+      "cues": [
+       {"t": "Why would an owner refuse to count money that somebody handed him for free?", "at": "street", "do": ["walk"], "on": ["iris"], "shot": "medium", "emote": "doubt", "props": ["book"]}
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}
