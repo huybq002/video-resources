@@ -98,3 +98,14 @@ The tool enforces these by itself; a spec does not have to ask for them.
   line an extreme close-up on the eyes (ECU); a master/two-shot held for a whole line cuts in to the speaker's face.
 - A held pose (lying, seated) is already there on the first frame of every shot (no one-frame flash of standing).
 - The moment a power fires: white flash + action lines + rings rippling from the person (`"trans": "power"`).
+
+## StickByte shorts (frame study 2026-11-10: "Teacher's Reaction", "Payday vs Reality", "Ancient Boats", "Hard Work")
+- One frame = one feeling. Each shot holds ONE clear pose and face for 3-5 s, the cut lands on the change of feeling.
+- The face carries the story: reaction close-ups fill 60-70 % of the frame, eyes huge, tears and sweat drops
+  exaggerated, teeth gritted. (Our `react` beat: jolt + overshoot, big pupils, sweat/tears, arms up.)
+- The spoken line sits small at the top, and the ONE word that matters pops big, hand-lettered, tilted, in colour
+  ("TERRIBLE", "SWIM", "TRUNK", "PAYDAY!"). (`key` per line, automatic on shouted lines and CAPITALS.)
+- Labels over heads name the roles (EMPLOYEE / MANAGER / OWNER) - our `tag`.
+- Props are symbols, oversized: a money bag, a block stamped RENT hitting the person, a bulb for an idea.
+- Motion is sparse but snappy: anticipation, a fast move, overshoot, hold. Nothing drifts slowly. Backgrounds muted
+  so the ink figure reads first.

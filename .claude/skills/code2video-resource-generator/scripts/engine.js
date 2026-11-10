@@ -38,6 +38,8 @@
   const viseme = (c, t, sh, op) => { const m = { a: "open", e: "e", o: "o", m: "closed", smile: "smile" }[sh] || "closed";
     eachView(c, () => { for (const n of ["closed", "smile", "open", "e", "o", "smirk", "sad"]) tl.set(part(c, "mouth-" + n), n === m ? { opacity: 1, scaleY: m === "open" || m === "e" || m === "o" ? op : 1 } : { opacity: 0 }, t); }); };
   const browsLR = (c, t, l, r) => { tl.to(part(c, "brow-l"), { rotation: l, y: Math.min(0, l) * 0.6, duration: 0.25, ease: "power2.out" }, t); tl.to(part(c, "brow-r"), { rotation: -r, y: Math.min(0, r) * 0.6, duration: 0.25, ease: "power2.out" }, t); };
+  // raised brows (surprise / fear): both go UP, flat - rotating them inward read as anger on the 3/4 face
+  const browsUp = (c, t, px) => { tl.to([part(c, "brow-l"), part(c, "brow-r")], { rotation: 0, y: -(px || 10), duration: 0.18, ease: "back.out(2)" }, t); };
   const lids = (c, t, a) => { for (const s of ["l", "r"]) tl.to(part(c, "lidp-" + s), { scaleY: a, duration: 0.3, ease: "power2.out" }, t); };
   const tears = (c, t, dur) => { tl.set(part(c, "tears"), { opacity: 1 }, t);
     tl.fromTo([part(c, "tear-l"), part(c, "tear-r")], { y: 0, opacity: 1 }, { y: 36, opacity: 0, duration: 0.9, ease: "power1.in", repeat: Math.max(0, Math.floor(dur / 0.9) - 1) }, t); tl.set(part(c, "tears"), { opacity: 0 }, t + dur); };
@@ -80,7 +82,12 @@
       tl.to(part(c, "torso"), { scaleY: 1.025, duration: per / 2, yoyo: true, repeat: 2 * n - 1, ease: "sine.inOut" }, t);
       tl.to(part(c, "life"), { y: -3, duration: per / 2, yoyo: true, repeat: 2 * n - 1, ease: "sine.inOut" }, t);
       tl.to(part(c, "life"), { x: 3, rotation: 0.5, duration: per2, yoyo: true, repeat: 2 * n2 - 1, ease: "sine.inOut" }, t);
-      tl.to(part(c, "headsway"), { rotation: 1.8, duration: per3, yoyo: true, repeat: 2 * n3 - 1, ease: "sine.inOut" }, t + 0.4); },
+      tl.to(part(c, "headsway"), { rotation: 1.8, duration: per3, yoyo: true, repeat: 2 * n3 - 1, ease: "sine.inOut" }, t + 0.4);
+      if (!c.hold) { const ph = rnd() * 0.6;   // arms: a slow swing from the shoulder, elbows lagging (never dead still)
+        tl.to(part(c, "arm-l"), { rotation: "+=2.6", duration: per2 * 0.5, yoyo: true, repeat: 2 * n2 - 1, ease: "sine.inOut" }, t + ph);
+        tl.to(part(c, "arm-r"), { rotation: "-=2.6", duration: per2 * 0.5, yoyo: true, repeat: 2 * n2 - 1, ease: "sine.inOut" }, t + ph + 0.15);
+        tl.to(part(c, "forearm-l"), { rotation: "+=2", duration: per2 * 0.5, yoyo: true, repeat: 2 * n2 - 1, ease: "sine.inOut" }, t + ph + 0.2);
+        tl.to(part(c, "forearm-r"), { rotation: "-=2", duration: per2 * 0.5, yoyo: true, repeat: 2 * n2 - 1, ease: "sine.inOut" }, t + ph + 0.35); } },
     bend(c, t) { body(c, t, 9, 0.6); head(c, t, 10, 0.6); arm(c, "r", t + 0.1, -30, 0.6); },
     nod(c, t) { head(c, t, 10, 0.22); head(c, t + 0.26, -2, 0.22); head(c, t + 0.52, 8, 0.22); head(c, t + 0.8, 0, 0.3); },
     shake(c, t) { for (let i = 0; i < 3; i++) head(c, t + i * 0.34, i % 2 ? 11 : -11, 0.17); head(c, t + 1.05, 0, 0.25); },
@@ -139,15 +146,35 @@
       const half = t + d * 0.5;
       for (const g of ["face", "head-shape", "ears", "glasses"]) { const ge = part(c, g); if (ge) tl.set(ge, { opacity: prof ? 0 : 1 }, half); }
       tl.set(part(c, "profile"), { opacity: prof ? 1 : 0, scaleX: yaw < 0 ? -1 : 1 }, half); },
+    // REACTION BEAT (StickByte study 2026-11-10): the feeling lands with a jolt, not a fade. Anticipation (a small
+    // pull the other way), snap with overshoot, pupils grow on fear/surprise, sweat flies, tears stream, then the
+    // face holds. Used on close-ups of a line that feels something; "emote" alone stays the calm version.
+    react(c, t, name) { const strong = ["fear", "surprise", "cry", "anger", "panic", "joy", "sad"].includes(name);
+      ACT.emote(c, t + 0.08, name === "panic" ? "fear" : name);
+      if (!strong) return;
+      const up = name === "joy" || name === "surprise" || name === "fear", k = up ? -1 : 1;
+      tl.to(part(c, "headsway"), { y: -k * 6, rotation: k * 2, duration: 0.08, ease: "power2.in" }, t);
+      tl.to(part(c, "headsway"), { y: k * 14, rotation: -k * 4, duration: 0.22, ease: "back.out(2.2)" }, t + 0.08);
+      tl.to(part(c, "headsway"), { y: 0, rotation: 0, duration: 0.5, ease: "power2.out" }, t + 0.34);
+      tl.to(part(c, "body"), { rotation: k * 3, duration: 0.18, ease: "back.out(1.8)" }, t + 0.08); tl.to(part(c, "body"), { rotation: 0, duration: 0.5, ease: "power2.out" }, t + 0.34);
+      if (name === "fear" || name === "surprise" || name === "panic") {
+        tl.fromTo([part(c, "pupil-l"), part(c, "pupil-r")], { scale: 1 }, { scale: 1.45, duration: 0.14, ease: "back.out(2)" }, t + 0.08);
+        tl.to([part(c, "pupil-l"), part(c, "pupil-r")], { scale: 1.15, duration: 0.6, ease: "power2.out" }, t + 0.9);
+        sweat(c, t + 0.15); sweat(c, t + 0.9);
+        arm(c, "l", t + 0.08, 38, 0.22, "back.out(1.8)"); arm(c, "r", t + 0.08, -38, 0.22, "back.out(1.8)"); fore(c, "l", t + 0.1, 70, 0.22); fore(c, "r", t + 0.1, -70, 0.22);
+        arm(c, "l", t + 1.4, 0, 0.5); arm(c, "r", t + 1.4, 0, 0.5); fore(c, "l", t + 1.4, 0, 0.5); fore(c, "r", t + 1.4, 0, 0.5); }
+      if (name === "cry" || name === "sad") { tears(c, t + 0.25, 3.2); if (name === "cry") { tl.to([part(c, "pupil-l"), part(c, "pupil-r")], { scale: 1.3, duration: 0.3 }, t + 0.1); for (let i = 0; i < 5; i++) tl.to(part(c, "body"), { rotation: i % 2 ? 2 : -2, duration: 0.11, ease: "sine.inOut" }, t + 0.5 + i * 0.22); } }
+      if (name === "anger") { for (let i = 0; i < 4; i++) tl.to(part(c, "headsway"), { x: i % 2 ? 3 : -3, duration: 0.05, ease: "none" }, t + 0.1 + i * 0.05); tl.to(part(c, "headsway"), { x: 0, duration: 0.05 }, t + 0.3); }
+      if (name === "joy") { tl.to(part(c, "life"), { y: -10, duration: 0.16, yoyo: true, repeat: 3, ease: "power1.out" }, t + 0.1); } },
     emote(c, t, name) { const E = {
       joy: () => { eyes(c, t, "happy"); mouth(c, t, "smile"); browsLR(c, t, -6, -6); head(c, t, -4, 0.3); lids(c, t, 0); },
       sad: () => { eyes(c, t, "normal"); mouth(c, t, "sad"); browsLR(c, t, 14, 14); lids(c, t, 0.3); head(c, t, 10, 0.6); },
       cry: () => { E.sad(); tears(c, t + 0.3, 3); },
-      fear: () => { eyes(c, t, "normal"); mouth(c, t, "o"); browsLR(c, t, -16, -16); lids(c, t, 0); sweat(c, t + 0.2); head(c, t, -5, 0.2); body(c, t, -4, 0.3); },
+      fear: () => { eyes(c, t, "normal"); mouth(c, t, "o"); browsUp(c, t, 12); lids(c, t, 0); sweat(c, t + 0.2); head(c, t, -5, 0.2); body(c, t, -4, 0.3); },
       anger: () => { eyes(c, t, "angry"); mouth(c, t, "closed"); browsLR(c, t, -13, -13); head(c, t, 4, 0.3); },
       doubt: () => { eyes(c, t, "normal"); mouth(c, t, "smirk"); browsLR(c, t, -14, 7); lids(c, t, 0.25); head(c, t, 7, 0.4); },
       smirk: () => { eyes(c, t, "normal"); mouth(c, t, "smirk"); browsLR(c, t, -8, 2); lids(c, t, 0.1); head(c, t, 3, 0.4); },
-      surprise: () => { eyes(c, t, "normal"); mouth(c, t, "o"); browsLR(c, t, -16, -16); lids(c, t, 0); },
+      surprise: () => { eyes(c, t, "normal"); mouth(c, t, "o"); browsUp(c, t, 12); lids(c, t, 0); },
       sleepy: () => { eyes(c, t, "normal"); mouth(c, t, "closed"); browsLR(c, t, 6, 6); lids(c, t, 0.65); head(c, t, 6, 0.8); },
       neutral: () => { eyes(c, t, "normal"); mouth(c, t, "closed"); browsLR(c, t, 0, 0); lids(c, t, 0); head(c, t, 0, 0.3); } };
       (E[name] || E.neutral)(); },
@@ -256,10 +283,13 @@
     else { tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.inOut" }, t0); if (prevEl) tl.set(prevEl, { opacity: 0 }, t0 + 0.42); }
     // camera (layered parallax when the setting was rendered with depth layers)
     const K = [sh.cam[0], sh.cam[1], sh.cam[2], sh.cam[3], sh.cam[4], sh.cam[5]];
-    if (sh.layers) { for (const L of sh.layers) { const e = $(L.dom); gsap.set(e, { transformOrigin: "50% 62%" });
-        tl.fromTo(e, { scale: 1 + (K[0] - 1) * L.k, x: K[1] * L.k, y: K[2] * L.k }, { scale: 1 + (K[3] - 1) * L.k, x: K[4] * L.k, y: K[5] * L.k, duration: dur + 0.4, ease: "none" }, t0); } }
-    else { for (const ce of (sh.panes ? sh.panes.map($) : [cam])) { gsap.set(ce, { transformOrigin: "50% 62%" });
-        tl.fromTo(ce, { scale: K[0], x: K[1], y: K[2] }, { scale: K[3], x: K[4], y: K[5], duration: dur + 0.4, ease: "none" }, t0); } }
+    const settle = !sh.first && (tr === "cut" || tr === "flash") && dur > 0.9 ? 0.3 : 0, S0 = 1.03;
+    const move = (e, k) => { const a = { scale: 1 + (K[0] - 1) * k, x: K[1] * k, y: K[2] * k }, b = { scale: 1 + (K[3] - 1) * k, x: K[4] * k, y: K[5] * k };
+      if (settle) { tl.fromTo(e, { scale: a.scale * S0, x: a.x, y: a.y }, { scale: a.scale, x: a.x, y: a.y, duration: settle, ease: "power2.out" }, t0);
+        tl.to(e, { scale: b.scale, x: b.x, y: b.y, duration: dur + 0.4 - settle, ease: "none" }, t0 + settle); }
+      else tl.fromTo(e, a, { ...b, duration: dur + 0.4, ease: "none" }, t0); };
+    if (sh.layers) { for (const L of sh.layers) { const e = $(L.dom); gsap.set(e, { transformOrigin: "50% 62%" }); move(e, L.k); } }
+    else { for (const ce of (sh.panes ? sh.panes.map($) : [cam])) { gsap.set(ce, { transformOrigin: "50% 62%" }); move(ce, 1); } }
     if (sh.sway) { const sw = $(sh.dom + "-sway"), per = 1.7, n = Math.max(1, Math.floor((dur + 0.4) / per));
       tl.fromTo(sw, { x: -5, y: -3, rotation: -0.25 }, { x: 5, y: 3, rotation: 0.25, duration: per, yoyo: true, repeat: 2 * n - 1, ease: "sine.inOut" }, t0); }
     // crowd (simple silhouettes, seeded, finite bobbing)
@@ -274,6 +304,11 @@
         tl.fromTo(e, { opacity: 0, y: 16, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(1.5)" }, T);
         tl.to(pr, { v: o.to, duration: Math.max(0.4, o.dur - 0.9), ease: "power2.out", onUpdate: () => { num.textContent = fmt(pr.v); } }, T + 0.25);
         tl.to(e, { opacity: 0, duration: 0.25 }, end - 0.25); }
+      else if (o.type === "word") { const rt = (o.rot != null ? o.rot : -6);
+        tl.fromTo(e, { opacity: 0, scale: 0.3, rotation: rt - 14, y: 30 }, { opacity: 1, scale: 1.08, rotation: rt, y: 0, duration: 0.26, ease: "back.out(2.4)" }, T);
+        tl.to(e, { scale: 1, duration: 0.14, ease: "power2.out" }, T + 0.26);
+        const nb = Math.max(1, Math.floor((o.dur - 0.7) / 0.16)); tl.to(e, { rotation: rt + 1.5, duration: 0.16, yoyo: true, repeat: 2 * nb - 1, ease: "steps(1)" }, T + 0.4);
+        tl.to(e, { opacity: 0, scale: 1.15, duration: 0.14, ease: "power2.in" }, end - 0.14); }
       else if (o.type === "burst") { tl.fromTo(e, { opacity: 0, scale: 0.2, rotation: -14 }, { opacity: 1, scale: 1.12, rotation: -5, duration: 0.22, ease: "power3.out" }, T); tl.to(e, { scale: 1, duration: 0.15 }, T + 0.22); tl.to(e, { opacity: 0, scale: 0.9, duration: 0.18 }, end - 0.18); }
       else if (o.type === "graph") { tl.fromTo(e, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" }, T);
         const pl = e.querySelector("polyline"); if (pl && pl.getTotalLength) { const L = pl.getTotalLength(); gsap.set(pl, { strokeDasharray: L, strokeDashoffset: L }); tl.to(pl, { strokeDashoffset: 0, duration: Math.max(0.6, o.dur * 0.5), ease: "power2.out" }, T + 0.3); }

@@ -464,6 +464,9 @@ def main():
                 if ty == "chip": inner = html.escape(o["text"])
                 elif ty == "counter": inner = f"<div class='num' id='{oid}-n'></div><div class='lbl'>{html.escape(o.get('label', ''))}</div>"
                 elif ty == "burst": inner = html.escape(o["text"])
+                elif ty == "word":   # the spoken keyword, big and hand-lettered, slammed over the picture (reference shorts)
+                    col_ = o.get("color") or ["#e8402f", "#ffd23a", "#3fc46e", "#4fb3ff", "#ff7a3d"][oi % 5]
+                    inner = f"<span style='color:{col_}'>{html.escape(str(o['text']).upper())}</span>"
                 elif ty in ("bubble", "title"): inner = "".join(f"<span class='ch'>{html.escape(ch)}</span>" for ch in o["text"])
                 elif ty == "chain":   # EYES -> BRAIN -> MUSCLES: a cause chain spelled out word by word
                     its = [html.escape(str(x)) for x in o.get("items", [])]
@@ -657,6 +660,8 @@ def main():
     {sel} .ov.counter {{ padding:12px 34px 14px; border-radius:18px; background:rgba(8,10,24,.74); border:1.5px solid rgba(232,184,74,.55); text-align:center; }}
     {sel} .ov.counter .num {{ font-size:78px; font-weight:700; color:#f0c75a; text-shadow:0 0 22px rgba(240,199,90,.55); font-variant-numeric:tabular-nums; line-height:1.05; }}
     {sel} .ov.counter .lbl {{ font-size:22px; letter-spacing:.14em; text-transform:uppercase; color:#d9d2c0; }}
+    {sel} .ov.word {{ font-weight:900; font-size:{int(W * (0.105 if W > H else 0.14))}px; line-height:1; letter-spacing:.02em; font-style:italic;
+      -webkit-text-stroke:{max(3, int(W * 0.004))}px #15121b; paint-order:stroke fill; text-shadow:{int(W*0.004)}px {int(W*0.004)}px 0 #15121b, 0 0 {int(W*0.012)}px rgba(0,0,0,.45); white-space:nowrap; }}
     {sel} .ov.burst {{ width:340px; height:300px; display:grid; place-items:center; text-align:center; background:#ffd23a; clip-path:polygon(100.0% 50.0%,82.3% 60.5%,90.5% 79.4%,70.0% 77.5%,65.5% 97.6%,50.0% 84.0%,34.5% 97.6%,30.0% 77.5%,9.5% 79.4%,17.7% 60.5%,0.0% 50.0%,17.7% 39.5%,9.5% 20.6%,30.0% 22.5%,34.5% 2.4%,50.0% 16.0%,65.5% 2.4%,70.0% 22.5%,90.5% 20.6%,82.3% 39.5%); color:#c2262e; font-size:52px; font-weight:700; line-height:1; padding:40px; box-sizing:border-box; }}
     {sel} .ov.bubble {{ width:560px; padding:20px 28px; border-radius:26px; background:#fff; color:#241726; font-size:34px; line-height:1.25; font-weight:700; box-sizing:border-box; box-shadow:0 6px 0 rgba(0,0,0,.25); }}
     {sel} .ov.chain {{ font-size:{64 if H > W else 72}px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#f6f0e4; text-shadow:0 4px 18px rgba(0,0,0,.55); text-align:center; }}
