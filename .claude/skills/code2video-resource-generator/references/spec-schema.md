@@ -86,6 +86,12 @@ Acts for faces: `["t","turn", yaw, secs]` (0 front, ±0.5 three-quarter, ±1 ful
   //   "drink" -> a cup in the hand (seated at the table in a cafe/kitchen)     "phone" -> a phone in the hand, at the ear
   //   held items are drawn inside the rig's hand, so they rise with the arm. Seated extras drinking hold cups too.
   //   Name the object yourself ("props") only when it is something else (a tablet, a book).
+  // KEYWORD POP + REACTION BEAT (StickByte study, 2026-11-10):
+  //   "key": "TERRIBLE"      the one word of the line, slammed big and hand-lettered over the picture (also automatic:
+  //                          a CAPITALISED word in the line, or the last word of a line that ends with "!")
+  //   "emote": fear|surprise|cry|anger|panic|joy|sad  on a close-up lands as a reaction beat: head jolt with overshoot,
+  //                          pupils grow, sweat flies / tears stream, arms fly up; milder emotes only change the face.
+  //   Every cut settles (3 % ease-in over 0.3 s); idle arms swing slowly; "trans": "power" for the big moment.
   // FILM DEVICES per line (from "One Second Felt Like Forever"):
   //   "look": "flashback" | "night" | "tense" | "dream"   colour grade + haze for that line's shots (memories in warm sepia)
   //   "spot": true                                         a single cone of light on the person, darkness around

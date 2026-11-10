@@ -143,10 +143,10 @@ def dialogue(seq, rnd):
 
 MOOD_ACTS = {"warm": ["nod", "wave", "gesture", "happy"], "tense": ["look", "worry", "think", "shake"], "sad": ["sad", "look", "think", "shrug"], "funny": ["shrug", "happy", "reach", "surprise"]}
 
-BEAT_KEYS = ("at", "on", "shot", "focus", "do", "emote", "props", "crowd", "hud", "tag", "look", "spot", "angle", "plant", "payoff", "trans")
+BEAT_KEYS = ("at", "on", "shot", "focus", "do", "emote", "props", "crowd", "hud", "tag", "look", "spot", "angle", "plant", "payoff", "trans", "key")
 
 # actions the rig can play (scripts/engine.js ACT) and the words people actually write for them
-KNOWN_ACTS = {"use", "breathe", "bend", "nod", "shake", "think", "worry", "relief", "lean", "sad", "surprise", "wave", "stir",
+KNOWN_ACTS = {"react", "use", "breathe", "bend", "nod", "shake", "think", "worry", "relief", "lean", "sad", "surprise", "wave", "stir",
               "receive", "stamp", "point", "cheer", "laugh", "angry", "cry", "walk", "walkTo", "look", "reach", "shrug",
               "talk", "turn", "gesture", "happy", "heart", "glare", "normal", "offer",
               "sit", "stand", "run", "jump", "fall", "lie", "sleep", "pickup", "type", "text", "drink", "phone", "throw", "crouch", "panic"}
@@ -302,7 +302,22 @@ def _apply_beat(shots, cue, focus_key):
         elif arg: acts.append([t_at, name, float(arg)])
         else: acts.append([t_at, name])
         t_at += 1.1          # several actions on one line play one after another, not on top of each other
-    if cue.get("emote"): acts.append([0.15, "emote", cue["emote"]])
+    if cue.get("emote"):    # a strong feeling lands as a reaction beat (jolt, big pupils, sweat/tears), a mild one as a face change
+        acts.append([0.15, "react" if cue["emote"] in ("fear", "surprise", "cry", "anger", "panic", "joy", "sad") else "emote", cue["emote"]])
+    # KEYWORD POP (reference shorts): the one word that carries the line, slammed big over the picture.
+    # "key": "TERRIBLE" per line; automatic for a line that shouts (ends with "!", <= 12 words: its last word) or
+    # for a word the writer wrote in CAPITALS ("they found the TRUNK").
+    kw = cue.get("key")
+    if kw is None:
+        import re as _re
+        t_ = cue.get("t", "") if isinstance(cue, dict) else ""
+        caps = [w for w in _re.findall(r"\b[A-Z][A-Z'\-]{2,}\b", t_) if w not in ("AM", "PM", "USA", "TV", "OK")]
+        if caps: kw = caps[0]
+        elif t_.rstrip().endswith("!") and len(t_.split()) <= 12:
+            kw = _re.sub(r"[^\w'\-]", "", t_.split()[-1])
+            if len(kw) < 3: kw = None
+    if kw:
+        shots[0].setdefault("overlays", []).append({"type": "word", "text": str(kw), "pos": "tc", "t": 0.2, "dur": 2.4, "rot": -6 if len(str(kw)) % 2 else 5})
     fk = focus_key
     item = None
     names_ = {a_[1] for a_ in acts}
