@@ -15,8 +15,8 @@ script_prompt: ""      # optional: your own script, outline or tone
 renderer: tool         # tool (VieNeu voice + HyperFrames, best quality) | skill (edge-tts, fallback)
 series: ""             # optional: folder name under series/ (empty = stand-alone)
 episode: ""            # optional: episode number (series only)
-upload: false          # true = upload to YouTube after rendering (needs YT_* secrets)
-privacy: private       # private | unlisted | public
+upload: auto           # auto = follow channel.json youtube_upload.enabled | false = never upload this task
+privacy: private       # private | unlisted | public (public also needs youtube_upload.allow_public)
 ---
 
 # Title

@@ -110,6 +110,17 @@
     "ai_disclosure": "Voice and visuals in this video are AI-generated. Characters and events are fictional.",
     "require_ai_label": true
   },
+  "youtube_upload": {
+    "_readme": "Automatic upload by the night job (scripts/youtube_publish.py). Off until you set enabled to true AND add the secrets YT_CLIENT_ID, YT_CLIENT_SECRET, YT_REFRESH_TOKEN (README 'YouTube upload'). Never uploads on a demo night (look not approved). Videos go up private so you review them in YouTube Studio; schedule_utc 'HH:MM' makes them private-scheduled to go public at that UTC time instead. dry_run true = only print what would be uploaded.",
+    "enabled": false,
+    "dry_run": false,
+    "cuts": ["landscape", "portrait"],
+    "privacy": "private",
+    "allow_public": false,
+    "schedule_utc": "",
+    "vertical_over_3min": false,
+    "thumbnail": ""
+  },
   "reference_channels": [],
   "_discovered_note": "Keywords the job discovers are kept in data/discovered_keywords.json, not here, so your edits and the job's never conflict."
 }

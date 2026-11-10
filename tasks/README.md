@@ -41,7 +41,7 @@ spec in `specs/<id>.json`, then ONE command `ci/run_pipeline.py` (resources, voi
 - A vertical cut longer than 3 minutes is no longer a Short on YouTube; for reach, publish it as a normal vertical video or write a separate 45-60 s teaser task.
 - Before committing, the job runs `scripts/verify_bundle.py` twice: on the bundle (exact length, contiguous cues, <= 14 words per cue, scene count and length vs the spec, required files) and on the video (length, audio present and not silent, frame size). A failing check means the job fixes and re-renders instead of committing.
 - Render takes about 7 s of wall time per video second at 30 fps (a 9-minute video is about 70 minutes). Keep the total of all tasks inside the 300-minute cap; long videos should go in their own night.
-- YouTube upload only happens with `upload: true`, needs secrets `YT_CLIENT_ID`, `YT_CLIENT_SECRET`, `YT_REFRESH_TOKEN`, and is `private` by default.
+- YouTube upload is done by the job (`scripts/youtube_publish.py`, after the Claude step), not by Claude. It needs `channel.json` `youtube_upload.enabled: true`, the secrets `YT_CLIENT_ID`, `YT_CLIENT_SECRET`, `YT_REFRESH_TOKEN`, and an approved look (never on a demo night). Uploads are `private` by default; a task with `upload: false` is never uploaded, and the task's `privacy` overrides the channel default (`public` also needs `youtube_upload.allow_public`). See README "YouTube upload".
 - Series memory (`series/<name>/series-bible.json`) is committed to the `night` branch.
 
 - `renderer: tool` (default) uses `code2video-job` (VieNeu voice, Whisper alignment, HyperFrames) for the best voice and video quality; `renderer: skill` uses the skill's own edge-tts + render as a fallback.
