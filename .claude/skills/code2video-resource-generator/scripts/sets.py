@@ -30,6 +30,21 @@ TIMES = {
     "day": dict(sky=["#7fb6ef", "#e6f1fb"], sun="#fff6d8", glow="#fff1c8", wall="#b9ab95", wall2="#a3967f", floor="#8e6446",
                 ceil="#cfc6b6", amb=("#f4ecff", 0.75), key=("#fff1d0", 45), city="#9fb3c8", lit="#eef4ff", fog=(26, 80)),
 }
+STYLE_PAL = {   # day colours of the place itself; dusk/night mix them with the time palette so the light still reads
+    "bathroom": dict(wall="#dfeaf0", wall2="#c9d9e2", floor="#b9c4cc"), "laundry": dict(wall="#a9adb5", wall2="#959aa3", floor="#7d8088"),
+    "grocery": dict(wall="#e9ece6", wall2="#d5dad2", floor="#c9c6bc"), "meeting": dict(wall="#cfd5dc", wall2="#b9c1ca", floor="#6e6a74"),
+    "kitchen": dict(wall="#e6d6bf", wall2="#d3c2aa", floor="#9a7a5a"), "office": dict(wall="#c9c3b6", wall2="#b4ad9e", floor="#8e6446"),
+    "bedroom": dict(wall="#b8a6c9", wall2="#a493b6", floor="#8e6446"), "living": dict(wall="#d6b9a0", wall2="#c2a48b", floor="#7a5a40"),
+    "cafe": dict(wall="#a87a5a", wall2="#946a4c", floor="#5b4537"), "classroom": dict(wall="#d9d2b8", wall2="#c5bea3", floor="#9a7a5a"),
+    "lab": dict(wall="#d5dde0", wall2="#c0c9cd", floor="#8a9096"), "shop": dict(wall="#e3e0d6", wall2="#cfccc2", floor="#b0aca2"),
+}
+
+
+def _mix(a, b, t):
+    a = [int(a[i:i + 2], 16) for i in (1, 3, 5)]; b = [int(b[i:i + 2], 16) for i in (1, 3, 5)]
+    return "#" + "".join(f"{round(x + (y - x) * t):02x}" for x, y in zip(a, b))
+
+
 POSTER = ["#e35d4f", "#4f7be3", "#e3b341", "#3aa65a", "#9a5cd8", "#f08a5d", "#38b7c9"]
 
 
@@ -71,11 +86,82 @@ def _sky_and_sun(P, x, z, w, h, sun_x, sun_y, time):
     return out
 
 
+# small things on every surface and wall: what makes a set read as somebody's place, not a showroom
+# (frame study 2026-11-09, IfverseTales "Would You Sit at This Table?": poker chips and cards on the table, a pizza box,
+#  an evidence board with red strings, mugs, a lamp on the desk; every set carries objects of the story)
+TOPS = {"desk": .75, "table": .77, "kitchen_counter": .93, "bedside_table": .57, "folding_table": .91, "shop_counter": 1.06}
+DRESS = {
+    "desk": [("laptop_open", .45, -.05), ("mug", -.55, .15), ("papers", -.2, .2), ("desk_lamp", -.65, -.25), ("books_stack", .65, -.2), ("sticky_notes", .1, -.25)],
+    "table": [("mug", -.4, .1), ("fruit_bowl", .2, -.1), ("papers", .5, .2)],
+    "kitchen_counter": [("kettle", -.9, -.05), ("pot", .3, .1), ("fruit_bowl", 1.0, -.1), ("mug", -.4, .15)],
+    "bedside_table": [("alarm_clock", .1, .1), ("books_stack", -.1, -.05)],
+    "folding_table": [("clothes_pile", -.5, 0), ("clothes_pile", .4, .1)],
+    "shop_counter": [("papers", -.6, .1)],
+}
+STYLE_EXTRA = {"bedroom": ["clothes_pile", "shoes", "cardboard_box"], "living": ["shoes", "coat_rack"], "office": ["cardboard_box", "coat_rack"],
+               "kitchen": ["trash_bin"], "cafe": ["coat_rack"], "classroom": ["cardboard_box"], "lab": ["cardboard_box"]}
+
+
+def _dress(objs, style, time, rnd, hw, BZ, ww, wx):
+    out = []
+    for o in list(objs):
+        n = o.get("n")
+        if o.get("t") != "furn" or n not in DRESS or abs(float(o.get("ry", 0))) > 0.01:
+            continue
+        s_ = float(o.get("s", 1)); top = TOPS[n] * s_ + float(o.get("y", 0))
+        items = DRESS[n][:]
+        if n == "desk" and any(p.get("n") == "computer" and abs(p["x"] - o["x"]) < .1 and abs(p["z"] - o["z"]) < .1 for p in objs):
+            items = [i for i in items if i[0] != "laptop_open"]     # the desk already has a screen
+        rnd.shuffle(items)
+        for nm, dx, dz in items[:rnd.randint(min(2, len(items)), len(items))]:
+            out.append(_f(nm, o["x"] + dx * s_, o["z"] + dz * s_, y=round(top, 3)))
+    # walls: a door, a shelf, framed photos (the room has a way in and a history)
+    if style not in ("grocery", "shop", "meeting"):
+        free = [x for x in (-hw + 1.0, hw - 1.0) if not ww or abs(x - wx) > ww / 2 + 1.0]
+        if free:
+            out.append(_f("door_frame", free[0], BZ + 0.17, c=rnd.choice(["#8a5a3c", "#6e5a8a", "#e9e4d8"])))
+    if style in ("bedroom", "living", "kitchen", "office", "cafe"):
+        x = rnd.choice([-hw + 2.4, hw - 2.4])
+        if not ww or abs(x - wx) > ww / 2 + 0.9:
+            out.append(_f("wall_shelf", x, BZ + 0.18))
+    for nm in STYLE_EXTRA.get(style, []):
+        if rnd.random() < 0.8:
+            out.append(_f(nm, rnd.choice([-1, 1]) * rnd.uniform(hw - 2.2, hw - 1.0), BZ + rnd.uniform(1.2, 2.4)))
+    return out
+
+
+VOID_TINT = {"mind": "#7a6ad8", "dream": "#c78ad8", "memory": "#e3b07a", "void": "#9fb3c8"}
+
+
+def _void(cfg, P, rnd):
+    """an abstract place (inside a mind, a dream, a memory, nowhere): the black-box stage the reference channels use.
+    Dark endless floor, no walls, one pool of light where the people stand, slow dust in the beam. The objects the lines
+    name stand in the light (layout.py puts them on the same room grid, so anchors and poses work as in any room)."""
+    BZ = -6.0; tint = VOID_TINT.get(cfg.get("mood", "mind"), VOID_TINT["mind"]); o = []
+    o.append(_box(0, -0.1, -10, 80, 0.1, 60, "#16131d", ink=0))
+    for r, op in ((4.6, 0.10), (3.4, 0.16), (2.3, 0.26), (1.4, 0.32)):           # the pool of light, soft edge
+        o.append(_glow(0, 0.004 + r * 0.0001, 0.8, r * 2.2, r * 1.6, tint, rx=-math.pi / 2, op=op))
+    for k in range(5):                                                             # the beam: faint vertical sheets
+        o.append(_glow(-1.2 + 0.6 * k, 3.0, 0.4 - 0.15 * k, 0.9, 6.0, tint, op=0.035))
+    for _ in range(40):                                                            # dust in the beam
+        o.append(_glow(rnd.uniform(-3, 3), rnd.uniform(0.3, 4.5), rnd.uniform(-1.5, 2.5), 0.035, 0.035, "#ffffff", op=rnd.uniform(0.3, 0.8)))
+    for _ in range(26):                                                            # far points, so the dark has depth
+        o.append(_glow(rnd.uniform(-14, 14), rnd.uniform(0.5, 7), rnd.uniform(-20, -9), 0.06, 0.06, tint, op=rnd.uniform(0.2, 0.6)))
+    o.append(dict(t="light", x=0, y=5.5, z=1.0, c=tint, I=60, dist=11))
+    o.append(dict(t="light", x=0, y=2.0, z=6.0, c="#ffffff", I=6, dist=12))
+    base = dict(bg="#0d0b12", fog={"near": 10, "far": 28, "c": "#0d0b12"}, exposure=1.15, ambient={"c": "#b9b0e0", "i": 0.35},
+                sun={"c": tint, "i": 0.15, "pos": [0, 8, 2]}, camera={"pos": [0, 2.0, 8.4], "look": [0, 1.65, -3], "fov": 46}, layers=None)
+    return base, o
+
+
 def room(cfg, P, rnd):
     style = cfg.get("style", "bedroom"); time = cfg.get("time", "dusk")
+    if style == "void":
+        return _void(cfg, P, rnd)
     W = float(cfg.get("w", 14)); hw = W / 2; BZ = -6.0; CH = 4.0; FRONT = 9.5
     win = cfg.get("window", {"bedroom": "left", "office": "center", "lab": "center", "kitchen": "right", "living": "left",
-                             "classroom": "left", "cafe": "center", "shop": "none"}.get(style, "left"))
+                             "classroom": "left", "cafe": "center", "shop": "none", "laundry": "none", "meeting": "left", "bathroom": "none",
+                             "grocery": "none"}.get(style, "left"))
     wx = {"left": -2.8, "right": 2.8, "center": 0.0}.get(win, 0.0)
     ww = {"center": 6.0}.get(win, 4.2) if win != "none" else 0
     sill, top = 0.95, 3.2
@@ -133,6 +219,7 @@ def room(cfg, P, rnd):
     # what makes the room this room
     kx = float((cfg.get("key") or {}).get("x", 1.8)); kz = float((cfg.get("key") or {}).get("z", 0.6))
     side = -1 if kx > 0 else 1   # second pieces go to the other side
+    tx_ = kx if abs(kx - wx) > 2.6 and abs(kx - wx - 1.6) > 2.6 else (wx - 4.2 if wx > 0 else wx + 4.2)
     S = {
         "bedroom": [_f("bed", kx, kz, ry=math.pi / 2, s=1.2, c="#5b6f9a", c2="#6e4b35"), _f("bedside_table", kx + 1.9, kz - 0.5, s=1.1),
                     _f("rug", 0.0, 1.0, c="#7a4d6e"), _f("bookshelf", side * (hw - 1.0), BZ + 0.6),
@@ -148,7 +235,9 @@ def room(cfg, P, rnd):
                 _f("computer", side * 2.4, BZ + 1.75, y=0.28), _f("whiteboard", -side * (hw - 1.6), BZ + 0.2), _f("bookshelf", side * (hw - 0.9), BZ + 0.6)]
                + [dict(t="cylinder", x=-2 + 0.55 * k, y=1.0, z=BZ + 1.5, rt=0.05, rb=0.13, h=0.32, c=POSTER[k % 7]) for k in range(6)],
         "kitchen": [_f("kitchen_counter", wx, BZ + 0.6), _f("oven", wx + 1.6, BZ + 0.6), _f("fridge", -side * (hw - 1.0), BZ + 0.7),
-                    _f("table", kx, kz), _f("chair", kx - 1.0, kz, ry=math.pi / 2), _f("chair", kx + 1.0, kz, ry=-math.pi / 2)]
+                    # the dining table stands on the side away from the counter and oven, so the way to them stays clear
+                    # (a table in front of the oven put a cook "walking to the oven" on top of the table, night 003)
+                    _f("table", tx_, kz), _f("chair", tx_ - 1.0, kz, ry=math.pi / 2), _f("chair", tx_ + 1.0, kz, ry=-math.pi / 2)]
                    + [_box(wx + sx * (ww / 2 + 1.1), 2.1, BZ + 0.35, 1.6, 0.7, 0.4, "#d9d2c3" if time == "day" else "#5a4f6e", ink=0.02) for sx in (-1, 1)],
         "living": [_f("sofa", kx, kz, c="#7a5c9a"), _f("tv", side * 2.8, BZ + 0.8), _f("lamp_floor", kx + 1.6, kz - 0.4),
                    _f("rug", kx * 0.6, kz + 0.6, c="#c96f5a"), _f("plant", side * (hw - 1.0), BZ + 0.7), _f("bookshelf", -side * (hw - 0.9), BZ + 0.6)],
@@ -157,10 +246,33 @@ def room(cfg, P, rnd):
         "cafe": [_f("shop_counter", side * 3.0, BZ + 1.0, c="#6e4b35"), _f("table", kx, kz, s=0.75), _f("chair", kx - 0.8, kz, ry=math.pi / 2),
                  _f("chair", kx + 0.8, kz, ry=-math.pi / 2), _f("table", -kx, kz - 2.2, s=0.75), _f("plant", -side * (hw - 0.9), BZ + 0.7)]
                 + [dict(t="lamp_hang", x=x, z=z, y=CH, c="#ffcf8a") for x, z in ((kx, kz), (-kx, kz - 2.2))],
+        "laundry": [_f("washer", -hw + 1.2 + 0.8 * k, BZ + 0.5, c="#eef0f2" if k % 3 else "#dfe3e8") for k in range(int(W // 0.8) - 3)]
+                   + [_f("washer", -hw + 1.2 + 0.8 * k, BZ + 0.5, y=0.92, c="#e4e8ec") for k in range(0, int(W // 0.8) - 3, 2)]
+                   + [_f("folding_table", kx, kz), _f("laundry_basket", kx - 1.3, kz + 0.3), _f("laundry_basket", kx + 1.1, kz + 0.6, c="#c96f5a"),
+                      _f("bench", -kx, kz - 0.4, c="#5a6070"), _f("wall_shelf", side * 3.4, BZ + 0.2), _f("trash_bin", -side * (hw - 0.8), BZ + 1.6),
+                      _glow(0, 2.6, BZ + 0.2, 2.6, 0.5, "#fff1c8", op=0.9), _glow(0, 2.62, BZ + 0.21, 2.2, 0.12, "#2a2730", op=0.8)],
+        # the presenter's end of the room is the back wall: screen and podium there, the audience rows face it from the
+        # front, the aisle between them stays clear, so a presenter is never drawn among the audience (2026-11-09)
+        "meeting": [_f("projector_screen", 1.2, BZ + 0.3), _f("podium", -1.5, BZ + 1.7), _f("plant", -hw + 1.0, BZ + 0.7),
+                    _f("wall_clock", hw - 1.6, BZ + 0.16, y=0.2), _f("coat_rack", hw - 0.8, BZ + 1.6)]
+                   + [_f("chair", x, z, ry=math.pi, c="#3e5c8a") for z in (0.4, 1.6) for x in (-3.6, -2.6, -1.6, 1.6, 2.6, 3.6)],
+        "bathroom": [_f("sink", kx, BZ + 0.5), _f("mirror", kx, BZ + 0.18), _f("bathtub", -side * 2.6, BZ + 0.6),
+                     _f("toilet", side * 0.6 + kx * 0.4, BZ + 0.45), _f("towel_rail", -side * 0.6, BZ + 0.18), _f("wall_shelf", -side * 2.6, BZ + 0.18),
+                     _f("rug", kx * 0.5, kz, c="#5b8fb9")]
+                    + [_box(x, 0, BZ + 0.16, 0.01, 2.0, 0.005, "#ffffff", ink=0, op=0.35) for x in [-hw + 0.4 * k for k in range(int(W / 0.4))]]
+                    + [_box(0, y, BZ + 0.16, W, 0.01, 0.005, "#ffffff", ink=0, op=0.35) for y in (0.4, 0.8, 1.2, 1.6, 2.0)],
+        "grocery": [_f("shelf_goods", sx * x, z, c="#e9e4d8") for sx in (-1, 1) for x, z in ((2.4, -3.4), (4.6, -3.4), (2.6, -0.8), (4.9, -0.8))]
+                   + [_f("fridge_display", x, BZ + 0.4) for x in (-3.2, -1.7, 1.7, 3.2)]
+                   + [_f("shop_counter", side * 4.6, 2.2, ry=side * math.pi / 2, c="#3e7cb1"), _f("cardboard_box", -side * 1.2, 1.5),
+                      _f("cardboard_box", -side * 1.4, 1.7, y=0.4, s=0.8), _glow(0, 3.3, BZ + 0.2, 3.6, 0.5, "#e35d4f"),
+                      _glow(0, 3.32, BZ + 0.21, 2.6, 0.12, "#ffffff", op=0.9)]
+                   + [_glow(0, CH - 0.07, z, 0.4, 3.0, "#f4fbff", rx=math.pi / 2) for z in (-4.0, -1.0, 2.0)],
+        "generic": [],      # layout.py furnishes it from catalog.PLACES or the objects the lines name
         "shop": [_f("shop_counter", kx, kz), _f("shelf_goods", -3.5, BZ + 0.4), _f("shelf_goods", 0.0, BZ + 0.4), _f("shelf_goods", 3.5, BZ + 0.4),
                  _glow(0, 3.0, BZ + 0.2, 3.0, 0.45, "#ff5a5a")],
     }
     o += S.get(style, S["bedroom"])
+    o += _dress(o, style, time, rnd, hw, BZ, ww, wx)
     # warm interior lamp near the key piece, cool fill from the front
     o.append(dict(t="light", x=kx + 0.5, y=2.4, z=kz + 1.0, c=P["key"][0], I=P["key"][1], dist=9))
     if cfg.get("fg", True):   # blurred foreground at the frame edges (rendered on the near layer)
@@ -171,7 +283,7 @@ def room(cfg, P, rnd):
     base = dict(bg=P["wall2"], fog={"near": P["fog"][0], "far": P["fog"][1], "c": P["sky"][1]}, exposure=0.95 if time == "day" else 1.15,
                 ambient={"c": P["amb"][0], "i": P["amb"][1]}, sun={"c": P["sun"], "i": 0.35, "pos": [wx, 5, -10]},
                 camera={"pos": [0, 2.0, 8.4], "look": [0, 1.65, -3], "fov": 46},
-                layers=[6.0, 15.0] if cfg.get("fg", True) else None)
+                layers=[6.0, 15.0] if cfg.get("fg", True) else None, _win=(wx if ww else None))
     return base, o
 
 
@@ -273,14 +385,19 @@ def beach(cfg, P, rnd):
 
 
 TYPES = {"room": room, "street": street, "shopfront": shopfront, "beach": beach}
-STYLES = ["bedroom", "office", "lab", "kitchen", "living", "classroom", "cafe", "shop"]
+STYLES = ["bedroom", "office", "lab", "kitchen", "living", "classroom", "cafe", "shop", "laundry", "meeting", "bathroom", "grocery", "generic", "void"]
 
 
 def expand(setting):
     """setting with a "set" key -> full setting; anything else unchanged."""
     if not isinstance(setting, dict) or not isinstance(setting.get("set"), dict):
         return setting
-    cfg = setting["set"]; P = TIMES.get(cfg.get("time", "dusk"), TIMES["dusk"])
+    cfg = setting["set"]; P = dict(TIMES.get(cfg.get("time", "dusk"), TIMES["dusk"]))
+    sp = STYLE_PAL.get(cfg.get("style")) if cfg.get("type", "room") == "room" else None
+    if sp:
+        t = {"day": 0.0, "dusk": 0.45, "night": 0.55}.get(cfg.get("time", "dusk"), 0.45)
+        for k in ("wall", "wall2", "floor"):
+            P[k] = _mix(sp[k], P[k], t)
     rnd = random.Random(cfg.get("seed", 7))
     fn = TYPES.get(cfg.get("type", "room"))
     if not fn:
@@ -302,10 +419,12 @@ def contents(setting):
     full = expand(setting)
     names = {o.get("n") for o in full["objects"] if o.get("t") == "furn"}
     t = setting["set"].get("type", "room")
+    if t == "room" and setting["set"].get("style") != "void" and setting["set"].get("window", "left") != "none" and not (setting["set"].get("style") in ("shop", "laundry", "bathroom", "grocery") and "window" not in setting["set"]):
+        names.add("window")
     if t == "street":
         names |= {"street", "car", "building", "street_sign", "road"}
     if t == "shopfront":
         names |= {"building", "shop", "bench"}
-    if setting["set"].get("style") in ("shop", "cafe"):
+    if setting["set"].get("style") in ("shop", "cafe", "grocery"):
         names |= {"shop_counter", "shelf_goods"}
     return names

@@ -100,8 +100,22 @@ def wardrobe(c):
 HEM = {"tshirt": (470, 4), "shirt": (480, 4), "hoodie": (494, 8), "jacket": (500, 6), "coat": (600, 24), "dress": (604, 54), "tank": (470, 3)}
 SLEEVE = {"tshirt": "short", "shirt": "long", "hoodie": "long", "jacket": "long", "coat": "long", "dress": "short", "tank": "none"}
 
-def _hair(style, color, pid):
+def _hair(style, color, pid, side=False):
     hl = light(color, .3)
+    if side:
+        # 3/4 view facing right: the hair mass sits on the BACK of the head (left), the hairline runs above the face;
+        # the front-view shapes framed the face on both sides and their right lock covered the eye (owner, 2026-11-09).
+        cap = f'<path d="M108 168 Q102 80 200 70 Q282 72 296 134 Q268 106 222 104 Q168 106 146 150 Q134 170 120 182 Z" fill="{color}" stroke="{INK}" stroke-width="5" stroke-linejoin="round"/>'
+        if style == "long":
+            return (f'<path d="M290 140 Q282 84 210 68 C142 58 96 104 98 180 L104 308 Q134 322 166 300 L160 222 Q150 162 178 128 Q232 108 290 140 Z" fill="{color}" stroke="{INK}" stroke-width="5" stroke-linejoin="round"/>'
+                    f'<path d="M126 130 Q118 200 128 280" stroke="{dark(color, .25)}" stroke-width="4" fill="none" opacity=".6"/>')
+        if style == "bun":
+            return f'<circle cx="122" cy="96" r="30" fill="{color}" stroke="{INK}" stroke-width="5"/>' + cap
+        if style in ("short", "tuft", "spiky"):
+            out = cap
+            if style == "tuft": out += f'<path d="M210 74 Q220 46 250 60 Q230 64 228 80" fill="{color}" stroke="{INK}" stroke-width="5" stroke-linejoin="round"/>'
+            if style == "spiky": out = f'<path d="M108 168 L104 110 L128 120 L136 84 L160 106 L178 72 L200 100 L224 70 L238 104 L268 84 L272 116 L296 134 Q268 106 222 104 Q168 106 146 150 Q134 170 120 182 Z" fill="{color}" stroke="{INK}" stroke-width="5" stroke-linejoin="round"/>'
+            return out
     if style == "short":
         return f'<path d="M108 140 Q112 78 200 74 Q288 78 292 140 Q272 104 200 100 Q128 104 108 140 Z" fill="{color}" stroke="{INK}" stroke-width="5" stroke-linejoin="round"/>'
     if style == "spiky":
@@ -174,9 +188,9 @@ def _face(pid, c, skin, eg=44):
      <path id="{pid}-mouth-sad" d="M176 254 Q200 232 224 254" stroke="{INK}" stroke-width="6" fill="none" stroke-linecap="round" style="opacity:0"/>
     </g></g>'''
 
-def _extras_head(c, pid):
+def _extras_head(c, pid, side=False):
     hair = c.get("hair", INK); style = c.get("hair_style", "none")
-    out = _hair(style, hair, pid) + _hat(c.get("hat", "none"), c.get("hat_color", "#3a3f55"))
+    out = _hair(style, hair, pid, side) + _hat(c.get("hat", "none"), c.get("hat_color", "#3a3f55"))
     return out
 
 def _glasses(c, front=True):
@@ -208,14 +222,15 @@ def figure(pid, gid, c, view="front"):
     TOP, BOT = w["top"], w["bottom"]; hem, flare = HEM.get(TOP, (480, 4)); sleeve = SLEEVE.get(TOP, "long")
     TG, BG = f"url(#{gid}-topG)", f"url(#{gid}-botG)"; tc, bc = w["top_color"], w["bottom_color"]
     side = view == "side"; back = view == "back"
-    sw = (30 if side else 44) * tf
+    sw = (38 if side else 44) * tf          # 3/4 view: the chest narrows a little, it never becomes a plank
     cx = 204 if side else 200
     sh_l = (cx - sw - 2, 318) if not side else (204, 318)
     ink = f'stroke="{INK}" stroke-linejoin="round" stroke-linecap="round"'
     # ---------------------------------------------------------------- arms
     def arm(sd, near=True):
         sg = -1 if sd == "l" else 1
-        if side: S, E, Wr = (204, 318), (208, 414), (218, 498)
+        if side:   # 3/4 view: one arm on each edge of the chest (the far one half behind it), never both in the middle
+            S, E, Wr = ((cx - sw + 6, 318), (cx - sw + 4, 414), (cx - sw + 9, 498)) if near else ((cx + sw - 8, 316), (cx + sw - 4, 412), (cx + sw + 2, 496))
         else: S, E, Wr = (200 + sg * (sw + 4), 318), (200 + sg * (sw + 10), 414), (200 + sg * (sw + 15), 498)
         col = tc if near else dark(tc, .22)
         lw = 12 if _INK_MODE[0] else 11
@@ -260,7 +275,7 @@ def figure(pid, gid, c, view="front"):
     def leg(sd, near=True):
         sg = -1 if sd == "l" else 1
         knee_y = leg_geo(c)[1]
-        if side: dx = 7 if near else -7; Hh, K, A = (200 + dx, HIP_Y), (204 + dx, knee_y), (208 + dx, 760)
+        if side: dx = -12 if near else 16; Hh, K, A = (200 + dx, HIP_Y), (204 + dx, knee_y), (208 + dx, 760)   # two legs, both visible
         else: Hh, K, A = (200 + sg * 27, HIP_Y), (200 + sg * 33, knee_y), (200 + sg * 37, 760)
         pant = BOT in ("pants",)
         pcol = bc if near else dark(bc, .22)
@@ -368,22 +383,27 @@ def figure(pid, gid, c, view="front"):
     sk = c.get("skin", "#ffffff")
     if side:
         head = f'''<path id="{pid}-head-shape" d="M200 76 C262 70 304 112 302 176 C300 240 258 282 200 280 C142 278 102 236 102 176 C102 114 142 78 200 76 Z" fill="url(#{gid}-skinG)" stroke="{INK}" stroke-width="4.5" stroke-linejoin="round"/>
-   <ellipse cx="272" cy="214" rx="18" ry="11" fill="#ff8f9a" opacity=".28"/>
-   <path d="M252 198 Q262 210 254 216" stroke="{INK}" stroke-width="3" fill="none" opacity=".4"/>
-   <g id="{pid}-brow-l"><path d="M234 150 Q256 136 282 148" stroke="{c.get('brow', INK)}" stroke-width="6" fill="none" stroke-linecap="round"/></g>
-   <g id="{pid}-eye-l"><g id="{pid}-pupil-l"><ellipse cx="262" cy="180" rx="11.5" ry="16" fill="{INK}"/><circle cx="258" cy="174" r="4" fill="#fff"/></g>
+   <ellipse cx="124" cy="196" rx="11" ry="18" fill="{sk}" stroke="{INK}" stroke-width="4"/>
+   <ellipse cx="266" cy="216" rx="18" ry="11" fill="#ff8f9a" opacity=".28"/><ellipse cx="166" cy="216" rx="13" ry="9" fill="#ff8f9a" opacity=".2"/>
+   <path d="M292 194 Q304 206 290 212" stroke="{INK}" stroke-width="3.5" fill="none" opacity=".5"/>
+   <g transform="translate(-14 0)"><g id="{pid}-brow-l"><path d="M234 150 Q256 136 282 148" stroke="{c.get('brow', INK)}" stroke-width="6" fill="none" stroke-linecap="round"/></g></g>
+   <g id="{pid}-brow-r"><path d="M166 150 Q182 140 200 148" stroke="{c.get('brow', INK)}" stroke-width="5.5" fill="none" stroke-linecap="round"/></g>
+   <g id="{pid}-eye-r"><g id="{pid}-pupil-r"><ellipse cx="184" cy="180" rx="9" ry="15" fill="{INK}"/><circle cx="181" cy="174" r="3.2" fill="#fff"/></g>
+    <g id="{pid}-lid-r"><rect x="168" y="156" width="32" height="44" fill="{sk}"/><path d="M172 198 Q184 205 196 198" stroke="{INK}" stroke-width="4.5" fill="none"/></g>
+    <g id="{pid}-lidp-r"><rect x="168" y="156" width="32" height="44" fill="{sk}"/><path d="M172 198 Q184 205 196 198" stroke="{INK}" stroke-width="4.5" fill="none"/></g></g>
+   <g transform="translate(-14 0)"><g id="{pid}-eye-l"><g id="{pid}-pupil-l"><ellipse cx="262" cy="180" rx="11.5" ry="16" fill="{INK}"/><circle cx="258" cy="174" r="4" fill="#fff"/></g>
     <g id="{pid}-lid-l"><rect x="242" y="154" width="40" height="46" fill="{sk}"/><path d="M247 199 Q262 207 277 199" stroke="{INK}" stroke-width="5" fill="none"/></g>
-    <g id="{pid}-lidp-l"><rect x="242" y="154" width="40" height="46" fill="{sk}"/><path d="M247 199 Q262 207 277 199" stroke="{INK}" stroke-width="5" fill="none"/></g></g>
-   <g id="{pid}-mouth">
+    <g id="{pid}-lidp-l"><rect x="242" y="154" width="40" height="46" fill="{sk}"/><path d="M247 199 Q262 207 277 199" stroke="{INK}" stroke-width="5" fill="none"/></g></g></g>
+   <g transform="translate(-40 0)"><g id="{pid}-mouth">
     <path id="{pid}-mouth-closed" d="M268 242 Q282 250 296 240" stroke="{INK}" stroke-width="6" fill="none" stroke-linecap="round"/>
     <path id="{pid}-mouth-smile" d="M262 232 Q284 282 304 230 Q284 244 262 232 Z" fill="#7a1f2e" stroke="{INK}" stroke-width="5" stroke-linejoin="round" style="opacity:0"/>
     <path id="{pid}-mouth-open" d="M266 234 Q284 226 300 234 Q304 280 282 284 Q262 278 266 234 Z" fill="#6a1626" stroke="{INK}" stroke-width="5" stroke-linejoin="round" style="opacity:0"/>
     <path id="{pid}-mouth-e" d="M264 238 Q284 230 302 238 Q300 256 282 258 Q266 256 264 238 Z" fill="#6a1626" stroke="{INK}" stroke-width="5" stroke-linejoin="round" style="opacity:0"/>
     <ellipse id="{pid}-mouth-o" cx="284" cy="250" rx="10" ry="15" fill="#5a1220" stroke="{INK}" stroke-width="5" style="opacity:0"/>
     <path id="{pid}-mouth-smirk" d="M266 248 Q286 252 302 232" stroke="{INK}" stroke-width="6" fill="none" stroke-linecap="round" style="opacity:0"/>
-    <path id="{pid}-mouth-sad" d="M266 254 Q284 236 302 252" stroke="{INK}" stroke-width="6" fill="none" stroke-linecap="round" style="opacity:0"/></g>
+    <path id="{pid}-mouth-sad" d="M266 254 Q284 236 302 252" stroke="{INK}" stroke-width="6" fill="none" stroke-linecap="round" style="opacity:0"/></g></g>
    {('<ellipse cx="262" cy="180" rx="30" ry="30" fill="#cfe9ff" fill-opacity=".2" stroke="'+INK+'" stroke-width="5"/><path d="M232 178 L170 186" stroke="'+INK+'" stroke-width="5" fill="none" stroke-linecap="round"/>') if c.get("glasses") else ""}
-   {_extras_head(c, pid)}'''
+   {_extras_head(c, pid, True)}'''
         if _INK_MODE[0]:   # keep the head shape black, draw the profile features in warm white
             k = head.index("/>", head.index("-head-shape")) + 2
             head = head[:k] + _featurise(head[k:])
@@ -438,11 +458,13 @@ def rig(c, view="front"):
     tf = c.get("torso_w", 1.0); eg = c.get("eye_gap", 44)
     hip, knee = leg_geo(c)
     if view == "side":
+        sw = 38 * tf
         P = {"root": {"pivot": [200, 780]}, "turn": {"pivot": [200, 780]}, "life": {"pivot": [200, 780]}, "body": {"pivot": [200, 540]}, "torso": {"pivot": [204, 540]},
              "headsway": {"pivot": [204, 270]}, "head": {"pivot": [204, 270]},
-             "arm-l": {"pivot": [204, 318]}, "forearm-l": {"pivot": [208, 414]}, "arm-r": {"pivot": [204, 318]}, "forearm-r": {"pivot": [208, 414]},
-             "leg-l": {"pivot": [207, hip]}, "shin-l": {"pivot": [211, knee]}, "foot-l": {"pivot": [215, 760]},
-             "leg-r": {"pivot": [193, hip]}, "shin-r": {"pivot": [197, knee]}, "foot-r": {"pivot": [201, 760]},
+             "arm-l": {"pivot": [204 - sw + 6, 318]}, "forearm-l": {"pivot": [204 - sw + 4, 414]}, "arm-r": {"pivot": [204 + sw - 8, 316]}, "forearm-r": {"pivot": [204 + sw - 4, 412]},
+             "leg-l": {"pivot": [188, hip]}, "shin-l": {"pivot": [192, knee]}, "foot-l": {"pivot": [196, 760]},
+             "leg-r": {"pivot": [216, hip]}, "shin-r": {"pivot": [220, knee]}, "foot-r": {"pivot": [224, 760]},
+             "lid-r": {"pivot": [184, 156]}, "lidp-r": {"pivot": [184, 156]}, "pupil-r": {"pivot": [184, 180]}, "brow-r": {"pivot": [184, 150]},
              "lid-l": {"pivot": [262, 154]}, "lidp-l": {"pivot": [262, 154]}, "pupil-l": {"pivot": [262, 180]}, "brow-l": {"pivot": [262, 150]},
              "mouth-open": {"pivot": [284, 240]}, "mouth-e": {"pivot": [284, 240]}, "mouth-o": {"pivot": [284, 250]}}
         return {"viewBox": [0, 0, 400, 800], "restPose": "profile facing right", "parts": P, "hip": hip, "knee": knee}

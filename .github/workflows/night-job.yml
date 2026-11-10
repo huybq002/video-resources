@@ -1,18 +1,27 @@
 name: Night job
 
 # Works 00:00-06:00 Asia/Ho_Chi_Minh (UTC+7) = 17:00-23:00 UTC, once per night.
-# GitHub starts scheduled runs late: measured 3h16m to 4h56m on this repo (2026-11-06/07), so a cron
-# at 17:xx UTC began work at ~03:50 ICT with two hours left. The crons therefore fire EARLY
-# (20:17 / 21:17 / 22:17 ICT); whichever starts first waits inside the job until 00:00 ICT, then works.
-# A run that fires too early to wait inside the 6 h job limit stands down and leaves the night to a later cron.
+# GitHub starts scheduled runs late: measured 3h16m to 4h56m on this repo (2026-11-06/07), so the crons fire EARLY;
+# whichever starts first between 14:30 and 17:00 UTC waits inside the job until 00:00 ICT, then works.
+# A run that fires before 14:30 UTC (too early to wait inside the 6 h job limit) stands down and leaves the night to a later cron.
 # The Claude step stops at 05:45 ICT (22:45 UTC) or 350 min after the job started, whichever is first.
 # If Claude runs out of usage (rate limit) the step ends at once; unfinished tasks are picked up next night.
 # Runs inside the prebuilt image (see Dockerfile / build-image.yml): nothing is installed at night.
+# 2026-11-09: GitHub started the three crons 8.5-9.7 h late (22:58-23:47 UTC), all after the 22:45 deadline, so the
+# whole night was lost. More crons, spread from 16:17 to 00:17 ICT, so that whichever one GitHub starts inside the
+# window takes the night. A cron that fires on time before 14:30 UTC stands down in ~2 min (see "Wait" step); the
+# "Already handled tonight?" guard keeps only one run working. If every cron is late, start it by hand (Run workflow).
 on:
   schedule:
+    - cron: "17 9 * * *"
+    - cron: "17 10 * * *"
+    - cron: "17 11 * * *"
+    - cron: "17 12 * * *"
     - cron: "17 13 * * *"
     - cron: "17 14 * * *"
     - cron: "17 15 * * *"
+    - cron: "17 16 * * *"
+    - cron: "17 17 * * *"
   workflow_dispatch:
 
 concurrency:
@@ -67,10 +76,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Three crons fire each evening. Only one run may work the night: a run that is still going
+          # Nine crons fire each day. Only one run may work the night: a run that is still going
           # (it may be waiting for 00:00) or one whose Claude step succeeded blocks this one. Runs that
           # stood down (too early, too late, or failed) do not, so a later cron can still take the night.
-          start=$(date -u -d "$(date -u +%F) 12:00:00" +%s)
+          if [ "$(date -u +%H)" -lt 12 ]; then start=$(date -u -d "$(date -u -d yesterday +%F) 12:00:00" +%s)
+          else start=$(date -u -d "$(date -u +%F) 12:00:00" +%s); fi
           gh run list --workflow night-job.yml --repo "$GITHUB_REPOSITORY" --limit 20             --json databaseId,createdAt,status > /tmp/runs.json
           n=0
           for row in $(python3 -c "import json; [print(f\"{r['databaseId']},{r['createdAt']},{r['status']}\") for r in json.load(open('/tmp/runs.json'))]"); do
@@ -90,7 +100,9 @@ jobs:
         shell: bash
         run: |
           now=$(date -u +%s); t17=$(date -u -d "$(date -u +%F) 17:00:00" +%s)
-          if [ "$now" -ge "$t17" ]; then
+          if [ "$(date -u +%H)" -lt 5 ] || [ "$(date -u +%H)" -ge 23 ]; then
+            echo "after midnight UTC: tonight's window has passed, catch-up run"; echo "early=false" >> "$GITHUB_OUTPUT"
+          elif [ "$now" -ge "$t17" ]; then
             echo "already past 00:00 ICT"; echo "early=false" >> "$GITHUB_OUTPUT"
           elif [ "$now" -lt $((t17 - 150*60)) ]; then
             echo "fired $(( (t17 - now) / 60 )) min before 00:00 ICT: too early to wait inside the 6 h job limit."
@@ -109,10 +121,18 @@ jobs:
           now=$(date -u +%s); h=$(date -u +%H)
           if [ "$h" -ge 17 ] && [ "$h" -lt 23 ]; then
             end=$(date -u -d "$(date -u +%F) 22:45:00" +%s)       # inside the night window: stop Claude at 05:45 ICT
+          elif [ "${{ github.event_name }}" = "schedule" ] && { [ "$h" -ge 23 ] || [ "$h" -lt 5 ]; }; then
+            # GitHub started every cron late (2026-11-09: all three after 22:45 UTC, the night was lost). The guard
+            # above already made sure no other run owns this night: catch up now with a 5 h budget rather than
+            # making nothing; the videos land in the morning instead of before 06:00.
+            end=$((now + 300*60)); echo "CATCH-UP run: started after the window, making the night's videos now"
           elif [ "${{ github.event_name }}" = "schedule" ]; then
-            end=$now                                              # scheduled run that started too late: do nothing
+            end=$now                                              # scheduled run started far too late (after 12:00 ICT): do nothing
           else
             end=$((now + 300*60))                                 # manual run outside the window: 5 h
+          fi
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$h" -eq 22 ] && [ $((end - now)) -lt $((90*60)) ]; then
+            end=$((now + 300*60)); echo "CATCH-UP run: started at the very end of the window"
           fi
           cap=$(( ${JOB_START:-$now} + 350*60 ))                # the job is killed at 360 min: leave 10 for saving
           [ "$end" -gt "$cap" ] && end=$cap
@@ -133,6 +153,7 @@ jobs:
           if [ "$ok" = "true" ]; then echo "Approved look ($now_hash): full production tonight."
           else echo "Look $now_hash is NOT approved: demo mode tonight (a short demo for the owner, no full video)."; fi
       - name: Restore unfinished work (bundles, voice-over)
+        if: steps.deadline.outputs.minutes != '0' && steps.guard.outputs.skip != 'true' && steps.wait.outputs.early != 'true'
         uses: actions/cache/restore@v4
         with:
           path: |
@@ -142,6 +163,7 @@ jobs:
           key: bundle-${{ github.run_id }}
           restore-keys: bundle-
       - name: Run Claude
+        id: claude
         if: steps.deadline.outputs.minutes != '0' && steps.guard.outputs.skip != 'true' && steps.wait.outputs.early != 'true'
         timeout-minutes: ${{ fromJSON(steps.deadline.outputs.minutes) }}
         uses: anthropics/claude-code-action@v1
@@ -179,8 +201,9 @@ jobs:
                inauthentic or mass-produced content, crime and violent content, and money or health advice.
                Update data/platform-policy.md with the date and anything that changed, and commit it.
                Everything after this obeys that file; when a source is unclear, take the safer reading.
-            2. If tasks/pending/ has no runnable task (TASK_COUNT=$TASK_COUNT), FIND THE NEXT VIDEO YOURSELF.
-               Nobody hands you ideas: research the market, pick one, write the task, then build it in this same run.
+            2. TONIGHT MAKES AT LEAST channel.json night.videos_per_night VIDEOS (2). If tasks/pending/ has fewer runnable
+               tasks than that (TASK_COUNT=$TASK_COUNT), FIND THE MISSING VIDEOS YOURSELF, always running the research below.
+               Nobody hands you ideas: research the market, pick them, write the tasks, then build them in this same run.
                a. Read channel.json (niche, audience, seed keywords, formats, what to avoid) and data/ideas.md
                   (what has already been made, queued or dropped: never propose any of those again).
                b. `python scripts/research_youtube.py --update-channel` (about 5-10 min). It asks YouTube itself
@@ -192,6 +215,10 @@ jobs:
                   If it exits non-zero (YouTube refused), fall back to WebSearch for the topics and say so in the notes.
                c. Use the claude-youtube skill (sub-skills/ideate.md, then seo.md) to turn the digest into
                   `research.ideas_per_run` ideas scored on demand, how crowded the keyword is, and fit with the topic.
+                  HARD RULE: every run writes AT LEAST 3 new ideas (night.min_ideas_per_run) dated tonight into data/ideas.md,
+                  even when tasks are already pending (they feed the next nights). Then run
+                  `python scripts/plan_night.py check-ideas`; if it prints FAIL, research more (WebSearch is the fallback
+                  when research_youtube.py is refused) until it prints "ideas OK". Never choose videos before that.
                   Prefer a keyword where the views are spread over many channels, not held by two big ones.
                   Respect topics[].share over time: look at data/ideas.md and pick from the topic that is behind.
                   Append every idea to the table in data/ideas.md with status `new` and its topic id.
@@ -199,11 +226,17 @@ jobs:
                   that needs a real person, a real company or a real case, promises money or health outcomes, or
                   depends on graphic detail. For the `mystery` topic the story is ALWAYS invented: take the shape of
                   a real kind of case, then invent names, places, dates and outcome, and never claim it is true.
-               e. Take the best surviving idea, write tasks/pending/<NNN>-<slug>.md from templates/video-task-template.md
-                  (next free number; idea, lang and duration_min from channel.json; topic id and target keyword in the
-                  task), run `python scripts/policy_check.py task tasks/pending/<file>` and fix anything it reports.
-                  Set that idea's row to `queued`. Then carry on at step 3 and make the video.
-            3. Take files in tasks/pending/ in filename order and do each task.
+               e. Take the best surviving ideas (as many as needed to reach night.videos_per_night runnable tasks; prefer
+                  different topics) and write one tasks/pending/<NNN>-<slug>.md each from templates/video-task-template.md
+                  (next free numbers; idea and lang from channel.json; topic id and target keyword in the task).
+                  LENGTH IS NOT FIXED: give each idea the duration_min its story needs, inside night.duration_range_min
+                  (1-8 min; a single twist ~1-2 min, a story with a turn 3-5, an explainer 4-8). Then check the night fits:
+                  `python scripts/plan_night.py budget --durations <d1>,<d2>[,...]` (uses $DEADLINE_EPOCH). If it prints
+                  FAIL, shorten the later videos to the length it gives (rewrite their duration_min) - never drop below
+                  2 videos. Run `python scripts/policy_check.py task tasks/pending/<file>` on each and fix anything it reports.
+                  Set those ideas' rows to `queued`. Then carry on at step 3 and make the videos, one after the other.
+            3. Take files in tasks/pending/ in filename order and do each task. Finish and publish video 1 completely
+               (release URL in the manifest) before starting video 2, so a late usage limit still leaves a finished video.
                Skip any task whose file already exists in tasks/done/ on the night branch.
             4. Save results in outputs/<task id>/. Update "Progress notes" as you go.
             5. Task types (frontmatter `type:`):
@@ -213,7 +246,9 @@ jobs:
                  1. Write specs/<id>.json (duration_s = duration_min*60 exactly; scenes[].target_s must add up to it).
                     Follow the skill's six rules: a hook that lands in the first 30 s, words per scene = target_s * 2.4,
                     its own settings written with scene-dsl (not only `lib:`), supporting cast and `crowd` for groups,
-                    2-3 shots per long scene, male characters with bare stick legs. Set `aspect` to "16:9" in the spec;
+                    2-3 shots per long scene, male characters with bare stick legs. Write the `spine` and each scene's
+                    goal/turn/value first (references/short-film-craft.md), spoken lines (references/spoken-voice.md), and
+                    start every place from a `set` (rooms now include laundry, meeting, bathroom, grocery). Set `aspect` to "16:9" in the spec;
                     build_both.py overrides it per cut. If series is set, first run
                     `python $SKILL/scripts/series.py brief series/<series>/series-bible.json` and continue that story.
                  2. Generate both cuts:
@@ -227,10 +262,13 @@ jobs:
                     `python scripts/verify_bundle.py bundle outputs/<id>/landscape --spec specs/<id>.json --expect-minutes <duration_min> --aspect 16:9`
                     `python scripts/verify_bundle.py bundle outputs/<id>/portrait  --spec specs/<id>.json --expect-minutes <duration_min> --aspect 9:16`
                     If either prints PROBLEMS, fix the spec and go back to step 2. Never render a bundle that fails.
+                    The bundle check runs the spec lint too: every open WARNING is a PROBLEM.
                  4. Voice-over once, then render both. script.srt is identical in the two cuts, so:
                     * `renderer: tool` (default, best quality: VieNeu voice, Whisper alignment, HyperFrames):
                       a. job file outputs/<id>/job-landscape.json:
-                         {"engine":"hyperframes","project":"outputs/<id>/landscape","language":"<lang>","fps":30}
+                         {"engine":"hyperframes","project":"outputs/<id>/landscape","language":"<lang>","fps":30,
+                          "preRender":["python",".claude/skills/code2video-resource-generator/ci/lipsync_audio.py","{project}","--lang","<lang>"]}
+                         (preRender reads the mouths from the real voice with Rhubarb before the render; keep it in both job files)
                          then `code2video-job outputs/<id>/job-landscape.json --report outputs/<id>/report-landscape.json`
                       b. copy the voice-over made for the landscape cut into the portrait cut:
                          `cp outputs/<id>/landscape/voiceover.wav outputs/<id>/landscape/timeline.json outputs/<id>/portrait/`
@@ -240,6 +278,9 @@ jobs:
                          without it the voice is generated a second time. Then
                          `code2video-job outputs/<id>/job-portrait.json --report outputs/<id>/report-portrait.json`
                       The videos are outputs/<id>/<cut>/output.mp4. On failure read the report, fix, re-run.
+                      d. background music (both cuts): `python $SKILL/ci/add_music.py outputs/<id>/<cut>/output.mp4 --spec specs/<id>.json`
+                         (picks a licensed track from data/music by mood, ducks it under the voice; "no licensed track" is fine).
+                         If <cut>/output.music.json has a non-empty "credit", put that line in every description you write.
                     * `renderer: skill` (fallback, edge-tts): run `python $SKILL/ci/run_pipeline.py specs/<id>.json outputs/<id>/landscape --aspect 16:9`
                       and again with `--aspect 9:16 --no-series-update` into outputs/<id>/portrait (video: final.mp4).
                  5. Verify both videos (length, audio present and not silent, frame size):
@@ -286,7 +327,8 @@ jobs:
             10. If you get a usage-limit or rate-limit error, or less than 15 minutes remain: STOP immediately. Do not retry. First commit and push
                what you have (spec, Progress notes with exactly where you stopped, status: in-progress) and leave the task in tasks/pending/.
                The next night's run picks it up and continues from your notes.
-            11. When no task is left, go to step 12 instead of stopping.
+            11. When no task is left, go to step 12 instead of stopping. Before step 12, if fewer than night.videos_per_night
+               videos were published tonight and the budget allows another (`plan_night.py budget`), go back to step 2.
             12. IMPROVEMENT PHASE. If at least 25 minutes remain before $DEADLINE_EPOCH, do not stop: spend what is left
                making tomorrow's videos better. Stop it the moment time or usage runs out (step 10 applies).
                FIRST create reports/<YYYY-MM-DD>.md from reports/README.md and commit + push it to `night` at once;
@@ -325,7 +367,8 @@ jobs:
                   NOT verify; decisions the owner has to make; suggested next steps. Honest beats impressive.
           claude_args: --max-turns 500 --allowedTools "Bash,Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
       - name: Save unfinished work (bundles, voice-over)
-        if: always()
+        # only after a run that worked: stand-down runs used to save a copy of the same cache each time (9 crons a night)
+        if: always() && steps.claude.outcome != 'skipped'
         uses: actions/cache/save@v4
         with:
           path: |

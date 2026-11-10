@@ -5,6 +5,7 @@
 **Gender tag in script.srt (several speakers, any language)**: give each cast entry `"gender": "male"|"female"` (narrator: top-level `narrator_gender`). With more than one speaker every cue is written `[An][00:00:00,000 --> 00:00:03,500][nữ]: text`; the label is in the script language (vi nam/nữ, en male/female, es hombre/mujer, fr homme/femme, de männlich/weiblich, pt masculino/feminino, it maschio/femmina, id pria/wanita, ja 男性/女性, ko 남성/여성, zh 男/女, th ชาย/หญิง, ru муж/жен, hi पुरुष/महिला; override with `"gender_labels": ["male-label","female-label"]`). A single-speaker video has no tag. The tag drives the voice (`ci/tts.py` picks a male/female voice per language); the parser accepts files with or without it.
 
 **Contract-level keys (new)**: top level `duration_s` (total seconds, exact), `narrator` (cast id used for lines without `who`, default `"narrator"`), `narrator_name`, `external_bg` (`true` or list of setting ids: use user/Gemini `assets/bg_<id>.png` instead of the 3D render), `setting_desc` (`{id: text}` used by the Gemini background prompts). Per scene: `title`, `goal`, **`target_s`** (seconds; all scenes must add up to `duration_s`). Per cast entry: `name` (shown in script.srt as `[Name]`), `role`, `look` (one detailed sentence describing the outfit for the Gemini prompt), `external` (use `assets/<id>.svg` from Gemini as one animated image), `narrator: true` (voice only, no body).
+**Short-film keys**: top level `spine` {want, obstacle, turn, choice, opening_image, ending_image, motif}; per scene `turn` (one sentence: what is different at the end) and `value` ("+" / "-" / "0"). Checked by `craft_lint.py` (references/short-film-craft.md).
 
 ```jsonc
 {
@@ -57,7 +58,9 @@ Acts for faces: `["t","turn", yaw, secs]` (0 front, ±0.5 three-quarter, ±1 ful
 ## Motion features (from the reference-video analysis, see motion-language.md)
 ```jsonc
 { // inside a shot:
-  "trans": "fade|cut|whip|flash|zoom|dip",   // how this shot ENTERS (default fade; cut:true = cut)
+  "trans": "fade|cut|whip|flash|zoom|dip|power",   // how this shot ENTERS (default fade; cut:true = cut). "power" = white flash +
+                                                    // action lines + rings rippling from the focus person (the moment a power fires);
+                                                    // also per narration line: {"t": "...", "trans": "power"}
   "rays": true,                               // god-ray overlay (golden light)
   "flat": false,                              // true = ignore depth layers, use the single bg image
   "crowd": { "n": 40, "x": [120, 1800], "by": [600, 720], "s": [0.12, 0.22], "seed": 3, "colors": ["#c0577a", "#e0b83a"] },
@@ -74,7 +77,7 @@ Acts for faces: `["t","turn", yaw, secs]` (0 front, ±0.5 three-quarter, ±1 ful
   //          {"t":"Your cab driver is six hundred.", "tag": {"driver": "600"}}
   // USING FURNITURE (anchors.py projects every furniture piece of the 3D set to the screen):
   //   "do": "lie@bed" (lying on the mattress, eyes open) | "sleep@bed" (eyes closed) | "sit@chair" (seated in profile, facing the desk)
-  //   "do": "walkTo@oven" (walks to stand beside it) | "place:phone@counter" (puts it down; it stays there for the scene) | "pickup:keys@table"
+  //   "do": "walkTo@ana" (walks to stand beside Ana; both turn to face each other) | "walkTo@oven" (walks to stand beside it) | "place:phone@counter" (puts it down; it stays there for the scene) | "pickup:keys@table"
   //   A lie/sit pose is HELD across the following cuts of the scene until "stand" / "walkTo" / "run"; never write a bare
   //   "sleep" or "sit" when the setting has a bed/chair: the character would lie on the floor or stand in front of the desk.
   // ACTIONS BRING THEIR OBJECT (coverage.py ACT_ITEM / _furniture; nobody types on air or drinks from nothing):
@@ -83,6 +86,12 @@ Acts for faces: `["t","turn", yaw, secs]` (0 front, ±0.5 three-quarter, ±1 ful
   //   "drink" -> a cup in the hand (seated at the table in a cafe/kitchen)     "phone" -> a phone in the hand, at the ear
   //   held items are drawn inside the rig's hand, so they rise with the arm. Seated extras drinking hold cups too.
   //   Name the object yourself ("props") only when it is something else (a tablet, a book).
+  // KEYWORD POP + REACTION BEAT (StickByte study, 2026-11-10):
+  //   "key": "TERRIBLE"      the one word of the line, slammed big and hand-lettered over the picture (also automatic:
+  //                          a CAPITALISED word in the line, or the last word of a line that ends with "!")
+  //   "emote": fear|surprise|cry|anger|panic|joy|sad  on a close-up lands as a reaction beat: head jolt with overshoot,
+  //                          pupils grow, sweat flies / tears stream, arms fly up; milder emotes only change the face.
+  //   Every cut settles (3 % ease-in over 0.3 s); idle arms swing slowly; "trans": "power" for the big moment.
   // FILM DEVICES per line (from "One Second Felt Like Forever"):
   //   "look": "flashback" | "night" | "tense" | "dream"   colour grade + haze for that line's shots (memories in warm sepia)
   //   "spot": true                                         a single cone of light on the person, darkness around

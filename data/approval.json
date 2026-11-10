@@ -1,7 +1,7 @@
 {
-  "approved": false,
-  "skill_hash": null,
-  "approved_at": null,
-  "demo": null,
-  "note": "Not approved yet. The night job makes a short demo of the next video (both cuts) until the owner approves it with scripts/approve_demo.py."
+  "approved": true,
+  "skill_hash": "38ddf010943b3f1f",
+  "approved_at": "2026-11-10T21:04",
+  "demo": "https://github.com/huybq002/video-resources/pull/1",
+  "note": "Owner approved in chat on 2026-11-10 after the Lost Wallet test videos (16:9 + 9:16)"
 }

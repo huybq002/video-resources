@@ -5,7 +5,7 @@ Refreshed by the night job before it writes any idea (step 1), and enforced by
 creator-education blogs and news rewrites, not the platforms' own pages: treat the wording as a
 direction, re-check the official pages when something looks decisive, and prefer the safer reading.
 
-Last refreshed: 2026-11-07
+Last refreshed: 2026-11-10
 
 ## The rule that shapes this channel
 
@@ -29,6 +29,18 @@ when it finds such a claim or a recognizable real entity.
 - **Inauthentic content** (renamed from "repetitious content" on 15 July 2025): mass-produced and
   repetitive content is not monetizable. AI is not the trigger; low value and sameness are. One
   automated video a night is fine only while each one is a genuinely different story.
+- **Inauthentic content, update of 16 July 2026** (TechCrunch 2026-07-20, Nieman Lab): three kinds of content
+  cannot earn ad revenue, AI-made or not, and a channel with "too much" of any one loses monetization:
+  1. *generic, repetitive or template-based* videos (interchangeable from one to the next);
+  2. *distressing or emotionally manipulative* videos (built to provoke, shock or upset);
+  3. *AI personas discussing sensitive topics* (health, finance, legal).
+  For this channel: (1) every film needs its own opening, want, shape and format; `policy_check.py spec`
+  now compares a new spec with the last 8 in `specs/` and fails a copy (same opening line, same
+  `spine.want`, same title pattern, same format+scene shape twice in the last 5, a fourth same format in a
+  row). (2) No rage-bait, no fake urgency, no shock thumbnails; sad endings are fine, cruelty for clicks is not.
+  (3) The AI narrator is a storyteller, never a money/health/legal expert: money videos are stories about
+  invented people, the narrator describes what happened to them and never addresses the viewer's own
+  money ("you should", "your savings"). The existing ADVICE check is the floor.
 - **Synthetic content disclosure**: required for *realistic* AI-generated or AI-altered media a
   viewer could mistake for real footage, set in YouTube Studio; automated detection has been
   applied since around May 2025, and YouTube can add the label itself. Stick-figure animation is

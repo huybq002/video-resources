@@ -42,6 +42,13 @@ RUN curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor
 # GitHub CLI (publishes the Release with the bundle and video)
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg -o /usr/share/keyrings/githubcli-archive-keyring.gpg     && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github-cli.list     && apt-get update && apt-get install -y --no-install-recommends gh     && rm -rf /var/lib/apt/lists/*
 
+# Rhubarb Lip Sync (MIT): mouth shapes read from the real voice-over (ci/lipsync_audio.py). Pinned + checksum.
+# The binary needs its res/ folder next to it, so keep the whole release dir and link the binary.
+RUN curl -fsSL -o /tmp/rhubarb.zip https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.14.0/Rhubarb-Lip-Sync-1.14.0-Linux.zip \
+    && echo "a9a9074862cff47b2d59b8bf399a678a3b0b74f9452ad6ad94cb292913dd8667  /tmp/rhubarb.zip" | sha256sum -c - \
+    && unzip -q /tmp/rhubarb.zip -d /opt && rm /tmp/rhubarb.zip \
+    && ln -sf /opt/Rhubarb-Lip-Sync-1.14.0-Linux/rhubarb /usr/local/bin/rhubarb && rhubarb --version
+
 RUN git config --system --add safe.directory '*'
 
 # The job's commands say `python`; Ubuntu only ships `python3`. Without this the night job had to shim it.

@@ -16,7 +16,8 @@ Dùng lại ``JobQueue._execute`` của Studio nên kết quả giống hệt ch
       "voice": "Hải Đăng", "speakers": {"An": "Hải Đăng"},
       "ttsMode": "v3turbo", "language": "vi", "dryRun": false,
       "format": "16:9",
-      "reuseVoiceover": true            // 2nd cut of a story: reuse voiceover.wav + timeline.json already in the project
+      "reuseVoiceover": true,           // 2nd cut of a story: reuse voiceover.wav + timeline.json already in the project
+      "preRender": ["python", "<skill>/ci/lipsync_audio.py", "{project}", "--lang", "en"]   // run after the voice-over, before render
     }
 
 hoặc ``{"flow": "flows/x.flow.json", "topic": "...", "outputDir": "build/run1"}``.
@@ -85,6 +86,7 @@ def build_params(spec: dict, base: Path) -> list[dict]:
         "hfQuality": spec.get("hfQuality") or None, "wbLongEdge": spec.get("wbLongEdge") or None,
         "language": spec.get("language", "vi"),
         "format": spec.get("format"), "formatMode": spec.get("formatMode", "fit"),
+        "preRender": spec.get("preRender") or None,
     }
     jobs = []
     for r in roots:

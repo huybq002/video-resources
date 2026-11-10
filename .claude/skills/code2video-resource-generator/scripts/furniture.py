@@ -65,8 +65,12 @@ def _parts(n, c, c2):
         "wall_clock": [dict(t="disc", x=0, y=2.1, z=.02, r=.3, c="#fbf8f1"), B(0, 2.1, .03, .03, .22, .01, dark)],
         "shop_counter": [B(0, 0, 0, 2.4, 1.0, .65, c or "#3e7cb1"), B(0, 1.0, 0, 2.5, .06, .7, c2 or "#e9e4d8"),
                          B(.7, 1.06, 0, .45, .25, .35, dark), dict(t="glow", x=.7, y=1.28, z=.18, w=.36, h=.15, c="#9effa8")],
-        "shelf_goods": [B(0, 0, 0, 2.0, 1.9, .45, c or "#e9e4d8")] + [B(-.8 + .27 * k, y, .05, .2, .28, .3, ["#d8473d", "#ffd166", "#4f6bd8", "#3aa65a", "#f08a5d", "#7a5c9a", "#e3b341"][k % 7])
-                       for y in (.1, .65, 1.2) for k in range(7)],
+        # an open shelf unit: back panel, side panels and boards, goods standing ON the boards in front (they used to sit
+        # inside a solid box and never showed)
+        "shelf_goods": [B(0, 0, -.2, 2.0, 1.9, .05, c or "#e9e4d8"), B(-.98, 0, 0, .05, 1.9, .45, c2 or "#cfcabd"), B(.98, 0, 0, .05, 1.9, .45, c2 or "#cfcabd")]
+                       + [B(0, y - .04, 0, 1.95, .04, .45, c2 or "#cfcabd") for y in (.1, .65, 1.2, 1.75)]
+                       + [B(-.78 + .26 * k, y, .02, .2, .28 - .06 * ((k + int(y * 10)) % 3), .3, ["#d8473d", "#ffd166", "#4f6bd8", "#3aa65a", "#f08a5d", "#7a5c9a", "#e3b341"][(k + int(y * 7)) % 7])
+                          for y in (.1, .65, 1.2) for k in range(7)],
         "car": [B(0, .25, 0, 1.8, .6, 4.0, c or "#d8473d"), B(0, .85, -.2, 1.6, .55, 2.0, c or "#d8473d"),
                 dict(t="glow", x=0, y=1.1, z=.81, w=1.4, h=.4, c="#bfe6ff")]
                + [dict(t="cylinder", x=sx * .9, y=0, z=sz * 1.3, r=.33, h=.3, c=dark, rz=math.pi / 2) for sx in (-1, 1) for sz in (-1, 1)],
@@ -88,6 +92,57 @@ def _parts(n, c, c2):
                    for a in [i * math.pi / 3 for i in range(6)]] + [dict(t="sphere", x=0, y=4.2, z=0, r=.45, c=c or "#3aa65a")],
         "whiteboard": [B(0, .9, 0, 1.8, 1.1, .05, "#f6f6f2"), B(0, .85, .03, 1.8, .06, .1, c2 or "#9aa3ad"),
                        B(-.3, 1.5, .03, .9, .04, .01, c or "#4f6bd8"), B(-.1, 1.3, .03, 1.1, .04, .01, c or "#4f6bd8")],
+        # ---- added 2026-11-09: places the stories keep asking for (laundry, meeting room, bathroom, grocery) ----
+        "washer": [B(0, 0, 0, .68, .9, .65, c or "#eef0f2"), dict(t="disc", x=0, y=.45, z=.33, r=.22, c=dark),
+                   dict(t="disc", x=0, y=.45, z=.335, r=.16, c=c2 or "#7fb6d8"), B(0, .9, 0, .68, .04, .65, "#d5d9de"),
+                   B(-.18, .78, .33, .22, .07, .01, dark), dict(t="sphere", x=.2, y=.8, z=.33, r=.035, c="#9aa3ad", ink=0)],
+        "folding_table": [B(0, .86, 0, 1.8, .05, .7, c or "#d8d2c4")] + [B(sx * .82, 0, 0, .05, .86, .6, dark) for sx in (-1, 1)],
+        "laundry_basket": [dict(t="cylinder", x=0, y=0, z=0, rt=.3, rb=.24, h=.42, c=c or "#5b8fb9"),
+                           dict(t="sphere", x=-.05, y=.42, z=0, r=.2, c=c2 or "#e9e4d8"), dict(t="sphere", x=.12, y=.4, z=.06, r=.15, c="#e35d4f")],
+        "podium": [B(0, 0, 0, .7, 1.1, .5, c or wood), B(0, 1.1, -.02, .78, .06, .58, c2 or "#6e452c", rx=-.2),
+                   C(.15, 1.15, .1, .015, .3, dark), dict(t="sphere", x=.15, y=1.47, z=.1, r=.04, c=dark, ink=0)],
+        "projector_screen": [B(0, 2.6, 0, 3.4, .1, .12, dark), B(0, .95, .02, 3.2, 1.6, .02, "#f7f7f2"),
+                             dict(t="glow", x=0, y=1.75, z=.04, w=2.9, h=1.35, c=c or "#dfe9f7"),
+                             B(-.9, 2.05, .05, 1.2, .1, .01, c2 or "#3e5c8a", ink=0), B(-.6, 1.7, .05, 1.8, .06, .01, "#9aa3ad", ink=0),
+                             B(-.6, 1.5, .05, 1.8, .06, .01, "#9aa3ad", ink=0), B(.9, 1.1, .05, .5, .7, .01, c2 or "#3e5c8a", ink=0)],
+        "sink": [B(0, 0, 0, .9, .82, .55, c or "#e9e4d8"), B(0, .82, 0, .95, .06, .6, "#f6f6f2"),
+                 dict(t="cylinder", x=0, y=.84, z=0, r=.22, h=.02, c="#cfd6dd"), C(0, .88, -.22, .025, .28, "#b9bfc6"),
+                 B(0, 1.14, -.13, .04, .03, .2, "#b9bfc6")],
+        "mirror": [B(0, 1.25, 0, .8, 1.0, .04, c2 or "#d8d2c4"), dict(t="glow", x=0, y=1.75, z=.025, w=.68, h=.88, c=c or "#cfe6f2", op=.9),
+                   B(.15, 1.95, .03, .25, .04, .005, "#ffffff", ink=0, op=.6)],
+        "bathtub": [B(0, 0, 0, 1.7, .58, .78, c or "#f6f6f2"), B(0, .5, 0, 1.5, .02, .6, "#bfe0ef", ink=0), C(-.75, .58, 0, .03, .25, "#b9bfc6")],
+        "toilet": [B(0, 0, 0, .4, .42, .55, c or "#f6f6f2"), B(0, .42, -.18, .42, .45, .2, c or "#f6f6f2"), B(0, .42, .05, .42, .04, .48, "#e9e4d8")],
+        "towel_rail": [B(0, 1.1, 0, .7, .03, .05, "#b9bfc6"), B(0, .65, .03, .5, .5, .03, c or "#e35d4f", ink=0)],
+        "wall_shelf": [B(0, 1.55, 0, 1.2, .04, .25, c or wood), B(-.4, 1.59, 0, .12, .25, .16, "#4f6bd8"), B(-.25, 1.59, 0, .1, .2, .16, "#e3b341"),
+                       dict(t="cylinder", x=.15, y=1.59, z=0, r=.06, h=.12, c="#f3eee4"), C(.4, 1.59, 0, .08, .1, "#b5523a"),
+                       dict(t="sphere", x=.4, y=1.75, z=0, r=.11, c="#4e8a4a")],
+        "coat_rack": [C(0, 0, 0, .025, 1.8, dark), C(0, 0, 0, .2, .02, dark), dict(t="sphere", x=-.12, y=1.55, z=0, r=.16, c=c or "#7a5c9a"),
+                      B(.1, 1.0, 0, .14, .55, .1, c2 or "#c96f5a")],
+        "cardboard_box": [B(0, 0, 0, .55, .4, .45, c or "#b98a57"), B(0, .4, 0, .56, .01, .05, "#d8b07a", ink=0)],
+        "fridge_display": [B(0, 0, 0, 1.4, 2.0, .7, c or "#2e3b4a"), dict(t="glow", x=0, y=1.05, z=.36, w=1.2, h=1.6, c="#d8f1ff", op=.9)]
+                          + [B(-.45 + .3 * k, y, .3, .18, .28, .05, ["#e35d4f", "#ffd166", "#3aa65a", "#4f7be3"][k % 4], ink=0)
+                             for y in (.45, .95, 1.45) for k in range(4)],
+        "checkout": [B(0, 0, 0, 2.2, .9, .7, c or "#3e7cb1"), B(0, .9, 0, 2.3, .04, .75, "#2a2730"), B(.75, .94, 0, .4, .3, .3, dark),
+                     dict(t="glow", x=.75, y=1.1, z=.16, w=.32, h=.14, c="#9effa8"), B(-.5, .94, 0, 1.1, .01, .6, "#55505e", ink=0)],
+        "door_frame": [B(-.53, 0, 0, .08, 2.15, .12, c2 or "#e9e4d8"), B(.53, 0, 0, .08, 2.15, .12, c2 or "#e9e4d8"),
+                       B(0, 2.11, 0, 1.14, .08, .12, c2 or "#e9e4d8"), B(0, 0, -.02, .98, 2.1, .05, c or wood),
+                       dict(t="sphere", x=.37, y=1.02, z=.03, r=.04, c="#e3b341", ink=0)],
+        "mug": [C(0, 0, 0, .05, .1, c or "#f3eee4")],
+        "papers": [B(0, 0, 0, .3, .02, .22, c or "#fbf8f1", ink=0, ry=.2), B(.04, .02, .02, .3, .01, .22, "#ffffff", ink=0, ry=-.1)],
+        "laptop_open": [B(0, 0, 0, .38, .02, .26, dark), B(0, .02, -.12, .38, .25, .015, dark, rx=-.25),
+                        dict(t="glow", x=0, y=.15, z=-.1, w=.33, h=.2, c=c or "#9ed8ff", rx=-.25)],
+        "desk_lamp": [C(0, 0, 0, .08, .02, dark), C(0, 0, 0, .015, .38, dark), dict(t="cylinder", x=.06, y=.34, z=0, rt=.04, rb=.1, h=.12, c=c or "#e3b341"),
+                      dict(t="light", x=.06, y=.3, z=.1, c="#ffcf8a", I=10, dist=3)],
+        "books_stack": [B(0, 0, 0, .25, .05, .18, "#d8473d"), B(.01, .05, 0, .23, .05, .17, "#4f6bd8"), B(-.01, .1, 0, .24, .04, .18, "#e3b341")],
+        "kettle": [C(0, 0, 0, .1, .2, c or "#c0504d"), dict(t="sphere", x=0, y=.23, z=0, r=.04, c=dark, ink=0)],
+        "pot": [C(0, 0, 0, .15, .14, c or "#55505e"), B(.2, .1, 0, .12, .02, .03, dark)],
+        "fruit_bowl": [dict(t="cylinder", x=0, y=0, z=0, rt=.16, rb=.08, h=.08, c=c or "#f3eee4"), dict(t="sphere", x=-.05, y=.1, z=0, r=.06, c="#e35d4f"),
+                       dict(t="sphere", x=.06, y=.1, z=.02, r=.06, c="#ffd166")],
+        "alarm_clock": [B(0, 0, 0, .14, .1, .06, c or dark), dict(t="glow", x=0, y=.05, z=.031, w=.1, h=.05, c="#ff5a5a")],
+        "clothes_pile": [dict(t="sphere", x=0, y=.05, z=0, r=.18, c=c or "#7a5c9a"), dict(t="sphere", x=.18, y=.04, z=.05, r=.13, c=c2 or "#3e7cb1")],
+        "shoes": [B(-.07, 0, 0, .1, .07, .26, c or "#2a2230"), B(.08, 0, .03, .1, .07, .26, c or "#2a2230")],
+        "frame_photo": [B(0, 0, 0, .18, .22, .02, c2 or wood, rx=-.15), dict(t="glow", x=0, y=.11, z=.012, w=.14, h=.17, c=c or "#e7c79a", rx=-.15)],
+        "sticky_notes": [B(-.1 + .1 * k, 0, 0, .08, .08, .005, ["#ffd166", "#f08a5d", "#9effa8"][k % 3], ink=0) for k in range(3)],
     }
     return P.get(n)
 
@@ -95,7 +150,14 @@ def _parts(n, c, c2):
 FURNITURE = sorted([
     "bed", "bedside_table", "desk", "computer", "chair", "sofa", "table", "bookshelf", "kitchen_counter", "oven", "fridge",
     "window", "night_window", "door", "tv", "lamp_floor", "plant", "rug", "picture", "wall_clock", "shop_counter",
-    "shelf_goods", "car", "bench", "trash_bin", "building", "street_sign", "fence", "crate", "barrel", "whiteboard", "towel", "umbrella", "palm"])
+    "shelf_goods", "car", "bench", "trash_bin", "building", "street_sign", "fence", "crate", "barrel", "whiteboard", "towel", "umbrella", "palm",
+    "washer", "folding_table", "laundry_basket", "podium", "projector_screen", "sink", "mirror", "bathtub", "toilet", "towel_rail",
+    "wall_shelf", "coat_rack", "cardboard_box", "fridge_display", "checkout", "door_frame", "mug", "papers", "laptop_open",
+    "desk_lamp", "books_stack", "kettle", "pot", "fruit_bowl", "alarm_clock", "clothes_pile", "shoes", "frame_photo", "sticky_notes"])
+
+
+SMALL = {"mug", "papers", "laptop_open", "desk_lamp", "books_stack", "kettle", "pot", "fruit_bowl", "alarm_clock", "clothes_pile",
+         "shoes", "frame_photo", "sticky_notes"}
 
 
 def expand(objects):
@@ -119,7 +181,8 @@ def expand(objects):
             for k in ("w", "h", "d", "r", "rt", "rb"):
                 if k in q: q[k] = round(q[k] * s, 3)
             if ry and q["t"] in ("box", "cylinder", "glow"): q["ry"] = round(q.get("ry", 0) + ry, 4)
-            q.setdefault("ink", INK) if q["t"] in ("box", "cylinder", "sphere") else None
+            if q["t"] in ("box", "cylinder", "sphere"):
+                q.setdefault("ink", 0.008 if o.get("n") in SMALL else INK)
             out.append(q)
     return out
 

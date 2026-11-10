@@ -21,7 +21,7 @@ const mkInk=w=>new THREE.ShaderMaterial({side:THREE.BackSide,uniforms:{w:{value:
 const toon=(c,op)=>{const m=new THREE.MeshToonMaterial({color:col(c),gradientMap:gt});if(op!=null&&op<1){m.transparent=true;m.opacity=op;m.depthWrite=false}return m};
 const basic=(c,o)=>new THREE.MeshBasicMaterial({color:col(c),transparent:o.op!=null&&o.op<1,opacity:o.op??1,depthWrite:!(o.op!=null&&o.op<1),fog:o.fog!==false});
 function inkify(obj,w=0.035){if(w<=0)return;const add=[];obj.traverse(m=>{if(m.isMesh&&!m.userData.noink){const i=new THREE.Mesh(m.geometry,mkInk(w));i.userData.noink=true;add.push([m,i])}});add.forEach(([m,i])=>m.add(i))}
-const place=(m,o)=>{m.position.set(o.x||0,(o.y||0)+(o.h||0)/2,o.z||0);if(o.ry)m.rotation.y=o.ry;if(o.rz)m.rotation.z=o.rz;scene.add(m);return m};
+const place=(m,o)=>{m.position.set(o.x||0,(o.y||0)+(o.h||0)/2,o.z||0);m.rotation.order='YXZ';if(o.ry)m.rotation.y=o.ry;if(o.rx)m.rotation.x=o.rx;if(o.rz)m.rotation.z=o.rz;scene.add(m);return m};
 const loader=new GLTFLoader();const kit=spec.kitUrl||'/kenney/';
 const T={
  box(o){const m=place(new THREE.Mesh(new THREE.BoxGeometry(o.w,o.h,o.d),toon(o.c,o.op)),o);if(o.op==null||o.op>=1)inkify(m,o.ink??0.035)},

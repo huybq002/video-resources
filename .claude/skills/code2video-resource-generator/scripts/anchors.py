@@ -15,23 +15,30 @@ The pose is held across the following cuts of the scene until a "stand"/"walkTo"
 """
 import math
 
+try:
+    import catalog as CAT
+except ImportError:
+    from scripts import catalog as CAT
+
 PERSON_M = 1.65          # a standing adult; the drawing is 720 units tall in a 400x800 box
 FIG_UNITS = 720.0
 
 # local anchor points per furniture piece (metres, before the piece's rotation/scale; y up)
 POINTS = {
-    "bed": {"top": (0, .68, .05), "head": (0, .68, -.92), "foot": (0, .68, .98)},
+    "bed": {"top": (0, .68, .05), "head": (0, .68, -.92), "foot": (0, .68, .98), "seat": (.78, .58, .35), "facing": (1, 0, 0)},
     "chair": {"seat": (0, .52, 0), "floor": (0, 0, 0), "facing": (0, 0, 1)},
     "desk": {"top": (0, .75, 0), "front": (0, .75, .38)},
     "table": {"top": (0, .77, 0), "front": (0, .77, .45)},
     "kitchen_counter": {"top": (0, .93, .05), "front": (0, .93, .32)},
     "shop_counter": {"top": (0, 1.06, 0), "front": (0, 1.06, .35)},
-    "oven": {"top": (0, .93, 0), "front": (0, .45, .32)},
+    "oven": {"top": (0, .88, 0), "front": (0, .45, .32)},
     "fridge": {"front": (0, 1.0, .36)},
     "bedside_table": {"top": (0, .57, 0)},
-    "sofa": {"seat": (0, .45, .12), "facing": (0, 0, 1)},
+    "sofa": {"seat": (0, .45, .12), "facing": (0, 0, 1), "head": (-.85, .4, .26), "foot": (.85, .4, .26), "top": (0, .45, .2)},   # lying ON the cushion, not on the back
     "tv": {"top": (0, .55, .1)},
-    "bench": {"seat": (0, .49, 0), "facing": (0, 0, 1)},
+    "bench": {"seat": (0, .49, 0), "facing": (0, 0, 1), "head": (-.8, .5, 0), "foot": (.8, .5, 0), "top": (0, .5, 0)},
+    "bathtub": {"head": (-.65, .45, 0), "foot": (.65, .45, 0), "top": (0, .45, 0)},
+    "toilet": {"seat": (0, .45, .08), "facing": (0, 0, 1)},
     "bookshelf": {"front": (0, 1.0, .2)},
     "towel": {"top": (0, .05, 0), "head": (0, .05, -.8), "foot": (0, .05, .8)},
     "shelf_goods": {"front": (0, 1.0, .3)},
@@ -66,6 +73,11 @@ class Cam:
         return self.H / (2 * z * self.t)
 
 
+# backrests (furniture.py parts, local metres: half width, bottom, top, z of the panel). A backrest that is NEARER the
+# camera than the person sitting in front of it hides their back - build_project draws it over them (occluder).
+BACKREST = {"chair": (.25, .52, 1.07, -.22, "#3e5c8a"), "bench": (.9, .5, .9, -.2, "#8a5a3c"), "sofa": (1.05, .45, 1.0, -.36, "#7a5c9a")}
+
+
 def compute(setting, W, H):
     """setting = expanded setting dict (sets.expand done, furniture NOT yet expanded). -> {name: [anchor, ...]}"""
     cam = Cam(setting["camera"], W, H); out = {}
@@ -73,20 +85,43 @@ def compute(setting, W, H):
         if o.get("t") != "furn":
             continue
         n = o.get("n"); pts = dict(POINTS.get(n, {})); pts.setdefault("floor", (0, 0, 0)); pts.setdefault("near", (0, 0, .9))
+        # where a person stands to USE it: on the floor in front of it (catalog footprint), any object, no table to fill in
+        pts.setdefault("approach", (0, 0, CAT.C.get(n, {}).get("d", .6) / 2 + .4))
+        if CAT.C.get(n, {}).get("stand") == "behind":   # a podium, a till: the user stands behind it, facing the room
+            pts.setdefault("behind", (0, 0, -(CAT.C[n].get("d", .6) / 2 + .3)))
+            pts.setdefault("top", (0, CAT.C[n].get("h", 1.0), 0))
         s, ry = float(o.get("s", 1)), float(o.get("ry", 0)); bx, by, bz = float(o.get("x", 0)), float(o.get("y", 0)), float(o.get("z", 0))
-        a = {"n": n}
+        a = {"n": n, "c": o.get("c")}
         for k, (lx, ly, lz) in pts.items():
             dx, dz = _rot(lx * s, lz * s, ry)
             if k == "facing":    # a direction, not a point: which way the seat faces on screen (+1 right, -1 left)
                 p0 = cam.project((bx, 0, bz)); p1 = cam.project((bx + dx, 0, bz + dz))
                 a["face"] = 1 if p1[0] >= p0[0] else -1
+                if dz < -0.6 * math.hypot(dx, dz):   # the seat faces away from the camera (audience rows, a desk chair)
+                    a["face_back"] = True
                 continue
             sx, sy, z = cam.project((bx + dx, by + ly * s, bz + dz))
             a[k] = [round(sx, 1), round(sy, 1)]
-            if k in ("floor", "top", "seat", "foot"):
+            if k in ("floor", "top", "seat", "foot", "approach", "behind"):
                 a[k + "_ppm"] = round(cam.ppm(z), 2)
         fx, fy, _ = cam.project((bx, 0, bz)); a["on_screen"] = 0 <= fx <= W and 0 <= fy <= H * 1.05
+        if n in BACKREST:
+            hw, y0, y1, bzl, col = BACKREST[n]
+            quad, zs = [], []
+            for (lx, ly) in ((-hw, y0), (hw, y0), (hw, y1), (-hw, y1)):
+                dx, dz = _rot(lx * s, bzl * s, ry); px, py, pz = cam.project((bx + dx, by + ly * s, bz + dz)); quad.append([round(px, 1), round(py, 1)]); zs.append(pz)
+            sdx, sdz = _rot(0, 0, ry); _, _, seat_z = cam.project((bx + sdx, by + .5 * s, bz + sdz))
+            a["backrest"] = quad; a["back_col"] = o.get("c") or col
+            a["back_near"] = sum(zs) / 4 < seat_z - 0.05      # the panel is between the camera and the sitter
         out.setdefault(n, []).append(a)
+    wx_ = setting.get("_win")
+    if wx_ is not None and "window" not in out:   # the window is part of the wall, not a furniture piece: stand in front of it
+        wz = -6.0
+        a = {"n": "window"}
+        for k, z_ in (("floor", wz + 0.4), ("approach", wz + 1.7)):
+            sx, sy, z = cam.project((wx_, 0, z_)); a[k] = [round(sx, 1), round(sy, 1)]; a[k + "_ppm"] = round(cam.ppm(z), 2)
+        fx, fy, _ = cam.project((wx_, 0, wz + 1.7)); a["on_screen"] = 0 <= fx <= W and 0 <= fy <= H * 1.05
+        out["window"] = [a]
     # floor depth scale: screen y of a point on the floor -> pixels per metre there (so a person standing with feet
     # at that y is drawn at the right size for the set)
     L = setting["camera"]["look"]; P = setting["camera"]["pos"]; rows = []

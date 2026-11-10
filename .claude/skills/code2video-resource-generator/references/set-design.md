@@ -28,7 +28,7 @@ Forever", the stickman Shorts) next to our own night-job videos (2026-11-07/08).
 ```
 
 - `type`: `room` | `street` | `shopfront`.
-- `style` (room): `bedroom office lab kitchen living classroom cafe shop`; (shopfront): `cafe shop office`.
+- `style` (room): `bedroom office lab kitchen living classroom cafe shop laundry meeting bathroom grocery`; (shopfront): `cafe shop office`.
 - `time`: `day` | `dusk` (default; the reference look) | `night`. Use the time the script says ("2 a.m." = night, "nine o'clock" = day).
 - `window`: `left` | `right` | `center` | `none` (default depends on the style). `key`: where the style's key furniture stands
   (bed, desk, sofa, table); put it where the character who uses it stands (z ≈ 0.5–1.5 is the characters' depth).
@@ -80,3 +80,47 @@ driving along the lanes. Seated extras keep their seat in every shot of the sett
 Override on the setting: `"extras": "none"` (a deliberately empty place), `0.5` / `2` (fewer / more), or an explicit
 list `[{"role": "walk", "n": 3}, {"role": "sit_work", "n": 2}]`. Roles: sit_work, sit_drink, sit_listen, behind, browse,
 walk, walk_street, cross, swim, sunbathe, traffic, bench.
+
+
+## Detail and story places (2026-11-09)
+- Every room is dressed automatically: things on every desk/table/counter (laptop, mug, papers, desk lamp, books, sticky
+  notes; kettle, pot, fruit bowl; alarm clock on the bedside table), a door, a wall shelf, clothes/shoes/boxes on the
+  floor by style, and a wall/floor palette per style (bathroom tiles, laundry concrete, grocery white). `sets._dress`.
+- New styles for places stories keep visiting: `laundry` (washers in two stacks, folding table, baskets, bench),
+  `meeting` (projector screen with a slide, podium, rows of chairs with listeners), `bathroom` (tiled wall, sink and
+  mirror, tub, toilet, towel rail), `grocery` (open shelves of goods along an aisle, fridge displays, checkout, boxes).
+- New furniture/props for your own objects: washer, folding_table, laundry_basket, podium, projector_screen, sink,
+  mirror, bathtub, toilet, towel_rail, wall_shelf, coat_rack, cardboard_box, fridge_display, checkout, door_frame, mug,
+  papers, laptop_open, desk_lamp, books_stack, kettle, pot, fruit_bowl, alarm_clock, clothes_pile, shoes, frame_photo,
+  sticky_notes (small items take `y` = the surface height).
+- A hand-written setting of a few boxes is the failure mode (night 003: five coloured blocks for a laundromat).
+  `autofill.py` turns any sparse setting whose id/description names a known place into that set; still, add ONE object
+  that belongs only to this story (the evidence board, the pizza box, the slide on the screen) - the reference channel
+  dresses every set with the story's own objects.
+
+
+## Any place, any action: the catalog (2026-11-09)
+`scripts/catalog.py` is the one table behind places and actions. Each object says what scripts call it (`syn`), where it
+stands (`zone`: back, wall, side, center, floor, surface), its footprint, the places it belongs in, and its affordances
+(lie, sleep, sit, work, use + hand act, stand). From it:
+- `layout.py` puts ANY catalog object into ANY room at a free spot of its zone (walkway in front of the camera kept
+  clear; a desk/table brings a chair; a bedside table goes by the bed, a mirror over the sink).
+- `autofill.py` builds places: a dressed style, a `catalog.PLACES` recipe (hospital, clinic, waiting room, library,
+  restaurant, bar, hotel, reception, police, studio flat, dorm, garage, warehouse, attic, hallway, bank, pharmacy,
+  bakery, salon, gym) as a `generic` room, or a generic room holding the objects its lines name.
+  Abstract places (mind, head, thought, dream, nightmare, memory, flashback, void, limbo) not built by the author become
+  the `void` style: a dark stage with one pool of light, the objects their lines name standing in it, `dream` /
+  `flashback` grade on their lines. Places in another special state (ruined, flooded, haunted, alien...) stay as written.
+- Lines become actions through `catalog.VERBS` (verb group -> affordance -> objects that offer it, in preference order):
+  the object present in the setting is used, else the first that belongs there is added.
+  `use:<act>@<object>` = stand at its front, a little to the side, turned to it, hands doing stir/reach/point/look/type
+  for the whole shot (build_project.resolve, any object: the approach point comes from the footprint).
+  Negation ("never cooks"), similes ("like a sleeping dog"), nouns ("an hour of sleep") and modals ("could sleep") are not actions.
+  Object keys that change the pose: `stand="behind"` (podium: the user stands behind it facing the room, legs hidden by
+  it), `via="podium"` (pointing at the slides is done from the podium when there is one).
+- Synonyms that are also verbs or idioms (`catalog.WEAK`: tea, notes, screen, board, stage, books...) name the object
+  only as a plain noun after a determiner ("her notes", not "she notes" / "phone screen" / "at this stage"); fixed
+  phrases in `catalog.IDIOMS` are ignored.
+- A seat facing away from the camera (desk at the back wall, audience rows) is drawn from behind, hero and extras alike.
+- To support a new kind of scene, add DATA: an object in `C` (+ its primitives in furniture.py), a place in `PLACES`
+  + `PLACE_WORDS`, or a verb group in `VERBS`. No per-case code.

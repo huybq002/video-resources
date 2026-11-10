@@ -472,6 +472,16 @@ def lint(spec):
     notes += script_visual_match(spec)
     notes += film_pace(spec)
     notes += script_craft(spec)
+    try:
+        from voice_lint import voice
+    except ImportError:
+        from scripts.voice_lint import voice
+    notes += voice(spec)
+    try:
+        from craft_lint import craft
+    except ImportError:
+        from scripts.craft_lint import craft
+    notes += craft(spec)
     return notes
 
 
