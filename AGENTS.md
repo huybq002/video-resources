@@ -55,6 +55,7 @@ cd tools/code2video && python -m pytest tests                   # tool tests
 Environment: Linux, node, python3, google-chrome, ffmpeg available. Use the scratchpad/tmp, never write scratch into the project.
 
 ## Rules and gotchas
+- **Night volume** (`channel.json` `night`): every run writes >= 3 new ideas dated tonight into `data/ideas.md` (`scripts/plan_night.py check-ideas` gates it) and makes >= 2 videos; each video's length is chosen per idea inside `night.duration_range_min` (1-8 min), and `plan_night.py budget --durations a,b` checks they fit before `$DEADLINE_EPOCH`. A scheduled run GitHub starts after the 22:45 UTC window (up to 05:00 UTC) catches up with a 5 h budget instead of doing nothing.
 - **Lint gate:** `scripts/verify_bundle.py bundle` and `ci/run_pipeline.py` fail while any spec-lint WARNING is open (`--max-warnings N` to override, must be justified in the report).
 - **Approval gate:** `skill_hash.py` hashes the skill's scripts/assets/references/SKILL.md and `tools/code2video/src` (not examples). Any change there invalidates `data/approval.json`, so the next night makes a short demo; the owner runs `scripts/approve_demo.py` after reviewing. Rebuild the runner image after skill changes.
 - Content policy (`scripts/policy_check.py`, `data/platform-policy.md`): fiction only, invented names, no real people/brands/prices, no advice or returns, no graphic violence, AI disclosure in the publish pack.

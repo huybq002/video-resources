@@ -10,7 +10,7 @@ format: ""             # what_if | character | episode | days | dilemma | explai
 idea: "One-sentence idea or topic"
 lang: en               # script language (channel.json lang)
 only_aspect: ""        # leave empty: every task builds BOTH 16:9 and 9:16 (own assets per frame). "16:9" or "9:16" to build just one.
-duration_min: 5        # exact length in minutes, e.g. 5 or 0.5
+duration_min: 5        # length this idea needs, in minutes (night.duration_range_min, 1-8): not fixed, the story decides
 script_prompt: ""      # optional: your own script, outline or tone
 renderer: tool         # tool (VieNeu voice + HyperFrames, best quality) | skill (edge-tts, fallback)
 series: ""             # optional: folder name under series/ (empty = stand-alone)
