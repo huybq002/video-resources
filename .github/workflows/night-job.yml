@@ -1,10 +1,9 @@
 name: Night job
 
 # Works 00:00-06:00 Asia/Ho_Chi_Minh (UTC+7) = 17:00-23:00 UTC, once per night.
-# GitHub starts scheduled runs late: measured 3h16m to 4h56m on this repo (2026-11-06/07), so a cron
-# at 17:xx UTC began work at ~03:50 ICT with two hours left. The crons therefore fire EARLY
-# (20:17 / 21:17 / 22:17 ICT); whichever starts first waits inside the job until 00:00 ICT, then works.
-# A run that fires too early to wait inside the 6 h job limit stands down and leaves the night to a later cron.
+# GitHub starts scheduled runs late: measured 3h16m to 4h56m on this repo (2026-11-06/07), so the crons fire EARLY;
+# whichever starts first between 14:30 and 17:00 UTC waits inside the job until 00:00 ICT, then works.
+# A run that fires before 14:30 UTC (too early to wait inside the 6 h job limit) stands down and leaves the night to a later cron.
 # The Claude step stops at 05:45 ICT (22:45 UTC) or 350 min after the job started, whichever is first.
 # If Claude runs out of usage (rate limit) the step ends at once; unfinished tasks are picked up next night.
 # Runs inside the prebuilt image (see Dockerfile / build-image.yml): nothing is installed at night.
@@ -77,7 +76,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Three crons fire each evening. Only one run may work the night: a run that is still going
+          # Nine crons fire each day. Only one run may work the night: a run that is still going
           # (it may be waiting for 00:00) or one whose Claude step succeeded blocks this one. Runs that
           # stood down (too early, too late, or failed) do not, so a later cron can still take the night.
           start=$(date -u -d "$(date -u +%F) 12:00:00" +%s)
@@ -143,6 +142,7 @@ jobs:
           if [ "$ok" = "true" ]; then echo "Approved look ($now_hash): full production tonight."
           else echo "Look $now_hash is NOT approved: demo mode tonight (a short demo for the owner, no full video)."; fi
       - name: Restore unfinished work (bundles, voice-over)
+        if: steps.deadline.outputs.minutes != '0' && steps.guard.outputs.skip != 'true' && steps.wait.outputs.early != 'true'
         uses: actions/cache/restore@v4
         with:
           path: |
@@ -152,6 +152,7 @@ jobs:
           key: bundle-${{ github.run_id }}
           restore-keys: bundle-
       - name: Run Claude
+        id: claude
         if: steps.deadline.outputs.minutes != '0' && steps.guard.outputs.skip != 'true' && steps.wait.outputs.early != 'true'
         timeout-minutes: ${{ fromJSON(steps.deadline.outputs.minutes) }}
         uses: anthropics/claude-code-action@v1
@@ -243,7 +244,9 @@ jobs:
                  4. Voice-over once, then render both. script.srt is identical in the two cuts, so:
                     * `renderer: tool` (default, best quality: VieNeu voice, Whisper alignment, HyperFrames):
                       a. job file outputs/<id>/job-landscape.json:
-                         {"engine":"hyperframes","project":"outputs/<id>/landscape","language":"<lang>","fps":30}
+                         {"engine":"hyperframes","project":"outputs/<id>/landscape","language":"<lang>","fps":30,
+                          "preRender":["python",".claude/skills/code2video-resource-generator/ci/lipsync_audio.py","{project}","--lang","<lang>"]}
+                         (preRender reads the mouths from the real voice with Rhubarb before the render; keep it in both job files)
                          then `code2video-job outputs/<id>/job-landscape.json --report outputs/<id>/report-landscape.json`
                       b. copy the voice-over made for the landscape cut into the portrait cut:
                          `cp outputs/<id>/landscape/voiceover.wav outputs/<id>/landscape/timeline.json outputs/<id>/portrait/`
@@ -253,6 +256,9 @@ jobs:
                          without it the voice is generated a second time. Then
                          `code2video-job outputs/<id>/job-portrait.json --report outputs/<id>/report-portrait.json`
                       The videos are outputs/<id>/<cut>/output.mp4. On failure read the report, fix, re-run.
+                      d. background music (both cuts): `python $SKILL/ci/add_music.py outputs/<id>/<cut>/output.mp4 --spec specs/<id>.json`
+                         (picks a licensed track from data/music by mood, ducks it under the voice; "no licensed track" is fine).
+                         If <cut>/output.music.json has a non-empty "credit", put that line in every description you write.
                     * `renderer: skill` (fallback, edge-tts): run `python $SKILL/ci/run_pipeline.py specs/<id>.json outputs/<id>/landscape --aspect 16:9`
                       and again with `--aspect 9:16 --no-series-update` into outputs/<id>/portrait (video: final.mp4).
                  5. Verify both videos (length, audio present and not silent, frame size):
@@ -338,7 +344,8 @@ jobs:
                   NOT verify; decisions the owner has to make; suggested next steps. Honest beats impressive.
           claude_args: --max-turns 500 --allowedTools "Bash,Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
       - name: Save unfinished work (bundles, voice-over)
-        if: always()
+        # only after a run that worked: stand-down runs used to save a copy of the same cache each time (9 crons a night)
+        if: always() && steps.claude.outcome != 'skipped'
         uses: actions/cache/save@v4
         with:
           path: |

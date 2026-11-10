@@ -609,7 +609,7 @@ def main():
                 who = cue_who.get(ci)
                 if who and any(x["k"] == who for x in chars_data):
                     evs = LS.cue_events(cues[ci].get("words", []), t0, t1, s0 / 1000.0, env)
-                    if evs: lip.append(dict(k=who, ev=evs))
+                    if evs: lip.append(dict(k=who, ev=evs, ci=ci))   # ci: ci/lipsync_audio.py swaps in mouth cues read from the real voice-over
             if lip: d["lip"] = lip
             if layers_data: d["layers"] = layers_data
             if panes_data: d["panes"] = panes_data

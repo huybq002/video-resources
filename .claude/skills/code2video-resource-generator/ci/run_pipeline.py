@@ -43,6 +43,9 @@ if len(_warn) > a.max_warnings:
 if a.stop_after == "generate": sys.exit(0)
 # 2 voice-over
 run("tts", [PY, str(HERE / "tts.py"), str(proj), "--spec", str(spec)]); say("tts ok: " + [l for l in pathlib.Path(log).read_text(encoding="utf-8", errors="replace").splitlines() if l.startswith("voiceover.wav")][-1])
+# 2b mouths from the real voice-over (Rhubarb); without the binary the text-based lip-sync stays
+_lang = json.loads(spec.read_text(encoding="utf-8")).get("lang", "en")
+run("lipsync", [PY, str(HERE / "lipsync_audio.py"), str(proj), "--lang", _lang]); say(([l for l in pathlib.Path(log).read_text(encoding="utf-8", errors="replace").splitlines() if l.startswith("lipsync:")] or ["lipsync: done"])[-1])
 if a.stop_after == "tts": sys.exit(0)
 # 3 render in parallel slices
 rc = [PY, str(HERE / "render_chunks.py")]
@@ -60,7 +63,9 @@ with cf.ThreadPoolExecutor(max_workers=a.jobs) as ex:
         except Exception as e: sys.exit(f"FAILED at render: {e}; see {log}")
 if a.stop_after == "render": sys.exit(0)
 # 4 assemble + thumbnail, 5 metadata
-run("assemble", rc + ["assemble", str(proj), "--out", "final.mp4"]); run("thumbnail", ["ffmpeg", "-y", "-ss", "3", "-i", str(proj / "final.mp4"), "-frames:v", "1", "-vf", "scale=1280:-2", str(proj / "thumb.jpg")])
+run("assemble", rc + ["assemble", str(proj), "--out", "final.mp4"])
+run("music", [PY, str(HERE / "add_music.py"), str(proj / "final.mp4"), "--spec", str(spec)]); say(([l for l in pathlib.Path(log).read_text(encoding="utf-8", errors="replace").splitlines() if l.startswith("music:")] or ["music: done"])[-1])
+run("thumbnail", ["ffmpeg", "-y", "-ss", "3", "-i", str(proj / "final.mp4"), "-frames:v", "1", "-vf", "scale=1280:-2", str(proj / "thumb.jpg")])
 meta = out.parent / (out.name + "_metadata.json")
 r = subprocess.run([PY, str(HERE / "make_metadata.py"), str(spec), str(proj), "--privacy", a.privacy], capture_output=True, text=True, encoding="utf-8")
 if r.returncode: sys.exit("FAILED at metadata:\n" + r.stderr[-800:])

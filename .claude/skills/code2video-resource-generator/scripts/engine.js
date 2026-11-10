@@ -75,7 +75,8 @@
     tl.to([part(c, "shin-l"), part(c, "shin-r"), part(c, "foot-l"), part(c, "foot-r"), part(c, "forearm-l"), part(c, "forearm-r")], { rotation: 0, duration: 0.3, ease: "power2.out" }, t + dur); };
   const ACT = {
     // idle "life": breathing, weight shift, drifting head (all finite, loops return to the start pose)
-    breathe(c, t, dur) { const per = 1.3, n = Math.max(1, Math.floor(dur / per)), per2 = 3.1, n2 = Math.max(1, Math.floor(dur / per2)), per3 = 2.3, n3 = Math.max(1, Math.floor(dur / per3));
+    // periods and start are varied per character (seeded), so two people in a shot never breathe/sway in lockstep
+    breathe(c, t, dur) { t += rnd() * 0.5; dur = Math.max(0.6, dur - 0.5); const per = 1.15 + rnd() * 0.35, n = Math.max(1, Math.floor(dur / per)), per2 = 2.7 + rnd() * 0.9, n2 = Math.max(1, Math.floor(dur / per2)), per3 = 2.0 + rnd() * 0.8, n3 = Math.max(1, Math.floor(dur / per3));
       tl.to(part(c, "torso"), { scaleY: 1.025, duration: per / 2, yoyo: true, repeat: 2 * n - 1, ease: "sine.inOut" }, t);
       tl.to(part(c, "life"), { y: -3, duration: per / 2, yoyo: true, repeat: 2 * n - 1, ease: "sine.inOut" }, t);
       tl.to(part(c, "life"), { x: 3, rotation: 0.5, duration: per2, yoyo: true, repeat: 2 * n2 - 1, ease: "sine.inOut" }, t);
@@ -321,7 +322,11 @@
     for (const v of sh.vehicles || []) { const e = $(v.dom);   // traffic: a car drives along its lane
       tl.set(e, { opacity: 1 }, t0 + v.t); tl.fromTo(e, { x: 0, y: 0, scale: 1 }, { x: v.dx, y: v.dy, scale: v.k, duration: v.d, ease: v.back ? "power2.out" : "power2.in" }, t0 + v.t);
       tl.set(e, { opacity: 0 }, t0 + v.t + v.d); }
-    for (const L of sh.lip || []) { const c = sh.chars.find((x) => x.k === L.k); if (!c) continue; for (const ev of L.ev) viseme(c, t0 + ev[0], ev[1], ev[2]); }
+    for (const L of sh.lip || []) { const c = sh.chars.find((x) => x.k === L.k); if (!c) continue; for (const ev of L.ev) viseme(c, t0 + ev[0], ev[1], ev[2]);
+      // listeners react: a small nod (additive y on headsway, never fights a pose) and a blink, once per line
+      if (L.ev.length) { const ts = t0 + L.ev[0][0] + 0.5 + rnd() * 0.6;
+        if (ts < t1 - 0.6) for (const o of sh.chars) { if (o.k === L.k || (o.hold === "lie" && !o.awake)) continue;
+          tl.to(part(o, "headsway"), { y: 3, duration: 0.18, yoyo: true, repeat: 1, ease: "sine.inOut" }, ts + rnd() * 0.3); blink(o, ts + 0.45); } } }
     for (const p of sh.props || []) { const e = $(p.dom);
       if (p.mode === "place") { gsap.set(e, { opacity: 0 }); tl.fromTo(e, { opacity: 1, x: p.fx || 0, y: p.fy || 0, scale: 0.9 }, { x: 0, y: 0, scale: 1, duration: 0.55, ease: "power2.inOut" }, t0 + (p.t || 0)); }
       else if (p.mode === "take") { gsap.set(e, { opacity: 1 }); tl.to(e, { x: p.fx || 0, y: p.fy || 0, duration: 0.5, ease: "power2.inOut" }, t0 + (p.t || 0)); tl.to(e, { opacity: 0, duration: 0.2 }, t0 + (p.t || 0) + 0.5); }

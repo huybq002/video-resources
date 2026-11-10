@@ -264,6 +264,17 @@ class JobQueue:
                     render_whiteboard(project_dir, video_path, fps=_wb_fps(p), long_edge=p.get("wbLongEdge"))
                     result_scene = scene_pairs(project_dir)[0][0].stem
                 else:
+                    pre = p.get("preRender")
+                    if pre:
+                        # e.g. the skill's lip-sync from the real voice-over:
+                        # ["python", "<skill>/ci/lipsync_audio.py", "{project}", "--lang", "en"]
+                        import subprocess, sys
+                        self._set_stage(job, "pre-render")
+                        cmd = [str(x).replace("{project}", str(project_dir)) for x in pre]
+                        r = subprocess.run(cmd, capture_output=True, text=True)
+                        if r.returncode:
+                            raise RuntimeError(f"preRender failed ({r.returncode}): {(r.stderr or r.stdout)[-600:]}")
+                        print((r.stdout or "").strip()[-300:], file=sys.stderr, flush=True)
                     self._set_stage(job, "render")
                     render_hyperframes(project_dir, video_path, fps=p.get("fps"), quality=p.get("hfQuality"))
                     result_scene = None

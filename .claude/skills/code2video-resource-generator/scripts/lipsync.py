@@ -44,9 +44,27 @@ def _amp(env, t0, t1):
     seg = env["v"][a:b] or [0.5]
     return max(0.0, min(1.4, sum(seg) / len(seg)))
 
+_EN_SHAPE = {"a": ("a", 0.95), "e": ("e", 0.6), "i": ("e", 0.45), "y": ("e", 0.45), "o": ("o", 0.75), "u": ("o", 0.55)}
+
+def _en_events(w, t0, t1, env):
+    """English (several syllables per word): one mouth per vowel group, closed on b/m/p, split evenly in time.
+    Only the fallback: with Rhubarb on the real voice (ci/lipsync_audio.py) these are replaced."""
+    groups = [(m.start(), m.group()) for m in re.finditer(r"[aeiouy]+", w)]
+    d = (t1 - t0) / len(groups); ev = []
+    for k, (pos, g) in enumerate(groups):
+        a = t0 + k * d
+        if pos > 0 and w[pos - 1] in "bmp": ev.append((a, "m", 1.0)); a += 0.25 * d
+        shape, base = _EN_SHAPE.get(g[0], ("a", 0.8))
+        amp = 0.55 + 0.7 * _amp(env, a, a + d) if env else 1.0
+        ev.append((a, shape, max(0.3, min(1.25, base * amp))))
+    ev.append((t1, "m", 1.0))
+    return ev
+
 def word_events(word, t0, t1, env=None):
     w = _clean(word)
     if not w or t1 <= t0: return []
+    if not re.search(r"[ăâđêôơư]", w) and len(re.findall(r"[aeiouy]+", w)) > 1:   # no Vietnamese letters + several vowel groups: English
+        return _en_events(w, t0, t1, env)
     vs = [i for i, ch in enumerate(w) if ch in VOWELS]
     d = t1 - t0
     if not vs:
