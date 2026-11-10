@@ -72,12 +72,12 @@
     {
       "name": "story",
       "duration_min": 5,
-      "note": "One situation with a hook, a turn and a payoff"
+      "note": "One situation with a hook, a turn and a payoff (typical length; the idea decides)"
     },
     {
       "name": "explainer",
       "duration_min": 6,
-      "note": "One mechanism, 3-4 short scenes that show it, then where the viewer meets it"
+      "note": "One mechanism, 3-4 short scenes that show it, then where the viewer meets it (typical length; the idea decides)"
     }
   ],
   "default_duration_min": 5,
@@ -93,7 +93,8 @@
     "videos_per_channel": 20,
     "ideas_per_run": 5,
     "max_discovered_keywords_per_topic": 14,
-    "policy_refresh_days": 7
+    "policy_refresh_days": 7,
+    "min_ideas_per_run": 3
   },
   "publish": {
     "platforms": [
@@ -111,5 +112,17 @@
     "require_ai_label": true
   },
   "reference_channels": [],
-  "_discovered_note": "Keywords the job discovers are kept in data/discovered_keywords.json, not here, so your edits and the job's never conflict."
+  "_discovered_note": "Keywords the job discovers are kept in data/discovered_keywords.json, not here, so your edits and the job's never conflict.",
+  "night": {
+    "videos_per_night": 2,
+    "min_ideas_per_run": 3,
+    "duration_range_min": [
+      1,
+      8
+    ],
+    "duration_note": "No fixed length: each idea gets the length its story needs (a single twist ~1-2 min, a story with a turn 3-5, an explainer 4-8). formats[].duration_min is only a typical value.",
+    "render_s_per_video_s": 7.0,
+    "overhead_min_per_video": 30,
+    "margin": 1.3
+  }
 }
