@@ -1,0 +1,12 @@
+[
+  {
+    "id": "d1881b63476e",
+    "status": "done",
+    "outputDir": "/__w/video-resources/video-resources/outputs/004-raise-disappeared/portrait",
+    "video": "/__w/video-resources/video-resources/outputs/004-raise-disappeared/portrait/output.mp4",
+    "renderer": "hyperframes",
+    "composition": "/__w/video-resources/video-resources/outputs/004-raise-disappeared/portrait/index.html",
+    "timeline": "/__w/video-resources/video-resources/outputs/004-raise-disappeared/portrait/timeline.json",
+    "audio": "/__w/video-resources/video-resources/outputs/004-raise-disappeared/portrait/voiceover.wav"
+  }
+]

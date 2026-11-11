@@ -1,0 +1,94 @@
+{
+  "id": "004-raise-disappeared",
+  "tag": "004-raise-disappeared-43072703753",
+  "idea": "An invented woman, Nora, gets a raise and watches it vanish month by month: lifestyle creep, one invented year",
+  "lang": "en",
+  "duration_s": 300,
+  "cuts": [
+    {
+      "cut": "landscape",
+      "aspect": "16:9",
+      "video": "landscape.mp4",
+      "bundle": "landscape-bundle.zip"
+    },
+    {
+      "cut": "portrait",
+      "aspect": "9:16",
+      "video": "portrait.mp4",
+      "bundle": "portrait-bundle.zip"
+    }
+  ],
+  "assets": [
+    {
+      "name": "landscape.mp4",
+      "bytes": 169772847,
+      "sha256": "0e4776675aa63f2a97e38e63b228601f8badb4de5a3762e3c16fd7614d2cc140"
+    },
+    {
+      "name": "landscape-bundle.zip",
+      "bytes": 26443839,
+      "sha256": "d16aaf39d0b4f307e7d8ada6aecfa86a58279ea7c007f0046913b580f7ccd970"
+    },
+    {
+      "name": "portrait.mp4",
+      "bytes": 163736807,
+      "sha256": "d714c68f0c2b0390fd18bf2f0083ecccf220bf0717de717159a079cde52b8620"
+    },
+    {
+      "name": "portrait-bundle.zip",
+      "bytes": 23099439,
+      "sha256": "eb1e186f6993f128986bdc8bd9f3940b04c4257157d546edd58fc1084baff562"
+    },
+    {
+      "name": "metadata.json",
+      "bytes": 534,
+      "sha256": "2f12128d933ea975362eb81393a59021b7d3a7ecf35a23e8a3f10a94e2d45458"
+    },
+    {
+      "name": "tiktok.md",
+      "bytes": 641,
+      "sha256": "08bff96f4dafc6267ab7b386af6c5c747ae5b5c00b4e038d1bb8082ceea8fd77"
+    },
+    {
+      "name": "youtube.md",
+      "bytes": 1145,
+      "sha256": "0b3d718988e0bfe65c8a4593cfda5eb06420310a24f53acdf856bd09638a296b"
+    },
+    {
+      "name": "youtube_shorts.md",
+      "bytes": 371,
+      "sha256": "702f42b1ce762e5df3ac5bc6ff16024f40131cc542b80db59d805f7430058c7b"
+    },
+    {
+      "name": "a.png",
+      "bytes": 552786,
+      "sha256": "4bbe1ac38bac396610bdc5cc1b8dd0f69fae1d114897a38efb0f74721d85513a"
+    },
+    {
+      "name": "b.png",
+      "bytes": 555482,
+      "sha256": "617bbd013c1ee4ba33a8942a34ca861d9c205c51a4f75d93b14de25d5b0db63e"
+    },
+    {
+      "name": "c.png",
+      "bytes": 450874,
+      "sha256": "d03b65d02b5962efe739538de2870667053daac5f4b79a4d126381bfc3e2b813"
+    },
+    {
+      "name": "d.png",
+      "bytes": 329936,
+      "sha256": "8c9b4f64ffee31c30534a3262dec7207c1798aa95a1c2557902817c90609292e"
+    },
+    {
+      "name": "e.png",
+      "bytes": 342420,
+      "sha256": "a5d4ed4130412c4220e814c97a17ee4c7baa43bd93a686bc02cb86a33252b9a9"
+    },
+    {
+      "name": "f.png",
+      "bytes": 358460,
+      "sha256": "ebf90184ea0aa852c7f3c50af8cc4c2017b49f4e74c5e1c2698e7ed385e224ef"
+    }
+  ],
+  "release_url": "https://github.com/huybq002/video-resources/releases/tag/004-raise-disappeared-43072703753"
+}
