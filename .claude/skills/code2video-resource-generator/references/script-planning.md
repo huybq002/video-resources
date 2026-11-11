@@ -10,7 +10,7 @@ The user gives an idea and a length (e.g. 8–10 minutes). The result must have 
 | 5 min | 10–12 | 24–30 | 75–90 | 720 |
 | 8 min | 16–20 | 24–30 | 120–140 | 1150 |
 | 10 min | 20–24 | 24–30 | 150–175 | 1450 |
-Rules: duration_s = sum of scenes[].target_s (to the second). Speaking rate ≈ 2.55 words/s → **words per scene ≈ target_s × 2.4**, i.e. about 5–6 words per second of two-cue pair; a 27 s scene needs ≈ 65 words, not 50.
+Rules: duration_s = sum of scenes[].target_s (to the second). Speaking rate ≈ 2.55 words/s → **words per scene ≈ target_s × 2.4**, i.e. about 5–6 words per second of two-cue pair; a 27 s scene needs ≈ 65 words, not 50. **English: aim for ≈ 2.7 words/s (target_s × 2.7), not 2.4.** Measured 2026-11-12 on two full specs: 2.48 w/s (743 words / 300 s) still left 17 % silence, 2.69 w/s (808 / 300 s) left 10 %; first drafts written to 2.4 came out at 1.8-2.3 w/s. Count words per scene before the first build, and split any cue over 12 words in two so a shorter scene target does not break its reading minimum.
 
 **Dead air is the number-one defect.** The voice-over is one clip per cue placed at the cue's start: if the text is shorter than the window the scene simply runs on in silence. `generate.py` prints `WARNING: scene N target 27s but its text naturally takes 20s (33% of the scene would be silent): add about 15 words` and a closing `silence: about X%` line. **Aim for under 8 % and never ship over 12 %.** Write more lines rather than longer lines, and cut `target_s` for a scene that genuinely has little to say.
 
