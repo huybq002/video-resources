@@ -65,6 +65,14 @@ jobs:
             if git cat-file -e "origin/night:tasks/done/$name" 2>/dev/null; then continue; fi
             count=$((count+1))
           done
+          # tasks written on an earlier night live on the night branch until the owner merges it: they count too, or
+          # the job would research and write two MORE tasks on top of the two already waiting there
+          for f in $(git ls-tree --name-only origin/night tasks/pending/ 2>/dev/null | grep '\.md$'); do
+            name=$(basename "$f")
+            [ -e "tasks/pending/$name" ] && continue
+            if git cat-file -e "origin/night:tasks/done/$name" 2>/dev/null; then continue; fi
+            count=$((count+1))
+          done
           echo "Runnable tasks: $count"
           echo "count=$count" >> "$GITHUB_OUTPUT"
           echo "TASK_COUNT=$count" >> "$GITHUB_ENV"
@@ -204,6 +212,9 @@ jobs:
             2. TONIGHT MAKES AT LEAST channel.json night.videos_per_night VIDEOS (2). If tasks/pending/ has fewer runnable
                tasks than that (TASK_COUNT=$TASK_COUNT), FIND THE MISSING VIDEOS YOURSELF, always running the research below.
                Nobody hands you ideas: research the market, pick them, write the tasks, then build them in this same run.
+               Steps b and c (research + at least 3 new ideas, gated by plan_night.py check-ideas) run EVERY night, also when
+               TASK_COUNT is already 2 or more (those ideas feed the next nights); steps d and e (screen, write new tasks)
+               only to top up to 2 runnable tasks. Tasks already waiting on the night branch count (TASK_COUNT includes them).
                a. Read channel.json (niche, audience, seed keywords, formats, what to avoid) and data/ideas.md
                   (what has already been made, queued or dropped: never propose any of those again).
                b. `python scripts/research_youtube.py --update-channel` (about 5-10 min). It asks YouTube itself

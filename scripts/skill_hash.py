@@ -23,13 +23,15 @@ SKIP = {"node_modules", "__pycache__", ".pytest_cache", "examples"}
 
 
 def files():
+    """Same order on every OS. sorted(Path) is case-INSENSITIVE on Windows and case-sensitive on Linux, so the owner's
+    Windows machine and the Linux runner got two different fingerprints for identical files and the approval never
+    matched (2026-11-10/11: two nights of demo only). Sort by the plain posix string instead."""
     for part in PARTS:
         if part.is_file():
             yield part
         elif part.is_dir():
-            for f in sorted(part.rglob("*")):
-                if f.is_file() and not (SKIP & set(f.parts)) and f.suffix not in (".pyc",):
-                    yield f
+            found = [f for f in part.rglob("*") if f.is_file() and not (SKIP & set(f.parts)) and f.suffix not in (".pyc",)]
+            yield from sorted(found, key=lambda f: f.relative_to(ROOT).as_posix())
 
 
 def skill_hash():
