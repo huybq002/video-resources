@@ -1,7 +1,7 @@
 {
   "approved": true,
-  "skill_hash": "38ddf010943b3f1f",
-  "approved_at": "2026-11-10T21:04",
-  "demo": "https://github.com/huybq002/video-resources/pull/1",
-  "note": "Owner approved in chat on 2026-11-10 after the Lost Wallet test videos (16:9 + 9:16)"
+  "skill_hash": "59058e890da1f733",
+  "approved_at": "2026-11-11T20:58",
+  "demo": "https://github.com/huybq002/video-resources/releases/tag/demo-2026-11-11-42861747511",
+  "note": "Owner approved in chat 2026-11-10. Re-recorded 2026-11-11 with the OS-independent skill_hash (Windows and Linux fingerprints differed, so the first approval never matched on the runner)."
 }
