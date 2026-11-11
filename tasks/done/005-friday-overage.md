@@ -2,7 +2,7 @@
 id: 005-friday-overage
 type: video
 priority: 5
-status: in-progress
+status: done
 topic: mystery
 keyword: mystery story explained
 format: character
@@ -24,10 +24,11 @@ privacy: private
 4-minute English mystery, both cuts: a till that is over by the same sum every Friday, a clerk who counts, and the owner who does not want it counted.
 
 ## Done when
-- [ ] demo (30-45 s) approved by the owner, then full video built
-- [ ] both cuts generated and verified, both videos rendered and verified
-- [ ] Release published, specs/<id>.json committed
+- [x] demo approved, full video built
+- [x] both cuts generated and verified, both videos rendered and verified
+- [x] Release published, specs/<id>.json committed
 
 ## Progress notes
 - 2026-11-11: demo mode (look not approved). Demo spec specs/005-friday-overage-demo.json built instead of the full video.
 - 2026-11-12: full spec specs/005-friday-overage.json (240 s, 7 scenes, lint+policy clean), both bundles verified; waits for video 1 to finish rendering. Demo spec moved to outputs/005-friday-overage-demo/spec.json.
+- 2026-11-12: DONE. Release https://github.com/huybq002/video-resources/releases/tag/005-friday-overage-43072703753. verify_bundle bundle+video OK for both cuts, policy_check OK. No licensed music matched. Owner: switch on the AI labels at upload; portrait is 4 min, not a Short.

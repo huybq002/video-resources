@@ -1,0 +1,94 @@
+{
+  "id": "005-friday-overage",
+  "tag": "005-friday-overage-43072703753",
+  "idea": "Invented: a corner bakery's till is over by the same odd sum every Friday; night clerk Iris follows the extra money to the one customer who keeps paying in, and the film shows why",
+  "lang": "en",
+  "duration_s": 240,
+  "cuts": [
+    {
+      "cut": "landscape",
+      "aspect": "16:9",
+      "video": "landscape.mp4",
+      "bundle": "landscape-bundle.zip"
+    },
+    {
+      "cut": "portrait",
+      "aspect": "9:16",
+      "video": "portrait.mp4",
+      "bundle": "portrait-bundle.zip"
+    }
+  ],
+  "assets": [
+    {
+      "name": "landscape.mp4",
+      "bytes": 127500905,
+      "sha256": "e09f063b5c134da1f1eac2fb39f0afcc78c1fc5278d4fe3fe052641187ea4501"
+    },
+    {
+      "name": "landscape-bundle.zip",
+      "bytes": 19865282,
+      "sha256": "6866ec97a6ff9e376c531cafd2d5347822f2674d2d4deff4046737243a7f3e4a"
+    },
+    {
+      "name": "portrait.mp4",
+      "bytes": 122873931,
+      "sha256": "499823b9a42b706f7381cbdb6d0ee322b3178f27ac763c77c7876beb29215d9e"
+    },
+    {
+      "name": "portrait-bundle.zip",
+      "bytes": 17581835,
+      "sha256": "1f2dcb7dd570ca89a53a6b7360ecaad6daf830f0ad39a9ea4e7704076458e559"
+    },
+    {
+      "name": "metadata.json",
+      "bytes": 576,
+      "sha256": "52d3d88cc0999bf91fc999034bec353f5b678c964e28d733c2426141e975eb68"
+    },
+    {
+      "name": "tiktok.md",
+      "bytes": 593,
+      "sha256": "4521d9784d313f4f4a7cf7ebf1eb1190e053d645b68e725533989b340a05c6ad"
+    },
+    {
+      "name": "youtube.md",
+      "bytes": 1036,
+      "sha256": "7fe28291b4e49f34da6185187c6104ac27c68b6671849b3ecf095c540664b06b"
+    },
+    {
+      "name": "youtube_shorts.md",
+      "bytes": 375,
+      "sha256": "6a45e2ca9d6398153e7c0e99a5bd48be51dad4044265a1caa669ac6d73ac0b22"
+    },
+    {
+      "name": "a.png",
+      "bytes": 510089,
+      "sha256": "bcbc0a7abdc4e8779e8d3ea1bf2906cbf565131420397fb75230b91e55ccd12c"
+    },
+    {
+      "name": "b.png",
+      "bytes": 547322,
+      "sha256": "7707dc452014ae7cdb252b2a3788d6da7fb10ba52f7f5a6d85b0dc387882b9d0"
+    },
+    {
+      "name": "c.png",
+      "bytes": 474759,
+      "sha256": "fb4a6efc4e389caa2fc4e600ef25ac304492a153d36eadd15d205d02fc4d08c7"
+    },
+    {
+      "name": "d.png",
+      "bytes": 311747,
+      "sha256": "45f6286fb02439073541d7d6e9d875c1ef3b46c2ca9507720657938ec72b65c3"
+    },
+    {
+      "name": "e.png",
+      "bytes": 299741,
+      "sha256": "2fcf5f790bca2cbe546e5cc0728c6c2620ecd108425022a17f26a8c89d39bd71"
+    },
+    {
+      "name": "f.png",
+      "bytes": 335874,
+      "sha256": "213d5bbdf2d4ce60628314e964fcc4a551bfae0edad156dc0ad9331957ff03d1"
+    }
+  ],
+  "release_url": "https://github.com/huybq002/video-resources/releases/tag/005-friday-overage-43072703753"
+}
