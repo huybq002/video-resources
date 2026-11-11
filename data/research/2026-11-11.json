@@ -1,0 +1,2361 @@
+{
+ "date": "2026-11-11",
+ "lang": "en",
+ "niche": "Animated short films about decisions and what they cost: money, the mind, and invented mysteries",
+ "topics": {
+  "money": "Money stories",
+  "psychology": "Behavioural psychology",
+  "mystery": "Invented mysteries"
+ },
+ "keywords": {
+  "money mistakes": {
+   "n": 20,
+   "median_views": 155819,
+   "max_views": 2179586,
+   "median_duration_s": 1248,
+   "shorts_share": 0.0,
+   "distinct_channels": 15,
+   "top_channels": [
+    "Zac Rios",
+    "The Ramsey Show Highlights",
+    "Clever Girl Finance"
+   ],
+   "top_titles": [
+    {
+     "t": "These Callers Share Their Worst Mistakes With Money | Ep. 4 | The Best of The Ramsey Show",
+     "v": 2179586,
+     "d": 2604,
+     "ch": "The Ramsey Show Highlights"
+    },
+    {
+     "t": "27 Minutes of People Making Bad Financial Decisions in 2025",
+     "v": 1401125,
+     "d": 1676,
+     "ch": "Zac Rios"
+    },
+    {
+     "t": "14 Money Mistakes to AVOID in Your 20's",
+     "v": 1105748,
+     "d": 529,
+     "ch": "Alex Hormozi"
+    },
+    {
+     "t": "30 Minutes of The Most Embarrassing Financial Decisions of 2025",
+     "v": 959661,
+     "d": 1688,
+     "ch": "Zac Rios"
+    },
+    {
+     "t": "Money Mistakes That Cost You Millions (What to Avoid)",
+     "v": 667862,
+     "d": 1761,
+     "ch": "I Will Teach You To Be Rich"
+    }
+   ],
+   "title_words": [
+    "money",
+    "mistakes",
+    "people",
+    "financial",
+    "minutes",
+    "avoid",
+    "worst",
+    "these",
+    "making",
+    "decisions",
+    "make",
+    "regret"
+   ],
+   "opportunity": 73,
+   "topic": "money"
+  },
+  "personal finance story": {
+   "n": 20,
+   "median_views": 499743,
+   "max_views": 6833406,
+   "median_duration_s": 1291,
+   "shorts_share": 0.0,
+   "distinct_channels": 19,
+   "top_channels": [
+    "Business Insider and Insider",
+    "Finance With Ryan ",
+    "I Allegedly"
+   ],
+   "top_titles": [
+    {
+     "t": "27-Year-Old With More Debt Than Anyone Should Ever Have | Financial Audit",
+     "v": 6833406,
+     "d": 3609,
+     "ch": "Caleb Hammer"
+    },
+    {
+     "t": "The Best Financial Advice You’ll Ever Hear",
+     "v": 5882544,
+     "d": 4756,
+     "ch": "Mel Robbins"
+    },
+    {
+     "t": "5 Money Rules That Will Change Your Life & Create Financial Freedom",
+     "v": 4734041,
+     "d": 4192,
+     "ch": "Mel Robbins and David Bach"
+    },
+    {
+     "t": "Explaining Basic Financial Concepts YOU Should Understand",
+     "v": 2642908,
+     "d": 734,
+     "ch": "EverythingProfessor"
+    },
+    {
+     "t": "Money Lessons From Older Americans Who Learned The Hard Way | Life Lessons | Business Insi",
+     "v": 2020149,
+     "d": 733,
+     "ch": "Business Insider and Insider"
+    }
+   ],
+   "title_words": [
+    "financial",
+    "money",
+    "life",
+    "from",
+    "low",
+    "freedom",
+    "stories",
+    "lessons",
+    "who",
+    "minutes",
+    "worst",
+    "debt"
+   ],
+   "opportunity": 87,
+   "topic": "money"
+  },
+  "why people go broke": {
+   "n": 20,
+   "median_views": 440732,
+   "max_views": 2934937,
+   "median_duration_s": 1342,
+   "shorts_share": 0.0,
+   "distinct_channels": 14,
+   "top_channels": [
+    "Zac Rios",
+    "George Kamel",
+    "Social Symone ♡"
+   ],
+   "top_titles": [
+    {
+     "t": "Charles Barkley Talks 80% of Professional Athletes Going Broke | CLUB SHAY SHAY",
+     "v": 2934937,
+     "d": 535,
+     "ch": "Club Shay Shay"
+    },
+    {
+     "t": "Let's Watch 26 Minutes of People Living Above Their Means & Going BROKE",
+     "v": 2813400,
+     "d": 1593,
+     "ch": "Zac Rios"
+    },
+    {
+     "t": "Why People with the Same Income End Up Rich or Broke",
+     "v": 1225171,
+     "d": 946,
+     "ch": "Humphrey Yang"
+    },
+    {
+     "t": "26 Minutes of People Living Above Their Means & Going BROKE",
+     "v": 1065856,
+     "d": 1578,
+     "ch": "Zac Rios"
+    },
+    {
+     "t": "Reasons Why Most People Are Broke (Must Watch)",
+     "v": 852831,
+     "d": 514,
+     "ch": "Chris Invests"
+    }
+   ],
+   "title_words": [
+    "broke",
+    "people",
+    "going",
+    "minutes",
+    "watch",
+    "living",
+    "above",
+    "their",
+    "means",
+    "rich",
+    "let's",
+    "real"
+   ],
+   "opportunity": 80,
+   "topic": "money"
+  },
+  "lifestyle inflation": {
+   "n": 20,
+   "median_views": 61714,
+   "max_views": 2538965,
+   "median_duration_s": 796,
+   "shorts_share": 0.0,
+   "distinct_channels": 19,
+   "top_channels": [
+    "CNBC",
+    "Seve - Sunny Kind Journey",
+    "TikTok Heartbreaks"
+   ],
+   "top_titles": [
+    {
+     "t": "Every Level Of Wealth In 13 Minutes",
+     "v": 2538965,
+     "d": 759,
+     "ch": "The Analyst"
+    },
+    {
+     "t": "Why Even High Earners Are Living Paycheck To Paycheck",
+     "v": 1102721,
+     "d": 752,
+     "ch": "CNBC"
+    },
+    {
+     "t": "Why Americans Can’t Keep Their Paychecks",
+     "v": 713781,
+     "d": 590,
+     "ch": "CNBC"
+    },
+    {
+     "t": "Why The Middle Class Stays Poor",
+     "v": 473033,
+     "d": 438,
+     "ch": "Caleb Hammer"
+    },
+    {
+     "t": "Why Women Regret Making Their Lifestyle Too Expensive",
+     "v": 212870,
+     "d": 1367,
+     "ch": "TikTok Heartbreaks"
+    }
+   ],
+   "title_words": [
+    "lifestyle",
+    "inflation",
+    "broke",
+    "poor",
+    "every",
+    "creep",
+    "their",
+    "still",
+    "trap",
+    "keeping",
+    "even",
+    "living"
+   ],
+   "opportunity": 71,
+   "topic": "money"
+  },
+  "debt trap explained": {
+   "n": 20,
+   "median_views": 190217,
+   "max_views": 6077027,
+   "median_duration_s": 768,
+   "shorts_share": 0.0,
+   "distinct_channels": 17,
+   "top_channels": [
+    "Grant Rudow",
+    "Explains 101",
+    "Whiteboard Finance"
+   ],
+   "top_titles": [
+    {
+     "t": "The 'Buy Now Pay Later' Trap, Explained",
+     "v": 6077027,
+     "d": 741,
+     "ch": "Grant Rudow"
+    },
+    {
+     "t": "The Myth of the Chinese Debt Trap in Africa",
+     "v": 3622561,
+     "d": 1155,
+     "ch": "Bloomberg Originals"
+    },
+    {
+     "t": "Why Every Country Is in Debt? And Who Do They Owe?",
+     "v": 2719372,
+     "d": 1023,
+     "ch": "Explains 101"
+    },
+    {
+     "t": "The 'Car Loan' Trap, Explained",
+     "v": 1237354,
+     "d": 795,
+     "ch": "Grant Rudow"
+    },
+    {
+     "t": "Every Financial Trap Middle Class People Fall Into Explained",
+     "v": 1097988,
+     "d": 913,
+     "ch": "EverythingProfessor"
+    }
+   ],
+   "title_words": [
+    "trap",
+    "debt",
+    "explained",
+    "every",
+    "people",
+    "credit",
+    "traps",
+    "hidden",
+    "loan'",
+    "real",
+    "financial",
+    "middle"
+   ],
+   "opportunity": 77,
+   "topic": "money"
+  },
+  "saving money psychology": {
+   "n": 20,
+   "median_views": 872608,
+   "max_views": 8411758,
+   "median_duration_s": 1366,
+   "shorts_share": 0.0,
+   "distinct_channels": 18,
+   "top_channels": [
+    "Mel Robbins",
+    "The Diary Of A CEO",
+    "Save Invest Repeat"
+   ],
+   "top_titles": [
+    {
+     "t": "The Savings Expert: “Do Not Buy A House!” Do THIS Instead! - Morgan Housel",
+     "v": 8411758,
+     "d": 7046,
+     "ch": "The Diary Of A CEO"
+    },
+    {
+     "t": "The Best Financial Advice You’ll Ever Hear",
+     "v": 5882544,
+     "d": 4756,
+     "ch": "Mel Robbins"
+    },
+    {
+     "t": "THE PSYCHOLOGY OF MONEY (BY MORGAN HOUSEL)",
+     "v": 5805412,
+     "d": 935,
+     "ch": "The Swedish Investor"
+    },
+    {
+     "t": "The Psychology of Making Money",
+     "v": 5011844,
+     "d": 1132,
+     "ch": "Leila Hormozi"
+    },
+    {
+     "t": "5 Money Rules That Will Change Your Life & Create Financial Freedom",
+     "v": 4734041,
+     "d": 4192,
+     "ch": "Mel Robbins and David Bach"
+    }
+   ],
+   "title_words": [
+    "money",
+    "psychology",
+    "saving",
+    "morgan",
+    "housel",
+    "financial",
+    "people",
+    "save",
+    "brain",
+    "change",
+    "savings",
+    "expert"
+   ],
+   "opportunity": 90,
+   "topic": "money"
+  },
+  "financial": {
+   "n": 20,
+   "median_views": 913954,
+   "max_views": 13547789,
+   "median_duration_s": 1632,
+   "shorts_share": 0.0,
+   "distinct_channels": 18,
+   "top_channels": [
+    "Caleb Hammer",
+    "Casual Finance",
+    "Bloomberg Television"
+   ],
+   "top_titles": [
+    {
+     "t": "William Ackman: Everything You Need to Know About Finance and Investing in Under an Hour |",
+     "v": 13547789,
+     "d": 2637,
+     "ch": "Big Think"
+    },
+    {
+     "t": "The Best Financial Advice You’ll Ever Hear",
+     "v": 5882544,
+     "d": 4756,
+     "ch": "Mel Robbins"
+    },
+    {
+     "t": "5 Money Rules That Will Change Your Life & Create Financial Freedom",
+     "v": 4734041,
+     "d": 4192,
+     "ch": "Mel Robbins and David Bach"
+    },
+    {
+     "t": "Financial Literacy In 63 Minutes",
+     "v": 3149682,
+     "d": 3737,
+     "ch": "Tina Huang"
+    },
+    {
+     "t": "Explaining Basic Financial Concepts YOU Should Understand",
+     "v": 2642908,
+     "d": 734,
+     "ch": "EverythingProfessor"
+    }
+   ],
+   "title_words": [
+    "financial",
+    "audit",
+    "freedom",
+    "literacy",
+    "minutes",
+    "everything",
+    "need",
+    "know",
+    "best",
+    "advice",
+    "years",
+    "about"
+   ],
+   "opportunity": 91,
+   "topic": "money"
+  },
+  "income": {
+   "n": 20,
+   "median_views": 693494,
+   "max_views": 13969171,
+   "median_duration_s": 1029,
+   "shorts_share": 0.0,
+   "distinct_channels": 18,
+   "top_channels": [
+    "Humphrey Yang",
+    "Codie Sanchez",
+    "The Ramsey Show Highlights"
+   ],
+   "top_titles": [
+    {
+     "t": "9 Passive Income Ideas - How I Make $27k per Week",
+     "v": 13969171,
+     "d": 1801,
+     "ch": "Ali Abdaal"
+    },
+    {
+     "t": "Universal Basic Income Explained – Free Money for Everybody? UBI",
+     "v": 10890279,
+     "d": 606,
+     "ch": "Kurzgesagt – In a Nutshell"
+    },
+    {
+     "t": "Passive Income Expert: How To Make $10k Per Month In 90 Days!",
+     "v": 6485911,
+     "d": 7904,
+     "ch": "The Diary Of A CEO and Chris Koerner on The Koerner Office Podcast"
+    },
+    {
+     "t": "7 Passive Income Ideas for 2026 (Up to $1,000/Day)",
+     "v": 6203337,
+     "d": 1581,
+     "ch": "Mark Tilbury"
+    },
+    {
+     "t": "How To Turn Your Yearly Income Into Your Monthly Income  - Bob Proctor [ The Law of Compen",
+     "v": 5475390,
+     "d": 920,
+     "ch": "Proctor Gallagher Institute"
+    }
+   ],
+   "title_words": [
+    "income",
+    "passive",
+    "100k",
+    "make",
+    "per",
+    "ideas",
+    "best",
+    "financial",
+    "strategies",
+    "50k",
+    "150k",
+    "it's"
+   ],
+   "opportunity": 89,
+   "topic": "money"
+  },
+  "change": {
+   "n": 20,
+   "median_views": 6937958,
+   "max_views": 98431052,
+   "median_duration_s": 232,
+   "shorts_share": 0.0,
+   "distinct_channels": 19,
+   "top_channels": [
+    "Steven Universe Music",
+    "Deftones",
+    "Hero Music"
+   ],
+   "top_titles": [
+    {
+     "t": "Deftones - Change (In The House Of Flies) [Official Music Video]",
+     "v": 98431052,
+     "d": 238,
+     "ch": "Deftones"
+    },
+    {
+     "t": "Deftones-Change",
+     "v": 62135693,
+     "d": 300,
+     "ch": "carro loco"
+    },
+    {
+     "t": "HYUNA - 'CHANGE' (Official Music  Video)",
+     "v": 57619281,
+     "d": 228,
+     "ch": "4Minute 포미닛(Official YouTube Channel)"
+    },
+    {
+     "t": "Change Song | Steven Universe The Movie | Cartoon Network",
+     "v": 52091953,
+     "d": 113,
+     "ch": "Cartoon Network"
+    },
+    {
+     "t": "NF - Change (Audio)",
+     "v": 37629862,
+     "d": 236,
+     "ch": "NFrealmusic"
+    }
+   ],
+   "title_words": [
+    "change",
+    "official",
+    "deftones",
+    "house",
+    "flies",
+    "music",
+    "steven",
+    "universe",
+    "movie",
+    "audio",
+    "cartoon",
+    "network"
+   ],
+   "opportunity": 99,
+   "topic": "psychology"
+  },
+  "avoid": {
+   "n": 20,
+   "median_views": 218720,
+   "max_views": 22212215,
+   "median_duration_s": 216,
+   "shorts_share": 0.0,
+   "distinct_channels": 15,
+   "top_channels": [
+    "AVOIDKICKSASS",
+    "Thriller Records",
+    "Brown Town Music"
+   ],
+   "top_titles": [
+    {
+     "t": "Avoid (Official Audio) Cheema Y | Gur Sidhu",
+     "v": 22212215,
+     "d": 133,
+     "ch": "Brown Town Music"
+    },
+    {
+     "t": "KUTE - AVOID ME (Official Visualizer)",
+     "v": 18934170,
+     "d": 106,
+     "ch": "KUTE"
+    },
+    {
+     "t": "Lil Peep - Avoid (feat. Wicca Phase Springs Eternal & Døves) [Audio]",
+     "v": 18473516,
+     "d": 241,
+     "ch": "Lil Peep"
+    },
+    {
+     "t": "Tems - Avoid Things (Audio)",
+     "v": 4587065,
+     "d": 226,
+     "ch": "Tems"
+    },
+    {
+     "t": "What Animal Should I Avoid Punching? | Brennan Lee Mulligan Asks Hank Anything",
+     "v": 2349939,
+     "d": 3731,
+     "ch": "Complexly"
+    }
+   ],
+   "title_words": [
+    "avoid",
+    "official",
+    "music",
+    "audio",
+    "live",
+    "sour",
+    "apple",
+    "flashbang",
+    "say",
+    "cheema",
+    "gur",
+    "sidhu"
+   ],
+   "opportunity": 76,
+   "topic": "money"
+  },
+  "cognitive bias explained": {
+   "n": 20,
+   "median_views": 149323,
+   "max_views": 17425036,
+   "median_duration_s": 538,
+   "shorts_share": 0.0,
+   "distinct_channels": 19,
+   "top_channels": [
+    "Veritasium",
+    "CrashCourse",
+    "Practical Psychology"
+   ],
+   "top_titles": [
+    {
+     "t": "The Most Common Cognitive Bias",
+     "v": 17425036,
+     "d": 284,
+     "ch": "Veritasium"
+    },
+    {
+     "t": "21 Mind Traps : The Ultimate Guide to your most common Thinking errors",
+     "v": 7488653,
+     "d": 1316,
+     "ch": "Escaping Ordinary (B.C Marx) "
+    },
+    {
+     "t": "Why People Are So Confident When They're Wrong",
+     "v": 6304762,
+     "d": 1442,
+     "ch": "Veritasium"
+    },
+    {
+     "t": "12 Cognitive Biases Explained - How to Think Better and More Logically Removing Bias",
+     "v": 2851969,
+     "d": 608,
+     "ch": "Practical Psychology"
+    },
+    {
+     "t": "The psychology behind irrational decisions - Sara Garofalo",
+     "v": 2449435,
+     "d": 279,
+     "ch": "TED-Ed"
+    }
+   ],
+   "title_words": [
+    "cognitive",
+    "bias",
+    "explained",
+    "biases",
+    "minutes",
+    "every",
+    "thinking",
+    "introduction",
+    "crash",
+    "course",
+    "think",
+    "psychology"
+   ],
+   "opportunity": 78,
+   "topic": "psychology"
+  },
+  "behavioral psychology": {
+   "n": 20,
+   "median_views": 2845624,
+   "max_views": 20595869,
+   "median_duration_s": 1653,
+   "shorts_share": 0.0,
+   "distinct_channels": 16,
+   "top_channels": [
+    "Stanford",
+    "CrashCourse",
+    "TEDx Talks"
+   ],
+   "top_titles": [
+    {
+     "t": "1. Introduction to Human Behavioral Biology",
+     "v": 20595869,
+     "d": 3435,
+     "ch": "Stanford"
+    },
+    {
+     "t": "Intro to Psychology: Crash Course Psychology #1",
+     "v": 17979369,
+     "d": 654,
+     "ch": "CrashCourse"
+    },
+    {
+     "t": "The psychology of narcissism - W. Keith Campbell",
+     "v": 16897948,
+     "d": 310,
+     "ch": "TED-Ed"
+    },
+    {
+     "t": "2. Behavioral Evolution",
+     "v": 7832600,
+     "d": 5817,
+     "ch": "Stanford"
+    },
+    {
+     "t": "Chase Hughes: The 3 \"Dark Psychology\" Tricks To Read Anyone's Mind!",
+     "v": 4815501,
+     "d": 6981,
+     "ch": "The Diary Of A CEO and Chase Hughes"
+    }
+   ],
+   "title_words": [
+    "psychology",
+    "human",
+    "behavioral",
+    "behavior",
+    "read",
+    "audiobook",
+    "instantly",
+    "brain",
+    "crash",
+    "course",
+    "mind",
+    "minutes"
+   ],
+   "opportunity": 95,
+   "topic": "psychology"
+  },
+  "why we procrastinate": {
+   "n": 20,
+   "median_views": 1321228,
+   "max_views": 62212275,
+   "median_duration_s": 456,
+   "shorts_share": 0.0,
+   "distinct_channels": 18,
+   "top_channels": [
+    "TEDx Talks",
+    "Mel Robbins",
+    "TED-Ed"
+   ],
+   "top_titles": [
+    {
+     "t": "Inside the Mind of a Master Procrastinator | Tim Urban | TED",
+     "v": 62212275,
+     "d": 844,
+     "ch": "TED"
+    },
+    {
+     "t": "Why you procrastinate even when it feels bad",
+     "v": 11071779,
+     "d": 346,
+     "ch": "TED-Ed"
+    },
+    {
+     "t": "Why People with ADHD Procrastinate (And 4 Brain-Based Ways to Get Started)",
+     "v": 6020451,
+     "d": 485,
+     "ch": "Dr. Tracey Marks"
+    },
+    {
+     "t": "The procrastination cure you don't want to hear",
+     "v": 5292529,
+     "d": 627,
+     "ch": "Better Ideas"
+    },
+    {
+     "t": "The ONLY Way To Stop Procrastinating | Mel Robbins",
+     "v": 4596531,
+     "d": 217,
+     "ch": "Mel Robbins"
+    }
+   ],
+   "title_words": [
+    "procrastinate",
+    "procrastination",
+    "stop",
+    "fix",
+    "science",
+    "psychology",
+    "brain",
+    "motivation",
+    "mel",
+    "robbins",
+    "it's",
+    "reason"
+   ],
+   "opportunity": 94,
+   "topic": "psychology"
+  },
+  "sunk cost fallacy": {
+   "n": 20,
+   "median_views": 43897,
+   "max_views": 1269186,
+   "median_duration_s": 313,
+   "shorts_share": 0.1,
+   "distinct_channels": 19,
+   "top_channels": [
+    "Professor Ross",
+    "Sprouts",
+    "Big Think"
+   ],
+   "top_titles": [
+    {
+     "t": "Real Time with Bill Maher: New Rule – The Sunk Cost Fallacy (HBO)",
+     "v": 1269186,
+     "d": 348,
+     "ch": "Real Time with Bill Maher"
+    },
+    {
+     "t": "Julia Galef: The Sunk Costs Fallacy | Big Think",
+     "v": 576488,
+     "d": 170,
+     "ch": "Big Think"
+    },
+    {
+     "t": "Know When To Quit - The Sunk Cost Fallacy",
+     "v": 175177,
+     "d": 551,
+     "ch": "Better Than Yesterday"
+    },
+    {
+     "t": "What Is Thinking on the Margin, and How Does It Solve the Sunk Cost Fallacy?",
+     "v": 159789,
+     "d": 379,
+     "ch": "Marginal Revolution University"
+    },
+    {
+     "t": "The Sunk Cost Fallacy: What is it and why does it happen?",
+     "v": 155678,
+     "d": 271,
+     "ch": "Intermittent Diversion"
+    }
+   ],
+   "title_words": [
+    "sunk",
+    "fallacy",
+    "cost",
+    "decisions",
+    "quit",
+    "time",
+    "fox",
+    "stevenson",
+    "make",
+    "better",
+    "avoid",
+    "explained"
+   ],
+   "opportunity": 63,
+   "topic": "psychology"
+  },
+  "decision making psychology": {
+   "n": 20,
+   "median_views": 99985,
+   "max_views": 2449435,
+   "median_duration_s": 734,
+   "shorts_share": 0.0,
+   "distinct_channels": 18,
+   "top_channels": [
+    "Therapy in a Nutshell",
+    "TED-Ed",
+    "Knowledge at Wharton"
+   ],
+   "top_titles": [
+    {
+     "t": "The psychology behind irrational decisions - Sara Garofalo",
+     "v": 2449435,
+     "d": 279,
+     "ch": "TED-Ed"
+    },
+    {
+     "t": "How to make smart decisions more easily",
+     "v": 2294405,
+     "d": 316,
+     "ch": "TED-Ed"
+    },
+    {
+     "t": "Do You Have Problems Making Decisions? - Childhood Trauma",
+     "v": 932334,
+     "d": 1798,
+     "ch": "Patrick Teahan "
+    },
+    {
+     "t": "Heuristics and biases in decision making, explained",
+     "v": 760837,
+     "d": 229,
+     "ch": "Learn Liberty"
+    },
+    {
+     "t": "THE POWER OF DECISION-MAKING | BENEDIKT AHLFELD | TEDxGraz",
+     "v": 447007,
+     "d": 1047,
+     "ch": "TEDx Talks"
+    }
+   ],
+   "title_words": [
+    "making",
+    "decision",
+    "decisions",
+    "psychology",
+    "make",
+    "michael",
+    "platt",
+    "heuristics",
+    "biases",
+    "better",
+    "brain",
+    "have"
+   ],
+   "opportunity": 73,
+   "topic": "psychology"
+  },
+  "habits psychology explained": {
+   "n": 20,
+   "median_views": 515132,
+   "max_views": 22334219,
+   "median_duration_s": 1105,
+   "shorts_share": 0.0,
+   "distinct_channels": 18,
+   "top_channels": [
+    "Dr. Tracey Marks",
+    "Antidote",
+    "Andrew Huberman"
+   ],
+   "top_titles": [
+    {
+     "t": "How to become 37.78 times better at anything | Atomic Habits summary (by James Clear)",
+     "v": 22334219,
+     "d": 1691,
+     "ch": "Escaping Ordinary (B.C Marx) "
+    },
+    {
+     "t": "Change Your Life – One Tiny Step at a Time",
+     "v": 15947777,
+     "d": 691,
+     "ch": "Kurzgesagt – In a Nutshell"
+    },
+    {
+     "t": "The Science of Making & Breaking Habits: How to Change Your Life in 1 Month",
+     "v": 3237068,
+     "d": 5179,
+     "ch": "Mel Robbins"
+    },
+    {
+     "t": "Atomic Habits in 30 Minutes | Animated Book Summary",
+     "v": 2699576,
+     "d": 1816,
+     "ch": "Antidote"
+    },
+    {
+     "t": "Why is it so hard to break a bad habit?",
+     "v": 1530237,
+     "d": 304,
+     "ch": "TED-Ed"
+    }
+   ],
+   "title_words": [
+    "habits",
+    "change",
+    "habit",
+    "life",
+    "science",
+    "summary",
+    "animated",
+    "book",
+    "identity",
+    "brain",
+    "making",
+    "breaking"
+   ],
+   "opportunity": 86,
+   "topic": "psychology"
+  },
+  "biases": {
+   "n": 20,
+   "median_views": 683980,
+   "max_views": 17425036,
+   "median_duration_s": 491,
+   "shorts_share": 0.0,
+   "distinct_channels": 17,
+   "top_channels": [
+    "TEDx Talks",
+    "TED",
+    "Practical Psychology"
+   ],
+   "top_titles": [
+    {
+     "t": "The Most Common Cognitive Bias",
+     "v": 17425036,
+     "d": 284,
+     "ch": "Veritasium"
+    },
+    {
+     "t": "21 Mind Traps : The Ultimate Guide to your most common Thinking errors",
+     "v": 7488653,
+     "d": 1316,
+     "ch": "Escaping Ordinary (B.C Marx) "
+    },
+    {
+     "t": "12 Cognitive Biases Explained - How to Think Better and More Logically Removing Bias",
+     "v": 2851969,
+     "d": 608,
+     "ch": "Practical Psychology"
+    },
+    {
+     "t": "Every Bias Explained in 8 Minutes",
+     "v": 1814507,
+     "d": 490,
+     "ch": "The Paint Explainer"
+    },
+    {
+     "t": "Understanding unconscious bias | The Royal Society",
+     "v": 1610277,
+     "d": 179,
+     "ch": "The Royal Society"
+    }
+   ],
+   "title_words": [
+    "bias",
+    "cognitive",
+    "biases",
+    "explained",
+    "thinking",
+    "minutes",
+    "unconscious",
+    "every",
+    "most",
+    "common",
+    "biased",
+    "critical"
+   ],
+   "opportunity": 87,
+   "topic": "psychology"
+  },
+  "crash": {
+   "n": 20,
+   "median_views": 2594146,
+   "max_views": 32831790,
+   "median_duration_s": 227,
+   "shorts_share": 0.0,
+   "distinct_channels": 19,
+   "top_channels": [
+    "Dashcam Lessons",
+    "Flying for Money",
+    "ALLDAY PROJECT"
+   ],
+   "top_titles": [
+    {
+     "t": "Neovaii - Crash",
+     "v": 32831790,
+     "d": 227,
+     "ch": "Trap City"
+    },
+    {
+     "t": "ALLDAY PROJECT - ‘CRASH’ M/V",
+     "v": 16555809,
+     "d": 185,
+     "ch": "THEBLACKLABEL and ALLDAY PROJECT"
+    },
+    {
+     "t": "honestav & mgk - Crash First (OFFICIAL MUSIC VIDEO)",
+     "v": 10571761,
+     "d": 227,
+     "ch": "honestav and mgk"
+    },
+    {
+     "t": "The Primitives - Crash",
+     "v": 6329796,
+     "d": 153,
+     "ch": "The Primitives"
+    },
+    {
+     "t": "'They Shouldn't Have Been Flying': Pilots Break Down Deadly Florida Plane Crash",
+     "v": 4708471,
+     "d": 485,
+     "ch": "New York Post"
+    }
+   ],
+   "title_words": [
+    "crash",
+    "learjet",
+    "allday",
+    "project",
+    "plane",
+    "florida",
+    "best",
+    "car",
+    "crashes",
+    "audio",
+    "ntsb",
+    "deadly"
+   ],
+   "opportunity": 99,
+   "topic": "psychology"
+  },
+  "course": {
+   "n": 20,
+   "median_views": 1435060,
+   "max_views": 49585052,
+   "median_duration_s": 7572,
+   "shorts_share": 0.0,
+   "distinct_channels": 13,
+   "top_channels": [
+    "CrashCourse",
+    "freeCodeCamp.org and CS50",
+    "freeCodeCamp.org"
+   ],
+   "top_titles": [
+    {
+     "t": "Python Full Course for Beginners",
+     "v": 49585052,
+     "d": 22447,
+     "ch": "Programming with Mosh"
+    },
+    {
+     "t": "Intro to Psychology: Crash Course Psychology #1",
+     "v": 17979384,
+     "d": 654,
+     "ch": "CrashCourse"
+    },
+    {
+     "t": "Harvard CS50 – Full Computer Science University Course",
+     "v": 14183612,
+     "d": 89497,
+     "ch": "freeCodeCamp.org and CS50"
+    },
+    {
+     "t": "Introduction to Programming and Computer Science - Full Course",
+     "v": 11812102,
+     "d": 7149,
+     "ch": "freeCodeCamp.org"
+    },
+    {
+     "t": "The French Revolution: Crash Course World History #29",
+     "v": 10362869,
+     "d": 714,
+     "ch": "CrashCourse"
+    }
+   ],
+   "title_words": [
+    "course",
+    "crash",
+    "harvard",
+    "cs50",
+    "computer",
+    "science",
+    "university",
+    "engineer",
+    "complete",
+    "agents",
+    "hours",
+    "hour"
+   ],
+   "opportunity": 88,
+   "topic": "psychology"
+  },
+  "science": {
+   "n": 20,
+   "median_views": 615936,
+   "max_views": 58003559,
+   "median_duration_s": 3745,
+   "shorts_share": 0.0,
+   "distinct_channels": 12,
+   "top_channels": [
+    "Science Channel",
+    "Science Magazine",
+    "deadmau5"
+   ],
+   "top_titles": [
+    {
+     "t": "EASY SCIENCE EXPERIMENTS TO DO AT HOME",
+     "v": 58003559,
+     "d": 369,
+     "ch": "Fun Science"
+    },
+    {
+     "t": "7 Science Tricks with Surface Tension",
+     "v": 12334366,
+     "d": 208,
+     "ch": "Physics Girl"
+    },
+    {
+     "t": "Learning Science With Blippi At The Children's Museum! | Educational Videos for Kids",
+     "v": 3262187,
+     "d": 3982,
+     "ch": "Blippi - Educational Videos for Kids"
+    },
+    {
+     "t": "The Most Amazing Things That Science Still Can't Explain",
+     "v": 1890082,
+     "d": 8565,
+     "ch": "Sleepy Science Channel"
+    },
+    {
+     "t": "FRICTION! + More Experiments At Home | Science Max | Full Episodes",
+     "v": 1184893,
+     "d": 13994,
+     "ch": "Science Max - Scholastic"
+    }
+   ],
+   "title_words": [
+    "science",
+    "channel",
+    "universe",
+    "works",
+    "kids",
+    "universe's",
+    "things",
+    "biggest",
+    "stevie",
+    "appleton",
+    "experiments",
+    "home"
+   ],
+   "opportunity": 80,
+   "topic": "psychology"
+  },
+  "decisions": {
+   "n": 20,
+   "median_views": 693701,
+   "max_views": 29622456,
+   "median_duration_s": 328,
+   "shorts_share": 0.0,
+   "distinct_channels": 20,
+   "top_channels": [
+    "Decisions Decisions",
+    "Go Ape ENT",
+    "Wiz Khalifa"
+   ],
+   "top_titles": [
+    {
+     "t": "\"Decisions\" - Borgore feat. Miley Cyrus (Official Music Video)",
+     "v": 29622456,
+     "d": 247,
+     "ch": "Borgore"
+    },
+    {
+     "t": "Big Ro6 - Decisions ( Directed by @Rozay4K )",
+     "v": 18248039,
+     "d": 192,
+     "ch": "Go Ape ENT"
+    },
+    {
+     "t": "Wiz Khalifa - Decisions [Official Video]",
+     "v": 17432017,
+     "d": 253,
+     "ch": "Wiz Khalifa"
+    },
+    {
+     "t": "Decisions",
+     "v": 8459709,
+     "d": 182,
+     "ch": "Big Ro6 - Topic"
+    },
+    {
+     "t": "Rotimi - Decisions (Audio)",
+     "v": 3393106,
+     "d": 204,
+     "ch": "Rotimi"
+    }
+   ],
+   "title_words": [
+    "decisions",
+    "making",
+    "decision",
+    "official",
+    "make",
+    "big",
+    "ro6",
+    "music",
+    "decide",
+    "steps",
+    "better",
+    "andrew"
+   ],
+   "opportunity": 91,
+   "topic": "psychology"
+  },
+  "better": {
+   "n": 20,
+   "median_views": 9425966,
+   "max_views": 1337980977,
+   "median_duration_s": 245,
+   "shorts_share": 0.0,
+   "distinct_channels": 18,
+   "top_channels": [
+    "Khalid",
+    "JessicaReedyMusic",
+    "7clouds"
+   ],
+   "top_titles": [
+    {
+     "t": "Khalid - Better (Official Video)",
+     "v": 1337980977,
+     "d": 251,
+     "ch": "Khalid"
+    },
+    {
+     "t": "Better",
+     "v": 334604121,
+     "d": 230,
+     "ch": "Khalid"
+    },
+    {
+     "t": "Khalid - Better (Lyrics)",
+     "v": 94132747,
+     "d": 230,
+     "ch": "7clouds"
+    },
+    {
+     "t": "Forrest Frank - YOUR WAY'S BETTER (Official Lyric Video)",
+     "v": 81341377,
+     "d": 199,
+     "ch": "Forrest Frank"
+    },
+    {
+     "t": "Missy Elliott - I'm Better (feat. Lamb) [Official Music Video]",
+     "v": 44534379,
+     "d": 220,
+     "ch": "Missy Elliott"
+    }
+   ],
+   "title_words": [
+    "better",
+    "official",
+    "feat",
+    "music",
+    "khalid",
+    "audio",
+    "lyrics",
+    "nimino",
+    "'better",
+    "manta",
+    "rod",
+    "wave"
+   ],
+   "opportunity": 98,
+   "topic": "psychology"
+  },
+  "thinking": {
+   "n": 20,
+   "median_views": 1878366,
+   "max_views": 28352369,
+   "median_duration_s": 509,
+   "shorts_share": 0.0,
+   "distinct_channels": 17,
+   "top_channels": [
+    "Aperture",
+    "TED-Ed",
+    "APDHILLON"
+   ],
+   "top_titles": [
+    {
+     "t": "Thinking of You",
+     "v": 28352369,
+     "d": 181,
+     "ch": "APDHILLON"
+    },
+    {
+     "t": "5 tips to improve your critical thinking - Samantha Agoos",
+     "v": 12079294,
+     "d": 270,
+     "ch": "TED-Ed"
+    },
+    {
+     "t": "The Science of Thinking",
+     "v": 9315592,
+     "d": 730,
+     "ch": "Veritasium"
+    },
+    {
+     "t": "This tool will help improve your critical thinking - Erick Wilberding",
+     "v": 8509228,
+     "d": 320,
+     "ch": "TED-Ed"
+    },
+    {
+     "t": "Thinking Of You (Official Audio) | AP Dhillon",
+     "v": 5929941,
+     "d": 181,
+     "ch": "APDHILLON"
+    }
+   ],
+   "title_words": [
+    "thinking",
+    "critical",
+    "official",
+    "stop",
+    "think",
+    "negative",
+    "improve",
+    "audio",
+    "science",
+    "moneysign",
+    "suede",
+    "thinkin"
+   ],
+   "opportunity": 95,
+   "topic": "psychology"
+  },
+  "brain": {
+   "n": 20,
+   "median_views": 2246022,
+   "max_views": 46296293,
+   "median_duration_s": 752,
+   "shorts_share": 0.0,
+   "distinct_channels": 16,
+   "top_channels": [
+    "NOVA PBS Official",
+    "CrashCourse",
+    "Dr. Tracey Marks"
+   ],
+   "top_titles": [
+    {
+     "t": "After watching this, your brain will not be the same | Lara Boyd | TEDxVancouver",
+     "v": 46296293,
+     "d": 864,
+     "ch": "TEDx Talks"
+    },
+    {
+     "t": "How the food you eat affects your brain - Mia Nacamulli",
+     "v": 21915339,
+     "d": 293,
+     "ch": "TED-Ed"
+    },
+    {
+     "t": "The Brain-Changing Benefits of Exercise | Wendy Suzuki | TED",
+     "v": 12573533,
+     "d": 783,
+     "ch": "TED"
+    },
+    {
+     "t": "Your Brain: Who's in Control? | Full Documentary | NOVA | PBS",
+     "v": 11716140,
+     "d": 3213,
+     "ch": "NOVA PBS Official"
+    },
+    {
+     "t": "Meet Your Master - Getting to Know Your Brain: Crash Course Psychology #4",
+     "v": 6997919,
+     "d": 754,
+     "ch": "CrashCourse"
+    }
+   ],
+   "title_words": [
+    "brain",
+    "explained",
+    "documentary",
+    "nova",
+    "pbs",
+    "crash",
+    "course",
+    "psychology",
+    "exercise",
+    "power",
+    "anatomy",
+    "human"
+   ],
+   "opportunity": 95,
+   "topic": "psychology"
+  },
+  "official": {
+   "n": 20,
+   "median_views": 794387,
+   "max_views": 5937713979,
+   "median_duration_s": 185,
+   "shorts_share": 0.0,
+   "distinct_channels": 18,
+   "top_channels": [
+    "Netflix",
+    "Yatta - Topic",
+    "Laura Golde"
+   ],
+   "top_titles": [
+    {
+     "t": "Mark Ronson - Uptown Funk (Official Video) ft. Bruno Mars",
+     "v": 5937713979,
+     "d": 271,
+     "ch": "Mark Ronson"
+    },
+    {
+     "t": "Ariana Grande - 7 rings (Official Video)",
+     "v": 1646837760,
+     "d": 185,
+     "ch": "Ariana Grande"
+    },
+    {
+     "t": "Coldplay - Viva La Vida (Official Video)",
+     "v": 1087736331,
+     "d": 243,
+     "ch": "Coldplay"
+    },
+    {
+     "t": "Cassie [feat. Lil Wayne] - Official Girl (Official Music Video)",
+     "v": 46942297,
+     "d": 284,
+     "ch": "Bad Boy Entertainment"
+    },
+    {
+     "t": "THE FURTHER MIS-ADVENTURES OF CLIFF BOOTH | Official Trailer #2 | Netflix",
+     "v": 12626005,
+     "d": 163,
+     "ch": "Netflix"
+    }
+   ],
+   "title_words": [
+    "official",
+    "music",
+    "trailer",
+    "netflix",
+    "squash",
+    "thirtyfirst",
+    "further",
+    "mis",
+    "adventures",
+    "cliff",
+    "booth",
+    "lizzen"
+   ],
+   "opportunity": 90,
+   "topic": "psychology"
+  },
+  "lyrics": {
+   "n": 20,
+   "median_views": 3976843,
+   "max_views": 74407068,
+   "median_duration_s": 198,
+   "shorts_share": 0.0,
+   "distinct_channels": 16,
+   "top_channels": [
+    "Cakes & Eclairs",
+    "Lost Panda",
+    "MAYELEVRSE"
+   ],
+   "top_titles": [
+    {
+     "t": "Katy Perry - The One That Got Away (Lyrics)",
+     "v": 74407068,
+     "d": 228,
+     "ch": "7clouds"
+    },
+    {
+     "t": "Usher - Hey Daddy (Daddy's Home) (Lyrics)",
+     "v": 49500887,
+     "d": 225,
+     "ch": "3starz"
+    },
+    {
+     "t": "pupsies - misery. (Lyrics)",
+     "v": 30797646,
+     "d": 167,
+     "ch": "Creative Chaos and 4 more"
+    },
+    {
+     "t": "Shawn Mendes - Treat You Better (Lyrics)",
+     "v": 27957862,
+     "d": 188,
+     "ch": "Watermelon Music and bemu"
+    },
+    {
+     "t": "Bruno Mars - Count on Me (Lyrics)",
+     "v": 23484970,
+     "d": 198,
+     "ch": "Taj Tracks"
+    }
+   ],
+   "title_words": [
+    "lyrics",
+    "low",
+    "alyssa",
+    "grace",
+    "bloodstream",
+    "ashe",
+    "stop",
+    "wedding",
+    "misery",
+    "adéla",
+    "nicole",
+    "kidman"
+   ],
+   "opportunity": 95,
+   "topic": "psychology"
+  },
+  "music": {
+   "n": 20,
+   "median_views": 6008833,
+   "max_views": 1378026386,
+   "median_duration_s": 231,
+   "shorts_share": 0.0,
+   "distinct_channels": 20,
+   "top_channels": [
+    "Timeless Music and 5 more",
+    "Creative Chaos and 4 more",
+    "Proximity and DJ Snake"
+   ],
+   "top_titles": [
+    {
+     "t": "Shakira, Burna Boy - Dai Dai (Official Video)",
+     "v": 1378026386,
+     "d": 241,
+     "ch": "Shakira and 2 more"
+    },
+    {
+     "t": "DJ Snake ft. Justin Bieber - Let Me Love You [Official Lyric Video]",
+     "v": 1259960490,
+     "d": 207,
+     "ch": "Proximity and DJ Snake"
+    },
+    {
+     "t": "ADÉLA - Nicole Kidman",
+     "v": 54286664,
+     "d": 222,
+     "ch": "ADÉLA"
+    },
+    {
+     "t": "K/DA - FIRESTARTER ft. MIYEON and SOYEON of i-dle, Sophie Powers, Mimi Webb (Official Musi",
+     "v": 48662679,
+     "d": 207,
+     "ch": "League of Legends and 3 more"
+    },
+    {
+     "t": "pupsies - misery. (Lyrics)",
+     "v": 30797646,
+     "d": 167,
+     "ch": "Creative Chaos and 4 more"
+    }
+   ],
+   "title_words": [
+    "music",
+    "official",
+    "songs",
+    "lyrics",
+    "love",
+    "rock",
+    "christmas",
+    "michael",
+    "best",
+    "80s",
+    "dai",
+    "slow"
+   ],
+   "opportunity": 100,
+   "topic": "psychology"
+  },
+  "think": {
+   "n": 20,
+   "median_views": 4710280,
+   "max_views": 168917535,
+   "median_duration_s": 239,
+   "shorts_share": 0.0,
+   "distinct_channels": 17,
+   "top_channels": [
+    "kaleida",
+    "Aretha Franklin",
+    "Big Think"
+   ],
+   "top_titles": [
+    {
+     "t": "Katy Perry - Thinking Of You (Official)",
+     "v": 168917535,
+     "d": 260,
+     "ch": "Katy Perry"
+    },
+    {
+     "t": "Aretha Franklin - Think (The Blues Brothers Version)",
+     "v": 41370312,
+     "d": 194,
+     "ch": "davdavdee"
+    },
+    {
+     "t": "THINK by KALEIDA (Official Audio)",
+     "v": 38996690,
+     "d": 239,
+     "ch": "kaleida"
+    },
+    {
+     "t": "Katy Perry - Thinking Of You (Lyrics)",
+     "v": 29697523,
+     "d": 251,
+     "ch": "Audioandlyrics"
+    },
+    {
+     "t": "Aretha Franklin - Think (feat. The Blues Brothers) - 1080p Full HD",
+     "v": 25894422,
+     "d": 187,
+     "ch": "Juanjo de Goya"
+    }
+   ],
+   "title_words": [
+    "think",
+    "official",
+    "aretha",
+    "franklin",
+    "blues",
+    "brothers",
+    "kaleida",
+    "audio",
+    "thinking",
+    "interview",
+    "lyrics",
+    "version"
+   ],
+   "opportunity": 96,
+   "topic": "psychology"
+  },
+  "detective story animated": {
+   "n": 20,
+   "median_views": 267688,
+   "max_views": 13070944,
+   "median_duration_s": 825,
+   "shorts_share": 0.0,
+   "distinct_channels": 16,
+   "top_channels": [
+    "English Fairy Tales",
+    "SSG Animations",
+    "MJV Animations"
+   ],
+   "top_titles": [
+    {
+     "t": "The Hunt for America's Smartest Killer",
+     "v": 13070944,
+     "d": 1690,
+     "ch": "fern"
+    },
+    {
+     "t": "The Mind Reader Story | Stories for Teenagers |@EnglishFairyTales",
+     "v": 6464652,
+     "d": 784,
+     "ch": "English Fairy Tales"
+    },
+    {
+     "t": "Detective Ace | Stories for Teenagers | @EnglishFairyTales",
+     "v": 5947506,
+     "d": 820,
+     "ch": "English Fairy Tales"
+    },
+    {
+     "t": "Mr. Monkey, Monkey Detective: The Case of the Missing Things",
+     "v": 4719526,
+     "d": 1013,
+     "ch": "Super Simple TV - Kids Shows & Cartoons"
+    },
+    {
+     "t": "I Can Solve Any Crime",
+     "v": 2029760,
+     "d": 998,
+     "ch": "Story Time Animated"
+    }
+   ],
+   "title_words": [
+    "story",
+    "stories",
+    "detective",
+    "animated",
+    "true",
+    "mystery",
+    "crime",
+    "teenagers",
+    "englishfairytales",
+    "horror",
+    "murder",
+    "ace"
+   ],
+   "opportunity": 79,
+   "topic": "mystery"
+  },
+  "mystery story explained": {
+   "n": 20,
+   "median_views": 1516513,
+   "max_views": 12490754,
+   "median_duration_s": 2040,
+   "shorts_share": 0.0,
+   "distinct_channels": 19,
+   "top_channels": [
+    "Anime in Minutes",
+    "The Paint Explainer",
+    "Jaydone History"
+   ],
+   "top_titles": [
+    {
+     "t": "The Chilling Mystery Of The Black Dahlia",
+     "v": 12490754,
+     "d": 489,
+     "ch": "BuzzFeed Unsolved Network"
+    },
+    {
+     "t": "Murder on the Web: Catfish Gone Wrong! | Mystery & Makeup | Bailey Sarian",
+     "v": 9868039,
+     "d": 3535,
+     "ch": "Bailey Sarian"
+    },
+    {
+     "t": "The Edmund Fitzgerald Mystery",
+     "v": 5788309,
+     "d": 1818,
+     "ch": "Maritime Horrors"
+    },
+    {
+     "t": "The Story of OldRoot: Minecraft's Strangest Mystery",
+     "v": 5106204,
+     "d": 2256,
+     "ch": "RetroGamingNow"
+    },
+    {
+     "t": "The IMPOSSIBLE Cold Case That Was Solved By Redditors",
+     "v": 3769780,
+     "d": 2524,
+     "ch": "Kallmekris"
+    }
+   ],
+   "title_words": [
+    "mystery",
+    "explained",
+    "murder",
+    "solved",
+    "most",
+    "unsolved",
+    "every",
+    "mysteries",
+    "minutes",
+    "all",
+    "time",
+    "knight"
+   ],
+   "opportunity": 96,
+   "topic": "mystery"
+  },
+  "unsolved mystery story": {
+   "n": 20,
+   "median_views": 460281,
+   "max_views": 8115880,
+   "median_duration_s": 2444,
+   "shorts_share": 0.0,
+   "distinct_channels": 12,
+   "top_channels": [
+    "NEW Unsolved Mysteries",
+    "Unsolved Mysteries - Full Episodes",
+    "Unexplained Mysteries"
+   ],
+   "top_titles": [
+    {
+     "t": "Greatest Unsolved Mysteries Ever | Mysteries Unearthed with Danny Trejo",
+     "v": 8115880,
+     "d": 2858,
+     "ch": "HISTORY"
+    },
+    {
+     "t": "Unsolved Season 4 True Crime Marathon",
+     "v": 7729371,
+     "d": 11422,
+     "ch": "BuzzFeed Unsolved Network"
+    },
+    {
+     "t": "He Saw Himself On Unsolved Mysteries",
+     "v": 1769151,
+     "d": 1924,
+     "ch": "Watcher"
+    },
+    {
+     "t": "over 3 hours of disturbing unsolved mysteries",
+     "v": 1232173,
+     "d": 11397,
+     "ch": "don’t look at me"
+    },
+    {
+     "t": "Unsolved Mysteries with Robert Stack - Season 5, Episode 8 - Full Episode",
+     "v": 1174250,
+     "d": 2747,
+     "ch": "FilmRise True Crime"
+    }
+   ],
+   "title_words": [
+    "unsolved",
+    "mysteries",
+    "episode",
+    "robert",
+    "stack",
+    "season",
+    "explained",
+    "who",
+    "murdered",
+    "hours",
+    "was",
+    "mystery"
+   ],
+   "opportunity": 78,
+   "topic": "mystery"
+  },
+  "crime investigation story": {
+   "n": 20,
+   "median_views": 903023,
+   "max_views": 21330955,
+   "median_duration_s": 1825,
+   "shorts_share": 0.0,
+   "distinct_channels": 12,
+   "top_channels": [
+    "Unreal True Crime",
+    "Dr Insanity",
+    "EXPLORE WITH US"
+   ],
+   "top_titles": [
+    {
+     "t": "Cops Realize Psycho Daughters Car Is Filled With Bodies",
+     "v": 21330955,
+     "d": 5397,
+     "ch": "Dr Insanity"
+    },
+    {
+     "t": "Husband Discovers His Wife Is A Mass Killer",
+     "v": 16967888,
+     "d": 1566,
+     "ch": "Dr Insanity"
+    },
+    {
+     "t": "Cases With The Most INSANE Twists You've Ever Heard",
+     "v": 8842070,
+     "d": 1972,
+     "ch": "EXPLORE WITH US"
+    },
+    {
+     "t": "The IMPOSSIBLE Cold Case That Was Solved By Redditors",
+     "v": 3769780,
+     "d": 2524,
+     "ch": "Kallmekris"
+    },
+    {
+     "t": "Solved Cases With The Most INSANE Twists You've Ever Heard",
+     "v": 3560802,
+     "d": 1681,
+     "ch": "EXPLORE WITH US"
+    }
+   ],
+   "title_words": [
+    "crime",
+    "true",
+    "documentary",
+    "secret",
+    "ever",
+    "thought",
+    "one",
+    "would",
+    "discover",
+    "case",
+    "his",
+    "murder"
+   ],
+   "opportunity": 83,
+   "topic": "mystery"
+  },
+  "how the scam worked": {
+   "n": 20,
+   "median_views": 534368,
+   "max_views": 13553538,
+   "median_duration_s": 746,
+   "shorts_share": 0.0,
+   "distinct_channels": 20,
+   "top_channels": [
+    "How Money Works",
+    "Insider",
+    "Chat History"
+   ],
+   "top_titles": [
+    {
+     "t": "Investigating the Internet's Most Famous Scammer",
+     "v": 13553538,
+     "d": 1203,
+     "ch": "Tommy G"
+    },
+    {
+     "t": "Scammer Payback Answers Scam Questions | Tech Support | WIRED",
+     "v": 6781442,
+     "d": 1618,
+     "ch": "WIRED"
+    },
+    {
+     "t": "How The Wolf of Wall Street Scam Actually Worked",
+     "v": 4876068,
+     "d": 610,
+     "ch": "How Money Works"
+    },
+    {
+     "t": "Criminals using $20 'distraction' tactic to scam victims  | FOX 11 LA",
+     "v": 3702228,
+     "d": 148,
+     "ch": "FOX 11 Los Angeles"
+    },
+    {
+     "t": "How the first ever telecoms scam worked",
+     "v": 3028678,
+     "d": 349,
+     "ch": "Tom Scott"
+    }
+   ],
+   "title_words": [
+    "scams",
+    "scam",
+    "actually",
+    "work",
+    "worked",
+    "scammer",
+    "call",
+    "minutes",
+    "wired",
+    "phishing",
+    "avoid",
+    "wolf"
+   ],
+   "opportunity": 89,
+   "topic": "mystery"
+  },
+  "con artist story": {
+   "n": 20,
+   "median_views": 744363,
+   "max_views": 22911721,
+   "median_duration_s": 2344,
+   "shorts_share": 0.0,
+   "distinct_channels": 17,
+   "top_channels": [
+    "Ray William Johnson",
+    "48 Hours",
+    "60 Minutes Australia"
+   ],
+   "top_titles": [
+    {
+     "t": "You Can’t Con a Con Artist If You’re Also a Con Artist - Key & Peele",
+     "v": 22911721,
+     "d": 185,
+     "ch": "Key & Peele"
+    },
+    {
+     "t": "How con-artist Anna Sorokin ripped off the New York elite and became a star  | 60 Minutes ",
+     "v": 8280074,
+     "d": 1554,
+     "ch": "60 Minutes Australia"
+    },
+    {
+     "t": "New revelations in the outrageous saga of con artist Melissa Caddick | 60 Minutes Australi",
+     "v": 4703770,
+     "d": 2749,
+     "ch": "60 Minutes Australia"
+    },
+    {
+     "t": "This kid stole millions of dollars // The Juan Carlos Betancourt story",
+     "v": 3567817,
+     "d": 551,
+     "ch": "Ray William Johnson"
+    },
+    {
+     "t": "Con Man interview-Matthew Cox",
+     "v": 2753382,
+     "d": 3004,
+     "ch": "Soft White Underbelly"
+    }
+   ],
+   "title_words": [
+    "con",
+    "artist",
+    "man",
+    "artists",
+    "millions",
+    "story",
+    "episode",
+    "who",
+    "true",
+    "crime",
+    "can",
+    "hours"
+   ],
+   "opportunity": 88,
+   "topic": "mystery"
+  },
+  "mysteries": {
+   "n": 20,
+   "median_views": 452931,
+   "max_views": 8115880,
+   "median_duration_s": 3500,
+   "shorts_share": 0.0,
+   "distinct_channels": 13,
+   "top_channels": [
+    "Unexplained Mysteries",
+    "Top 5 Unknowns",
+    "Sleepy Mystery Channel"
+   ],
+   "top_titles": [
+    {
+     "t": "Greatest Unsolved Mysteries Ever | Mysteries Unearthed with Danny Trejo",
+     "v": 8115880,
+     "d": 2858,
+     "ch": "HISTORY"
+    },
+    {
+     "t": "5 Disturbing Internet Mysteries Solved by Reddit",
+     "v": 5301122,
+     "d": 1056,
+     "ch": "Chilling Scares"
+    },
+    {
+     "t": "Obscure Internet Mysteries",
+     "v": 2842685,
+     "d": 1692,
+     "ch": "Chilling Scares"
+    },
+    {
+     "t": "Unsolved Mysteries with Chilling Pieces of Evidence",
+     "v": 2775181,
+     "d": 1845,
+     "ch": "Lazy Masquerade"
+    },
+    {
+     "t": "MOST Unsolved Mysteries That Cannot Be Explained | Compilation",
+     "v": 2207790,
+     "d": 4142,
+     "ch": "KM Uncharted Mysteries"
+    }
+   ],
+   "title_words": [
+    "mysteries",
+    "unsolved",
+    "solved",
+    "explained",
+    "top",
+    "disturbing",
+    "internet",
+    "were",
+    "finally",
+    "most",
+    "hours",
+    "scary"
+   ],
+   "opportunity": 79,
+   "topic": "mystery"
+  },
+  "cannot": {
+   "n": 20,
+   "median_views": 33565516,
+   "max_views": 2011382116,
+   "median_duration_s": 238,
+   "shorts_share": 0.05,
+   "distinct_channels": 19,
+   "top_channels": [
+    "Travis Scott",
+    "Red Bull Snow and Legs Of Steel",
+    "Anti Up and 2 more"
+   ],
+   "top_titles": [
+    {
+     "t": "Justin Timberlake - CAN'T STOP THE FEELING! (from DreamWorks Animation's \"TROLLS\") (Offici",
+     "v": 2011382116,
+     "d": 286,
+     "ch": "Justin Timberlake"
+    },
+    {
+     "t": "Ariana Grande - Problem ft. Iggy Azalea",
+     "v": 1504835616,
+     "d": 208,
+     "ch": "Ariana Grande"
+    },
+    {
+     "t": "\"Can't Stop The Feeling!\" Official Movie Clip | TROLLS",
+     "v": 714337281,
+     "d": 145,
+     "ch": "Universal Kids"
+    },
+    {
+     "t": "Red Hot Chili Peppers - Can't Stop [Official Music Video]",
+     "v": 490073632,
+     "d": 278,
+     "ch": "Red Hot Chili Peppers"
+    },
+    {
+     "t": "I Can’t Sleep, Mommy! | Afraid of the Dark Song + More Nursery Rhymes for kids | Miliki Fa",
+     "v": 381020226,
+     "d": 1062,
+     "ch": "Miliki Family - Kids songs & Nursery Rhymes"
+    }
+   ],
+   "title_words": [
+    "can't",
+    "official",
+    "can",
+    "cannot",
+    "problem",
+    "stop",
+    "english",
+    "travis",
+    "scott",
+    "say",
+    "kids",
+    "feeling"
+   ],
+   "opportunity": 99,
+   "topic": "mystery"
+  },
+  "episodes": {
+   "n": 20,
+   "median_views": 418909,
+   "max_views": 18890445,
+   "median_duration_s": 3273,
+   "shorts_share": 0.0,
+   "distinct_channels": 14,
+   "top_channels": [
+    "A&E",
+    "Disney Channel",
+    "Lifetime"
+   ],
+   "top_titles": [
+    {
+     "t": "The First Episode of JESSIE! | S1 E1 | Full Episode | Disney Channel",
+     "v": 18890445,
+     "d": 1473,
+     "ch": "Disney Channel"
+    },
+    {
+     "t": "Liv and Maddie Full Episode! | What A Girl Is Episode | Rate a Rooney |  Disney Channel",
+     "v": 9729140,
+     "d": 1398,
+     "ch": "Disney Channel"
+    },
+    {
+     "t": "Every Gravity Falls Season 1 FULL Episode! 🏕️ | Marathon | Gravity Falls | Disney Channel",
+     "v": 8825056,
+     "d": 26525,
+     "ch": "Disney Channel Animation"
+    },
+    {
+     "t": "The Atlanta Family | Full Episodes | World's Strictest Parents UK",
+     "v": 7866194,
+     "d": 3273,
+     "ch": "World's Strictest Parents"
+    },
+    {
+     "t": "FULL EPISODES 💙 🖍️ Creating a Hotel with Bluey and Bingo ✨ | Bluey",
+     "v": 3337425,
+     "d": 2327,
+     "ch": "Bluey - Official Channel"
+    }
+   ],
+   "title_words": [
+    "episode",
+    "episodes",
+    "bluey",
+    "first",
+    "season",
+    "marathon",
+    "disney",
+    "channel",
+    "live",
+    "e13",
+    "gravity",
+    "falls"
+   ],
+   "opportunity": 80,
+   "topic": "mystery"
+  },
+  "season": {
+   "n": 20,
+   "median_views": 12814819,
+   "max_views": 197377019,
+   "median_duration_s": 226,
+   "shorts_share": 0.0,
+   "distinct_channels": 20,
+   "top_channels": [
+    "Have Fun Teaching",
+    "Netflix",
+    "Jordan Sandhu"
+   ],
+   "top_titles": [
+    {
+     "t": "Seasons Song",
+     "v": 197377019,
+     "d": 246,
+     "ch": "Have Fun Teaching"
+    },
+    {
+     "t": "seasons",
+     "v": 33482898,
+     "d": 256,
+     "ch": "wave to earth"
+    },
+    {
+     "t": "Seasons Song | Learning Seasons with Gracie’s Corner | Nursery Rhymes + Kids Songs",
+     "v": 30289148,
+     "d": 176,
+     "ch": "Gracie's Corner"
+    },
+    {
+     "t": "Simar Doraha | Season (Official Video) | Ft Gurlez Akhtar | Latest Punjabi Song 2022 | New",
+     "v": 28428720,
+     "d": 216,
+     "ch": "Speed Records"
+    },
+    {
+     "t": "[온스테이지2.0] wave to earth - seasons",
+     "v": 25060571,
+     "d": 270,
+     "ch": "온스테이지ONSTAGE"
+    }
+   ],
+   "title_words": [
+    "seasons",
+    "song",
+    "season",
+    "official",
+    "kids",
+    "songs",
+    "audio",
+    "learning",
+    "learn",
+    "bruno",
+    "mars",
+    "time"
+   ],
+   "opportunity": 100,
+   "topic": "mystery"
+  }
+ },
+ "channels": {},
+ "discovered": {
+  "money": [
+   "financial",
+   "avoid",
+   "freedom",
+   "living",
+   "their"
+  ],
+  "psychology": [
+   "official",
+   "music",
+   "audio",
+   "crash",
+   "brain",
+   "science",
+   "thinking",
+   "course",
+   "better",
+   "lyrics",
+   "biases",
+   "think",
+   "decisions",
+   "change"
+  ],
+  "mystery": [
+   "mysteries",
+   "season",
+   "official"
+  ]
+ }
+}
