@@ -1,0 +1,1124 @@
+{
+ "id": "005-friday-overage",
+ "title": "The Friday Overage",
+ "lang": "en",
+ "aspect": "16:9",
+ "duration_s": 240,
+ "idea": "Invented: a corner bakery's till is over by the same odd sum every Friday; night clerk Iris follows the extra money to the one customer who keeps paying in, and the film shows why",
+ "narrator": "narrator",
+ "narrator_name": "Narrator",
+ "narrator_gender": "male",
+ "format": "character",
+ "spine": {
+  "want": "make the till balance and know why it doesn't",
+  "obstacle": "an owner who forbids her to count the Friday till",
+  "turn": "the ledger shows loaves nobody baked",
+  "choice": "she leaves the money alone and writes one more word in the notebook",
+  "opening_image": "Iris at the bakery till, notebook in hand, the till over by forty-seven",
+  "ending_image": "Iris at the same till, forty-seven over, the notebook open on the counter",
+  "motif": "book"
+ },
+ "cast": [
+  {
+   "id": "narrator",
+   "name": "Narrator",
+   "narrator": true,
+   "gender": "male"
+  },
+  {
+   "id": "iris",
+   "name": "Iris",
+   "gender": "female",
+   "style": "stick",
+   "top": "shirt",
+   "top_color": "#c2307a",
+   "top2": "#f3e6ee",
+   "bottom": "skirt",
+   "bottom_color": "#2d2d44",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#2a2230",
+   "hair_style": "bun",
+   "hair": "#2b1a14",
+   "look": "young woman in a magenta shirt and dark skirt, hair in a bun"
+  },
+  {
+   "id": "pell",
+   "name": "Mr. Pell",
+   "gender": "male",
+   "style": "stick",
+   "top": "shirt",
+   "top_color": "#6d7a6a",
+   "bottom": "none",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#3a2f2a",
+   "hair_style": "short",
+   "hair": "#8a8a8a",
+   "look": "heavy-set older man in a grey-green shirt, grey hair"
+  },
+  {
+   "id": "vane",
+   "name": "Mr. Vane",
+   "gender": "male",
+   "style": "stick",
+   "top": "hoodie",
+   "top_color": "#4a4f5c",
+   "bottom": "none",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#1f1f26",
+   "hair_style": "short",
+   "hair": "#101014",
+   "look": "quiet man in a charcoal grey hoodie, short black hair"
+  }
+ ],
+ "settings": {
+  "bakery": {
+   "set": {
+    "type": "room",
+    "style": "shop",
+    "time": "night"
+   },
+   "objects": [
+    {
+     "t": "furn",
+     "n": "shop_counter",
+     "x": 0.2,
+     "z": 0.9
+    }
+   ]
+  },
+  "street": {
+   "set": {
+    "type": "street",
+    "time": "night"
+   }
+  },
+  "front": {
+   "set": {
+    "type": "shopfront",
+    "time": "night"
+   }
+  },
+  "backroom": {
+   "set": {
+    "type": "room",
+    "style": "kitchen",
+    "time": "night",
+    "window": "left"
+   },
+   "objects": [
+    {
+     "t": "furn",
+     "n": "kitchen_counter",
+     "x": -2.0,
+     "z": 0.8
+    }
+   ]
+  },
+  "office": {
+   "set": {
+    "type": "room",
+    "style": "office",
+    "time": "day"
+   }
+  },
+  "living": {
+   "set": {
+    "type": "room",
+    "style": "living",
+    "time": "night"
+   }
+  }
+ },
+ "scenes": [
+  {
+   "id": 1,
+   "title": "Forty-seven",
+   "goal": "Iris wants the till to balance",
+   "turn": "the same extra sum has now come seven Fridays in a row",
+   "value": "-",
+   "target_s": 24,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "bakery",
+       "street"
+      ],
+      "mood": "tense",
+      "seed": 1,
+      "actors": [
+       {
+        "k": "iris",
+        "x": 1300
+       }
+      ],
+      "cues": [
+       {
+        "t": "Every Friday, the till was forty-seven dollars over.",
+        "shot": "wide",
+        "on": [
+         "iris"
+        ],
+        "at": "bakery",
+        "do": [
+         "walkTo@shop_counter"
+        ],
+        "emote": "doubt",
+        "props": [
+         "cash",
+         "calendar"
+        ],
+        "hud": [
+         {
+          "type": "chip",
+          "text": "FRIDAY",
+          "pos": "tl"
+         },
+         {
+          "type": "counter",
+          "from": 0,
+          "to": 47,
+          "label": "dollars over",
+          "pos": "tr",
+          "t": 0.5,
+          "dur": 2.5
+         }
+        ]
+       },
+       {
+        "t": "Iris worked nights, so nobody else ever saw the till.",
+        "shot": "medium",
+        "on": [
+         "iris"
+        ],
+        "emote": "worry"
+       },
+       {
+        "t": "Nothing was missing. That bothered her more than a shortage would.",
+        "shot": "medium",
+        "on": [
+         "iris"
+        ],
+        "emote": "worry"
+       },
+       {
+        "t": "She counted it twice. Money doesn't appear by accident.",
+        "shot": "medium",
+        "on": [
+         "iris"
+        ],
+        "emote": "worry",
+        "do": "think"
+       },
+       {
+        "t": "So she wrote the number in a small notebook.",
+        "shot": "insert",
+        "on": [
+         "iris"
+        ],
+        "props": [
+         "book"
+        ]
+       },
+       {
+        "t": "Seven weeks. Seven Fridays. The same forty-seven.",
+        "shot": "medium",
+        "on": [
+         "iris"
+        ],
+        "emote": "surprise",
+        "props": [
+         "calendar"
+        ],
+        "hud": [
+         {
+          "type": "chip",
+          "text": "WEEK 7",
+          "pos": "tl"
+         }
+        ]
+       },
+       {
+        "t": "Somebody was paying in. Who pays a bakery extra?",
+        "shot": "close",
+        "on": [
+         "iris"
+        ],
+        "emote": "doubt",
+        "hud": {
+         "type": "title",
+         "text": "THE FRIDAY OVERAGE",
+         "pos": "cc",
+         "t": 1.0,
+         "dur": 1.8
+        }
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "title": "Don't count it",
+   "goal": "Iris wants an answer from the owner",
+   "turn": "he forbids her to count the Friday till",
+   "value": "-",
+   "target_s": 38,
+   "shots": [
+    {
+     "sequence": {
+      "type": "dialogue",
+      "setting": "backroom",
+      "mood": "tense",
+      "seed": 2,
+      "a": {
+       "k": "pell",
+       "x": 1500
+      },
+      "b": {
+       "k": "iris",
+       "x": 760
+      },
+      "lines": [
+       {
+        "who": "iris",
+        "t": "Mr. Pell, the till's over again. Forty-seven.",
+        "emote": "doubt",
+        "props": [
+         "cash"
+        ]
+       },
+       {
+        "who": "pell",
+        "t": "Then you miscounted. Close up and go home.",
+        "emote": "surprise",
+        "do": "gesture"
+       },
+       {
+        "who": "iris",
+        "t": "I counted it three times. To the cent.",
+        "emote": "doubt",
+        "hud": {
+         "type": "chip",
+         "text": "COUNTED 3 TIMES",
+         "pos": "tl"
+        }
+       },
+       {
+        "who": "pell",
+        "t": "Well, take it as a gift, then.",
+        "emote": "joy",
+        "do": "shrug",
+        "props": [
+         "gift"
+        ]
+       },
+       {
+        "who": "iris",
+        "t": "Gifts don't come on a schedule.",
+        "emote": "doubt",
+        "do": "think"
+       },
+       {
+        "who": "pell",
+        "t": "Look, bakeries are lucky places. Warm bread, warm hearts.",
+        "emote": "joy"
+       },
+       {
+        "who": "iris",
+        "t": "I wrote down every Friday. In my notebook.",
+        "emote": "worry",
+        "props": [
+         "book",
+         "calendar"
+        ]
+       },
+       {
+        "who": "pell",
+        "t": "You what? Give me that, I-",
+        "emote": "surprise",
+        "do": "offer"
+       },
+       {
+        "who": "iris",
+        "t": "No. It's mine.",
+        "emote": "fear"
+       },
+       {
+        "who": "pell",
+        "t": "Go home, Iris. It's late, and you're tired.",
+        "emote": "joy",
+        "do": "gesture"
+       },
+       {
+        "who": "iris",
+        "t": "Tired? Mr. Pell, I'm wide awake.",
+        "emote": "doubt"
+       },
+       {
+        "who": "pell",
+        "t": "Iris. Don't count the Friday till again.",
+        "emote": "doubt",
+        "do": "point",
+        "props": [
+         "calendar"
+        ]
+       },
+       {
+        "who": "iris",
+        "t": "Huh. Odd thing for an owner to say.",
+        "emote": "doubt"
+       }
+      ]
+     }
+    },
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "backroom"
+      ],
+      "mood": "tense",
+      "seed": 3,
+      "actors": [
+       {
+        "k": "iris",
+        "x": 900
+       }
+      ],
+      "cues": [
+       {
+        "t": "Why would an owner refuse to count money handed to him free?",
+        "shot": "close",
+        "on": [
+         "iris"
+        ],
+        "emote": "doubt",
+        "do": "think"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "title": "The last customer",
+   "goal": "Iris wants to see who pays in",
+   "turn": "she sees the man in the grey coat and where the forty-seven comes from",
+   "value": "+",
+   "target_s": 40,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "street",
+       "front"
+      ],
+      "mood": "tense",
+      "seed": 4,
+      "actors": [
+       {
+        "k": "iris",
+        "x": 420
+       },
+       {
+        "k": "vane",
+        "x": 1200
+       },
+       {
+        "k": "pell",
+        "x": 1500
+       }
+      ],
+      "cues": [
+       {
+        "t": "The next Friday, Iris didn't go home at closing.",
+        "shot": "wide",
+        "on": [
+         "iris"
+        ],
+        "at": "street",
+        "do": [
+         "walk"
+        ],
+        "emote": "doubt",
+        "props": [
+         "calendar"
+        ],
+        "hud": [
+         {
+          "type": "chip",
+          "text": "WEEK 8",
+          "pos": "tl"
+         }
+        ]
+       },
+       {
+        "t": "She stood across the street, under a broken lamp.",
+        "shot": "wide",
+        "on": [
+         "iris"
+        ],
+        "at": "front",
+        "emote": "worry"
+       },
+       {
+        "t": "Inside, Pell wiped a clean tray, waiting.",
+        "shot": "medium",
+        "on": [
+         "pell"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "She held her breath and counted the seconds.",
+        "shot": "close",
+        "on": [
+         "iris"
+        ],
+        "emote": "worry"
+       },
+       {
+        "t": "Just after closing, a man in a grey hoodie came.",
+        "shot": "medium",
+        "on": [
+         "vane"
+        ],
+        "do": [
+         "walk"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "Mr. Vane. Always the last customer. Always on a Friday.",
+        "shot": "close",
+        "on": [
+         "vane"
+        ],
+        "emote": "doubt",
+        "props": [
+         "calendar"
+        ]
+       },
+       {
+        "t": "He bought one plain loaf. The cheapest one.",
+        "shot": "insert",
+        "on": [
+         "vane"
+        ],
+        "props": [
+         "cash"
+        ]
+       },
+       {
+        "t": "He paid with a thick fold of notes. Keep the change.",
+        "shot": "medium",
+        "on": [
+         "vane",
+         "pell"
+        ],
+        "props": [
+         "cash"
+        ],
+        "do": "offer",
+        "hud": [
+         {
+          "type": "counter",
+          "from": 0,
+          "to": 51,
+          "label": "dollars paid",
+          "pos": "tr",
+          "t": 0.5,
+          "dur": 2.5
+         }
+        ]
+       },
+       {
+        "t": "The loaf cost four dollars. The fold was fifty-one.",
+        "shot": "insert",
+        "on": [
+         "iris"
+        ],
+        "props": [
+         "cash"
+        ],
+        "hud": [
+         {
+          "type": "chip",
+          "text": "LOAF: 4",
+          "pos": "tl"
+         }
+        ]
+       },
+       {
+        "t": "Fifty-one, minus four. Forty-seven. The change he never took.",
+        "shot": "close",
+        "on": [
+         "iris"
+        ],
+        "emote": "surprise",
+        "hud": [
+         {
+          "type": "counter",
+          "from": 0,
+          "to": 47,
+          "label": "change left",
+          "pos": "tr",
+          "t": 0.5,
+          "dur": 2.5
+         }
+        ]
+       },
+       {
+        "t": "Pell took the notes and never looked at the sum.",
+        "shot": "medium",
+        "on": [
+         "pell"
+        ],
+        "emote": "joy"
+       },
+       {
+        "t": "A man doesn't leave that every week by mistake.",
+        "shot": "close",
+        "on": [
+         "iris"
+        ],
+        "emote": "doubt",
+        "do": "think"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "title": "Ghost loaves",
+   "goal": "Iris wants to know what the money is for",
+   "turn": "the ledger shows loaves nobody baked",
+   "value": "+",
+   "target_s": 36,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "office",
+       "backroom"
+      ],
+      "mood": "tense",
+      "seed": 5,
+      "actors": [
+       {
+        "k": "iris",
+        "x": 1000
+       }
+      ],
+      "cues": [
+       {
+        "t": "On Saturday morning, Iris stepped into Pell's little office.",
+        "shot": "wide",
+        "on": [
+         "iris"
+        ],
+        "at": "office",
+        "do": [
+         "walk"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "Pell's ledger lay open on the desk, green and frayed.",
+        "shot": "insert",
+        "on": [
+         "iris"
+        ],
+        "props": [
+         "document"
+        ]
+       },
+       {
+        "t": "The ledger was neat. Too neat for a man who hated paperwork.",
+        "shot": "close",
+        "on": [
+         "iris"
+        ],
+        "props": [
+         "document"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "Every Friday, the bakery had sold three hundred loaves.",
+        "shot": "medium",
+        "on": [
+         "iris"
+        ],
+        "props": [
+         "document",
+         "calendar"
+        ],
+        "hud": [
+         {
+          "type": "counter",
+          "from": 0,
+          "to": 300,
+          "label": "loaves in the ledger",
+          "pos": "tr",
+          "t": 0.5,
+          "dur": 2.5
+         }
+        ]
+       },
+       {
+        "t": "The oven only holds eighty.",
+        "shot": "wide",
+        "on": [
+         "iris"
+        ],
+        "at": "backroom",
+        "emote": "surprise",
+        "hud": [
+         {
+          "type": "counter",
+          "from": 0,
+          "to": 80,
+          "label": "loaves baked",
+          "pos": "tr",
+          "t": 0.5,
+          "dur": 2.5
+         }
+        ]
+       },
+       {
+        "t": "Every page ended the same way, in a round, tidy total.",
+        "shot": "insert",
+        "on": [
+         "iris"
+        ],
+        "props": [
+         "document"
+        ]
+       },
+       {
+        "t": "She counted the flour sacks by the wall. Eighty, no more.",
+        "shot": "medium",
+        "on": [
+         "iris"
+        ],
+        "emote": "doubt",
+        "do": "think"
+       },
+       {
+        "t": "Two hundred and twenty loaves that nobody ever baked.",
+        "shot": "close",
+        "on": [
+         "iris"
+        ],
+        "emote": "surprise"
+       },
+       {
+        "t": "The cash came from somewhere else. Bread was just the story it traveled in.",
+        "shot": "medium",
+        "on": [
+         "iris"
+        ],
+        "props": [
+         "cash"
+        ],
+        "emote": "worry"
+       },
+       {
+        "t": "Ghost loaves on paper. Real notes in the drawer.",
+        "shot": "insert",
+        "on": [
+         "iris"
+        ],
+        "props": [
+         "document",
+         "cash"
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "title": "The price of asking",
+   "goal": "Iris wants the truth, Pell wants her quiet",
+   "turn": "Pell says out loud that she never asked, and offers her the quiet",
+   "value": "-",
+   "target_s": 30,
+   "shots": [
+    {
+     "sequence": {
+      "type": "dialogue",
+      "setting": "office",
+      "mood": "tense",
+      "seed": 6,
+      "a": {
+       "k": "pell",
+       "x": 1500
+      },
+      "b": {
+       "k": "iris",
+       "x": 760
+      },
+      "lines": [
+       {
+        "who": "iris",
+        "t": "Look. Three hundred loaves, Mr. Pell. We made eighty.",
+        "emote": "doubt",
+        "props": [
+         "document"
+        ]
+       },
+       {
+        "who": "pell",
+        "t": "You went through my books?",
+        "emote": "surprise",
+        "do": "gesture"
+       },
+       {
+        "who": "iris",
+        "t": "You left the ledger open. On a desk.",
+        "emote": "doubt",
+        "do": "shrug"
+       },
+       {
+        "who": "iris",
+        "t": "Where's the money from, Mr. Pell?",
+        "emote": "doubt"
+       },
+       {
+        "who": "pell",
+        "t": "From a friend. Friends make good customers.",
+        "emote": "joy",
+        "do": "gesture"
+       },
+       {
+        "who": "pell",
+        "t": "Iris, listen. It's a favour. A friend needs his cash to look like bread.",
+        "emote": "doubt",
+        "do": "gesture",
+        "props": [
+         "cash"
+        ]
+       },
+       {
+        "who": "iris",
+        "t": "Vane? The man in the hoodie?",
+        "emote": "doubt"
+       },
+       {
+        "who": "pell",
+        "t": "He pays more than the loaf is worth.",
+        "emote": "joy",
+        "do": "offer"
+       },
+       {
+        "who": "iris",
+        "t": "And the tax?",
+        "emote": "doubt"
+       },
+       {
+        "who": "pell",
+        "t": "I pay it. All of us win.",
+        "emote": "joy",
+        "do": "gesture"
+       },
+       {
+        "who": "iris",
+        "t": "All but the till.",
+        "emote": "worry"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "title": "Outside",
+   "goal": "Pell wants her quiet",
+   "turn": "Pell says out loud that she never asked, and offers her the quiet",
+   "value": "-",
+   "target_s": 28,
+   "shots": [
+    {
+     "sequence": {
+      "type": "dialogue",
+      "setting": "front",
+      "mood": "tense",
+      "seed": 9,
+      "a": {
+       "k": "pell",
+       "x": 1500
+      },
+      "b": {
+       "k": "iris",
+       "x": 760
+      },
+      "lines": [
+       {
+        "who": "pell",
+        "t": "The till is a number. Numbers don't mind.",
+        "emote": "joy",
+        "do": "shrug"
+       },
+       {
+        "who": "iris",
+        "t": "But I'm the one who writes the number.",
+        "emote": "fear"
+       },
+       {
+        "who": "pell",
+        "t": "Well, who bought your new coat in spring?",
+        "emote": "doubt",
+        "do": "point"
+       },
+       {
+        "who": "iris",
+        "t": "I... never asked where it came from.",
+        "emote": "worry",
+        "do": "think"
+       },
+       {
+        "who": "pell",
+        "t": "No. Well, that's the trick. Nobody ever does.",
+        "emote": "joy"
+       },
+       {
+        "who": "iris",
+        "t": "I'm asking now.",
+        "emote": "doubt"
+       },
+       {
+        "who": "pell",
+        "t": "Hm. Ask yourself first. What's it worth to know?",
+        "emote": "doubt",
+        "do": "gesture"
+       }
+      ]
+     }
+    },
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "front"
+      ],
+      "mood": "tense",
+      "seed": 10,
+      "actors": [
+       {
+        "k": "pell",
+        "x": 1100
+       }
+      ],
+      "cues": [
+       {
+        "t": "Pell wasn't angry. That was the unsettling part.",
+        "shot": "close",
+        "on": [
+         "pell"
+        ],
+        "emote": "joy"
+       },
+       {
+        "t": "He pulled the shutter down slowly, like a man ending a long day.",
+        "shot": "medium",
+        "on": [
+         "pell"
+        ],
+        "emote": "joy"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "title": "One more word",
+   "goal": "Iris chooses what to do with a number nobody wants counted",
+   "turn": "she doesn't touch the money; she writes one more word",
+   "value": "+",
+   "target_s": 44,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "living",
+       "bakery"
+      ],
+      "mood": "tense",
+      "seed": 8,
+      "actors": [
+       {
+        "k": "iris",
+        "x": 900
+       },
+       {
+        "k": "vane",
+        "x": 1450
+       }
+      ],
+      "cues": [
+       {
+        "t": "That night, Iris sat at her table with the notebook.",
+        "shot": "wide",
+        "on": [
+         "iris"
+        ],
+        "at": "living",
+        "do": [
+         "sit@chair"
+        ],
+        "props": [
+         "book"
+        ],
+        "emote": "worry"
+       },
+       {
+        "t": "Eight Fridays. Forty-seven each. Three hundred seventy-six in all.",
+        "shot": "insert",
+        "on": [
+         "iris"
+        ],
+        "props": [
+         "book"
+        ],
+        "hud": [
+         {
+          "type": "counter",
+          "from": 0,
+          "to": 376,
+          "label": "dollars noted",
+          "pos": "tr",
+          "t": 0.5,
+          "dur": 2.5
+         }
+        ]
+       },
+       {
+        "t": "She could close the book. Nobody would ever ask her.",
+        "shot": "medium",
+        "on": [
+         "iris"
+        ],
+        "emote": "doubt",
+        "do": "think"
+       },
+       {
+        "t": "Pell would say thank you. The notes would keep arriving.",
+        "shot": "medium",
+        "on": [
+         "iris"
+        ],
+        "emote": "worry"
+       },
+       {
+        "t": "Or she could keep counting, and see who else was counting.",
+        "shot": "close",
+        "on": [
+         "iris"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "Maybe the answer wasn't in the notebook at all.",
+        "shot": "close",
+        "on": [
+         "iris"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "She didn't know what Pell would do. She knew he was calm.",
+        "shot": "medium",
+        "on": [
+         "iris"
+        ],
+        "emote": "fear"
+       },
+       {
+        "t": "The door opened. A grey hoodie. Right on time.",
+        "shot": "medium",
+        "on": [
+         "vane"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "Friday came. She stood at the till, same as always.",
+        "shot": "wide",
+        "on": [
+         "iris"
+        ],
+        "at": "bakery",
+        "do": [
+         "walkTo@shop_counter"
+        ],
+        "emote": "doubt",
+        "props": [
+         "calendar"
+        ],
+        "hud": [
+         {
+          "type": "chip",
+          "text": "FRIDAY",
+          "pos": "tl"
+         }
+        ]
+       },
+       {
+        "t": "Forty-seven over, to the cent. She didn't touch it.",
+        "shot": "insert",
+        "on": [
+         "iris"
+        ],
+        "props": [
+         "cash"
+        ]
+       },
+       {
+        "t": "She opened the notebook, wrote the date, and one more word.",
+        "shot": "insert",
+        "on": [
+         "iris"
+        ],
+        "props": [
+         "book"
+        ],
+        "do": "type"
+       },
+       {
+        "t": "What would you do with a number nobody wants counted? Tell me below.",
+        "shot": "close",
+        "on": [
+         "iris"
+        ],
+        "emote": "doubt",
+        "do": "think",
+        "props": [
+         "book"
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}

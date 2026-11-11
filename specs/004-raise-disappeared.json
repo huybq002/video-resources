@@ -1,0 +1,1453 @@
+{
+ "id": "004-raise-disappeared",
+ "title": "The Raise That Disappeared",
+ "lang": "en",
+ "aspect": "16:9",
+ "duration_s": 300,
+ "idea": "An invented woman, Nora, gets a raise and watches it vanish month by month: lifestyle creep, one invented year",
+ "narrator": "narrator",
+ "narrator_name": "Narrator",
+ "narrator_gender": "male",
+ "format": "character",
+ "spine": {
+  "want": "keep half of her raise safe and enjoy the rest",
+  "obstacle": "small upgrades that each feel reasonable",
+  "turn": "the bank app shows zero left in December",
+  "choice": "she writes down where every month went instead of promising again",
+  "opening_image": "Nora at her desk under a sticky note that says save half",
+  "ending_image": "Nora at the same desk, the same note, read slowly",
+  "motif": "phone"
+ },
+ "cast": [
+  {
+   "id": "narrator",
+   "name": "Narrator",
+   "narrator": true,
+   "gender": "male"
+  },
+  {
+   "id": "nora",
+   "name": "Nora",
+   "gender": "female",
+   "style": "stick",
+   "top": "shirt",
+   "top_color": "#2f7f6f",
+   "top2": "#e9edf2",
+   "bottom": "skirt",
+   "bottom_color": "#3a3a52",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#2a2230",
+   "hair_style": "bun",
+   "hair": "#3b2417",
+   "look": "young woman in a teal blouse and dark skirt, hair in a bun"
+  },
+  {
+   "id": "sam",
+   "name": "Sam",
+   "gender": "male",
+   "style": "stick",
+   "top": "hoodie",
+   "top_color": "#d98a2b",
+   "bottom": "none",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#2a2230",
+   "hair_style": "short",
+   "hair": "#2a1f24",
+   "look": "relaxed man in an orange hoodie, short dark hair"
+  },
+  {
+   "id": "ines",
+   "name": "Ines",
+   "gender": "female",
+   "style": "stick",
+   "top": "shirt",
+   "top_color": "#7a4fa3",
+   "bottom": "shorts",
+   "bottom_color": "#4a4a5a",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#40344a",
+   "hair_style": "long",
+   "hair": "#1d1d22",
+   "look": "colleague in a purple shirt, long black hair"
+  }
+ ],
+ "settings": {
+  "office": {
+   "set": {
+    "type": "room",
+    "style": "office",
+    "time": "day"
+   }
+  },
+  "street": {
+   "set": {
+    "type": "street",
+    "time": "dusk"
+   }
+  },
+  "cafe": {
+   "set": {
+    "type": "room",
+    "style": "cafe",
+    "time": "night"
+   }
+  },
+  "shop": {
+   "set": {
+    "type": "room",
+    "style": "shop",
+    "time": "day"
+   }
+  },
+  "living": {
+   "set": {
+    "type": "room",
+    "style": "living",
+    "time": "day"
+   }
+  },
+  "grocery": {
+   "set": {
+    "type": "room",
+    "style": "grocery",
+    "time": "day"
+   }
+  },
+  "bedroom": {
+   "set": {
+    "type": "room",
+    "style": "bedroom",
+    "time": "night"
+   }
+  },
+  "kitchen": {
+   "set": {
+    "type": "room",
+    "style": "kitchen",
+    "time": "night",
+    "window": "left"
+   }
+  }
+ },
+ "scenes": [
+  {
+   "id": 1,
+   "title": "The raise",
+   "goal": "Hook: a raise that will vanish",
+   "turn": "the good news comes with a date it will be gone",
+   "value": "+",
+   "target_s": 24,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "office",
+       "street"
+      ],
+      "mood": "warm",
+      "seed": 1,
+      "actors": [
+       {
+        "k": "nora",
+        "x": 1390
+       }
+      ],
+      "cues": [
+       {
+        "t": "Eight hundred a month, her raise. By December, gone.",
+        "shot": "wide",
+        "on": [
+         "nora"
+        ],
+        "at": "office",
+        "do": [
+         "sit@chair",
+         "type:2"
+        ],
+        "emote": "joy",
+        "hud": [
+         {
+          "type": "chip",
+          "text": "JANUARY",
+          "pos": "tl"
+         },
+         {
+          "type": "counter",
+          "from": 0,
+          "to": 800,
+          "label": "raise per month",
+          "pos": "tr",
+          "t": 0.5,
+          "dur": 2.5
+         }
+        ]
+       },
+       {
+        "t": "Nora heard the news on a Monday morning.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "props": [
+         "document",
+         "calendar",
+         "phone"
+        ],
+        "emote": "surprise"
+       },
+       {
+        "t": "She walked home that night and the street felt wider.",
+        "shot": "wide",
+        "on": [
+         "nora"
+        ],
+        "at": "street",
+        "do": [
+         "walk"
+        ],
+        "emote": "joy"
+       },
+       {
+        "t": "A sticky note on her monitor said: save half.",
+        "shot": "insert",
+        "on": [
+         "nora"
+        ],
+        "at": "office",
+        "props": [
+         "document"
+        ]
+       },
+       {
+        "t": "Nobody spent it on anything stupid. That is the strange part.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "at": "street",
+        "emote": "doubt",
+        "do": "think"
+       },
+       {
+        "t": "Not a fancy car, not a holiday. Just a normal year.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "do": [
+         "walk"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "So where does a raise actually go?",
+        "shot": "close",
+        "on": [
+         "nora"
+        ],
+        "emote": "worry",
+        "hud": {
+         "type": "title",
+         "text": "THE RAISE THAT DISAPPEARED",
+         "pos": "cc",
+         "t": 0.8,
+         "dur": 1.8
+        }
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "title": "Monday",
+   "goal": "Nora wants to keep the raise safe",
+   "turn": "she says half is for her, a promise she will have to keep",
+   "value": "+",
+   "target_s": 30,
+   "shots": [
+    {
+     "sequence": {
+      "type": "dialogue",
+      "setting": "office",
+      "mood": "warm",
+      "seed": 2,
+      "a": {
+       "k": "ines",
+       "x": 1500
+      },
+      "b": {
+       "k": "nora",
+       "x": 760
+      },
+      "lines": [
+       {
+        "who": "ines",
+        "t": "That much? Every month? Nora!",
+        "emote": "joy",
+        "do": "cheer"
+       },
+       {
+        "who": "nora",
+        "t": "Shh. Half goes straight to savings.",
+        "emote": "joy",
+        "do": "gesture",
+        "props": [
+         "coins"
+        ]
+       },
+       {
+        "who": "ines",
+        "t": "Half? That's very grown-up of you.",
+        "emote": "surprise"
+       },
+       {
+        "who": "nora",
+        "t": "I wrote it on a sticky note. Look.",
+        "emote": "joy",
+        "do": "offer",
+        "props": [
+         "document"
+        ]
+       },
+       {
+        "who": "ines",
+        "t": "And the other half?",
+        "emote": "joy"
+       },
+       {
+        "who": "nora",
+        "t": "Mine. Obviously.",
+        "emote": "joy",
+        "do": "cheer"
+       },
+       {
+        "who": "ines",
+        "t": "Obviously. Spend it on what?",
+        "emote": "surprise"
+       },
+       {
+        "who": "nora",
+        "t": "Just a little treat. Well, a few.",
+        "emote": "doubt",
+        "do": "shrug"
+       },
+       {
+        "who": "nora",
+        "t": "Okay, okay. Don't tell anyone, please.",
+        "emote": "worry",
+        "do": "gesture"
+       },
+       {
+        "who": "ines",
+        "t": "My lips are sealed. Dinner's on you, though.",
+        "emote": "joy",
+        "do": "offer"
+       },
+       {
+        "who": "ines",
+        "t": "Tonight. Somewhere with candles.",
+        "emote": "joy"
+       },
+       {
+        "who": "nora",
+        "t": "Fine. One dinner. It's no big deal, right?",
+        "emote": "joy",
+        "do": "shrug"
+       },
+       {
+        "who": "ines",
+        "t": "Right. Not a thing. Come on.",
+        "emote": "joy",
+        "do": "cheer"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "title": "Dinners out",
+   "goal": "Celebrate a little",
+   "turn": "one dinner becomes a habit that costs the same as nothing",
+   "value": "+",
+   "target_s": 30,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "street",
+       "cafe"
+      ],
+      "mood": "warm",
+      "seed": 3,
+      "actors": [
+       {
+        "k": "nora",
+        "x": 1100
+       }
+      ],
+      "cues": [
+       {
+        "t": "February. One dinner out. A small celebration.",
+        "shot": "wide",
+        "on": [
+         "nora"
+        ],
+        "at": "street",
+        "do": [
+         "walk"
+        ],
+        "emote": "joy",
+        "hud": [
+         {
+          "type": "chip",
+          "text": "FEBRUARY",
+          "pos": "tl"
+         }
+        ]
+       },
+       {
+        "t": "Then the cafe on Fridays, because the week had been long.",
+        "shot": "wide",
+        "on": [
+         "nora"
+        ],
+        "at": "cafe",
+        "do": [
+         "sit@chair"
+        ],
+        "props": [
+         "cup"
+        ],
+        "emote": "joy"
+       },
+       {
+        "t": "Then dinner twice a week. Forty a time, give or take.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "at": "cafe",
+        "props": [
+         "cup"
+        ],
+        "hud": [
+         {
+          "type": "chip",
+          "text": "TWICE A WEEK",
+          "pos": "tl"
+         },
+         {
+          "type": "counter",
+          "from": 0,
+          "to": 320,
+          "label": "extra per month",
+          "pos": "tr",
+          "t": 0.5,
+          "dur": 2.5
+         }
+        ]
+       },
+       {
+        "t": "She ordered the thing she used to just look at.",
+        "shot": "close",
+        "on": [
+         "nora"
+        ],
+        "props": [
+         "cup"
+        ],
+        "emote": "joy"
+       },
+       {
+        "t": "March. The coffee machine at home stood quiet.",
+        "shot": "insert",
+        "on": [
+         "nora"
+        ],
+        "props": [
+         "coffee"
+        ]
+       },
+       {
+        "t": "A coffee on the way to work cost almost nothing. Every day.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "props": [
+         "coffee"
+        ],
+        "do": "think",
+        "hud": [
+         {
+          "type": "chip",
+          "text": "MARCH",
+          "pos": "tl"
+         }
+        ]
+       },
+       {
+        "t": "Each choice was small, and each came with a reason.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "emote": "doubt",
+        "do": "think"
+       },
+       {
+        "t": "Nora barely noticed. The raise was still there, on paper.",
+        "shot": "close",
+        "on": [
+         "nora"
+        ],
+        "emote": "joy"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "title": "The new phone",
+   "goal": "Fix one annoying thing",
+   "turn": "a better phone brings a better plan with it",
+   "value": "-",
+   "target_s": 30,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "shop",
+       "living"
+      ],
+      "mood": "warm",
+      "seed": 4,
+      "actors": [
+       {
+        "k": "nora",
+        "x": 1000
+       }
+      ],
+      "cues": [
+       {
+        "t": "April. Her phone was old, and the screen had a crack.",
+        "shot": "wide",
+        "on": [
+         "nora"
+        ],
+        "at": "shop",
+        "do": [
+         "walk"
+        ],
+        "props": [
+         "phone"
+        ],
+        "emote": "doubt",
+        "hud": [
+         {
+          "type": "chip",
+          "text": "APRIL",
+          "pos": "tl"
+         }
+        ]
+       },
+       {
+        "t": "A clerk slid a new one across the counter.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "at": "shop",
+        "props": [
+         "phone"
+        ],
+        "emote": "surprise"
+       },
+       {
+        "t": "It cost a little more each month. Payments, not a price.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "props": [
+         "phone"
+        ],
+        "emote": "surprise",
+        "hud": [
+         {
+          "type": "counter",
+          "from": 0,
+          "to": 45,
+          "label": "more per month",
+          "pos": "tr",
+          "t": 0.5,
+          "dur": 2.5
+         }
+        ]
+       },
+       {
+        "t": "The better plan came with it. Just ten more, the clerk said.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "props": [
+         "phone"
+        ],
+        "do": "shrug"
+       },
+       {
+        "t": "She said yes the way you say yes to a free sample.",
+        "shot": "close",
+        "on": [
+         "nora"
+        ],
+        "emote": "joy"
+       },
+       {
+        "t": "At home, the new phone went beside the old one.",
+        "shot": "wide",
+        "on": [
+         "nora"
+        ],
+        "at": "living",
+        "do": [
+         "walk"
+        ],
+        "props": [
+         "phone"
+        ],
+        "emote": "joy"
+       },
+       {
+        "t": "The old one still worked. Nobody had asked it.",
+        "shot": "insert",
+        "on": [
+         "nora"
+        ],
+        "props": [
+         "phone"
+        ]
+       },
+       {
+        "t": "The shelf had room. So did the budget, for now.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "emote": "joy",
+        "do": "think"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "title": "A better flat",
+   "goal": "Sam wants a nicer place",
+   "turn": "a little more each month becomes a lot more every month",
+   "value": "+",
+   "target_s": 40,
+   "shots": [
+    {
+     "sequence": {
+      "type": "dialogue",
+      "setting": "living",
+      "mood": "warm",
+      "seed": 5,
+      "a": {
+       "k": "sam",
+       "x": 1500
+      },
+      "b": {
+       "k": "nora",
+       "x": 760
+      },
+      "lines": [
+       {
+        "who": "sam",
+        "t": "Look at this flat. It has a balcony.",
+        "do": "offer",
+        "emote": "joy",
+        "props": [
+         "phone"
+        ]
+       },
+       {
+        "who": "nora",
+        "t": "It's more than ours, Sam.",
+        "emote": "doubt",
+        "do": "think"
+       },
+       {
+        "who": "sam",
+        "t": "A little more. You can afford it now.",
+        "emote": "joy"
+       },
+       {
+        "who": "nora",
+        "t": "Can I, though? With the phone and the-",
+        "emote": "worry",
+        "do": "shrug",
+        "props": [
+         "phone"
+        ]
+       },
+       {
+        "who": "sam",
+        "t": "The raise is for this, Nora.",
+        "emote": "joy",
+        "do": "gesture"
+       },
+       {
+        "who": "nora",
+        "t": "It's for savings. Half of it. I promised.",
+        "emote": "worry",
+        "props": [
+         "coins"
+        ]
+       },
+       {
+        "who": "sam",
+        "t": "And half of it's yours. Isn't that the deal?",
+        "emote": "joy"
+       },
+       {
+        "who": "nora",
+        "t": "Okay. But I'll track every month.",
+        "emote": "doubt",
+        "do": "shrug"
+       },
+       {
+        "who": "sam",
+        "t": "Course you'll track it. Come see the balcony.",
+        "emote": "joy",
+        "do": "cheer"
+       }
+      ]
+     }
+    },
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "living"
+      ],
+      "mood": "warm",
+      "seed": 6,
+      "actors": [
+       {
+        "k": "nora",
+        "x": 900
+       }
+      ],
+      "cues": [
+       {
+        "t": "June. Two hundred more for the flat. Moving day.",
+        "shot": "wide",
+        "on": [
+         "nora"
+        ],
+        "at": "living",
+        "do": [
+         "walk"
+        ],
+        "emote": "joy",
+        "hud": [
+         {
+          "type": "chip",
+          "text": "JUNE",
+          "pos": "tl"
+         },
+         {
+          "type": "counter",
+          "from": 0,
+          "to": 200,
+          "label": "more for rent",
+          "pos": "tr",
+          "t": 0.5,
+          "dur": 2.5
+         }
+        ]
+       },
+       {
+        "t": "Boxes everywhere, and a view of someone else's roof.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "emote": "joy"
+       },
+       {
+        "t": "She promised herself she would track it. She did not.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "emote": "worry",
+        "do": "think"
+       },
+       {
+        "t": "She had a balcony now. She also had a new number.",
+        "shot": "close",
+        "on": [
+         "nora"
+        ],
+        "emote": "doubt"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "title": "The cart",
+   "goal": "Make life a bit nicer",
+   "turn": "every bill gets a small upgrade, none of them big",
+   "value": "-",
+   "target_s": 34,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "grocery",
+       "street"
+      ],
+      "mood": "warm",
+      "seed": 7,
+      "actors": [
+       {
+        "k": "nora",
+        "x": 1050
+       }
+      ],
+      "cues": [
+       {
+        "t": "July. The cart filled up with the nicer kind of everything.",
+        "shot": "wide",
+        "on": [
+         "nora"
+        ],
+        "at": "grocery",
+        "do": [
+         "walk"
+        ],
+        "props": [
+         "cup"
+        ],
+        "emote": "joy",
+        "hud": [
+         {
+          "type": "chip",
+          "text": "JULY",
+          "pos": "tl"
+         }
+        ]
+       },
+       {
+        "t": "Fancy bread. The good oil. The cheese with a name.",
+        "shot": "insert",
+        "on": [
+         "nora"
+        ],
+        "props": [
+         "cup"
+        ],
+        "hud": [
+         {
+          "type": "counter",
+          "from": 0,
+          "to": 160,
+          "label": "more on groceries",
+          "pos": "tr",
+          "t": 0.5,
+          "dur": 2.5
+         }
+        ]
+       },
+       {
+        "t": "The old brand was fine. She just stopped looking at it.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "emote": "doubt",
+        "do": "think"
+       },
+       {
+        "t": "August. Delivery, because dinner felt like work.",
+        "shot": "wide",
+        "on": [
+         "nora"
+        ],
+        "at": "street",
+        "do": [
+         "walk"
+        ],
+        "emote": "doubt",
+        "hud": [
+         {
+          "type": "chip",
+          "text": "AUGUST",
+          "pos": "tl"
+         }
+        ]
+       },
+       {
+        "t": "A streaming plan. A second one for the shows Sam liked.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "props": [
+         "phone"
+        ],
+        "emote": "joy",
+        "hud": [
+         {
+          "type": "counter",
+          "from": 0,
+          "to": 25,
+          "label": "more per month",
+          "pos": "tr",
+          "t": 0.5,
+          "dur": 2.5
+         }
+        ]
+       },
+       {
+        "t": "A gym card, for the version of her who would go.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "emote": "doubt",
+        "hud": [
+         {
+          "type": "counter",
+          "from": 0,
+          "to": 30,
+          "label": "more per month",
+          "pos": "tr",
+          "t": 0.5,
+          "dur": 2.5
+         }
+        ]
+       },
+       {
+        "t": "Not one of these felt like a decision. Each felt like any other day.",
+        "shot": "close",
+        "on": [
+         "nora"
+        ],
+        "emote": "doubt",
+        "props": [
+         "calendar"
+        ]
+       },
+       {
+        "t": "She called it an investment in being a calmer person.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "emote": "joy",
+        "do": "think"
+       },
+       {
+        "t": "A drawer filled up with small receipts.",
+        "shot": "insert",
+        "on": [
+         "nora"
+        ],
+        "props": [
+         "document"
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "title": "The skipped transfer",
+   "goal": "Keep the promise to herself",
+   "turn": "the first month she does not move half",
+   "value": "-",
+   "target_s": 30,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "bedroom"
+      ],
+      "mood": "tense",
+      "seed": 8,
+      "actors": [
+       {
+        "k": "nora",
+        "x": 1000
+       }
+      ],
+      "cues": [
+       {
+        "t": "September. The savings transfer went out the same day, every month.",
+        "shot": "wide",
+        "on": [
+         "nora"
+        ],
+        "at": "bedroom",
+        "do": [
+         "sit@bed"
+        ],
+        "props": [
+         "phone",
+         "coins"
+        ],
+        "emote": "doubt",
+        "hud": [
+         {
+          "type": "chip",
+          "text": "SEPTEMBER",
+          "pos": "tl"
+         }
+        ]
+       },
+       {
+        "t": "Half of the raise, on the first of the month.",
+        "shot": "insert",
+        "on": [
+         "nora"
+        ],
+        "props": [
+         "phone"
+        ],
+        "hud": {
+         "type": "screen",
+         "app": "Bank",
+         "label": "Moved to savings",
+         "value": "400",
+         "trend": "up",
+         "pos": "cc",
+         "t": 0.4,
+         "dur": 2.6
+        }
+       },
+       {
+        "t": "It was the one thing she never had to think about.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "emote": "joy"
+       },
+       {
+        "t": "October, the month was tight, so she moved a little less.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "do": "think",
+        "emote": "worry",
+        "hud": [
+         {
+          "type": "chip",
+          "text": "OCTOBER",
+          "pos": "tl"
+         },
+         {
+          "type": "counter",
+          "from": 400,
+          "to": 150,
+          "label": "moved to savings",
+          "pos": "tr",
+          "t": 0.5,
+          "dur": 2.5
+         }
+        ]
+       },
+       {
+        "t": "Just this once. She meant it, too.",
+        "shot": "close",
+        "on": [
+         "nora"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "November, she moved nothing. Next month, she told herself.",
+        "shot": "close",
+        "on": [
+         "nora"
+        ],
+        "emote": "fear",
+        "hud": [
+         {
+          "type": "chip",
+          "text": "NOVEMBER",
+          "pos": "tl"
+         }
+        ]
+       },
+       {
+        "t": "Her thumb hovered. Then the screen went dark.",
+        "shot": "insert",
+        "on": [
+         "nora"
+        ],
+        "props": [
+         "phone"
+        ]
+       },
+       {
+        "t": "She lay back and stared at the ceiling for a while.",
+        "shot": "wide",
+        "on": [
+         "nora"
+        ],
+        "do": [
+         "lie@bed"
+        ],
+        "emote": "fear"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "title": "December",
+   "goal": "Nora wants to see where the money went",
+   "turn": "the number on the screen is zero",
+   "value": "-",
+   "target_s": 40,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "kitchen"
+      ],
+      "mood": "tense",
+      "seed": 9,
+      "actors": [
+       {
+        "k": "nora",
+        "x": 700
+       }
+      ],
+      "cues": [
+       {
+        "t": "December. She finally opened the bank app and scrolled.",
+        "shot": "wide",
+        "on": [
+         "nora"
+        ],
+        "at": "kitchen",
+        "do": [
+         "walkTo@counter",
+         "place:phone@counter"
+        ],
+        "props": [
+         "phone"
+        ],
+        "emote": "fear",
+        "hud": [
+         {
+          "type": "chip",
+          "text": "DECEMBER",
+          "pos": "tl"
+         }
+        ]
+       },
+       {
+        "t": "Left at the end of the month: zero. Not a cent.",
+        "shot": "insert",
+        "on": [
+         "nora"
+        ],
+        "props": [
+         "phone"
+        ],
+        "hud": {
+         "type": "screen",
+         "app": "Bank",
+         "label": "Left at month end",
+         "value": "0",
+         "trend": "down",
+         "pos": "cc",
+         "t": 0.4,
+         "dur": 3.0
+        }
+       },
+       {
+        "t": "The rent crept up. The phone plan crept up. Even the bread.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "emote": "fear",
+        "props": [
+         "phone"
+        ]
+       },
+       {
+        "t": "She added it on a scrap of paper. It matched the raise.",
+        "shot": "insert",
+        "on": [
+         "nora"
+        ],
+        "props": [
+         "document"
+        ]
+       },
+       {
+        "t": "She scrolled up. And up. Twelve months of small yeses.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "emote": "fear",
+        "props": [
+         "phone"
+        ]
+       },
+       {
+        "t": "She read the list standing up, without moving.",
+        "shot": "close",
+        "on": [
+         "nora"
+        ],
+        "emote": "fear"
+       }
+      ]
+     }
+    },
+    {
+     "sequence": {
+      "type": "dialogue",
+      "setting": "kitchen",
+      "mood": "tense",
+      "seed": 10,
+      "a": {
+       "k": "sam",
+       "x": 1500
+      },
+      "b": {
+       "k": "nora",
+       "x": 760
+      },
+      "lines": [
+       {
+        "who": "nora",
+        "t": "It's gone, Sam. All of it.",
+        "emote": "fear",
+        "do": "sad"
+       },
+       {
+        "who": "sam",
+        "t": "What? We didn't buy anything big.",
+        "emote": "surprise",
+        "do": "shrug"
+       },
+       {
+        "who": "nora",
+        "t": "Look at it. Line by line.",
+        "emote": "fear",
+        "props": [
+         "phone"
+        ]
+       },
+       {
+        "who": "sam",
+        "t": "Huh. That can't be right.",
+        "emote": "surprise"
+       },
+       {
+        "who": "nora",
+        "t": "That's it. We didn't. Just lots of small.",
+        "emote": "fear",
+        "do": "think"
+       },
+       {
+        "who": "sam",
+        "t": "Well, we deserved a few nice things. Didn't we?",
+        "emote": "doubt",
+        "do": "shrug"
+       },
+       {
+        "who": "nora",
+        "t": "Every single one, yes. That's the trouble.",
+        "emote": "worry"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "title": "The name",
+   "goal": "Name what happened",
+   "turn": "she sees the pattern and writes the first honest line",
+   "value": "+",
+   "target_s": 42,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "kitchen",
+       "office"
+      ],
+      "mood": "tense",
+      "seed": 11,
+      "actors": [
+       {
+        "k": "nora",
+        "x": 900
+       }
+      ],
+      "cues": [
+       {
+        "t": "Nothing she bought was foolish. That was exactly the trick.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "at": "kitchen",
+        "emote": "doubt",
+        "do": "think"
+       },
+       {
+        "t": "Nobody stole it. It was spread thin over polite reasons.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "emote": "worry"
+       },
+       {
+        "t": "She thought of the first dinner with Ines. It felt years ago.",
+        "shot": "close",
+        "on": [
+         "nora"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "Each upgrade felt earned, so the next one felt normal.",
+        "shot": "close",
+        "on": [
+         "nora"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "Researchers describe this with different names. Lifestyle creep is one.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "emote": "surprise",
+        "hud": {
+         "type": "title",
+         "text": "LIFESTYLE CREEP",
+         "pos": "cc",
+         "t": 0.5,
+         "dur": 2.0
+        }
+       },
+       {
+        "t": "It does not hit every household the same. Some feel it less.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "Nora took a pen and wrote, line by line, where it went.",
+        "shot": "insert",
+        "on": [
+         "nora"
+        ],
+        "props": [
+         "document",
+         "book"
+        ]
+       },
+       {
+        "t": "It took one evening. It was the first honest look all year.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "emote": "worry",
+        "do": "think"
+       },
+       {
+        "t": "Back at her desk, the old sticky note still said: save half.",
+        "shot": "wide",
+        "on": [
+         "nora"
+        ],
+        "at": "office",
+        "do": [
+         "sit@chair",
+         "type:2"
+        ],
+        "emote": "doubt",
+        "props": [
+         "document"
+        ]
+       },
+       {
+        "t": "She did not rewrite it. She just read it slowly.",
+        "shot": "close",
+        "on": [
+         "nora"
+        ],
+        "emote": "worry",
+        "props": [
+         "phone"
+        ]
+       },
+       {
+        "t": "Which small yes quietly ate your last raise? Tell me below.",
+        "shot": "medium",
+        "on": [
+         "nora"
+        ],
+        "emote": "doubt",
+        "do": "think",
+        "props": [
+         "phone"
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -2,7 +2,7 @@
 id: 005-friday-overage
 type: video
 priority: 5
-status: pending
+status: in-progress
 topic: mystery
 keyword: mystery story explained
 format: character
@@ -30,3 +30,4 @@ privacy: private
 
 ## Progress notes
 - 2026-11-11: demo mode (look not approved). Demo spec specs/005-friday-overage-demo.json built instead of the full video.
+- 2026-11-12: full spec specs/005-friday-overage.json (240 s, 7 scenes, lint+policy clean), both bundles verified; waits for video 1 to finish rendering. Demo spec moved to outputs/005-friday-overage-demo/spec.json.

@@ -2,7 +2,7 @@
 id: 004-raise-disappeared
 type: video
 priority: 4
-status: pending
+status: in-progress
 topic: money
 keyword: saving money psychology
 format: character
@@ -30,3 +30,4 @@ privacy: private
 
 ## Progress notes
 - 2026-11-08: demo mode (look not approved). Demo spec specs/004-raise-disappeared-demo.json built instead of the full video.
+- 2026-11-12: look approved. Full spec specs/004-raise-disappeared.json (300 s, 9 scenes, lint+policy clean), both bundles verified; landscape render started. Demo spec moved to outputs/004-raise-disappeared-demo/spec.json (policy_check flags a spec that repeats its own demo).
