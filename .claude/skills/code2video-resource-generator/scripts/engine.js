@@ -358,6 +358,13 @@
       tl.set(e, { opacity: 1 }, t0 + v.t); tl.fromTo(e, { x: 0, y: 0, scale: 1 }, { x: v.dx, y: v.dy, scale: v.k, duration: v.d, ease: v.back ? "power2.out" : "power2.in" }, t0 + v.t);
       tl.set(e, { opacity: 0 }, t0 + v.t + v.d); }
     for (const L of sh.lip || []) { const c = sh.chars.find((x) => x.k === L.k); if (!c) continue; for (const ev of L.ev) viseme(c, t0 + ev[0], ev[1], ev[2]);
+      // the SPEAKER moves while talking: head beats on the stresses and, when the hands are free, a gesture every ~1.6 s.
+      // (2026-11-12, video 005: close-ups of a talking face held the body dead still for 3-4 s - it read as a frozen frame)
+      if (L.ev.length > 2) { const a0 = t0 + L.ev[0][0], a1 = t0 + L.ev[L.ev.length - 1][0];
+        for (let b = a0 + 0.15; b < a1 - 0.2; b += 0.5 + rnd() * 0.25) tl.to(part(c, "headsway"), { y: -3, rotation: (rnd() - 0.5) * 3, duration: 0.13, yoyo: true, repeat: 1, ease: "sine.out" }, b);
+        const busy = (c.acts || []).some((a) => ["offer", "point", "wave", "phone", "drink", "type", "text", "reach", "think", "cheer", "shrug", "gesture", "talk", "cry", "panic", "react", "pickup", "throw", "stir"].includes(a[1]));
+        if (!busy && !c.hold && !c.path) for (let g = 0, T = a0 + 0.35; T < a1 - 0.9; g++, T += 1.5 + rnd() * 0.5) { const s = g % 2 ? "l" : "r";
+          arm(c, s, T, SG[s] * (22 + rnd() * 18), 0.3, "power2.out"); fore(c, s, T + 0.15, SG[s] * 28, 0.28); arm(c, s, T + 0.75, 0, 0.42, "power2.inOut"); fore(c, s, T + 0.8, 0, 0.4); } }
       // listeners react: a small nod (additive y on headsway, never fights a pose) and a blink, once per line
       if (L.ev.length) { const ts = t0 + L.ev[0][0] + 0.5 + rnd() * 0.6;
         if (ts < t1 - 0.6) for (const o of sh.chars) { if (o.k === L.k || (o.hold === "lie" && !o.awake)) continue;

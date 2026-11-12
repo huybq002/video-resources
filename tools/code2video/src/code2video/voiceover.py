@@ -46,22 +46,63 @@ def _atempo(clip: np.ndarray, sample_rate: int, factor: float) -> np.ndarray:
     return audio
 
 
-def _fit_to_window(clip: np.ndarray, sample_rate: int, target_samples: int) -> np.ndarray:
-    """Co giãn/pad để clip lấp đúng cửa sổ thời gian của cue.
+import os as _os
+# Pace (owner, 2026-11-12: "a bit faster, but not too fast"): every line is read slightly faster than the TTS default,
+# a tight line may go up to the cap, never beyond. Override per run with C2V_VOICE_TEMPO / C2V_VOICE_MAX_TEMPO.
+BASE_TEMPO = float(_os.environ.get("C2V_VOICE_TEMPO", "1.08"))
+MAX_TEMPO = float(_os.environ.get("C2V_VOICE_MAX_TEMPO", "1.22"))
+MAX_TEMPO_NATURAL = min(MAX_TEMPO, BASE_TEMPO + 0.08)   # above this a line is counted as "rushed"
 
-    Chỉ gọi atempo (ffmpeg) khi lệch rõ (>8%); lệch nhỏ thì trim/pad để tránh spawn ffmpeg mỗi cue.
+
+def _fit_to_window(clip: np.ndarray, sample_rate: int, target_samples: int, room_samples: int | None = None,
+                   stats: dict | None = None) -> np.ndarray:
+    """Fit one cue's speech into its time, WITHOUT swallowing words.
+
+    2026-11-12 (video 005): the TTS clip still carried its leading/trailing silence, so the WHOLE clip was sped up to
+    the window (speech ran at 4-5 words/s, then silence), and anything over the window was cut off mid-word.
+    Now: silence is trimmed first; the speech may run on into the pause before the next cue (room_samples); it is sped
+    up only as much as needed, at most MAX_TEMPO; it is never cut except as a last resort, with a short fade.
     """
     if target_samples <= 0:
         return clip
     if clip.size == 0:
         return np.zeros(target_samples, dtype=np.float32)
-    if clip.size > target_samples:
-        if clip.size / target_samples > 1.08:
-            clip = _atempo(clip, sample_rate, clip.size / target_samples)
-        clip = clip[:target_samples]
-    elif clip.size < target_samples:
+    clip = _trim_silence(clip, sample_rate, pad_ms=40)
+    room = max(target_samples, room_samples or target_samples)
+    factor = max(BASE_TEMPO, min(clip.size / room, MAX_TEMPO))     # brisk by default, faster only when the line needs it
+    if factor > 1.01:
+        clip = _atempo(clip, sample_rate, factor)
+    cut = False
+    if clip.size > room:      # still too long even at the cap: fade out the last 40 ms rather than hard-cutting a word
+        clip = clip[:room].copy(); f = min(room, int(0.04 * sample_rate))
+        clip[-f:] *= np.linspace(1, 0, f, dtype=np.float32); cut = True
+    if stats is not None:
+        stats.setdefault("cues", []).append({"tempo": round(factor, 3), "cut": cut, "seconds": round(clip.size / sample_rate, 2)})
+    if clip.size < target_samples:
         clip = np.pad(clip, (0, target_samples - clip.size))
     return clip
+
+
+def _rooms(cues: list, sample_rate: int) -> list:
+    """samples each cue may use: up to 60 ms before the next cue starts (the pause after a line is free room)"""
+    starts = [int(c["startMs"]) for c in cues]
+    out = []
+    for i, c in enumerate(cues):
+        nxt = min([st for st in starts if st > int(c["startMs"])] or [int(c["endMs"]) + 400])
+        out.append(round(max(int(c["endMs"]) - int(c["startMs"]), nxt - int(c["startMs"]) - 60) * sample_rate / 1000))
+    return out
+
+
+def _write_fit_report(audio_path: Path, stats: dict) -> None:
+    """voiceover_fit.json next to the wav: verify_bundle fails a video whose voice had to be rushed or cut"""
+    cues = stats.get("cues", [])
+    rep = {"maxTempo": max([c["tempo"] for c in cues] or [1.0]),
+           "rushed": sum(1 for c in cues if c["tempo"] > MAX_TEMPO_NATURAL), "cut": sum(1 for c in cues if c["cut"]),
+           "cues": len(cues)}
+    Path(audio_path).with_name("voiceover_fit.json").write_text(json.dumps(rep, indent=1), encoding="utf-8")
+    if rep["rushed"] or rep["cut"]:
+        print(f"voiceover: {rep['rushed']} line(s) sped past x{MAX_TEMPO_NATURAL} (max x{rep['maxTempo']}), {rep['cut']} cut: "
+              f"the script gives those lines too little time")
 
 
 def synthesize_voiceover_from_timeline(
@@ -80,7 +121,8 @@ def synthesize_voiceover_from_timeline(
     sample_rate = tts.sample_rate
 
     placements: list[tuple[int, np.ndarray]] = []
-    for cue in cues:
+    rooms = _rooms(cues, sample_rate); fit_stats: dict = {}
+    for ci, cue in enumerate(cues):
         text = (cue.get("text") or "").strip()
         if not text:
             continue
@@ -88,7 +130,7 @@ def synthesize_voiceover_from_timeline(
         window_ms = max(0, int(cue["endMs"]) - start_ms)
         clip = np.asarray(tts.synthesize(text), dtype=np.float32).reshape(-1)
         if fit:
-            clip = _fit_to_window(clip, sample_rate, round(window_ms * sample_rate / 1000))
+            clip = _fit_to_window(clip, sample_rate, round(window_ms * sample_rate / 1000), rooms[ci], fit_stats)
         placements.append((round(start_ms * sample_rate / 1000), clip))
 
     total = max((start + len(clip) for start, clip in placements), default=0) + sample_rate // 2
@@ -97,6 +139,7 @@ def synthesize_voiceover_from_timeline(
         track[start:start + len(clip)] += clip
 
     write_wav(track, sample_rate, Path(audio_path))
+    if fit: _write_fit_report(Path(audio_path), fit_stats)
     return {
         "cues": len(placements),
         "durationMs": round(len(track) * 1000 / sample_rate),
@@ -122,7 +165,8 @@ def _prepare_track(timeline_path: Path, tts: TTSAdapter, voices: dict[str, str],
     default_voice = voices.get("") or (next(iter(voices.values()), None) if voices else None)
 
     placements: list[tuple[int, np.ndarray]] = []
-    for cue in cues:
+    rooms = _rooms(cues, sample_rate); fit_stats: dict = {}
+    for ci, cue in enumerate(cues):
         text = (cue.get("text") or "").strip()
         if not text:
             continue
@@ -133,7 +177,7 @@ def _prepare_track(timeline_path: Path, tts: TTSAdapter, voices: dict[str, str],
         window_ms = max(0, int(cue["endMs"]) - start_ms)
         clip = np.asarray(tts.synthesize(text), dtype=np.float32).reshape(-1)
         if fit:
-            clip = _fit_to_window(clip, sample_rate, round(window_ms * sample_rate / 1000))
+            clip = _fit_to_window(clip, sample_rate, round(window_ms * sample_rate / 1000), rooms[ci], fit_stats)
         placements.append((round(start_ms * sample_rate / 1000), clip))
 
     total = max((start + len(clip) for start, clip in placements), default=0) + sample_rate // 2
@@ -141,6 +185,7 @@ def _prepare_track(timeline_path: Path, tts: TTSAdapter, voices: dict[str, str],
     for start, clip in placements:
         track[start:start + len(clip)] += clip
     write_wav(track, sample_rate, Path(timeline_path).parent / "voiceover.wav")
+    if fit: _write_fit_report(Path(timeline_path).parent / "voiceover.wav", fit_stats)
     return {"cues": len(placements), "durationMs": round(len(track) * 1000 / sample_rate)}
 
 

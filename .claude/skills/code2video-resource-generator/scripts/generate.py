@@ -25,6 +25,11 @@ if bible:
     spec0, _w = SER.merge(spec0, bible)                           # recurring characters/settings keep their look across episodes
     for _m in _w: print("SERIES WARNING:", _m)
 import coverage, srt_tools, docs_gen, spec_lint, furniture, sets, anchors, autofill
+import hashlib as _hl
+for _sid, _st in (spec0.get("settings") or {}).items():
+    # each film its own rooms: without a seed every film rebuilt the identical office / kitchen / living room
+    if isinstance(_st, dict) and isinstance(_st.get("set"), dict) and "seed" not in _st["set"]:
+        _st["set"]["seed"] = int(_hl.sha1(f"{spec0.get('id', '')}/{_sid}".encode()).hexdigest()[:8], 16) % 100000
 spec0 = autofill.run(spec0)                                 # picture follows the words: sets, at, do, props, emote from the text
 for _m in spec_lint.lint(spec0): print(_m)                 # settings variety, cast, crowds, static scenes, wardrobe
 spec = coverage.expand(spec0, spec_path.parent)            # sequences -> many shots, lib:/relative settings resolved
