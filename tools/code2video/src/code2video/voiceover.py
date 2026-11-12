@@ -46,8 +46,12 @@ def _atempo(clip: np.ndarray, sample_rate: int, factor: float) -> np.ndarray:
     return audio
 
 
-MAX_TEMPO_NATURAL = 1.15   # faster than this is heard as "rushed"
-MAX_TEMPO = 1.35           # hard cap: beyond this words are swallowed
+import os as _os
+# Pace (owner, 2026-11-12: "a bit faster, but not too fast"): every line is read slightly faster than the TTS default,
+# a tight line may go up to the cap, never beyond. Override per run with C2V_VOICE_TEMPO / C2V_VOICE_MAX_TEMPO.
+BASE_TEMPO = float(_os.environ.get("C2V_VOICE_TEMPO", "1.08"))
+MAX_TEMPO = float(_os.environ.get("C2V_VOICE_MAX_TEMPO", "1.22"))
+MAX_TEMPO_NATURAL = min(MAX_TEMPO, BASE_TEMPO + 0.08)   # above this a line is counted as "rushed"
 
 
 def _fit_to_window(clip: np.ndarray, sample_rate: int, target_samples: int, room_samples: int | None = None,
@@ -65,11 +69,9 @@ def _fit_to_window(clip: np.ndarray, sample_rate: int, target_samples: int, room
         return np.zeros(target_samples, dtype=np.float32)
     clip = _trim_silence(clip, sample_rate, pad_ms=40)
     room = max(target_samples, room_samples or target_samples)
-    factor = 1.0
-    if clip.size > room:
-        factor = min(clip.size / room, MAX_TEMPO)
-        if factor > 1.01:
-            clip = _atempo(clip, sample_rate, factor)
+    factor = max(BASE_TEMPO, min(clip.size / room, MAX_TEMPO))     # brisk by default, faster only when the line needs it
+    if factor > 1.01:
+        clip = _atempo(clip, sample_rate, factor)
     cut = False
     if clip.size > room:      # still too long even at the cap: fade out the last 40 ms rather than hard-cutting a word
         clip = clip[:room].copy(); f = min(room, int(0.04 * sample_rate))

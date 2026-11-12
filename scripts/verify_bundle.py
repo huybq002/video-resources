@@ -110,11 +110,11 @@ def check_video(video, spec, minutes, allow_silent):
     fitf = video.parent / "voiceover_fit.json"
     if fitf.exists():
         fr = json.loads(fitf.read_text(encoding="utf-8"))
-        if fr.get("cut") or fr.get("maxTempo", 1) > 1.3 or fr.get("rushed", 0) > max(2, 0.1 * fr.get("cues", 0)):
-            err(f"voice-over rushed or cut: {fr.get('rushed')} line(s) sped up past x1.15 (max x{fr.get('maxTempo')}), "
+        if fr.get("cut") or fr.get("maxTempo", 1) > 1.25 or fr.get("rushed", 0) > max(2, 0.1 * fr.get("cues", 0)):
+            err(f"voice-over rushed or cut: {fr.get('rushed')} line(s) faster than the normal pace (max x{fr.get('maxTempo')}), "
                 f"{fr.get('cut')} line(s) cut. Give those lines more time in the spec (shorter text or longer target_s) and rebuild")
         else:
-            notes.append(f"voice-over pace OK (max x{fr.get('maxTempo')}, {fr.get('rushed')} line(s) above x1.15)")
+            notes.append(f"voice-over pace OK (max x{fr.get('maxTempo')}, {fr.get('rushed')} line(s) faster than normal)")
 
 ap = argparse.ArgumentParser(); ap.add_argument("kind", choices=["bundle", "video"]); ap.add_argument("path")
 ap.add_argument("--spec", required=True); ap.add_argument("--expect-minutes"); ap.add_argument("--allow-silent", action="store_true")
