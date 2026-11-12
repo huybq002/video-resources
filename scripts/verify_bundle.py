@@ -106,6 +106,15 @@ def check_video(video, spec, minutes, allow_silent):
     want = (1080, 1920) if spec.get("aspect") == "9:16" else (1920, 1080)
     if (w, h) != want: err(f"frame size {w}x{h}, expected {want[0]}x{want[1]}")
     notes.append(f"video: {dur:.1f}s, streams={kinds}, {w}x{h}")
+    # the voice must not be rushed or cut (video 005, 2026-11-12: lines read at 4-5 words/s, words swallowed)
+    fitf = video.parent / "voiceover_fit.json"
+    if fitf.exists():
+        fr = json.loads(fitf.read_text(encoding="utf-8"))
+        if fr.get("cut") or fr.get("maxTempo", 1) > 1.3 or fr.get("rushed", 0) > max(2, 0.1 * fr.get("cues", 0)):
+            err(f"voice-over rushed or cut: {fr.get('rushed')} line(s) sped up past x1.15 (max x{fr.get('maxTempo')}), "
+                f"{fr.get('cut')} line(s) cut. Give those lines more time in the spec (shorter text or longer target_s) and rebuild")
+        else:
+            notes.append(f"voice-over pace OK (max x{fr.get('maxTempo')}, {fr.get('rushed')} line(s) above x1.15)")
 
 ap = argparse.ArgumentParser(); ap.add_argument("kind", choices=["bundle", "video"]); ap.add_argument("path")
 ap.add_argument("--spec", required=True); ap.add_argument("--expect-minutes"); ap.add_argument("--allow-silent", action="store_true")

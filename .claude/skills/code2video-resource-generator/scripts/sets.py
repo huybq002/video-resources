@@ -399,6 +399,16 @@ def expand(setting):
         for k in ("wall", "wall2", "floor"):
             P[k] = _mix(sp[k], P[k], t)
     rnd = random.Random(cfg.get("seed", 7))
+    if sp and "seed" in cfg:     # the film's own seed: a different wall/floor colour and window side for the same style
+        vr = random.Random(f"look-{cfg['seed']}")
+        tints = ["#c9a27a", "#8fa8c8", "#a8c49a", "#c48f9a", "#d8c890", "#9a8fc4", "#b0b0b0"]
+        tw, tf = vr.choice(tints), vr.choice(tints)
+        P["wall"] = _mix(P["wall"], tw, vr.uniform(0.15, 0.3)); P["wall2"] = _mix(P["wall2"], tw, vr.uniform(0.15, 0.3))
+        P["floor"] = _mix(P["floor"], tf, vr.uniform(0.1, 0.22))
+        if "window" not in cfg and cfg.get("style") not in ("shop", "laundry", "bathroom", "grocery"):
+            cfg = dict(cfg, window=vr.choice(["left", "right", "center"]))
+        if "key" not in cfg:
+            cfg = dict(cfg, key={"x": vr.choice([-1, 1]) * vr.uniform(1.4, 2.4), "z": vr.uniform(0.3, 0.9)})
     fn = TYPES.get(cfg.get("type", "room"))
     if not fn:
         raise ValueError(f"unknown set type {cfg.get('type')} (known: {', '.join(TYPES)})")
