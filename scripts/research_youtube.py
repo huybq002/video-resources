@@ -254,7 +254,11 @@ def main() -> int:
         print(f"[{tid}] keyword: {kw}", file=sys.stderr, flush=True)
         rows = ytdlp(f"ytsearch{per_kw}:{kw}", per_kw)
         st = summarise(rows)
-        newest = [r for r in ytdlp(f"ytsearchdate{per_kw}:{kw}", per_kw) if r.get("views")]
+        # yt-dlp 2026.10 no longer accepts "ytsearchdateN:"; a results URL with the "uploaded this month, videos" filter
+        # (sp=EgQIBBAB) does: checked 2026-11-13, it returns this month's uploads (0-6 000 views for "sunk cost fallacy example").
+        # sp=CAI%3D (sort by date) was tried first and still returned the relevance order.
+        newest_url = "https://www.youtube.com/results?search_query=" + urllib.parse.quote_plus(kw) + "&sp=EgQIBBAB"
+        newest = [r for r in ytdlp(newest_url, per_kw) if r.get("views")]
         if newest:
             nv = [r["views"] for r in newest]
             st["recent"] = {"n": len(newest), "median_views": int(statistics.median(nv)),
