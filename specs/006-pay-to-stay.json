@@ -270,7 +270,7 @@
       "lines": [
        {
         "who": "rina",
-        "t": "Dale. You groaned twice. Let's go.",
+        "t": "Dale, you groaned twice, let's go.",
         "emote": "surprise",
         "do": "gesture"
        },
@@ -322,7 +322,7 @@
        },
        {
         "who": "dale",
-        "t": "Quitting feels like losing. So... staying.",
+        "t": "Quitting feels like losing, so I'm staying.",
         "emote": "worry"
        },
        {
@@ -425,7 +425,7 @@
         "emote": "doubt"
        },
        {
-        "t": "Some folks resist it. None resist it every time.",
+        "t": "Some folks resist it, though none do every time.",
         "shot": "medium",
         "on": [
          "dale"
@@ -606,7 +606,7 @@
        },
        {
         "who": "dale",
-        "t": "Can't. The course. Remember?",
+        "t": "I can't, I did that whole course.",
         "emote": "worry",
         "do": "shrug"
        }
@@ -719,7 +719,7 @@
        },
        {
         "who": "omar",
-        "t": "Sure. Spent either way. This saves next year.",
+        "t": "Sure, it's spent either way, but this saves next year.",
         "emote": "doubt",
         "do": "point",
         "props": [
@@ -733,7 +733,7 @@
        },
        {
         "who": "omar",
-        "t": "Four percent? Okay. Your call.",
+        "t": "Four percent, okay, your call.",
         "hud": {
          "type": "chip",
          "text": "4% USED",
@@ -788,7 +788,7 @@
         "emote": "surprise"
        },
        {
-        "t": "A ticket. A course. A year of data.",
+        "t": "A ticket, a course, a year of data.",
         "shot": "medium",
         "on": [
          "dale"

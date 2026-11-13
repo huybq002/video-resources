@@ -175,7 +175,7 @@
         "emote": "worry"
        },
        {
-        "t": "April: three grand. October: three grand.",
+        "t": "In April, three grand, and in October, three grand.",
         "shot": "insert",
         "on": [
          "nina"
@@ -419,7 +419,7 @@
        },
        {
         "who": "nina",
-        "t": "It's just numbers. Page after page.",
+        "t": "It's just numbers, page after page.",
         "emote": "worry",
         "props": [
          "document"
@@ -432,7 +432,7 @@
        },
        {
         "who": "nina",
-        "t": "Okay. Okay, here. Balance, three thousand.",
+        "t": "Okay, here, the balance says three thousand.",
         "emote": "doubt",
         "props": [
          "document"
@@ -502,7 +502,7 @@
       ],
       "cues": [
        {
-        "t": "The next line said: interest charged this month. Sixty.",
+        "t": "The next line said interest charged this month was sixty.",
         "shot": "insert",
         "on": [
          "nina"
@@ -850,7 +850,7 @@
         "emote": "worry"
        },
        {
-        "t": "Paid ninety. Interest sixty. Groceries a hundred and twenty.",
+        "t": "Paid ninety, interest sixty, groceries a hundred and twenty.",
         "shot": "insert",
         "on": [
          "nina"
