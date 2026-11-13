@@ -1,0 +1,979 @@
+{
+ "id": "007-balance-never-moved",
+ "title": "She Paid Her Card Every Month. The Balance Never Moved",
+ "lang": "en",
+ "aspect": "16:9",
+ "duration_s": 210,
+ "idea": "A nurse pays her card on time every month and the balance never moves; the film reads one statement line by line (invented, no real banks or rates)",
+ "narrator": "narrator",
+ "narrator_name": "Narrator",
+ "narrator_gender": "female",
+ "format": "character",
+ "spine": {
+  "want": "watch her card balance go down",
+  "obstacle": "a line on the statement she never reads",
+  "turn": "two thirds of every payment is interest, and new charges refill the rest",
+  "choice": "she circles the line and starts reading what she signs",
+  "opening_image": "Nina on the sofa with the statement, balance unchanged",
+  "ending_image": "the statement taped to the fridge with one circled line",
+  "motif": "document"
+ },
+ "cast": [
+  {
+   "id": "narrator",
+   "name": "Narrator",
+   "narrator": true,
+   "gender": "female"
+  },
+  {
+   "id": "nina",
+   "name": "Nina",
+   "gender": "female",
+   "style": "stick",
+   "top": "shirt",
+   "top_color": "#3fae8c",
+   "bottom": "skirt",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#2a2230",
+   "hair_style": "bun",
+   "hair": "#1d1d2b",
+   "look": "young woman in mint scrubs, dark hair in a bun",
+   "bottom_color": "#2d4d4a"
+  },
+  {
+   "id": "lena",
+   "name": "Lena",
+   "gender": "female",
+   "style": "stick",
+   "top": "hoodie",
+   "top_color": "#c2307a",
+   "bottom": "skirt",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#2a2230",
+   "hair_style": "long",
+   "hair": "#8a5a2a",
+   "look": "woman in a magenta hoodie, long light-brown hair",
+   "bottom_color": "#2d2d44"
+  },
+  {
+   "id": "cash",
+   "name": "Cashier",
+   "gender": "male",
+   "style": "stick",
+   "top": "shirt",
+   "top_color": "#6d7a6a",
+   "bottom": "none",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#2a2230",
+   "hair_style": "short",
+   "hair": "#2b2b2b",
+   "look": "young man in a grey-green shirt, short dark hair"
+  }
+ ],
+ "settings": {
+  "flat": {
+   "set": {
+    "type": "room",
+    "style": "living",
+    "time": "night"
+   }
+  },
+  "kitchen": {
+   "set": {
+    "type": "room",
+    "style": "kitchen",
+    "time": "night"
+   }
+  },
+  "cafe": {
+   "set": {
+    "type": "room",
+    "style": "cafe",
+    "time": "day"
+   }
+  },
+  "grocery": {
+   "set": {
+    "type": "room",
+    "style": "grocery",
+    "time": "day"
+   }
+  },
+  "ward": {
+   "set": {
+    "type": "room",
+    "style": "lab",
+    "time": "night"
+   }
+  },
+  "street": {
+   "set": {
+    "type": "street",
+    "time": "dusk"
+   }
+  },
+  "bedroom": {
+   "set": {
+    "type": "room",
+    "style": "bedroom",
+    "time": "night"
+   }
+  }
+ },
+ "scenes": [
+  {
+   "id": 1,
+   "title": "Same number",
+   "goal": "Nina wants the balance to go down",
+   "turn": "April and October show the same number",
+   "value": "-",
+   "target_s": 24,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "flat",
+       "ward"
+      ],
+      "mood": "tense",
+      "seed": 1,
+      "actors": [
+       {
+        "k": "nina",
+        "x": 1000
+       }
+      ],
+      "cues": [
+       {
+        "t": "Nina paid her card every month.",
+        "shot": "wide",
+        "on": [
+         "nina"
+        ],
+        "at": "flat",
+        "do": [
+         "sit@sofa"
+        ],
+        "emote": "doubt",
+        "props": [
+         "card"
+        ]
+       },
+       {
+        "t": "And the balance never moved. Not once.",
+        "shot": "medium",
+        "on": [
+         "nina"
+        ],
+        "props": [
+         "card"
+        ],
+        "emote": "worry"
+       },
+       {
+        "t": "April: three grand. October: three grand.",
+        "shot": "insert",
+        "on": [
+         "nina"
+        ],
+        "props": [
+         "document",
+         "calendar"
+        ],
+        "hud": [
+         {
+          "type": "chip",
+          "text": "APRIL  $3,000",
+          "pos": "tl"
+         },
+         {
+          "type": "counter",
+          "from": 3000,
+          "to": 3000,
+          "label": "owed in October",
+          "pos": "tr",
+          "t": 0.5,
+          "dur": 2.5
+         }
+        ]
+       },
+       {
+        "t": "She works nights as a nurse. She never misses a payment.",
+        "shot": "medium",
+        "on": [
+         "nina"
+        ],
+        "emote": "worry",
+        "props": [
+         "card"
+        ]
+       },
+       {
+        "t": "The answer was on one line of the statement, and she'd never read it.",
+        "shot": "medium",
+        "on": [
+         "nina"
+        ],
+        "props": [
+         "document"
+        ],
+        "emote": "surprise"
+       },
+       {
+        "t": "Stay with me, and we'll find that line before the night is over.",
+        "shot": "close",
+        "on": [
+         "nina"
+        ],
+        "emote": "doubt",
+        "hud": {
+         "type": "title",
+         "text": "THE BALANCE THAT NEVER MOVED",
+         "pos": "cc",
+         "t": 1.0,
+         "dur": 1.8
+        }
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "title": "Every month",
+   "goal": "Nina wants to pay the card down",
+   "turn": "six payments and still the same balance",
+   "value": "+",
+   "target_s": 29,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "kitchen",
+       "ward",
+       "street"
+      ],
+      "mood": "calm",
+      "seed": 2,
+      "actors": [
+       {
+        "k": "nina",
+        "x": 900
+       }
+      ],
+      "cues": [
+       {
+        "t": "On the first of every month, she sat at the kitchen table.",
+        "shot": "wide",
+        "on": [
+         "nina"
+        ],
+        "at": "kitchen",
+        "do": [
+         "sit@chair"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "She opened the card app and paid ninety.",
+        "shot": "insert",
+        "on": [
+         "nina"
+        ],
+        "props": [
+         "phone",
+         "card"
+        ],
+        "hud": {
+         "type": "counter",
+         "from": 0,
+         "to": 90,
+         "label": "dollars paid",
+         "pos": "tr",
+         "t": 0.5,
+         "dur": 2.5
+        }
+       },
+       {
+        "t": "Not a day late. Not once, in six whole months.",
+        "shot": "medium",
+        "on": [
+         "nina"
+        ],
+        "props": [
+         "calendar",
+         "clock"
+        ],
+        "emote": "joy",
+        "hud": {
+         "type": "counter",
+         "from": 0,
+         "to": 6,
+         "label": "months, on time",
+         "pos": "tr",
+         "t": 0.5,
+         "dur": 2.5
+        }
+       },
+       {
+        "t": "Then she went to work and held patients' hands through the night.",
+        "shot": "wide",
+        "on": [
+         "nina"
+        ],
+        "at": "ward",
+        "do": [
+         "walk"
+        ],
+        "emote": "worry"
+       },
+       {
+        "t": "A responsible person watches the number go down. Right?",
+        "shot": "medium",
+        "on": [
+         "nina"
+        ],
+        "emote": "doubt",
+        "do": "think"
+       },
+       {
+        "t": "She checked. Three thousand and four dollars.",
+        "shot": "close",
+        "on": [
+         "nina"
+        ],
+        "props": [
+         "phone",
+         "card"
+        ],
+        "emote": "surprise",
+        "hud": {
+         "type": "chip",
+         "text": "$3,004",
+         "pos": "tl"
+        }
+       },
+       {
+        "t": "Four dollars more than in April. After six payments.",
+        "shot": "close",
+        "on": [
+         "nina"
+        ],
+        "emote": "surprise",
+        "hud": {
+         "type": "chip",
+         "text": "+$4",
+         "pos": "tl"
+        },
+        "props": [
+         "card"
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "title": "Show me",
+   "goal": "Nina wants an answer from her sister",
+   "turn": "Lena asks to see the statement",
+   "value": "+",
+   "target_s": 29,
+   "shots": [
+    {
+     "sequence": {
+      "type": "dialogue",
+      "setting": "cafe",
+      "mood": "calm",
+      "seed": 3,
+      "a": {
+       "k": "lena",
+       "x": 1450
+      },
+      "b": {
+       "k": "nina",
+       "x": 760
+      },
+      "lines": [
+       {
+        "who": "nina",
+        "t": "Lena, I'm paying it every month. It doesn't move.",
+        "emote": "worry",
+        "props": [
+         "phone"
+        ]
+       },
+       {
+        "who": "lena",
+        "t": "Show me the statement.",
+        "emote": "surprise",
+        "do": "gesture"
+       },
+       {
+        "who": "nina",
+        "t": "It's just numbers. Page after page.",
+        "emote": "worry",
+        "props": [
+         "document"
+        ]
+       },
+       {
+        "who": "lena",
+        "t": "Read me the first page.",
+        "emote": "joy"
+       },
+       {
+        "who": "nina",
+        "t": "Okay. Okay, here. Balance, three thousand.",
+        "emote": "doubt",
+        "props": [
+         "document"
+        ],
+        "hud": {
+         "type": "chip",
+         "text": "BALANCE $3,000",
+         "pos": "tl"
+        }
+       },
+       {
+        "who": "lena",
+        "t": "And you paid how much last month?",
+        "emote": "doubt",
+        "props": [
+         "card"
+        ]
+       },
+       {
+        "who": "nina",
+        "t": "Ninety. The minimum, like it says.",
+        "emote": "worry",
+        "hud": {
+         "type": "chip",
+         "text": "PAID $90",
+         "pos": "tl"
+        }
+       },
+       {
+        "who": "lena",
+        "t": "Hmm. And what's the next line?",
+        "emote": "doubt",
+        "do": "point"
+       },
+       {
+        "who": "nina",
+        "t": "I never looked at the next line.",
+        "emote": "surprise"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "title": "The line",
+   "goal": "find the line she never read",
+   "turn": "two thirds of her payment is interest",
+   "value": "+",
+   "target_s": 34,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "cafe",
+       "flat"
+      ],
+      "mood": "tense",
+      "seed": 4,
+      "actors": [
+       {
+        "k": "nina",
+        "x": 1000
+       }
+      ],
+      "cues": [
+       {
+        "t": "The next line said: interest charged this month. Sixty.",
+        "shot": "insert",
+        "on": [
+         "nina"
+        ],
+        "at": "cafe",
+        "props": [
+         "document",
+         "card"
+        ],
+        "emote": "surprise",
+        "hud": {
+         "type": "counter",
+         "from": 0,
+         "to": 60,
+         "label": "dollars of interest",
+         "pos": "tr",
+         "t": 0.5,
+         "dur": 2.5
+        }
+       },
+       {
+        "t": "Her ninety had two jobs. First, it paid the card's fee for waiting.",
+        "shot": "medium",
+        "on": [
+         "nina"
+        ],
+        "props": [
+         "card"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "Only thirty was left to bring the balance down.",
+        "shot": "medium",
+        "on": [
+         "nina"
+        ],
+        "props": [
+         "card"
+        ],
+        "emote": "surprise",
+        "hud": {
+         "type": "counter",
+         "from": 0,
+         "to": 30,
+         "label": "dollars left for the balance",
+         "pos": "tr",
+         "t": 0.5,
+         "dur": 2.5
+        }
+       },
+       {
+        "t": "That's the minimum payment trap: a small payment mostly feeds the interest.",
+        "shot": "wide",
+        "on": [
+         "nina"
+        ],
+        "at": "flat",
+        "emote": "doubt",
+        "hud": {
+         "type": "chip",
+         "text": "MINIMUM PAYMENT TRAP",
+         "pos": "tl"
+        },
+        "props": [
+         "card"
+        ]
+       },
+       {
+        "t": "It has a name: the debt trap.",
+        "shot": "medium",
+        "on": [
+         "nina"
+        ],
+        "emote": "worry"
+       },
+       {
+        "t": "And it isn't a bug. The card works exactly as designed.",
+        "shot": "medium",
+        "on": [
+         "nina"
+        ],
+        "emote": "doubt",
+        "props": [
+         "card"
+        ]
+       },
+       {
+        "t": "At thirty a month, three thousand would take a hundred months.",
+        "shot": "close",
+        "on": [
+         "nina"
+        ],
+        "props": [
+         "calendar"
+        ],
+        "emote": "surprise",
+        "hud": {
+         "type": "counter",
+         "from": 0,
+         "to": 100,
+         "label": "months at that pace",
+         "pos": "tr",
+         "t": 0.5,
+         "dur": 2.5
+        }
+       },
+       {
+        "t": "That's if she never bought a single thing with the card again.",
+        "shot": "medium",
+        "on": [
+         "nina"
+        ],
+        "props": [
+         "card"
+        ],
+        "emote": "worry"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "title": "But the balance rose",
+   "goal": "Lena wants Nina to see the other side",
+   "turn": "new charges refill what she pays",
+   "value": "-",
+   "target_s": 24,
+   "shots": [
+    {
+     "sequence": {
+      "type": "dialogue",
+      "setting": "street",
+      "mood": "calm",
+      "seed": 5,
+      "a": {
+       "k": "lena",
+       "x": 1450
+      },
+      "b": {
+       "k": "nina",
+       "x": 760
+      },
+      "lines": [
+       {
+        "who": "lena",
+        "t": "So thirty comes off. But why is it four up?",
+        "emote": "doubt",
+        "hud": {
+         "type": "chip",
+         "text": "-$30 ... +$4?",
+         "pos": "tl"
+        }
+       },
+       {
+        "who": "nina",
+        "t": "Because I use the card for groceries.",
+        "emote": "worry",
+        "props": [
+         "card"
+        ]
+       },
+       {
+        "who": "lena",
+        "t": "How much a month, roughly?",
+        "emote": "doubt"
+       },
+       {
+        "who": "nina",
+        "t": "About a hundred and twenty.",
+        "emote": "doubt",
+        "props": [
+         "card"
+        ],
+        "hud": {
+         "type": "chip",
+         "text": "+$120 GROCERIES",
+         "pos": "tl"
+        }
+       },
+       {
+        "who": "lena",
+        "t": "So thirty goes off. A hundred twenty goes on.",
+        "emote": "surprise",
+        "do": "point"
+       },
+       {
+        "who": "nina",
+        "t": "Oh. Oh no.",
+        "emote": "surprise"
+       },
+       {
+        "who": "lena",
+        "t": "And buying lunch on credit.",
+        "emote": "doubt",
+        "do": "shrug"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "title": "The checkout",
+   "goal": "Nina wants to see it happen",
+   "turn": "she sees the swipe that refills the balance",
+   "value": "-",
+   "target_s": 24,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "grocery"
+      ],
+      "mood": "calm",
+      "seed": 6,
+      "actors": [
+       {
+        "k": "nina",
+        "x": 900
+       },
+       {
+        "k": "cash",
+        "x": 1450
+       }
+      ],
+      "cues": [
+       {
+        "t": "Next day, Nina went to buy food and watched herself closely.",
+        "shot": "wide",
+        "on": [
+         "nina"
+        ],
+        "at": "grocery",
+        "do": [
+         "walk"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "At the checkout, she held out the card the way she always did.",
+        "shot": "medium",
+        "on": [
+         "nina"
+        ],
+        "props": [
+         "card"
+        ],
+        "emote": "worry"
+       },
+       {
+        "t": "Beep. A hundred and twenty went straight back onto the debt.",
+        "shot": "close",
+        "on": [
+         "nina"
+        ],
+        "props": [
+         "card"
+        ],
+        "emote": "surprise",
+        "hud": {
+         "type": "counter",
+         "from": 0,
+         "to": 120,
+         "label": "dollars added",
+         "pos": "tr",
+         "t": 0.5,
+         "dur": 2.5
+        }
+       },
+       {
+        "t": "It cost four seconds. It would cost her a month to pay down.",
+        "shot": "medium",
+        "on": [
+         "nina"
+        ],
+        "props": [
+         "clock",
+         "card"
+        ],
+        "emote": "worry",
+        "hud": {
+         "type": "chip",
+         "text": "4 SECONDS",
+         "pos": "tl"
+        }
+       },
+       {
+        "t": "Her ninety dollars climbed up a hill that kept growing.",
+        "shot": "wide",
+        "on": [
+         "nina"
+        ],
+        "emote": "doubt",
+        "props": [
+         "card"
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "title": "Night math",
+   "goal": "Nina wants to understand it alone",
+   "turn": "she does the sums herself",
+   "value": "+",
+   "target_s": 22,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "bedroom",
+       "kitchen"
+      ],
+      "mood": "tense",
+      "seed": 7,
+      "actors": [
+       {
+        "k": "nina",
+        "x": 1000
+       }
+      ],
+      "cues": [
+       {
+        "t": "That night she couldn't sleep. She did the sums on the back of a bill.",
+        "shot": "wide",
+        "on": [
+         "nina"
+        ],
+        "at": "bedroom",
+        "do": [
+         "sit@bed"
+        ],
+        "props": [
+         "document"
+        ],
+        "emote": "worry"
+       },
+       {
+        "t": "Paid ninety. Interest sixty. Groceries a hundred and twenty.",
+        "shot": "insert",
+        "on": [
+         "nina"
+        ],
+        "props": [
+         "document",
+         "book",
+         "card"
+        ],
+        "hud": [
+         {
+          "type": "chip",
+          "text": "-90  +60  +120",
+          "pos": "tl"
+         }
+        ]
+       },
+       {
+        "t": "Seen from the kitchen table, her month was a loop.",
+        "shot": "medium",
+        "on": [
+         "nina"
+        ],
+        "at": "kitchen",
+        "do": [
+         "sit@chair"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "She wasn't careless. She was trying hard inside a design that rewards slow payers.",
+        "shot": "close",
+        "on": [
+         "nina"
+        ],
+        "emote": "doubt"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "title": "One circled line",
+   "goal": "Nina wants to read what she signs",
+   "turn": "she circles the line she never read",
+   "value": "+",
+   "target_s": 24,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "kitchen",
+       "street"
+      ],
+      "mood": "calm",
+      "seed": 8,
+      "actors": [
+       {
+        "k": "nina",
+        "x": 1000
+       }
+      ],
+      "cues": [
+       {
+        "t": "In the morning, she took a red pen to the statement.",
+        "shot": "wide",
+        "on": [
+         "nina"
+        ],
+        "at": "kitchen",
+        "do": [
+         "sit@chair"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "She circled the interest line and taped the page to the fridge.",
+        "shot": "insert",
+        "on": [
+         "nina"
+        ],
+        "props": [
+         "document",
+         "book"
+        ],
+        "do": "type"
+       },
+       {
+        "t": "The balance still said three thousand. But now she could finally see why.",
+        "shot": "medium",
+        "on": [
+         "nina"
+        ],
+        "emote": "surprise"
+       },
+       {
+        "t": "Lena sent a message: I'll bring lunch, no card needed.",
+        "shot": "medium",
+        "on": [
+         "nina"
+        ],
+        "props": [
+         "phone",
+         "card"
+        ],
+        "emote": "joy"
+       },
+       {
+        "t": "Which line have you never read? Tell me below.",
+        "shot": "close",
+        "on": [
+         "nina"
+        ],
+        "emote": "doubt",
+        "do": "think"
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}

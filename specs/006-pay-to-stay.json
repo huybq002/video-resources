@@ -1,0 +1,889 @@
+{
+ "id": "006-pay-to-stay",
+ "title": "Why You Can't Quit Things You Already Paid For",
+ "lang": "en",
+ "aspect": "16:9",
+ "duration_s": 180,
+ "idea": "A man sits through a bad film because he paid, then sees the same pull in his job and his phone plan (sunk cost fallacy; invented)",
+ "narrator": "narrator",
+ "narrator_name": "Narrator",
+ "narrator_gender": "male",
+ "format": "character",
+ "spine": {
+  "want": "get his money's worth",
+  "obstacle": "the feeling that leaving means he lost",
+  "turn": "the money is gone whether he stays or goes",
+  "choice": "he walks out before the credits",
+  "opening_image": "Dale in the cinema seat checking his watch",
+  "ending_image": "Dale outside in the cold street, free, with Rina",
+  "motif": "clock"
+ },
+ "cast": [
+  {
+   "id": "narrator",
+   "name": "Narrator",
+   "narrator": true,
+   "gender": "male"
+  },
+  {
+   "id": "dale",
+   "name": "Dale",
+   "gender": "male",
+   "style": "stick",
+   "top": "hoodie",
+   "top_color": "#e0702a",
+   "bottom": "none",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#2a2230",
+   "hair_style": "short",
+   "hair": "#3a2a1e",
+   "look": "man in an orange hoodie, short brown hair"
+  },
+  {
+   "id": "rina",
+   "name": "Rina",
+   "gender": "female",
+   "style": "stick",
+   "top": "shirt",
+   "top_color": "#2a8f8a",
+   "bottom": "skirt",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#2a2230",
+   "hair_style": "bun",
+   "hair": "#1d1d2b",
+   "look": "woman in a teal shirt, dark hair in a bun",
+   "bottom_color": "#2d2d44"
+  },
+  {
+   "id": "tess",
+   "name": "Tess",
+   "gender": "female",
+   "style": "stick",
+   "top": "shirt",
+   "top_color": "#7a4aa0",
+   "bottom": "skirt",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#2a2230",
+   "hair_style": "long",
+   "hair": "#8a5a2a",
+   "look": "woman in a purple shirt, long light-brown hair",
+   "bottom_color": "#2d2d44"
+  },
+  {
+   "id": "omar",
+   "name": "Omar",
+   "gender": "male",
+   "style": "stick",
+   "top": "shirt",
+   "top_color": "#4a6fa5",
+   "bottom": "none",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#2a2230",
+   "hair_style": "short",
+   "hair": "#1a1a1a",
+   "look": "young man in a blue shirt, black hair"
+  }
+ ],
+ "settings": {
+  "cinema": {
+   "set": {
+    "type": "room",
+    "style": "meeting",
+    "time": "night"
+   }
+  },
+  "lobby": {
+   "set": {
+    "type": "shopfront",
+    "time": "night"
+   }
+  },
+  "foyer": {
+   "set": {
+    "type": "room",
+    "style": "cafe",
+    "time": "night"
+   }
+  },
+  "street": {
+   "set": {
+    "type": "street",
+    "time": "night"
+   }
+  },
+  "office": {
+   "set": {
+    "type": "room",
+    "style": "office",
+    "time": "day"
+   }
+  },
+  "phoneshop": {
+   "set": {
+    "type": "room",
+    "style": "shop",
+    "time": "day"
+   }
+  },
+  "living": {
+   "set": {
+    "type": "room",
+    "style": "living",
+    "time": "night"
+   }
+  }
+ },
+ "scenes": [
+  {
+   "id": 1,
+   "title": "The ticket",
+   "goal": "Dale wants his money's worth",
+   "turn": "he knows the film is bad and still stays",
+   "value": "-",
+   "target_s": 24,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "cinema",
+       "lobby"
+      ],
+      "mood": "tense",
+      "seed": 1,
+      "actors": [
+       {
+        "k": "dale",
+        "x": 1000
+       }
+      ],
+      "cues": [
+       {
+        "t": "Dale hated the film. And he would not leave.",
+        "shot": "wide",
+        "on": [
+         "dale"
+        ],
+        "at": "cinema",
+        "do": [
+         "sit@chair"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "By minute ninety, he was completely sure.",
+        "shot": "medium",
+        "on": [
+         "dale"
+        ],
+        "emote": "worry",
+        "hud": [
+         {
+          "type": "counter",
+          "from": 0,
+          "to": 90,
+          "label": "minutes in",
+          "pos": "tr",
+          "t": 0.5,
+          "dur": 2.5
+         }
+        ]
+       },
+       {
+        "t": "The exit sign glowed ten steps away.",
+        "shot": "insert",
+        "on": [
+         "dale"
+        ],
+        "props": [
+         "clock"
+        ]
+       },
+       {
+        "t": "Two more hours of this, and the door was right there.",
+        "shot": "medium",
+        "on": [
+         "dale"
+        ],
+        "emote": "doubt",
+        "do": "think"
+       },
+       {
+        "t": "So why did he stay? You'll know by the credits.",
+        "shot": "close",
+        "on": [
+         "dale"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "It cost him fourteen bucks to find out.",
+        "shot": "close",
+        "on": [
+         "dale"
+        ],
+        "emote": "surprise",
+        "hud": [
+         {
+          "type": "title",
+          "text": "THE TICKET",
+          "pos": "cc",
+          "t": 1.0,
+          "dur": 1.8
+         }
+        ],
+        "props": [
+         "card"
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "title": "Just leave",
+   "goal": "Rina wants him to leave with her",
+   "turn": "Dale defends the ticket price, not the film",
+   "value": "+",
+   "target_s": 30,
+   "shots": [
+    {
+     "sequence": {
+      "type": "dialogue",
+      "setting": "foyer",
+      "mood": "calm",
+      "seed": 2,
+      "a": {
+       "k": "rina",
+       "x": 1450
+      },
+      "b": {
+       "k": "dale",
+       "x": 760
+      },
+      "lines": [
+       {
+        "who": "rina",
+        "t": "Dale. You groaned twice. Let's go.",
+        "emote": "surprise",
+        "do": "gesture"
+       },
+       {
+        "who": "dale",
+        "t": "I can't. I paid fourteen bucks for this.",
+        "emote": "worry",
+        "props": [
+         "cash",
+         "card"
+        ],
+        "hud": {
+         "type": "chip",
+         "text": "PAID $14",
+         "pos": "tl"
+        }
+       },
+       {
+        "who": "rina",
+        "t": "Hate it? Well, that money is gone either way.",
+        "emote": "doubt"
+       },
+       {
+        "who": "dale",
+        "t": "Leave now? Then it's wasted.",
+        "emote": "worry"
+       },
+       {
+        "who": "dale",
+        "t": "Well. Half an hour more.",
+        "emote": "worry"
+       },
+       {
+        "who": "rina",
+        "t": "Look, stay and you lose the evening too.",
+        "emote": "doubt",
+        "do": "point"
+       },
+       {
+        "who": "dale",
+        "t": "Huh. That's not how it feels.",
+        "emote": "surprise",
+        "do": "think"
+       },
+       {
+        "who": "rina",
+        "t": "Meaning?",
+        "emote": "joy"
+       },
+       {
+        "who": "dale",
+        "t": "Quitting feels like losing. So... staying.",
+        "emote": "worry"
+       },
+       {
+        "who": "rina",
+        "t": "Then I'm getting popcorn. Wave when you give in.",
+        "emote": "joy",
+        "do": "wave"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "title": "The pull has a name",
+   "goal": "the viewer learns the mechanism",
+   "turn": "the money is gone whether he stays or leaves",
+   "value": "+",
+   "target_s": 28,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "street",
+       "living"
+      ],
+      "mood": "calm",
+      "seed": 3,
+      "actors": [
+       {
+        "k": "dale",
+        "x": 1000
+       }
+      ],
+      "cues": [
+       {
+        "t": "That pull has a name: the sunk cost fallacy.",
+        "shot": "wide",
+        "on": [
+         "dale"
+        ],
+        "at": "street",
+        "do": [
+         "walk"
+        ],
+        "emote": "doubt",
+        "hud": {
+         "type": "chip",
+         "text": "SUNK COST FALLACY",
+         "pos": "tl"
+        },
+        "props": [
+         "card"
+        ]
+       },
+       {
+        "t": "It's gone either way. Gone if he stays, gone if he goes.",
+        "shot": "medium",
+        "on": [
+         "dale"
+        ],
+        "emote": "doubt",
+        "do": "think"
+       },
+       {
+        "t": "The only thing left to choose is the next two hours.",
+        "shot": "medium",
+        "on": [
+         "dale"
+        ],
+        "emote": "doubt",
+        "props": [
+         "clock"
+        ],
+        "hud": {
+         "type": "chip",
+         "text": "NEXT 2 HOURS",
+         "pos": "tl"
+        }
+       },
+       {
+        "t": "But a spent ticket feels like a promise you must keep.",
+        "shot": "close",
+        "on": [
+         "dale"
+        ],
+        "emote": "worry",
+        "props": [
+         "card"
+        ]
+       },
+       {
+        "t": "Studies found it in lab games, and you've probably felt it too.",
+        "shot": "medium",
+        "on": [
+         "dale"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "Some folks resist it. None resist it every time.",
+        "shot": "medium",
+        "on": [
+         "dale"
+        ],
+        "emote": "joy"
+       },
+       {
+        "t": "Dale did. And the film was the small version.",
+        "shot": "close",
+        "on": [
+         "dale"
+        ],
+        "emote": "surprise"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "title": "The course he paid for",
+   "goal": "Dale wants his training to count",
+   "turn": "he stays two years in a job he dislikes",
+   "value": "-",
+   "target_s": 34,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "office"
+      ],
+      "mood": "tense",
+      "seed": 4,
+      "actors": [
+       {
+        "k": "dale",
+        "x": 1100
+       }
+      ],
+      "cues": [
+       {
+        "t": "Two years earlier, Dale paid for a long course.",
+        "shot": "wide",
+        "on": [
+         "dale"
+        ],
+        "at": "office",
+        "do": [
+         "sit@chair"
+        ],
+        "emote": "doubt",
+        "hud": {
+         "type": "chip",
+         "text": "2 YEARS EARLIER",
+         "pos": "tl"
+        },
+        "props": [
+         "card"
+        ]
+       },
+       {
+        "t": "It trained him for one job at one firm.",
+        "shot": "insert",
+        "on": [
+         "dale"
+        ],
+        "props": [
+         "document"
+        ]
+       },
+       {
+        "t": "He knew by the third month.",
+        "shot": "close",
+        "on": [
+         "dale"
+        ],
+        "props": [
+         "clock"
+        ],
+        "emote": "worry",
+        "hud": {
+         "type": "counter",
+         "from": 0,
+         "to": 3,
+         "label": "months in",
+         "pos": "tr",
+         "t": 0.5,
+         "dur": 2.5
+        }
+       },
+       {
+        "t": "But the course had cost six hundred and a whole summer.",
+        "shot": "medium",
+        "on": [
+         "dale"
+        ],
+        "props": [
+         "cash",
+         "calendar",
+         "card"
+        ],
+        "emote": "doubt",
+        "hud": {
+         "type": "counter",
+         "from": 0,
+         "to": 600,
+         "label": "dollars for the course",
+         "pos": "tr",
+         "t": 0.5,
+         "dur": 2.5
+        }
+       },
+       {
+        "t": "Every spring he said it: one more year.",
+        "shot": "medium",
+        "on": [
+         "dale"
+        ],
+        "props": [
+         "calendar"
+        ],
+        "emote": "worry",
+        "do": "think"
+       },
+       {
+        "t": "Tess worked at the next desk. She watched him sigh.",
+        "shot": "medium",
+        "on": [
+         "dale"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "Two years went by. The course never paid back more.",
+        "shot": "wide",
+        "on": [
+         "dale"
+        ],
+        "emote": "worry",
+        "hud": {
+         "type": "counter",
+         "from": 0,
+         "to": 2,
+         "label": "years stayed",
+         "pos": "tr",
+         "t": 0.5,
+         "dur": 2.5
+        },
+        "props": [
+         "card"
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "sequence": {
+      "type": "dialogue",
+      "setting": "office",
+      "mood": "calm",
+      "seed": 5,
+      "a": {
+       "k": "tess",
+       "x": 1450
+      },
+      "b": {
+       "k": "dale",
+       "x": 760
+      },
+      "lines": [
+       {
+        "who": "tess",
+        "t": "Come with me. The new place is hiring.",
+        "emote": "joy",
+        "do": "gesture"
+       },
+       {
+        "who": "dale",
+        "t": "Can't. The course. Remember?",
+        "emote": "worry",
+        "do": "shrug"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "title": "The unused plan",
+   "goal": "Dale wants the yearly plan to pay off",
+   "turn": "he renews a plan he never uses",
+   "value": "-",
+   "target_s": 28,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "phoneshop"
+      ],
+      "mood": "calm",
+      "seed": 6,
+      "actors": [
+       {
+        "k": "dale",
+        "x": 1000
+       }
+      ],
+      "cues": [
+       {
+        "t": "It wasn't only the film and the job.",
+        "shot": "wide",
+        "on": [
+         "dale"
+        ],
+        "at": "phoneshop",
+        "do": [
+         "walk"
+        ],
+        "emote": "doubt"
+       },
+       {
+        "t": "Dale also held a phone plan with ten times too much data.",
+        "shot": "medium",
+        "on": [
+         "dale"
+        ],
+        "props": [
+         "phone"
+        ],
+        "emote": "doubt",
+        "hud": {
+         "type": "counter",
+         "from": 0,
+         "to": 10,
+         "label": "times too much data",
+         "pos": "tr",
+         "t": 0.5,
+         "dur": 2.5
+        }
+       },
+       {
+        "t": "Now the clerk offered a smaller one, half the price.",
+        "shot": "medium",
+        "on": [
+         "dale"
+        ],
+        "emote": "surprise"
+       }
+      ]
+     }
+    },
+    {
+     "sequence": {
+      "type": "dialogue",
+      "setting": "phoneshop",
+      "mood": "calm",
+      "seed": 7,
+      "a": {
+       "k": "omar",
+       "x": 1450
+      },
+      "b": {
+       "k": "dale",
+       "x": 760
+      },
+      "lines": [
+       {
+        "who": "omar",
+        "t": "Four percent used. Want the small plan?",
+        "emote": "joy",
+        "props": [
+         "phone"
+        ],
+        "hud": {
+         "type": "chip",
+         "text": "4% USED",
+         "pos": "tl"
+        }
+       },
+       {
+        "who": "dale",
+        "t": "But I paid for the big one.",
+        "emote": "worry",
+        "props": [
+         "card"
+        ]
+       },
+       {
+        "who": "omar",
+        "t": "Sure. Spent either way. This saves next year.",
+        "emote": "doubt",
+        "do": "point",
+        "props": [
+         "card"
+        ]
+       },
+       {
+        "who": "dale",
+        "t": "I'll use it up. Eventually.",
+        "emote": "worry"
+       },
+       {
+        "who": "omar",
+        "t": "Four percent? Okay. Your call.",
+        "hud": {
+         "type": "chip",
+         "text": "4% USED",
+         "pos": "tl"
+        },
+        "emote": "doubt",
+        "do": "shrug"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "title": "Credits",
+   "goal": "Dale wants to stop paying for the past",
+   "turn": "Dale walks out before the credits",
+   "value": "+",
+   "target_s": 36,
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "cinema",
+       "street",
+       "foyer"
+      ],
+      "mood": "calm",
+      "seed": 8,
+      "actors": [
+       {
+        "k": "dale",
+        "x": 1100
+       }
+      ],
+      "cues": [
+       {
+        "t": "Back in the dark, minute one-forty, Dale saw it.",
+        "shot": "wide",
+        "on": [
+         "dale"
+        ],
+        "at": "cinema",
+        "do": [
+         "sit@chair"
+        ],
+        "props": [
+         "clock"
+        ],
+        "emote": "surprise"
+       },
+       {
+        "t": "A ticket. A course. A year of data.",
+        "shot": "medium",
+        "on": [
+         "dale"
+        ],
+        "props": [
+         "cash"
+        ],
+        "emote": "doubt",
+        "hud": {
+         "type": "chip",
+         "text": "$14 + A COURSE + A PLAN",
+         "pos": "tl"
+        }
+       },
+       {
+        "t": "All three were already spent. None was a reason to stay.",
+        "shot": "close",
+        "on": [
+         "dale"
+        ],
+        "emote": "surprise",
+        "do": "think",
+        "props": [
+         "card"
+        ]
+       },
+       {
+        "t": "What counts is not what you spent. It's what comes next.",
+        "shot": "close",
+        "on": [
+         "dale"
+        ],
+        "emote": "doubt",
+        "props": [
+         "card"
+        ]
+       },
+       {
+        "t": "He stood up. a man behind him tutted.",
+        "shot": "medium",
+        "on": [
+         "dale"
+        ],
+        "do": "stand",
+        "emote": "worry"
+       },
+       {
+        "t": "The exit door was heavy. The street was cold and quiet.",
+        "shot": "wide",
+        "on": [
+         "dale"
+        ],
+        "at": "street",
+        "do": [
+         "walk"
+        ],
+        "emote": "joy"
+       },
+       {
+        "t": "Rina waved from the popcorn stand and grinned.",
+        "shot": "medium",
+        "on": [
+         "dale"
+        ],
+        "at": "foyer",
+        "emote": "joy",
+        "do": "wave"
+       },
+       {
+        "t": "The fourteen dollars were gone. The evening was his.",
+        "shot": "close",
+        "on": [
+         "dale"
+        ],
+        "emote": "joy",
+        "props": [
+         "card"
+        ]
+       },
+       {
+        "t": "What are you stuck in, only because you paid? Tell me below.",
+        "shot": "close",
+        "on": [
+         "dale"
+        ],
+        "emote": "doubt",
+        "do": "think",
+        "props": [
+         "card"
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}

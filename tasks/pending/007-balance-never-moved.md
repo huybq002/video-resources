@@ -9,7 +9,7 @@ format: character
 idea: "A nurse pays her card on time every month and the balance never moves; the film shows one statement line by line (invented, no real banks, no real rates)"
 lang: en
 only_aspect: ""
-duration_min: 4
+duration_min: 3.5
 script_prompt: "Fiction, invented nurse and invented round numbers. Line 1: she paid every month and the balance is the same as in spring. Name the mechanism (minimum payment, interest) by 60 s, show it as hud numbers. No advice, no products. End on a question."
 renderer: tool
 series: ""
