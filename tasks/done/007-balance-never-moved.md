@@ -2,7 +2,7 @@
 id: 007-balance-never-moved
 type: video
 priority: 007
-status: pending
+status: done
 topic: money
 keyword: "debt trap explained"
 format: character
@@ -24,9 +24,9 @@ privacy: private
 4-minute English film, both cuts. Search phrase: "debt trap explained".
 
 ## Done when
-- [ ] both cuts generated and verified, both videos rendered and verified
-- [ ] Release published with both bundles and both videos
-- [ ] specs/007-balance-never-moved.json committed, publish pack written
+- [x] both cuts generated and verified, both videos rendered and verified
+- [x] Release published with both bundles and both videos
+- [x] specs/007-balance-never-moved.json committed, publish pack written
 
 ## Progress notes
-(The job writes here.)
+- 2026-11-14: DONE (3.5 min instead of the 4 first planned). Release https://github.com/huybq002/video-resources/releases/tag/007-balance-never-moved-43483394363. Both videos verified (voice pace x1.08, 0 cut). policy_check OK. No licensed music matched. Spec lint: silence ~26% (justified, see report). Owner: switch on the AI labels at upload; portrait is 3.5 min, not a Short.

@@ -1,0 +1,79 @@
+{
+  "id": "007-balance-never-moved",
+  "tag": "007-balance-never-moved-43483394363",
+  "idea": "A nurse pays her card on time every month and the balance never moves; the film reads one statement line by line (invented, no real banks or rates)",
+  "lang": "en",
+  "duration_s": 210,
+  "cuts": [
+    {
+      "cut": "landscape",
+      "aspect": "16:9",
+      "video": "landscape.mp4",
+      "bundle": "landscape-bundle.zip"
+    },
+    {
+      "cut": "portrait",
+      "aspect": "9:16",
+      "video": "portrait.mp4",
+      "bundle": "portrait-bundle.zip"
+    }
+  ],
+  "assets": [
+    {
+      "name": "landscape.mp4",
+      "bytes": 127069805,
+      "sha256": "b15090117fe8241ca63b58bd4abffa7a5bb9d49827c96713474908a44b7f1edd"
+    },
+    {
+      "name": "landscape-bundle.zip",
+      "bytes": 19791548,
+      "sha256": "7b9ee5f8b016294f352d6c14560ee46e586591b2010857a9ec0fc9fcaa026727"
+    },
+    {
+      "name": "portrait.mp4",
+      "bytes": 109565682,
+      "sha256": "e3b3c972b8f05c087ee296f2abc5183b723cf60fe37658402d6e051755637775"
+    },
+    {
+      "name": "portrait-bundle.zip",
+      "bytes": 16630186,
+      "sha256": "18d449edba7c105819503b54df2b0ff4bfcfa13399993bd00f39a43173ae26cf"
+    },
+    {
+      "name": "metadata.json",
+      "bytes": 590,
+      "sha256": "4eca7804d5a7a976602e83b528a43a72c07510ba4f8b9aae4ae965a8205f0030"
+    },
+    {
+      "name": "tiktok.md",
+      "bytes": 753,
+      "sha256": "1fc0d9867d9d9d0fac8f9037f3b63efa7e7b075b4fd85bf725cae945ce7e4767"
+    },
+    {
+      "name": "youtube.md",
+      "bytes": 1524,
+      "sha256": "e6126aa7f79406f9e8959faed7607f221e3c4e59bcc2fe712d0d50d20b73c614"
+    },
+    {
+      "name": "youtube_shorts.md",
+      "bytes": 399,
+      "sha256": "87e408e8315fd4c3bfe8c64ad10a0d464726b4ab21aa6a0e08ab1d4db7f6ee45"
+    },
+    {
+      "name": "a.png",
+      "bytes": 562761,
+      "sha256": "65cbdfd2816cc41b1292cb116948f1d6a6422f193333ff634f8d5cbd38c72c01"
+    },
+    {
+      "name": "b.png",
+      "bytes": 503944,
+      "sha256": "017bb94093a1b71f2ed060b49ff889d405948889e0ba519a78c09aa9391d0d27"
+    },
+    {
+      "name": "d.png",
+      "bytes": 338198,
+      "sha256": "12c6af27e1e5da2c5c7d9f92b54c714939cccee16dbdb9f443057ab9c3890638"
+    }
+  ],
+  "release_url": "https://github.com/huybq002/video-resources/releases/tag/007-balance-never-moved-43483394363"
+}

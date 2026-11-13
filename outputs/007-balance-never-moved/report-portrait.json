@@ -1,0 +1,12 @@
+[
+  {
+    "id": "941ae15f163d",
+    "status": "done",
+    "outputDir": "/__w/video-resources/video-resources/outputs/007-balance-never-moved/portrait",
+    "video": "/__w/video-resources/video-resources/outputs/007-balance-never-moved/portrait/output.mp4",
+    "renderer": "hyperframes",
+    "composition": "/__w/video-resources/video-resources/outputs/007-balance-never-moved/portrait/index.html",
+    "timeline": "/__w/video-resources/video-resources/outputs/007-balance-never-moved/portrait/timeline.json",
+    "audio": "/__w/video-resources/video-resources/outputs/007-balance-never-moved/portrait/voiceover.wav"
+  }
+]
