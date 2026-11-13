@@ -217,15 +217,23 @@ jobs:
                only to top up to 2 runnable tasks. Tasks already waiting on the night branch count (TASK_COUNT includes them).
                a. Read channel.json (niche, audience, seed keywords, formats, what to avoid) and data/ideas.md
                   (what has already been made, queued or dropped: never propose any of those again).
-               b. `python scripts/research_youtube.py --update-channel` (about 5-10 min). It asks YouTube itself
+               b. `python scripts/research_youtube.py --update-channel` (about 15-20 min now: it also reads autocomplete, the newest uploads and channel sizes). It asks YouTube itself
                   through yt-dlp what ranks for every keyword of every topic in channel.json, writes
                   data/research/latest.md (demand, competition, Shorts share, winning titles, recurring words per
                   topic) and appends the new keywords it found into data/discovered_keywords.json (not channel.json, so
                   your edits to channel.json and the job's never conflict), which widens the search next night.
                   Read only latest.md, not the JSON. Commit data/discovered_keywords.json and data/research/.
                   If it exits non-zero (YouTube refused), fall back to WebSearch for the topics and say so in the notes.
-               c. Use the claude-youtube skill (sub-skills/ideate.md, then seo.md) to turn the digest into
-                  `research.ideas_per_run` ideas scored on demand, how crowded the keyword is, and fit with the topic.
+                  Then `python scripts/channel_stats.py` (our own videos' public views into data/performance.md; it only
+                  prints a note when channel.json has no own_channel) and commit data/performance.md.
+               c. READ data/growth-playbook.md FIRST (rules R1-R5: why videos 003-005 got no views and what to do instead).
+                  Use the claude-youtube skill (sub-skills/ideate.md, then seo.md) to turn the digest into
+                  `research.ideas_per_run` ideas. Rank by the digest's breakouts (small channels winning now), then recent
+                  median views, then spread; never by all-time views alone. Each idea's keyword is a phrase from the
+                  digest's "What people type" section (2-6 words people type, never a single word), and each idea cell
+                  carries "Title: <working title, 40-60 chars> / Thumb: <3 words>"; an idea without a title a stranger
+                  would click is dropped. Ideas in a topic or title pattern that beat the channel median in
+                  data/performance.md come first; a pattern at the bottom twice is paused.
                   HARD RULE: every run writes AT LEAST 3 new ideas (night.min_ideas_per_run) dated tonight into data/ideas.md,
                   even when tasks are already pending (they feed the next nights). Then run
                   `python scripts/plan_night.py check-ideas`; if it prints FAIL, research more (WebSearch is the fallback
@@ -255,6 +263,10 @@ jobs:
                  Read idea, lang, duration_min, script_prompt, series, episode, renderer, privacy, upload from the task.
                  Every task builds BOTH frame shapes. Everything lives under outputs/<id>/.
                  1. Write specs/<id>.json (duration_s = duration_min*60 exactly; scenes[].target_s must add up to it).
+                    Script rules H1-H6 of data/growth-playbook.md apply: line 1 says the title's promise in a picture,
+                    a loop opens by 15 s and closes in the last scene, the search phrase is spoken (and on a hud chip) by
+                    60 s for psychology/money, a new fact or reversal every 45-60 s, and NO "invented"/"fiction" talk in
+                    the narration (that label lives in the description and the upload setting).
                     Follow the skill's six rules: a hook that lands in the first 30 s, words per scene = target_s * 2.4,
                     its own settings written with scene-dsl (not only `lib:`), supporting cast and `crowd` for groups,
                     2-3 shots per long scene, male characters with bare stick legs. Write the `spine` and each scene's
@@ -306,10 +318,15 @@ jobs:
                     Never add `--allow-public` unless the task says `privacy: public`. Note in Progress notes that a vertical
                     cut longer than 3 minutes is not eligible as a Short.
                  7b. Publishing pack (this is what you are really making: the user posts by hand).
-                    Using the claude-youtube skill (sub-skills/seo.md and metadata.md) and the keyword from the task,
+                    Using the claude-youtube skill (sub-skills/seo.md and metadata.md), the keyword from the task and
+                    the packaging rules T1-T4, D1-D4 and S1 of data/growth-playbook.md,
                     write outputs/<id>/publish/publish.json with, for each platform, what to paste:
-                      youtube: title (<=100 chars, keyword early, curiosity or concrete promise), description
-                        (2-line hook, summary, the chapter list from metadata.json, 3 hashtags), tags, hashtags
+                      youtube: title (40-60 chars, no genre label in brackets, curiosity gap or concrete outcome),
+                        title_options (3 candidates for YouTube Studio's Test & compare), description (600-1500 chars:
+                        first 125 chars = hook + search phrase with no "invented/fiction/AI"; then what the viewer will
+                        understand, chapters from metadata.json, the comment question; the AI/fiction label and music
+                        credit in the LAST block; 3 hashtags), tags (search phrase + 3-5 autocomplete phrases from the
+                        digest + broad ones), hashtags
                       youtube_shorts: title <=40 chars, short description, 3-5 hashtags
                       tiktok: caption (hook in the first line, <=2200 chars), 3-5 hashtags
                       plus thumbnail_text (3-4 words), pinned_comment (the question from the last scene), posting_notes
@@ -346,8 +363,10 @@ jobs:
                then append to it after EVERY finished item and push again. A usage limit can end the run at any
                moment and this file is what the owner reads in the morning, so it must never be written only at the end.
                a. MARKET AND SCRIPT (cheap, do this first)
+                  - Read data/performance.md first: which of our videos beat the channel median, and what their topic,
+                    title pattern, length and first line have in common. Every change to data/growth-playbook.md cites it.
                   - Find what the winning videos of the three topics have in common (titles, length, first line, structure)
-                    from data/research/latest.md and WebSearch; compare it with tonight's spec and the earlier ones in specs/.
+                    from data/research/latest.md (breakouts first) and WebSearch; compare it with tonight's spec and the earlier ones in specs/.
                   - Re-read tonight's spec as a bored viewer: name its 3 weakest moments and why.
                   - Write concrete, dated, evidenced findings into data/learnings.md.
                   - Change the writing guidance ONLY where the evidence supports it: references/script-planning.md,
