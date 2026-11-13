@@ -1,7 +1,7 @@
 {
   "approved": true,
-  "skill_hash": "59058e890da1f733",
-  "approved_at": "2026-11-11T20:58",
-  "demo": "https://github.com/huybq002/video-resources/releases/tag/demo-2026-11-11-42861747511",
-  "note": "Owner approved in chat 2026-11-10. Re-recorded 2026-11-11 with the OS-independent skill_hash (Windows and Linux fingerprints differed, so the first approval never matched on the runner)."
+  "skill_hash": "2a54bffbd37af380",
+  "approved_at": "2026-11-12T07:44",
+  "demo": "https://github.com/huybq002/video-resources/pull/5",
+  "note": "Owner approved in chat 2026-11-12 after PR #5 (video 005 fixes: voice pace x1.08 base / x1.22 cap, chair placement, scene continuity, per-film rooms)."
 }

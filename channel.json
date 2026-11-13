@@ -92,9 +92,12 @@
     "results_per_keyword": 20,
     "videos_per_channel": 20,
     "ideas_per_run": 5,
-    "max_discovered_keywords_per_topic": 14,
+    "max_discovered_keywords_per_topic": 6,
     "policy_refresh_days": 7,
-    "min_ideas_per_run": 3
+    "min_ideas_per_run": 3,
+    "enrich_per_keyword": 4,
+    "enrich_budget_s": 300,
+    "_note": "Ideas are chosen by recent demand and small-channel breakouts, with search phrases from YouTube autocomplete (data/growth-playbook.md)."
   },
   "publish": {
     "platforms": [
@@ -124,5 +127,7 @@
     "render_s_per_video_s": 7.0,
     "overhead_min_per_video": 30,
     "margin": 1.3
-  }
+  },
+  "own_channel": "",
+  "_own_channel_note": "The channel's public URL (https://www.youtube.com/@...). scripts/channel_stats.py reads its public view counts into data/performance.md so the job learns what works."
 }

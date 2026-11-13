@@ -67,7 +67,7 @@ def _face(k, kind="cu", push=False):
     cu  - face close-up while speaking      ecu - eyes only, the shock / realisation beat
     mcu - head and chest                     push - a slow dolly in across the line (emotional lines)"""
     if PORTRAIT[0]: z = {"mcu": 1.8, "cu": 2.35, "ecu": 3.6}[kind]   # 9:16 people are drawn 1.25x already: these fill the tall frame
-    else: z = {"mcu": 2.2, "cu": 3.2, "ecu": 5.0}[kind]
+    else: z = {"mcu": 1.9, "cu": 2.6, "ecu": 3.6}[kind]   # (3.2 / 5.0 blew the 1920 px background up into a blur, 2026-11-12)
     f = {"k": k, "zoom": round(z * (0.82 if push else 1), 2), "to": round(z * (1.08 if push else 1.04), 2), "face": True}
     if kind == "ecu": f["dy"] = -8
     return f
@@ -417,6 +417,18 @@ def _apply_beat(shots, cue, focus_key):
         shots[0].setdefault("overlays", []).extend(copy.deepcopy(h) for h in huds if isinstance(h, dict))
 
 
+def _re_place(sid, text):
+    """does the line name this place? its id ("bakery", "backroom") or a plain word for it"""
+    import re as _r
+    words = {sid.replace("_", " ")} | {w for w in sid.split("_") if len(w) > 3}
+    alias = {"street": ["outside", "the street", "the road", "the pavement", "the sidewalk"], "front": ["outside", "the door", "the shop front"],
+             "office": ["office", "desk"], "living": ["living room", "sofa", "couch", "at home", "home"], "kitchen": ["kitchen"],
+             "bedroom": ["bedroom", "bed"], "backroom": ["back room", "backroom", "the back"]}
+    for k, v in alias.items():
+        if k in sid: words |= set(v)
+    return any(_r.search(r"(?<![a-z])" + _r.escape(w) + r"(?![a-z])", text) for w in words)
+
+
 def narration(seq, rnd):
     settings = [_sid(s) for s in seq["settings"]]; mood = seq.get("mood", "warm")
     actors = [_actor(a, i % 2 == 1) for i, a in enumerate(seq.get("actors", []))]
@@ -428,9 +440,24 @@ def narration(seq, rnd):
         if isinstance(cue, dict):
             cue, moved = _stage_line(cue, by_key, actors, (1080 if PORTRAIT[0] else 1920))
         beat = cue if isinstance(cue, dict) else {}
-        st = settings[(i // len(cycle)) % len(settings)] if len(settings) > 1 else settings[0]
-        if len(settings) > 1 and i % 3 == 0: st = settings[(i // 3) % len(settings)]
+        # WHERE a line happens: its "at"; else a place the words name; else the place of the line before.
+        # (The old rule cycled through the sequence's settings every 3 lines whatever the words said.)
+        if i == 0: cur_st = settings[0]
+        st = cur_st
         if beat.get("at"): st = _sid(beat["at"])                                  # the line says where we are
+        elif len(settings) > 1:
+            t_ = (text if isinstance(text, str) else text.get("t", "")).lower()
+            named_ = [s_ for s_ in settings if _re_place(s_, t_)]
+            if named_: st = named_[0]
+            else:     # "Inside, ..." / "Outside, ...": the interior / exterior place of this sequence
+                import re as _r2
+                def _is_room(s_):
+                    v_ = SETTINGS[0].get(_base(s_)); return isinstance(v_, dict) and (v_.get("set") or {}).get("type", "room") == "room"
+                if _r2.search(r"(?<![a-z])(inside|indoors|in the shop|in the bakery|back in)(?![a-z])", t_) and not _is_room(st):
+                    st = next((s_ for s_ in settings if _is_room(s_)), st)
+                elif _r2.search(r"(?<![a-z])(outside|out on the street|across the street|outdoors)(?![a-z])", t_) and _is_room(st):
+                    st = next((s_ for s_ in settings if not _is_room(s_)), st)
+        cur_st = st
         kind = cycle[(i + seq.get("seed", 0)) % len(cycle)]
         if i == 0 and not beat.get("shot"): kind = "establish"                   # every scene opens on the place
         kind = {"wide": "wide", "medium": "medium", "cu": "cu", "close": "cu", "establish": "establish",

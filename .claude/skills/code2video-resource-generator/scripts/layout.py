@@ -124,8 +124,13 @@ def add(setting, names, key_near=None):
             if _free(r, taken, hw) or n == "rug":
                 objs.append(o); taken.append(r); added.append(n)
                 if n in ("desk", "table") and not any(p.get("n") == "chair" and _hit(_rect(p), (r[0] - .6, r[1] + .6, r[2] - .6, r[3] + .9)) for p in objs):
-                    # a work surface comes with a chair in front of it, turned to it
-                    ch = dict(t="furn", n="chair", x=o["x"], z=round(r[3] + 0.4, 3), ry=round(math.pi, 4)); objs.append(ch); taken.append(_rect(ch))
+                    # a work surface comes with a chair turned to it, on a FREE side: in front, then left, right, behind.
+                    # (2026-11-12, video 005: it was put in front without a check and landed inside the sofa, so the
+                    # heroine sat in the middle of the sofa with only her head and feet showing)
+                    for cx_, cz_, cr_ in ((o["x"], r[3] + 0.4, math.pi), (r[0] - 0.45, o["z"], math.pi / 2), (r[1] + 0.45, o["z"], -math.pi / 2), (o["x"], r[2] - 0.4, 0.0)):
+                        ch = dict(t="furn", n="chair", x=round(cx_, 3), z=round(cz_, 3), ry=round(cr_, 4))
+                        if _free(_rect(ch), taken, hw):
+                            objs.append(ch); taken.append(_rect(ch)); break
                 break
     return added
 
