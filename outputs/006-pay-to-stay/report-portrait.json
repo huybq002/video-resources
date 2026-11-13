@@ -1,0 +1,12 @@
+[
+  {
+    "id": "a41524a4ae12",
+    "status": "done",
+    "outputDir": "/__w/video-resources/video-resources/outputs/006-pay-to-stay/portrait",
+    "video": "/__w/video-resources/video-resources/outputs/006-pay-to-stay/portrait/output.mp4",
+    "renderer": "hyperframes",
+    "composition": "/__w/video-resources/video-resources/outputs/006-pay-to-stay/portrait/index.html",
+    "timeline": "/__w/video-resources/video-resources/outputs/006-pay-to-stay/portrait/timeline.json",
+    "audio": "/__w/video-resources/video-resources/outputs/006-pay-to-stay/portrait/voiceover.wav"
+  }
+]

@@ -2,7 +2,7 @@
 id: 006-pay-to-stay
 type: video
 priority: 006
-status: pending
+status: done
 topic: psychology
 keyword: "sunk cost fallacy example"
 format: days
@@ -24,9 +24,9 @@ privacy: private
 3-minute English film, both cuts. Search phrase: "sunk cost fallacy example".
 
 ## Done when
-- [ ] both cuts generated and verified, both videos rendered and verified
-- [ ] Release published with both bundles and both videos
-- [ ] specs/006-pay-to-stay.json committed, publish pack written
+- [x] both cuts generated and verified, both videos rendered and verified
+- [x] Release published with both bundles and both videos
+- [x] specs/006-pay-to-stay.json committed, publish pack written
 
 ## Progress notes
-(The job writes here.)
+- 2026-11-14: DONE. Release https://github.com/huybq002/video-resources/releases/tag/006-pay-to-stay-43483394363. Both videos verified (voice pace x1.08, 0 cut). policy_check OK. No licensed music matched. Spec lint reports silence ~23% (justified: voice needs ~2.3 words/s, see report). Owner: switch on the AI labels at upload; portrait is 3 min, not under 3, so not a Short.

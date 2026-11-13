@@ -1,0 +1,12 @@
+[
+  {
+    "id": "4006af32f348",
+    "status": "done",
+    "outputDir": "/__w/video-resources/video-resources/outputs/006-pay-to-stay/landscape",
+    "video": "/__w/video-resources/video-resources/outputs/006-pay-to-stay/landscape/output.mp4",
+    "renderer": "hyperframes",
+    "composition": "/__w/video-resources/video-resources/outputs/006-pay-to-stay/landscape/index.html",
+    "timeline": "/__w/video-resources/video-resources/outputs/006-pay-to-stay/landscape/timeline.json",
+    "audio": "/__w/video-resources/video-resources/outputs/006-pay-to-stay/landscape/voiceover.wav"
+  }
+]

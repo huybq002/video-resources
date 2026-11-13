@@ -1,0 +1,79 @@
+{
+  "id": "006-pay-to-stay",
+  "tag": "006-pay-to-stay-43483394363",
+  "idea": "A man sits through a bad film because he paid, then sees the same pull in his job and his phone plan (sunk cost fallacy; invented)",
+  "lang": "en",
+  "duration_s": 180,
+  "cuts": [
+    {
+      "cut": "landscape",
+      "aspect": "16:9",
+      "video": "landscape.mp4",
+      "bundle": "landscape-bundle.zip"
+    },
+    {
+      "cut": "portrait",
+      "aspect": "9:16",
+      "video": "portrait.mp4",
+      "bundle": "portrait-bundle.zip"
+    }
+  ],
+  "assets": [
+    {
+      "name": "landscape.mp4",
+      "bytes": 109320262,
+      "sha256": "a1869bdd9f5fd0ad9f0aac3d68b30d0fea3b3e4467c8abd3dd125ac2d468cff0"
+    },
+    {
+      "name": "landscape-bundle.zip",
+      "bytes": 15773096,
+      "sha256": "6e60126493f38f22983921c016d2fbb7e503d6d32279f0e5d24827849bcc159b"
+    },
+    {
+      "name": "portrait.mp4",
+      "bytes": 95817773,
+      "sha256": "8a7af5ae5c72645e52a0d90a10b66f01ecd79af8865d5f84d45dfbf1925cb029"
+    },
+    {
+      "name": "portrait-bundle.zip",
+      "bytes": 13680102,
+      "sha256": "fad34c60f628b9c2ae542cbf50c2df9e9e19b3a0b69d25395a634d67cfae8305"
+    },
+    {
+      "name": "metadata.json",
+      "bytes": 537,
+      "sha256": "14424b374c7e66b87d68176d3c5d87d3feb484814b8d2defc9aebe1053920446"
+    },
+    {
+      "name": "tiktok.md",
+      "bytes": 757,
+      "sha256": "b4e388db0181835611947f0f1130779608f564d9b95742ef8b8483b4e4657d71"
+    },
+    {
+      "name": "youtube.md",
+      "bytes": 1575,
+      "sha256": "4d0834a0989afc2f58119a8b30b8c0ae8464a38de34367fd5b85357147199e92"
+    },
+    {
+      "name": "youtube_shorts.md",
+      "bytes": 380,
+      "sha256": "84e9f82646b47983e6b5731d896081e2aa21bb670b26ba78c940e024dd9d11a0"
+    },
+    {
+      "name": "a.png",
+      "bytes": 533733,
+      "sha256": "b5d5995ca94906be5ac7a6a7b6a94be747a031a67e7903aa5974f07d1ca1096c"
+    },
+    {
+      "name": "b.png",
+      "bytes": 488640,
+      "sha256": "5d7062f08f743ff7e3e96cc80eec63d818d269d9f50978730c2cb959863ed1e4"
+    },
+    {
+      "name": "d.png",
+      "bytes": 344598,
+      "sha256": "4755a6c59479d5572898d85eb051806594e4e7c9e5a6b958411528198fd577f2"
+    }
+  ],
+  "release_url": "https://github.com/huybq002/video-resources/releases/tag/006-pay-to-stay-43483394363"
+}
