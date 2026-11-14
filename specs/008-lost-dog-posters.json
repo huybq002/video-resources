@@ -1,0 +1,1629 @@
+{
+ "id": "008-lost-dog-posters",
+ "title": "The Lost Dog Posters Had One Strange Detail",
+ "lang": "en",
+ "aspect": "16:9",
+ "duration_s": 180,
+ "idea": "Invented: lost-dog posters on one street share one phone number; a teenager calls it and the film shows the scheme from the inside (fiction, no real people or brands)",
+ "narrator": "narrator",
+ "narrator_name": "Narrator",
+ "narrator_gender": "female",
+ "format": "character",
+ "spine": {
+  "want": "find out why nine posters share one number",
+  "obstacle": "a friendly stranger who answers every call the same way",
+  "turn": "he never asks which dog",
+  "choice": "she takes the owner back to the one question a fake finder cannot answer",
+  "opening_image": "Mika on a street of nine posters",
+  "ending_image": "the same street, nine posters with the right numbers",
+  "motif": "phone"
+ },
+ "cast": [
+  {
+   "id": "narrator",
+   "name": "Narrator",
+   "narrator": true,
+   "gender": "female"
+  },
+  {
+   "id": "mika",
+   "name": "Mika",
+   "gender": "female",
+   "style": "stick",
+   "bottom": "shorts",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#2a2230",
+   "top": "hoodie",
+   "top_color": "#f08a24",
+   "bottom_color": "#2d3a55",
+   "hair_style": "long",
+   "hair": "#3a2418",
+   "bag": true,
+   "look": "teenage girl in a bright orange hoodie, long dark-brown hair, school bag"
+  },
+  {
+   "id": "reyes",
+   "name": "Mrs. Reyes",
+   "gender": "female",
+   "style": "stick",
+   "bottom": "skirt",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#2a2230",
+   "top": "jacket",
+   "top_color": "#4f8a6a",
+   "top2": "#e8e0cc",
+   "bottom_color": "#6b4a5a",
+   "hair_style": "bun",
+   "hair": "#b8b8c0",
+   "glasses": true,
+   "torso_w": 1.05,
+   "look": "older woman in a green cardigan and plum skirt, grey bun, round glasses"
+  },
+  {
+   "id": "dole",
+   "name": "Mr. Dole",
+   "gender": "male",
+   "style": "stick",
+   "bottom": "none",
+   "sock": "#2f3646",
+   "shoes": "boots",
+   "shoe_color": "#2a2230",
+   "top": "coat",
+   "top_color": "#5a5f68",
+   "top2": "#2a2d33",
+   "hat": "cap",
+   "hat_color": "#2a2d33",
+   "hair_style": "short",
+   "hair": "#2b2b2b",
+   "mustache": true,
+   "look": "man in a long grey coat and flat cap, dark mustache"
+  }
+ ],
+ "settings": {
+  "street": {
+   "place": "quiet residential street at dusk, a lost-dog poster taped to every lamp pole",
+   "signature": [
+    "lamp pole",
+    "poster",
+    "fence"
+   ],
+   "set": {
+    "type": "street",
+    "time": "dusk"
+   },
+   "objects": [
+    {
+     "t": "cylinder",
+     "x": -4.2,
+     "y": 0,
+     "z": -3.2,
+     "r": 0.07,
+     "h": 3.2,
+     "c": "#4a4f5c"
+    },
+    {
+     "t": "box",
+     "x": -4.2,
+     "y": 1.5,
+     "z": -3.1,
+     "w": 0.55,
+     "h": 0.75,
+     "d": 0.02,
+     "c": "#f4efe0",
+     "ink": 0
+    },
+    {
+     "t": "cylinder",
+     "x": 0.4,
+     "y": 0,
+     "z": -4.6,
+     "r": 0.07,
+     "h": 3.2,
+     "c": "#4a4f5c"
+    },
+    {
+     "t": "box",
+     "x": 0.4,
+     "y": 1.5,
+     "z": -4.5,
+     "w": 0.55,
+     "h": 0.75,
+     "d": 0.02,
+     "c": "#f7f1c8",
+     "ink": 0
+    },
+    {
+     "t": "cylinder",
+     "x": 5.0,
+     "y": 0,
+     "z": -3.4,
+     "r": 0.07,
+     "h": 3.2,
+     "c": "#4a4f5c"
+    },
+    {
+     "t": "box",
+     "x": 5.0,
+     "y": 1.5,
+     "z": -3.3,
+     "w": 0.55,
+     "h": 0.75,
+     "d": 0.02,
+     "c": "#f4efe0",
+     "ink": 0
+    },
+    {
+     "t": "furn",
+     "n": "fence",
+     "x": -1.8,
+     "z": -5.4
+    },
+    {
+     "t": "furn",
+     "n": "fence",
+     "x": 3.0,
+     "z": -5.6
+    },
+    {
+     "t": "lamp",
+     "x": 2.4,
+     "z": -5.0,
+     "h": 4.0,
+     "c": "#ffb45a",
+     "I": 18,
+     "dist": 14
+    }
+   ]
+  },
+  "street_day": {
+   "place": "the same street on a bright morning, posters on every pole, pavement and fences",
+   "signature": [
+    "lamp pole",
+    "poster",
+    "fence"
+   ],
+   "set": {
+    "type": "street",
+    "time": "day"
+   },
+   "objects": [
+    {
+     "t": "cylinder",
+     "x": -3.6,
+     "y": 0,
+     "z": -2.6,
+     "r": 0.08,
+     "h": 3.2,
+     "c": "#6a707c"
+    },
+    {
+     "t": "box",
+     "x": -3.6,
+     "y": 1.5,
+     "z": -2.5,
+     "w": 0.6,
+     "h": 0.8,
+     "d": 0.02,
+     "c": "#fffbe8",
+     "ink": 0
+    },
+    {
+     "t": "box",
+     "x": -3.6,
+     "y": 1.0,
+     "z": -2.49,
+     "w": 0.4,
+     "h": 0.06,
+     "d": 0.01,
+     "c": "#e0443a",
+     "ink": 0
+    },
+    {
+     "t": "cylinder",
+     "x": 1.2,
+     "y": 0,
+     "z": -3.6,
+     "r": 0.08,
+     "h": 3.2,
+     "c": "#6a707c"
+    },
+    {
+     "t": "box",
+     "x": 1.2,
+     "y": 1.5,
+     "z": -3.5,
+     "w": 0.6,
+     "h": 0.8,
+     "d": 0.02,
+     "c": "#fffbe8",
+     "ink": 0
+    },
+    {
+     "t": "box",
+     "x": 1.2,
+     "y": 1.0,
+     "z": -3.49,
+     "w": 0.4,
+     "h": 0.06,
+     "d": 0.01,
+     "c": "#e0443a",
+     "ink": 0
+    },
+    {
+     "t": "furn",
+     "n": "fence",
+     "x": -1.2,
+     "z": -5.2
+    },
+    {
+     "t": "furn",
+     "n": "bench",
+     "x": 4.2,
+     "z": -3.0
+    },
+    {
+     "t": "furn",
+     "n": "trash_bin",
+     "x": 5.6,
+     "z": -3.2
+    }
+   ]
+  },
+  "bedroom": {
+   "place": "Mika's small bedroom: a corkboard wall of pinned papers, a desk with a laptop and a phone",
+   "signature": [
+    "corkboard",
+    "desk",
+    "laptop",
+    "bed"
+   ],
+   "set": {
+    "type": "room",
+    "style": "generic",
+    "time": "night",
+    "wall": "#4b5a78",
+    "floor": "#7a6650",
+    "window": "right",
+    "ceiling": "plain",
+    "finish": "plain"
+   },
+   "objects": [
+    {
+     "t": "box",
+     "x": -2.6,
+     "y": 1.0,
+     "z": -5.9,
+     "w": 2.8,
+     "h": 1.7,
+     "d": 0.08,
+     "c": "#b98a5a"
+    },
+    {
+     "t": "box",
+     "x": -3.3,
+     "y": 1.5,
+     "z": -5.84,
+     "w": 0.5,
+     "h": 0.65,
+     "d": 0.02,
+     "c": "#f4efe0",
+     "ink": 0
+    },
+    {
+     "t": "box",
+     "x": -2.5,
+     "y": 1.3,
+     "z": -5.84,
+     "w": 0.5,
+     "h": 0.65,
+     "d": 0.02,
+     "c": "#f7f1c8",
+     "ink": 0
+    },
+    {
+     "t": "box",
+     "x": -1.8,
+     "y": 1.6,
+     "z": -5.84,
+     "w": 0.5,
+     "h": 0.65,
+     "d": 0.02,
+     "c": "#f4efe0",
+     "ink": 0
+    },
+    {
+     "t": "furn",
+     "n": "desk",
+     "x": 2.8,
+     "z": -4.9
+    },
+    {
+     "t": "furn",
+     "n": "laptop_open",
+     "x": 2.6,
+     "z": -4.9,
+     "y": 0.76
+    },
+    {
+     "t": "furn",
+     "n": "chair",
+     "x": 2.7,
+     "z": -3.8,
+     "ry": 3.14,
+     "c": "#2f6f8f"
+    },
+    {
+     "t": "furn",
+     "n": "desk_lamp",
+     "x": 3.5,
+     "z": -5.0,
+     "y": 0.76
+    },
+    {
+     "t": "furn",
+     "n": "bed",
+     "x": -5.2,
+     "z": -4.0,
+     "c": "#6f86b8",
+     "c2": "#e8dcc8"
+    },
+    {
+     "t": "furn",
+     "n": "rug",
+     "x": 0.4,
+     "z": -1.5
+    }
+   ]
+  },
+  "printshop": {
+   "place": "cramped print shop after closing: a big photocopier, paper stacks, a cutting table and sticker rolls",
+   "signature": [
+    "photocopier",
+    "paper stacks",
+    "cutting table"
+   ],
+   "set": {
+    "type": "room",
+    "style": "generic",
+    "time": "night",
+    "wall": "#cfd0c4",
+    "floor": "#7d7a74",
+    "window": "left",
+    "ceiling": "panels",
+    "finish": "tiles"
+   },
+   "objects": [
+    {
+     "t": "box",
+     "x": -3.4,
+     "y": 0,
+     "z": -4.6,
+     "w": 1.5,
+     "h": 1.2,
+     "d": 1.0,
+     "c": "#d9dbe0"
+    },
+    {
+     "t": "box",
+     "x": -3.4,
+     "y": 1.2,
+     "z": -4.6,
+     "w": 1.5,
+     "h": 0.12,
+     "d": 1.0,
+     "c": "#44474f"
+    },
+    {
+     "t": "glow",
+     "x": -3.4,
+     "y": 0.95,
+     "z": -4.08,
+     "w": 0.4,
+     "h": 0.18,
+     "c": "#5de08a"
+    },
+    {
+     "t": "box",
+     "x": 0.6,
+     "y": 0,
+     "z": -5.2,
+     "w": 0.9,
+     "h": 1.4,
+     "d": 0.7,
+     "c": "#f1ece0"
+    },
+    {
+     "t": "box",
+     "x": 1.7,
+     "y": 0,
+     "z": -5.2,
+     "w": 0.9,
+     "h": 1.0,
+     "d": 0.7,
+     "c": "#e8e1d0"
+    },
+    {
+     "t": "furn",
+     "n": "folding_table",
+     "x": 3.6,
+     "z": -4.2
+    },
+    {
+     "t": "furn",
+     "n": "computer",
+     "x": 3.6,
+     "z": -4.4,
+     "y": 0.78
+    },
+    {
+     "t": "furn",
+     "n": "chair",
+     "x": 3.6,
+     "z": -3.2,
+     "ry": 3.14,
+     "c": "#555b66"
+    },
+    {
+     "t": "cylinder",
+     "x": -0.6,
+     "y": 0.9,
+     "z": -5.6,
+     "r": 0.12,
+     "h": 0.4,
+     "c": "#e0443a",
+     "rz": 1.5708
+    },
+    {
+     "t": "furn",
+     "n": "shelf_goods",
+     "x": -6.0,
+     "z": -5.3
+    },
+    {
+     "t": "glow",
+     "x": 0.5,
+     "y": 3.0,
+     "z": -5.9,
+     "w": 2.0,
+     "h": 0.4,
+     "c": "#ffd24a"
+    }
+   ]
+  },
+  "diner": {
+   "place": "all-night diner booth: a table with cold coffee, a napkin of phone numbers, a laptop and a neon sign in the window",
+   "signature": [
+    "booth table",
+    "neon sign",
+    "coffee cup",
+    "counter stools"
+   ],
+   "set": {
+    "type": "room",
+    "style": "generic",
+    "time": "night",
+    "wall": "#2f4a4a",
+    "floor": "#4a3a36",
+    "window": "right",
+    "ceiling": "pendants",
+    "finish": "tiles"
+   },
+   "objects": [
+    {
+     "t": "furn",
+     "n": "table",
+     "x": 1.6,
+     "z": -4.2
+    },
+    {
+     "t": "furn",
+     "n": "mug",
+     "x": 1.4,
+     "z": -4.2,
+     "y": 0.76
+    },
+    {
+     "t": "furn",
+     "n": "laptop_open",
+     "x": 2.0,
+     "z": -4.2,
+     "y": 0.76
+    },
+    {
+     "t": "furn",
+     "n": "chair",
+     "x": 1.6,
+     "z": -3.0,
+     "ry": 3.14,
+     "c": "#a8433a"
+    },
+    {
+     "t": "furn",
+     "n": "shop_counter",
+     "x": -3.6,
+     "z": -4.6,
+     "c": "#d8cbb0"
+    },
+    {
+     "t": "cylinder",
+     "x": -4.6,
+     "y": 0,
+     "z": -3.6,
+     "r": 0.22,
+     "h": 0.7,
+     "c": "#a8433a"
+    },
+    {
+     "t": "cylinder",
+     "x": -3.6,
+     "y": 0,
+     "z": -3.6,
+     "r": 0.22,
+     "h": 0.7,
+     "c": "#a8433a"
+    },
+    {
+     "t": "cylinder",
+     "x": -2.6,
+     "y": 0,
+     "z": -3.6,
+     "r": 0.22,
+     "h": 0.7,
+     "c": "#a8433a"
+    },
+    {
+     "t": "glow",
+     "x": 5.2,
+     "y": 2.4,
+     "z": -5.8,
+     "w": 2.4,
+     "h": 0.6,
+     "c": "#ff4f8a"
+    },
+    {
+     "t": "box",
+     "x": 2.4,
+     "y": 0.78,
+     "z": -4.0,
+     "w": 0.28,
+     "h": 0.01,
+     "d": 0.28,
+     "c": "#f4efe0",
+     "ink": 0
+    }
+   ]
+  },
+  "porch": {
+   "place": "front porch of Mrs. Reyes' small house at dusk: two steps, the front door, a doormat, a potted plant and a lit house number",
+   "signature": [
+    "front door",
+    "porch steps",
+    "doormat",
+    "house number"
+   ],
+   "set": {
+    "type": "room",
+    "style": "generic",
+    "time": "dusk",
+    "wall": "#a9b99c",
+    "floor": "#8a7c6a",
+    "window": "none",
+    "ceiling": "plain",
+    "finish": "stripes"
+   },
+   "objects": [
+    {
+     "t": "furn",
+     "n": "door",
+     "x": -3.4,
+     "z": -5.8,
+     "c": "#6b3f2e"
+    },
+    {
+     "t": "box",
+     "x": -3.4,
+     "y": 0,
+     "z": -4.9,
+     "w": 1.6,
+     "h": 0.18,
+     "d": 0.6,
+     "c": "#b0a595"
+    },
+    {
+     "t": "box",
+     "x": -3.4,
+     "y": 0.18,
+     "z": -4.5,
+     "w": 1.6,
+     "h": 0.18,
+     "d": 0.5,
+     "c": "#c0b5a5"
+    },
+    {
+     "t": "box",
+     "x": -3.4,
+     "y": 0.02,
+     "z": -4.0,
+     "w": 1.0,
+     "h": 0.03,
+     "d": 0.6,
+     "c": "#7a3b2a"
+    },
+    {
+     "t": "furn",
+     "n": "plant",
+     "x": 0.4,
+     "z": -5.4
+    },
+    {
+     "t": "furn",
+     "n": "plant",
+     "x": 5.6,
+     "z": -5.4
+    },
+    {
+     "t": "glow",
+     "x": -1.6,
+     "y": 1.9,
+     "z": -5.88,
+     "w": 0.22,
+     "h": 0.22,
+     "c": "#ffe08a"
+    },
+    {
+     "t": "furn",
+     "n": "bench",
+     "x": 3.4,
+     "z": -5.4
+    },
+    {
+     "t": "lamp",
+     "x": 1.8,
+     "z": -5.6,
+     "h": 2.6,
+     "c": "#ffb45a",
+     "I": 16,
+     "dist": 12
+    }
+   ]
+  },
+  "hall": {
+   "place": "front hall of Mrs. Reyes' small house: an empty dog bed, a lead on a hook, a door, a phone on a side table",
+   "signature": [
+    "dog bed",
+    "lead on a hook",
+    "front door",
+    "side table"
+   ],
+   "set": {
+    "type": "room",
+    "style": "generic",
+    "time": "day",
+    "wall": "#e3cfae",
+    "floor": "#9c7a58",
+    "window": "left",
+    "ceiling": "plain",
+    "finish": "wainscot"
+   },
+   "objects": [
+    {
+     "t": "cylinder",
+     "x": -3.4,
+     "y": 0,
+     "z": -3.6,
+     "r": 0.55,
+     "h": 0.16,
+     "c": "#c07a5a"
+    },
+    {
+     "t": "cylinder",
+     "x": -3.4,
+     "y": 0.12,
+     "z": -3.6,
+     "r": 0.38,
+     "h": 0.1,
+     "c": "#8f5238"
+    },
+    {
+     "t": "box",
+     "x": -5.2,
+     "y": 1.5,
+     "z": -5.9,
+     "w": 0.1,
+     "h": 0.1,
+     "d": 0.1,
+     "c": "#555"
+    },
+    {
+     "t": "box",
+     "x": -5.2,
+     "y": 0.9,
+     "z": -5.88,
+     "w": 0.06,
+     "h": 0.9,
+     "d": 0.02,
+     "c": "#c0392b",
+     "ink": 0
+    },
+    {
+     "t": "furn",
+     "n": "door",
+     "x": 4.6,
+     "z": -5.8
+    },
+    {
+     "t": "furn",
+     "n": "coat_rack",
+     "x": 3.0,
+     "z": -5.5
+    },
+    {
+     "t": "furn",
+     "n": "table",
+     "x": 0.2,
+     "z": -4.8,
+     "s": 0.7
+    },
+    {
+     "t": "furn",
+     "n": "frame_photo",
+     "x": 0.2,
+     "z": -5.0,
+     "y": 0.75
+    },
+    {
+     "t": "furn",
+     "n": "shoes",
+     "x": 2.0,
+     "z": -3.2
+    },
+    {
+     "t": "furn",
+     "n": "plant",
+     "x": -6.2,
+     "z": -5.4
+    }
+   ]
+  }
+ },
+ "scenes": [
+  {
+   "id": 1,
+   "title": "Nine posters",
+   "goal": "Mika wants to know why nine posters share one number.",
+   "target_s": 22,
+   "turn": "a stranger answers about a dog she never named",
+   "value": "0",
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "street",
+       "bedroom"
+      ],
+      "mood": "tense",
+      "seed": 1,
+      "actors": [
+       {
+        "k": "mika",
+        "x": 1300
+       }
+      ],
+      "cues": [
+       {
+        "t": "Nine lost dogs on one street. One number.",
+        "at": "street",
+        "on": [
+         "mika"
+        ],
+        "shot": "establish",
+        "emote": "doubt",
+        "hud": {
+         "type": "chip",
+         "text": "9 POSTERS",
+         "pos": "tl"
+        }
+       },
+       {
+        "t": "Mika counted the posters twice. Nine poles, nine faces.",
+        "at": "street",
+        "on": [
+         "mika"
+        ],
+        "shot": "medium",
+        "do": "look:-1"
+       },
+       {
+        "t": "Different dogs. Different owners. The same number at the bottom.",
+        "shot": "insert",
+        "props": [
+         "photo"
+        ],
+        "hud": {
+         "type": "chip",
+         "text": "555-0142",
+         "pos": "tr"
+        }
+       },
+       {
+        "t": "She went home and dialled it, just to see.",
+        "at": "bedroom",
+        "on": [
+         "mika"
+        ],
+        "shot": "wide",
+        "emote": "doubt",
+        "do": [
+         "sit@chair",
+         "phone"
+        ],
+        "props": [
+         "phone"
+        ]
+       },
+       {
+        "t": "A man answered on the first ring.",
+        "shot": "insert",
+        "emote": "surprise",
+        "props": [
+         "phone"
+        ]
+       },
+       {
+        "t": "\u201cThanks for calling about the dog,\u201d he said.",
+        "at": "bedroom",
+        "on": [
+         "mika"
+        ],
+        "shot": "cu",
+        "emote": "fear"
+       },
+       {
+        "t": "Mika hadn't said which one.",
+        "on": [
+         "mika"
+        ],
+        "shot": "cu",
+        "emote": "surprise",
+        "hud": {
+         "type": "title",
+         "text": "WHICH DOG?",
+         "pos": "cc",
+         "t": 0.4,
+         "dur": 1.6
+        }
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "title": "The free poster",
+   "goal": "Mika reads the posters for what they say.",
+   "target_s": 26,
+   "turn": "the same neighbour made every poster, for free",
+   "value": "+",
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "bedroom",
+       "street_day"
+      ],
+      "mood": "tense",
+      "seed": 2,
+      "actors": [
+       {
+        "k": "mika",
+        "x": 1100
+       }
+      ],
+      "cues": [
+       {
+        "t": "She hung up and wrote the number on her hand.",
+        "at": "bedroom",
+        "on": [
+         "mika"
+        ],
+        "shot": "wide",
+        "emote": "think",
+        "do": "think"
+       },
+       {
+        "t": "Next morning she walked the street and read every poster.",
+        "at": "street_day",
+        "on": [
+         "mika"
+        ],
+        "shot": "establish",
+        "do": "walkTo:300"
+       },
+       {
+        "t": "Biscuit. Pepper. Moose. Nine different names.",
+        "shot": "insert",
+        "props": [
+         "photo"
+        ],
+        "hud": {
+         "type": "counter",
+         "from": 0,
+         "to": 9,
+         "label": "names",
+         "pos": "tr",
+         "t": 0.5,
+         "dur": 2.4
+        }
+       },
+       {
+        "t": "Nine dogs gone from one small street in two weeks.",
+        "at": "street_day",
+        "on": [
+         "mika"
+        ],
+        "shot": "wide",
+        "emote": "doubt"
+       },
+       {
+        "t": "Nobody passing by even looked up at them.",
+        "at": "street_day",
+        "on": [
+         "mika"
+        ],
+        "shot": "medium",
+        "do": "look:1"
+       },
+       {
+        "t": "Under each number, one tiny line of print.",
+        "at": "street_day",
+        "on": [
+         "mika"
+        ],
+        "shot": "medium",
+        "do": "bend"
+       },
+       {
+        "t": "Poster made free by a friendly neighbour.",
+        "shot": "insert",
+        "props": [
+         "document"
+        ],
+        "hud": {
+         "type": "chip",
+         "text": "FREE POSTERS",
+         "pos": "tl"
+        },
+        "key": "FREE"
+       },
+       {
+        "t": "Nine owners. One friendly neighbour.",
+        "at": "street_day",
+        "on": [
+         "mika"
+        ],
+        "shot": "cu",
+        "emote": "think"
+       },
+       {
+        "t": "But why would anyone give away posters?",
+        "at": "street_day",
+        "on": [
+         "mika"
+        ],
+        "shot": "medium",
+        "emote": "doubt",
+        "do": "shrug"
+       }
+      ],
+      "crowd": {
+       "n": 5,
+       "x": [
+        0.08,
+        0.92
+       ],
+       "by": [
+        0.6,
+        0.66
+       ],
+       "s": [
+        0.12,
+        0.17
+       ],
+       "seed": 3
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "title": "How the scam worked",
+   "goal": "Dole turns free posters into phone calls.",
+   "target_s": 30,
+   "turn": "every call lands on Dole, and he holds every owner's number",
+   "value": "-",
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "printshop"
+      ],
+      "mood": "tense",
+      "seed": 3,
+      "actors": [
+       {
+        "k": "dole",
+        "x": 1000
+       }
+      ],
+      "cues": [
+       {
+        "t": "Here's how the scam worked.",
+        "at": "printshop",
+        "on": [
+         "dole"
+        ],
+        "shot": "establish",
+        "hud": {
+         "type": "chip",
+         "text": "HOW THE SCAM WORKED",
+         "pos": "tl"
+        }
+       },
+       {
+        "t": "Mr. Dole read the lost-pet pages every morning.",
+        "at": "printshop",
+        "on": [
+         "dole"
+        ],
+        "shot": "medium",
+        "do": [
+         "sit@chair",
+         "type:3"
+        ],
+        "props": [
+         "laptop"
+        ]
+       },
+       {
+        "t": "He wrote to each worried owner. Free posters, no charge.",
+        "shot": "insert",
+        "emote": "smirk",
+        "props": [
+         "envelope"
+        ]
+       },
+       {
+        "t": "They sent back the dog's face and a number. Gladly.",
+        "on": [
+         "dole"
+        ],
+        "shot": "medium",
+        "emote": "smirk",
+        "do": "receive"
+       },
+       {
+        "t": "He printed each poster with his own number.",
+        "shot": "insert",
+        "props": [
+         "document"
+        ],
+        "hud": {
+         "type": "counter",
+         "from": 0,
+         "to": 9,
+         "label": "posters",
+         "pos": "tr",
+         "t": 0.3,
+         "dur": 2.6
+        }
+       },
+       {
+        "t": "Nobody checks the number on a poster. Why would they?",
+        "on": [
+         "dole"
+        ],
+        "shot": "medium",
+        "emote": "smirk"
+       },
+       {
+        "t": "The owners were too busy hoping.",
+        "on": [
+         "dole"
+        ],
+        "shot": "cu",
+        "emote": "smirk"
+       },
+       {
+        "t": "Then he hung them himself, after dark.",
+        "on": [
+         "dole"
+        ],
+        "shot": "wide",
+        "do": "walkTo:-300"
+       },
+       {
+        "t": "Now a stranger who spotted a stray called him, not the owner.",
+        "shot": "insert",
+        "emote": "smirk",
+        "props": [
+         "phone"
+        ]
+       },
+       {
+        "t": "And he kept every owner's number.",
+        "on": [
+         "dole"
+        ],
+        "shot": "cu",
+        "emote": "smirk",
+        "key": "kept"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "title": "The call",
+   "goal": "Mrs. Reyes wants her dog back.",
+   "target_s": 36,
+   "turn": "she pays a fee for a dog that was never found",
+   "value": "+",
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "hall",
+       "diner"
+      ],
+      "mood": "sad",
+      "seed": 4,
+      "actors": [
+       {
+        "k": "reyes",
+        "x": 1000
+       },
+       {
+        "k": "dole",
+        "x": 1500
+       }
+      ],
+      "cues": [
+       {
+        "t": "Mrs. Reyes had waited five days. Nobody had called her.",
+        "at": "hall",
+        "on": [
+         "reyes"
+        ],
+        "shot": "establish",
+        "emote": "sad",
+        "do": "sad",
+        "hud": {
+         "type": "chip",
+         "text": "DAY 5",
+         "pos": "tl"
+        }
+       },
+       {
+        "t": "Her dog, Biscuit, had slipped the gate on Sunday.",
+        "at": "hall",
+        "on": [
+         "reyes"
+        ],
+        "shot": "medium",
+        "emote": "sad"
+       },
+       {
+        "t": "Then her phone rang.",
+        "at": "hall",
+        "shot": "insert",
+        "emote": "surprise",
+        "props": [
+         "phone"
+        ]
+       },
+       {
+        "t": "\u201cMrs. Reyes? I've got your dog. Biscuit, right?\u201d",
+        "who": "dole",
+        "at": "diner",
+        "on": [
+         "dole"
+        ],
+        "shot": "cu",
+        "emote": "smirk",
+        "do": "phone:3"
+       },
+       {
+        "t": "\u201cOh, thank goodness. Is he hurt?\u201d",
+        "who": "reyes",
+        "at": "hall",
+        "on": [
+         "reyes"
+        ],
+        "shot": "cu",
+        "emote": "relief"
+       },
+       {
+        "t": "\u201cFine, fine. The driver needs a fee first.\u201d",
+        "who": "dole",
+        "at": "diner",
+        "on": [
+         "dole"
+        ],
+        "shot": "medium",
+        "emote": "neutral"
+       },
+       {
+        "t": "\u201cHow much?\u201d",
+        "who": "reyes",
+        "at": "hall",
+        "on": [
+         "reyes"
+        ],
+        "shot": "cu",
+        "emote": "worry"
+       },
+       {
+        "t": "\u201cWell, sixty. Send it now. He's there within the hour.\u201d",
+        "who": "dole",
+        "at": "diner",
+        "on": [
+         "dole"
+        ],
+        "shot": "cu",
+        "emote": "smirk",
+        "hud": {
+         "type": "chip",
+         "text": "FEE: 60",
+         "pos": "tr"
+        }
+       },
+       {
+        "t": "Her thumb was on the button before he finished.",
+        "at": "hall",
+        "shot": "insert",
+        "emote": "worry",
+        "props": [
+         "phone"
+        ]
+       },
+       {
+        "t": "The money left her account in two taps.",
+        "at": "hall",
+        "shot": "insert",
+        "props": [
+         "phone"
+        ],
+        "hud": {
+         "type": "screen",
+         "app": "PayNow",
+         "label": "Sent",
+         "value": "60",
+         "trend": "down",
+         "pos": "cc",
+         "t": 0.3,
+         "dur": 2.0
+        }
+       },
+       {
+        "t": "Nobody came within the hour. Nobody came that night.",
+        "at": "hall",
+        "on": [
+         "reyes"
+        ],
+        "shot": "wide",
+        "emote": "sad",
+        "do": "sad"
+       },
+       {
+        "t": "By midnight she was still at the window, watching the road.",
+        "at": "hall",
+        "on": [
+         "reyes"
+        ],
+        "shot": "medium",
+        "emote": "sad"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "title": "Which dog?",
+   "goal": "Mika wants the stranger to name one true thing about the dog.",
+   "target_s": 34,
+   "turn": "the caller cannot describe the collar and hangs up, and Mrs. Reyes learns Biscuit was never found",
+   "value": "-",
+   "shots": [
+    {
+     "sequence": {
+      "type": "dialogue",
+      "setting": "porch",
+      "mood": "tense",
+      "seed": 5,
+      "a": {
+       "k": "reyes",
+       "x": 560
+      },
+      "b": {
+       "k": "mika",
+       "x": 1500
+      },
+      "lines": [
+       {
+        "who": "mika",
+        "t": "Mrs. Reyes? Did a man call about Biscuit?",
+        "emote": "worry",
+        "at": "porch"
+       },
+       {
+        "who": "reyes",
+        "t": "Well, I sent his fee. He never came.",
+        "emote": "sad"
+       },
+       {
+        "who": "mika",
+        "t": "Look, I called that number too. He never asked which dog.",
+        "emote": "doubt"
+       },
+       {
+        "who": "reyes",
+        "t": "But he said Biscuit.",
+        "emote": "doubt"
+       },
+       {
+        "who": "mika",
+        "t": "Only after you said it. Ask him about the collar.",
+        "emote": "think"
+       },
+       {
+        "who": "reyes",
+        "t": "Blue tag. Little bone. Only I'd know that.",
+        "emote": "think"
+       }
+      ]
+     }
+    },
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "porch",
+       "diner"
+      ],
+      "mood": "tense",
+      "seed": 6,
+      "actors": [
+       {
+        "k": "reyes",
+        "x": 900
+       },
+       {
+        "k": "dole",
+        "x": 1500
+       }
+      ],
+      "cues": [
+       {
+        "t": "She called him on speaker.",
+        "at": "porch",
+        "shot": "insert",
+        "do": "phone:3",
+        "props": [
+         "phone"
+        ]
+       },
+       {
+        "t": "He answered fast. He sounded sure. He always sounded sure.",
+        "at": "diner",
+        "on": [
+         "dole"
+        ],
+        "shot": "medium",
+        "emote": "smirk",
+        "do": "phone:3"
+       },
+       {
+        "t": "\u201cWhat colour is Biscuit's collar?\u201d",
+        "who": "reyes",
+        "at": "porch",
+        "on": [
+         "reyes"
+        ],
+        "shot": "cu",
+        "emote": "think"
+       },
+       {
+        "t": "\u201cBrown. Big. Look, I have to go.\u201d",
+        "who": "dole",
+        "at": "diner",
+        "on": [
+         "dole"
+        ],
+        "shot": "cu",
+        "emote": "fear"
+       },
+       {
+        "t": "The line went dead. Then it didn't ring again.",
+        "at": "porch",
+        "shot": "insert",
+        "emote": "sad",
+        "props": [
+         "phone"
+        ]
+       },
+       {
+        "t": "She sat on the step and said nothing.",
+        "at": "porch",
+        "on": [
+         "reyes"
+        ],
+        "shot": "medium",
+        "emote": "sad",
+        "do": "sit@bench"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "title": "The new posters",
+   "goal": "Mika puts the right number back on the street.",
+   "target_s": 32,
+   "turn": "each poster now asks the finder to prove it",
+   "value": "+",
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "street",
+       "porch"
+      ],
+      "mood": "warm",
+      "seed": 7,
+      "actors": [
+       {
+        "k": "mika",
+        "x": 1000
+       },
+       {
+        "k": "reyes",
+        "x": 1500
+       }
+      ],
+      "cues": [
+       {
+        "t": "By dark all nine posters were down.",
+        "at": "street",
+        "on": [
+         "mika"
+        ],
+        "shot": "establish",
+        "do": "reach",
+        "hud": {
+         "type": "counter",
+         "from": 9,
+         "to": 0,
+         "label": "posters",
+         "pos": "tr",
+         "t": 0.4,
+         "dur": 2.4
+        }
+       },
+       {
+        "t": "Mika taped up new ones, each with its owner's own number.",
+        "at": "street",
+        "on": [
+         "mika"
+        ],
+        "shot": "medium",
+        "do": "reach"
+       },
+       {
+        "t": "She knocked on seven doors after that.",
+        "at": "porch",
+        "on": [
+         "mika"
+        ],
+        "shot": "medium",
+        "do": "point"
+       },
+       {
+        "t": "Each owner told the same story. A call, a fee, no dog.",
+        "at": "porch",
+        "on": [
+         "reyes"
+        ],
+        "shot": "medium",
+        "emote": "sad"
+       },
+       {
+        "t": "Seven had sent the fee. A few had sent it twice.",
+        "at": "porch",
+        "on": [
+         "mika"
+        ],
+        "shot": "cu",
+        "emote": "sad",
+        "hud": {
+         "type": "counter",
+         "from": 0,
+         "to": 7,
+         "label": "owners",
+         "pos": "tr",
+         "t": 0.3,
+         "dur": 2.2
+        }
+       },
+       {
+        "t": "Soon after, his number was dead.",
+        "shot": "insert",
+        "emote": "neutral",
+        "props": [
+         "phone"
+        ]
+       },
+       {
+        "t": "Mrs. Reyes added one line to hers.",
+        "at": "porch",
+        "on": [
+         "reyes"
+        ],
+        "shot": "medium",
+        "do": "offer",
+        "props": [
+         "document"
+        ]
+       },
+       {
+        "t": "Tell me the colour of his collar.",
+        "shot": "insert",
+        "props": [
+         "document"
+        ],
+        "key": "collar"
+       },
+       {
+        "t": "Which dog had the man called about? None of them.",
+        "at": "street",
+        "on": [
+         "mika"
+        ],
+        "shot": "cu",
+        "emote": "relief",
+        "do": "phone",
+        "props": [
+         "phone"
+        ]
+       },
+       {
+        "t": "What would only a real finder know about your dog?",
+        "at": "street",
+        "on": [
+         "mika"
+        ],
+        "shot": "wide",
+        "emote": "joy",
+        "do": "wave"
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}
