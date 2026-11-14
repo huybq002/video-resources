@@ -4,7 +4,7 @@ python add_music.py <video.mp4> --spec spec.json [--music FILE | --music auto] [
 auto: picks a track from <library>/library.json whose moods match the spec moods (spec.mood, scene/sequence moods,
 format). The library is owner-curated: only tracks whose licence allows monetised YouTube use (YouTube Audio Library,
 CC0, own purchases). Each entry: {"file": "x.mp3", "moods": ["tense", "mystery"], "license": "...", "credit": "..." | null}.
-No library / no matching track -> prints a note and leaves the video as it is (exit 0).
+No library / no matching track -> the film's own synthesised score (ci/score.py: mood from the spec, chords per scene).
 Writes <video>.music.json with the track and its credit line: put a non-empty credit in the video description.
 """
 import argparse, hashlib, json, pathlib, shutil, subprocess, sys
@@ -41,8 +41,18 @@ def main():
     spec = json.load(open(a.spec, encoding="utf-8")) if a.spec else {}
     if a.music == "auto":
         t = pick(pathlib.Path(a.library), spec)
-        if not t: print(f"music: no licensed track in {a.library}/library.json matches, video left without music"); return
-        track, info = pathlib.Path(a.library) / t["file"], t
+        if t:
+            track, info = pathlib.Path(a.library) / t["file"], t
+        else:
+            # no licensed track: the film gets its own synthesised score (ci/score.py), never silence (2026-11-14)
+            sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent)); import score as S, wave
+            Dv = dur(video); x = S.score(spec, Dv, S.sections_of(spec))
+            track = video.with_suffix(".score.wav")
+            with wave.open(str(track), "wb") as w:
+                w.setnchannels(1); w.setsampwidth(2); w.setframerate(S.SR); w.writeframes((x.clip(-1, 1) * 32767).astype("int16").tobytes())
+            info = {"file": track.name, "license": "original, synthesised for this film (ci/score.py)", "credit": None,
+                    "mood": S.mood_of(spec)}
+            a.level = max(a.level, 0.32)     # the score is mixed quieter than a mastered track, so it gets more gain
     else:
         track, info = pathlib.Path(a.music), {"file": a.music, "license": "given on the command line", "credit": None}
     D = dur(video); fo = max(0.0, D - 3.0)
@@ -57,6 +67,7 @@ def main():
     if r.returncode:   # music is optional: keep the video as it was
         out.unlink(missing_ok=True); print(f"music: ffmpeg failed on {track.name}, video left without music"); return
     if not a.out: shutil.move(str(out), str(video)); out = video
+    if str(track).endswith(".score.wav"): pathlib.Path(track).unlink(missing_ok=True)
     (out.parent / (out.stem + ".music.json")).write_text(json.dumps(info, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"music: {info['file']} under {out.name} ({info.get('license')}; credit: {info.get('credit') or 'none needed'})")
 

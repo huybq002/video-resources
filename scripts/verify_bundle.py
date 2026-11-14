@@ -106,6 +106,14 @@ def check_video(video, spec, minutes, allow_silent):
     want = (1080, 1920) if spec.get("aspect") == "9:16" else (1920, 1080)
     if (w, h) != want: err(f"frame size {w}x{h}, expected {want[0]}x{want[1]}")
     notes.append(f"video: {dur:.1f}s, streams={kinds}, {w}x{h}")
+    # the director's pass on the finished film (ci/director_pass.py): dead air, flat mix, a frozen picture, black frames.
+    # (video 007, 2026-11-14: 44 % of the soundtrack was digital silence and characters hung on screen)
+    dp = pathlib.Path(__file__).resolve().parent.parent / ".claude" / "skills" / "code2video-resource-generator" / "ci" / "director_pass.py"
+    if dp.exists() and shutil.which("ffmpeg") and not allow_silent:
+        r = subprocess.run([sys.executable, str(dp), str(video), "--out", str(video.parent / "director_pass")], capture_output=True, text=True, encoding="utf-8", errors="replace")
+        for line in r.stdout.splitlines():
+            if line.startswith("PROBLEM:"): err(line[len("PROBLEM: "):])
+            elif line.startswith("director_pass:"): notes.append(line)
     # the voice must not be rushed or cut (video 005, 2026-11-12: lines read at 4-5 words/s, words swallowed)
     fitf = video.parent / "voiceover_fit.json"
     if fitf.exists():

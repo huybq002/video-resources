@@ -80,7 +80,21 @@ def _negated(t, m, noun=False):
         return True
     if re.search(r"\b(used to|could|would|should|might|wants? to|tries to|plans? to|dreams? of)\W*$", pre, re.I):
         return True
+    # the viewer is the subject ("Would you run it back?", "Could you sleep?"): a question to the audience, not an action
+    if re.search(r"\b(you|we)\s+(\w+\s+)?$", pre, re.I):
+        return True
+    # the subject is a THING, not a person: "the sun goes down", "the price rises", "time runs out", "the bus leaves"
+    m2 = re.search(r"\b(the|a|an|his|her|their|its|my|your)\s+([a-z]+)\s*$", pre, re.I)
+    if m2 and m2.group(2).lower() not in PEOPLE:
+        return True
+    if re.search(r"\b(time|money|sun|moon|night|day|rain|snow|wind|price|clock|car|bus|train|music|light|water|news)\s*$", pre, re.I):
+        return True
     return False
+
+
+PEOPLE = {"man", "woman", "boy", "girl", "kid", "child", "boss", "mom", "mum", "dad", "mother", "father", "friend", "teacher",
+          "student", "doctor", "nurse", "cashier", "waiter", "driver", "neighbour", "neighbor", "stranger", "guard", "officer",
+          "sister", "brother", "wife", "husband", "baby", "colleague", "coworker", "owner", "customer", "people", "crowd", "team"}
 
 
 def _first(pats, text):
@@ -272,7 +286,8 @@ def beats(spec, log):
             for pat, need in PROP_NEEDS:
                 m = re.search(pat, t, re.I)
                 if m and not _negated(t, m, noun=True):        # a prop is a noun: "a message" is on screen
-                    p = next((x for x in sorted(need) if x in PROPS), None)
+                    pref = ["clock", "phone", "cash", "wallet", "document", "envelope", "key", "photo", "coffee"]
+                    p = next((x for x in pref + sorted(need) if x in need and x in PROPS), None)
                     if p:
                         c["props"] = [p]; n["props"] += 1
                     break

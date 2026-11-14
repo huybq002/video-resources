@@ -130,6 +130,27 @@ def _hair(style, color, pid, side=False):
                 f'<path d="M110 144 Q116 84 200 80 Q284 84 290 144 Q272 106 200 102 Q128 106 110 144 Z" fill="{color}" stroke="{INK}" stroke-width="5" stroke-linejoin="round"/>')
     return ""
 
+def _hair_back(style, color, pid):
+    """the head seen from behind: hair over the crown and the back, the skin of the nape and ears below it.
+    (Before 2026-11-14 the whole back head was filled with the hair colour: a black disc in every over-the-shoulder
+    shot, which read as a face with no eyes.)"""
+    hl = light(color, .3)
+    if style == "none":
+        return ""
+    if style == "long":
+        cap = (f'<path d="M100 186 C92 104 140 72 200 72 C260 72 308 104 300 186 L306 318 Q252 336 200 330 Q148 336 94 318 Z" '
+               f'fill="{color}" stroke="{INK}" stroke-width="5" stroke-linejoin="round"/>')
+    else:
+        low = {"short": 214, "tuft": 210, "spiky": 214, "bun": 226}.get(style, 214)
+        cap = (f'<path d="M104 184 C100 112 138 76 200 76 C262 76 300 112 296 184 Q290 {low - 10} 262 {low} Q200 {low + 22} 138 {low} '
+               f'Q110 {low - 10} 104 184 Z" fill="{color}" stroke="{INK}" stroke-width="5" stroke-linejoin="round"/>')
+        if style == "spiky":
+            cap += f'<path d="M120 112 L132 82 L150 104 L170 72 L190 100 L212 70 L230 100 L254 78 L266 108" fill="none" stroke="{INK}" stroke-width="5" stroke-linejoin="round"/>'
+    strands = (f'<path d="M168 96 Q160 150 166 196 M232 96 Q240 150 234 196" stroke="{hl}" stroke-width="4" fill="none" opacity=".5"/>')
+    bun = f'<circle cx="200" cy="74" r="32" fill="{color}" stroke="{INK}" stroke-width="5"/><path d="M182 66 Q200 54 218 66" stroke="{hl}" stroke-width="4" fill="none" opacity=".6"/>' if style == "bun" else ""
+    return cap + strands + bun
+
+
 def _hat(kind, color):
     if kind == "fedora":
         return (f'<path d="M100 128 Q200 98 300 128 L294 108 Q200 34 106 108 Z" fill="{color}" stroke="{INK}" stroke-width="5" stroke-linejoin="round"/>'
@@ -410,9 +431,10 @@ def figure(pid, gid, c, view="front"):
         head_wrap_id = ("headsway", "head")
     elif back:
         style = c.get("hair_style", "none"); hc = c.get("hair", INK) if style != "none" else sk
-        head = (f'<path id="{pid}-head-shape" d="M200 76 C264 72 300 114 298 178 C296 240 256 282 200 280 C144 282 104 240 102 178 C100 114 136 72 200 76 Z" fill="{hc if style != "none" else "url(#" + gid + "-skinG)"}" stroke="{INK}" stroke-width="6" stroke-linejoin="round"/>'
+        head = (f'<path id="{pid}-head-shape" d="M200 76 C264 72 300 114 298 178 C296 240 256 282 200 280 C144 282 104 240 102 178 C100 114 136 72 200 76 Z" fill="url(#{gid}-skinG)" stroke="{INK}" stroke-width="5" stroke-linejoin="round"/>'
                 f'<ellipse id="{pid}-ear-l" cx="102" cy="190" rx="9" ry="16" fill="{sk}" stroke="{INK}" stroke-width="4"/><ellipse id="{pid}-ear-r" cx="298" cy="190" rx="9" ry="16" fill="{sk}" stroke="{INK}" stroke-width="4"/>'
-                + (_hair(style, hc, pid) if style != "none" else "") + _hat(c.get("hat", "none"), c.get("hat_color", "#3a3f55")))
+                f'<path d="M170 262 Q200 274 230 262" stroke="{INK}" stroke-width="3" fill="none" opacity=".25"/>'
+                + _hair_back(style, hc, pid) + _hat(c.get("hat", "none"), c.get("hat_color", "#3a3f55")))
     else:
         head = (f'<g id="{pid}-ears"><path id="{pid}-ear-l" d="M100 190 Q96 190 100 190" fill="none"/><path id="{pid}-ear-r" d="M300 190 Q304 190 300 190" fill="none"/></g>'
                 f'<path id="{pid}-head-shape" d="M200 74 C268 70 304 114 302 178 C300 242 258 284 200 282 C142 284 100 242 98 178 C96 114 132 70 200 74 Z" fill="url(#{gid}-skinG)" stroke="{INK}" stroke-width="4.5" stroke-linejoin="round"/>'

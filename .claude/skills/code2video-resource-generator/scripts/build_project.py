@@ -42,6 +42,10 @@ def main():
                     lp = bg.parent / f"bg_{setting}{suf}.png"
                     if lp.exists(): shutil.copy(lp, assets / lp.name)
           if True:
+            for ch_ in sh.get("chars", []):     # objects carried in a hand (drawn inside the hand) need their drawing too
+                it_ = ch_.get("item")
+                if it_ and it_ not in ("phone", "cup", "coffee") and (SKILL / "assets/props" / f"{it_}.svg").exists():
+                    (assets / "props").mkdir(exist_ok=True); shutil.copy(SKILL / "assets/props" / f"{it_}.svg", assets / "props" / f"{it_}.svg")
             for p in sh.get("props", []):
                 # the words writers use for the objects we draw (a missing alias used to stop the build)
                 p["id"] = {"money": "cash", "cup": "coffee", "mug": "coffee", "tea": "coffee", "keys": "key", "letter": "envelope", "mail": "envelope",
@@ -86,6 +90,10 @@ def main():
             if item == "phone":     # big enough to read at wide-shot scale
                 g = (f'<rect x="{x - 17:.0f}" y="{y - 52:.0f}" width="34" height="60" rx="7" fill="#2b2f3a" stroke="#15121b" stroke-width="4"/>'
                      f'<rect x="{x - 11:.0f}" y="{y - 45:.0f}" width="22" height="42" rx="3" fill="#8fd3ff"/>')
+            elif item not in ("cup", "coffee"):   # any other held object: its prop drawing, gripped at the hand
+                sz = {"shopping_bag": 120, "gift": 110, "briefcase": 120, "document": 95, "envelope": 85, "book": 95, "wallet": 70, "cash": 80, "photo": 80, "key": 50, "card": 60}.get(item, 90)
+                hang = item in ("shopping_bag", "briefcase")          # carried by the handle: hangs below the hand
+                g = f'<image href="assets/props/{item}.svg" x="{x - sz / 2:.0f}" y="{(y - 14) if hang else (y - sz * 0.62):.0f}" width="{sz}" height="{sz}"/>'
             else:
                 g = (f'<path d="M{x - 21:.0f} {y - 50:.0f} L{x + 21:.0f} {y - 50:.0f} L{x + 16:.0f} {y + 6:.0f} L{x - 16:.0f} {y + 6:.0f} Z" fill="#f4efe0" stroke="#15121b" stroke-width="4"/>'
                      f'<rect x="{x - 19:.0f}" y="{y - 34:.0f}" width="38" height="14" fill="#b0623d"/>'
@@ -170,7 +178,7 @@ def main():
             for b in mains[i + 1:]:
                 if not clash(a, b):
                     continue
-                free = [c for c in (a, b) if not c.get("hold") and not c.get("path") and c["k"] != fk]
+                free = [c for c in (a, b) if not c.get("hold") and not c.get("path") and c["k"] != fk]                     or [c for c in (a, b) if not c.get("hold") and not c.get("path")]   # the other one is seated: the focus person steps aside (camera follows)
                 if not free:
                     continue
                 m = max(free, key=lambda c: c.get("by", 0)); o = b if m is a else a      # the nearer one moves
@@ -181,6 +189,12 @@ def main():
                 m["x"] = round(max(W * .07, min(W * .93, nx)), 1)
                 if m.get("face") or m.get("flip") is not None:
                     m["face"] = 1 if o.get("x", 0) > m["x"] else -1 if m.get("face") else m.get("face")
+        for c in mains:   # whoever is turned to someone faces where that person really ended up (after pavement/declutter moves)
+            if c.get("face") in (1, -1) and not c.get("hold") and not c.get("back"):
+                others = [o for o in mains if o is not c]
+                if others:
+                    o = min(others, key=lambda o: abs(o.get("x", 0) - c.get("x", 0)))
+                    if abs(o.get("x", 0) - c.get("x", 0)) > 2: c["face"] = 1 if o.get("x", 0) > c.get("x", 0) else -1
         keep = []
         for c in chars:
             if c.get("extra") and any(ov(rect(c), rect(m)) > 0.12 for m in mains):
@@ -196,7 +210,7 @@ def main():
         A = anchors_of(sh.get("setting"))
         if not A:
             return sh
-        sh = dict(sh); chars = []
+        sh = dict(sh); chars = []; pave_lock = None   # (side, y, x): the first main character's spot on the pavement
         for ch in sh.get("chars", []):
             ch = dict(ch); an = ch.get("anchor"); cc = cast.get(ch["k"], {})
             if an:
@@ -288,9 +302,32 @@ def main():
                 # only pavement that is ON screen (in 9:16 the pavement at the hero's depth can lie outside the frame:
                 # then the hero walks back along it to where it is visible, instead of being snapped out of the picture)
                 rows = [r for r in A["_pave"] if W * 0.1 < r[1] + (40 if r[2] < 0 else -40) < W * 0.9 and r[0] < H * 0.95]
-                if rows:
+                if rows and pave_lock:
+                    # LOGIC: people in one shot of a street are on the same pavement, not across the road from each other
+                    side, y0, x0 = pave_lock; pp0 = AN.ppm_at_y(A, y0) or 120
+                    rel = 1 if ch.get("x", W / 2) >= x0 else -1        # keep who-is-left-of-whom from the staging
+                    dest = x0 + rel * 0.85 * pp0                        # 0.85 m: side by side on the pavement (3.4 m wide)
+                    if not (W * 0.06 < dest < W * 0.94): rel = -rel; dest = x0 + rel * 0.85 * pp0
+                    for a_ in ch.get("acts", []):                       # a walk on this line ends beside them, coming from outside
+                        if a_[1] == "walkTo" and isinstance(a_[2], (int, float)) and a_[2]:
+                            a_[2] = round(-rel * min(abs(a_[2]), 0.18 * W), 1)
+                    start = dest - sum(a_[2] for a_ in ch.get("acts", []) if a_[1] == "walkTo" and isinstance(a_[2], (int, float)))
+                    dest = start
+                    ch["x"] = round(max(W * 0.05, min(W * 0.95, dest)), 1); ch["by"] = round(y0, 1)
+                elif rows:
                     best = min(rows, key=lambda r: 3 * abs(r[0] - by_) / H + abs(r[1] - ch.get("x", W / 2)) / W)
                     ch["x"] = round(best[1] + (40 if best[2] < 0 else -40), 1); ch["by"] = round(best[0], 1)
+                    pave_lock = (best[2], best[0], ch["x"])
+            if not an and not ch.get("extra") and not any(a_[1] in ("walkTo", "run") for a_ in ch.get("acts", [])):
+                # LOGIC: nobody stands INSIDE a bed / table / sofa / counter: step out to the nearer free side of it
+                for nm_, rad_ in (("bed", .9), ("table", .55), ("desk", .6), ("sofa", .8), ("kitchen_counter", .5), ("shop_counter", .55), ("bench", .7)):
+                    for f_ in A.get(nm_, []):
+                        fl_ = f_.get("floor"); pp_ = f_.get("floor_ppm") or 100
+                        if fl_ and abs(fl_[0] - ch.get("x", 0)) < rad_ * pp_ * 0.6 and abs(fl_[1] - ch.get("by", 0)) < 0.25 * pp_:
+                            sd_ = 1 if ch.get("x", 0) >= fl_[0] else -1
+                            nx_ = fl_[0] + sd_ * (rad_ * pp_ * 0.6 + 0.35 * pp_)
+                            if not (W * 0.05 < nx_ < W * 0.95): nx_ = fl_[0] - sd_ * (rad_ * pp_ * 0.6 + 0.35 * pp_)
+                            ch["x"] = round(nx_, 1)
             if not an:   # standing on the floor: the set decides the size (feet lower on screen = nearer = bigger)
                 pp = AN.ppm_at_y(A, ch.get("by", 900))
                 if pp and ch.get("by", 900) < H * 0.97:
@@ -341,6 +378,65 @@ def main():
         sh["props"] = props
         return add_extras(sh, A, dur)
 
+    # ---- sound effects: one cue per visible beat (absolute seconds). Footsteps follow walks, keys follow typing,
+    # the keyword gets a hit, a reaction its sting/sparkle/plink, a transition its whoosh, the power moment a riser+impact.
+    sfx_cues = []; debug_shots = []   # debug_shots -> assets/shots_debug.json for scripts/logic_check.py
+    REACT_SFX = {"fear": "sting", "surprise": "sting", "panic": "sting", "joy": "sparkle", "cry": "plink", "sad": "plink", "anger": "thud"}
+    OV_SFX = {"word": ("hit", 1.0), "burst": ("pop", .9), "chip": ("tick", .7), "screen": ("blip", .8), "graph": ("rise", .8),
+              "title": ("swoosh", .7), "bubble": ("pop", .6), "ripple": ("impact", 1.0), "flash": ("flash", .8), "speedlines": ("whoosh", .7)}
+
+    def sfx_of(d, off):
+        out_ = []; t0_ = d["t0"]; T = lambda x: round(off + x, 3)
+        tr_ = d.get("trans")
+        if not d.get("first"):
+            if tr_ == "whip": out_.append({"t": T(t0_ - 0.12), "name": "whoosh", "gain": 1.0})
+            elif tr_ == "zoom": out_.append({"t": T(t0_ - 0.05), "name": "swoosh", "gain": 0.9})
+            elif tr_ == "flash": out_.append({"t": T(t0_), "name": "flash", "gain": 0.8})
+        if any(o["type"] == "ripple" for o in d.get("overlays", [])):
+            out_.append({"t": T(max(0.0, t0_ - 1.1)), "name": "riser", "gain": 0.7})
+        for o in d.get("overlays", []):
+            if o["type"] in OV_SFX:
+                nm, g = OV_SFX[o["type"]]; out_.append({"t": T(t0_ + o.get("t", 0)), "name": nm, "gain": g})
+            elif o["type"] == "counter":
+                n_ = max(3, int((o.get("dur", 2) - 0.9) / 0.09))
+                out_ += [{"t": T(t0_ + o.get("t", 0) + 0.25 + i * 0.09 * (1 + i / n_)), "name": "tick", "gain": 0.5} for i in range(n_)]
+            elif o["type"] == "clock":
+                out_ += [{"t": T(t0_ + o.get("t", 0) + 0.3 + i * 0.5), "name": "tick", "gain": 0.8} for i in range(3)]
+        for c in d.get("chars", []):
+            g_ = 0.45 if c.get("extra") else 1.0
+            if c.get("extra") and not c.get("path"): continue
+            if c.get("path"):                                   # an extra walking through: quiet steps
+                p_ = c["path"]; k_ = 0; s_ = 0.2
+                while s_ < min(p_.get("d", 3), d["t1"] - t0_) and k_ < 10: out_.append({"t": T(t0_ + s_), "name": "step", "gain": 0.25}); s_ += 0.46; k_ += 1
+                continue
+            if c.get("enter") is not None:
+                Dw = max(1.8, abs(c["enter"]) / 230); s_ = 0.3
+                while s_ < Dw: out_.append({"t": T(t0_ + s_), "name": "step", "gain": 0.42 * g_}); s_ += 0.46
+            for a_ in c.get("acts", []):
+                at = t0_ + a_[0]; nm = a_[1]
+                if nm in ("walkTo", "run") and isinstance(a_[2], (int, float)):
+                    dd = (a_[3] if len(a_) > 3 and a_[3] else max(1, abs(a_[2]) / (220 if nm == "walkTo" else 520)))
+                    step = 0.46 if nm == "walkTo" else 0.26; s_ = 0.25
+                    while s_ < dd: out_.append({"t": T(at + s_), "name": "step", "gain": 0.42 * g_}); s_ += step
+                elif nm == "walk":
+                    for i in range(int(a_[2] if len(a_) > 2 and a_[2] else 4)): out_.append({"t": T(at + i * 0.46), "name": "step", "gain": 0.42})
+                elif nm in ("type", "text"):
+                    D_ = a_[2] if len(a_) > 2 and isinstance(a_[2], (int, float)) else 2.4; s_ = 0.3; i = 0
+                    while s_ < D_ and i < 30: out_.append({"t": T(at + s_), "name": "key", "gain": 0.7 if nm == "type" else 0.35}); s_ += 0.13 + 0.07 * ((i * 7) % 3); i += 1
+                elif nm == "react" and len(a_) > 2 and a_[2] in REACT_SFX and not c.get("extra"):
+                    out_.append({"t": T(at + 0.08), "name": REACT_SFX[a_[2]], "gain": 0.9})
+                elif nm in ("jump", "cheer"): out_.append({"t": T(at + 0.05), "name": "boing", "gain": 0.6})
+                elif nm in ("fall", "stamp"): out_.append({"t": T(at + 0.35), "name": "thud", "gain": 0.9})
+                elif nm == "throw": out_.append({"t": T(at + 0.3), "name": "whoosh", "gain": 0.6})
+                elif nm == "pickup": out_.append({"t": T(at + 0.4), "name": "tap", "gain": 0.6})
+                elif nm == "idea": out_.append({"t": T(at), "name": "sparkle", "gain": 0.8})
+        for p_ in d.get("props", []):
+            m_ = p_.get("mode", "drop")
+            if m_ == "pop": out_.append({"t": T(t0_ + p_.get("t", 0)), "name": "pop", "gain": 0.7})
+            elif m_ == "place": out_.append({"t": T(t0_ + p_.get("t", 0) + 0.5), "name": "tap", "gain": 0.8})
+            elif m_ == "drop": out_.append({"t": T(t0_ + p_.get("t", 0) + 0.3), "name": "bounce", "gain": 0.6})
+        return [c for c in out_ if c["t"] >= 0]
+
     for sc in spec["scenes"]:
         n = sc["id"]; tsc = sc_by[n]; s0 = tsc["startMs"]; dur = tsc["sceneDurationMs"] / 1000; cid = f"scene-{n}"
         state["use"] = None
@@ -367,10 +463,12 @@ def main():
                 w, h = 400 * s, 800 * s; left, top = ch["x"] - w / 2, ch.get("by", 900) - 782 * s
                 flip = ("transform:scaleX(-1);" if ch.get("flip") else "") + ((f"filter:drop-shadow(-3px -2px 0 {_rim_col(sh.get('setting'))}) drop-shadow(0 0 5px rgba(255,190,130,.25));") if (ch.get("glow") or cast[ch["k"]].get("glow") or (spec.get("rim", True) and not ch.get("extra"))) else "")
                 if not ch.get("extra") and (sh.get("focus") or {}).get("k") not in (None, ch["k"]) and float((sh.get("focus") or {}).get("zoom", 1) or 1) >= (1.6 if H > W else 2.2):
-                    flip += "filter:blur(3px) brightness(.92);"   # the other person in a close-up is a soft foreground shape (reference framing)
+                    # the other person in a close-up stays SHARP (owner 2026-11-14: a blurred face reads as a face with no
+                    # eyes); a little darker so the eye still goes to the one in focus
+                    flip += "filter:brightness(.9) saturate(.9);"
                 if ch.get("extra"):   # background people sit back; in a medium/close shot they fall out of focus (reference depth of field)
                     zf_ = float((sh.get("focus") or {}).get("zoom", 1) or 1)
-                    flip += f"filter:saturate(.8) brightness(.96){' blur(%.1fpx)' % min(5, (zf_ - 1.3) * 4) if zf_ > 1.4 else ''};"
+                    flip += f"filter:saturate(.8) brightness(.96){' blur(%.1fpx)' % min(1.2, (zf_ - 1.3) * 1.5) if zf_ > 1.6 else ''};"
                 acts_ = ch.get("acts", [])
                 views_ = ["f"] + (["s"] if (ch.get("enter") is not None or ch.get("hold") == "sit" or ch.get("face") or (ch.get("path") or {}).get("view") == "s" or any(a_[1] in ("walkTo", "sit", "turn") or (a_[1] == "view" and a_[2] in ("side", "s")) for a_ in acts_)) else []) \
                                  + (["b"] if (ch.get("back") or ch.get("holdDir") == "b" or (ch.get("path") or {}).get("view") == "b" or any(a_[1] == "view" and a_[2] in ("back", "b") for a_ in acts_)) else [])
@@ -408,7 +506,8 @@ def main():
                                          z=int(ch.get('by', 900)) + (2000 if not ch.get('extra') and ch.get('by', 900) > H * 1.0 else 0) + 1))
                 chars_data.append(dict(k=ch["k"], cid=ccid, acts=ch.get("acts", []), enter=ch.get("enter"), flip=bool(ch.get("flip")), ext=ext_,
                                        hold=ch.get("hold"), holdDir=ch.get("holdDir"), seatDrop=ch.get("seatDrop"), shinK=ch.get("shinK"), awake=ch.get("awake", True), face=ch.get("face"),
-                                       path=ch.get("path"), back=ch.get("back"), extra=ch.get("extra")))
+                                       path=ch.get("path"), back=ch.get("back"), extra=ch.get("extra"),
+                                       x=round(ch.get("x", 0), 1), by=round(ch.get("by", 0), 1), s=ch.get("s", 0.8), item=ch.get("item")))
             chars_html = pane_chars_html[None] if None in pane_chars_html else []
             props_html, props_data = [], []
             for pi, p in enumerate(sh.get("props", [])):
@@ -467,7 +566,16 @@ def main():
                 elif ty == "word":   # the spoken keyword, big and hand-lettered, slammed over the picture (reference shorts)
                     col_ = o.get("color") or ["#e8402f", "#ffd23a", "#3fc46e", "#4fb3ff", "#ff7a3d"][oi % 5]
                     inner = f"<span style='color:{col_}'>{html.escape(str(o['text']).upper())}</span>"
-                elif ty in ("bubble", "title"): inner = "".join(f"<span class='ch'>{html.escape(ch)}</span>" for ch in o["text"])
+                elif ty in ("bubble", "title"):
+                    # letters typed one by one, but a line may only break BETWEEN words (2026-11-14: one span per letter let
+                    # the title break inside a word, "THE BALANCE THAT NEVE" + the rest off screen), and a long title
+                    # gets a smaller size so it stays on at most two lines inside the frame
+                    inner = " ".join("<span class='w' style='white-space:nowrap;display:inline-block'>"
+                                     + "".join(f"<span class='ch'>{html.escape(ch)}</span>" for ch in word_) + "</span>"
+                                     for word_ in str(o["text"]).split())
+                    if ty == "title":
+                        n_ = len(str(o["text"])); fs_ = 104 if n_ <= 16 else max(56, int(104 * 16 / n_ * (1.6 if n_ > 24 else 1.0)))
+                        o = dict(o, style=(o.get("style") or "") + f"font-size:{min(104, fs_) * (0.8 if H > W else 1):.0f}px;")
                 elif ty == "chain":   # EYES -> BRAIN -> MUSCLES: a cause chain spelled out word by word
                     its = [html.escape(str(x)) for x in o.get("items", [])]
                     inner = "<span class='ch arrow'> &#8594; </span>".join(f"<span class='ch'>{x}</span>" for x in its)
@@ -515,7 +623,7 @@ def main():
                 elif "x" in o:   # absolute centre placement
                     ov_html.append(f"<div class='ovabs' style='left:{o['x']}px;top:{o['y']}px'><div id='{oid}' class='{cls}' style='opacity:0'>{inner}</div></div>")
                 else:
-                    ov_html.append(f"<div class='ovw' style='top:{top_css};justify-content:{COL[pos[1]]}'><div id='{oid}' class='{cls}' style='opacity:0'>{inner}</div></div>")
+                    ov_html.append(f"<div class='ovw' style='top:{top_css};justify-content:{COL[pos[1]]}'><div id='{oid}' class='{cls}' style='opacity:0;{o.get('style', '')}'>{inner}</div></div>")
                 extra = {"from": o.get("from", 0), "to": o.get("to", 0)} if ty == "counter" else {}
                 ov_data.append(dict(id=oid, type=ty, t=o.get("t", 0), dur=o.get("dur", 3), abs=("x" in o), **extra))
             rain = "".join(f"<div class='rain' style='left:{(i*97)%{W+40}-20}px;height:{70+(i*13)%60}px;opacity:0'></div>" for i in range(70)) if sh.get("rain") else ""
@@ -551,8 +659,12 @@ def main():
                 # 9:16 wide: the tall frame was 40 % empty ceiling. Frame the people instead: a gentle zoom on the group,
                 # their heads a little above the middle, the room still around them (reference shorts)
                 lead = max(mains_, key=lambda c: c.get("s", .8))
-                gx = sum(c["x"] for c in mains_) / len(mains_)
-                foc = {"k": lead["k"], "zoom": 1.32, "to": 1.4, "dx": round(gx - lead["x"], 1), "target_y": int(H * 0.5)}
+                xs = []   # where everyone stands AND where their walk/run ends: the frame must hold the whole move
+                for c in mains_:
+                    xs.append(c["x"]); xs.append(c["x"] + sum(a_[2] for a_ in c.get("acts", []) if a_[1] in ("walkTo", "run") and isinstance(a_[2], (int, float))))
+                gx = (min(xs) + max(xs)) / 2; span = max(xs) - min(xs) + 260 * lead.get("s", .8)
+                z_ = max(1.0, min(1.32, W * 0.92 / max(1, span)))
+                foc = {"k": lead["k"], "zoom": round(z_, 2), "to": round(z_ * 1.05, 2), "dx": round(gx - lead["x"], 1), "target_y": int(H * 0.5)}
             if foc and not sh.get("split"):   # zoom on a character's head (medium close-up 1.8, close-up 2.6, extreme 3.6)
                 chf = next(x for x in sh["chars"] if x["k"] == foc["k"]); sf = chf.get("s", 0.8)
                 hx = chf["x"] + foc.get("dx", 0); hy = chf.get("by", 900) - 782 * sf + 176 * sf + foc.get("dy", 0)
@@ -563,7 +675,9 @@ def main():
                 Z0 = foc.get("zoom", 2.4); Z1 = foc.get("to", round(Z0 * 1.07, 3))
                 _zm = max(1.0, min(Z0, Z1)); hx = min(max(hx, W / (2 * _zm)), W - W / (2 * _zm))   # never pan past the picture's edge (black bar)
                 tgt = foc.get("target_y", int(H * 0.44))
-                kx = lambda Z: round(-Z * (hx - W / 2), 1); ky = lambda Z: round(tgt - 0.62 * H - Z * (hy - 0.62 * H), 1)
+                kx = lambda Z: round(-Z * (hx - W / 2), 1)
+                # never push the picture past its top/bottom edge either (a black band under a far, high subject)
+                ky = lambda Z: round(min(0.62 * H * (Z - 1), max(H - 0.62 * H - Z * (H - 0.62 * H), tgt - 0.62 * H - Z * (hy - 0.62 * H))), 1)
                 cam = [Z0, kx(Z0), ky(Z0), Z1, kx(Z1), ky(Z1)]
             panes_data = None
             if sh.get("split"):
@@ -619,6 +733,11 @@ def main():
             for key in ("shake", "rain", "flash", "sway"):
                 if key in sh: d[key] = sh[key]
             shots_data.append(d); prev = dom
+            debug_shots.append(dict(scene=n, dom=dom, t0=d["t0"], t1=d["t1"], setting=sh.get("setting"), focus=sh.get("focus"), cam=cam,
+                                    share=bool(sh.get("share")), cues=[cues[i].get("text", "") for i in cue_ids],
+                                    chars=[{k_: c_.get(k_) for k_ in ("k", "x", "by", "s", "hold", "holdDir", "face", "flip", "back", "extra", "path", "acts", "item", "enter")} for c_ in chars_data],
+                                    props=[{k_: p_.get(k_) for k_ in ("id", "x", "y", "mode", "at", "hand")} for p_ in sh.get("props", [])]))
+            if spec.get("sfx", True) is not False: sfx_cues.extend(sfx_of(d, s0 / 1000.0))
         for idx in range(tsc["cueRange"][0], tsc["cueRange"][1] + 1):
             c = cues[idx]
             ct0 = (c["startMs"] - s0) / 1000; ct1 = (c["endMs"] - s0) / 1000; islast = idx == tsc["cueRange"][1]
@@ -724,6 +843,23 @@ def main():
 </html>
 """
     (out / "index.html").write_text(index, encoding="utf-8")
+    (assets / "shots_debug.json").write_text(json.dumps({"W": W, "H": H, "shots": debug_shots}, ensure_ascii=False), encoding="utf-8")
+    if spec.get("sfx", True) is not False:   # sound effects on the picture's beats (ci/add_sfx.py mixes them after the render)
+        # one sound per beat: a cluster keeps its strongest effect (the power moment = riser + impact + the keyword hit,
+        # not seven sounds at once); a reaction repeated on the second angle of the same line is not heard twice
+        PRIO = ["impact", "hit", "sting", "whoosh", "swoosh", "flash", "sparkle", "boing", "thud", "bounce", "plink", "pop", "blip", "rise", "tap", "riser"]
+        GAP = {"step": 0.08, "key": 0.08, "tick": 0.08, "sting": 3.5, "sparkle": 3.5, "plink": 3.5}
+        seen, keep = {}, []
+        for c in sorted(sfx_cues, key=lambda c: c["t"]):
+            if c["t"] - seen.get(c["name"], -99) < GAP.get(c["name"], 0.25): continue
+            seen[c["name"]] = c["t"]; keep.append(c)
+        big = [c for c in keep if c["name"] in PRIO and c["name"] != "riser"]
+        def beaten(c):
+            if c["name"] not in PRIO or c["name"] == "riser": return False
+            r = PRIO.index(c["name"])
+            return any(o is not c and abs(o["t"] - c["t"]) < 0.4 and PRIO.index(o["name"]) < r and not {o["name"], c["name"]} == {"impact", "hit"} for o in big)
+        keep = [c for c in keep if not beaten(c)]
+        (assets / "sfx_cues.json").write_text(json.dumps(keep, indent=0), encoding="utf-8")
     print(f"built {len(spec['scenes'])} scenes -> {out}")
 
 if __name__ == "__main__":

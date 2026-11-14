@@ -122,10 +122,12 @@ def synthesize_voiceover_from_timeline(
 
     placements: list[tuple[int, np.ndarray]] = []
     rooms = _rooms(cues, sample_rate); fit_stats: dict = {}
+    direction = _direction(timeline_path.parent)
     for ci, cue in enumerate(cues):
         text = (cue.get("text") or "").strip()
         if not text:
             continue
+        _direct(tts, direction, cue, text)
         start_ms = int(cue["startMs"])
         window_ms = max(0, int(cue["endMs"]) - start_ms)
         clip = np.asarray(tts.synthesize(text), dtype=np.float32).reshape(-1)
@@ -158,9 +160,29 @@ def _auto_voices(tts, speakers: list[str], voices: dict[str, str], language: str
     return assign_voices(named, voices, mode=getattr(tts, "mode", "v3turbo"), language=language, genders=genders)
 
 
+def _direction(project_dir: Path) -> dict:
+    """assets/voice_direction.json (written by the generator): startMs -> {emote, narrator, mood}"""
+    f = Path(project_dir) / "assets" / "voice_direction.json"
+    try:
+        return {int(d["startMs"]): d for d in json.loads(f.read_text(encoding="utf-8"))}
+    except Exception:
+        return {}
+
+
+def _direct(tts, direction: dict, cue: dict, text: str) -> None:
+    """set the TTS prosody for this line (emotion, narrator or character, punctuation)"""
+    if not hasattr(tts, "prosody"):
+        return
+    from .tts import direction_prosody
+    st = int(cue.get("startMs", 0))
+    d = direction.get(st) or next((v for k, v in direction.items() if abs(k - st) < 400), {})
+    tts.prosody = direction_prosody(d.get("emote", ""), text, bool(d.get("narrator")), d.get("mood", ""))
+
+
 def _prepare_track(timeline_path: Path, tts: TTSAdapter, voices: dict[str, str], fit: bool) -> dict:
     data = json.loads(Path(timeline_path).read_text(encoding="utf-8"))
     cues = data.get("cues", [])
+    direction = _direction(Path(timeline_path).parent)
     sample_rate = tts.sample_rate
     default_voice = voices.get("") or (next(iter(voices.values()), None) if voices else None)
 
@@ -173,6 +195,7 @@ def _prepare_track(timeline_path: Path, tts: TTSAdapter, voices: dict[str, str],
         speaker = cue.get("speaker", "")
         if voices and hasattr(tts, "voice"):
             tts.voice = voices.get(speaker, default_voice)
+        _direct(tts, direction, cue, text)
         start_ms = int(cue["startMs"])
         window_ms = max(0, int(cue["endMs"]) - start_ms)
         clip = np.asarray(tts.synthesize(text), dtype=np.float32).reshape(-1)

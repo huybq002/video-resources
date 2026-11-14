@@ -54,7 +54,17 @@ class DryRunTTS:
 
 
 EDGE_VOICES: dict[str, list[dict[str, str]]] = {
+    # The newer conversational voices come first: they breathe, stress and rise at questions like a person; the
+    # older Jenny/Guy read every line in one flat tone (owner, 2026-11-14: "giọng đọc luôn bằng không biểu cảm").
     "en": [
+        {"id": "en-US-AndrewMultilingualNeural", "label": "Andrew (US, nam, kể chuyện)"},
+        {"id": "en-US-AvaMultilingualNeural", "label": "Ava (US, nữ)"},
+        {"id": "en-US-EmmaMultilingualNeural", "label": "Emma (US, nữ)"},
+        {"id": "en-US-BrianMultilingualNeural", "label": "Brian (US, nam)"},
+        {"id": "en-US-AndrewNeural", "label": "Andrew (US, nam)"},
+        {"id": "en-US-AvaNeural", "label": "Ava (US, nữ)"},
+        {"id": "en-US-EmmaNeural", "label": "Emma (US, nữ)"},
+        {"id": "en-US-BrianNeural", "label": "Brian (US, nam)"},
         {"id": "en-US-JennyNeural", "label": "Jenny (US, nữ)"},
         {"id": "en-US-GuyNeural", "label": "Guy (US, nam)"},
         {"id": "en-US-AriaNeural", "label": "Aria (US, nữ)"},
@@ -88,13 +98,42 @@ def default_edge_voice(language: str) -> str:
     return voices[0]["id"]
 
 
+# How a feeling changes the read: (rate %, pitch Hz, volume %). Small numbers: a voice actor shifts, never shouts.
+PROSODY = {
+    "joy": (6, 4, 5), "happy": (6, 4, 5), "excited": (9, 6, 10), "laugh": (8, 5, 8), "proud": (3, 2, 5),
+    "surprise": (8, 6, 10), "shock": (10, 7, 12), "angry": (6, -2, 15), "frustrated": (4, -1, 10),
+    "worry": (-4, -1, -3), "fear": (4, 3, 0), "doubt": (-6, 0, -3), "think": (-8, -1, -5), "confused": (-5, 2, -2),
+    "sad": (-10, -4, -10), "tired": (-12, -4, -10), "relief": (-4, 2, 0), "calm": (-3, -1, -3), "neutral": (0, 0, 0),
+}
+
+
+def direction_prosody(emote: str = "", text: str = "", narrator: bool = False, mood: str = "") -> dict[str, str]:
+    """edge-tts rate/pitch/volume for one line from its feeling, punctuation and who says it"""
+    r, p, v = PROSODY.get((emote or "").lower().split(":")[0], (0, 0, 0))
+    t = (text or "").strip()
+    if narrator:
+        r, p = r * 0.5 + 1, p * 0.5 - 1           # a storyteller colours lines, the characters act them
+        if mood in ("tense", "mystery", "sad"): r -= 3
+    if not emote:
+        if t.endswith("?"): p += 3
+        if t.endswith("!"): r, p, v = r + 6, p + 3, v + 8
+    if len(t.split()) <= 4 and t.endswith((".", "…")): r -= 6          # a short line lands slower: a beat
+    return {"rate": f"{int(round(r)):+d}%", "pitch": f"{int(round(p)):+d}Hz", "volume": f"{int(round(v)):+d}%"}
+
+
 @dataclass
 class EdgeTTSAdapter:
-    """TTS đa ngôn ngữ qua edge-tts (online). Dùng cho en/ja/zh/ko; vi giữ VieNeu."""
+    """TTS đa ngôn ngữ qua edge-tts (online). Dùng cho en/ja/zh/ko; vi giữ VieNeu.
+
+    prosody: {"rate": "+5%", "pitch": "+2Hz", "volume": "+0%"} for the NEXT synthesize() call (set per line by
+    voiceover.py from assets/voice_direction.json). A voice that fails (not offered in this region) falls back to the
+    language's classic voice, so the night never loses its voice-over.
+    """
 
     voice: str | None = None
     language: str = "en"
     sample_rate: int = 24000
+    prosody: dict | None = None
 
     def __post_init__(self) -> None:
         try:
@@ -110,7 +149,21 @@ class EdgeTTSAdapter:
         with tempfile.TemporaryDirectory(prefix="code2video-edge-") as tmp:
             mp3 = Path(tmp) / "voice.mp3"
             wav = Path(tmp) / "voice.wav"
-            asyncio.run(edge_tts.Communicate(text, self.voice).save(str(mp3)))
+            pro = {k: v for k, v in (self.prosody or {}).items() if k in ("rate", "pitch", "volume") and v}
+            tried = []
+            for voice in [self.voice, *[v["id"] for v in EDGE_VOICES.get(self.language, [])][8:9]]:
+                if not voice or voice in tried: continue
+                tried.append(voice)
+                for attempt in range(4):
+                    try:
+                        asyncio.run(edge_tts.Communicate(text, voice, **pro).save(str(mp3)))
+                        break
+                    except Exception:
+                        if attempt == 1 and pro: pro = {}                 # a rejected prosody value: read it plainly
+                        import time as _t; _t.sleep(1.5 + attempt)
+                if mp3.exists() and mp3.stat().st_size > 0: break
+            if not mp3.exists():
+                raise RuntimeError(f"edge-tts gave no audio for: {text[:60]!r}")
             ffmpeg = shutil.which("ffmpeg") or "ffmpeg"
             subprocess.run(
                 [ffmpeg, "-y", "-loglevel", "error", "-i", str(mp3),

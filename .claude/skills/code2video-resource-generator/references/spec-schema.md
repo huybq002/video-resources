@@ -86,6 +86,9 @@ Acts for faces: `["t","turn", yaw, secs]` (0 front, ±0.5 three-quarter, ±1 ful
   //   "drink" -> a cup in the hand (seated at the table in a cafe/kitchen)     "phone" -> a phone in the hand, at the ear
   //   held items are drawn inside the rig's hand, so they rise with the arm. Seated extras drinking hold cups too.
   //   Name the object yourself ("props") only when it is something else (a tablet, a book).
+  // SOUND EFFECTS: on by default, placed on the picture's beats (cuts, keyword, reactions, steps, typing, props,
+  //   counters, power moment). "sfx": false at the top of the spec turns them off. Owner recordings: data/sfx/<name>.wav
+  //   (names: whoosh swoosh hit impact pop tick boing sting sparkle plink thud step key blip rise flash tap bounce riser).
   // KEYWORD POP + REACTION BEAT (StickByte study, 2026-11-10):
   //   "key": "TERRIBLE"      the one word of the line, slammed big and hand-lettered over the picture (also automatic:
   //                          a CAPITALISED word in the line, or the last word of a line that ends with "!")
