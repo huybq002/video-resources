@@ -1016,7 +1016,7 @@
         "emote": "neutral"
        },
        {
-        "t": "Every proof fits, because he only wrote down what fit.",
+        "t": "Each proof fit, because he kept only what fit.",
         "crowd": false,
         "at": "flat",
         "on": [
@@ -1195,7 +1195,7 @@
        },
        {
         "who": "theo",
-        "t": "Because\u2026 those are the ones that count.",
+        "t": "Those are the ones that count.",
         "emote": "doubt"
        }
       ]
@@ -1217,7 +1217,7 @@
       ],
       "cues": [
        {
-        "t": "A hunch isn't always wrong. Some neighbours really are rude.",
+        "t": "A hunch isn't always wrong. Some people are rude.",
         "at": "flat",
         "on": [
          "theo"
@@ -1226,7 +1226,7 @@
         "emote": "think"
        },
        {
-        "t": "But a hunch collects its own evidence while you aren't counting.",
+        "t": "But a hunch finds its own evidence, uncounted.",
         "at": "flat",
         "on": [
          "theo"
@@ -1279,7 +1279,7 @@
       ],
       "cues": [
        {
-        "t": "Saturday morning, a note lay under his door.",
+        "t": "Saturday, a note lay under his door.",
         "at": "hallway",
         "on": [
          "theo"
@@ -1331,7 +1331,7 @@
         ]
        },
        {
-        "t": "He counted again. Now seven proofs looked like seven guesses.",
+        "t": "He counted again. Seven proofs, seven guesses.",
         "at": "stairs",
         "on": [
          "theo"
@@ -1397,7 +1397,7 @@
       ],
       "cues": [
        {
-        "t": "Every item had happened. None of them meant what he had decided.",
+        "t": "Each item had happened. None meant what he thought.",
         "at": "stairs",
         "on": [
          "theo"
@@ -1446,7 +1446,7 @@
        },
        {
         "who": "ines",
-        "t": "I thought you disliked me. I made a list, actually.",
+        "t": "I thought you disliked me. I made a list.",
         "emote": "worry"
        },
        {
@@ -1498,7 +1498,7 @@
       ],
       "cues": [
        {
-        "t": "He ate the whole slice. It was very burnt.",
+        "t": "He ate the whole slice. Very burnt.",
         "at": "inesflat",
         "on": [
          "theo",
@@ -1520,7 +1520,7 @@
         "do": "wave"
        },
        {
-        "t": "Think of someone you've already made up your mind about.",
+        "t": "Think of someone you've made up your mind about.",
         "at": "stairs",
         "on": [
          "theo"

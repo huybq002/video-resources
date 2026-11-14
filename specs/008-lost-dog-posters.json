@@ -828,7 +828,7 @@
         }
        },
        {
-        "t": "Mika counted the posters twice. Nine poles, nine faces.",
+        "t": "Mika counted them twice. Nine poles.",
         "at": "street",
         "on": [
          "mika"
@@ -837,7 +837,7 @@
         "do": "look:-1"
        },
        {
-        "t": "Different dogs. Different owners. The same number at the bottom.",
+        "t": "Nine dogs. Nine owners. Same number.",
         "shot": "insert",
         "props": [
          "photo"
@@ -945,7 +945,7 @@
         "do": "walkTo:300"
        },
        {
-        "t": "Biscuit. Pepper. Moose. Nine different names.",
+        "t": "Biscuit. Pepper. Moose. Nine names.",
         "shot": "insert",
         "props": [
          "photo"
@@ -992,7 +992,7 @@
         "key": "FREE"
        },
        {
-        "t": "Nine owners. One friendly neighbour.",
+        "t": "Nine owners. One neighbour.",
         "at": "street_day",
         "on": [
          "mika"
@@ -1001,7 +1001,7 @@
         "emote": "think"
        },
        {
-        "t": "But why would anyone give away posters?",
+        "t": "But why give away posters?",
         "at": "street_day",
         "on": [
          "mika"
@@ -1298,7 +1298,7 @@
         }
        },
        {
-        "t": "Nobody came within the hour. Nobody came that night.",
+        "t": "Nobody came. Not that hour, not that night.",
         "at": "hall",
         "on": [
          "reyes"
