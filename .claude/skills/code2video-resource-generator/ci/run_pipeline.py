@@ -2,7 +2,7 @@
 python ci/run_pipeline.py <spec.json> <out_dir> [--series bible.json] [--jobs 2] [--chunk 120] [--upload [--privacy private|unlisted|public] [--allow-public]] [--stop-after generate|tts|render]
 
 generate (script.srt, backgrounds, characters, scenes)  ->  tts (voiceover.wav fitted to script.srt)  ->  render in parallel slices (npx hyperframes render)
--> assemble final.mp4 (+voice-over, thumbnail)  ->  metadata.json  ->  upload to YouTube (only with --upload; default privacy private)
+-> assemble final.mp4 (+voice-over, sound effects on the picture's beats, music, thumbnail)  ->  metadata.json  ->  upload to YouTube (only with --upload; default privacy private)
 Prints one short status line per step (cheap for Claude to read) and the full log goes to <out_dir>/pipeline.log. Exit code != 0 on failure, last log lines printed.
 Run it as ONE foreground command with a long timeout (set BASH_MAX_TIMEOUT_MS in the job); nothing needs polling.
 """
@@ -64,6 +64,7 @@ with cf.ThreadPoolExecutor(max_workers=a.jobs) as ex:
 if a.stop_after == "render": sys.exit(0)
 # 4 assemble + thumbnail, 5 metadata
 run("assemble", rc + ["assemble", str(proj), "--out", "final.mp4"])
+run("sfx", [PY, str(HERE / "add_sfx.py"), str(proj / "final.mp4"), "--project", str(proj)]); say(([l for l in pathlib.Path(log).read_text(encoding="utf-8", errors="replace").splitlines() if l.startswith("sfx:")] or ["sfx: done"])[-1])
 run("music", [PY, str(HERE / "add_music.py"), str(proj / "final.mp4"), "--spec", str(spec)]); say(([l for l in pathlib.Path(log).read_text(encoding="utf-8", errors="replace").splitlines() if l.startswith("music:")] or ["music: done"])[-1])
 run("thumbnail", ["ffmpeg", "-y", "-ss", "3", "-i", str(proj / "final.mp4"), "-frames:v", "1", "-vf", "scale=1280:-2", str(proj / "thumb.jpg")])
 meta = out.parent / (out.name + "_metadata.json")

@@ -23,8 +23,9 @@ def cue_items(spec):
     for sc in spec["scenes"]:
         for sh in sc["shots"]:
             for cu in sh.get("cues", []):
-                if isinstance(cu, dict): out.append(dict(text=cu["t"].strip(), who=cu.get("who") or narr, scene=sc["id"]))
-                else: out.append(dict(text=cu.strip(), who=narr, scene=sc["id"]))
+                if isinstance(cu, dict): out.append(dict(text=cu["t"].strip(), who=cu.get("who") or narr, scene=sc["id"],
+                                                         emote=cu.get("emote") or cu.get("say") or "", mood=sh.get("mood") or ""))
+                else: out.append(dict(text=cu.strip(), who=narr, scene=sc["id"], emote="", mood=sh.get("mood") or ""))
     return out
 
 def display_name(spec, cid):
@@ -105,7 +106,8 @@ def plan(spec, rate=None):
         ws = it["text"].split(); wl = [len(re.sub(r"\W", "", x)) + 1 for x in ws]; tw = sum(wl); a = st; words = []
         for x, k in zip(ws, wl):
             b = a + int(round(speech * 1000 * k / tw)); words.append({"text": x, "startMs": a, "endMs": b}); a = b
-        cues.append(dict(index=i + 1, text=it["text"], who=it["who"], speaker=display_name(spec, it["who"]), scene=it["scene"], startMs=st, endMs=en, words=words))
+        cues.append(dict(index=i + 1, text=it["text"], who=it["who"], speaker=display_name(spec, it["who"]), scene=it["scene"], startMs=st, endMs=en, words=words,
+                         emote=it.get("emote", ""), mood=it.get("mood", "")))
     scenes = []
     for sc in spec["scenes"]:
         cs = [c for c in cues if c["scene"] == sc["id"]]
