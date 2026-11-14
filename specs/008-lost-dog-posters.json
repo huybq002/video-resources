@@ -837,7 +837,7 @@
         "do": "look:-1"
        },
        {
-        "t": "Nine dogs. Nine owners. Same number.",
+        "t": "Nine dogs, nine owners, same number.",
         "shot": "insert",
         "props": [
          "photo"
@@ -945,7 +945,7 @@
         "do": "walkTo:300"
        },
        {
-        "t": "Biscuit. Pepper. Moose. Nine names.",
+        "t": "Biscuit, Pepper, Moose, nine names.",
         "shot": "insert",
         "props": [
          "photo"
@@ -992,7 +992,7 @@
         "key": "FREE"
        },
        {
-        "t": "Nine owners. One neighbour.",
+        "t": "Nine owners, one neighbour.",
         "at": "street_day",
         "on": [
          "mika"

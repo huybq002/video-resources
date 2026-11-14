@@ -736,7 +736,7 @@
         }
        },
        {
-        "t": "He kept a list. Numbered. Dated.",
+        "t": "He kept a numbered, dated list.",
         "at": "bedroom",
         "on": [
          "theo"
@@ -886,7 +886,7 @@
        },
        {
         "who": "ines",
-        "t": "Thanks. Sorry.",
+        "t": "Thanks, sorry.",
         "emote": "worry",
         "do": "walkTo:-300"
        }
@@ -1466,7 +1466,7 @@
        },
        {
         "who": "theo",
-        "t": "Neither did I. Obviously.",
+        "t": "Neither did I, obviously.",
         "emote": "smirk"
        },
        {
