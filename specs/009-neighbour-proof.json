@@ -1,0 +1,1567 @@
+{
+ "id": "009-neighbour-proof",
+ "title": "Why You Only See What You Already Believe",
+ "lang": "en",
+ "aspect": "16:9",
+ "duration_s": 180,
+ "idea": "A man decides his new neighbour is rude and keeps only the proof that fits; confirmation bias shown as a list, with a note that turns it over (invented, no real people)",
+ "narrator": "narrator",
+ "narrator_name": "Narrator",
+ "narrator_gender": "male",
+ "format": "explainer",
+ "spine": {
+  "want": "be sure his new neighbour dislikes him",
+  "obstacle": "a hunch that only keeps what agrees with it",
+  "turn": "a burnt-cake note gives every proof a second reading",
+  "choice": "he tears up the list and knocks on her door",
+  "opening_image": "Theo with a numbered list of proofs",
+  "ending_image": "the list torn, two neighbours at one table",
+  "motif": "document"
+ },
+ "cast": [
+  {
+   "id": "narrator",
+   "name": "Narrator",
+   "narrator": true,
+   "gender": "male"
+  },
+  {
+   "id": "theo",
+   "name": "Theo",
+   "gender": "male",
+   "style": "stick",
+   "bottom": "none",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#2a2230",
+   "top": "hoodie",
+   "top_color": "#2fa59b",
+   "hair_style": "short",
+   "hair": "#6b4a2a",
+   "look": "young man in a teal hoodie, short brown hair"
+  },
+  {
+   "id": "ines",
+   "name": "Ines",
+   "gender": "female",
+   "style": "stick",
+   "bottom": "none",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#2a2230",
+   "top": "dress",
+   "top_color": "#8e5ad6",
+   "hair_style": "long",
+   "hair": "#2a1a2a",
+   "look": "young woman in a purple dress, long dark hair"
+  },
+  {
+   "id": "sam",
+   "name": "Sam",
+   "gender": "male",
+   "style": "stick",
+   "bottom": "none",
+   "sock": "#2f3646",
+   "shoes": "sneakers",
+   "shoe_color": "#2a2230",
+   "top": "jacket",
+   "top_color": "#d9a63a",
+   "top2": "#3e3a30",
+   "hat": "beanie",
+   "hat_color": "#4a4a52",
+   "glasses": true,
+   "hair_style": "spiky",
+   "hair": "#2b2b2b",
+   "look": "friend in a mustard jacket, grey beanie, round glasses"
+  }
+ ],
+ "settings": {
+  "hallway": {
+   "place": "apartment hallway with four numbered doors, doormats and a hanging lamp",
+   "signature": [
+    "door",
+    "door number",
+    "doormat",
+    "hanging lamp"
+   ],
+   "set": {
+    "type": "room",
+    "style": "generic",
+    "time": "day",
+    "wall": "#d8cdb8",
+    "floor": "#8c7a68",
+    "window": "none",
+    "ceiling": "pendants",
+    "finish": "wainscot"
+   },
+   "objects": [
+    {
+     "t": "furn",
+     "n": "door",
+     "x": -5.0,
+     "z": -5.8,
+     "c": "#6b3f2e"
+    },
+    {
+     "t": "furn",
+     "n": "door",
+     "x": -1.8,
+     "z": -5.8,
+     "c": "#3e5c76"
+    },
+    {
+     "t": "furn",
+     "n": "door",
+     "x": 1.6,
+     "z": -5.8,
+     "c": "#6b3f2e"
+    },
+    {
+     "t": "furn",
+     "n": "door",
+     "x": 4.8,
+     "z": -5.8,
+     "c": "#4f6b4a"
+    },
+    {
+     "t": "glow",
+     "x": -3.4,
+     "y": 1.9,
+     "z": -5.88,
+     "w": 0.2,
+     "h": 0.14,
+     "c": "#ffe08a"
+    },
+    {
+     "t": "glow",
+     "x": -0.1,
+     "y": 1.9,
+     "z": -5.88,
+     "w": 0.2,
+     "h": 0.14,
+     "c": "#ffe08a"
+    },
+    {
+     "t": "box",
+     "x": -1.8,
+     "y": 0.02,
+     "z": -5.0,
+     "w": 1.0,
+     "h": 0.03,
+     "d": 0.6,
+     "c": "#7a3b2a"
+    },
+    {
+     "t": "box",
+     "x": 1.6,
+     "y": 0.02,
+     "z": -5.0,
+     "w": 1.0,
+     "h": 0.03,
+     "d": 0.6,
+     "c": "#2f6f8f"
+    },
+    {
+     "t": "furn",
+     "n": "plant",
+     "x": 6.2,
+     "z": -5.2
+    },
+    {
+     "t": "furn",
+     "n": "wall_clock",
+     "x": 0.0,
+     "z": -5.9,
+     "y": 2.6
+    }
+   ]
+  },
+  "lobby": {
+   "place": "apartment building lobby: a wall of mailboxes, a glass front door, a stair going up and a bench",
+   "signature": [
+    "mailboxes",
+    "glass front door",
+    "stair",
+    "bench"
+   ],
+   "set": {
+    "type": "room",
+    "style": "generic",
+    "time": "day",
+    "wall": "#c9d2d0",
+    "floor": "#8b8f94",
+    "window": "left",
+    "ceiling": "panels",
+    "finish": "tiles"
+   },
+   "objects": [
+    {
+     "t": "box",
+     "x": -3.4,
+     "y": 1.0,
+     "z": -5.8,
+     "w": 3.0,
+     "h": 1.4,
+     "d": 0.2,
+     "c": "#7f8a96"
+    },
+    {
+     "t": "box",
+     "x": -4.4,
+     "y": 1.5,
+     "z": -5.68,
+     "w": 0.4,
+     "h": 0.3,
+     "d": 0.02,
+     "c": "#c9ced4",
+     "ink": 0
+    },
+    {
+     "t": "box",
+     "x": -3.4,
+     "y": 1.5,
+     "z": -5.68,
+     "w": 0.4,
+     "h": 0.3,
+     "d": 0.02,
+     "c": "#c9ced4",
+     "ink": 0
+    },
+    {
+     "t": "box",
+     "x": -2.4,
+     "y": 1.5,
+     "z": -5.68,
+     "w": 0.4,
+     "h": 0.3,
+     "d": 0.02,
+     "c": "#c9ced4",
+     "ink": 0
+    },
+    {
+     "t": "box",
+     "x": 4.8,
+     "y": 0,
+     "z": -5.7,
+     "w": 2.2,
+     "h": 2.4,
+     "d": 0.12,
+     "c": "#9fd3e6",
+     "op": 0.55
+    },
+    {
+     "t": "furn",
+     "n": "bench",
+     "x": -0.2,
+     "z": -4.6
+    },
+    {
+     "t": "furn",
+     "n": "cardboard_box",
+     "x": 1.6,
+     "z": -3.2
+    },
+    {
+     "t": "box",
+     "x": 6.2,
+     "y": 0.0,
+     "z": -3.8,
+     "w": 1.4,
+     "h": 0.2,
+     "d": 0.5,
+     "c": "#aab0b8"
+    },
+    {
+     "t": "box",
+     "x": 6.2,
+     "y": 0.2,
+     "z": -3.5,
+     "w": 1.4,
+     "h": 0.2,
+     "d": 0.5,
+     "c": "#b6bcc4"
+    },
+    {
+     "t": "furn",
+     "n": "plant",
+     "x": -6.2,
+     "z": -4.2
+    }
+   ]
+  },
+  "flat": {
+   "place": "Theo's small flat: a sofa, a coffee table with a yellow notepad, a thin shared wall with one picture",
+   "signature": [
+    "sofa",
+    "coffee table",
+    "notepad",
+    "shared wall"
+   ],
+   "set": {
+    "type": "room",
+    "style": "generic",
+    "time": "night",
+    "wall": "#5a4f6e",
+    "floor": "#8a6f58",
+    "window": "right",
+    "ceiling": "plain",
+    "finish": "plain"
+   },
+   "objects": [
+    {
+     "t": "furn",
+     "n": "sofa",
+     "x": -2.4,
+     "z": -4.6,
+     "c": "#cf6b4f"
+    },
+    {
+     "t": "furn",
+     "n": "table",
+     "x": 0.4,
+     "z": -3.4,
+     "s": 0.6
+    },
+    {
+     "t": "box",
+     "x": 0.4,
+     "y": 0.5,
+     "z": -3.4,
+     "w": 0.4,
+     "h": 0.02,
+     "d": 0.3,
+     "c": "#ffe27a",
+     "ink": 0
+    },
+    {
+     "t": "furn",
+     "n": "lamp_floor",
+     "x": -5.2,
+     "z": -4.8
+    },
+    {
+     "t": "furn",
+     "n": "tv",
+     "x": 4.0,
+     "z": -5.4
+    },
+    {
+     "t": "furn",
+     "n": "frame_photo",
+     "x": 2.2,
+     "z": -5.9,
+     "y": 1.6
+    },
+    {
+     "t": "furn",
+     "n": "rug",
+     "x": 0.4,
+     "z": -2.4
+    }
+   ]
+  },
+  "bedroom": {
+   "place": "Theo's bedroom at night: a bed, a small desk with a lamp and a corkboard with a numbered list pinned up",
+   "signature": [
+    "bed",
+    "desk",
+    "desk lamp",
+    "corkboard"
+   ],
+   "set": {
+    "type": "room",
+    "style": "generic",
+    "time": "night",
+    "wall": "#3f5a66",
+    "floor": "#7a5f48",
+    "window": "left",
+    "ceiling": "plain",
+    "finish": "plain"
+   },
+   "objects": [
+    {
+     "t": "furn",
+     "n": "bed",
+     "x": -2.4,
+     "z": -4.2,
+     "c": "#2fa59b",
+     "c2": "#e8dcc8"
+    },
+    {
+     "t": "furn",
+     "n": "desk",
+     "x": 2.6,
+     "z": -5.0
+    },
+    {
+     "t": "furn",
+     "n": "chair",
+     "x": 2.6,
+     "z": -3.9,
+     "ry": 3.14,
+     "c": "#555b66"
+    },
+    {
+     "t": "furn",
+     "n": "desk_lamp",
+     "x": 3.3,
+     "z": -5.1,
+     "y": 0.76
+    },
+    {
+     "t": "box",
+     "x": 0.4,
+     "y": 1.2,
+     "z": -5.9,
+     "w": 1.6,
+     "h": 1.1,
+     "d": 0.06,
+     "c": "#b98a5a"
+    },
+    {
+     "t": "box",
+     "x": 0.4,
+     "y": 1.3,
+     "z": -5.84,
+     "w": 0.6,
+     "h": 0.8,
+     "d": 0.02,
+     "c": "#fffbe8",
+     "ink": 0
+    },
+    {
+     "t": "furn",
+     "n": "rug",
+     "x": -1.4,
+     "z": -2.0
+    }
+   ]
+  },
+  "stairs": {
+   "place": "apartment stairwell landing: a metal railing, concrete steps going up and a small window",
+   "signature": [
+    "railing",
+    "steps",
+    "landing window"
+   ],
+   "set": {
+    "type": "room",
+    "style": "generic",
+    "time": "day",
+    "wall": "#b9c0c4",
+    "floor": "#7d8286",
+    "window": "center",
+    "ceiling": "panels",
+    "finish": "plain"
+   },
+   "objects": [
+    {
+     "t": "box",
+     "x": -2.0,
+     "y": 0.0,
+     "z": -5.0,
+     "w": 4.0,
+     "h": 0.2,
+     "d": 0.9,
+     "c": "#9aa0a6"
+    },
+    {
+     "t": "box",
+     "x": -2.0,
+     "y": 0.2,
+     "z": -5.5,
+     "w": 4.0,
+     "h": 0.2,
+     "d": 0.9,
+     "c": "#a6acb2"
+    },
+    {
+     "t": "box",
+     "x": -2.0,
+     "y": 0.4,
+     "z": -5.9,
+     "w": 4.0,
+     "h": 0.2,
+     "d": 0.5,
+     "c": "#b2b8be"
+    },
+    {
+     "t": "cylinder",
+     "x": -4.0,
+     "y": 0,
+     "z": -4.4,
+     "r": 0.04,
+     "h": 1.0,
+     "c": "#4a5560"
+    },
+    {
+     "t": "cylinder",
+     "x": 0.0,
+     "y": 0,
+     "z": -4.4,
+     "r": 0.04,
+     "h": 1.0,
+     "c": "#4a5560"
+    },
+    {
+     "t": "box",
+     "x": -2.0,
+     "y": 1.0,
+     "z": -4.4,
+     "w": 4.0,
+     "h": 0.06,
+     "d": 0.06,
+     "c": "#4a5560"
+    },
+    {
+     "t": "furn",
+     "n": "trash_bin",
+     "x": 4.6,
+     "z": -4.2
+    },
+    {
+     "t": "furn",
+     "n": "plant",
+     "x": 5.8,
+     "z": -5.0
+    }
+   ]
+  },
+  "busstop": {
+   "place": "bus stop on a bright morning: a glass shelter, a bench, a timetable sign and the road",
+   "signature": [
+    "shelter",
+    "bench",
+    "timetable sign",
+    "road"
+   ],
+   "set": {
+    "type": "street",
+    "time": "day"
+   },
+   "objects": [
+    {
+     "t": "box",
+     "x": -1.6,
+     "y": 2.4,
+     "z": -3.6,
+     "w": 3.4,
+     "h": 0.1,
+     "d": 1.2,
+     "c": "#4a5560"
+    },
+    {
+     "t": "box",
+     "x": -3.2,
+     "y": 0,
+     "z": -3.6,
+     "w": 0.08,
+     "h": 2.4,
+     "d": 0.08,
+     "c": "#4a5560"
+    },
+    {
+     "t": "box",
+     "x": 0.0,
+     "y": 0,
+     "z": -3.6,
+     "w": 0.08,
+     "h": 2.4,
+     "d": 0.08,
+     "c": "#4a5560"
+    },
+    {
+     "t": "box",
+     "x": -1.6,
+     "y": 0.9,
+     "z": -4.1,
+     "w": 3.0,
+     "h": 1.4,
+     "d": 0.04,
+     "c": "#a8d6e8",
+     "op": 0.4
+    },
+    {
+     "t": "furn",
+     "n": "bench",
+     "x": -1.6,
+     "z": -3.8
+    },
+    {
+     "t": "furn",
+     "n": "street_sign",
+     "x": 1.6,
+     "z": -3.2
+    },
+    {
+     "t": "glow",
+     "x": 1.6,
+     "y": 1.8,
+     "z": -3.1,
+     "w": 0.4,
+     "h": 0.5,
+     "c": "#fffbe8"
+    },
+    {
+     "t": "furn",
+     "n": "trash_bin",
+     "x": 3.8,
+     "z": -3.4
+    }
+   ]
+  },
+  "inesflat": {
+   "place": "Ines's flat, still half unpacked: cardboard boxes, a kettle, a kitchen table with a burnt cake and one picture leaning on the floor",
+   "signature": [
+    "cardboard boxes",
+    "kettle",
+    "burnt cake",
+    "kitchen table"
+   ],
+   "set": {
+    "type": "room",
+    "style": "generic",
+    "time": "day",
+    "wall": "#efe2cf",
+    "floor": "#a88a68",
+    "window": "left",
+    "ceiling": "plain",
+    "finish": "plain"
+   },
+   "objects": [
+    {
+     "t": "furn",
+     "n": "cardboard_box",
+     "x": -3.8,
+     "z": -4.2
+    },
+    {
+     "t": "furn",
+     "n": "cardboard_box",
+     "x": -2.6,
+     "z": -4.6
+    },
+    {
+     "t": "furn",
+     "n": "cardboard_box",
+     "x": -3.2,
+     "z": -3.2,
+     "s": 0.8
+    },
+    {
+     "t": "furn",
+     "n": "table",
+     "x": 1.8,
+     "z": -4.4
+    },
+    {
+     "t": "cylinder",
+     "x": 1.8,
+     "y": 0.76,
+     "z": -4.4,
+     "r": 0.28,
+     "h": 0.14,
+     "c": "#4a3020"
+    },
+    {
+     "t": "furn",
+     "n": "kettle",
+     "x": -0.2,
+     "z": -5.5,
+     "y": 0.9
+    },
+    {
+     "t": "furn",
+     "n": "kitchen_counter",
+     "x": -0.4,
+     "z": -5.5
+    },
+    {
+     "t": "furn",
+     "n": "chair",
+     "x": 1.8,
+     "z": -3.4,
+     "ry": 3.14,
+     "c": "#8e5ad6"
+    },
+    {
+     "t": "furn",
+     "n": "picture",
+     "x": 4.6,
+     "z": -3.0,
+     "y": 0.0,
+     "s": 0.8
+    }
+   ]
+  }
+ },
+ "scenes": [
+  {
+   "id": 1,
+   "title": "Seven proofs",
+   "goal": "Theo wants to be sure his neighbour hates him.",
+   "target_s": 22,
+   "turn": "he has a list and a note is about to ruin it",
+   "value": "0",
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "hallway",
+       "bedroom",
+       "busstop"
+      ],
+      "mood": "tense",
+      "seed": 1,
+      "actors": [
+       {
+        "k": "theo",
+        "x": 1200
+       }
+      ],
+      "cues": [
+       {
+        "t": "Theo had seven proofs his new neighbour hated him.",
+        "at": "hallway",
+        "on": [
+         "theo"
+        ],
+        "shot": "establish",
+        "emote": "angry",
+        "hud": {
+         "type": "chip",
+         "text": "7 PROOFS",
+         "pos": "tl"
+        }
+       },
+       {
+        "t": "He kept them in a list. Numbered. Dated.",
+        "at": "bedroom",
+        "on": [
+         "theo"
+        ],
+        "shot": "medium",
+        "do": [
+         "sit@chair",
+         "type"
+        ],
+        "props": [
+         "document"
+        ]
+       },
+       {
+        "t": "Number one: she walked past him without a word.",
+        "at": "hallway",
+        "on": [
+         "theo",
+         "ines"
+        ],
+        "shot": "wide",
+        "do": "walkTo:-200"
+       },
+       {
+        "t": "Number two: she stood at the far end of the bus stop.",
+        "at": "busstop",
+        "on": [
+         "ines"
+        ],
+        "shot": "medium",
+        "emote": "neutral"
+       },
+       {
+        "t": "Every one of them was a real moment. That was the problem.",
+        "at": "bedroom",
+        "on": [
+         "theo"
+        ],
+        "shot": "cu",
+        "emote": "doubt"
+       },
+       {
+        "t": "By Saturday, one note under his door would turn the list over.",
+        "at": "hallway",
+        "shot": "insert",
+        "props": [
+         "envelope"
+        ],
+        "hud": {
+         "type": "title",
+         "text": "SEVEN PROOFS",
+         "pos": "cc",
+         "t": 0.4,
+         "dur": 1.6
+        }
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "title": "Monday",
+   "goal": "Theo wants a friendly first hello.",
+   "target_s": 26,
+   "turn": "a rushed hello leaves him with a feeling",
+   "value": "-",
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "lobby"
+      ],
+      "mood": "warm",
+      "seed": 2,
+      "actors": [
+       {
+        "k": "theo",
+        "x": 500
+       },
+       {
+        "k": "ines",
+        "x": 1450
+       }
+      ],
+      "cues": [
+       {
+        "t": "Ines moved into 4C, one door down from Theo.",
+        "at": "lobby",
+        "on": [
+         "theo",
+         "ines"
+        ],
+        "shot": "establish",
+        "hud": {
+         "type": "chip",
+         "text": "MONDAY",
+         "pos": "tl"
+        }
+       },
+       {
+        "t": "She came in with a box taller than her.",
+        "at": "lobby",
+        "on": [
+         "ines"
+        ],
+        "shot": "medium",
+        "emote": "worry",
+        "do": "walkTo:-200"
+       }
+      ]
+     }
+    },
+    {
+     "sequence": {
+      "type": "dialogue",
+      "setting": "lobby",
+      "mood": "warm",
+      "seed": 3,
+      "a": {
+       "k": "theo",
+       "x": 560
+      },
+      "b": {
+       "k": "ines",
+       "x": 1500
+      },
+      "lines": [
+       {
+        "who": "theo",
+        "t": "Hey! New neighbour?",
+        "emote": "joy",
+        "do": "wave",
+        "at": "lobby"
+       },
+       {
+        "who": "ines",
+        "t": "Mm. Yes. Sorry, boxes\u2014",
+        "emote": "worry"
+       },
+       {
+        "who": "theo",
+        "t": "I'm Theo. 4B. If you need\u2014",
+        "emote": "joy"
+       },
+       {
+        "who": "ines",
+        "t": "Thanks. Sorry.",
+        "emote": "worry",
+        "do": "walkTo:-300"
+       }
+      ]
+     }
+    },
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "bedroom"
+      ],
+      "mood": "tense",
+      "seed": 4,
+      "actors": [
+       {
+        "k": "theo",
+        "x": 1000
+       }
+      ],
+      "cues": [
+       {
+        "t": "That was all. A sorry, and a closed door.",
+        "at": "bedroom",
+        "on": [
+         "theo"
+        ],
+        "shot": "establish",
+        "emote": "doubt",
+        "do": "sit@bed"
+       },
+       {
+        "t": "He stood there holding his own hello.",
+        "at": "bedroom",
+        "on": [
+         "theo"
+        ],
+        "shot": "medium",
+        "emote": "sad",
+        "do": "sad"
+       },
+       {
+        "t": "By evening he had a feeling about her.",
+        "at": "bedroom",
+        "on": [
+         "theo"
+        ],
+        "shot": "cu",
+        "emote": "doubt"
+       },
+       {
+        "t": "A feeling isn't proof. But it goes looking for some.",
+        "at": "bedroom",
+        "on": [
+         "theo"
+        ],
+        "shot": "medium",
+        "emote": "think",
+        "do": "think"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "title": "The list grows",
+   "goal": "Theo adds one more proof every day.",
+   "target_s": 28,
+   "turn": "the list only keeps what fits",
+   "value": "+",
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "flat",
+       "busstop",
+       "lobby"
+      ],
+      "mood": "tense",
+      "seed": 5,
+      "actors": [
+       {
+        "k": "theo",
+        "x": 1000
+       },
+       {
+        "k": "ines",
+        "x": 1500
+       }
+      ],
+      "cues": [
+       {
+        "t": "Each day, one more thing went on the list.",
+        "crowd": false,
+        "at": "flat",
+        "on": [
+         "theo"
+        ],
+        "shot": "establish",
+        "do": [
+         "sit@sofa",
+         "type"
+        ],
+        "props": [
+         "document"
+        ],
+        "hud": {
+         "type": "counter",
+         "from": 2,
+         "to": 7,
+         "label": "proofs",
+         "pos": "tr",
+         "t": 0.4,
+         "dur": 3.0
+        }
+       },
+       {
+        "t": "Earphones in. Door shut fast. A thud through the wall at ten.",
+        "at": "busstop",
+        "on": [
+         "ines"
+        ],
+        "shot": "wide",
+        "emote": "neutral"
+       },
+       {
+        "t": "Every proof fits, because he only wrote down what fit.",
+        "crowd": false,
+        "at": "flat",
+        "on": [
+         "theo"
+        ],
+        "shot": "cu",
+        "emote": "doubt"
+       },
+       {
+        "t": "That has a name. Confirmation bias.",
+        "crowd": false,
+        "at": "flat",
+        "on": [
+         "theo"
+        ],
+        "shot": "medium",
+        "hud": {
+         "type": "chip",
+         "text": "CONFIRMATION BIAS",
+         "pos": "tl"
+        },
+        "key": "bias"
+       },
+       {
+        "t": "The mind picks a story, then keeps what agrees with it.",
+        "crowd": false,
+        "at": "flat",
+        "on": [
+         "theo"
+        ],
+        "shot": "medium",
+        "emote": "think",
+        "hud": {
+         "type": "chain",
+         "items": [
+          "a hunch",
+          "only agreeing facts",
+          "more certainty"
+         ],
+         "pos": "tc"
+        }
+       },
+       {
+        "t": "The morning she said hello? That never made the list.",
+        "at": "lobby",
+        "on": [
+         "theo",
+         "ines"
+        ],
+        "shot": "wide",
+        "emote": "joy",
+        "do": "wave"
+       },
+       {
+        "t": "The day she held the lift for him? He called that luck.",
+        "at": "lobby",
+        "on": [
+         "ines"
+        ],
+        "shot": "medium",
+        "emote": "neutral"
+       },
+       {
+        "t": "He never asked her anything. He just counted.",
+        "at": "busstop",
+        "on": [
+         "theo"
+        ],
+        "shot": "wide",
+        "emote": "doubt"
+       }
+      ],
+      "crowd": {
+       "n": 5,
+       "x": [
+        0.08,
+        0.92
+       ],
+       "by": [
+        0.6,
+        0.66
+       ],
+       "s": [
+        0.12,
+        0.17
+       ],
+       "seed": 4
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "title": "Sam asks",
+   "goal": "Theo wants Sam to agree.",
+   "target_s": 32,
+   "turn": "Sam asks why the list has only bad days",
+   "value": "-",
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "flat"
+      ],
+      "mood": "warm",
+      "seed": 6,
+      "actors": [
+       {
+        "k": "theo",
+        "x": 520
+       },
+       {
+        "k": "sam",
+        "x": 1500
+       }
+      ],
+      "cues": [
+       {
+        "t": "Sam came over with a pizza and a straight question.",
+        "at": "flat",
+        "on": [
+         "theo",
+         "sam"
+        ],
+        "shot": "establish",
+        "props": [
+         "pizza"
+        ],
+        "hud": {
+         "type": "chip",
+         "text": "FRIDAY",
+         "pos": "tl"
+        }
+       }
+      ]
+     }
+    },
+    {
+     "sequence": {
+      "type": "dialogue",
+      "setting": "flat",
+      "mood": "tense",
+      "seed": 7,
+      "a": {
+       "k": "theo",
+       "x": 560
+      },
+      "b": {
+       "k": "sam",
+       "x": 1500
+      },
+      "lines": [
+       {
+        "who": "sam",
+        "t": "Seven proofs? Theo, she just moved in.",
+        "emote": "surprise",
+        "at": "flat"
+       },
+       {
+        "who": "theo",
+        "t": "Seven, Sam. Seven.",
+        "emote": "angry"
+       },
+       {
+        "who": "sam",
+        "t": "Maybe she's shy. Maybe she's tired.",
+        "emote": "think"
+       },
+       {
+        "who": "theo",
+        "t": "Tired people say hi.",
+        "emote": "smirk"
+       },
+       {
+        "who": "theo",
+        "t": "Look, I know a snub when I see one.",
+        "emote": "angry"
+       },
+       {
+        "who": "sam",
+        "t": "Then why's your list only got the bad days?",
+        "emote": "doubt"
+       },
+       {
+        "who": "theo",
+        "t": "Because\u2026 those are the ones that count.",
+        "emote": "doubt"
+       }
+      ]
+     }
+    },
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "flat"
+      ],
+      "mood": "sad",
+      "seed": 8,
+      "actors": [
+       {
+        "k": "theo",
+        "x": 1000
+       }
+      ],
+      "cues": [
+       {
+        "t": "A hunch isn't always wrong. Some neighbours really are rude.",
+        "at": "flat",
+        "on": [
+         "theo"
+        ],
+        "shot": "medium",
+        "emote": "think"
+       },
+       {
+        "t": "But a hunch collects its own evidence while you aren't counting.",
+        "at": "flat",
+        "on": [
+         "theo"
+        ],
+        "shot": "cu",
+        "emote": "doubt"
+       },
+       {
+        "t": "Theo stayed up late, still sure.",
+        "at": "flat",
+        "on": [
+         "theo"
+        ],
+        "shot": "wide",
+        "emote": "tired",
+        "do": "sit@sofa"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "title": "The note",
+   "goal": "Theo reads what the note says about each proof.",
+   "target_s": 36,
+   "turn": "each proof has a second, kinder explanation",
+   "value": "-",
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "hallway",
+       "stairs",
+       "inesflat"
+      ],
+      "mood": "tense",
+      "seed": 9,
+      "actors": [
+       {
+        "k": "theo",
+        "x": 1000
+       },
+       {
+        "k": "ines",
+        "x": 1500
+       }
+      ],
+      "cues": [
+       {
+        "t": "Saturday morning, a note lay under his door.",
+        "at": "hallway",
+        "on": [
+         "theo"
+        ],
+        "shot": "establish",
+        "emote": "surprise",
+        "do": "pickup",
+        "props": [
+         "envelope"
+        ]
+       },
+       {
+        "t": "Sorry if I seem rude. New places make me nervous.",
+        "who": "ines",
+        "shot": "insert",
+        "emote": "worry",
+        "props": [
+         "document"
+        ]
+       },
+       {
+        "t": "There's cake in my kitchen. It's a bit burnt. Ines, 4C.",
+        "who": "ines",
+        "shot": "insert",
+        "emote": "joy",
+        "props": [
+         "document"
+        ]
+       },
+       {
+        "t": "Neat handwriting. Three drafts, crossed out.",
+        "who": "ines",
+        "shot": "insert",
+        "emote": "worry",
+        "props": [
+         "document"
+        ]
+       },
+       {
+        "t": "He stopped on the stairs and read it twice. Then he read his list again.",
+        "at": "stairs",
+        "on": [
+         "theo"
+        ],
+        "shot": "establish",
+        "emote": "doubt",
+        "props": [
+         "document"
+        ]
+       },
+       {
+        "t": "He counted again. Now seven proofs looked like seven guesses.",
+        "at": "stairs",
+        "on": [
+         "theo"
+        ],
+        "shot": "cu",
+        "emote": "doubt"
+       },
+       {
+        "t": "Walked past without a word? Her arms were full of boxes.",
+        "at": "inesflat",
+        "on": [
+         "ines"
+        ],
+        "shot": "medium",
+        "emote": "worry",
+        "do": "walkTo:-250"
+       },
+       {
+        "t": "Earphones in? She was learning the bus times.",
+        "at": "stairs",
+        "on": [
+         "ines"
+        ],
+        "shot": "medium",
+        "emote": "worry"
+       },
+       {
+        "t": "The thud at ten? She was hanging one picture, badly.",
+        "at": "inesflat",
+        "on": [
+         "ines"
+        ],
+        "shot": "medium",
+        "emote": "tired",
+        "do": "reach"
+       },
+       {
+        "t": "Not one of them had been about him.",
+        "at": "stairs",
+        "on": [
+         "theo"
+        ],
+        "shot": "medium",
+        "emote": "relief"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "title": "Cake",
+   "goal": "Theo wants to say sorry without saying why.",
+   "target_s": 36,
+   "turn": "she kept a list about him too",
+   "value": "+",
+   "shots": [
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "stairs"
+      ],
+      "mood": "warm",
+      "seed": 10,
+      "actors": [
+       {
+        "k": "theo",
+        "x": 1000
+       }
+      ],
+      "cues": [
+       {
+        "t": "Every item had happened. None of them meant what he had decided.",
+        "at": "stairs",
+        "on": [
+         "theo"
+        ],
+        "shot": "establish",
+        "emote": "relief",
+        "do": "throw",
+        "props": [
+         "document"
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "sequence": {
+      "type": "dialogue",
+      "setting": "inesflat",
+      "mood": "warm",
+      "seed": 11,
+      "a": {
+       "k": "theo",
+       "x": 560
+      },
+      "b": {
+       "k": "ines",
+       "x": 1500
+      },
+      "lines": [
+       {
+        "who": "theo",
+        "t": "Hi. It's Theo. 4B.",
+        "emote": "joy",
+        "at": "inesflat",
+        "do": "wave"
+       },
+       {
+        "who": "ines",
+        "t": "Oh! You got my note.",
+        "emote": "surprise"
+       },
+       {
+        "who": "theo",
+        "t": "I got the cake part.",
+        "emote": "smirk"
+       },
+       {
+        "who": "ines",
+        "t": "I thought you disliked me. I made a list, actually.",
+        "emote": "worry"
+       },
+       {
+        "who": "theo",
+        "t": "\u2026Me too.",
+        "emote": "surprise"
+       },
+       {
+        "who": "ines",
+        "t": "Really?",
+        "emote": "joy"
+       },
+       {
+        "who": "ines",
+        "t": "I never knew how to say hello here.",
+        "emote": "worry"
+       },
+       {
+        "who": "theo",
+        "t": "Neither did I. Obviously.",
+        "emote": "smirk"
+       },
+       {
+        "who": "theo",
+        "t": "Okay, it's very burnt. I'll eat it.",
+        "emote": "joy"
+       }
+      ]
+     }
+    },
+    {
+     "sequence": {
+      "type": "narration",
+      "settings": [
+       "inesflat",
+       "stairs"
+      ],
+      "mood": "warm",
+      "seed": 12,
+      "actors": [
+       {
+        "k": "theo",
+        "x": 900
+       },
+       {
+        "k": "ines",
+        "x": 1500
+       }
+      ],
+      "cues": [
+       {
+        "t": "He ate the whole slice. It was very burnt.",
+        "at": "inesflat",
+        "on": [
+         "theo",
+         "ines"
+        ],
+        "shot": "wide",
+        "emote": "joy",
+        "do": "happy"
+       },
+       {
+        "t": "Next morning he said hello first. She answered before he finished.",
+        "at": "inesflat",
+        "on": [
+         "theo",
+         "ines"
+        ],
+        "shot": "medium",
+        "emote": "joy",
+        "do": "wave"
+       },
+       {
+        "t": "Think of someone you've already made up your mind about.",
+        "at": "stairs",
+        "on": [
+         "theo"
+        ],
+        "shot": "medium",
+        "emote": "think"
+       },
+       {
+        "t": "What have you stopped counting?",
+        "at": "stairs",
+        "on": [
+         "theo"
+        ],
+        "shot": "cu",
+        "emote": "think",
+        "props": [
+         "document"
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}
