@@ -25,6 +25,9 @@ VIENEU_VOICES: dict[str, dict[str, list[str]]] = {
 }
 
 EDGE_GENDER: dict[str, str] = {
+    "en-US-AndrewMultilingualNeural": "male", "en-US-BrianMultilingualNeural": "male", "en-US-AndrewNeural": "male",
+    "en-US-BrianNeural": "male", "en-US-AvaMultilingualNeural": "female", "en-US-EmmaMultilingualNeural": "female",
+    "en-US-AvaNeural": "female", "en-US-EmmaNeural": "female",
     "en-US-JennyNeural": "female", "en-US-AriaNeural": "female", "en-US-MichelleNeural": "female",
     "en-GB-SoniaNeural": "female", "en-GB-LibbyNeural": "female", "en-AU-NatashaNeural": "female",
     "en-US-GuyNeural": "male", "en-US-EricNeural": "male", "en-US-ChristopherNeural": "male",

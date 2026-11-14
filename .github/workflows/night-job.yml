@@ -271,7 +271,11 @@ jobs:
                     its own settings written with scene-dsl (not only `lib:`), supporting cast and `crowd` for groups,
                     2-3 shots per long scene, male characters with bare stick legs. Write the `spine` and each scene's
                     goal/turn/value first (references/short-film-craft.md), spoken lines (references/spoken-voice.md), and
-                    start every place from a `set` (rooms now include laundry, meeting, bathroom, grocery). Set `aspect` to "16:9" in the spec;
+                    and READ $SKILL/references/filmmaker-checklist.md: DESIGN every place this story needs yourself (no menu of
+                    places: `place`, `signature`, a shell `set` and 5+ own `objects`, set-design.md "Design every place
+                    yourself"), put `"at"` on every line that names a place, and `"emote"` on every line with a feeling (the
+                    voice acts it). A place you cannot build: write `needs_owner` on it, append it to data/asset-requests.md
+                    (date, film, setting, what is missing) and list it under "Owner: assets to make" in the report. Set `aspect` to "16:9" in the spec;
                     build_both.py overrides it per cut. If series is set, first run
                     `python $SKILL/scripts/series.py brief series/<series>/series-bible.json` and continue that story.
                  2. Generate both cuts:
@@ -301,8 +305,19 @@ jobs:
                          without it the voice is generated a second time. Then
                          `code2video-job outputs/<id>/job-portrait.json --report outputs/<id>/report-portrait.json`
                       The videos are outputs/<id>/<cut>/output.mp4. On failure read the report, fix, re-run.
-                      d. background music (both cuts): `python $SKILL/ci/add_music.py outputs/<id>/<cut>/output.mp4 --spec specs/<id>.json`
-                         (picks a licensed track from data/music by mood, ducks it under the voice; "no licensed track" is fine).
+                      d. sound, both cuts, in this order:
+                         `python $SKILL/ci/add_sfx.py outputs/<id>/<cut>/output.mp4 --project outputs/<id>/<cut>`
+                         (effects on the picture's beats + the room tone of each place), then
+                         `python $SKILL/ci/add_music.py outputs/<id>/<cut>/output.mp4 --spec specs/<id>.json`
+                         (a licensed track from data/music by mood, else the film's own synthesised score; ducked under the voice).
+                         Check the log lines `sfx:` and `music:`; a film must never go out silent between lines.
+                      e. DIRECTOR'S PASS on each finished cut (judge the real mp4, never the plan):
+                         `python $SKILL/ci/director_pass.py outputs/<id>/<cut>/output.mp4`
+                         It prints PROBLEM lines for dead air (5 s windows below -50 dB), a flat mix, a frozen picture or black
+                         frames, and writes contact sheets (outputs/<id>/<cut>/director_pass/director_sheet_N.jpg). Read the
+                         sheets (a frame every 4 s) as a viewer: where are we, does the picture match the words, can I see the
+                         eyes of whoever speaks, does the stage change between beats (references/event-relay.md)? Fix each
+                         PROBLEM (verify_bundle repeats the same checks) and put what you saw, with times, in the report.
                          If <cut>/output.music.json has a non-empty "credit", put that line in every description you write.
                     * `renderer: skill` (fallback, edge-tts): run `python $SKILL/ci/run_pipeline.py specs/<id>.json outputs/<id>/landscape --aspect 16:9`
                       and again with `--aspect 9:16 --no-series-update` into outputs/<id>/portrait (video: final.mp4).

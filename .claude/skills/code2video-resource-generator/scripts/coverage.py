@@ -88,6 +88,10 @@ def _face_each_other(sh, A, B):
 def dialogue(seq, rnd):
     A, B = _actor(seq["a"]), _actor(seq["b"], True)
     if "flip" not in seq["b"]: B["flip"] = True
+    talk = 330 * (A.get("s", 0.82) / 0.82)                      # ~1.5 m: two people talking, not shouting across the room
+    if abs(B["x"] - A["x"]) > 1.25 * talk:
+        mid = (A["x"] + B["x"]) / 2; sg = 1 if B["x"] > A["x"] else -1
+        A["x"] = int(mid - sg * talk / 2); B["x"] = int(mid + sg * talk / 2)   # (both keep their side)
     who = {A["k"]: (A, B, 1), B["k"]: (B, A, -1)}
     st = _sid(seq["setting"]); mood = seq.get("mood", "warm"); out = []
     for i, ln in enumerate(seq["lines"]):
@@ -165,9 +169,11 @@ PROP_SIZE = {"phone": .45, "coffee": .62, "cup": .62, "clock": .7, "document": .
 
 # pose held across cuts inside one scene: {char_key: {"pose": "lie"|"sit", "to": "bed", "setting": sid, "awake": bool}}
 # and props left on furniture: {setting: [{"id", "at"}]}. Reset at every scene (expand()).
-STATE = {"pose": {}, "left": {}}
+STATE = {"pose": {}, "left": {}, "item": {}}
+CARRY = {"gift", "shopping_bag", "briefcase", "document", "envelope", "book", "wallet", "cash", "photo", "key", "card", "phone"}
 SETTINGS = [{}, pathlib.Path(".")]
-CAST_NAMES = {}     # key -> display name (expand() fills it): a line that names someone puts them in the shot
+CAST_NAMES = {}
+CAST_GENDER = {}    # key -> "male"/"female": "He grabs the bag" belongs to the man in the shot, not to whoever the cycle picks     # key -> display name (expand() fills it): a line that names someone puts them in the shot
 
 
 def _stage_line(beat, by_key, actors, W_):
@@ -180,17 +186,48 @@ def _stage_line(beat, by_key, actors, W_):
     beat = dict(beat)
     text = beat.get("t", "")
     on = list(beat["on"]) if beat.get("on") is not None else None
-    named = [k for k, nm in CAST_NAMES.items() if k in by_key and nm and _re.search(r"\b%s\b" % _re.escape(nm), text)]
+    def _acts_here(nm):    # subject of a sentence, or the one walked/talked to (a bare mention is not presence)
+        n_ = _re.escape(nm)
+        if _re.search(r"(^|[.!?]\s+)" + n_ + r"\b(?!'s)\s+(?!is doing|was|has|had)\w+", text): return True
+        if _re.search(r"\b" + n_ + r"\s+(?!is \b|was \b|has \b|does \b)[a-z]+s\b", text): return True   # "On Friday Zoe finds..."
+        return bool(_re.search(r"\b(walks?|runs?|goes|comes|turns?|looks?|smiles?|talks?|tells?|asks?|hugs?|finds?|meets?|joins?)\b[^.!?]{0,20}\b(to|at|with)?\s*" + n_ + r"\b", text, _re.I))
+    named = [k for k, nm in CAST_NAMES.items() if k in by_key and nm and _acts_here(nm)]
     if on is not None and _re.search(r"BSb(they|together|both|each other|the two)BSb".replace("BS", chr(92)), text, _re.I):
         on += [a_["k"] for a_ in actors if a_["k"] not in on]      # "they talk": everyone of the sequence is in the shot
-    walker = beat.get("focus") or (on[0] if on else (actors[0]["k"] if actors else None))
+    # the one who walks is the SUBJECT of the line ("Zoe finds Sam": Zoe walks to Sam), not whoever is listed first
+    subj = None; best = 10 ** 9
+    for k_, nm_ in CAST_NAMES.items():
+        if k_ in by_key and nm_:
+            m_ = _re.search(r"\b" + _re.escape(nm_) + r"\s+(?!is\b|was\b|has\b|does\b)[a-z]+s\b", text)
+            if m_ and m_.start() < best: subj, best = k_, m_.start()
+    if not subj and on:   # a pronoun subject: "He grabs...", "She runs..." -> the one person of that gender in the shot
+        mp = _re.match(r"BSs*(?:[A-Z][a-z]+,?BSs+)*?(He|She)BSb".replace("BS", chr(92)), text)
+        if mp:
+            g_ = "male" if mp.group(1) == "He" else "female"
+            cand = [k_ for k_ in on if CAST_GENDER.get(k_) == g_]
+            if len(cand) == 1: subj = cand[0]
+    walker = beat.get("focus") or subj or (on[0] if on else (actors[0]["k"] if actors else None))
     dos = [beat["do"]] if isinstance(beat.get("do"), str) else list(beat.get("do") or [])
     moved = {}
     lo, hi = 0.08 * W_, 0.92 * W_
     for j, d in enumerate(dos):
         d_, _, target = str(d).strip().partition("@")
         name, _, arg = d_.partition(":")
-        if ACT_ALIASES.get(name.lower(), name) != "walkTo" or walker not in by_key:
+        verb = ACT_ALIASES.get(name.lower(), name)
+        if verb == "run" and walker in by_key and not target:   # a run stays in the frame too (and ends where it ends)
+            me = by_key[walker]
+            try: dx = float(arg or 520)
+            except ValueError: continue
+            dest = max(lo, min(hi, me["x"] + dx))
+            if abs(dest - me["x"]) < 0.2 * W_: dest = max(lo, min(hi, me["x"] - dx))   # no room ahead: run the other way
+            for o_ in by_key.values():      # a run never ends on someone of the scene (even one not in this line yet)
+                if o_["k"] != walker and abs(dest - o_["x"]) < 260 * me.get("s", 0.82) / 0.82:
+                    dest = o_["x"] + (260 if me["x"] > o_["x"] else -260) * me.get("s", 0.82) / 0.82
+            dest = max(lo, min(hi, dest))
+            dos[j] = f"run:{int(dest - me['x'])}"
+            moved[walker] = dict(me, x=int(dest), flip=dest < me["x"])
+            continue
+        if verb != "walkTo" or walker not in by_key:
             continue
         me = by_key[walker]
         if not target:      # "walks (back) to Ana" with a bare walkTo: the person named after "to" is where they go
@@ -211,11 +248,13 @@ def _stage_line(beat, by_key, actors, W_):
             except ValueError: continue
             dest = max(lo, min(hi, me["x"] + dx))
             for o_ in by_key.values():      # never walk into (through) someone standing there: stop beside them
-                if o_["k"] != walker and (on is None or o_["k"] in on) and abs(dest - o_["x"]) < 230 * me.get("s", 0.82) / 0.82:
+                if o_["k"] != walker and abs(dest - o_["x"]) < 230 * me.get("s", 0.82) / 0.82:
                     dest = o_["x"] + (230 if me["x"] > o_["x"] else -230) * me.get("s", 0.82) / 0.82
             dos[j] = f"walkTo:{int(dest - me['x'])}"
             moved[walker] = dict(me, x=int(dest), flip=dest < me["x"])
     if dos: beat["do"] = dos
+    if subj and not beat.get("focus") and len(on or []) > 1:
+        beat["focus"] = subj            # the line's actions (and props) belong to its subject
     if walker in moved and not beat.get("focus"):
         beat["focus"] = walker          # the actions of the line belong to the one who walks, not to whoever the shot cycle picks
     if on is not None:
@@ -350,6 +389,13 @@ def _apply_beat(shots, cue, focus_key):
         lp_ = [p if isinstance(p, str) else (p or {}).get("id") for p in (cue.get("props") or [])]
         if "phone" in lp_: item = "phone"
         elif set(lp_) & {"coffee", "cup", "mug"}: item = "cup"
+        else:   # a carried object (the cake box, the bag, the report): in the hand, and it goes where they go
+            alias = {"money": "cash", "bag": "shopping_bag", "report": "document", "present": "gift", "purse": "wallet"}
+            car = next((alias.get(p, p) for p in lp_ if alias.get(p, p) in CARRY), None)
+            if car: item = car
+    if fk and item and item in CARRY: STATE["item"][fk] = item           # still holding it on the next lines of the scene
+    if fk and not item and STATE["item"].get(fk) and not placed and not any(a_[1] in ("place", "throw") for a_ in acts):
+        item = STATE["item"][fk]
     if fk and any(a_[1] in BREAKS_HOLD for a_ in acts):
         STATE["pose"].pop(fk, None)
     walked = next((a_[2][1:] for a_ in acts if a_[1] == "walkTo" and isinstance(a_[2], str) and a_[2].startswith("@")), None)
@@ -385,7 +431,7 @@ def _apply_beat(shots, cue, focus_key):
         elif isinstance(cue.get("crowd"), dict): sh["crowd"] = copy.deepcopy(cue["crowd"])
     if cue.get("props") and not shots[0].get("props"):
         a = next((c for c in shots[0]["chars"] if c["k"] == focus_key), shots[0]["chars"][0] if shots[0]["chars"] else None)
-        held_ids = {"phone"} if item == "phone" else ({"coffee", "cup", "mug"} if item == "cup" else set())
+        held_ids = {"phone"} if item == "phone" else ({"coffee", "cup", "mug"} if item == "cup" else ({item, "money" if item == "cash" else item, "bag" if item == "shopping_bag" else item} if item else set()))
         lp_ = [p for p in cue["props"] if not (a and a["k"] == fk and (p if isinstance(p, str) else p.get("id")) in held_ids)]
         # only things a person can hold go in the hand: a calendar, a clock, a lightbulb, a chart is shown as an insert or
         # a HUD, never floating beside someone's hand (2026-11-09 audit: a calendar held on the sofa)
@@ -504,6 +550,8 @@ def narration(seq, rnd):
             _set_acts(sh, a["k"], [[rnd.choice([0.4, 0.8]), rnd.choice(["look", "nod", "think"] if mood != "warm" else ["look", "nod", "happy"])]])
         made = [sh]
         out.append(sh)
+        if line_props and line_props[0] in ("clock", "calendar") and not beat.get("shot"):
+            line_props = []      # "at midnight", "on Friday": a time, not an object to look at - keep the person on screen
         if line_props and kind not in ("insert",) and not beat.get("shot") and n >= 8:
             # the line names an object: cut to it in the second half (insert), like the reference films do
             first = out[-1]; first["portion"] = [0, 0.55]
@@ -523,9 +571,35 @@ def narration(seq, rnd):
         _apply_beat(made, cue, a["k"])
         for sh_ in made[1:]:                # the second angle of the same line: already arrived, not walking it again
             for ch in sh_.get("chars", []):
-                if ch["k"] in moved and any(a_[1] == "walkTo" and not isinstance(a_[2], str) for a_ in ch.get("acts", [])):
+                if ch["k"] in moved and any(a_[1] in ("walkTo", "run") and not isinstance(a_[2], str) for a_ in ch.get("acts", [])):
                     ch["x"] = moved[ch["k"]]["x"]; ch["flip"] = moved[ch["k"]].get("flip", ch.get("flip"))
-                    ch["acts"] = [a_ for a_ in ch["acts"] if a_[1] != "walkTo"]
+                    ch["acts"] = [a_ for a_ in ch["acts"] if a_[1] not in ("walkTo", "run")]
+        t_full = text if isinstance(text, str) else text.get("t", "")
+        import re as _re2
+        for k_, nm_ in CAST_NAMES.items():   # "Nina is crying by the water": Nina cries, even when the line's action is Leo's
+            if not nm_ or k_ == a["k"]: continue
+            mm = _re2.search(r"\b" + _re2.escape(nm_) + r"\s+(?:is\s+|looks\s+|seems\s+)?(crying|cries|sobbing|smiling|smiles|laughing|laughs|grinning|frowning|frowns|angry|furious|scared|afraid|terrified|shocked|surprised|sad|happy|nervous|worried|waiting|waits|panicking|panics|screaming|screams)\b", t_full, _re2.I)
+            if mm:
+                w = mm.group(1).lower()
+                emo = ("cry" if w.startswith(("cr", "sob")) else "joy" if w.startswith(("smil", "laugh", "grin", "happy")) else
+                       "anger" if w.startswith(("frown", "angry", "furious")) else "fear" if w.startswith(("scar", "afraid", "terr", "panic", "scream", "nerv", "worr")) else
+                       "surprise" if w.startswith(("shock", "surpr")) else "sad" if w == "sad" else "neutral")
+                for sh_ in made:
+                    if any(c_["k"] == k_ for c_ in sh_.get("chars", [])): _set_acts(sh_, k_, [[0.2, "react", emo]])
+        mains_ = [c_ for c_ in (made[0].get("chars") or []) if not c_.get("extra")]
+        talks_to = _re2.search(r"\b(you|your|you're|sorry|thanks?|here)\b|[\"\u201c]", t_full, _re2.I)
+        pair = None
+        for k_, v_ in moved.items():
+            if k_ != a["k"]: pair = (a["k"], k_)
+        if not pair and len(mains_) == 2 and talks_to: pair = (mains_[0]["k"], mains_[1]["k"])
+        if pair:   # people who walk up to / speak to each other turn to each other (not to the lens)
+            for j_, sh_ in enumerate(made):
+                cs = {c_["k"]: c_ for c_ in sh_.get("chars", [])}
+                if pair[0] in cs and pair[1] in cs:
+                    A_, B_ = cs[pair[0]], cs[pair[1]]
+                    xa = moved.get(pair[0], A_).get("x", A_["x"]); xb = moved.get(pair[1], B_).get("x", B_["x"])
+                    if j_ > 0 or pair[0] not in moved: A_["face"] = 1 if xb > xa else -1      # the walker turns once arrived
+                    B_["face"] = 1 if xa > xb else -1
         for k, v in moved.items():          # where the walk ended is where they stand on the next line
             by_key[k] = v
             actors[:] = [v if x_["k"] == k else x_ for x_ in actors]
@@ -564,12 +638,13 @@ def expand(spec, spec_dir):
     spec = copy.deepcopy(spec); spec_dir = pathlib.Path(spec_dir); PORTRAIT[0] = spec.get("aspect", "16:9") == "9:16"
     settings = dict(spec.get("settings", {})); SETTINGS[0] = settings; SETTINGS[1] = spec_dir
     CAST_NAMES.clear(); CAST_NAMES.update({c["id"]: c.get("name") for c in spec.get("cast", []) if not c.get("narrator")})
+    CAST_GENDER.clear(); CAST_GENDER.update({c["id"]: c.get("gender") for c in spec.get("cast", []) if not c.get("narrator")})
     def reg(name):
         sid = _sid(name)
         if name.startswith("lib:"): settings[sid] = str(LIB / (name[4:] + ".json"))
         return sid
     for sc in spec["scenes"]:
-        STATE["pose"].clear(); STATE["left"].clear()
+        STATE["pose"].clear(); STATE["left"].clear(); STATE["item"].clear()
         shots = []
         for item in sc["shots"]:
             if "sequence" in item:

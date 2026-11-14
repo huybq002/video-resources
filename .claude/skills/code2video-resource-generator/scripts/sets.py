@@ -40,6 +40,7 @@ STYLE_PAL = {   # day colours of the place itself; dusk/night mix them with the 
 }
 
 
+
 def _mix(a, b, t):
     a = [int(a[i:i + 2], 16) for i in (1, 3, 5)]; b = [int(b[i:i + 2], 16) for i in (1, 3, 5)]
     return "#" + "".join(f"{round(x + (y - x) * t):02x}" for x, y in zip(a, b))
@@ -166,15 +167,33 @@ def room(cfg, P, rnd):
     ww = {"center": 6.0}.get(win, 4.2) if win != "none" else 0
     sill, top = 0.95, 3.2
     o = []
+    # the room's SHELL differs per film (2026-11-14: every film's rooms had the same ceiling panels, the same plain walls
+    # and the same straight-on camera, so a kitchen in one story looked like the living room of the last one).
+    # Only when the film gives a seed (generate.py always does), so old specs render as before.
+    sh_ = random.Random(f"shell-{cfg['seed']}-{style}") if "seed" in cfg else None
+    ceiling = sh_.choice(["panels", "pendants", "beams", "plain", "panels"]) if sh_ else "panels"
+    if cfg.get("ceiling"): ceiling = cfg["ceiling"]          # the designer may choose it: panels|pendants|beams|plain
+    finish = (sh_.choice(["plain", "wainscot", "tiles", "stripes", "brick", "plain"]) if sh_ else "plain")
+    if style == "bathroom": finish = "tiles"
+    if cfg.get("finish"): finish = cfg["finish"]             # plain|wainscot|tiles|stripes|brick
+    floor_c = P["floor"]
     # floor with planks, ceiling with light strips, side walls, baseboards
-    o.append(_box(0, -0.1, (BZ + FRONT) / 2, W, 0.1, FRONT - BZ, P["floor"], ink=0))
+    o.append(_box(0, -0.1, (BZ + FRONT) / 2, W, 0.1, FRONT - BZ, floor_c, ink=0))
     for k in range(int(W / 0.7)):
         o.append(_box(-hw + 0.35 + k * 0.7, 0.001, (BZ + FRONT) / 2, 0.02, 0.004, FRONT - BZ, "#000000", ink=0, op=0.18))
     o.append(_box(0, CH, (BZ + FRONT) / 2, W, 0.12, FRONT - BZ, P["ceil"], ink=0))
-    for zz in (-4.0, -0.8):
-        for xx in (-3.0, 3.0):   # ceiling light panels
-            o.append(_box(xx, CH - 0.06, zz, 2.2, 0.06, 0.7, "#2a2533", ink=0))
-            o.append(_glow(xx, CH - 0.07, zz, 2.0, 0.5, "#fff3dc" if time != "night" else "#ffe2b0", rx=math.pi / 2))
+    if ceiling == "panels":
+        for zz in (-4.0, -0.8):
+            for xx in (-3.0, 3.0):   # ceiling light panels
+                o.append(_box(xx, CH - 0.06, zz, 2.2, 0.06, 0.7, "#2a2533", ink=0))
+                o.append(_glow(xx, CH - 0.07, zz, 2.0, 0.5, "#fff3dc" if time != "night" else "#ffe2b0", rx=math.pi / 2))
+    elif ceiling == "pendants":
+        for xx, zz in ((-3.2, -3.0), (0.0, -1.2), (3.2, -3.0)):
+            o.append(dict(t="lamp_hang", x=xx, z=zz, y=CH, c="#ffcf8a"))
+    elif ceiling == "beams":
+        for zz in (-5.0, -3.0, -1.0, 1.0):
+            o.append(_box(0, CH - 0.3, zz, W, 0.3, 0.25, _mix(P["ceil"], "#6e4b35", 0.5), ink=0.02))
+        o.append(dict(t="lamp_hang", x=0.0, z=-2.0, y=CH - 0.3, c="#ffcf8a"))
     for sx in (-1, 1):
         o.append(_box(sx * (hw + 0.1), 0, (BZ + FRONT) / 2, 0.2, CH, FRONT - BZ, P["wall2"], ink=0.02))
         o.append(_box(sx * (hw - 0.02), 0, (BZ + FRONT) / 2, 0.04, 0.14, FRONT - BZ, "#1e1a26", ink=0))
@@ -205,6 +224,24 @@ def room(cfg, P, rnd):
     else:
         o.append(_box(0, 0, BZ, W, CH, d, P["wall"], ink=0.02))
     o.append(_box(0, 0, BZ + 0.17, W, 0.14, 0.04, "#1e1a26", ink=0))
+    # wall finish on the back wall (below the window line) and the side walls
+    if finish == "wainscot":
+        o.append(_box(0, 0, BZ + 0.16, W, 1.0, 0.03, _mix(P["wall"], "#ffffff", 0.18), ink=0.015))
+        o.append(_box(0, 1.0, BZ + 0.18, W, 0.05, 0.05, _mix(P["wall"], "#1e1a26", 0.5), ink=0))
+    elif finish == "tiles":
+        for x in [-hw + 0.3 * k for k in range(int(W / 0.3) + 1)]:
+            o.append(_box(x, 0, BZ + 0.16, 0.01, 1.3, 0.005, "#ffffff", ink=0, op=0.3))
+        for y in (0.3, 0.6, 0.9, 1.2):
+            o.append(_box(0, y, BZ + 0.16, W, 0.01, 0.005, "#ffffff", ink=0, op=0.3))
+        o.append(_box(0, 1.3, BZ + 0.17, W, 0.04, 0.03, _mix(P["wall"], "#3e7cb1", 0.4), ink=0))
+    elif finish == "stripes":
+        for k in range(int(W / 0.6)):
+            if k % 2: o.append(_box(-hw + 0.3 + k * 0.6, 0, BZ + 0.16, 0.3, CH, 0.005, _mix(P["wall"], "#000000", 0.08), ink=0, op=0.8))
+    elif finish == "brick":
+        for j in range(int(CH / 0.25)):
+            for k in range(int(W / 0.5) + 1):
+                if (j * 3 + k) % 5 == 0:
+                    o.append(_box(-hw + k * 0.5 + (0.25 if j % 2 else 0), j * 0.25, BZ + 0.16, 0.46, 0.21, 0.01, _mix(P["wall"], "#a0523d", 0.35), ink=0, op=0.7))
     # wall dressing on the free wall either side of the window
     free = [x for x in (-hw + 1.4, -hw + 3.0, hw - 1.4, hw - 3.0) if not ww or abs(x - wx) > ww / 2 + 0.9]
     rnd.shuffle(free)
@@ -282,7 +319,9 @@ def room(cfg, P, rnd):
               dict(t="cylinder", x=2.25, y=0.7, z=5.35, r=0.07, h=0.42, c="#6fb3a8")]
     base = dict(bg=P["wall2"], fog={"near": P["fog"][0], "far": P["fog"][1], "c": P["sky"][1]}, exposure=0.95 if time == "day" else 1.15,
                 ambient={"c": P["amb"][0], "i": P["amb"][1]}, sun={"c": P["sun"], "i": 0.35, "pos": [wx, 5, -10]},
-                camera={"pos": [0, 2.0, 8.4], "look": [0, 1.65, -3], "fov": 46},
+                camera=({"pos": [0, 2.0, 8.4], "look": [0, 1.65, -3], "fov": 46} if not sh_ else
+                        (lambda dx, fv: {"pos": [dx, 2.0 + sh_.uniform(-0.15, 0.25), 8.4], "look": [-dx * 0.35, 1.65, -3], "fov": fv})(
+                            sh_.choice([-1.1, -0.6, 0.0, 0.6, 1.1]), sh_.choice([42, 44, 46, 48]))),
                 layers=[6.0, 15.0] if cfg.get("fg", True) else None, _win=(wx if ww else None))
     return base, o
 
@@ -365,7 +404,7 @@ def beach(cfg, P, rnd):
     time = cfg.get("time", "day"); o = []
     sand = {"day": "#e8cf9a", "dusk": "#d9a878", "night": "#5a5068"}.get(time, "#e8cf9a")
     sea = {"day": "#3fa7c9", "dusk": "#7a6aa8", "night": "#232a55"}.get(time, "#3fa7c9")
-    o.append(_box(0, -0.05, 0, 120, 0.05, 30, sand, ink=0))                       # sand from the camera to the waterline at z=-15
+    o.append(_box(0, -0.05, 10, 120, 0.05, 50, sand, ink=0))                      # sand from behind the 9:16 camera (z~30) to the waterline at z=-15
     o.append(_box(0, -0.02, -60, 260, 0.03, 90, sea, ink=0))                      # sea to the horizon
     for k in range(7):                                                             # foam lines
         o.append(_box(rnd.uniform(-20, 20), 0.012, -15.2 - k * 2.6, rnd.uniform(4, 12), 0.004, 0.25, "#f3f7fa", ink=0, op=0.7))
@@ -392,10 +431,13 @@ def expand(setting):
     """setting with a "set" key -> full setting; anything else unchanged."""
     if not isinstance(setting, dict) or not isinstance(setting.get("set"), dict):
         return setting
-    cfg = setting["set"]; P = dict(TIMES.get(cfg.get("time", "dusk"), TIMES["dusk"]))
+    cfg = setting["set"]
+    P = dict(TIMES.get(cfg.get("time", "dusk"), TIMES["dusk"]))
     sp = STYLE_PAL.get(cfg.get("style")) if cfg.get("type", "room") == "room" else None
     if sp:
-        t = {"day": 0.0, "dusk": 0.45, "night": 0.55}.get(cfg.get("time", "dusk"), 0.45)
+        # how much the time of day tints the walls: an interior at night is lit by its own lamps, so it keeps its colour
+        # (at .55 every night room of every film turned the same violet, 2026-11-14)
+        t = {"day": 0.0, "dusk": 0.3, "night": 0.3}.get(cfg.get("time", "dusk"), 0.3)
         for k in ("wall", "wall2", "floor"):
             P[k] = _mix(sp[k], P[k], t)
     rnd = random.Random(cfg.get("seed", 7))
@@ -409,6 +451,9 @@ def expand(setting):
             cfg = dict(cfg, window=vr.choice(["left", "right", "center"]))
         if "key" not in cfg:
             cfg = dict(cfg, key={"x": vr.choice([-1, 1]) * vr.uniform(1.4, 2.4), "z": vr.uniform(0.3, 0.9)})
+    for k_ in ("wall", "wall2", "floor", "ceil"):      # the set designer chooses the colours of THIS place
+        if isinstance(cfg.get(k_), str) and cfg[k_].startswith("#"): P[k_] = cfg[k_]
+    if isinstance(cfg.get("wall"), str) and not cfg.get("wall2"): P["wall2"] = _mix(P["wall"], "#000000", 0.12)   # side walls follow
     fn = TYPES.get(cfg.get("type", "room"))
     if not fn:
         raise ValueError(f"unknown set type {cfg.get('type')} (known: {', '.join(TYPES)})")

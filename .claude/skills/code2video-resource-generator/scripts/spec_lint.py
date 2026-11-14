@@ -470,6 +470,16 @@ def lint(spec):
 
     notes += hook_and_ending(spec)
     notes += script_visual_match(spec)
+    try:
+        from place_lint import place_match
+    except ImportError:
+        from scripts.place_lint import place_match
+    notes += place_match(spec)
+    try:
+        from relay_lint import relay
+    except ImportError:
+        from scripts.relay_lint import relay
+    notes += relay(spec)
     notes += film_pace(spec)
     notes += script_craft(spec)
     try:

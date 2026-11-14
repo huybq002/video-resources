@@ -59,6 +59,18 @@ else:
     srt_tools.write_srt(srt_path, plan["cues"], spec)
 for n in plan["notes"]: print(n)
 print(f"script.srt: {plan['totalMs']/1000:.1f}s, {len(plan['cues'])} cues, scenes " + ", ".join(f"{(s['endMs']-s['startMs'])/1000:.0f}s" for s in plan["scenes"]))
+# what each place IS (the designer's "place" text): the room tone of each shot follows it (ci/score.py)
+json.dump({sid: " ".join([sid.replace("_", " "), str(st.get("place", "")), " ".join(map(str, st.get("signature", []) or []))])
+           for sid, st in (spec.get("settings") or {}).items() if isinstance(st, dict)},
+          open(out / "assets" / "places.json", "w", encoding="utf-8") if (out / "assets").mkdir(parents=True, exist_ok=True) is None else None,
+          ensure_ascii=False, indent=0)
+# voice direction: who speaks each line, narrator or character, and with what feeling (the tool's TTS reads it to vary
+# pace, pitch and loudness per line; before 2026-11-14 every line was read in the same flat tone)
+(out / "assets").mkdir(parents=True, exist_ok=True)
+_narr = spec.get("narrator", "narrator")
+json.dump([{"index": c["index"], "startMs": c["startMs"], "speaker": c["speaker"], "who": c["who"], "narrator": c["who"] == _narr,
+            "emote": c.get("emote", ""), "mood": c.get("mood", ""), "text": c["text"]} for c in plan["cues"]],
+          open(out / "assets" / "voice_direction.json", "w", encoding="utf-8"), ensure_ascii=False, indent=0)
 tl = {"durationMs": plan["totalMs"], "cues": [{"index": c["index"], "text": c["text"], "startMs": c["startMs"], "endMs": c["endMs"], "words": c["words"]} for c in plan["cues"]], "scenes": []}
 for s in plan["scenes"]:
     idx = [c["index"] for c in plan["cues"] if c["scene"] == s["id"]]
@@ -110,6 +122,12 @@ cmd = [py, str(HERE / "build_project.py"), str(exp), str(out), "--timeline", str
 if a.no_audio_tag: cmd.append("--no-audio-tag")
 if a.no_captions: cmd.append("--no-captions")
 run(cmd)
+# ---- 3b. character logic, as the camera frames it (scripts/logic_check.py): each problem is a WARNING (lint gate)
+try:
+    import logic_check
+    for _p in logic_check.check(out, json.load(open(spec_path, encoding="utf-8"))): print("WARNING: logic: " + _p)
+except Exception as _e:
+    print(f"logic check skipped ({type(_e).__name__}: {_e})")
 
 # ---- 4. docs next to the project ----------------------------------------------------------------------
 docs = out.parent / (out.name + "_docs"); docs.mkdir(exist_ok=True)

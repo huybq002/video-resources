@@ -3,6 +3,84 @@
 Measured from frames of the reference channel (IfverseTales: "I Have 100% Luck", "Reaction Time", "One Second Felt Like
 Forever", the stickman Shorts) next to our own night-job videos (2026-11-07/08).
 
+## Design every place yourself (owner rule, 2026-11-14)
+
+There is no menu of places. Before writing lines, read the story and list where each beat physically happens. Then
+DESIGN each place the way a production designer would, for THIS film:
+- a ward for a nurse;
+- the bakery with its till;
+- the cinema with its screen;
+- a bus at night;
+- a courtroom.
+
+The stock `style` rooms (bedroom, kitchen ...) are only shells with default furniture. Every film that used them alone
+looked like the last one (videos 003-007).
+
+Each setting:
+
+```jsonc
+"ward": {
+  "place": "night ward of a small city hospital: two beds behind curtains, a lit nurse station",   // what it is in THIS story
+  "signature": ["drip stand", "heart monitor", "bed curtains", "nurse station"],                  // recognisable in a close-up
+  "set": {"type": "room", "style": "generic", "time": "night",                                   // the SHELL
+          "wall": "#cfe0de", "floor": "#9fb2b0", "window": "left", "finish": "tiles", "ceiling": "panels"},
+  "objects": [                                                                                    // the design
+    {"t":"furn","n":"bed","x":-4.2,"z":-2.6,"c":"#e8eef0","c2":"#9aa7ad"}, {"t":"furn","n":"bed","x":-1.4,"z":-2.6,"c":"#e8eef0","c2":"#9aa7ad"},
+    {"t":"box","x":-3.0,"y":0,"z":-2.6,"w":0.06,"h":2.4,"d":2.4,"c":"#9fc9c4","op":0.9},          // privacy curtain
+    {"t":"cylinder","x":-5.1,"y":0,"z":-3.4,"r":0.03,"h":1.9,"c":"#b9c2c8"},                      // drip stand pole
+    {"t":"box","x":-5.1,"y":1.75,"z":-3.4,"w":0.22,"h":0.32,"d":0.06,"c":"#cfe9ff","op":0.85},   // drip bag
+    {"t":"box","x":-2.3,"y":1.5,"z":-5.8,"w":0.55,"h":0.4,"d":0.06,"c":"#15121c"},              // monitor on the wall
+    {"t":"glow","x":-2.3,"y":1.55,"z":-5.76,"w":0.48,"h":0.32,"c":"#3fc46e"},                   //   its green trace
+    {"t":"furn","n":"shop_counter","x":3.0,"z":-0.6,"c":"#d9e4e8"}, {"t":"furn","n":"computer","x":2.6,"z":-0.8,"y":0.95},   // nurse station
+    {"t":"glow","x":3.0,"y":2.8,"z":-5.8,"w":2.2,"h":0.45,"c":"#e35d4f"},                        // station sign
+    {"t":"furn","n":"sink","x":4.8,"z":-5.5}, {"t":"furn","n":"plant","x":6.2,"z":1.6}
+  ]
+}
+```
+
+**What you build with**:
+- primitives: `box`, `cylinder`, `sphere`, `cone`, `glow` (screens, signs, windows, light), `disc`, `grad`, `lamp`,
+  `lamp_hang`, `light`; `op` for glass and see-through cloth; `rx`/`ry`/`rz` to turn them;
+- the furniture macros (`{"t":"furn","n":...}`, scripts/furniture.py): bed, sofa, chair, table, desk, computer, tv,
+  counters, shelves, fridge, oven, sink, washer, bathtub, toilet, whiteboard, projector_screen, podium, car, building,
+  fence, door, window, plant, lamps, boxes, papers, mug ...;
+- the Kenney models (`{"t":"prop","n":...}`, assets/kenney-glb): trees, rocks, tents, fences, signs, statues, crops,
+  campfires, canoes, bridges, cliffs.
+
+**Scale**:
+- the floor is y=0;
+- characters stand at z about 0.5-1.5;
+- the back wall is z=-6 and the ceiling is y=4;
+- the room is 14 m wide (x from -7 to 7);
+- a person is about 1.65 m tall, a door 2.1 m, a table 0.75 m, a counter 1.0 m.
+
+**Shell keys**:
+- `wall` / `wall2` / `floor` / `ceil` colours;
+- `window` (left | right | center | none);
+- `ceiling` (panels | pendants | beams | plain);
+- `finish` (plain | wainscot | tiles | stripes | brick);
+- `time`.
+
+The film seed varies everything you leave out (tint, window side, ceiling, finish, camera angle). Exteriors start from
+`street` / `shopfront` / `beach` shells and get their own objects in the same way.
+
+**When it cannot be built**, do not fake it with a near place: a ward built as a lab, a cinema as a meeting room or a
+car interior as an office all look wrong. Examples of what cannot be built: a car or bus interior, an animal, a specific
+machine, a crowd stadium. Write
+
+```jsonc
+"bus": {"place": "night bus, empty seats", "needs_owner": "a bus interior: seats in rows, poles, windows with the city passing; no bus model in furniture.py or assets/kenney-glb", ...}
+```
+
+The lint prints `NOTE: OWNER: ...`, the night job copies it into data/asset-requests.md and the morning report, and
+shoots those lines in the nearest honest place it can build (e.g. the bus stop outside). The owner adds the asset by
+hand: a GLB model dropped into assets/kenney-glb becomes `{"t":"prop","n":"<file name>"}`, a new furniture macro goes
+into scripts/furniture.py.
+
+The lint checks every setting:
+- `place_lint.py`: it has `place`, 2+ `signature` objects and 5+ objects of its own;
+- every line that names a place is shot in a setting whose place, id or signature says it is that place.
+
 ## What the reference frames do
 
 | | Reference films | Our videos before `set` |
@@ -28,7 +106,9 @@ Forever", the stickman Shorts) next to our own night-job videos (2026-11-07/08).
 ```
 
 - `type`: `room` | `street` | `shopfront`.
-- `style` (room): `bedroom office lab kitchen living classroom cafe shop laundry meeting bathroom grocery`; (shopfront): `cafe shop office`.
+- `style` (room): `generic` (an empty shell you furnish yourself: the default for a designed place) or a stock shell with default
+  furniture `bedroom office lab kitchen living classroom cafe shop laundry meeting bathroom grocery`; (shopfront): `cafe shop office`.
+  A stock shell still needs the story's own `place`, `signature` and 5+ `objects` (see the section above).
 - `time`: `day` | `dusk` (default; the reference look) | `night`. Use the time the script says ("2 a.m." = night, "nine o'clock" = day).
 - `window`: `left` | `right` | `center` | `none` (default depends on the style). `key`: where the style's key furniture stands
   (bed, desk, sofa, table); put it where the character who uses it stands (z ≈ 0.5–1.5 is the characters' depth).
