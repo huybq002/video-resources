@@ -1,0 +1,2433 @@
+{
+ "date": "2026-11-14",
+ "lang": "en",
+ "niche": "Animated short films about decisions and what they cost: money, the mind, and invented mysteries",
+ "topics": {
+  "money": "Money stories",
+  "psychology": "Behavioural psychology",
+  "mystery": "Invented mysteries"
+ },
+ "keywords": {
+  "money mistakes": {
+   "n": 20,
+   "median_views": 127502,
+   "max_views": 2181805,
+   "median_duration_s": 1022,
+   "shorts_share": 0.0,
+   "distinct_channels": 15,
+   "top_channels": [
+    "Zac Rios",
+    "The Ramsey Show Highlights",
+    "The Money Guy Show"
+   ],
+   "top_titles": [
+    {
+     "t": "These Callers Share Their Worst Mistakes With Money | Ep. 4 | The Best of The Ramsey Show",
+     "v": 2181805,
+     "d": 2604,
+     "ch": "The Ramsey Show Highlights"
+    },
+    {
+     "t": "27 Minutes of People Making Bad Financial Decisions in 2025",
+     "v": 1403179,
+     "d": 1676,
+     "ch": "Zac Rios"
+    },
+    {
+     "t": "30 Minutes of The Most Embarrassing Financial Decisions of 2025",
+     "v": 964897,
+     "d": 1688,
+     "ch": "Zac Rios"
+    },
+    {
+     "t": "Money Mistakes That Cost You Millions (What to Avoid)",
+     "v": 667973,
+     "d": 1761,
+     "ch": "I Will Teach You To Be Rich"
+    },
+    {
+     "t": "The Biggest Money Mistakes People Make After Reaching $100K Net Worth",
+     "v": 260644,
+     "d": 1175,
+     "ch": "Humphrey Yang"
+    }
+   ],
+   "title_words": [
+    "mistakes",
+    "money",
+    "people",
+    "financial",
+    "worst",
+    "making",
+    "minutes",
+    "avoid",
+    "regret",
+    "their",
+    "keep",
+    "decisions"
+   ],
+   "opportunity": 47,
+   "topic": "money"
+  },
+  "personal finance story": {
+   "n": 20,
+   "median_views": 176348,
+   "max_views": 6847814,
+   "median_duration_s": 1254,
+   "shorts_share": 0.05,
+   "distinct_channels": 18,
+   "top_channels": [
+    "POV Finance Life",
+    "WEALTH POV",
+    "Finance With Ryan "
+   ],
+   "top_titles": [
+    {
+     "t": "27-Year-Old With More Debt Than Anyone Should Ever Have | Financial Audit",
+     "v": 6847814,
+     "d": 3609,
+     "ch": "Caleb Hammer"
+    },
+    {
+     "t": "5 Money Rules That Will Change Your Life & Create Financial Freedom",
+     "v": 4756800,
+     "d": 4192,
+     "ch": "Mel Robbins and David Bach"
+    },
+    {
+     "t": "Master Financial Literacy in 54 Minutes: Everything They Never Taught You About Money!",
+     "v": 3045035,
+     "d": 3279,
+     "ch": "Nischa"
+    },
+    {
+     "t": "Stressed About Money? Do THIS and Money Starts Coming Back to You | Lewis Howes",
+     "v": 2894312,
+     "d": 4172,
+     "ch": "Jay Shetty Podcast"
+    },
+    {
+     "t": "Money Lessons From Older Americans Who Learned The Hard Way | Life Lessons | Business Insi",
+     "v": 2024733,
+     "d": 733,
+     "ch": "Business Insider and Insider"
+    }
+   ],
+   "title_words": [
+    "financial",
+    "money",
+    "they",
+    "later",
+    "minutes",
+    "story",
+    "life",
+    "low",
+    "pov",
+    "left",
+    "debt",
+    "personal"
+   ],
+   "opportunity": 50,
+   "topic": "money"
+  },
+  "why people go broke": {
+   "n": 20,
+   "median_views": 475611,
+   "max_views": 2943136,
+   "median_duration_s": 1371,
+   "shorts_share": 0.0,
+   "distinct_channels": 11,
+   "top_channels": [
+    "Zac Rios",
+    "George Kamel",
+    "Social Symone ♡"
+   ],
+   "top_titles": [
+    {
+     "t": "Charles Barkley Talks 80% of Professional Athletes Going Broke | CLUB SHAY SHAY",
+     "v": 2943136,
+     "d": 535,
+     "ch": "Club Shay Shay"
+    },
+    {
+     "t": "Let's Watch 26 Minutes of People Living Above Their Means & Going BROKE",
+     "v": 2827170,
+     "d": 1593,
+     "ch": "Zac Rios"
+    },
+    {
+     "t": "23 Minutes of Celebrities & Influencers Going BROKE in 2026",
+     "v": 1277508,
+     "d": 1426,
+     "ch": "Zac Rios"
+    },
+    {
+     "t": "Why People with the Same Income End Up Rich or Broke",
+     "v": 1225533,
+     "d": 946,
+     "ch": "Humphrey Yang"
+    },
+    {
+     "t": "26 Minutes of People Living Above Their Means & Going BROKE",
+     "v": 1068430,
+     "d": 1578,
+     "ch": "Zac Rios"
+    }
+   ],
+   "title_words": [
+    "broke",
+    "people",
+    "going",
+    "minutes",
+    "living",
+    "above",
+    "their",
+    "means",
+    "watch",
+    "real",
+    "time",
+    "let's"
+   ],
+   "opportunity": 50,
+   "topic": "money"
+  },
+  "lifestyle inflation": {
+   "n": 20,
+   "median_views": 0,
+   "max_views": 0,
+   "median_duration_s": 976,
+   "shorts_share": 0.0,
+   "distinct_channels": 1,
+   "top_channels": [
+    "ATRAM Studio"
+   ],
+   "top_titles": [
+    {
+     "t": "avoiding lifestyle inflation on £37k per year | my numbers and habits",
+     "v": 0,
+     "d": 361,
+     "ch": ""
+    },
+    {
+     "t": "Why Women Regret Making Their Lifestyle Too Expensive",
+     "v": 0,
+     "d": 1367,
+     "ch": ""
+    },
+    {
+     "t": "Six-Figure Salary, Still Broke? The Lifestyle Inflation Trap",
+     "v": 0,
+     "d": 988,
+     "ch": ""
+    },
+    {
+     "t": "Lifestyle Inflation: Why You Earn More But Still Feel Broke",
+     "v": 0,
+     "d": 964,
+     "ch": ""
+    },
+    {
+     "t": "The Harsh Truth About Lifestyle Creep (what 90% never realize)",
+     "v": 0,
+     "d": 1079,
+     "ch": ""
+    }
+   ],
+   "title_words": [
+    "lifestyle",
+    "inflation",
+    "broke",
+    "rich",
+    "salary",
+    "making",
+    "still",
+    "trap",
+    "more",
+    "feel",
+    "creep",
+    "never"
+   ],
+   "opportunity": 1,
+   "topic": "money"
+  },
+  "debt trap explained": {
+   "n": 20,
+   "median_views": 144983,
+   "max_views": 6080331,
+   "median_duration_s": 718,
+   "shorts_share": 0.0,
+   "distinct_channels": 17,
+   "top_channels": [
+    "Grant Rudow",
+    "Explains 101",
+    "Whiteboard Finance"
+   ],
+   "top_titles": [
+    {
+     "t": "The 'Buy Now Pay Later' Trap, Explained",
+     "v": 6080331,
+     "d": 741,
+     "ch": "Grant Rudow"
+    },
+    {
+     "t": "The Myth of the Chinese Debt Trap in Africa",
+     "v": 3624379,
+     "d": 1155,
+     "ch": "Bloomberg Originals"
+    },
+    {
+     "t": "Why Every Country Is in Debt? And Who Do They Owe?",
+     "v": 2722227,
+     "d": 1023,
+     "ch": "Explains 101"
+    },
+    {
+     "t": "The 'Car Loan' Trap, Explained",
+     "v": 1237689,
+     "d": 795,
+     "ch": "Grant Rudow"
+    },
+    {
+     "t": "Every Financial Trap Middle Class People Fall Into Explained",
+     "v": 1099791,
+     "d": 913,
+     "ch": "EverythingProfessor"
+    }
+   ],
+   "title_words": [
+    "debt",
+    "trap",
+    "explained",
+    "credit",
+    "card",
+    "every",
+    "people",
+    "traps",
+    "hidden",
+    "loan'",
+    "americans",
+    "escape"
+   ],
+   "opportunity": 49,
+   "topic": "money"
+  },
+  "saving money psychology": {
+   "n": 20,
+   "median_views": 1631128,
+   "max_views": 5906778,
+   "median_duration_s": 1379,
+   "shorts_share": 0.0,
+   "distinct_channels": 19,
+   "top_channels": [
+    "Humphrey Yang",
+    "Save Invest Repeat",
+    "TED"
+   ],
+   "top_titles": [
+    {
+     "t": "The Best Financial Advice You’ll Ever Hear",
+     "v": 5906778,
+     "d": 4756,
+     "ch": "Mel Robbins"
+    },
+    {
+     "t": "THE PSYCHOLOGY OF MONEY (BY MORGAN HOUSEL)",
+     "v": 5808653,
+     "d": 935,
+     "ch": "The Swedish Investor"
+    },
+    {
+     "t": "The Psychology of Making Money",
+     "v": 5060510,
+     "d": 1132,
+     "ch": "Leila Hormozi"
+    },
+    {
+     "t": "5 Money Rules That Will Change Your Life & Create Financial Freedom",
+     "v": 4756800,
+     "d": 4192,
+     "ch": "Mel Robbins and David Bach"
+    },
+    {
+     "t": "The Psychology of Money in 33 minutes | Animated Book Summary",
+     "v": 4162413,
+     "d": 1995,
+     "ch": "Antidote"
+    }
+   ],
+   "title_words": [
+    "money",
+    "psychology",
+    "saving",
+    "morgan",
+    "housel",
+    "financial",
+    "change",
+    "rich",
+    "tricks",
+    "save",
+    "brain",
+    "about"
+   ],
+   "opportunity": 63,
+   "topic": "money"
+  },
+  "money mistakes to avoid": {
+   "n": 20,
+   "median_views": 106951,
+   "max_views": 3027577,
+   "median_duration_s": 993,
+   "shorts_share": 0.0,
+   "distinct_channels": 19,
+   "top_channels": [
+    "Humphrey Yang",
+    "Clever Girl Finance",
+    "Alex Hormozi"
+   ],
+   "top_titles": [
+    {
+     "t": "10 Money Mistakes You Must Avoid At All Costs | How To Be Good With Your Money",
+     "v": 3027577,
+     "d": 652,
+     "ch": "Betterment Boss"
+    },
+    {
+     "t": "Wanna Build Wealth? Avoid These Money Mistakes (Feat. Naftali Horowitz) | KOSHER MONEY Epi",
+     "v": 1741061,
+     "d": 3552,
+     "ch": "Living Lchaim"
+    },
+    {
+     "t": "27 Minutes of People Making Bad Financial Decisions in 2025",
+     "v": 1403179,
+     "d": 1676,
+     "ch": "Zac Rios"
+    },
+    {
+     "t": "14 Money Mistakes to AVOID in Your 20's",
+     "v": 1105989,
+     "d": 529,
+     "ch": "Alex Hormozi"
+    },
+    {
+     "t": "Money Mistakes That Cost You Millions (What to Avoid)",
+     "v": 667973,
+     "d": 1761,
+     "ch": "I Will Teach You To Be Rich"
+    }
+   ],
+   "title_words": [
+    "money",
+    "mistakes",
+    "avoid",
+    "these",
+    "financial",
+    "20s",
+    "finance",
+    "20's",
+    "cost",
+    "millions",
+    "minutes",
+    "making"
+   ],
+   "opportunity": 49,
+   "topic": "money"
+  },
+  "personal finance storytelling": {
+   "n": 20,
+   "median_views": 119744,
+   "max_views": 4162413,
+   "median_duration_s": 1247,
+   "shorts_share": 0.0,
+   "distinct_channels": 17,
+   "top_channels": [
+    "POV Finance Life",
+    "WEALTH POV",
+    "Financial Freedom Tales"
+   ],
+   "top_titles": [
+    {
+     "t": "The Psychology of Money in 33 minutes | Animated Book Summary",
+     "v": 4162413,
+     "d": 1995,
+     "ch": "Antidote"
+    },
+    {
+     "t": "Master Financial Literacy in 54 Minutes: Everything They Never Taught You About Money!",
+     "v": 3045035,
+     "d": 3279,
+     "ch": "Nischa"
+    },
+    {
+     "t": "Explaining Basic Financial Concepts YOU Should Understand",
+     "v": 2655676,
+     "d": 734,
+     "ch": "EverythingProfessor"
+    },
+    {
+     "t": "Your Rich BFF Vivian Tu Answers Personal Finance Questions | Tech Support | WIRED",
+     "v": 1527624,
+     "d": 1582,
+     "ch": "WIRED"
+    },
+    {
+     "t": "How “Financial Psychology” Pays Off Forever - Morgan Housel",
+     "v": 745195,
+     "d": 7208,
+     "ch": "Chris Williamson"
+    }
+   ],
+   "title_words": [
+    "financial",
+    "money",
+    "pov",
+    "they",
+    "minutes",
+    "finance",
+    "storytelling",
+    "she",
+    "years",
+    "later",
+    "personal",
+    "boss"
+   ],
+   "opportunity": 48,
+   "topic": "money"
+  },
+  "why rich people go broke": {
+   "n": 20,
+   "median_views": 195012,
+   "max_views": 2943136,
+   "median_duration_s": 1009,
+   "shorts_share": 0.0,
+   "distinct_channels": 16,
+   "top_channels": [
+    "Zac Rios",
+    "George Kamel",
+    "MoneyOga"
+   ],
+   "top_titles": [
+    {
+     "t": "Charles Barkley Talks 80% of Professional Athletes Going Broke | CLUB SHAY SHAY",
+     "v": 2943136,
+     "d": 535,
+     "ch": "Club Shay Shay"
+    },
+    {
+     "t": "23 Minutes of Celebrities & Influencers Going BROKE in 2026",
+     "v": 1277508,
+     "d": 1426,
+     "ch": "Zac Rios"
+    },
+    {
+     "t": "Why People with the Same Income End Up Rich or Broke",
+     "v": 1225533,
+     "d": 946,
+     "ch": "Humphrey Yang"
+    },
+    {
+     "t": "26 Minutes of People Living Above Their Means & Going BROKE",
+     "v": 1068430,
+     "d": 1578,
+     "ch": "Zac Rios"
+    },
+    {
+     "t": "22 Minutes of Celebrities & Influencers Going BROKE in 2026",
+     "v": 670739,
+     "d": 1354,
+     "ch": "Zac Rios"
+    }
+   ],
+   "title_words": [
+    "broke",
+    "going",
+    "people",
+    "rich",
+    "minutes",
+    "real",
+    "celebrities",
+    "record",
+    "income",
+    "athletes",
+    "shay",
+    "time"
+   ],
+   "opportunity": 49,
+   "topic": "money"
+  },
+  "lifestyle inflation explained": {
+   "n": 20,
+   "median_views": 1172,
+   "max_views": 1099791,
+   "median_duration_s": 567,
+   "shorts_share": 0.0,
+   "distinct_channels": 20,
+   "top_channels": [
+    "Explaining Economics Like You're Five",
+    "Chris Invests",
+    "Practical Wisdom - Interesting Ideas"
+   ],
+   "top_titles": [
+    {
+     "t": "Every Financial Trap Middle Class People Fall Into Explained",
+     "v": 1099791,
+     "d": 913,
+     "ch": "EverythingProfessor"
+    },
+    {
+     "t": "The Harsh Truth About Lifestyle Creep (what 90% never realize)",
+     "v": 139163,
+     "d": 1079,
+     "ch": "Seve - Sunny Kind Journey"
+    },
+    {
+     "t": "\"Lifestyle Inflation\" Isn't A Real Thing.",
+     "v": 67638,
+     "d": 902,
+     "ch": "According To Nicole"
+    },
+    {
+     "t": "Lifestyle Inflation -- How To Fight The Silent Wealth Killer",
+     "v": 27363,
+     "d": 534,
+     "ch": "Chris Invests"
+    },
+    {
+     "t": "The Secret to Avoiding Lifestyle Creep w/ Clark Howard",
+     "v": 27074,
+     "d": 601,
+     "ch": "The Money Guy Show"
+    }
+   ],
+   "title_words": [
+    "lifestyle",
+    "inflation",
+    "explained",
+    "more",
+    "money",
+    "making",
+    "make",
+    "feels",
+    "trap",
+    "every",
+    "rich",
+    "wealth"
+   ],
+   "opportunity": 21,
+   "topic": "money"
+  },
+  "debt trap meaning": {
+   "n": 20,
+   "median_views": 28,
+   "max_views": 2722227,
+   "median_duration_s": 251,
+   "shorts_share": 0.1,
+   "distinct_channels": 20,
+   "top_channels": [
+    "Definition Discovery",
+    "PRUDENT IAS",
+    "Elite blueprint"
+   ],
+   "top_titles": [
+    {
+     "t": "Why Every Country Is in Debt? And Who Do They Owe?",
+     "v": 2722227,
+     "d": 1023,
+     "ch": "Explains 101"
+    },
+    {
+     "t": "Debt Trap: The Silent Killer of  Youth",
+     "v": 48771,
+     "d": 588,
+     "ch": "HBA Services"
+    },
+    {
+     "t": "What is DEBT TRAP? | Meaning of Debt Trap | Debt Trap Meaning| Debt trap in Hindi |CS Paya",
+     "v": 12846,
+     "d": 275,
+     "ch": "Padhaku Log"
+    },
+    {
+     "t": "The $1.6 Trillion Debt Trap Nobody's Talking About",
+     "v": 9596,
+     "d": 784,
+     "ch": "Tim Talks Finance"
+    },
+    {
+     "t": "What is a debt trap?",
+     "v": 7040,
+     "d": 35,
+     "ch": "Tampa Bay 28"
+    }
+   ],
+   "title_words": [
+    "debt",
+    "trap",
+    "meaning",
+    "upsc",
+    "pcs",
+    "hindi",
+    "economics",
+    "global",
+    "trillion",
+    "understanding",
+    "simple",
+    "guide"
+   ],
+   "opportunity": 25,
+   "topic": "money"
+  },
+  "save money psychology of money": {
+   "n": 20,
+   "median_views": 794529,
+   "max_views": 8425719,
+   "median_duration_s": 2804,
+   "shorts_share": 0.0,
+   "distinct_channels": 18,
+   "top_channels": [
+    "Mel Robbins",
+    "The Diary Of A CEO",
+    "Mrsolus"
+   ],
+   "top_titles": [
+    {
+     "t": "The Savings Expert: “Do Not Buy A House!” Do THIS Instead! - Morgan Housel",
+     "v": 8425719,
+     "d": 7046,
+     "ch": "The Diary Of A CEO"
+    },
+    {
+     "t": "The Best Financial Advice You’ll Ever Hear",
+     "v": 5906778,
+     "d": 4756,
+     "ch": "Mel Robbins"
+    },
+    {
+     "t": "THE PSYCHOLOGY OF MONEY (BY MORGAN HOUSEL)",
+     "v": 5808653,
+     "d": 935,
+     "ch": "The Swedish Investor"
+    },
+    {
+     "t": "The Psychology of Making Money",
+     "v": 5060510,
+     "d": 1132,
+     "ch": "Leila Hormozi"
+    },
+    {
+     "t": "The Psychology of Money in 33 minutes | Animated Book Summary",
+     "v": 4162413,
+     "d": 1995,
+     "ch": "Antidote"
+    }
+   ],
+   "title_words": [
+    "money",
+    "psychology",
+    "morgan",
+    "housel",
+    "rich",
+    "book",
+    "save",
+    "expert",
+    "minutes",
+    "summary",
+    "wealth",
+    "get"
+   ],
+   "opportunity": 58,
+   "topic": "money"
+  },
+  "cognitive bias explained": {
+   "n": 20,
+   "median_views": 149479,
+   "max_views": 17426405,
+   "median_duration_s": 491,
+   "shorts_share": 0.0,
+   "distinct_channels": 19,
+   "top_channels": [
+    "CrashCourse",
+    "Practical Psychology",
+    "Explained-4-You"
+   ],
+   "top_titles": [
+    {
+     "t": "The Most Common Cognitive Bias",
+     "v": 17426405,
+     "d": 284,
+     "ch": "Veritasium"
+    },
+    {
+     "t": "21 Mind Traps : The Ultimate Guide to your most common Thinking errors",
+     "v": 7493049,
+     "d": 1316,
+     "ch": "Escaping Ordinary (B.C Marx) "
+    },
+    {
+     "t": "Cognition - How Your Mind Can Amaze and Betray You: Crash Course Psychology #15",
+     "v": 3276539,
+     "d": 642,
+     "ch": "CrashCourse"
+    },
+    {
+     "t": "12 Cognitive Biases Explained - How to Think Better and More Logically Removing Bias",
+     "v": 2853965,
+     "d": 608,
+     "ch": "Practical Psychology"
+    },
+    {
+     "t": "The psychology behind irrational decisions - Sara Garofalo",
+     "v": 2450365,
+     "d": 279,
+     "ch": "TED-Ed"
+    }
+   ],
+   "title_words": [
+    "cognitive",
+    "bias",
+    "explained",
+    "biases",
+    "every",
+    "minutes",
+    "crash",
+    "course",
+    "thinking",
+    "psychology",
+    "introduction",
+    "think"
+   ],
+   "opportunity": 50,
+   "topic": "psychology"
+  },
+  "behavioral psychology": {
+   "n": 20,
+   "median_views": 2202453,
+   "max_views": 20612211,
+   "median_duration_s": 3127,
+   "shorts_share": 0.0,
+   "distinct_channels": 17,
+   "top_channels": [
+    "TEDx Talks",
+    "CrashCourse",
+    "The Diary Of A CEO"
+   ],
+   "top_titles": [
+    {
+     "t": "1. Introduction to Human Behavioral Biology",
+     "v": 20612211,
+     "d": 3435,
+     "ch": "Stanford"
+    },
+    {
+     "t": "Intro to Psychology: Crash Course Psychology #1",
+     "v": 17995067,
+     "d": 654,
+     "ch": "CrashCourse"
+    },
+    {
+     "t": "The Behaviour Expert: Instantly Read Any Room & How To Hack Your Discipline! Chase Hughes",
+     "v": 6422592,
+     "d": 7517,
+     "ch": "The Diary Of A CEO"
+    },
+    {
+     "t": "Chase Hughes: The 3 \"Dark Psychology\" Tricks To Read Anyone's Mind!",
+     "v": 4896141,
+     "d": 6981,
+     "ch": "The Diary Of A CEO and Chase Hughes"
+    },
+    {
+     "t": "How to Train a Brain: Crash Course Psychology #11",
+     "v": 4525797,
+     "d": 709,
+     "ch": "CrashCourse"
+    }
+   ],
+   "title_words": [
+    "psychology",
+    "human",
+    "behavior",
+    "read",
+    "mind",
+    "instantly",
+    "behavioral",
+    "anyone",
+    "audiobook",
+    "chase",
+    "hughes",
+    "minutes"
+   ],
+   "opportunity": 63,
+   "topic": "psychology"
+  },
+  "why we procrastinate": {
+   "n": 20,
+   "median_views": 1430836,
+   "max_views": 62230818,
+   "median_duration_s": 490,
+   "shorts_share": 0.0,
+   "distinct_channels": 18,
+   "top_channels": [
+    "TEDx Talks",
+    "Mel Robbins",
+    "TED-Ed"
+   ],
+   "top_titles": [
+    {
+     "t": "Inside the Mind of a Master Procrastinator | Tim Urban | TED",
+     "v": 62230818,
+     "d": 844,
+     "ch": "TED"
+    },
+    {
+     "t": "Why you procrastinate even when it feels bad",
+     "v": 11084738,
+     "d": 346,
+     "ch": "TED-Ed"
+    },
+    {
+     "t": "Why People with ADHD Procrastinate (And 4 Brain-Based Ways to Get Started)",
+     "v": 6025154,
+     "d": 485,
+     "ch": "Dr. Tracey Marks"
+    },
+    {
+     "t": "The procrastination cure you don't want to hear",
+     "v": 5295461,
+     "d": 627,
+     "ch": "Better Ideas"
+    },
+    {
+     "t": "The ONLY Way To Stop Procrastinating | Mel Robbins",
+     "v": 4601471,
+     "d": 217,
+     "ch": "Mel Robbins"
+    }
+   ],
+   "title_words": [
+    "procrastinate",
+    "procrastination",
+    "stop",
+    "fix",
+    "science",
+    "brain",
+    "motivation",
+    "neuroscience",
+    "mel",
+    "robbins",
+    "it's",
+    "reason"
+   ],
+   "opportunity": 61,
+   "topic": "psychology"
+  },
+  "sunk cost fallacy": {
+   "n": 20,
+   "median_views": 24531,
+   "max_views": 1269233,
+   "median_duration_s": 313,
+   "shorts_share": 0.1,
+   "distinct_channels": 19,
+   "top_channels": [
+    "Professor Ross",
+    "Sprouts",
+    "Big Think"
+   ],
+   "top_titles": [
+    {
+     "t": "Real Time with Bill Maher: New Rule – The Sunk Cost Fallacy (HBO)",
+     "v": 1269233,
+     "d": 348,
+     "ch": "Real Time with Bill Maher"
+    },
+    {
+     "t": "Julia Galef: The Sunk Costs Fallacy | Big Think",
+     "v": 576669,
+     "d": 170,
+     "ch": "Big Think"
+    },
+    {
+     "t": "Know When To Quit - The Sunk Cost Fallacy",
+     "v": 175214,
+     "d": 551,
+     "ch": "Better Than Yesterday"
+    },
+    {
+     "t": "The Sunk Cost Fallacy: What is it and why does it happen?",
+     "v": 155830,
+     "d": 271,
+     "ch": "Intermittent Diversion"
+    },
+    {
+     "t": "Fox Stevenson - Sunk Cost Fallacy (Official Audio)",
+     "v": 138367,
+     "d": 380,
+     "ch": "Fox Stevenson"
+    }
+   ],
+   "title_words": [
+    "sunk",
+    "fallacy",
+    "cost",
+    "quit",
+    "decisions",
+    "should",
+    "time",
+    "fox",
+    "stevenson",
+    "explained",
+    "saul",
+    "make"
+   ],
+   "opportunity": 37,
+   "topic": "psychology"
+  },
+  "decision making psychology": {
+   "n": 20,
+   "median_views": 46549,
+   "max_views": 2450365,
+   "median_duration_s": 805,
+   "shorts_share": 0.0,
+   "distinct_channels": 18,
+   "top_channels": [
+    "Therapy in a Nutshell",
+    "TED-Ed",
+    "Knowledge at Wharton"
+   ],
+   "top_titles": [
+    {
+     "t": "The psychology behind irrational decisions - Sara Garofalo",
+     "v": 2450365,
+     "d": 279,
+     "ch": "TED-Ed"
+    },
+    {
+     "t": "How to make smart decisions more easily",
+     "v": 2297164,
+     "d": 316,
+     "ch": "TED-Ed"
+    },
+    {
+     "t": "Trust Your Gut: How to Make a Hard Decision",
+     "v": 1016601,
+     "d": 2971,
+     "ch": "Mel Robbins"
+    },
+    {
+     "t": "Do You Have Problems Making Decisions? - Childhood Trauma",
+     "v": 933070,
+     "d": 1798,
+     "ch": "Patrick Teahan "
+    },
+    {
+     "t": "Heuristics and biases in decision making, explained",
+     "v": 761485,
+     "d": 229,
+     "ch": "Learn Liberty"
+    }
+   ],
+   "title_words": [
+    "making",
+    "decision",
+    "decisions",
+    "psychology",
+    "make",
+    "michael",
+    "platt",
+    "heuristics",
+    "biases",
+    "better",
+    "problem",
+    "solving"
+   ],
+   "opportunity": 44,
+   "topic": "psychology"
+  },
+  "habits psychology explained": {
+   "n": 20,
+   "median_views": 451729,
+   "max_views": 22340126,
+   "median_duration_s": 831,
+   "shorts_share": 0.0,
+   "distinct_channels": 18,
+   "top_channels": [
+    "Dr. Tracey Marks",
+    "Antidote",
+    "Andrew Huberman"
+   ],
+   "top_titles": [
+    {
+     "t": "How to become 37.78 times better at anything | Atomic Habits summary (by James Clear)",
+     "v": 22340126,
+     "d": 1691,
+     "ch": "Escaping Ordinary (B.C Marx) "
+    },
+    {
+     "t": "Change Your Life – One Tiny Step at a Time",
+     "v": 15963826,
+     "d": 691,
+     "ch": "Kurzgesagt – In a Nutshell"
+    },
+    {
+     "t": "The Science of Making & Breaking Habits: How to Change Your Life in 1 Month",
+     "v": 3323412,
+     "d": 5179,
+     "ch": "Mel Robbins"
+    },
+    {
+     "t": "Atomic Habits in 30 Minutes | Animated Book Summary",
+     "v": 2765907,
+     "d": 1816,
+     "ch": "Antidote"
+    },
+    {
+     "t": "Why is it so hard to break a bad habit?",
+     "v": 1536866,
+     "d": 304,
+     "ch": "TED-Ed"
+    }
+   ],
+   "title_words": [
+    "habits",
+    "psychology",
+    "change",
+    "life",
+    "science",
+    "habit",
+    "summary",
+    "identity",
+    "making",
+    "breaking",
+    "brain",
+    "atomic"
+   ],
+   "opportunity": 55,
+   "topic": "psychology"
+  },
+  "cognitive biases explained simply": {
+   "n": 20,
+   "median_views": 20240,
+   "max_views": 17426405,
+   "median_duration_s": 395,
+   "shorts_share": 0.0,
+   "distinct_channels": 20,
+   "top_channels": [
+    "Practical Psychology",
+    "CrashCourse",
+    "Psych Explained TV"
+   ],
+   "top_titles": [
+    {
+     "t": "The Most Common Cognitive Bias",
+     "v": 17426405,
+     "d": 284,
+     "ch": "Veritasium"
+    },
+    {
+     "t": "12 Cognitive Biases Explained - How to Think Better and More Logically Removing Bias",
+     "v": 2853965,
+     "d": 608,
+     "ch": "Practical Psychology"
+    },
+    {
+     "t": "The psychology behind irrational decisions - Sara Garofalo",
+     "v": 2450365,
+     "d": 279,
+     "ch": "TED-Ed"
+    },
+    {
+     "t": "Every Bias Explained in 8 Minutes",
+     "v": 1814785,
+     "d": 490,
+     "ch": "The Paint Explainer"
+    },
+    {
+     "t": "Introduction to Cognitive Bias: Crash Course Scientific Thinking #1",
+     "v": 1247755,
+     "d": 709,
+     "ch": "CrashCourse"
+    }
+   ],
+   "title_words": [
+    "cognitive",
+    "explained",
+    "bias",
+    "biases",
+    "minutes",
+    "every",
+    "psychology",
+    "simply",
+    "common",
+    "learn",
+    "think",
+    "better"
+   ],
+   "opportunity": 41,
+   "topic": "psychology"
+  },
+  "behavioral psychology lecture": {
+   "n": 20,
+   "median_views": 157821,
+   "max_views": 20612257,
+   "median_duration_s": 3957,
+   "shorts_share": 0.0,
+   "distinct_channels": 13,
+   "top_channels": [
+    "Stanford",
+    "Stanford School of Humanities and Sciences",
+    "GRCCtv"
+   ],
+   "top_titles": [
+    {
+     "t": "1. Introduction to Human Behavioral Biology",
+     "v": 20612257,
+     "d": 3435,
+     "ch": "Stanford"
+    },
+    {
+     "t": "1. Introduction to the Human Brain",
+     "v": 13196973,
+     "d": 4796,
+     "ch": "MIT OpenCourseWare"
+    },
+    {
+     "t": "2. Behavioral Evolution",
+     "v": 7836997,
+     "d": 5817,
+     "ch": "Stanford"
+    },
+    {
+     "t": "15. Human Sexual Behavior I",
+     "v": 5373831,
+     "d": 6103,
+     "ch": "Stanford"
+    },
+    {
+     "t": "How to Train a Brain: Crash Course Psychology #11",
+     "v": 4525797,
+     "d": 709,
+     "ch": "CrashCourse"
+    }
+   ],
+   "title_words": [
+    "psychology",
+    "behavior",
+    "behavioral",
+    "brain",
+    "introduction",
+    "human",
+    "lecture",
+    "robert",
+    "biology",
+    "sapolsky",
+    "biological",
+    "neuroscience"
+   ],
+   "opportunity": 46,
+   "topic": "psychology"
+  },
+  "why we procrastinate tim urban": {
+   "n": 20,
+   "median_views": 293731,
+   "max_views": 62230818,
+   "median_duration_s": 391,
+   "shorts_share": 0.05,
+   "distinct_channels": 16,
+   "top_channels": [
+    "TEDx Talks",
+    "TED",
+    "TED.doodles"
+   ],
+   "top_titles": [
+    {
+     "t": "Inside the Mind of a Master Procrastinator | Tim Urban | TED",
+     "v": 62230818,
+     "d": 844,
+     "ch": "TED"
+    },
+    {
+     "t": "Why you procrastinate even when it feels bad",
+     "v": 11084738,
+     "d": 346,
+     "ch": "TED-Ed"
+    },
+    {
+     "t": "Two 2-minute Rules to Beat Procrastination (in 2 minutes)",
+     "v": 7884366,
+     "d": 147,
+     "ch": "Mike and Matty"
+    },
+    {
+     "t": "The procrastination cure you don't want to hear",
+     "v": 5295466,
+     "d": 627,
+     "ch": "Better Ideas"
+    },
+    {
+     "t": "The ONLY Way To Stop Procrastinating | Mel Robbins",
+     "v": 4601486,
+     "d": 217,
+     "ch": "Mel Robbins"
+    }
+   ],
+   "title_words": [
+    "tim",
+    "urban",
+    "procrastination",
+    "procrastinate",
+    "mind",
+    "master",
+    "inside",
+    "procrastinator",
+    "ted",
+    "stop",
+    "talk",
+    "procrastinating"
+   ],
+   "opportunity": 52,
+   "topic": "psychology"
+  },
+  "sunk cost fallacy relationships": {
+   "n": 20,
+   "median_views": 13108,
+   "max_views": 738436,
+   "median_duration_s": 514,
+   "shorts_share": 0.05,
+   "distinct_channels": 20,
+   "top_channels": [
+    "DoctorRamani",
+    "Psychology with Dr. Ana",
+    "Sprouts"
+   ],
+   "top_titles": [
+    {
+     "t": "I FIXED my whole life with this in one Night ! Sunk Cost Fallacy ! Learn in 300 Seconds",
+     "v": 738436,
+     "d": 346,
+     "ch": "Human Behaviour "
+    },
+    {
+     "t": "Julia Galef: The Sunk Costs Fallacy | Big Think",
+     "v": 576669,
+     "d": 170,
+     "ch": "Big Think"
+    },
+    {
+     "t": "The Sunk Cost Fallacy: What is it and why does it happen?",
+     "v": 155830,
+     "d": 271,
+     "ch": "Intermittent Diversion"
+    },
+    {
+     "t": "Carrie Bradshaw & the sunk cost fallacy",
+     "v": 139849,
+     "d": 6132,
+     "ch": "cry baby kate "
+    },
+    {
+     "t": "Sunk Cost Fallacy: Not Knowing When It’s Time to Stop",
+     "v": 117671,
+     "d": 246,
+     "ch": "Sprouts"
+    }
+   ],
+   "title_words": [
+    "sunk",
+    "fallacy",
+    "cost",
+    "stay",
+    "relationships",
+    "explained",
+    "away",
+    "decisions",
+    "psychology",
+    "walk",
+    "let",
+    "narcissists"
+   ],
+   "opportunity": 32,
+   "topic": "psychology"
+  },
+  "decision making cognitive psychology": {
+   "n": 20,
+   "median_views": 39572,
+   "max_views": 3276539,
+   "median_duration_s": 624,
+   "shorts_share": 0.0,
+   "distinct_channels": 19,
+   "top_channels": [
+    "TED-Ed",
+    "The Cognitive Psychologist",
+    "khanacademymedicine"
+   ],
+   "top_titles": [
+    {
+     "t": "Cognition - How Your Mind Can Amaze and Betray You: Crash Course Psychology #15",
+     "v": 3276539,
+     "d": 642,
+     "ch": "CrashCourse"
+    },
+    {
+     "t": "The psychology behind irrational decisions - Sara Garofalo",
+     "v": 2450365,
+     "d": 279,
+     "ch": "TED-Ed"
+    },
+    {
+     "t": "How to make smart decisions more easily",
+     "v": 2297164,
+     "d": 316,
+     "ch": "TED-Ed"
+    },
+    {
+     "t": "Heuristics and biases in decision making, explained",
+     "v": 761485,
+     "d": 229,
+     "ch": "Learn Liberty"
+    },
+    {
+     "t": "Decision making | Processing the Environment | MCAT | Khan Academy",
+     "v": 215176,
+     "d": 394,
+     "ch": "khanacademymedicine"
+    }
+   ],
+   "title_words": [
+    "decision",
+    "making",
+    "psychology",
+    "decisions",
+    "cognitive",
+    "heuristics",
+    "make",
+    "biases",
+    "process",
+    "judgment",
+    "pt1",
+    "fallacies"
+   ],
+   "opportunity": 43,
+   "topic": "psychology"
+  },
+  "habits psychology": {
+   "n": 20,
+   "median_views": 633939,
+   "max_views": 22340126,
+   "median_duration_s": 770,
+   "shorts_share": 0.0,
+   "distinct_channels": 15,
+   "top_channels": [
+    "Therapy in a Nutshell",
+    "Andrew Huberman",
+    "TEDx Talks"
+   ],
+   "top_titles": [
+    {
+     "t": "How to become 37.78 times better at anything | Atomic Habits summary (by James Clear)",
+     "v": 22340126,
+     "d": 1691,
+     "ch": "Escaping Ordinary (B.C Marx) "
+    },
+    {
+     "t": "A Simple Way to Break a Bad Habit | Judson Brewer | TED",
+     "v": 17309902,
+     "d": 565,
+     "ch": "TED"
+    },
+    {
+     "t": "The Science of Making & Breaking Habits",
+     "v": 5614126,
+     "d": 6639,
+     "ch": "Andrew Huberman"
+    },
+    {
+     "t": "The Science of Making & Breaking Habits: How to Change Your Life in 1 Month",
+     "v": 3323412,
+     "d": 5179,
+     "ch": "Mel Robbins"
+    },
+    {
+     "t": "9 Micro Habits for Self-Regulation of Trauma or Anxiety",
+     "v": 1828644,
+     "d": 1005,
+     "ch": "Therapy in a Nutshell"
+    }
+   ],
+   "title_words": [
+    "habits",
+    "science",
+    "brain",
+    "making",
+    "breaking",
+    "habit",
+    "change",
+    "mental",
+    "break",
+    "bad",
+    "atomic",
+    "neuroscience"
+   ],
+   "opportunity": 55,
+   "topic": "psychology"
+  },
+  "detective story animated": {
+   "n": 20,
+   "median_views": 267730,
+   "max_views": 13170506,
+   "median_duration_s": 1011,
+   "shorts_share": 0.0,
+   "distinct_channels": 15,
+   "top_channels": [
+    "English Fairy Tales",
+    "SSG Animations",
+    "MJV Animations"
+   ],
+   "top_titles": [
+    {
+     "t": "The Hunt for America's Smartest Killer",
+     "v": 13170506,
+     "d": 1690,
+     "ch": "fern"
+    },
+    {
+     "t": "The Mind Reader Story | Stories for Teenagers |@EnglishFairyTales",
+     "v": 6465294,
+     "d": 784,
+     "ch": "English Fairy Tales"
+    },
+    {
+     "t": "Detective Ace | Stories for Teenagers | @EnglishFairyTales",
+     "v": 5950602,
+     "d": 820,
+     "ch": "English Fairy Tales"
+    },
+    {
+     "t": "Mr. Monkey, Monkey Detective: The Case of the Missing Things",
+     "v": 4722678,
+     "d": 1013,
+     "ch": "Super Simple TV - Kids Shows & Cartoons"
+    },
+    {
+     "t": "I Can Solve Any Crime",
+     "v": 2029834,
+     "d": 998,
+     "ch": "Story Time Animated"
+    }
+   ],
+   "title_words": [
+    "stories",
+    "animated",
+    "detective",
+    "story",
+    "crime",
+    "true",
+    "horror",
+    "mystery",
+    "teenagers",
+    "englishfairytales",
+    "can",
+    "ace"
+   ],
+   "opportunity": 50,
+   "topic": "mystery"
+  },
+  "mystery story explained": {
+   "n": 20,
+   "median_views": 661322,
+   "max_views": 9873620,
+   "median_duration_s": 1886,
+   "shorts_share": 0.0,
+   "distinct_channels": 20,
+   "top_channels": [
+    "Jaydone History",
+    "The Infographics Show",
+    "Brew"
+   ],
+   "top_titles": [
+    {
+     "t": "Murder on the Web: Catfish Gone Wrong! | Mystery & Makeup | Bailey Sarian",
+     "v": 9873620,
+     "d": 3535,
+     "ch": "Bailey Sarian"
+    },
+    {
+     "t": "The IMPOSSIBLE Cold Case That Was Solved By Redditors",
+     "v": 3795232,
+     "d": 2524,
+     "ch": "Kallmekris"
+    },
+    {
+     "t": "Creepiest Internet Mysteries That Were Finally Solved (Pt. 3)",
+     "v": 2358728,
+     "d": 820,
+     "ch": "The Paint Explainer"
+    },
+    {
+     "t": "After 67 Years, The Dyatlov Pass Mystery Is Solved",
+     "v": 2163493,
+     "d": 5207,
+     "ch": "Brew"
+    },
+    {
+     "t": "The Mystery Knight: Dunk & Egg #3 Explained (A Knight of the Seven Kingdoms)",
+     "v": 2024587,
+     "d": 1745,
+     "ch": "Alt Shift X"
+    }
+   ],
+   "title_words": [
+    "mystery",
+    "explained",
+    "murder",
+    "most",
+    "mysteries",
+    "unsolved",
+    "solved",
+    "finally",
+    "after",
+    "case",
+    "every",
+    "season"
+   ],
+   "opportunity": 59,
+   "topic": "mystery"
+  },
+  "unsolved mystery story": {
+   "n": 20,
+   "median_views": 559120,
+   "max_views": 8569837,
+   "median_duration_s": 2738,
+   "shorts_share": 0.0,
+   "distinct_channels": 8,
+   "top_channels": [
+    "Unsolved Mysteries - Full Episodes",
+    "Unexplained Mysteries",
+    "NEW Unsolved Mysteries"
+   ],
+   "top_titles": [
+    {
+     "t": "6 Disturbing Unsolved Cases With Video Footage",
+     "v": 8569837,
+     "d": 2447,
+     "ch": "SIRIUS"
+    },
+    {
+     "t": "MOST Unsolved Mysteries That Cannot Be Explained | Compilation",
+     "v": 2238616,
+     "d": 4142,
+     "ch": "KM Uncharted Mysteries"
+    },
+    {
+     "t": "over 3 hours of disturbing unsolved mysteries",
+     "v": 1238319,
+     "d": 11397,
+     "ch": "don’t look at me"
+    },
+    {
+     "t": "Unsolved Mysteries with Robert Stack - Season 4, Episode 18 - Full Episode",
+     "v": 822192,
+     "d": 2687,
+     "ch": "Unsolved Mysteries - Full Episodes"
+    },
+    {
+     "t": "Unsolved Mysteries with Robert Stack - Season 4, Episode 9 - Full Episode",
+     "v": 793299,
+     "d": 2993,
+     "ch": "Unsolved Mysteries - Full Episodes"
+    }
+   ],
+   "title_words": [
+    "unsolved",
+    "mysteries",
+    "episode",
+    "robert",
+    "stack",
+    "season",
+    "explained",
+    "cannot",
+    "disturbing",
+    "was",
+    "strangest",
+    "mystery"
+   ],
+   "opportunity": 49,
+   "topic": "mystery"
+  },
+  "crime investigation story": {
+   "n": 20,
+   "median_views": 2339820,
+   "max_views": 42156604,
+   "median_duration_s": 2426,
+   "shorts_share": 0.0,
+   "distinct_channels": 15,
+   "top_channels": [
+    "Unreal True Crime",
+    "Dr Insanity",
+    "48 Hours"
+   ],
+   "top_titles": [
+    {
+     "t": "Rich Mass Killer Realizes She's Been Caught 8 Years Later",
+     "v": 42156604,
+     "d": 2801,
+     "ch": "Dr Insanity"
+    },
+    {
+     "t": "Cops Realize Psycho Daughters Car Is Filled With Bodies",
+     "v": 21423808,
+     "d": 5397,
+     "ch": "Dr Insanity"
+    },
+    {
+     "t": "Family Who Disappeared Found Trapped Inside Secret Room Locked For 9 Years",
+     "v": 8165117,
+     "d": 1780,
+     "ch": "EXPLORE WITH US"
+    },
+    {
+     "t": "Dad Discovers Son-in-Law Just Killed His Pregnant Daughter",
+     "v": 7864588,
+     "d": 2406,
+     "ch": "Beyond Evil"
+    },
+    {
+     "t": "Neighbor Thinks He Got Away With Murder",
+     "v": 3994668,
+     "d": 2368,
+     "ch": "EWU Crime Storytime"
+    }
+   ],
+   "title_words": [
+    "crime",
+    "true",
+    "murder",
+    "documentary",
+    "she",
+    "hours",
+    "episodes",
+    "killer",
+    "years",
+    "his",
+    "secret",
+    "cops"
+   ],
+   "opportunity": 61,
+   "topic": "mystery"
+  },
+  "how the scam worked": {
+   "n": 20,
+   "median_views": 615663,
+   "max_views": 19583016,
+   "median_duration_s": 704,
+   "shorts_share": 0.0,
+   "distinct_channels": 20,
+   "top_channels": [
+    "Chat History",
+    "FOX 11 Los Angeles",
+    "How Money Works"
+   ],
+   "top_titles": [
+    {
+     "t": "Exposing the Honey Influencer Scam",
+     "v": 19583016,
+     "d": 1391,
+     "ch": "MegaLag"
+    },
+    {
+     "t": "Scammer Payback Answers Scam Questions | Tech Support | WIRED",
+     "v": 6788637,
+     "d": 1618,
+     "ch": "WIRED"
+    },
+    {
+     "t": "How The Wolf of Wall Street Scam Actually Worked",
+     "v": 4876747,
+     "d": 610,
+     "ch": "How Money Works"
+    },
+    {
+     "t": "Criminals using $20 'distraction' tactic to scam victims  | FOX 11 LA",
+     "v": 3704229,
+     "d": 148,
+     "ch": "FOX 11 Los Angeles"
+    },
+    {
+     "t": "How the first ever telecoms scam worked",
+     "v": 3029260,
+     "d": 349,
+     "ch": "Tom Scott"
+    }
+   ],
+   "title_words": [
+    "scam",
+    "worked",
+    "explained",
+    "minutes",
+    "actually",
+    "honey",
+    "know",
+    "work",
+    "ridiculous",
+    "scams",
+    "criminals",
+    "using"
+   ],
+   "opportunity": 58,
+   "topic": "mystery"
+  },
+  "con artist story": {
+   "n": 20,
+   "median_views": 744644,
+   "max_views": 22928616,
+   "median_duration_s": 2723,
+   "shorts_share": 0.0,
+   "distinct_channels": 18,
+   "top_channels": [
+    "48 Hours",
+    "60 Minutes Australia",
+    "CBS News"
+   ],
+   "top_titles": [
+    {
+     "t": "You Can’t Con a Con Artist If You’re Also a Con Artist - Key & Peele",
+     "v": 22928616,
+     "d": 185,
+     "ch": "Key & Peele"
+    },
+    {
+     "t": "How con-artist Anna Sorokin ripped off the New York elite and became a star  | 60 Minutes ",
+     "v": 8283973,
+     "d": 1554,
+     "ch": "60 Minutes Australia"
+    },
+    {
+     "t": "Frank Abagnale Stuns Everyone With Stories of Being a Con Man | Carson Tonight Show",
+     "v": 7877444,
+     "d": 1119,
+     "ch": "Johnny Carson"
+    },
+    {
+     "t": "New revelations in the outrageous saga of con artist Melissa Caddick | 60 Minutes Australi",
+     "v": 4706132,
+     "d": 2749,
+     "ch": "60 Minutes Australia"
+    },
+    {
+     "t": "Con Man interview-Matthew Cox",
+     "v": 2754173,
+     "d": 3004,
+     "ch": "Soft White Underbelly"
+    }
+   ],
+   "title_words": [
+    "con",
+    "artist",
+    "artists",
+    "who",
+    "man",
+    "true",
+    "most",
+    "crime",
+    "hours",
+    "episodes",
+    "documentary",
+    "fake"
+   ],
+   "opportunity": 58,
+   "topic": "mystery"
+  },
+  "detective animated story in bengali": {
+   "n": 20,
+   "median_views": 87036,
+   "max_views": 1671279,
+   "median_duration_s": 1264,
+   "shorts_share": 0.0,
+   "distinct_channels": 5,
+   "top_channels": [
+    "Rongeen TV",
+    "ANIMATRIX DIGITAL",
+    "Cartooner Dabba"
+   ],
+   "top_titles": [
+    {
+     "t": "ডিটেক্টিভ এইস | Detective Ace in Bengali | @BengaliFairyTales",
+     "v": 1671279,
+     "d": 820,
+     "ch": "Bengali Fairy Tales"
+    },
+    {
+     "t": "মালিনী বৌদি এবার গোয়েন্দা | Malini Boudi | Bangla Cartoon | Detective Story | Animatrix D",
+     "v": 210862,
+     "d": 1393,
+     "ch": "ANIMATRIX DIGITAL"
+    },
+    {
+     "t": "ভূতুড়ে কাণ্ড | MAGAJASTRO | Bangla Cartoon | Detective Cartoon Story | Bangla Goyenda Gol",
+     "v": 184871,
+     "d": 1342,
+     "ch": "Rongeen TV"
+    },
+    {
+     "t": "বৈকুণ্ঠ ভিলার রহস্য | MOGOJASTRO | Bangla Goyenda Golpo | Detective Cartoon Story | Rongee",
+     "v": 177918,
+     "d": 1339,
+     "ch": "Rongeen TV"
+    },
+    {
+     "t": "জমিদার বাড়ির রহস্য | MOGOJASTRO | Bangla Goyenda Golpo | Detective Cartoon Story | Rongee",
+     "v": 166484,
+     "d": 1344,
+     "ch": "Rongeen TV"
+    }
+   ],
+   "title_words": [
+    "bangla",
+    "detective",
+    "cartoon",
+    "goyenda",
+    "golpo",
+    "story",
+    "mogojastro",
+    "rongeentv",
+    "রহস্য",
+    "rongeen",
+    "bengali",
+    "animation"
+   ],
+   "opportunity": 35,
+   "topic": "mystery"
+  },
+  "mysterious story explained in kannada": {
+   "n": 20,
+   "median_views": 167611,
+   "max_views": 653558,
+   "median_duration_s": 1261,
+   "shorts_share": 0.0,
+   "distinct_channels": 8,
+   "top_channels": [
+    "Mystery explainer kannada",
+    "Filmi MYS",
+    "Mystery Media Kannada"
+   ],
+   "top_titles": [
+    {
+     "t": "The Vault Movie Explained In Kannada • Heist Thriller Netflix Movie • Plot Review",
+     "v": 653558,
+     "d": 1362,
+     "ch": "Mystery explainer kannada"
+    },
+    {
+     "t": "WereWolfs Movie Explained In Kannada • Mystery Thriller • Plot Review",
+     "v": 545557,
+     "d": 1040,
+     "ch": "Mystery explainer kannada"
+    },
+    {
+     "t": "Hidden World Movie Explained In Kannada • Adventure Thriller Suspense • Netflix",
+     "v": 282149,
+     "d": 1256,
+     "ch": "Mystery explainer kannada"
+    },
+    {
+     "t": "Casino Heist Movie Explained In Kannada • Heist Thriller Suspense • Jio Hotstar",
+     "v": 272033,
+     "d": 1236,
+     "ch": "Mystery explainer kannada"
+    },
+    {
+     "t": "Leio Movie Explained In Kannada • Thriller Suspense",
+     "v": 258998,
+     "d": 1160,
+     "ch": "Mystery explainer kannada"
+    }
+   ],
+   "title_words": [
+    "movie",
+    "kannada",
+    "explained",
+    "thriller",
+    "review",
+    "mystery",
+    "plot",
+    "suspense",
+    "netflix",
+    "adventure",
+    "jungle",
+    "survival"
+   ],
+   "opportunity": 36,
+   "topic": "mystery"
+  },
+  "unsolved mysteries story times": {
+   "n": 20,
+   "median_views": 855561,
+   "max_views": 9873620,
+   "median_duration_s": 5828,
+   "shorts_share": 0.0,
+   "distinct_channels": 12,
+   "top_channels": [
+    "don’t look at me",
+    "Unexplained Mysteries",
+    "MrBallen"
+   ],
+   "top_titles": [
+    {
+     "t": "Murder on the Web: Catfish Gone Wrong! | Mystery & Makeup | Bailey Sarian",
+     "v": 9873620,
+     "d": 3535,
+     "ch": "Bailey Sarian"
+    },
+    {
+     "t": "Top 3 UNSOLVABLE mysteries | Unsolvable Mysteries Part 1",
+     "v": 8084735,
+     "d": 1123,
+     "ch": "MrBallen"
+    },
+    {
+     "t": "He went on Unsolved Mysteries to solve his disappearance",
+     "v": 4911583,
+     "d": 1607,
+     "ch": "MrBallen"
+    },
+    {
+     "t": "The Unsolved Mysteries Of Appalachia",
+     "v": 3111690,
+     "d": 3386,
+     "ch": "oompaville"
+    },
+    {
+     "t": "MOST Unsolved Mysteries That Cannot Be Explained | Compilation",
+     "v": 2238616,
+     "d": 4142,
+     "ch": "KM Uncharted Mysteries"
+    }
+   ],
+   "title_words": [
+    "unsolved",
+    "mysteries",
+    "hours",
+    "explained",
+    "over",
+    "compilation",
+    "mystery",
+    "disturbing",
+    "most",
+    "cannot",
+    "appalachia",
+    "unsolvable"
+   ],
+   "opportunity": 54,
+   "topic": "mystery"
+  },
+  "crime investigation story malayalam": {
+   "n": 20,
+   "median_views": 85382,
+   "max_views": 699006,
+   "median_duration_s": 1540,
+   "shorts_share": 0.0,
+   "distinct_channels": 11,
+   "top_channels": [
+    "Case Files Malayalam",
+    "Mysterious Crimes Malayalam and Mysterious Horror Malayalam",
+    "Mysterious Crimes Malayalam"
+   ],
+   "top_titles": [
+    {
+     "t": "ജ്വല്ലറിക്കാരന്റെ സംശയം തെളിയിച്ച കൊലപാതകം | Vendallur Murder Case | Crime Story | Reporte",
+     "v": 699006,
+     "d": 956,
+     "ch": "REPORTER STORIES"
+    },
+    {
+     "t": "പക്ഷേ, ചെറിയൊരു അബദ്ധം കൊലയാളിയെ കുടിക്കി ! | Malayalam | True Crime",
+     "v": 663878,
+     "d": 1059,
+     "ch": "Case Files Malayalam"
+    },
+    {
+     "t": "കേരള ചരിത്രത്തിലെ ഏറ്റവും വിവാദമായ കേസ് ഫയൽ | Malayalam | True Crime",
+     "v": 396652,
+     "d": 1195,
+     "ch": "Case Files Malayalam"
+    },
+    {
+     "t": "തികച്ചും ഞെട്ടിക്കുന്ന പള്ളിക്ക് ഉള്ളിലെ കൊല |ബി എസ് ചന്ദ്ര മോഹൻ |Mlife Daily",
+     "v": 250940,
+     "d": 2939,
+     "ch": "Mlife Daily"
+    },
+    {
+     "t": "പ്രതിയെ കുടുക്കിയ പോലീസിന്റെ കിടിലൻ ബുദ്ധി! | Malayalam | True Crime",
+     "v": 163748,
+     "d": 924,
+     "ch": "Case Files Malayalam"
+    }
+   ],
+   "title_words": [
+    "malayalam",
+    "crime",
+    "investigation",
+    "story",
+    "true",
+    "case",
+    "murder",
+    "കേരള",
+    "പ്രതിയെ",
+    "killer",
+    "കിടിലൻ",
+    "film"
+   ],
+   "opportunity": 35,
+   "topic": "mystery"
+  },
+  "how are shares calculated": {
+   "n": 20,
+   "median_views": 229675,
+   "max_views": 13624100,
+   "median_duration_s": 499,
+   "shorts_share": 0.0,
+   "distinct_channels": 18,
+   "top_channels": [
+    "Investing & Retirement",
+    "TED-Ed",
+    "Lumovest"
+   ],
+   "top_titles": [
+    {
+     "t": "How does the stock market work? - Oliver Elfenbaum",
+     "v": 13624100,
+     "d": 270,
+     "ch": "TED-Ed"
+    },
+    {
+     "t": "Understanding Short Selling",
+     "v": 2299617,
+     "d": 180,
+     "ch": "Wall Street Survivor"
+    },
+    {
+     "t": "Stock Multiples: How to Tell When a Stock is Cheap/Expensive",
+     "v": 1983171,
+     "d": 587,
+     "ch": "The Plain Bagel"
+    },
+    {
+     "t": "How to Value Any Company in 2 Minutes (Free Calculator Inside!)",
+     "v": 1633510,
+     "d": 430,
+     "ch": "Bald Investor"
+    },
+    {
+     "t": "How is the Stock Price Determined? | Stock Market for Beginners (Part 1) | Lumovest",
+     "v": 1254028,
+     "d": 749,
+     "ch": "Lumovest"
+    }
+   ],
+   "title_words": [
+    "stock",
+    "market",
+    "work",
+    "explained",
+    "calculate",
+    "minutes",
+    "prices",
+    "share",
+    "value",
+    "price",
+    "beginners",
+    "eps"
+   ],
+   "opportunity": 52,
+   "topic": "mystery"
+  },
+  "con man story": {
+   "n": 20,
+   "median_views": 528960,
+   "max_views": 22928616,
+   "median_duration_s": 2758,
+   "shorts_share": 0.0,
+   "distinct_channels": 18,
+   "top_channels": [
+    "Matthew Cox | Inside True Crime",
+    "60 Minutes Australia",
+    "48 Hours"
+   ],
+   "top_titles": [
+    {
+     "t": "You Can’t Con a Con Artist If You’re Also a Con Artist - Key & Peele",
+     "v": 22928616,
+     "d": 185,
+     "ch": "Key & Peele"
+    },
+    {
+     "t": "Frank Abagnale Stuns Everyone With Stories of Being a Con Man | Carson Tonight Show",
+     "v": 7877444,
+     "d": 1119,
+     "ch": "Johnny Carson"
+    },
+    {
+     "t": "Conman EXPOSED: Meet Australia's answer to the Tinder Swindler | 60 Minutes Australia",
+     "v": 5969414,
+     "d": 1968,
+     "ch": "60 Minutes Australia"
+    },
+    {
+     "t": "Con Man interview-Matthew Cox",
+     "v": 2754173,
+     "d": 3004,
+     "ch": "Soft White Underbelly"
+    },
+    {
+     "t": "Remember him? He’s the greatest con man in TV history // The Don Lapre story",
+     "v": 2259817,
+     "d": 403,
+     "ch": "Ray William Johnson"
+    }
+   ],
+   "title_words": [
+    "con",
+    "man",
+    "conman",
+    "crime",
+    "artist",
+    "artists",
+    "episodes",
+    "true",
+    "minutes",
+    "hours",
+    "barrister",
+    "his"
+   ],
+   "opportunity": 56,
+   "topic": "mystery"
+  }
+ },
+ "channels": {},
+ "typed": {
+  "money mistakes": [
+   "money mistakes",
+   "money mistakes to avoid",
+   "money mistakes in your 20s",
+   "money mistakes people make",
+   "money mistakes keeping you poor",
+   "money mistakes in your 30s",
+   "money mistakes everyone makes",
+   "money mistakes to avoid in 2026",
+   "money heist mistakes",
+   "financial mistakes in your 30s",
+   "financial mistakes in 20s",
+   "worst money mistakes"
+  ],
+  "personal finance story": [
+   "personal finance story",
+   "personal finance storytelling",
+   "personal finance ramit sethi",
+   "personal finance in 20s",
+   "personal finance for 20s"
+  ],
+  "why people go broke": [
+   "why people go broke",
+   "why rich people go broke",
+   "why people or athletes go broke",
+   "how rich people go broke",
+   "how do people go broke"
+  ],
+  "lifestyle inflation": [
+   "lifestyle inflation",
+   "lifestyle inflation explained",
+   "lifestyle inflation trap",
+   "lifestyle inflation india",
+   "lifestyle inflation uk",
+   "avoid lifestyle inflation",
+   "recognizing lifestyle inflation",
+   "how to avoid lifestyle inflation",
+   "how to stop lifestyle inflation",
+   "how to reverse lifestyle inflation"
+  ],
+  "debt trap explained": [
+   "debt trap explained",
+   "debt trap meaning",
+   "debt trap",
+   "debt trap documentary",
+   "debt trap credit card"
+  ],
+  "saving money psychology": [
+   "saving money psychology",
+   "save money psychology of money",
+   "saving money books",
+   "psychology of saving money",
+   "saving money and building wealth",
+   "how to save money psychology"
+  ],
+  "cognitive bias explained": [
+   "cognitive bias explained",
+   "cognitive biases explained simply",
+   "cognitive biases explained for beginners",
+   "confirmation bias explained",
+   "cognitive bias meaning",
+   "every cognitive bias explained",
+   "all cognitive biases explained",
+   "cognitive bias",
+   "cognitive bias theory",
+   "cognitive bias crash course",
+   "cognitive bias ethics defined",
+   "cognitive bias example"
+  ],
+  "behavioral psychology": [
+   "behavioral psychology",
+   "behavioral psychology lecture",
+   "behavioral psychology explained",
+   "behavioral psychology course",
+   "behavioral psychology stanford",
+   "behavioral psychology facts",
+   "behavioral psychology 101",
+   "behavioral psychology marketing",
+   "behavioral psychology and conditioning",
+   "behavioral addiction psychology",
+   "behavioral approach psychology",
+   "behavioral analysis psychology"
+  ],
+  "why we procrastinate": [
+   "why we procrastinate",
+   "why we procrastinate tim urban",
+   "why i procrastinate so much",
+   "why you procrastinate (it's not laziness)",
+   "why i always procrastinate",
+   "why do we procrastinate",
+   "why do i procrastinate everything",
+   "why do i procrastinate so much",
+   "why do i procrastinate sleeping",
+   "the science of why we procrastinate",
+   "why do we procrastinate dhruv rathee",
+   "why do we procrastinate psychology"
+  ],
+  "sunk cost fallacy": [
+   "sunk cost fallacy relationships",
+   "sunk cost fallacy minimalism",
+   "sunk cost fallacy trading",
+   "sunk cost fallacy fox",
+   "how to avoid sunk cost fallacy",
+   "sunk cost fallacy explained",
+   "sunk cost fallacy example",
+   "sunk-cost fallacy",
+   "sunk cost fallacy examples",
+   "how to overcome sunk cost fallacy",
+   "sunk cost fallacy in relationships",
+   "sunk cost fallacy in business"
+  ],
+  "decision making psychology": [
+   "decision making psychology",
+   "decision making cognitive psychology",
+   "emotions and decision making psychology",
+   "judgment and decision making psychology",
+   "thinking and decision making psychology ib",
+   "problem solving and decision making psychology",
+   "decision making and reasoning cognitive psychology",
+   "judgement and decision making psychology",
+   "decision making in psychology",
+   "group decision making in social psychology",
+   "why decision making is difficult"
+  ],
+  "habits psychology explained": [
+   "habits psychology",
+   "habits topic in psychology",
+   "habits and skills psychology"
+  ],
+  "detective story animated": [
+   "detective story animated",
+   "detective animated story in bengali",
+   "crime story animated",
+   "detective story cartoon",
+   "detective story video",
+   "the dying detective story animated",
+   "crime story video ai",
+   "detective story ai video",
+   "crime story ai video kaise banaye",
+   "crime story aunty video",
+   "crime story video editing",
+   "detective stories cartoon"
+  ],
+  "mystery story explained": [
+   "mystery story explained",
+   "mysterious story explained in kannada",
+   "mystery story explanation in kannada",
+   "hogwarts mystery story explained",
+   "mystery incorporated story explained",
+   "mystery theories",
+   "mystery case files lore",
+   "harry potter hogwarts mystery story explained",
+   "mysterious movie explained",
+   "mysterious theories",
+   "mystery full story",
+   "what is a mystery story"
+  ],
+  "unsolved mystery story": [
+   "unsolved mystery story",
+   "unsolved mysteries story times",
+   "unsolved mystery in world",
+   "unsolved mystery of history",
+   "unsolved mystery in history",
+   "unsolved mysteries theories",
+   "unsolved mysteries horror stories",
+   "unsolved mysteries short stories",
+   "unsolved mysteries sleep stories",
+   "unsolved mysteries being solved",
+   "unsolved mystery of",
+   "unsolved mystery of the world"
+  ],
+  "crime investigation story": [
+   "crime investigation story",
+   "crime investigation story malayalam",
+   "crime investigation story bahubali",
+   "crime investigation story khushboo",
+   "crime investigation story bhai bhali",
+   "crime investigation stories in kannada",
+   "crime investigation cases",
+   "crime investigation audio story",
+   "crime scene investigation story",
+   "crime scene cleaner story explained",
+   "criminal investigation stories",
+   "crime scene horror stories"
+  ],
+  "how the scam worked": [
+   "how to detect fraud transactions",
+   "how are shares calculated",
+   "how can we trust history"
+  ],
+  "con artist story": [
+   "con artist story",
+   "con man story",
+   "con artist",
+   "con artist stories",
+   "con artist movies explained",
+   "con artist documentary"
+  ]
+ },
+ "discovered": {
+  "money": [
+   "money mistakes to avoid",
+   "personal finance storytelling",
+   "why rich people go broke",
+   "lifestyle inflation explained",
+   "debt trap meaning",
+   "save money psychology of money"
+  ],
+  "psychology": [
+   "cognitive biases explained simply",
+   "behavioral psychology lecture",
+   "why we procrastinate tim urban",
+   "sunk cost fallacy relationships",
+   "decision making cognitive psychology",
+   "habits psychology"
+  ],
+  "mystery": [
+   "detective animated story in bengali",
+   "mysterious story explained in kannada",
+   "unsolved mysteries story times",
+   "crime investigation story malayalam",
+   "how to detect fraud transactions",
+   "con man story"
+  ]
+ }
+}
