@@ -1,0 +1,12 @@
+[
+  {
+    "id": "a920925d1a2b",
+    "status": "done",
+    "outputDir": "/__w/video-resources/video-resources/outputs/008-lost-dog-posters/portrait",
+    "video": "/__w/video-resources/video-resources/outputs/008-lost-dog-posters/portrait/output.mp4",
+    "renderer": "hyperframes",
+    "composition": "/__w/video-resources/video-resources/outputs/008-lost-dog-posters/portrait/index.html",
+    "timeline": "/__w/video-resources/video-resources/outputs/008-lost-dog-posters/portrait/timeline.json",
+    "audio": "/__w/video-resources/video-resources/outputs/008-lost-dog-posters/portrait/voiceover.wav"
+  }
+]

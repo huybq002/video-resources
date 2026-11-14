@@ -1,0 +1,79 @@
+{
+  "id": "008-lost-dog-posters",
+  "tag": "008-lost-dog-posters-43624321126",
+  "idea": "Invented: lost-dog posters on one street share one phone number; a teenager calls it and the film shows the scheme from the inside (fiction, no real people or brands)",
+  "lang": "en",
+  "duration_s": 180,
+  "cuts": [
+    {
+      "cut": "landscape",
+      "aspect": "16:9",
+      "video": "landscape.mp4",
+      "bundle": "landscape-bundle.zip"
+    },
+    {
+      "cut": "portrait",
+      "aspect": "9:16",
+      "video": "portrait.mp4",
+      "bundle": "portrait-bundle.zip"
+    }
+  ],
+  "assets": [
+    {
+      "name": "landscape.mp4",
+      "bytes": 102561644,
+      "sha256": "30d4170f2d1936748f4c35a4ad0ddb7cff92cc5415cb35100780de631e6bc02a"
+    },
+    {
+      "name": "landscape-bundle.zip",
+      "bytes": 18858243,
+      "sha256": "48edada13873386c0a2cbc0c3f8f37a2988aca25f4d1d4124645d9f567593d8d"
+    },
+    {
+      "name": "portrait.mp4",
+      "bytes": 94362477,
+      "sha256": "7d02893a77bfb0be4eff834457b7343bc9564474a3f0e53999f7ce801541d3bc"
+    },
+    {
+      "name": "portrait-bundle.zip",
+      "bytes": 16215746,
+      "sha256": "d56c1f4ff40dfeebded842fa61eba54ca513097463f9157cf0c0458b551cb31a"
+    },
+    {
+      "name": "metadata.json",
+      "bytes": 566,
+      "sha256": "8b7ad3bf5a0790c4d9f8d9830abad8680eda323a5de3017956449bca4cc06309"
+    },
+    {
+      "name": "tiktok.md",
+      "bytes": 850,
+      "sha256": "487e8c7a70cf8e49378386d9b89a152ae1623b5ec9d60d9f4b88cf47b47d4cd8"
+    },
+    {
+      "name": "youtube.md",
+      "bytes": 1571,
+      "sha256": "423e62cd9bc0fe91052cae8efa913d2dc69456c2323b0a3595fc5056fa45396d"
+    },
+    {
+      "name": "youtube_shorts.md",
+      "bytes": 378,
+      "sha256": "70aedda6a45acfc9f628399ea70b560e5c7e26de3771e92993621b4c1ed8f760"
+    },
+    {
+      "name": "a.png",
+      "bytes": 569142,
+      "sha256": "755379da2a74b2cd3372a94fb117941480bd6028fbed79dc310b84627fdefbfd"
+    },
+    {
+      "name": "b.png",
+      "bytes": 549750,
+      "sha256": "7656b599db4fd62060c0a083e9fe825d57e485fd63c92e0fd2b32b2a1215df3a"
+    },
+    {
+      "name": "d.png",
+      "bytes": 315141,
+      "sha256": "a2ec7b29e8b5ee716f73cd0a7e075a221b583bc115a4b2c33b64af60592d6527"
+    }
+  ],
+  "release_url": "https://github.com/huybq002/video-resources/releases/tag/008-lost-dog-posters-43624321126"
+}

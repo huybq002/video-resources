@@ -2,7 +2,7 @@
 id: 008-lost-dog-posters
 type: video
 priority: 008
-status: pending
+status: done
 topic: mystery
 keyword: "how the scam worked"
 format: episode
@@ -24,8 +24,9 @@ privacy: private
 3-minute English film, both cuts. Search phrase: "how the scam worked". Title: The Lost Dog Posters Had One Strange Detail / Thumb: SAME NUMBER?
 
 ## Done when
-- [ ] both cuts generated and verified, both videos rendered and verified
-- [ ] Release published with both bundles and both videos
-- [ ] specs/008-lost-dog-posters.json committed, publish pack written
+- [x] both cuts generated and verified, both videos rendered and verified
+- [x] Release published with both bundles and both videos
+- [x] specs/008-lost-dog-posters.json committed, publish pack written
 
 ## Progress notes
+- 2026-11-15: DONE. Release https://github.com/huybq002/video-resources/releases/tag/008-lost-dog-posters-43624321126. Both cuts verified (voice pace x1.08, 0 rushed, 0 cut; bundle OK with --max-warnings 6 for the silence/target warnings, see report). policy_check OK. No licensed music: original score. Owner: switch on the AI labels at upload; portrait is 3 min, not a Short (limit 3 min is exclusive: check). Dogs are never drawn (no animal model): posters carry no picture.
