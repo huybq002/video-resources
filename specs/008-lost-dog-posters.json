@@ -849,7 +849,7 @@
         }
        },
        {
-        "t": "She went home and dialled it, just to see.",
+        "t": "She went home and dialled it.",
         "at": "bedroom",
         "on": [
          "mika"
@@ -970,15 +970,6 @@
         "emote": "doubt"
        },
        {
-        "t": "Nobody passing by even looked up at them.",
-        "at": "street_day",
-        "on": [
-         "mika"
-        ],
-        "shot": "medium",
-        "do": "look:1"
-       },
-       {
         "t": "Under each number, one tiny line of print.",
         "at": "street_day",
         "on": [
@@ -1077,7 +1068,7 @@
         }
        },
        {
-        "t": "Mr. Dole read the lost-pet pages every morning.",
+        "t": "Mr. Dole read the lost-pet pages daily.",
         "at": "printshop",
         "on": [
          "dole"
@@ -1130,14 +1121,6 @@
          "dole"
         ],
         "shot": "medium",
-        "emote": "smirk"
-       },
-       {
-        "t": "The owners were too busy hoping.",
-        "on": [
-         "dole"
-        ],
-        "shot": "cu",
         "emote": "smirk"
        },
        {
@@ -1323,15 +1306,6 @@
         "shot": "wide",
         "emote": "sad",
         "do": "sad"
-       },
-       {
-        "t": "By midnight she was still at the window, watching the road.",
-        "at": "hall",
-        "on": [
-         "reyes"
-        ],
-        "shot": "medium",
-        "emote": "sad"
        }
       ]
      }
@@ -1423,16 +1397,6 @@
         "props": [
          "phone"
         ]
-       },
-       {
-        "t": "He answered fast. He sounded sure. He always sounded sure.",
-        "at": "diner",
-        "on": [
-         "dole"
-        ],
-        "shot": "medium",
-        "emote": "smirk",
-        "do": "phone:3"
        },
        {
         "t": "\u201cWhat colour is Biscuit's collar?\u201d",
@@ -1552,7 +1516,7 @@
         "emote": "sad"
        },
        {
-        "t": "Seven had sent the fee. A few had sent it twice.",
+        "t": "Seven had sent the fee.",
         "at": "porch",
         "on": [
          "mika"
@@ -1568,14 +1532,6 @@
          "t": 0.3,
          "dur": 2.2
         }
-       },
-       {
-        "t": "Soon after, his number was dead.",
-        "shot": "insert",
-        "emote": "neutral",
-        "props": [
-         "phone"
-        ]
        },
        {
         "t": "Mrs. Reyes added one line to hers.",

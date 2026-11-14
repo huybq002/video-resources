@@ -736,7 +736,7 @@
         }
        },
        {
-        "t": "He kept them in a list. Numbered. Dated.",
+        "t": "He kept a list. Numbered. Dated.",
         "at": "bedroom",
         "on": [
          "theo"
@@ -770,7 +770,7 @@
         "emote": "neutral"
        },
        {
-        "t": "Every one of them was a real moment. That was the problem.",
+        "t": "Every one was real. That was the problem.",
         "at": "bedroom",
         "on": [
          "theo"
@@ -779,7 +779,7 @@
         "emote": "doubt"
        },
        {
-        "t": "By Saturday, one note under his door would turn the list over.",
+        "t": "By Saturday, one note would turn the list over.",
         "at": "hallway",
         "shot": "insert",
         "props": [
@@ -826,7 +826,7 @@
       ],
       "cues": [
        {
-        "t": "Ines moved into 4C, one door down from Theo.",
+        "t": "Ines moved into 4C, next door.",
         "at": "lobby",
         "on": [
          "theo",
@@ -1078,15 +1078,6 @@
         ],
         "shot": "medium",
         "emote": "neutral"
-       },
-       {
-        "t": "He never asked her anything. He just counted.",
-        "at": "busstop",
-        "on": [
-         "theo"
-        ],
-        "shot": "wide",
-        "emote": "doubt"
        }
       ],
       "crowd": {
@@ -1137,7 +1128,7 @@
       ],
       "cues": [
        {
-        "t": "Sam came over with a pizza and a straight question.",
+        "t": "Sam came over with a pizza.",
         "at": "flat",
         "on": [
          "theo",
@@ -1376,15 +1367,6 @@
         "shot": "medium",
         "emote": "tired",
         "do": "reach"
-       },
-       {
-        "t": "Not one of them had been about him.",
-        "at": "stairs",
-        "on": [
-         "theo"
-        ],
-        "shot": "medium",
-        "emote": "relief"
        }
       ]
      }
@@ -1527,7 +1509,7 @@
         "do": "happy"
        },
        {
-        "t": "Next morning he said hello first. She answered before he finished.",
+        "t": "Next morning he said hello first.",
         "at": "inesflat",
         "on": [
          "theo",
