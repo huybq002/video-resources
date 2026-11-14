@@ -1,7 +1,7 @@
 {
   "approved": true,
-  "skill_hash": "2a54bffbd37af380",
-  "approved_at": "2026-11-12T07:44",
-  "demo": "https://github.com/huybq002/video-resources/pull/5",
-  "note": "Owner approved in chat 2026-11-12 after PR #5 (video 005 fixes: voice pace x1.08 base / x1.22 cap, chair placement, scene continuity, per-film rooms)."
+  "skill_hash": "8836cd568279a4cd",
+  "approved_at": "2026-11-14T20:33",
+  "demo": "https://github.com/huybq002/video-resources/pull/7",
+  "note": "Owner approved in chat 2026-11-14 after PR #7 (designed places, room tone and score, acted voice, relay and director's pass)."
 }
