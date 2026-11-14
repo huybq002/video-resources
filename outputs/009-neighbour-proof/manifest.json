@@ -1,0 +1,79 @@
+{
+  "id": "009-neighbour-proof",
+  "tag": "009-neighbour-proof-43624321126",
+  "idea": "A man decides his new neighbour is rude and keeps only the proof that fits; confirmation bias shown as a list, with a note that turns it over (invented, no real people)",
+  "lang": "en",
+  "duration_s": 180,
+  "cuts": [
+    {
+      "cut": "landscape",
+      "aspect": "16:9",
+      "video": "landscape.mp4",
+      "bundle": "landscape-bundle.zip"
+    },
+    {
+      "cut": "portrait",
+      "aspect": "9:16",
+      "video": "portrait.mp4",
+      "bundle": "portrait-bundle.zip"
+    }
+  ],
+  "assets": [
+    {
+      "name": "landscape.mp4",
+      "bytes": 106344813,
+      "sha256": "4758a701e225311f9c15a71ef541ed3b2c04da38fcddf00ff6ecb28f829bcdf6"
+    },
+    {
+      "name": "landscape-bundle.zip",
+      "bytes": 18469415,
+      "sha256": "f71c55679c7f2feba1042929915223634f293af675d4756c4fad43ce8b9cd7d3"
+    },
+    {
+      "name": "portrait.mp4",
+      "bytes": 94110213,
+      "sha256": "23f3cbfda2caba7165ea75ede989e992ba8a9e2a0bb985a6ce0fe3da049ad991"
+    },
+    {
+      "name": "portrait-bundle.zip",
+      "bytes": 15937899,
+      "sha256": "5788b3e87416023a36ba1747fc9f4c3fc159a3e545c36123ed8a85db7985ed35"
+    },
+    {
+      "name": "metadata.json",
+      "bytes": 539,
+      "sha256": "706604a35599a767d5a32ab1fbceac11143b63f86485d1273d23ca968ff8e424"
+    },
+    {
+      "name": "tiktok.md",
+      "bytes": 863,
+      "sha256": "671a8b97e5552b19569d93f5a4fe5f5ee8fc733502c2c0c756595522fab65b11"
+    },
+    {
+      "name": "youtube.md",
+      "bytes": 1683,
+      "sha256": "87510f445b426fd556af2915d4689271d10d14bcfbc7563f4544ed0356c9731c"
+    },
+    {
+      "name": "youtube_shorts.md",
+      "bytes": 431,
+      "sha256": "d028f1af76cf73768f5b60b93b8907d3df721ec030fa48767f053d1496692df5"
+    },
+    {
+      "name": "a.png",
+      "bytes": 552087,
+      "sha256": "4c7210f1239c7573c150a2a85abd992fcd5d1694e6fdf5baacbf5fe251ea26a3"
+    },
+    {
+      "name": "b.png",
+      "bytes": 540892,
+      "sha256": "72be19358dcb7d881e355f241e1ef1e2be9170db743eeb48a5fc89810071a04c"
+    },
+    {
+      "name": "d.png",
+      "bytes": 318850,
+      "sha256": "13d7d7f7d547c0fbe322ab5239cfab4f065b0e89a0642842a410e8c830aa387e"
+    }
+  ],
+  "release_url": "https://github.com/huybq002/video-resources/releases/tag/009-neighbour-proof-43624321126"
+}

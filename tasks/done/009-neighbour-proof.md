@@ -2,7 +2,7 @@
 id: 009-neighbour-proof
 type: video
 priority: 009
-status: pending
+status: done
 topic: psychology
 keyword: "confirmation bias explained"
 format: days
@@ -24,8 +24,9 @@ privacy: private
 3-minute English film, both cuts. Search phrase: "confirmation bias explained". Thumb: PROOF? OR HABIT?
 
 ## Done when
-- [ ] both cuts generated and verified, both videos rendered and verified
-- [ ] Release published with both bundles and both videos
-- [ ] specs/009-neighbour-proof.json committed, publish pack written
+- [x] both cuts generated and verified, both videos rendered and verified
+- [x] Release published with both bundles and both videos
+- [x] specs/009-neighbour-proof.json committed, publish pack written
 
 ## Progress notes
+- 2026-11-15: DONE. Release https://github.com/huybq002/video-resources/releases/tag/009-neighbour-proof-43624321126. Both cuts verified (pace x1.08, 0 rushed, 0 cut; bundle OK with --max-warnings 8: silence/target notes plus one voice: warning (5 of 23 dialogue lines short)). policy OK. Original score. Owner: switch on the AI labels; portrait is 3 min, not a Short.
