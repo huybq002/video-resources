@@ -802,7 +802,7 @@
    "id": 2,
    "title": "Monday",
    "goal": "Theo wants a friendly first hello.",
-   "target_s": 26,
+   "target_s": 28,
    "turn": "a rushed hello leaves him with a feeling",
    "value": "-",
    "shots": [
@@ -917,16 +917,6 @@
         "shot": "establish",
         "emote": "doubt",
         "do": "sit@bed"
-       },
-       {
-        "t": "He stood there holding his own hello.",
-        "at": "bedroom",
-        "on": [
-         "theo"
-        ],
-        "shot": "medium",
-        "emote": "sad",
-        "do": "sad"
        },
        {
         "t": "By evening he had a feeling about her.",
@@ -1104,7 +1094,7 @@
    "id": 4,
    "title": "Sam asks",
    "goal": "Theo wants Sam to agree.",
-   "target_s": 32,
+   "target_s": 30,
    "turn": "Sam asks why the list has only bad days",
    "value": "-",
    "shots": [
