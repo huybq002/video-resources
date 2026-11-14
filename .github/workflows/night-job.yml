@@ -177,9 +177,7 @@ jobs:
         uses: anthropics/claude-code-action@v1
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
-          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
-          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          # no YT_* secrets here: Claude never uploads; the "Upload to YouTube" step below does
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -328,10 +326,13 @@ jobs:
                  6. Metadata: `python $SKILL/ci/make_metadata.py specs/<id>.json outputs/<id>/landscape --privacy <privacy> > outputs/<id>/metadata.json`.
                     Thumbnails with the html-thumbnail skill into outputs/<id>/thumbnails/: 1280x720 for the landscape cut
                     and 720x1280 for the portrait one.
-                 7. Upload to YouTube ONLY if the task says `upload: true`: landscape first, then portrait
-                    (`python $SKILL/ci/upload_youtube.py --video <mp4> --meta outputs/<id>/metadata.json --thumb <image> --confirm`).
-                    Never add `--allow-public` unless the task says `privacy: public`. Note in Progress notes that a vertical
-                    cut longer than 3 minutes is not eligible as a Short.
+                 7. Do NOT upload to YouTube yourself (you have no YouTube secrets). After this step the job runs
+                    `scripts/youtube_publish.py`, which uploads every task this run published (manifest tag ends with the run id)
+                    as a private draft, when channel.json youtube_upload.enabled is true and the look is approved. It takes the
+                    title/description/tags from publish/publish.json, the music credit, the AI disclosure and the thumbnails, so
+                    make those complete and leave the 1280x720 and 720x1280 thumbnails in outputs/<id>/thumbnails/.
+                    You may check what it would send: `python scripts/youtube_publish.py --id <id> --dry-run`.
+                    Note in Progress notes that a vertical cut longer than 3 minutes is not eligible as a Short (it is not uploaded).
                  7b. Publishing pack (this is what you are really making: the user posts by hand).
                     Using the claude-youtube skill (sub-skills/seo.md and metadata.md), the keyword from the task and
                     the packaging rules T1-T4, D1-D4 and S1 of data/growth-playbook.md,
@@ -411,6 +412,29 @@ jobs:
                   found; every improvement (what, why, evidence, files, commit); what you tried and reverted; what you could
                   NOT verify; decisions the owner has to make; suggested next steps. Honest beats impressive.
           claude_args: --max-turns 500 --allowedTools "Bash,Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
+      - name: Upload to YouTube (private drafts for review)
+        # Off unless channel.json youtube_upload.enabled is true and the YT_* secrets exist (the script skips with one line
+        # otherwise). Never on a demo night: the look must be approved. Results: outputs/<id>/youtube.json on `night`.
+        if: always() && steps.claude.outcome != 'skipped' && env.APPROVED == 'true'
+        continue-on-error: true
+        shell: bash
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          # the manifests live on `night`; videos are git-ignored, so they survive the switch
+          [ "$(git branch --show-current)" = "night" ] || git switch night || echo "could not switch to night"
+          rc=0; python3 scripts/youtube_publish.py --run-id "$GITHUB_RUN_ID" || rc=$?   # GitHub's bash runs with -e
+          if [ -n "$(git status --porcelain -- 'outputs/*/youtube.json')" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+            git add outputs/*/youtube.json
+            git commit -m "YouTube upload results (run $GITHUB_RUN_ID)" || true
+            { git pull --rebase origin night && git push origin night; } || echo "could not push youtube.json"
+          fi
+          exit $rc
       - name: Save unfinished work (bundles, voice-over)
         # only after a run that worked: stand-down runs used to save a copy of the same cache each time (9 crons a night)
         if: always() && steps.claude.outcome != 'skipped'
@@ -431,5 +455,6 @@ jobs:
           path: |
             outputs/*/report-*.json
             outputs/*/manifest.json
+            outputs/*/youtube.json
             outputs/*/publish/*.md
             outputs/*/*_pipeline.log
