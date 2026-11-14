@@ -876,7 +876,7 @@
        },
        {
         "who": "ines",
-        "t": "Mm, yes. Sorry, I've got boxes\u2014",
+        "t": "Mm, yes, sorry, I've got so many boxes\u2014",
         "emote": "worry"
        },
        {
@@ -1160,7 +1160,7 @@
        },
        {
         "who": "theo",
-        "t": "Seven proofs, Sam. Seven.",
+        "t": "Seven proofs, Sam, I counted them all.",
         "emote": "angry"
        },
        {
@@ -1321,7 +1321,7 @@
         ]
        },
        {
-        "t": "He counted again. Seven proofs, seven guesses.",
+        "t": "He counted again: seven proofs, seven guesses.",
         "at": "stairs",
         "on": [
          "theo"
