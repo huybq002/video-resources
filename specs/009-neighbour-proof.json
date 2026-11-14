@@ -869,24 +869,24 @@
       "lines": [
        {
         "who": "theo",
-        "t": "Hey! New neighbour?",
+        "t": "Hey, are you the new neighbour?",
         "emote": "joy",
         "do": "wave",
         "at": "lobby"
        },
        {
         "who": "ines",
-        "t": "Mm. Yes. Sorry, boxes\u2014",
+        "t": "Mm, yes. Sorry, I've got boxes\u2014",
         "emote": "worry"
        },
        {
         "who": "theo",
-        "t": "I'm Theo. 4B. If you need\u2014",
+        "t": "I'm Theo, in 4B. If you need anything\u2014",
         "emote": "joy"
        },
        {
         "who": "ines",
-        "t": "Thanks, sorry.",
+        "t": "Thanks, and sorry, I have to go.",
         "emote": "worry",
         "do": "walkTo:-300"
        }
@@ -938,7 +938,7 @@
         "emote": "doubt"
        },
        {
-        "t": "A feeling isn't proof. But it goes looking for some.",
+        "t": "A feeling isn't proof, but it goes looking for some.",
         "at": "bedroom",
         "on": [
          "theo"
@@ -1026,7 +1026,7 @@
         "emote": "doubt"
        },
        {
-        "t": "That has a name. Confirmation bias.",
+        "t": "That has a name: confirmation bias.",
         "crowd": false,
         "at": "flat",
         "on": [
@@ -1170,7 +1170,7 @@
        },
        {
         "who": "theo",
-        "t": "Seven, Sam. Seven.",
+        "t": "Seven proofs, Sam. Seven.",
         "emote": "angry"
        },
        {
@@ -1310,7 +1310,7 @@
         ]
        },
        {
-        "t": "Neat handwriting. Three drafts, crossed out.",
+        "t": "Neat handwriting, with three drafts crossed out.",
         "who": "ines",
         "shot": "insert",
         "emote": "worry",
@@ -1429,14 +1429,14 @@
       "lines": [
        {
         "who": "theo",
-        "t": "Hi. It's Theo. 4B.",
+        "t": "Hi, it's Theo from 4B.",
         "emote": "joy",
         "at": "inesflat",
         "do": "wave"
        },
        {
         "who": "ines",
-        "t": "Oh! You got my note.",
+        "t": "Oh! You got my note, great.",
         "emote": "surprise"
        },
        {
@@ -1456,7 +1456,7 @@
        },
        {
         "who": "ines",
-        "t": "Really?",
+        "t": "Wait, really? You did too?",
         "emote": "joy"
        },
        {
