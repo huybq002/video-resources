@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Fingerprint of everything that decides how a video LOOKS: the generator skill and the render tool.
+"""Fingerprint of everything that decides how a video LOOKS and SOUNDS: the pinned stickman-video-director runtime
+(stickman/lock.json), our adapters (scripts/stickman, scripts/media), the story skill and the TTS tool.
 
     python scripts/skill_hash.py            # prints a 16-char hash
 
@@ -13,10 +14,10 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PARTS = [
-    ROOT / ".claude/skills/code2video-resource-generator/scripts",
-    ROOT / ".claude/skills/code2video-resource-generator/assets",
-    ROOT / ".claude/skills/code2video-resource-generator/references",
-    ROOT / ".claude/skills/code2video-resource-generator/SKILL.md",
+    ROOT / "stickman/lock.json",                 # the runtime commit and the enabled styles
+    ROOT / "scripts/stickman",
+    ROOT / "scripts/media",
+    ROOT / ".claude/skills/hezb-story",
     ROOT / "tools/code2video/src",
 ]
 SKIP = {"node_modules", "__pycache__", ".pytest_cache", "examples"}

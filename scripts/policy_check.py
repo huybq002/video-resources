@@ -88,6 +88,9 @@ def _first_line(spec):
                 t = c if isinstance(c, str) else str(c.get("t", ""))
                 if t.strip():
                     return t
+        for c in sc.get("lines", []):                 # stories/<id>.json (2026-11-15)
+            if str(c.get("t", "")).strip():
+                return str(c["t"])
     return ""
 
 
@@ -129,7 +132,8 @@ def sameness(spec, path, keep=8):
 def spec_text(spec):
     out = [str(spec.get("idea", "")), str(spec.get("title", ""))]
     for sc in spec.get("scenes", []):
-        out += [str(sc.get("title", "")), str(sc.get("goal", ""))]
+        out += [str(sc.get("title", "")), str(sc.get("goal", "")), str(sc.get("place", ""))]
+        out += [str(c.get("t", "")) for c in sc.get("lines", [])]      # stories/<id>.json (2026-11-15)
         for item in sc.get("shots", []):
             seq = item.get("sequence") or {}
             for c in list(seq.get("cues", [])) + list(seq.get("lines", [])) + list(item.get("cues") or []):

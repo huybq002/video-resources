@@ -55,6 +55,9 @@ def main() -> int:
 
     out = pathlib.Path("outputs") / a.id
     spec = json.load(open(a.spec, encoding="utf-8"))
+    if not spec.get("duration_s"):    # a story (stories/<id>.json): the film is as long as its voice
+        tf = out / "voice" / "timing.json"
+        if tf.is_file(): spec["duration_s"] = round(json.load(open(tf, encoding="utf-8"))["duration"], 1)
     found = [(name, aspect, out / name) for name, aspect in CUTS if (out / name).is_dir()]
     if not found and (out / "project").is_dir():
         found = [("project", spec.get("aspect", "16:9"), out / "project")]
@@ -82,7 +85,7 @@ def main() -> int:
 
     tag = a.tag or f"{a.id}-{os.environ.get('GITHUB_RUN_ID', 'local')}"
     manifest = {
-        "id": a.id, "tag": tag, "idea": spec.get("idea"), "lang": spec.get("lang"),
+        "id": a.id, "tag": tag, "idea": spec.get("idea"), "lang": spec.get("lang"), "style": spec.get("style"), "topic": spec.get("topic"),
         "duration_s": spec.get("duration_s"), "cuts": cuts,
         "assets": [{"name": p.name, "bytes": p.stat().st_size, "sha256": sha(p)} for p in assets],
         "release_url": None,
@@ -90,8 +93,9 @@ def main() -> int:
     if not a.dry_run:
         notes = (f"{spec.get('idea', a.id)}\n\nduration {spec.get('duration_s')}s, lang {spec.get('lang')}.\n"
                  + "\n".join(f"- {c['cut']} ({c['aspect']}): `{c['video']}` + `{c['bundle']}`" for c in cuts)
-                 + "\n\nEach *-bundle.zip is the HyperFrames project for that frame shape "
-                   "(open with Code2Video Studio / hyperframes). youtube.md / youtube_shorts.md / tiktok.md "
+                 + f"\n\nVisual style {spec.get('style') or '-'} (kaomei/stickman-video-director). Each *-bundle.zip is the "
+                   "stickman project for that frame shape (project.json, narration, room tone, score, drawings). "
+                   "youtube.md / youtube_shorts.md / tiktok.md "
                    "hold the title, description, tags and hashtags to paste when posting.")
         r = subprocess.run(["gh", "release", "create", tag, *map(str, assets), "--title", a.id, "--notes", notes],
                            capture_output=True, text=True)

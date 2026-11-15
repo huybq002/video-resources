@@ -23,7 +23,7 @@ Each video task builds **both** 16:9 and 9:16 from one spec, with assets generat
 
 Requires the `CLAUDE_CODE_OAUTH_TOKEN` repository secret (from `claude setup-token`). YouTube upload additionally needs `YT_CLIENT_ID`, `YT_CLIENT_SECRET`, `YT_REFRESH_TOKEN`.
 
-Video tasks use `.claude/skills/code2video-resource-generator`. `tools/code2video` (VieNeu-TTS, faster-whisper, HyperFrames render, `code2video-job`) renders the video for `renderer: tool` tasks; `renderer: skill` uses the skill's own edge-tts + render as a fallback.
+Video tasks use `.claude/skills/hezb-story`: the story and voice are ours, the picture is made with the pinned kaomei/stickman-video-director runtime (`stickman/lock.json`, MIT). The old HyperFrames generator is on the branch `backup/pre-stickman-director-2026-11-15`.
 
 The night job runs inside a prebuilt image (`Dockerfile`, built by `build-image.yml` and stored at `ghcr.io/huybq002/video-resources-runner`), so nothing is installed or downloaded at night. Run **Build runner image** once (and whenever tools or dependencies change) before the first night.
 

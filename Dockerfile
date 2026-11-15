@@ -1,6 +1,6 @@
 # Runner image for the night job: everything installed once, pulled each night.
 # Rebuilt by .github/workflows/build-image.yml when this file, requirements.txt,
-# tools/code2video or the bg_renderer package files change.
+# tools/code2video or the pinned stickman runtime (stickman/lock.json) change.
 FROM ubuntu:24.04
 
 LABEL org.opencontainers.image.source="https://github.com/huybq002/video-resources"
@@ -42,12 +42,6 @@ RUN curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor
 # GitHub CLI (publishes the Release with the bundle and video)
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg -o /usr/share/keyrings/githubcli-archive-keyring.gpg     && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github-cli.list     && apt-get update && apt-get install -y --no-install-recommends gh     && rm -rf /var/lib/apt/lists/*
 
-# Rhubarb Lip Sync (MIT): mouth shapes read from the real voice-over (ci/lipsync_audio.py). Pinned + checksum.
-# The binary needs its res/ folder next to it, so keep the whole release dir and link the binary.
-RUN curl -fsSL -o /tmp/rhubarb.zip https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.14.0/Rhubarb-Lip-Sync-1.14.0-Linux.zip \
-    && echo "a9a9074862cff47b2d59b8bf399a678a3b0b74f9452ad6ad94cb292913dd8667  /tmp/rhubarb.zip" | sha256sum -c - \
-    && unzip -q /tmp/rhubarb.zip -d /opt && rm /tmp/rhubarb.zip \
-    && ln -sf /opt/Rhubarb-Lip-Sync-1.14.0-Linux/rhubarb /usr/local/bin/rhubarb && rhubarb --version
 
 RUN git config --system --add safe.directory '*'
 
@@ -62,12 +56,12 @@ RUN pip install -r /tmp/requirements.txt
 COPY tools/code2video /opt/code2video
 RUN pip install -e "/opt/code2video[tts,alignment]"
 
-# HyperFrames CLI + warm the npx cache
-RUN npm install -g hyperframes && (npx --yes hyperframes --help >/dev/null 2>&1 || true)
-
-# Warm the bg_renderer npm cache (three, puppeteer-core)
-COPY .claude/skills/code2video-resource-generator/scripts/bg_renderer/package.json /tmp/bg/package.json
-RUN cd /tmp/bg && npm install --no-audit --no-fund && rm -rf /tmp/bg
+# The renderer: kaomei/stickman-video-director (MIT), pinned in stickman/lock.json, installed with its node deps
+# (@napi-rs/canvas, sharp). The night job renders every video with it (2026-11-15, replaces HyperFrames).
+ENV STICKMAN_HOME=/opt/stickman-director
+COPY stickman/lock.json /tmp/stickman/stickman/lock.json
+COPY scripts/stickman/install.sh /tmp/stickman/scripts/stickman/install.sh
+RUN bash /tmp/stickman/scripts/stickman/install.sh && rm -rf /tmp/stickman
 
 # Download the models at build time so nights never download them.
 # faster-whisper "small" (tool default) and VieNeu "v3turbo" (tool default).

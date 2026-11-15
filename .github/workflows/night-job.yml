@@ -43,7 +43,9 @@ jobs:
       packages: read
       id-token: write
     env:
-      SKILL: .claude/skills/code2video-resource-generator
+      SKILL: .claude/skills/hezb-story
+      # the pinned stickman-video-director runtime (stickman/lock.json), installed in the runner image
+      STICKMAN: /opt/stickman-director/skills/directing-stickman-videos
       STUDIO_DATA_DIR: ${{ github.workspace }}/out/.studio-data
       # let Claude's single long render command run for hours
       BASH_MAX_TIMEOUT_MS: "21000000"
@@ -151,15 +153,18 @@ jobs:
           echo "minutes=$mins" >> "$GITHUB_OUTPUT"
           echo "DEADLINE_EPOCH=$end" >> "$GITHUB_ENV"
           echo "Minutes until deadline: $mins (deadline $(date -u -d @$end +%FT%TZ))"
-      - name: Approval gate (demo until the owner approves the look)
+      - name: Approval gate (per visual style, owner decision 2026-11-15)
         shell: bash
         run: |
+          bash scripts/stickman/install.sh    # no-op when the image already has the pinned runtime
           now_hash=$(python3 scripts/skill_hash.py)
-          ok=$(python3 -c "import json,sys; a=json.load(open('data/approval.json')); print('true' if a.get('approved') and a.get('skill_hash')=='$now_hash' else 'false')" 2>/dev/null || echo false)
+          enabled=$(python3 -c "import json; print(','.join(json.load(open('stickman/lock.json'))['enabled_styles']))")
+          approved=$(python3 -c "import json; a=json.load(open('data/approval.json')).get('styles',{}); print(','.join(k for k,v in a.items() if v.get('approved') and v.get('skill_hash')=='$now_hash'))" 2>/dev/null || echo "")
           echo "SKILL_HASH=$now_hash" >> "$GITHUB_ENV"
-          echo "APPROVED=$ok" >> "$GITHUB_ENV"
-          if [ "$ok" = "true" ]; then echo "Approved look ($now_hash): full production tonight."
-          else echo "Look $now_hash is NOT approved: demo mode tonight (a short demo for the owner, no full video)."; fi
+          echo "ENABLED_STYLES=$enabled" >> "$GITHUB_ENV"
+          echo "APPROVED_STYLES=$approved" >> "$GITHUB_ENV"
+          if [ -n "$approved" ]; then echo "APPROVED=true" >> "$GITHUB_ENV"; else echo "APPROVED=false" >> "$GITHUB_ENV"; fi
+          echo "Look $now_hash. Enabled styles: $enabled. Approved styles: ${approved:-none} (the others make demos)."
       - name: Restore unfinished work (bundles, voice-over)
         if: steps.deadline.outputs.minutes != '0' && steps.guard.outputs.skip != 'true' && steps.wait.outputs.early != 'true'
         uses: actions/cache/restore@v4
@@ -185,21 +190,19 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: |
             Follow tasks/README.md.
-            0. APPROVAL GATE: APPROVED=$APPROVED (look fingerprint $SKILL_HASH, see data/approval.json).
-               If APPROVED is not "true", tonight is DEMO MODE. The owner must see and approve the look before any full
-               video is published. In demo mode:
-               - do steps 1, 1b and 2 as usual (policy, research, pick the idea, write the full task in tasks/pending/),
-               - then build ONLY a demo of that video: a separate spec specs/<id>-demo.json of 30-45 s (2-3 scenes taken
-                 from the planned story: the hook plus one scene with two people talking), following every rule of the skill
-                 (visual beats on every line, furniture at the characters' depth, film actions, hud, establishing/insert/ots shots).
-                 Build both cuts, voice and render them exactly as step 5 says, verify both videos,
-               - publish them as a Release tagged demo-<YYYY-MM-DD>-<run id> with landscape.mp4, portrait.mp4 and 6 snapshot
-                 frames (`npx hyperframes snapshot`), and write reports/<YYYY-MM-DD>.md that starts with:
-                 "DEMO ONLY - waiting for approval", the release link, the look fingerprint, and the exact command to approve:
-                 `python scripts/approve_demo.py --demo <release url>` then commit and push data/approval.json to main,
-               - leave the full task in tasks/pending/ (status: pending) so the first approved night makes it,
-               - then go to the improvement phase (step 12) if time remains. Never publish the full video in demo mode.
-               If APPROVED is "true", carry on normally.
+            0. APPROVAL GATE (per visual style): ENABLED_STYLES=$ENABLED_STYLES, APPROVED_STYLES=$APPROVED_STYLES (look
+               fingerprint $SKILL_HASH, data/approval.json). A video may be made in full only in an APPROVED style.
+               - Pick each video's style by its content among ENABLED_STYLES ($SKILL/SKILL.md "Styles"), never the previous
+                 video's style. Prefer an approved style that fits; if none fits, the video waits and tonight makes a demo.
+               - DEMO for every enabled style that is not approved yet (at most 3 tonight): a 20-30 s story of 2 scenes in that
+                 style (the hook of a planned idea plus one exchange between two characters), voiced, authored and rendered
+                 exactly as step 5 says but with `--seconds` covering the demo, both cuts, verified. Publish all demos in one
+                 Release tagged demo-<YYYY-MM-DD>-<run id> (each style's landscape.mp4 / portrait.mp4 named by style, plus the
+                 contact sheets). The report starts with "DEMO - waiting for approval", the release link, the fingerprint and,
+                 per style, the exact command: `python scripts/approve_demo.py --style <B1|B2|B3> --demo <release url>`
+                 then commit and push data/approval.json to main.
+               - Full videos only in approved styles. With no approved style at all, tonight is demos only: still do steps 1, 1b
+                 and 2 (policy, research, ideas, tasks) and leave the tasks in tasks/pending/ for the first approved night.
             1. Switch to branch `night`: continue it if origin/night exists, else create it from main.
                Then merge origin/main into it so new tasks appear.
             1b. POLICY FIRST, before any idea exists. Read data/platform-policy.md and channel.json
@@ -259,77 +262,44 @@ jobs:
                Skip any task whose file already exists in tasks/done/ on the night branch.
             4. Save results in outputs/<task id>/. Update "Progress notes" as you go.
             5. Task types (frontmatter `type:`):
-               - `video`: use the code2video-resource-generator skill (its SKILL.md; skill dir is $SKILL).
-                 Read idea, lang, duration_min, script_prompt, series, episode, renderer, privacy, upload from the task.
+               - `video`: follow the hezb-story skill ($SKILL/SKILL.md). The picture is made with the pinned
+                 stickman-video-director runtime at $STICKMAN (kaomei/stickman-video-director, MIT); our part is the story,
+                 the voice and the sound. Read idea, lang, duration_min, script_prompt, style, privacy, upload from the task.
                  Every task builds BOTH frame shapes. Everything lives under outputs/<id>/.
-                 1. Write specs/<id>.json (duration_s = duration_min*60 exactly; scenes[].target_s must add up to it).
-                    Script rules H1-H6 of data/growth-playbook.md apply: line 1 says the title's promise in a picture,
-                    a loop opens by 15 s and closes in the last scene, the search phrase is spoken (and on a hud chip) by
-                    60 s for psychology/money, a new fact or reversal every 45-60 s, and NO "invented"/"fiction" talk in
-                    the narration (that label lives in the description and the upload setting).
-                    Follow the skill's six rules: a hook that lands in the first 30 s, words per scene = target_s * 2.4,
-                    its own settings written with scene-dsl (not only `lib:`), supporting cast and `crowd` for groups,
-                    2-3 shots per long scene, male characters with bare stick legs. Write the `spine` and each scene's
-                    goal/turn/value first (references/short-film-craft.md), spoken lines (references/spoken-voice.md), and
-                    and READ $SKILL/references/filmmaker-checklist.md: DESIGN every place this story needs yourself (no menu of
-                    places: `place`, `signature`, a shell `set` and 5+ own `objects`, set-design.md "Design every place
-                    yourself"), put `"at"` on every line that names a place, and `"emote"` on every line with a feeling (the
-                    voice acts it). A place you cannot build: write `needs_owner` on it, append it to data/asset-requests.md
-                    (date, film, setting, what is missing) and list it under "Owner: assets to make" in the report. Set `aspect` to "16:9" in the spec;
-                    build_both.py overrides it per cut. If series is set, first run
-                    `python $SKILL/scripts/series.py brief series/<series>/series-bible.json` and continue that story.
-                 2. Generate both cuts:
-                    `python $SKILL/scripts/build_both.py specs/<id>.json outputs/<id> [--series series/<series>/series-bible.json]`
-                    It writes outputs/<id>/landscape (16:9) and outputs/<id>/portrait (9:16), each with its own
-                    three.js backgrounds and framing. Fix every WARNING (edit the spec) and re-run until none is left.
-                 2b. `python scripts/policy_check.py spec specs/<id>.json`. It fails on a claim that the story is
-                    true, a real organisation or company, graphic injury detail, or advice. Fix the spec and re-run
-                    step 2 until it prints "policy OK"; never render a spec that fails.
-                 3. Verify both bundles:
-                    `python scripts/verify_bundle.py bundle outputs/<id>/landscape --spec specs/<id>.json --expect-minutes <duration_min> --aspect 16:9`
-                    `python scripts/verify_bundle.py bundle outputs/<id>/portrait  --spec specs/<id>.json --expect-minutes <duration_min> --aspect 9:16`
-                    If either prints PROBLEMS, fix the spec and go back to step 2. Never render a bundle that fails.
-                    The bundle check runs the spec lint too: every open WARNING is a PROBLEM.
-                 4. Voice-over once, then render both. script.srt is identical in the two cuts, so:
-                    * `renderer: tool` (default, best quality: VieNeu voice, Whisper alignment, HyperFrames):
-                      a. job file outputs/<id>/job-landscape.json:
-                         {"engine":"hyperframes","project":"outputs/<id>/landscape","language":"<lang>","fps":30,
-                          "preRender":["python",".claude/skills/code2video-resource-generator/ci/lipsync_audio.py","{project}","--lang","<lang>"]}
-                         (preRender reads the mouths from the real voice with Rhubarb before the render; keep it in both job files)
-                         then `code2video-job outputs/<id>/job-landscape.json --report outputs/<id>/report-landscape.json`
-                      b. copy the voice-over made for the landscape cut into the portrait cut:
-                         `cp outputs/<id>/landscape/voiceover.wav outputs/<id>/landscape/timeline.json outputs/<id>/portrait/`
-                      c. job file outputs/<id>/job-portrait.json, the same as the landscape one but with
-                         "project":"outputs/<id>/portrait" and **"reuseVoiceover":true**. That flag makes the tool use the
-                         copied voiceover.wav instead of synthesising the whole voice again (the slowest step on a CPU);
-                         without it the voice is generated a second time. Then
-                         `code2video-job outputs/<id>/job-portrait.json --report outputs/<id>/report-portrait.json`
-                      The videos are outputs/<id>/<cut>/output.mp4. On failure read the report, fix, re-run.
-                      d. sound, both cuts, in this order:
-                         `python $SKILL/ci/add_sfx.py outputs/<id>/<cut>/output.mp4 --project outputs/<id>/<cut>`
-                         (effects on the picture's beats + the room tone of each place), then
-                         `python $SKILL/ci/add_music.py outputs/<id>/<cut>/output.mp4 --spec specs/<id>.json`
-                         (a licensed track from data/music by mood, else the film's own synthesised score; ducked under the voice).
-                         Check the log lines `sfx:` and `music:`; a film must never go out silent between lines.
-                      e. DIRECTOR'S PASS on each finished cut (judge the real mp4, never the plan):
-                         `python $SKILL/ci/director_pass.py outputs/<id>/<cut>/output.mp4`
-                         It prints PROBLEM lines for dead air (5 s windows below -50 dB), a flat mix, a frozen picture or black
-                         frames, and writes contact sheets (outputs/<id>/<cut>/director_pass/director_sheet_N.jpg). Read the
-                         sheets (a frame every 4 s) as a viewer: where are we, does the picture match the words, can I see the
-                         eyes of whoever speaks, does the stage change between beats (references/event-relay.md)? Fix each
-                         PROBLEM (verify_bundle repeats the same checks) and put what you saw, with times, in the report.
-                         If <cut>/output.music.json has a non-empty "credit", put that line in every description you write.
-                    * `renderer: skill` (fallback, edge-tts): run `python $SKILL/ci/run_pipeline.py specs/<id>.json outputs/<id>/landscape --aspect 16:9`
-                      and again with `--aspect 9:16 --no-series-update` into outputs/<id>/portrait (video: final.mp4).
-                 5. Verify both videos (length, audio present and not silent, frame size):
-                    `python scripts/verify_bundle.py video outputs/<id>/landscape/output.mp4 --spec specs/<id>.json --expect-minutes <duration_min> --aspect 16:9`
-                    `python scripts/verify_bundle.py video outputs/<id>/portrait/output.mp4  --spec specs/<id>.json --expect-minutes <duration_min> --aspect 9:16`
-                    If either prints PROBLEMS (silent or short video), find the cause, fix and re-render. Never publish a video that fails.
-                 6. Metadata: `python $SKILL/ci/make_metadata.py specs/<id>.json outputs/<id>/landscape --privacy <privacy> > outputs/<id>/metadata.json`.
+                 1. STORY. Write stories/<id>.json ($SKILL/references/story-schema.md): style (content-picked, approved),
+                    cast with a look, scenes whose `place` says where THIS beat happens in THIS story (no preset places),
+                    acted lines with `emote`, hook first, a question last. Craft: $SKILL/references/*.md and
+                    data/growth-playbook.md H1-H6. Then
+                    `python $SKILL/scripts/lint_story.py stories/<id>.json --previous-style <style of the last outputs/*/manifest.json>`
+                    and `python scripts/policy_check.py spec stories/<id>.json`; fix until both are clean.
+                 2. VOICE. `python scripts/stickman/narrate.py stories/<id>.json outputs/<id>/voice`
+                    (edge-tts conversational voices for en, VieNeu for vi; each line acted; natural pauses; never sped up to fit).
+                 3. PICTURE. You direct it as the runtime's references say. READ in $STICKMAN/references/: autopilot.md,
+                    autopilot-runtime.md, autopilot-production-qa.md, autopilot-sound-system.md, b-delivery-completeness.md,
+                    b1-b2-b3-reference-acceptance.md, the style page (b1-minimal-handdrawn.md | b2-colorful-handdrawn.md |
+                    b3-television.md + b3-semantic-motion.md) and b1-b2-b3-native-portrait.md; look at $STICKMAN/assets/<style>/.
+                    Write outputs/<id>/shots-16x9.json and a NATIVE portrait outputs/<id>/shots-9x16.json against
+                    outputs/<id>/voice/timing.json: shots covering the whole voice, layers in the style's grammar, your own SVG
+                    drawings of THIS story's places, props and characters in "assets", story sfx at real actions
+                    ($SKILL/SKILL.md section 3; references/event-relay.md and sound-script.md).
+                 4. RENDER both cuts:
+                    `python scripts/stickman/assemble.py --story stories/<id>.json --voice outputs/<id>/voice --shots outputs/<id>/shots-16x9.json --ratio 16:9 --out outputs/<id>/landscape`
+                    `python scripts/stickman/assemble.py --story stories/<id>.json --voice outputs/<id>/voice --shots outputs/<id>/shots-9x16.json --ratio 9:16 --out outputs/<id>/portrait`
+                    A validate failure names the shot and the rule (2.5 s inactivity, a wrapping caption, a missing id/motion
+                    reason, coverage gaps): fix the shots and re-run. Add `--check` to validate without rendering.
+                 5. CHECK each cut (the runtime's acceptance is judged on the real film, never on the plan):
+                    `python scripts/verify_bundle.py bundle outputs/<id>/<cut> --story stories/<id>.json`
+                    `python scripts/verify_bundle.py video outputs/<id>/<cut>/output.mp4 --story stories/<id>.json --aspect <16:9|9:16>`
+                    (it runs scripts/media/director_pass.py: dead air, flat mix, frozen picture, black frames, contact sheets).
+                    LOOK at outputs/<id>/<cut>/contact-sheet.png and the director_pass sheets: where are we, does the picture
+                    match the words, can I see the speaker's eyes, does the stage change between beats? Fix and re-render
+                    whatever fails. Never publish a video that fails. Never run the runtime's `approve` / `accept-*` commands
+                    yourself: that is the owner's or an independent reviewer's.
+                 6. Metadata: `python scripts/media/make_metadata.py stories/<id>.json outputs/<id>/voice --privacy <privacy> > outputs/<id>/metadata.json`.
                     Thumbnails with the html-thumbnail skill into outputs/<id>/thumbnails/: 1280x720 for the landscape cut
                     and 720x1280 for the portrait one.
                  7. Upload to YouTube ONLY if the task says `upload: true`: landscape first, then portrait
-                    (`python $SKILL/ci/upload_youtube.py --video <mp4> --meta outputs/<id>/metadata.json --thumb <image> --confirm`).
+                    (`python scripts/media/upload_youtube.py --video <mp4> --meta outputs/<id>/metadata.json --thumb <image> --confirm`).
                     Never add `--allow-public` unless the task says `privacy: public`. Note in Progress notes that a vertical
                     cut longer than 3 minutes is not eligible as a Short.
                  7b. Publishing pack (this is what you are really making: the user posts by hand).
@@ -347,16 +317,16 @@ jobs:
                       plus thumbnail_text (3-4 words), pinned_comment (the question from the last scene), posting_notes
                     Put channel.json publish.ai_disclosure into every description and caption: both YouTube and
                     TikTok expect a synthetic voice-over to be labelled, and the label does not reduce reach.
-                    Then `python scripts/make_publish_pack.py <id> --spec specs/<id>.json` (platform limits) and
+                    Then `python scripts/make_publish_pack.py <id> --spec stories/<id>.json` (platform limits) and
                     `python scripts/policy_check.py publish outputs/<id>/publish/publish.json` (truth claims, real
                     entities, advice, missing disclosure). Fix and re-run until both print OK.
                     In Progress notes, remind the owner to switch on YouTube Studio's "altered or synthetic content"
                     setting and TikTok's "AI-generated" label at upload: the files cannot do that part.
-                 8. Publish: `python scripts/publish_release.py <id> --spec specs/<id>.json`
+                 8. Publish: `python scripts/publish_release.py <id> --spec stories/<id>.json`
                     It attaches landscape.mp4 + landscape-bundle.zip, portrait.mp4 + portrait-bundle.zip, thumbnails and
                     metadata to a GitHub Release and writes outputs/<id>/manifest.json. Never mark the task done without
                     a release URL in the manifest.
-                 9. Commit only small files: `git add outputs/<id>/manifest.json outputs/<id>/publish outputs/<id>/thumbnails outputs/<id>/report-*.json outputs/<id>/metadata.json specs/<id>.json series/ tasks/ data/`.
+                 9. Commit only small files: `git add outputs/<id>/manifest.json outputs/<id>/publish outputs/<id>/thumbnails outputs/<id>/metadata.json outputs/<id>/shots-*.json outputs/<id>/voice/timing.json stories/<id>.json tasks/ data/`.
                     Bundles, videos and wav files are git-ignored on purpose (they live in the Release).
                - `thumbnail` or no type: use the html-thumbnail skill.
             6. When a task is finished, set status: done and move it to tasks/done/, and set its row in
@@ -381,11 +351,12 @@ jobs:
                   - Read data/performance.md first: which of our videos beat the channel median, and what their topic,
                     title pattern, length and first line have in common. Every change to data/growth-playbook.md cites it.
                   - Find what the winning videos of the three topics have in common (titles, length, first line, structure)
-                    from data/research/latest.md (breakouts first) and WebSearch; compare it with tonight's spec and the earlier ones in specs/.
-                  - Re-read tonight's spec as a bored viewer: name its 3 weakest moments and why.
+                    from data/research/latest.md (breakouts first) and WebSearch; compare it with tonight's story and the earlier ones in stories/.
+                  - Re-read tonight's story and watch its contact sheets as a bored viewer: name its 3 weakest moments and why.
                   - Write concrete, dated, evidenced findings into data/learnings.md.
-                  - Change the writing guidance ONLY where the evidence supports it: references/script-planning.md,
-                    references/youtube-craft.md, and spec_lint.py rules in the code2video-resource-generator skill.
+                  - Change the writing guidance ONLY where the evidence supports it: the hezb-story skill's references and
+                    scripts/lint_story.py. The stickman runtime itself is pinned (stickman/lock.json): never edit it; propose an
+                    upstream version change in the report instead.
                b. PIPELINE: tools/code2video, the flow (scripts/, ci/), asset creation (settings, characters, props) and script
                   generation. Only after (a), and only with time for it. Rules:
                   - Work on a branch cut from main: `git switch -c improve/<YYYY-MM-DD> origin/main`. Never commit this to
@@ -393,14 +364,14 @@ jobs:
                   - One small improvement at a time, each with a measurable before and after (a lint count, a test, a render
                     time, a rendered frame). No big rewrites. Revert whatever you cannot show is better.
                   - Before every commit: `python -m py_compile` on touched scripts; `python -m pytest tools/code2video -q`
-                    if the tool was touched; `python $SKILL/scripts/build_both.py $SKILL/examples/zombie-portrait/spec.json /tmp/smoke --check`
-                    must still end with contract OK for both cuts; `python scripts/policy_check.py` must still pass.
+                    if the tool was touched; tonight's story must still pass `scripts/stickman/assemble.py ... --check` for both
+                    cuts; `python scripts/policy_check.py` must still pass.
                   - Edit only: .claude/skills/, tools/code2video/, scripts/, templates/, data/learnings.md, reports/.
-                    Never .github/, secrets, channel.json, the rules of data/platform-policy.md, data/approval.json,
+                    Never .github/, secrets, channel.json, stickman/lock.json, the rules of data/platform-policy.md, data/approval.json,
                     scripts/skill_hash.py or scripts/approve_demo.py (only the owner approves how videos look).
                   - Never weaken scripts/policy_check.py, scripts/verify_bundle.py or any lint rule that guards a platform
                     policy. You may add checks.
-                  - Look at what you change: for an asset, character or setting, render a snapshot (`npx hyperframes snapshot`)
+                  - Look at what you change: for an asset, character or setting, render a short preview (`assemble.py ... --seconds 10`)
                     and describe what you see in the report. Say plainly when you could not verify something.
                   - When done, or at the limit: commit, `git push origin improve/<YYYY-MM-DD>`, then try
                     `gh pr create --base main --head improve/<YYYY-MM-DD> --title "<what improved>" --body-file reports/<YYYY-MM-DD>.md`.
