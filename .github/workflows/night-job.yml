@@ -212,8 +212,14 @@ jobs:
                inauthentic or mass-produced content, crime and violent content, and money or health advice.
                Update data/platform-policy.md with the date and anything that changed, and commit it.
                Everything after this obeys that file; when a source is unclear, take the safer reading.
-            2. TONIGHT MAKES AT LEAST channel.json night.videos_per_night VIDEOS (2). If tasks/pending/ has fewer runnable
-               tasks than that (TASK_COUNT=$TASK_COUNT), FIND THE MISSING VIDEOS YOURSELF, always running the research below.
+            2. TONIGHT MAKES THREE VIDEOS, ONE PER LANE (channel.json night.lanes, owner decision 2026-11-15): NEWS (2-3 min, rulebook
+               data/news-lane.md), MYSTERY (6-8 min, data/mystery-tricks.md + data/mystery-craft.md) and TRENDING (3-4 min, the
+               research digest). `python scripts/plan_night.py status` lists the lanes that still have no runnable task
+               (tasks carry `lane:`). Write the missing lanes' tasks yourself (TASK_COUNT=$TASK_COUNT waiting), always running the
+               research below. For the mystery lane first take the next owner-approved task from tasks/later/ (move it to
+               tasks/pending/, `status: pending`) before inventing a new case. Order tonight: news first (it goes stale), then
+               mystery, then trending. If no news story passes data/news-lane.md, say so in the report and make a second trending
+               video instead: never force a risky story.
                Nobody hands you ideas: research the market, pick them, write the tasks, then build them in this same run.
                Steps b and c (research + at least 3 new ideas, gated by plan_night.py check-ideas) run EVERY night, also when
                TASK_COUNT is already 2 or more (those ideas feed the next nights); steps d and e (screen, write new tasks)
@@ -237,22 +243,42 @@ jobs:
                   carries "Title: <working title, 40-60 chars> / Thumb: <3 words>"; an idea without a title a stranger
                   would click is dropped. Ideas in a topic or title pattern that beat the channel median in
                   data/performance.md come first; a pattern at the bottom twice is paused.
+                  LANES (one idea per lane every night; `plan_night.py check-ideas` fails without one for each):
+                  - NEWS: follow data/news-lane.md: WebSearch the day's top stories in the allowed areas, take one reported by 2+
+                    independent reputable outlets, put `lane: news`, `topic: news`, `sources:` (URLs with the date read) and
+                    `news_date:` in the task, exact numbers, uncertainty said aloud, no real person shown, no advice;
+                    `python scripts/policy_check.py task <file>` must pass;
+                  - TRENDING: the digest's breakouts, recent demand and 'what people type' (the rules above), topic money or psychology;
+                  - MYSTERY (classic fair-play murder mysteries): for every mystery idea
+                  1. read data/mystery-tricks.md and data/mystery-craft.md; pick the first `unused` kind of trick that was not used
+                     this week (the table is the genre's stock: locked room, alibi, snow, dying message, double ...). It is a
+                     KIND of trick, never a story;
+                  2. WebSearch (and the digest) for what viewers search and watch about that kind: titles, lengths, wording of
+                     "locked room mystery explained", "alibi trick explained", "how the trick worked" ... Use those words in the
+                     search phrase and tags. NEVER read a franchise's episode list to copy a case: do not use any existing
+                     franchise's names, characters, cases, titles or catch-phrases anywhere (scripts/policy_check.py fails them);
+                  3. write a NEW case around the kind: new victim, place, suspects, clues, twist; the death is never shown or
+                     described (no blood, wound, weapon on screen, method or cause of death), the trick is a misdirection trick,
+                     never a recipe to harm; three fair clues in plain view; the structure of data/mystery-craft.md;
+                  4. put the idea in data/ideas.md (keyword = a phrase people type, never a franchise name) and mark the kind
+                     `used` in data/mystery-tricks.md with the task id, in the same commit as the task;
+                  5. write the task with the idea's duration (6-8 min) and a `style:` picked by content among the approved styles
+                     (mysteries: B3 first, then B2, B1), different from the previous video's style.
                   HARD RULE: every run writes AT LEAST 3 new ideas (night.min_ideas_per_run) dated tonight into data/ideas.md,
                   even when tasks are already pending (they feed the next nights). Then run
                   `python scripts/plan_night.py check-ideas`; if it prints FAIL, research more (WebSearch is the fallback
                   when research_youtube.py is refused) until it prints "ideas OK". Never choose videos before that.
                   Prefer a keyword where the views are spread over many channels, not held by two big ones.
-                  Respect topics[].share over time: look at data/ideas.md and pick from the topic that is behind.
+                  Within the trending lane alternate money and psychology (look at data/ideas.md and pick the one that is behind).
                   Append every idea to the table in data/ideas.md with status `new` and its topic id.
                d. SCREEN the ideas against step 1b before choosing. Drop (status `dropped`, with the reason) any idea
                   that needs a real person, a real company or a real case, promises money or health outcomes, or
                   depends on graphic detail. For the `mystery` topic the story is ALWAYS invented: take the shape of
                   a real kind of case, then invent names, places, dates and outcome, and never claim it is true.
-               e. Take the best surviving ideas (as many as needed to reach night.videos_per_night runnable tasks; prefer
-                  different topics) and write one tasks/pending/<NNN>-<slug>.md each from templates/video-task-template.md
+               e. Take the best surviving idea of EACH LANE (so night.videos_per_night = 3 runnable tasks, one per lane) and write one tasks/pending/<NNN>-<slug>.md each from templates/video-task-template.md
                   (next free numbers; idea and lang from channel.json; topic id and target keyword in the task).
-                  LENGTH IS NOT FIXED: give each idea the duration_min its story needs, inside night.duration_range_min
-                  (1-8 min; a single twist ~1-2 min, a story with a turn 3-5, an explainer 4-8). Then check the night fits:
+                  LENGTH BY LANE: duration_min inside the lane's duration_min range in channel.json night.lanes (news 2-3, mystery
+                  6-8, trending 3-4); never outside night.duration_range_min. Then check the night fits:
                   `python scripts/plan_night.py budget --durations <d1>,<d2>[,...]` (uses $DEADLINE_EPOCH). If it prints
                   FAIL, shorten the later videos to the length it gives (rewrite their duration_min) - never drop below
                   2 videos. Run `python scripts/policy_check.py task tasks/pending/<file>` on each and fix anything it reports.

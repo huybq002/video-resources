@@ -63,7 +63,7 @@ JUNK_PHRASE = re.compile(
     r"\b(lyrics|song|songs|music|official|remix|karaoke|cover|trailer|reaction|minecraft|roblox|fortnite|genshin|"
     r"gaming|game|anime|tiktok|meme|memes|edit|asmr|ted ed|ted-ed|law and order|netflix|season|episode|"
     r"adalah|artinya|hindi|urdu|tamil|telugu|bangla|espanol|deutsch|true story|real story|real case|"
-    r"based on true|murder|killer|victim|album|svu|ted talk|ted|podcast|audiobook|interview|reddit|by|ft|feat|fox stevenson)\b", re.I)
+    r"detective conan|case closed|conan|meitantei|sherlock|poirot|based on true|murder|killer|victim|album|svu|ted talk|ted|podcast|audiobook|interview|reddit|by|ft|feat|fox stevenson)\b", re.I)
 
 
 def autocomplete(query, timeout=15):
