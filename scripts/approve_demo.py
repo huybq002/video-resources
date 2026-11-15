@@ -25,6 +25,7 @@ PATH = pathlib.Path(__file__).resolve().parent.parent / "data" / "approval.json"
 
 
 def main() -> int:
+    sys.stdout.reconfigure(encoding="utf-8")   # notes may be Vietnamese; a cp1252 console must not crash after the file is written
     ap = argparse.ArgumentParser()
     ap.add_argument("--style", required=True, help="the visual style the demo showed (B1, B2, B3 ...)")
     ap.add_argument("--demo", help="the demo release you watched")

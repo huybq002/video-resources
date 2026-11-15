@@ -1,6 +1,28 @@
 {
   "_readme": "Per-style approval (owner decision 2026-11-15). A style whose skill_hash matches scripts/skill_hash.py makes full videos; any other style makes a demo. Approve: python scripts/approve_demo.py --style B3 --demo <release url>.",
-  "styles": {},
+  "styles": {
+    "B1": {
+      "approved": true,
+      "skill_hash": "5c388d369b265fd4",
+      "approved_at": "2026-11-15T20:16",
+      "demo": null,
+      "note": "Owner said 'oke duyệt' in chat on 2026-11-15 after watching the B1/B2/B3 demos and the three versions of 'Why Saving Feels Harder Than Spending' (delivered as files, no Release). Approval covers the current look fingerprint."
+    },
+    "B2": {
+      "approved": true,
+      "skill_hash": "5c388d369b265fd4",
+      "approved_at": "2026-11-15T20:16",
+      "demo": null,
+      "note": "Owner said 'oke duyệt' in chat on 2026-11-15 after watching the B1/B2/B3 demos and the three versions of 'Why Saving Feels Harder Than Spending' (delivered as files, no Release). Approval covers the current look fingerprint."
+    },
+    "B3": {
+      "approved": true,
+      "skill_hash": "5c388d369b265fd4",
+      "approved_at": "2026-11-15T20:16",
+      "demo": null,
+      "note": "Owner said 'oke duyệt' in chat on 2026-11-15 after watching the B1/B2/B3 demos and the three versions of 'Why Saving Feels Harder Than Spending' (delivered as files, no Release). Approval covers the current look fingerprint."
+    }
+  },
   "previous_look": {
     "skill_hash": "8836cd568279a4cd",
     "approved_at": "2026-11-14T20:33",

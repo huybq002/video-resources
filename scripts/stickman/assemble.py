@@ -51,6 +51,30 @@ def rasterise(rt, svg_text, png_path, width=None):
     if r.returncode: raise SystemExit(f"asset {png_path.name}: SVG could not be rasterised: {r.stderr.strip()[:300]}")
 
 
+def normalise(shots):
+    """The runtime is strict about floats: a key at 3.0 in a shot whose length computes to 2.9999999999999996 is
+    'Invalid key time', and a text layer without w is only 200 wide ('Text token too wide'). Round times to ms, keep
+    keys strictly increasing inside the shot, drop a motion block whose keys vanished, give text a width to the frame edge."""
+    def fix(l, span):
+        if l.get("keys"):
+            out = []
+            for k in l["keys"]:
+                k = dict(k, t=round(min(max(0.0, float(k["t"])), span), 3))
+                if out and k["t"] <= out[-1]["t"]: continue
+                out.append(k)
+            l["keys"] = out
+            if len(out) < 2: l.pop("keys"); l.pop("motion", None)
+        for f in ("from", "to"):
+            if f in l: l[f] = round(min(max(0.0, float(l[f])), span), 3)
+        if l.get("type") == "text" and "w" not in l: l["w"] = max(120, 1250 - int(l.get("x", 0)))
+        for c in l.get("children", []): fix(c, span)
+    for sh in shots:
+        sh["start"], sh["end"] = round(float(sh["start"]), 3), round(float(sh["end"]), 3)
+        span = int((sh["end"] - sh["start"] - 0.001) * 1000) / 1000
+        for l in sh["layers"]: fix(l, span)
+    return shots
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--story", required=True); ap.add_argument("--voice", required=True); ap.add_argument("--shots", required=True)
@@ -87,7 +111,7 @@ def main():
         sfx.append({"kind": "file", "path": f"sfx/{f.name}", "time": float(e["time"]), "gain": float(e.get("gain", 0.4))})
     p = {"version": 1, "style": style, "width": W, "height": H, "fps": int(authored.get("fps", 30)),
          "voice": {"path": "narration.wav", "lead": 0, "tail": 0},
-         "captions": timing["captions"], "shots": authored["shots"], "sfx": sfx,
+         "captions": timing["captions"], "shots": normalise(authored["shots"]), "sfx": sfx,
          "ambience": [{"path": "room.wav", "start": 0, "end": round(D, 3), "gain": 0.12}],
          "music": {"path": "score.wav", "gain": 0.12},
          "reference_review": {"author_id": "hezb-night-job", "capability": {
