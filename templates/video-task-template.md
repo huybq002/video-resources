@@ -4,7 +4,10 @@ type: video            # video | thumbnail
 priority: 2            # lower number = run first
 status: pending        # pending | in-progress | done | blocked
 # --- video fields (skill: hezb-story; picture: stickman-video-director) ---
-topic: ""              # topic id from channel.json (money | psychology | mystery)
+lane: ""               # trending | mystery | news (channel.json night.lanes): one video per lane every night
+topic: ""              # topic id from channel.json (money | psychology | mystery | news)
+sources: []            # news lane only: 2+ source URLs with the date read, e.g. ["https://... (read 2026-11-15)"]
+news_date: ""          # news lane only: the date of the story
 keyword: ""            # the target search keyword this video is built around
 format: ""             # what_if | character | episode | days | dilemma | explainer | wordless (skill references/story-formats.md)
 idea: "One-sentence idea or topic"

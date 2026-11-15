@@ -2,7 +2,8 @@
 id: 012-voice-alibi
 type: video
 priority: 012
-status: pending
+status: later
+lane: mystery
 topic: mystery
 keyword: "detective story animated"
 format: episode

@@ -3,6 +3,7 @@ id: 010-locked-study
 type: video
 priority: 010
 status: pending
+lane: mystery
 topic: mystery
 keyword: "crime investigation story"
 format: episode

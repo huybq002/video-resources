@@ -2,7 +2,8 @@
 id: 011-footprints-in-snow
 type: video
 priority: 011
-status: pending
+status: later
+lane: mystery
 topic: mystery
 keyword: "mystery story explained"
 format: episode

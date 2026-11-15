@@ -63,7 +63,9 @@ PLACEHOLDER = re.compile(r"\b(TODO|TBD|xxx|lorem ipsum|<[a-z_]+>)\b", re.I)
 problems, notes = [], []
 
 
-def scan(text, where):
+def scan(text, where, news=False):
+    """news=True (lane news, data/news-lane.md): real organisations may be named as sources state them, so REAL_ENTITY is not applied;
+    every other rule still is."""
     for rx, msg in (
         (TRUTH_CLAIM, "claims the story is true. Crime stories here are FICTION: remove the claim "
                       "(channel.json mystery.hard_rules, data/platform-policy.md)"),
@@ -73,7 +75,7 @@ def scan(text, where):
         (FRANCHISE, "uses another franchise's name, character or catch-phrase. Take the genre's structure, never a story: invent the name"),
         (PLACEHOLDER, "left a placeholder in text that ships"),
     ):
-        for m in rx.finditer(text):
+        for m in ([] if (news and rx is REAL_ENTITY) else rx.finditer(text)):
             frag = text[max(0, m.start() - 40):m.end() + 40].replace("\n", " ")
             problems.append(f"{where}: {msg} -> ...{frag.strip()}...")
 
@@ -149,6 +151,37 @@ def spec_text(spec):
     return "\n".join(out)
 
 
+def news_checks(fields, where):
+    """a news-lane task/story needs sources (2+ with URLs), the story's date, and an allowed subject (data/news-lane.md)"""
+    src = fields.get("sources") or []
+    urls = [x for x in src if isinstance(x, str) and re.search(r"https?://", x)]
+    if len(urls) < 2:
+        problems.append(f"{where}: news lane needs `sources:` with 2+ independent source URLs (and the date read); found {len(urls)}")
+    if not str(fields.get("news_date") or "").strip():
+        problems.append(f"{where}: news lane needs `news_date:` (the date of the story)")
+    banned = re.compile(r"\b(murder(ed)?|killed|dead body|shooting|massacre|terror(ist|ism)?|war crime|election result|vote count|"
+                        r"indicted|lawsuit against|arrested|rape|suicide|child victim|missing child)\b", re.I)
+    m = banned.search(" ".join(str(fields.get(k, "")) for k in ("idea", "script_prompt")))
+    if m:
+        problems.append(f"{where}: the news lane never covers this kind of story ({m.group(0)!r}); see data/news-lane.md")
+
+
+def frontmatter(text):
+    m = re.match(r"^---\n(.*?)\n---", text, re.S)
+    out = {}
+    if not m: return out
+    key = None
+    for line in m.group(1).splitlines():
+        kv = re.match(r"^([A-Za-z_]+):\s*(.*)$", line)
+        if kv:
+            key = kv.group(1); v = kv.group(2).strip()
+            out[key] = [] if v in ("[]", "") else (v.strip('"') if not v.startswith("[") else re.findall(r'"([^"]+)"', v))
+        elif key and line.strip().startswith("- "):
+            out.setdefault(key, [])
+            if isinstance(out[key], list): out[key].append(line.strip()[2:].strip().strip('"'))
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("kind", choices=["task", "spec", "publish"])
@@ -162,10 +195,15 @@ def main() -> int:
     cfg = json.load(open(a.channel, encoding="utf-8")) if pathlib.Path(a.channel).is_file() else {}
 
     if a.kind == "task":
-        scan(p.read_text(encoding="utf-8"), p.name)
+        text = p.read_text(encoding="utf-8"); fm = frontmatter(text)
+        is_news = str(fm.get("lane", "")).strip() == "news"
+        scan(text, p.name, news=is_news)
+        if is_news: news_checks(fm, p.name)
     elif a.kind == "spec":
         spec = json.load(open(p, encoding="utf-8"))
-        scan(spec_text(spec), p.name)
+        is_news = spec.get("lane") == "news"
+        scan(spec_text(spec), p.name, news=is_news)
+        if is_news: news_checks(spec, p.name)
         sameness(spec, p)
         for c in spec.get("cast", []):
             if c.get("real") or c.get("real_person"):
@@ -173,7 +211,9 @@ def main() -> int:
     else:
         pub = json.load(open(p, encoding="utf-8"))
         flat = json.dumps(pub, ensure_ascii=False)
-        scan(flat, p.name)
+        scan(flat, p.name, news=bool(pub.get("lane") == "news"))
+        if pub.get("lane") == "news" and "source" not in flat.lower():
+            problems.append(f"{p.name}: a news pack must list its Sources (in the description and the pinned comment)")
         disc = str(cfg.get("publish", {}).get("ai_disclosure", "")).strip()
         if cfg.get("publish", {}).get("require_ai_label", True):
             low = flat.lower()
