@@ -1,0 +1,4875 @@
+{
+"shots": [
+{
+"start": 0.0,
+"end": 4.29,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-1-0"
+},
+{
+"type": "image",
+"path": "assets/ledger.png",
+"x": 340,
+"y": 260,
+"w": 600,
+"h": 290,
+"id": "led-1-1",
+"keys": [
+{
+"t": 0.0,
+"y": 260
+},
+{
+"t": 0.5,
+"y": 252
+},
+{
+"t": 1.0,
+"y": 260
+},
+{
+"t": 1.5,
+"y": 252
+},
+{
+"t": 2.0,
+"y": 260
+},
+{
+"t": 2.5,
+"y": 252
+},
+{
+"t": 3.0,
+"y": 260
+},
+{
+"t": 3.5,
+"y": 252
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the ledger breathes as the number lands"
+}
+},
+{
+"type": "text",
+"text": "DOUBLED",
+"x": 360,
+"y": 130,
+"w": 890,
+"size": 110,
+"bold": true,
+"color": "#EC4338",
+"from": 0.4,
+"id": "l-1-2"
+},
+{
+"type": "text",
+"text": "REPORTED 29 OCT - 3 NOV 2026",
+"x": 270,
+"y": 14,
+"w": 760,
+"size": 32,
+"bold": true,
+"color": "#EC4338",
+"id": "l-1-3"
+},
+{
+"type": "text",
+"text": "SHEFFIELD UNIVERSITY + DOWN TO EARTH",
+"x": 270,
+"y": 54,
+"w": 900,
+"size": 28,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-1-4"
+}
+]
+},
+{
+"start": 4.29,
+"end": 8.86,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-2-0"
+},
+{
+"type": "image",
+"path": "assets/ledger.png",
+"x": 340,
+"y": 300,
+"w": 600,
+"h": 290,
+"id": "led-2-1",
+"keys": [
+{
+"t": 0.0,
+"y": 300
+},
+{
+"t": 0.5,
+"y": 292
+},
+{
+"t": 1.0,
+"y": 300
+},
+{
+"t": 1.5,
+"y": 292
+},
+{
+"t": 2.0,
+"y": 300
+},
+{
+"t": 2.5,
+"y": 292
+},
+{
+"t": 3.0,
+"y": 300
+},
+{
+"t": 3.5,
+"y": 292
+},
+{
+"t": 4.0,
+"y": 300
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the ledger holds the count"
+}
+},
+{
+"type": "text",
+"text": "107,356",
+"x": 330,
+"y": 110,
+"w": 920,
+"size": 150,
+"bold": true,
+"color": "#EC4338",
+"id": "l-2-2"
+},
+{
+"type": "text",
+"text": "SPECIES",
+"x": 520,
+"y": 270,
+"w": 730,
+"size": 60,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-2-3"
+},
+{
+"type": "text",
+"text": "REPORTED 29 OCT - 3 NOV 2026",
+"x": 270,
+"y": 14,
+"w": 760,
+"size": 32,
+"bold": true,
+"color": "#EC4338",
+"id": "l-2-4"
+},
+{
+"type": "text",
+"text": "SHEFFIELD UNIVERSITY + DOWN TO EARTH",
+"x": 270,
+"y": 54,
+"w": 900,
+"size": 28,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-2-5"
+}
+]
+},
+{
+"start": 8.86,
+"end": 13.7,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-3-0"
+},
+{
+"type": "image",
+"path": "assets/folder.png",
+"x": 520,
+"y": 330,
+"w": 220,
+"h": 165,
+"id": "fol-3-1",
+"keys": [
+{
+"t": 0.0,
+"y": 330
+},
+{
+"t": 0.5,
+"y": 322
+},
+{
+"t": 1.0,
+"y": 330
+},
+{
+"t": 1.5,
+"y": 322
+},
+{
+"t": 2.0,
+"y": 330
+},
+{
+"t": 2.5,
+"y": 322
+},
+{
+"t": 3.0,
+"y": 330
+},
+{
+"t": 3.5,
+"y": 322
+},
+{
+"t": 4.0,
+"y": 330
+},
+{
+"t": 4.5,
+"y": 322
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the study folder"
+}
+},
+{
+"type": "text",
+"text": "SCIENCE ADVANCES",
+"x": 300,
+"y": 140,
+"w": 950,
+"size": 76,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-3-2"
+},
+{
+"type": "text",
+"text": "study, reported since late October",
+"x": 300,
+"y": 250,
+"w": 950,
+"size": 40,
+"bold": true,
+"color": "#5b8fd6",
+"from": 1.0,
+"id": "l-3-3"
+},
+{
+"type": "text",
+"text": "REPORTED 29 OCT - 3 NOV 2026",
+"x": 270,
+"y": 14,
+"w": 760,
+"size": 32,
+"bold": true,
+"color": "#EC4338",
+"id": "l-3-4"
+},
+{
+"type": "text",
+"text": "SHEFFIELD UNIVERSITY + DOWN TO EARTH",
+"x": 270,
+"y": 54,
+"w": 900,
+"size": 28,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-3-5"
+}
+]
+},
+{
+"start": 13.7,
+"end": 18.81,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-4-0"
+},
+{
+"type": "image",
+"path": "assets/mag.png",
+"x": 340,
+"y": 290,
+"w": 220,
+"h": 240,
+"id": "mg-4-1",
+"keys": [
+{
+"t": 0.0,
+"y": 290
+},
+{
+"t": 0.45,
+"y": 270
+},
+{
+"t": 0.9,
+"y": 290
+},
+{
+"t": 1.35,
+"y": 270
+},
+{
+"t": 1.8,
+"y": 290
+},
+{
+"t": 2.25,
+"y": 270
+},
+{
+"t": 2.7,
+"y": 290
+},
+{
+"t": 3.15,
+"y": 270
+},
+{
+"t": 3.6,
+"y": 290
+},
+{
+"t": 4.05,
+"y": 270
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the magnifier hunts for the answer"
+}
+},
+{
+"type": "text",
+"text": "COUNTED",
+"x": 640,
+"y": 170,
+"w": 610,
+"size": 70,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-4-2"
+},
+{
+"type": "text",
+"text": "NOT COUNTED",
+"x": 640,
+"y": 270,
+"w": 610,
+"size": 70,
+"bold": true,
+"color": "#EC4338",
+"from": 1.2,
+"id": "l-4-3"
+},
+{
+"type": "text",
+"text": "UNKNOWN",
+"x": 640,
+"y": 370,
+"w": 610,
+"size": 70,
+"bold": true,
+"color": "#5b8fd6",
+"from": 2.4,
+"id": "l-4-4"
+}
+]
+},
+{
+"start": 18.81,
+"end": 22.9,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-5-0"
+},
+{
+"type": "image",
+"path": "assets/bar50.png",
+"x": 460,
+"y": 150,
+"w": 160,
+"h": 400,
+"id": "b50-5-1",
+"keys": [
+{
+"t": 0.0,
+"y": 330,
+"alpha": 0
+},
+{
+"t": 1.2,
+"y": 150,
+"alpha": 1
+},
+{
+"t": 1.7,
+"y": 158
+},
+{
+"t": 2.2,
+"y": 150
+},
+{
+"t": 2.7,
+"y": 158
+},
+{
+"t": 3.2,
+"y": 150
+},
+{
+"t": 3.7,
+"y": 158
+},
+{
+"t": 3.789,
+"y": 150
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the old estimate rises"
+},
+"from": 0.0
+},
+{
+"type": "text",
+"text": "ABOUT 50,000",
+"x": 360,
+"y": 90,
+"w": 890,
+"size": 64,
+"bold": true,
+"color": "#5b8fd6",
+"id": "l-5-2"
+}
+]
+},
+{
+"start": 22.9,
+"end": 25.63,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-6-0"
+},
+{
+"type": "image",
+"path": "assets/bar50.png",
+"x": 460,
+"y": 150,
+"w": 160,
+"h": 400,
+"id": "b50-6-1",
+"keys": [
+{
+"t": 0.0,
+"y": 150
+},
+{
+"t": 0.6,
+"y": 156
+},
+{
+"t": 1.2,
+"y": 150
+},
+{
+"t": 1.8,
+"y": 156
+},
+{
+"t": 2.4,
+"y": 150
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the old bar"
+}
+},
+{
+"type": "text",
+"text": "2022",
+"x": 720,
+"y": 190,
+"w": 530,
+"size": 90,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-6-2"
+},
+{
+"type": "text",
+"text": "IPBES",
+"x": 720,
+"y": 300,
+"w": 530,
+"size": 80,
+"bold": true,
+"color": "#5b8fd6",
+"from": 1.0,
+"id": "l-6-3"
+},
+{
+"type": "text",
+"text": "intergovernmental panel",
+"x": 640,
+"y": 400,
+"w": 610,
+"size": 38,
+"bold": true,
+"color": "#2b2a28",
+"from": 2.0,
+"id": "l-6-4"
+}
+]
+},
+{
+"start": 25.63,
+"end": 28.66,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-7-0"
+},
+{
+"type": "image",
+"path": "assets/bar50.png",
+"x": 460,
+"y": 150,
+"w": 160,
+"h": 400,
+"id": "b50-7-1",
+"keys": [
+{
+"t": 0.0,
+"y": 150
+},
+{
+"t": 0.6,
+"y": 156
+},
+{
+"t": 1.2,
+"y": 150
+},
+{
+"t": 1.8,
+"y": 156
+},
+{
+"t": 2.4,
+"y": 150
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the old bar"
+}
+},
+{
+"type": "text",
+"text": "2022",
+"x": 720,
+"y": 190,
+"w": 530,
+"size": 90,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-7-2"
+},
+{
+"type": "text",
+"text": "IPBES",
+"x": 720,
+"y": 300,
+"w": 530,
+"size": 80,
+"bold": true,
+"color": "#5b8fd6",
+"from": 1.0,
+"id": "l-7-3"
+},
+{
+"type": "text",
+"text": "intergovernmental panel",
+"x": 640,
+"y": 400,
+"w": 610,
+"size": 38,
+"bold": true,
+"color": "#2b2a28",
+"from": 2.0,
+"id": "l-7-4"
+}
+]
+},
+{
+"start": 28.66,
+"end": 32.05,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-8-0"
+},
+{
+"type": "image",
+"path": "assets/bar50.png",
+"x": 380,
+"y": 150,
+"w": 160,
+"h": 400,
+"id": "b50-8-1",
+"keys": [
+{
+"t": 0.0,
+"y": 150
+},
+{
+"t": 0.6,
+"y": 156
+},
+{
+"t": 1.2,
+"y": 150
+},
+{
+"t": 1.8,
+"y": 156
+},
+{
+"t": 2.4,
+"y": 150
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the old bar"
+}
+},
+{
+"type": "image",
+"path": "assets/bar107.png",
+"x": 700,
+"y": 150,
+"w": 160,
+"h": 400,
+"id": "b107-8-2",
+"keys": [
+{
+"t": 0.0,
+"y": 330,
+"alpha": 0
+},
+{
+"t": 1.778,
+"y": 150,
+"alpha": 1
+},
+{
+"t": 2.278,
+"y": 158
+},
+{
+"t": 2.538,
+"y": 150
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the new bar towers over the old one"
+}
+},
+{
+"type": "text",
+"text": "MORE THAN DOUBLE",
+"x": 340,
+"y": 60,
+"w": 910,
+"size": 64,
+"bold": true,
+"color": "#EC4338",
+"id": "l-8-3"
+}
+]
+},
+{
+"start": 32.05,
+"end": 36.93,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-9-0"
+},
+{
+"type": "image",
+"path": "assets/crate.png",
+"x": 90,
+"y": 302,
+"w": 260,
+"h": 230,
+"id": "cr0-9-1",
+"keys": [
+{
+"t": 0.0,
+"y": 302
+},
+{
+"t": 0.5,
+"y": 294
+},
+{
+"t": 1.0,
+"y": 302
+},
+{
+"t": 1.5,
+"y": 294
+},
+{
+"t": 2.0,
+"y": 302
+},
+{
+"t": 2.5,
+"y": 294
+},
+{
+"t": 3.0,
+"y": 302
+},
+{
+"t": 3.5,
+"y": 294
+},
+{
+"t": 4.0,
+"y": 302
+},
+{
+"t": 4.5,
+"y": 294
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the open crate"
+}
+},
+{
+"type": "image",
+"path": "assets/paw.png",
+"x": 160,
+"y": 342,
+"w": 120,
+"h": 120,
+"id": "ic0-9-2"
+},
+{
+"type": "text",
+"text": "ANIMALS",
+"x": 120,
+"y": 232,
+"w": 1130,
+"size": 52,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-9-3"
+},
+{
+"type": "image",
+"path": "assets/crate.png",
+"x": 490,
+"y": 320,
+"w": 260,
+"h": 230,
+"id": "cr1-9-4"
+},
+{
+"type": "image",
+"path": "assets/leaf.png",
+"x": 560,
+"y": 360,
+"w": 120,
+"h": 120,
+"id": "ic1-9-5"
+},
+{
+"type": "text",
+"text": "PLANTS",
+"x": 520,
+"y": 250,
+"w": 730,
+"size": 52,
+"bold": true,
+"color": "#5BA55B",
+"id": "l-9-6"
+},
+{
+"type": "image",
+"path": "assets/crate.png",
+"x": 890,
+"y": 320,
+"w": 260,
+"h": 230,
+"id": "cr2-9-7"
+},
+{
+"type": "image",
+"path": "assets/shroom.png",
+"x": 960,
+"y": 360,
+"w": 120,
+"h": 120,
+"id": "ic2-9-8"
+},
+{
+"type": "text",
+"text": "FUNGI",
+"x": 920,
+"y": 250,
+"w": 330,
+"size": 52,
+"bold": true,
+"color": "#EC4338",
+"id": "l-9-9"
+},
+{
+"type": "text",
+"text": "47,685",
+"x": 60,
+"y": 130,
+"w": 1190,
+"size": 100,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-9-10"
+}
+]
+},
+{
+"start": 36.93,
+"end": 40.105,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-10-0"
+},
+{
+"type": "image",
+"path": "assets/crate.png",
+"x": 90,
+"y": 320,
+"w": 260,
+"h": 230,
+"id": "cr0-10-1"
+},
+{
+"type": "image",
+"path": "assets/paw.png",
+"x": 160,
+"y": 360,
+"w": 120,
+"h": 120,
+"id": "ic0-10-2"
+},
+{
+"type": "text",
+"text": "ANIMALS",
+"x": 120,
+"y": 250,
+"w": 1130,
+"size": 52,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-10-3"
+},
+{
+"type": "image",
+"path": "assets/crate.png",
+"x": 490,
+"y": 302,
+"w": 260,
+"h": 230,
+"id": "cr1-10-4",
+"keys": [
+{
+"t": 0.0,
+"y": 302
+},
+{
+"t": 0.5,
+"y": 294
+},
+{
+"t": 1.0,
+"y": 302
+},
+{
+"t": 1.5,
+"y": 294
+},
+{
+"t": 2.0,
+"y": 302
+},
+{
+"t": 2.5,
+"y": 294
+},
+{
+"t": 3.0,
+"y": 302
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the open crate"
+}
+},
+{
+"type": "image",
+"path": "assets/leaf.png",
+"x": 560,
+"y": 342,
+"w": 120,
+"h": 120,
+"id": "ic1-10-5"
+},
+{
+"type": "text",
+"text": "PLANTS",
+"x": 520,
+"y": 232,
+"w": 730,
+"size": 52,
+"bold": true,
+"color": "#5BA55B",
+"id": "l-10-6"
+},
+{
+"type": "image",
+"path": "assets/crate.png",
+"x": 890,
+"y": 320,
+"w": 260,
+"h": 230,
+"id": "cr2-10-7"
+},
+{
+"type": "image",
+"path": "assets/shroom.png",
+"x": 960,
+"y": 360,
+"w": 120,
+"h": 120,
+"id": "ic2-10-8"
+},
+{
+"type": "text",
+"text": "FUNGI",
+"x": 920,
+"y": 250,
+"w": 330,
+"size": 52,
+"bold": true,
+"color": "#EC4338",
+"id": "l-10-9"
+},
+{
+"type": "text",
+"text": "49,723+",
+"x": 520,
+"y": 130,
+"w": 730,
+"size": 100,
+"bold": true,
+"color": "#5BA55B",
+"id": "l-10-10"
+}
+]
+},
+{
+"start": 40.105,
+"end": 43.58,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-11-0"
+},
+{
+"type": "image",
+"path": "assets/crate.png",
+"x": 90,
+"y": 320,
+"w": 260,
+"h": 230,
+"id": "cr0-11-1"
+},
+{
+"type": "image",
+"path": "assets/paw.png",
+"x": 160,
+"y": 360,
+"w": 120,
+"h": 120,
+"id": "ic0-11-2"
+},
+{
+"type": "text",
+"text": "ANIMALS",
+"x": 120,
+"y": 250,
+"w": 1130,
+"size": 52,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-11-3"
+},
+{
+"type": "image",
+"path": "assets/crate.png",
+"x": 490,
+"y": 302,
+"w": 260,
+"h": 230,
+"id": "cr1-11-4",
+"keys": [
+{
+"t": 0.0,
+"y": 302
+},
+{
+"t": 0.5,
+"y": 294
+},
+{
+"t": 1.0,
+"y": 302
+},
+{
+"t": 1.5,
+"y": 294
+},
+{
+"t": 2.0,
+"y": 302
+},
+{
+"t": 2.5,
+"y": 294
+},
+{
+"t": 3.0,
+"y": 302
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the open crate"
+}
+},
+{
+"type": "image",
+"path": "assets/leaf.png",
+"x": 560,
+"y": 342,
+"w": 120,
+"h": 120,
+"id": "ic1-11-5"
+},
+{
+"type": "text",
+"text": "PLANTS",
+"x": 520,
+"y": 232,
+"w": 730,
+"size": 52,
+"bold": true,
+"color": "#5BA55B",
+"id": "l-11-6"
+},
+{
+"type": "image",
+"path": "assets/crate.png",
+"x": 890,
+"y": 320,
+"w": 260,
+"h": 230,
+"id": "cr2-11-7"
+},
+{
+"type": "image",
+"path": "assets/shroom.png",
+"x": 960,
+"y": 360,
+"w": 120,
+"h": 120,
+"id": "ic2-11-8"
+},
+{
+"type": "text",
+"text": "FUNGI",
+"x": 920,
+"y": 250,
+"w": 330,
+"size": 52,
+"bold": true,
+"color": "#EC4338",
+"id": "l-11-9"
+},
+{
+"type": "text",
+"text": "49,723+",
+"x": 520,
+"y": 130,
+"w": 730,
+"size": 100,
+"bold": true,
+"color": "#5BA55B",
+"id": "l-11-10"
+}
+]
+},
+{
+"start": 43.58,
+"end": 46.895,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-12-0"
+},
+{
+"type": "image",
+"path": "assets/crate.png",
+"x": 90,
+"y": 320,
+"w": 260,
+"h": 230,
+"id": "cr0-12-1"
+},
+{
+"type": "image",
+"path": "assets/paw.png",
+"x": 160,
+"y": 360,
+"w": 120,
+"h": 120,
+"id": "ic0-12-2"
+},
+{
+"type": "text",
+"text": "ANIMALS",
+"x": 120,
+"y": 250,
+"w": 1130,
+"size": 52,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-12-3"
+},
+{
+"type": "image",
+"path": "assets/crate.png",
+"x": 490,
+"y": 320,
+"w": 260,
+"h": 230,
+"id": "cr1-12-4"
+},
+{
+"type": "image",
+"path": "assets/leaf.png",
+"x": 560,
+"y": 360,
+"w": 120,
+"h": 120,
+"id": "ic1-12-5"
+},
+{
+"type": "text",
+"text": "PLANTS",
+"x": 520,
+"y": 250,
+"w": 730,
+"size": 52,
+"bold": true,
+"color": "#5BA55B",
+"id": "l-12-6"
+},
+{
+"type": "image",
+"path": "assets/crate.png",
+"x": 890,
+"y": 302,
+"w": 260,
+"h": 230,
+"id": "cr2-12-7",
+"keys": [
+{
+"t": 0.0,
+"y": 302
+},
+{
+"t": 0.5,
+"y": 294
+},
+{
+"t": 1.0,
+"y": 302
+},
+{
+"t": 1.5,
+"y": 294
+},
+{
+"t": 2.0,
+"y": 302
+},
+{
+"t": 2.5,
+"y": 294
+},
+{
+"t": 3.0,
+"y": 302
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the open crate"
+}
+},
+{
+"type": "image",
+"path": "assets/shroom.png",
+"x": 960,
+"y": 342,
+"w": 120,
+"h": 120,
+"id": "ic2-12-8"
+},
+{
+"type": "text",
+"text": "FUNGI",
+"x": 920,
+"y": 232,
+"w": 330,
+"size": 52,
+"bold": true,
+"color": "#EC4338",
+"id": "l-12-9"
+},
+{
+"type": "text",
+"text": "ALL THREE, ONE LOOK",
+"x": 140,
+"y": 130,
+"w": 1000,
+"size": 62,
+"bold": true,
+"color": "#EC4338",
+"id": "l-12-10"
+}
+]
+},
+{
+"start": 46.895,
+"end": 51.06,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-13-0"
+},
+{
+"type": "image",
+"path": "assets/crate.png",
+"x": 90,
+"y": 320,
+"w": 260,
+"h": 230,
+"id": "cr0-13-1"
+},
+{
+"type": "image",
+"path": "assets/paw.png",
+"x": 160,
+"y": 360,
+"w": 120,
+"h": 120,
+"id": "ic0-13-2"
+},
+{
+"type": "text",
+"text": "ANIMALS",
+"x": 120,
+"y": 250,
+"w": 1130,
+"size": 52,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-13-3"
+},
+{
+"type": "image",
+"path": "assets/crate.png",
+"x": 490,
+"y": 320,
+"w": 260,
+"h": 230,
+"id": "cr1-13-4"
+},
+{
+"type": "image",
+"path": "assets/leaf.png",
+"x": 560,
+"y": 360,
+"w": 120,
+"h": 120,
+"id": "ic1-13-5"
+},
+{
+"type": "text",
+"text": "PLANTS",
+"x": 520,
+"y": 250,
+"w": 730,
+"size": 52,
+"bold": true,
+"color": "#5BA55B",
+"id": "l-13-6"
+},
+{
+"type": "image",
+"path": "assets/crate.png",
+"x": 890,
+"y": 302,
+"w": 260,
+"h": 230,
+"id": "cr2-13-7",
+"keys": [
+{
+"t": 0.0,
+"y": 302
+},
+{
+"t": 0.5,
+"y": 294
+},
+{
+"t": 1.0,
+"y": 302
+},
+{
+"t": 1.5,
+"y": 294
+},
+{
+"t": 2.0,
+"y": 302
+},
+{
+"t": 2.5,
+"y": 294
+},
+{
+"t": 3.0,
+"y": 302
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the open crate"
+}
+},
+{
+"type": "image",
+"path": "assets/shroom.png",
+"x": 960,
+"y": 342,
+"w": 120,
+"h": 120,
+"id": "ic2-13-8"
+},
+{
+"type": "text",
+"text": "FUNGI",
+"x": 920,
+"y": 232,
+"w": 330,
+"size": 52,
+"bold": true,
+"color": "#EC4338",
+"id": "l-13-9"
+},
+{
+"type": "text",
+"text": "ALL THREE, ONE LOOK",
+"x": 140,
+"y": 130,
+"w": 1000,
+"size": 62,
+"bold": true,
+"color": "#EC4338",
+"id": "l-13-10"
+}
+]
+},
+{
+"start": 51.06,
+"end": 53.96,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-14-0"
+},
+{
+"type": "image",
+"path": "assets/circA.png",
+"x": 330,
+"y": 150,
+"w": 380,
+"h": 380,
+"id": "cA-14-1",
+"keys": [
+{
+"t": 0.0,
+"y": 150
+},
+{
+"t": 0.7,
+"y": 158
+},
+{
+"t": 1.4,
+"y": 150
+},
+{
+"t": 2.1,
+"y": 158
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the circles overlap"
+}
+},
+{
+"type": "image",
+"path": "assets/circB.png",
+"x": 520,
+"y": 150,
+"w": 380,
+"h": 380,
+"id": "cB-14-2",
+"keys": [
+{
+"t": 0.0,
+"y": 158
+},
+{
+"t": 0.7,
+"y": 150
+},
+{
+"t": 1.4,
+"y": 158
+},
+{
+"t": 2.1,
+"y": 150
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the circles overlap"
+}
+},
+{
+"type": "text",
+"text": "USED",
+"x": 380,
+"y": 330,
+"w": 870,
+"size": 64,
+"bold": true,
+"color": "#5b8fd6",
+"id": "l-14-3"
+},
+{
+"type": "text",
+"text": "TRADED",
+"x": 640,
+"y": 330,
+"w": 610,
+"size": 64,
+"bold": true,
+"color": "#EC4338",
+"id": "l-14-4"
+},
+{
+"type": "text",
+"text": "USED OR TRADED",
+"x": 330,
+"y": 60,
+"w": 920,
+"size": 70,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-14-5"
+}
+]
+},
+{
+"start": 53.96,
+"end": 57.035,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-15-0"
+},
+{
+"type": "image",
+"path": "assets/circA.png",
+"x": 330,
+"y": 150,
+"w": 380,
+"h": 380,
+"id": "cA-15-1",
+"keys": [
+{
+"t": 0.0,
+"y": 150
+},
+{
+"t": 0.7,
+"y": 158
+},
+{
+"t": 1.4,
+"y": 150
+},
+{
+"t": 2.1,
+"y": 158
+},
+{
+"t": 2.8,
+"y": 150
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the circles overlap"
+}
+},
+{
+"type": "image",
+"path": "assets/circB.png",
+"x": 520,
+"y": 150,
+"w": 380,
+"h": 380,
+"id": "cB-15-2",
+"keys": [
+{
+"t": 0.0,
+"y": 158
+},
+{
+"t": 0.7,
+"y": 150
+},
+{
+"t": 1.4,
+"y": 158
+},
+{
+"t": 2.1,
+"y": 150
+},
+{
+"t": 2.8,
+"y": 158
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the circles overlap"
+}
+},
+{
+"type": "text",
+"text": "USED",
+"x": 380,
+"y": 330,
+"w": 870,
+"size": 64,
+"bold": true,
+"color": "#5b8fd6",
+"id": "l-15-3"
+},
+{
+"type": "text",
+"text": "TRADED",
+"x": 640,
+"y": 330,
+"w": 610,
+"size": 64,
+"bold": true,
+"color": "#EC4338",
+"id": "l-15-4"
+},
+{
+"type": "text",
+"text": "~60,000 plants + fungi",
+"x": 300,
+"y": 60,
+"w": 950,
+"size": 52,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-15-5"
+},
+{
+"type": "text",
+"text": "includes non-trade uses",
+"x": 330,
+"y": 570,
+"w": 920,
+"size": 44,
+"bold": true,
+"color": "#EC4338",
+"from": 1.0,
+"id": "l-15-6"
+}
+]
+},
+{
+"start": 57.035,
+"end": 60.41,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-16-0"
+},
+{
+"type": "image",
+"path": "assets/circA.png",
+"x": 330,
+"y": 150,
+"w": 380,
+"h": 380,
+"id": "cA-16-1",
+"keys": [
+{
+"t": 0.0,
+"y": 150
+},
+{
+"t": 0.7,
+"y": 158
+},
+{
+"t": 1.4,
+"y": 150
+},
+{
+"t": 2.1,
+"y": 158
+},
+{
+"t": 2.8,
+"y": 150
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the circles overlap"
+}
+},
+{
+"type": "image",
+"path": "assets/circB.png",
+"x": 520,
+"y": 150,
+"w": 380,
+"h": 380,
+"id": "cB-16-2",
+"keys": [
+{
+"t": 0.0,
+"y": 158
+},
+{
+"t": 0.7,
+"y": 150
+},
+{
+"t": 1.4,
+"y": 158
+},
+{
+"t": 2.1,
+"y": 150
+},
+{
+"t": 2.8,
+"y": 158
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the circles overlap"
+}
+},
+{
+"type": "text",
+"text": "USED",
+"x": 380,
+"y": 330,
+"w": 870,
+"size": 64,
+"bold": true,
+"color": "#5b8fd6",
+"id": "l-16-3"
+},
+{
+"type": "text",
+"text": "TRADED",
+"x": 640,
+"y": 330,
+"w": 610,
+"size": 64,
+"bold": true,
+"color": "#EC4338",
+"id": "l-16-4"
+},
+{
+"type": "text",
+"text": "~60,000 plants + fungi",
+"x": 300,
+"y": 60,
+"w": 950,
+"size": 52,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-16-5"
+},
+{
+"type": "text",
+"text": "includes non-trade uses",
+"x": 330,
+"y": 570,
+"w": 920,
+"size": 44,
+"bold": true,
+"color": "#EC4338",
+"from": 1.0,
+"id": "l-16-6"
+}
+]
+},
+{
+"start": 60.41,
+"end": 64.08,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-17-0"
+},
+{
+"type": "image",
+"path": "assets/circA.png",
+"x": 330,
+"y": 150,
+"w": 380,
+"h": 380,
+"id": "cA-17-1",
+"keys": [
+{
+"t": 0.0,
+"y": 150
+},
+{
+"t": 0.7,
+"y": 158
+},
+{
+"t": 1.4,
+"y": 150
+},
+{
+"t": 2.1,
+"y": 158
+},
+{
+"t": 2.8,
+"y": 150
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the circles overlap"
+}
+},
+{
+"type": "image",
+"path": "assets/circB.png",
+"x": 520,
+"y": 150,
+"w": 380,
+"h": 380,
+"id": "cB-17-2",
+"keys": [
+{
+"t": 0.0,
+"y": 158
+},
+{
+"t": 0.7,
+"y": 150
+},
+{
+"t": 1.4,
+"y": 158
+},
+{
+"t": 2.1,
+"y": 150
+},
+{
+"t": 2.8,
+"y": 158
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the circles overlap"
+}
+},
+{
+"type": "text",
+"text": "USED",
+"x": 380,
+"y": 330,
+"w": 870,
+"size": 64,
+"bold": true,
+"color": "#5b8fd6",
+"id": "l-17-3"
+},
+{
+"type": "text",
+"text": "TRADED",
+"x": 640,
+"y": 330,
+"w": 610,
+"size": 64,
+"bold": true,
+"color": "#EC4338",
+"id": "l-17-4"
+},
+{
+"type": "text",
+"text": "KEPT APART",
+"x": 420,
+"y": 60,
+"w": 830,
+"size": 70,
+"bold": true,
+"color": "#EC4338",
+"id": "l-17-5"
+}
+]
+},
+{
+"start": 64.08,
+"end": 67.99,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-18-0"
+},
+{
+"type": "image",
+"path": "assets/folder.png",
+"x": 150,
+"y": 360,
+"w": 200,
+"h": 150,
+"id": "f0-18-1",
+"keys": [
+{
+"t": 0.0,
+"y": 360
+},
+{
+"t": 0.6,
+"y": 354
+},
+{
+"t": 1.2,
+"y": 360
+},
+{
+"t": 1.8,
+"y": 354
+},
+{
+"t": 2.4,
+"y": 360
+},
+{
+"t": 3.0,
+"y": 354
+},
+{
+"t": 3.6,
+"y": 360
+}
+],
+"motion": {
+"role": "prop",
+"reason": "a database folder"
+}
+},
+{
+"type": "image",
+"path": "assets/folder.png",
+"x": 370,
+"y": 360,
+"w": 200,
+"h": 150,
+"id": "f1-18-2"
+},
+{
+"type": "image",
+"path": "assets/folder.png",
+"x": 590,
+"y": 360,
+"w": 200,
+"h": 150,
+"id": "f2-18-3"
+},
+{
+"type": "image",
+"path": "assets/folder.png",
+"x": 810,
+"y": 360,
+"w": 200,
+"h": 150,
+"id": "f3-18-4"
+},
+{
+"type": "image",
+"path": "assets/mag.png",
+"x": 420,
+"y": 200,
+"w": 200,
+"h": 220,
+"id": "mg5-18-5",
+"keys": [
+{
+"t": 0.0,
+"y": 200
+},
+{
+"t": 0.5,
+"y": 188
+},
+{
+"t": 1.0,
+"y": 200
+},
+{
+"t": 1.5,
+"y": 188
+},
+{
+"t": 2.0,
+"y": 200
+},
+{
+"t": 2.5,
+"y": 188
+},
+{
+"t": 3.0,
+"y": 200
+},
+{
+"t": 3.5,
+"y": 188
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the magnifier checks the folders"
+}
+},
+{
+"type": "text",
+"text": "MORE TRADE?",
+"x": 380,
+"y": 70,
+"w": 870,
+"size": 72,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-18-6"
+},
+{
+"type": "text",
+"text": "NOT STATED",
+"x": 420,
+"y": 570,
+"w": 830,
+"size": 60,
+"bold": true,
+"color": "#EC4338",
+"from": 1.2,
+"id": "l-18-7"
+}
+]
+},
+{
+"start": 67.99,
+"end": 71.715,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-19-0"
+},
+{
+"type": "image",
+"path": "assets/folder.png",
+"x": 150,
+"y": 360,
+"w": 200,
+"h": 150,
+"id": "f0-19-1",
+"keys": [
+{
+"t": 0.0,
+"y": 360
+},
+{
+"t": 0.6,
+"y": 354
+},
+{
+"t": 1.2,
+"y": 360
+},
+{
+"t": 1.8,
+"y": 354
+},
+{
+"t": 2.4,
+"y": 360
+},
+{
+"t": 3.0,
+"y": 354
+},
+{
+"t": 3.6,
+"y": 360
+}
+],
+"motion": {
+"role": "prop",
+"reason": "a database folder"
+}
+},
+{
+"type": "image",
+"path": "assets/folder.png",
+"x": 370,
+"y": 360,
+"w": 200,
+"h": 150,
+"id": "f1-19-2"
+},
+{
+"type": "image",
+"path": "assets/folder.png",
+"x": 590,
+"y": 360,
+"w": 200,
+"h": 150,
+"id": "f2-19-3"
+},
+{
+"type": "image",
+"path": "assets/folder.png",
+"x": 810,
+"y": 360,
+"w": 200,
+"h": 150,
+"id": "f3-19-4"
+},
+{
+"type": "image",
+"path": "assets/mag.png",
+"x": 620,
+"y": 200,
+"w": 200,
+"h": 220,
+"id": "mg5-19-5",
+"keys": [
+{
+"t": 0.0,
+"y": 200
+},
+{
+"t": 0.5,
+"y": 188
+},
+{
+"t": 1.0,
+"y": 200
+},
+{
+"t": 1.5,
+"y": 188
+},
+{
+"t": 2.0,
+"y": 200
+},
+{
+"t": 2.5,
+"y": 188
+},
+{
+"t": 3.0,
+"y": 200
+},
+{
+"t": 3.5,
+"y": 188
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the magnifier checks the folders"
+}
+},
+{
+"type": "text",
+"text": "MANY DATABASES",
+"x": 330,
+"y": 70,
+"w": 920,
+"size": 72,
+"bold": true,
+"color": "#5b8fd6",
+"id": "l-19-6"
+},
+{
+"type": "text",
+"text": "a better count",
+"x": 450,
+"y": 570,
+"w": 800,
+"size": 56,
+"bold": true,
+"color": "#2b2a28",
+"from": 1.5,
+"id": "l-19-7"
+}
+]
+},
+{
+"start": 71.715,
+"end": 75.74,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-20-0"
+},
+{
+"type": "image",
+"path": "assets/folder.png",
+"x": 150,
+"y": 360,
+"w": 200,
+"h": 150,
+"id": "f0-20-1"
+},
+{
+"type": "image",
+"path": "assets/folder.png",
+"x": 370,
+"y": 360,
+"w": 200,
+"h": 150,
+"id": "f1-20-2",
+"keys": [
+{
+"t": 0.0,
+"y": 360
+},
+{
+"t": 0.6,
+"y": 354
+},
+{
+"t": 1.2,
+"y": 360
+},
+{
+"t": 1.8,
+"y": 354
+},
+{
+"t": 2.4,
+"y": 360
+},
+{
+"t": 3.0,
+"y": 354
+},
+{
+"t": 3.6,
+"y": 360
+}
+],
+"motion": {
+"role": "prop",
+"reason": "a database folder"
+}
+},
+{
+"type": "image",
+"path": "assets/folder.png",
+"x": 590,
+"y": 360,
+"w": 200,
+"h": 150,
+"id": "f2-20-3"
+},
+{
+"type": "image",
+"path": "assets/folder.png",
+"x": 810,
+"y": 360,
+"w": 200,
+"h": 150,
+"id": "f3-20-4"
+},
+{
+"type": "image",
+"path": "assets/mag.png",
+"x": 620,
+"y": 200,
+"w": 200,
+"h": 220,
+"id": "mg5-20-5",
+"keys": [
+{
+"t": 0.0,
+"y": 200
+},
+{
+"t": 0.5,
+"y": 188
+},
+{
+"t": 1.0,
+"y": 200
+},
+{
+"t": 1.5,
+"y": 188
+},
+{
+"t": 2.0,
+"y": 200
+},
+{
+"t": 2.5,
+"y": 188
+},
+{
+"t": 3.0,
+"y": 200
+},
+{
+"t": 3.5,
+"y": 188
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the magnifier checks the folders"
+}
+},
+{
+"type": "text",
+"text": "MANY DATABASES",
+"x": 330,
+"y": 70,
+"w": 920,
+"size": 72,
+"bold": true,
+"color": "#5b8fd6",
+"id": "l-20-6"
+},
+{
+"type": "text",
+"text": "a better count",
+"x": 450,
+"y": 570,
+"w": 800,
+"size": 56,
+"bold": true,
+"color": "#2b2a28",
+"from": 1.5,
+"id": "l-20-7"
+}
+]
+},
+{
+"start": 75.74,
+"end": 80.11,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-21-0"
+},
+{
+"type": "image",
+"path": "assets/folder.png",
+"x": 150,
+"y": 360,
+"w": 200,
+"h": 150,
+"id": "f0-21-1",
+"keys": [
+{
+"t": 0.0,
+"y": 360
+},
+{
+"t": 0.6,
+"y": 354
+},
+{
+"t": 1.2,
+"y": 360
+},
+{
+"t": 1.8,
+"y": 354
+},
+{
+"t": 2.4,
+"y": 360
+},
+{
+"t": 3.0,
+"y": 354
+}
+],
+"motion": {
+"role": "prop",
+"reason": "a database folder"
+}
+},
+{
+"type": "image",
+"path": "assets/folder.png",
+"x": 370,
+"y": 360,
+"w": 200,
+"h": 150,
+"id": "f1-21-2"
+},
+{
+"type": "image",
+"path": "assets/folder.png",
+"x": 590,
+"y": 360,
+"w": 200,
+"h": 150,
+"id": "f2-21-3"
+},
+{
+"type": "image",
+"path": "assets/folder.png",
+"x": 810,
+"y": 360,
+"w": 200,
+"h": 150,
+"id": "f3-21-4"
+},
+{
+"type": "image",
+"path": "assets/mag.png",
+"x": 820,
+"y": 200,
+"w": 200,
+"h": 220,
+"id": "mg5-21-5",
+"keys": [
+{
+"t": 0.0,
+"y": 200
+},
+{
+"t": 0.5,
+"y": 188
+},
+{
+"t": 1.0,
+"y": 200
+},
+{
+"t": 1.5,
+"y": 188
+},
+{
+"t": 2.0,
+"y": 200
+},
+{
+"t": 2.5,
+"y": 188
+},
+{
+"t": 3.0,
+"y": 200
+},
+{
+"t": 3.5,
+"y": 188
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the magnifier checks the folders"
+}
+},
+{
+"type": "text",
+"text": "EACH CATCHES A SLICE",
+"x": 260,
+"y": 70,
+"w": 990,
+"size": 70,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-21-6"
+}
+]
+},
+{
+"start": 80.11,
+"end": 84.165,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-22-0"
+},
+{
+"type": "image",
+"path": "assets/shelf.png",
+"x": 250,
+"y": 280,
+"w": 740,
+"h": 260,
+"id": "shf-22-1",
+"keys": [
+{
+"t": 0.0,
+"y": 280
+},
+{
+"t": 0.7,
+"y": 286
+},
+{
+"t": 1.4,
+"y": 280
+},
+{
+"t": 2.1,
+"y": 286
+},
+{
+"t": 2.8,
+"y": 280
+},
+{
+"t": 3.5,
+"y": 286
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the shelves with a gap"
+}
+},
+{
+"type": "image",
+"path": "assets/q.png",
+"x": 770,
+"y": 150,
+"w": 90,
+"h": 130,
+"id": "qm-22-2",
+"keys": [
+{
+"t": 0.0,
+"y": 150
+},
+{
+"t": 0.4,
+"y": 136
+},
+{
+"t": 0.8,
+"y": 150
+},
+{
+"t": 1.2,
+"y": 136
+},
+{
+"t": 1.6,
+"y": 150
+},
+{
+"t": 2.0,
+"y": 136
+},
+{
+"t": 2.4,
+"y": 150
+},
+{
+"t": 2.8,
+"y": 136
+},
+{
+"t": 3.2,
+"y": 150
+},
+{
+"t": 3.6,
+"y": 136
+},
+{
+"t": 4.0,
+"y": 150
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the question mark"
+}
+},
+{
+"type": "text",
+"text": "OUTSIDE CITES + FISHERIES",
+"x": 250,
+"y": 60,
+"w": 1000,
+"size": 58,
+"bold": true,
+"color": "#EC4338",
+"id": "l-22-3"
+}
+]
+},
+{
+"start": 84.165,
+"end": 88.52,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-23-0"
+},
+{
+"type": "image",
+"path": "assets/shelf.png",
+"x": 250,
+"y": 280,
+"w": 740,
+"h": 260,
+"id": "shf-23-1",
+"keys": [
+{
+"t": 0.0,
+"y": 280
+},
+{
+"t": 0.7,
+"y": 286
+},
+{
+"t": 1.4,
+"y": 280
+},
+{
+"t": 2.1,
+"y": 286
+},
+{
+"t": 2.8,
+"y": 280
+},
+{
+"t": 3.5,
+"y": 286
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the shelves with a gap"
+}
+},
+{
+"type": "image",
+"path": "assets/q.png",
+"x": 770,
+"y": 150,
+"w": 90,
+"h": 130,
+"id": "qm-23-2",
+"keys": [
+{
+"t": 0.0,
+"y": 150
+},
+{
+"t": 0.4,
+"y": 136
+},
+{
+"t": 0.8,
+"y": 150
+},
+{
+"t": 1.2,
+"y": 136
+},
+{
+"t": 1.6,
+"y": 150
+},
+{
+"t": 2.0,
+"y": 136
+},
+{
+"t": 2.4,
+"y": 150
+},
+{
+"t": 2.8,
+"y": 136
+},
+{
+"t": 3.2,
+"y": 150
+},
+{
+"t": 3.6,
+"y": 136
+},
+{
+"t": 4.0,
+"y": 150
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the question mark"
+}
+},
+{
+"type": "text",
+"text": "OUTSIDE CITES + FISHERIES",
+"x": 250,
+"y": 60,
+"w": 1000,
+"size": 58,
+"bold": true,
+"color": "#EC4338",
+"id": "l-23-3"
+}
+]
+},
+{
+"start": 88.52,
+"end": 93.84,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-24-0"
+},
+{
+"type": "image",
+"path": "assets/shelf.png",
+"x": 250,
+"y": 280,
+"w": 740,
+"h": 260,
+"id": "shf-24-1",
+"keys": [
+{
+"t": 0.0,
+"y": 280
+},
+{
+"t": 0.7,
+"y": 286
+},
+{
+"t": 1.4,
+"y": 280
+},
+{
+"t": 2.1,
+"y": 286
+},
+{
+"t": 2.8,
+"y": 280
+},
+{
+"t": 3.5,
+"y": 286
+},
+{
+"t": 4.2,
+"y": 280
+},
+{
+"t": 4.9,
+"y": 286
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the shelves with a gap"
+}
+},
+{
+"type": "image",
+"path": "assets/q.png",
+"x": 770,
+"y": 150,
+"w": 90,
+"h": 130,
+"id": "qm-24-2",
+"keys": [
+{
+"t": 0.0,
+"y": 150
+},
+{
+"t": 0.4,
+"y": 136
+},
+{
+"t": 0.8,
+"y": 150
+},
+{
+"t": 1.2,
+"y": 136
+},
+{
+"t": 1.6,
+"y": 150
+},
+{
+"t": 2.0,
+"y": 136
+},
+{
+"t": 2.4,
+"y": 150
+},
+{
+"t": 2.8,
+"y": 136
+},
+{
+"t": 3.2,
+"y": 150
+},
+{
+"t": 3.6,
+"y": 136
+},
+{
+"t": 4.0,
+"y": 150
+},
+{
+"t": 4.4,
+"y": 136
+},
+{
+"t": 4.8,
+"y": 150
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the question mark"
+}
+},
+{
+"type": "text",
+"text": "WILD OR BRED?",
+"x": 400,
+"y": 60,
+"w": 850,
+"size": 80,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-24-3"
+}
+]
+},
+{
+"start": 93.84,
+"end": 96.45,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-25-0"
+},
+{
+"type": "image",
+"path": "assets/shelf.png",
+"x": 250,
+"y": 280,
+"w": 740,
+"h": 260,
+"id": "shf-25-1",
+"keys": [
+{
+"t": 0.0,
+"y": 280
+},
+{
+"t": 0.7,
+"y": 286
+},
+{
+"t": 1.4,
+"y": 280
+},
+{
+"t": 2.1,
+"y": 286
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the shelves with a gap"
+}
+},
+{
+"type": "image",
+"path": "assets/q.png",
+"x": 770,
+"y": 150,
+"w": 90,
+"h": 130,
+"id": "qm-25-2",
+"keys": [
+{
+"t": 0.0,
+"y": 150
+},
+{
+"t": 0.4,
+"y": 136
+},
+{
+"t": 0.8,
+"y": 150
+},
+{
+"t": 1.2,
+"y": 136
+},
+{
+"t": 1.6,
+"y": 150
+},
+{
+"t": 2.0,
+"y": 136
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the question mark"
+}
+},
+{
+"type": "text",
+"text": "SUSTAINABLE?",
+"x": 400,
+"y": 60,
+"w": 850,
+"size": 80,
+"bold": true,
+"color": "#EC4338",
+"id": "l-25-3"
+}
+]
+},
+{
+"start": 96.45,
+"end": 99.3,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-26-0"
+},
+{
+"type": "image",
+"path": "assets/shelf.png",
+"x": 250,
+"y": 280,
+"w": 740,
+"h": 260,
+"id": "shf-26-1",
+"keys": [
+{
+"t": 0.0,
+"y": 280
+},
+{
+"t": 0.7,
+"y": 286
+},
+{
+"t": 1.4,
+"y": 280
+},
+{
+"t": 2.1,
+"y": 286
+},
+{
+"t": 2.8,
+"y": 280
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the shelves with a gap"
+}
+},
+{
+"type": "image",
+"path": "assets/q.png",
+"x": 770,
+"y": 150,
+"w": 90,
+"h": 130,
+"id": "qm-26-2",
+"keys": [
+{
+"t": 0.0,
+"y": 150
+},
+{
+"t": 0.4,
+"y": 136
+},
+{
+"t": 0.8,
+"y": 150
+},
+{
+"t": 1.2,
+"y": 136
+},
+{
+"t": 1.6,
+"y": 150
+},
+{
+"t": 2.0,
+"y": 136
+},
+{
+"t": 2.4,
+"y": 150
+},
+{
+"t": 2.8,
+"y": 136
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the question mark"
+}
+},
+{
+"type": "text",
+"text": "ONE COUNTRY SHARES BROAD DATA",
+"x": 180,
+"y": 60,
+"w": 1000,
+"size": 56,
+"bold": true,
+"color": "#5b8fd6",
+"id": "l-26-3"
+},
+{
+"type": "text",
+"text": "the United States",
+"x": 440,
+"y": 580,
+"w": 810,
+"size": 56,
+"bold": true,
+"color": "#2b2a28",
+"from": 2.0,
+"id": "l-26-4"
+}
+]
+},
+{
+"start": 99.3,
+"end": 102.15,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-27-0"
+},
+{
+"type": "image",
+"path": "assets/shelf.png",
+"x": 250,
+"y": 280,
+"w": 740,
+"h": 260,
+"id": "shf-27-1",
+"keys": [
+{
+"t": 0.0,
+"y": 280
+},
+{
+"t": 0.7,
+"y": 286
+},
+{
+"t": 1.4,
+"y": 280
+},
+{
+"t": 2.1,
+"y": 286
+},
+{
+"t": 2.8,
+"y": 280
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the shelves with a gap"
+}
+},
+{
+"type": "image",
+"path": "assets/q.png",
+"x": 770,
+"y": 150,
+"w": 90,
+"h": 130,
+"id": "qm-27-2",
+"keys": [
+{
+"t": 0.0,
+"y": 150
+},
+{
+"t": 0.4,
+"y": 136
+},
+{
+"t": 0.8,
+"y": 150
+},
+{
+"t": 1.2,
+"y": 136
+},
+{
+"t": 1.6,
+"y": 150
+},
+{
+"t": 2.0,
+"y": 136
+},
+{
+"t": 2.4,
+"y": 150
+},
+{
+"t": 2.8,
+"y": 136
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the question mark"
+}
+},
+{
+"type": "text",
+"text": "ONE COUNTRY SHARES BROAD DATA",
+"x": 180,
+"y": 60,
+"w": 1000,
+"size": 56,
+"bold": true,
+"color": "#5b8fd6",
+"id": "l-27-3"
+},
+{
+"type": "text",
+"text": "the United States",
+"x": 440,
+"y": 580,
+"w": 810,
+"size": 56,
+"bold": true,
+"color": "#2b2a28",
+"from": 2.0,
+"id": "l-27-4"
+}
+]
+},
+{
+"start": 102.15,
+"end": 105.85,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-28-0"
+},
+{
+"type": "image",
+"path": "assets/shelf.png",
+"x": 250,
+"y": 280,
+"w": 740,
+"h": 260,
+"id": "shf-28-1",
+"keys": [
+{
+"t": 0.0,
+"y": 280
+},
+{
+"t": 0.7,
+"y": 286
+},
+{
+"t": 1.4,
+"y": 280
+},
+{
+"t": 2.1,
+"y": 286
+},
+{
+"t": 2.8,
+"y": 280
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the shelves with a gap"
+}
+},
+{
+"type": "image",
+"path": "assets/q.png",
+"x": 770,
+"y": 150,
+"w": 90,
+"h": 130,
+"id": "qm-28-2",
+"keys": [
+{
+"t": 0.0,
+"y": 150
+},
+{
+"t": 0.4,
+"y": 136
+},
+{
+"t": 0.8,
+"y": 150
+},
+{
+"t": 1.2,
+"y": 136
+},
+{
+"t": 1.6,
+"y": 150
+},
+{
+"t": 2.0,
+"y": 136
+},
+{
+"t": 2.4,
+"y": 150
+},
+{
+"t": 2.8,
+"y": 136
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the question mark"
+}
+},
+{
+"type": "text",
+"text": "ONE COUNTRY SHARES BROAD DATA",
+"x": 180,
+"y": 60,
+"w": 1000,
+"size": 56,
+"bold": true,
+"color": "#5b8fd6",
+"id": "l-28-3"
+},
+{
+"type": "text",
+"text": "the United States",
+"x": 440,
+"y": 580,
+"w": 810,
+"size": 56,
+"bold": true,
+"color": "#2b2a28",
+"from": 2.0,
+"id": "l-28-4"
+}
+]
+},
+{
+"start": 105.85,
+"end": 110.9,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-29-0"
+},
+{
+"type": "image",
+"path": "assets/dash.png",
+"x": 190,
+"y": 320,
+"w": 900,
+"h": 140,
+"id": "dsh-29-1",
+"keys": [
+{
+"t": 0.0,
+"y": 320
+},
+{
+"t": 0.8,
+"y": 326
+},
+{
+"t": 1.6,
+"y": 320
+},
+{
+"t": 2.4,
+"y": 326
+},
+{
+"t": 3.2,
+"y": 320
+},
+{
+"t": 4.0,
+"y": 326
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the gauge"
+}
+},
+{
+"type": "text",
+"text": "A TARGET'S INDICATOR",
+"x": 230,
+"y": 150,
+"w": 1020,
+"size": 66,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-29-2"
+}
+]
+},
+{
+"start": 110.9,
+"end": 115.45,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-30-0"
+},
+{
+"type": "image",
+"path": "assets/dash.png",
+"x": 190,
+"y": 320,
+"w": 900,
+"h": 140,
+"id": "dsh-30-1",
+"keys": [
+{
+"t": 0.0,
+"y": 320
+},
+{
+"t": 0.8,
+"y": 326
+},
+{
+"t": 1.6,
+"y": 320
+},
+{
+"t": 2.4,
+"y": 326
+},
+{
+"t": 3.2,
+"y": 320
+},
+{
+"t": 4.0,
+"y": 326
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the gauge"
+}
+},
+{
+"type": "text",
+"text": "2 to 3 %",
+"x": 460,
+"y": 160,
+"w": 790,
+"size": 130,
+"bold": true,
+"color": "#5BA55B",
+"id": "l-30-2"
+},
+{
+"type": "text",
+"text": "covered",
+"x": 540,
+"y": 500,
+"w": 710,
+"size": 60,
+"bold": true,
+"color": "#2b2a28",
+"from": 1.0,
+"id": "l-30-3"
+}
+]
+},
+{
+"start": 115.45,
+"end": 118.365,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-31-0"
+},
+{
+"type": "image",
+"path": "assets/dash.png",
+"x": 190,
+"y": 320,
+"w": 900,
+"h": 140,
+"id": "dsh-31-1",
+"keys": [
+{
+"t": 0.0,
+"y": 320
+},
+{
+"t": 0.8,
+"y": 326
+},
+{
+"t": 1.6,
+"y": 320
+},
+{
+"t": 2.4,
+"y": 326
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the gauge"
+}
+},
+{
+"type": "text",
+"text": "98 %+",
+"x": 470,
+"y": 140,
+"w": 780,
+"size": 140,
+"bold": true,
+"color": "#EC4338",
+"id": "l-31-2"
+},
+{
+"type": "text",
+"text": "may fall outside some monitoring",
+"x": 300,
+"y": 500,
+"w": 950,
+"size": 48,
+"bold": true,
+"color": "#2b2a28",
+"from": 1.2,
+"id": "l-31-3"
+}
+]
+},
+{
+"start": 118.365,
+"end": 122.13,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-32-0"
+},
+{
+"type": "image",
+"path": "assets/dash.png",
+"x": 190,
+"y": 320,
+"w": 900,
+"h": 140,
+"id": "dsh-32-1",
+"keys": [
+{
+"t": 0.0,
+"y": 320
+},
+{
+"t": 0.8,
+"y": 326
+},
+{
+"t": 1.6,
+"y": 320
+},
+{
+"t": 2.4,
+"y": 326
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the gauge"
+}
+},
+{
+"type": "text",
+"text": "98 %+",
+"x": 470,
+"y": 140,
+"w": 780,
+"size": 140,
+"bold": true,
+"color": "#EC4338",
+"id": "l-32-2"
+},
+{
+"type": "text",
+"text": "may fall outside some monitoring",
+"x": 300,
+"y": 500,
+"w": 950,
+"size": 48,
+"bold": true,
+"color": "#2b2a28",
+"from": 1.2,
+"id": "l-32-3"
+}
+]
+},
+{
+"start": 122.13,
+"end": 124.995,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-33-0"
+},
+{
+"type": "image",
+"path": "assets/pzA.png",
+"x": 330,
+"y": 250,
+"w": 150,
+"h": 150,
+"id": "pa-33-1",
+"keys": [
+{
+"t": 0.0,
+"y": 250
+},
+{
+"t": 0.6,
+"y": 242
+},
+{
+"t": 1.2,
+"y": 250
+},
+{
+"t": 1.8,
+"y": 242
+},
+{
+"t": 2.4,
+"y": 250
+}
+],
+"motion": {
+"role": "prop",
+"reason": "a puzzle piece"
+}
+},
+{
+"type": "image",
+"path": "assets/pzB.png",
+"x": 480,
+"y": 250,
+"w": 150,
+"h": 150,
+"id": "pb-33-2",
+"keys": [
+{
+"t": 0.0,
+"y": 242
+},
+{
+"t": 0.6,
+"y": 250
+},
+{
+"t": 1.2,
+"y": 242
+},
+{
+"t": 1.8,
+"y": 250
+},
+{
+"t": 2.4,
+"y": 242
+}
+],
+"motion": {
+"role": "prop",
+"reason": "a puzzle piece"
+}
+},
+{
+"type": "image",
+"path": "assets/pzC.png",
+"x": 630,
+"y": 250,
+"w": 150,
+"h": 150,
+"id": "pc-33-3",
+"keys": [
+{
+"t": 0.0,
+"y": 250
+},
+{
+"t": 0.6,
+"y": 242
+},
+{
+"t": 1.2,
+"y": 250
+},
+{
+"t": 1.8,
+"y": 242
+},
+{
+"t": 2.4,
+"y": 250
+}
+],
+"motion": {
+"role": "prop",
+"reason": "a puzzle piece"
+}
+},
+{
+"type": "text",
+"text": "ESTIMATES",
+"x": 400,
+"y": 100,
+"w": 850,
+"size": 90,
+"bold": true,
+"color": "#EC4338",
+"id": "l-33-4"
+},
+{
+"type": "text",
+"text": "the real number could be higher",
+"x": 300,
+"y": 470,
+"w": 950,
+"size": 50,
+"bold": true,
+"color": "#2b2a28",
+"from": 1.5,
+"id": "l-33-5"
+}
+]
+},
+{
+"start": 124.995,
+"end": 128.16,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-34-0"
+},
+{
+"type": "image",
+"path": "assets/pzA.png",
+"x": 330,
+"y": 250,
+"w": 150,
+"h": 150,
+"id": "pa-34-1",
+"keys": [
+{
+"t": 0.0,
+"y": 250
+},
+{
+"t": 0.6,
+"y": 242
+},
+{
+"t": 1.2,
+"y": 250
+},
+{
+"t": 1.8,
+"y": 242
+},
+{
+"t": 2.4,
+"y": 250
+}
+],
+"motion": {
+"role": "prop",
+"reason": "a puzzle piece"
+}
+},
+{
+"type": "image",
+"path": "assets/pzB.png",
+"x": 480,
+"y": 250,
+"w": 150,
+"h": 150,
+"id": "pb-34-2",
+"keys": [
+{
+"t": 0.0,
+"y": 242
+},
+{
+"t": 0.6,
+"y": 250
+},
+{
+"t": 1.2,
+"y": 242
+},
+{
+"t": 1.8,
+"y": 250
+},
+{
+"t": 2.4,
+"y": 242
+}
+],
+"motion": {
+"role": "prop",
+"reason": "a puzzle piece"
+}
+},
+{
+"type": "image",
+"path": "assets/pzC.png",
+"x": 630,
+"y": 250,
+"w": 150,
+"h": 150,
+"id": "pc-34-3",
+"keys": [
+{
+"t": 0.0,
+"y": 250
+},
+{
+"t": 0.6,
+"y": 242
+},
+{
+"t": 1.2,
+"y": 250
+},
+{
+"t": 1.8,
+"y": 242
+},
+{
+"t": 2.4,
+"y": 250
+}
+],
+"motion": {
+"role": "prop",
+"reason": "a puzzle piece"
+}
+},
+{
+"type": "text",
+"text": "ESTIMATES",
+"x": 400,
+"y": 100,
+"w": 850,
+"size": 90,
+"bold": true,
+"color": "#EC4338",
+"id": "l-34-4"
+},
+{
+"type": "text",
+"text": "the real number could be higher",
+"x": 300,
+"y": 470,
+"w": 950,
+"size": 50,
+"bold": true,
+"color": "#2b2a28",
+"from": 1.5,
+"id": "l-34-5"
+}
+]
+},
+{
+"start": 128.16,
+"end": 133.81,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-35-0"
+},
+{
+"type": "image",
+"path": "assets/pzA.png",
+"x": 330,
+"y": 250,
+"w": 150,
+"h": 150,
+"id": "pa-35-1",
+"keys": [
+{
+"t": 0.0,
+"y": 250
+},
+{
+"t": 0.6,
+"y": 242
+},
+{
+"t": 1.2,
+"y": 250
+},
+{
+"t": 1.8,
+"y": 242
+},
+{
+"t": 2.4,
+"y": 250
+},
+{
+"t": 3.0,
+"y": 242
+},
+{
+"t": 3.6,
+"y": 250
+},
+{
+"t": 4.2,
+"y": 242
+},
+{
+"t": 4.799,
+"y": 250
+}
+],
+"motion": {
+"role": "prop",
+"reason": "a puzzle piece"
+}
+},
+{
+"type": "image",
+"path": "assets/pzB.png",
+"x": 480,
+"y": 250,
+"w": 150,
+"h": 150,
+"id": "pb-35-2",
+"keys": [
+{
+"t": 0.0,
+"y": 242
+},
+{
+"t": 0.6,
+"y": 250
+},
+{
+"t": 1.2,
+"y": 242
+},
+{
+"t": 1.8,
+"y": 250
+},
+{
+"t": 2.4,
+"y": 242
+},
+{
+"t": 3.0,
+"y": 250
+},
+{
+"t": 3.6,
+"y": 242
+},
+{
+"t": 4.2,
+"y": 250
+},
+{
+"t": 4.799,
+"y": 242
+}
+],
+"motion": {
+"role": "prop",
+"reason": "a puzzle piece"
+}
+},
+{
+"type": "image",
+"path": "assets/pzC.png",
+"x": 630,
+"y": 250,
+"w": 150,
+"h": 150,
+"id": "pc-35-3",
+"keys": [
+{
+"t": 0.0,
+"y": 250
+},
+{
+"t": 0.6,
+"y": 242
+},
+{
+"t": 1.2,
+"y": 250
+},
+{
+"t": 1.8,
+"y": 242
+},
+{
+"t": 2.4,
+"y": 250
+},
+{
+"t": 3.0,
+"y": 242
+},
+{
+"t": 3.6,
+"y": 250
+},
+{
+"t": 4.2,
+"y": 242
+},
+{
+"t": 4.799,
+"y": 250
+}
+],
+"motion": {
+"role": "prop",
+"reason": "a puzzle piece"
+}
+},
+{
+"type": "text",
+"text": "TOTALS ROUND DIFFERENTLY",
+"x": 220,
+"y": 100,
+"w": 1000,
+"size": 62,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-35-4"
+},
+{
+"type": "text",
+"text": "sources listed below",
+"x": 400,
+"y": 470,
+"w": 850,
+"size": 54,
+"bold": true,
+"color": "#5b8fd6",
+"from": 1.0,
+"id": "l-35-5"
+}
+]
+},
+{
+"start": 133.81,
+"end": 137.615,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-36-0"
+},
+{
+"type": "image",
+"path": "assets/laptop.png",
+"x": 120,
+"y": 250,
+"w": 380,
+"h": 260,
+"id": "lp-36-1"
+},
+{
+"type": "image",
+"path": "assets/permit.png",
+"x": 580,
+"y": 300,
+"w": 180,
+"h": 230,
+"id": "pm-36-2",
+"keys": [
+{
+"t": 0.0,
+"y": 300
+},
+{
+"t": 0.6,
+"y": 292
+},
+{
+"t": 1.2,
+"y": 300
+},
+{
+"t": 1.8,
+"y": 292
+},
+{
+"t": 2.4,
+"y": 300
+},
+{
+"t": 3.0,
+"y": 292
+},
+{
+"t": 3.6,
+"y": 300
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the permit"
+}
+},
+{
+"type": "image",
+"path": "assets/scanner.png",
+"x": 830,
+"y": 380,
+"w": 320,
+"h": 120,
+"id": "sc-36-3"
+},
+{
+"type": "text",
+"text": "STANDARD RECORDS",
+"x": 120,
+"y": 60,
+"w": 1130,
+"size": 58,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-36-4"
+},
+{
+"type": "text",
+"text": "E-PERMITS",
+"x": 120,
+"y": 150,
+"w": 1130,
+"size": 58,
+"bold": true,
+"color": "#5b8fd6",
+"from": 2.0,
+"id": "l-36-5"
+},
+{
+"type": "text",
+"text": "DOCUMENT CHECKS",
+"x": 120,
+"y": 560,
+"w": 1000,
+"size": 58,
+"bold": true,
+"color": "#5BA55B",
+"from": 3.804,
+"id": "l-36-6"
+}
+]
+},
+{
+"start": 137.615,
+"end": 141.72,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-37-0"
+},
+{
+"type": "image",
+"path": "assets/laptop.png",
+"x": 120,
+"y": 250,
+"w": 380,
+"h": 260,
+"id": "lp-37-1",
+"keys": [
+{
+"t": 0.0,
+"y": 250
+},
+{
+"t": 0.6,
+"y": 242
+},
+{
+"t": 1.2,
+"y": 250
+},
+{
+"t": 1.8,
+"y": 242
+},
+{
+"t": 2.4,
+"y": 250
+},
+{
+"t": 3.0,
+"y": 242
+},
+{
+"t": 3.6,
+"y": 250
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the laptop"
+}
+},
+{
+"type": "image",
+"path": "assets/permit.png",
+"x": 580,
+"y": 300,
+"w": 180,
+"h": 230,
+"id": "pm-37-2"
+},
+{
+"type": "image",
+"path": "assets/scanner.png",
+"x": 830,
+"y": 380,
+"w": 320,
+"h": 120,
+"id": "sc-37-3"
+},
+{
+"type": "text",
+"text": "STANDARD RECORDS",
+"x": 120,
+"y": 60,
+"w": 1130,
+"size": 58,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-37-4"
+},
+{
+"type": "text",
+"text": "E-PERMITS",
+"x": 120,
+"y": 150,
+"w": 1130,
+"size": 58,
+"bold": true,
+"color": "#5b8fd6",
+"from": 2.0,
+"id": "l-37-5"
+},
+{
+"type": "text",
+"text": "DOCUMENT CHECKS",
+"x": 120,
+"y": 560,
+"w": 1000,
+"size": 58,
+"bold": true,
+"color": "#5BA55B",
+"from": 3.803,
+"id": "l-37-6"
+}
+]
+},
+{
+"start": 141.72,
+"end": 146.02,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-38-0"
+},
+{
+"type": "image",
+"path": "assets/laptop.png",
+"x": 120,
+"y": 250,
+"w": 380,
+"h": 260,
+"id": "lp-38-1",
+"keys": [
+{
+"t": 0.0,
+"y": 250
+},
+{
+"t": 0.6,
+"y": 242
+},
+{
+"t": 1.2,
+"y": 250
+},
+{
+"t": 1.8,
+"y": 242
+},
+{
+"t": 2.4,
+"y": 250
+},
+{
+"t": 3.0,
+"y": 242
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the laptop"
+}
+},
+{
+"type": "image",
+"path": "assets/permit.png",
+"x": 580,
+"y": 300,
+"w": 180,
+"h": 230,
+"id": "pm-38-2"
+},
+{
+"type": "image",
+"path": "assets/scanner.png",
+"x": 830,
+"y": 380,
+"w": 320,
+"h": 120,
+"id": "sc-38-3"
+},
+{
+"type": "text",
+"text": "RECOMMENDATIONS",
+"x": 200,
+"y": 90,
+"w": 1050,
+"size": 80,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-38-4"
+},
+{
+"type": "text",
+"text": "nothing decided",
+"x": 400,
+"y": 570,
+"w": 850,
+"size": 60,
+"bold": true,
+"color": "#EC4338",
+"from": 1.0,
+"id": "l-38-5"
+}
+]
+},
+{
+"start": 146.02,
+"end": 150.12,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-39-0"
+},
+{
+"type": "image",
+"path": "assets/ledger.png",
+"x": 340,
+"y": 300,
+"w": 600,
+"h": 290,
+"id": "led-39-1",
+"keys": [
+{
+"t": 0.0,
+"y": 300
+},
+{
+"t": 0.6,
+"y": 294
+},
+{
+"t": 1.2,
+"y": 300
+},
+{
+"t": 1.8,
+"y": 294
+},
+{
+"t": 2.4,
+"y": 300
+},
+{
+"t": 3.0,
+"y": 294
+},
+{
+"t": 3.6,
+"y": 300
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the ledger waits"
+}
+},
+{
+"type": "text",
+"text": "107,356",
+"x": 330,
+"y": 110,
+"w": 920,
+"size": 150,
+"bold": true,
+"color": "#EC4338",
+"id": "l-39-2"
+},
+{
+"type": "text",
+"text": "HOW MUCH IS SUSTAINABLE?",
+"x": 190,
+"y": 260,
+"w": 1000,
+"size": 56,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-39-3"
+}
+]
+},
+{
+"start": 150.12,
+"end": 154.52,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-40-0"
+},
+{
+"type": "image",
+"path": "assets/ledger.png",
+"x": 340,
+"y": 300,
+"w": 600,
+"h": 290,
+"id": "led-40-1",
+"keys": [
+{
+"t": 0.0,
+"y": 300
+},
+{
+"t": 0.6,
+"y": 294
+},
+{
+"t": 1.2,
+"y": 300
+},
+{
+"t": 1.8,
+"y": 294
+},
+{
+"t": 2.4,
+"y": 300
+},
+{
+"t": 3.0,
+"y": 294
+},
+{
+"t": 3.6,
+"y": 300
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the ledger waits"
+}
+},
+{
+"type": "text",
+"text": "107,356",
+"x": 330,
+"y": 110,
+"w": 920,
+"size": 150,
+"bold": true,
+"color": "#EC4338",
+"id": "l-40-2"
+},
+{
+"type": "text",
+"text": "HOW MUCH IS SUSTAINABLE?",
+"x": 190,
+"y": 260,
+"w": 1000,
+"size": 56,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-40-3"
+}
+]
+},
+{
+"start": 154.52,
+"end": 159.03,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-41-0"
+},
+{
+"type": "image",
+"path": "assets/ledger.png",
+"x": 340,
+"y": 300,
+"w": 600,
+"h": 290,
+"id": "led-41-1",
+"keys": [
+{
+"t": 0.0,
+"y": 300
+},
+{
+"t": 0.6,
+"y": 294
+},
+{
+"t": 1.2,
+"y": 300
+},
+{
+"t": 1.8,
+"y": 294
+},
+{
+"t": 2.4,
+"y": 300
+},
+{
+"t": 3.0,
+"y": 294
+},
+{
+"t": 3.6,
+"y": 300
+},
+{
+"t": 4.2,
+"y": 294
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the ledger waits"
+}
+},
+{
+"type": "text",
+"text": "107,356",
+"x": 330,
+"y": 110,
+"w": 920,
+"size": 150,
+"bold": true,
+"color": "#EC4338",
+"id": "l-41-2"
+},
+{
+"type": "text",
+"text": "sources = the reference",
+"x": 340,
+"y": 260,
+"w": 1000,
+"size": 56,
+"bold": true,
+"color": "#5b8fd6",
+"id": "l-41-3"
+}
+]
+},
+{
+"start": 159.03,
+"end": 161.54,
+"layers": [
+{
+"type": "image",
+"path": "assets/desk.png",
+"x": 0,
+"y": 540,
+"w": 1280,
+"h": 200,
+"id": "l-42-0"
+},
+{
+"type": "image",
+"path": "assets/ledger.png",
+"x": 340,
+"y": 300,
+"w": 600,
+"h": 290,
+"id": "led-42-1",
+"keys": [
+{
+"t": 0.0,
+"y": 300
+},
+{
+"t": 0.6,
+"y": 294
+},
+{
+"t": 1.2,
+"y": 300
+},
+{
+"t": 1.8,
+"y": 294
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the ledger waits"
+}
+},
+{
+"type": "text",
+"text": "107,356",
+"x": 330,
+"y": 110,
+"w": 920,
+"size": 150,
+"bold": true,
+"color": "#EC4338",
+"id": "l-42-2"
+},
+{
+"type": "text",
+"text": "WHICH GAP FIRST?",
+"x": 300,
+"y": 260,
+"w": 950,
+"size": 70,
+"bold": true,
+"color": "#EC4338",
+"id": "l-42-3"
+}
+]
+}
+],
+"sfx": [
+{
+"time": 0.6,
+"name": "sting",
+"gain": 0.2
+},
+{
+"time": 4.3,
+"kind": "chime",
+"gain": 0.2
+}
+],
+"assets": {
+"ledger.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"600\" height=\"290\" viewBox=\"0 0 600 290\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.4,40.6 L300.4,19.6 L300.0,249.9 L10.2,270.5 Z\" fill=\"#fff7e0\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M300.7,20.7 L589.3,39.3 L590.5,270.4 L300.3,249.7 Z\" fill=\"#fff7e0\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M299.5,20.1 L299.7,250.2\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"3\"/><path d=\"M30.1,79.9 L280.2,65.4\" fill=\"none\" stroke=\"#cfcfcf\" stroke-width=\"1.6\"/><path d=\"M320.8,66.4 L570.5,80.8\" fill=\"none\" stroke=\"#cfcfcf\" stroke-width=\"1.6\"/><path d=\"M29.9,108.1 L280.8,93.9\" fill=\"none\" stroke=\"#cfcfcf\" stroke-width=\"1.6\"/><path d=\"M319.3,94.4 L570.3,108.0\" fill=\"none\" stroke=\"#cfcfcf\" stroke-width=\"1.6\"/><path d=\"M29.9,136.3 L280.3,121.3\" fill=\"none\" stroke=\"#cfcfcf\" stroke-width=\"1.6\"/><path d=\"M320.9,121.3 L569.0,137.0\" fill=\"none\" stroke=\"#cfcfcf\" stroke-width=\"1.6\"/><path d=\"M29.5,164.4 L280.4,150.7\" fill=\"none\" stroke=\"#cfcfcf\" stroke-width=\"1.6\"/><path d=\"M320.8,150.9 L570.8,163.2\" fill=\"none\" stroke=\"#cfcfcf\" stroke-width=\"1.6\"/><path d=\"M29.2,192.4 L280.3,178.9\" fill=\"none\" stroke=\"#cfcfcf\" stroke-width=\"1.6\"/><path d=\"M320.4,178.7 L569.4,193.0\" fill=\"none\" stroke=\"#cfcfcf\" stroke-width=\"1.6\"/><path d=\"M30.9,219.0 L280.5,205.3\" fill=\"none\" stroke=\"#cfcfcf\" stroke-width=\"1.6\"/><path d=\"M319.8,206.9 L570.7,219.4\" fill=\"none\" stroke=\"#cfcfcf\" stroke-width=\"1.6\"/></g></svg>",
+"desk.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1280\" height=\"200\" viewBox=\"0 0 1280 200\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M0.2,20.4 L1280.5,20.7 L1280.4,200.7 L-0.8,199.9 Z\" fill=\"#c99a6b\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M0.6,20.6 L1280.0,17.5\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"3\"/></g></svg>",
+"bar50.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"160\" height=\"400\" viewBox=\"0 0 160 400\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7.7,7.4 L152.2,7.3 L152.1,391.8 L7.3,392.0 Z\" fill=\"#5b8fd6\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/></g></svg>",
+"bar107.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"160\" height=\"400\" viewBox=\"0 0 160 400\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7.7,7.4 L152.2,7.3 L152.1,391.8 L7.3,392.0 Z\" fill=\"#EC4338\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/></g></svg>",
+"crate.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"260\" height=\"230\" viewBox=\"0 0 260 230\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.6,30.7 L249.4,30.3 L249.3,219.6 L10.8,219.5 Z\" fill=\"#c99a6b\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M9.9,89.7 L249.3,90.7\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><path d=\"M10.1,149.9 L250.2,149.4\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><path d=\"M79.9,100.1 L180.7,99.9 L180.0,150.1 L79.5,150.0 Z\" fill=\"#fff7e0\" stroke=\"#2b2a28\" stroke-width=\"2\"/></g></svg>",
+"paw.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 120 120\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M85.6,78.3 L85.7,82.3 L83.7,86.9 L81.2,91.2 L77.0,93.9 L73.3,97.0 L68.3,98.4 L62.7,100.1 L57.0,100.3 L52.4,98.5 L46.5,97.1 L43.0,94.2 L38.7,90.9 L35.8,86.7 L34.5,82.6 L33.7,77.7 L34.3,73.4 L36.0,68.6 L39.3,65.1 L42.7,61.3 L47.5,59.3 L51.6,56.9 L57.5,56.3 L63.2,56.0 L68.4,57.2 L72.8,59.0 L77.8,62.0 L81.0,65.2 L83.3,68.8 L85.7,73.3 Z\" fill=\"#2b2a28\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M36.5,46.4 L35.3,48.3 L35.5,51.5 L34.3,53.4 L32.8,55.8 L31.1,56.9 L29.0,58.3 L27.3,59.4 L25.4,59.0 L22.9,58.1 L20.5,56.8 L19.3,55.5 L17.8,54.0 L16.9,51.3 L16.0,48.2 L15.8,45.6 L16.2,43.8 L17.0,40.4 L18.3,38.7 L19.5,36.7 L21.3,35.0 L22.8,34.1 L25.4,32.7 L27.3,33.3 L29.1,33.7 L31.0,35.2 L32.7,36.7 L33.9,38.7 L35.5,40.7 L35.8,43.7 Z\" fill=\"#2b2a28\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M57.7,28.0 L57.7,30.8 L57.3,32.9 L55.6,36.0 L54.5,37.4 L53.5,39.2 L51.4,40.3 L49.2,40.6 L47.1,41.3 L44.9,40.6 L43.2,38.8 L41.6,37.8 L39.7,35.2 L39.2,33.3 L38.4,31.1 L38.2,28.4 L38.1,25.6 L38.8,23.1 L40.3,20.0 L40.9,18.1 L43.5,16.7 L45.0,15.4 L47.0,15.0 L48.9,15.2 L51.2,16.0 L53.2,17.2 L55.0,18.8 L56.3,20.0 L57.5,23.2 L58.2,25.4 Z\" fill=\"#2b2a28\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M83.7,27.6 L83.7,30.4 L82.7,33.2 L82.5,35.9 L81.0,37.4 L79.0,39.0 L76.8,40.0 L74.8,41.4 L73.3,41.2 L71.2,40.1 L68.8,39.4 L67.5,38.0 L66.3,35.2 L65.0,33.5 L64.2,30.4 L64.0,27.6 L64.7,25.7 L64.9,22.5 L66.3,20.4 L67.7,18.7 L69.0,16.7 L71.0,15.6 L72.6,14.9 L75.4,14.6 L76.6,15.8 L78.8,16.8 L80.7,18.2 L82.6,20.1 L83.0,22.4 L83.9,25.1 Z\" fill=\"#2b2a28\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M106.1,46.2 L106.1,49.1 L105.4,51.7 L103.6,53.6 L103.1,55.8 L101.4,56.9 L99.1,58.1 L97.1,59.0 L94.5,58.6 L92.7,58.8 L91.3,56.9 L89.6,55.3 L88.0,53.3 L86.4,51.7 L85.9,48.4 L86.5,46.4 L86.0,43.8 L86.9,40.9 L87.6,38.8 L89.5,36.8 L91.4,34.5 L92.8,33.3 L94.6,32.6 L96.8,33.2 L98.6,33.8 L100.8,34.6 L103.0,36.3 L103.9,38.3 L105.3,40.3 L106.3,42.8 Z\" fill=\"#2b2a28\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/></g></svg>",
+"leaf.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 120 120\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20,100 Q16,30 100,18 Q104,90 20,100 Z\" fill=\"#5BA55B\" stroke=\"#2b2a28\" stroke-width=\"3\"/><path d=\"M20.9,100.9 L79.1,39.2\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/></g></svg>",
+"shroom.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 120 120\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14,70 Q60,-10 106,70 Z\" fill=\"#EC4338\" stroke=\"#2b2a28\" stroke-width=\"3\"/><path d=\"M47.6,69.4 L71.8,69.4 L71.3,105.8 L48.7,106.5 Z\" fill=\"#fff7e0\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><path d=\"M46.1,52.2 L46.2,53.7 L45.7,54.9 L44.4,55.5 L44.5,56.6 L43.4,56.8 L41.8,57.5 L40.7,58.0 L38.9,57.7 L37.9,58.1 L37.3,56.9 L36.3,56.1 L35.3,55.2 L34.0,54.8 L33.8,53.0 L34.5,52.4 L33.9,51.2 L34.6,49.7 L34.9,48.9 L36.2,48.0 L37.4,46.6 L38.0,46.0 L39.0,45.6 L40.4,46.1 L41.4,46.5 L42.8,46.6 L44.3,47.5 L44.7,48.5 L45.7,49.1 L46.3,50.3 Z\" fill=\"#fff\" stroke=\"#2b2a28\" stroke-width=\"1.5\"/><path d=\"M78.3,44.3 L77.9,45.0 L77.0,46.6 L76.8,47.8 L75.9,48.7 L74.8,49.5 L74.1,49.6 L72.7,50.1 L71.1,50.0 L70.5,49.5 L69.3,49.4 L68.3,48.3 L66.7,47.8 L66.8,46.4 L65.7,44.9 L66.1,43.8 L66.6,42.8 L66.2,41.7 L67.0,40.9 L68.4,39.6 L69.1,39.0 L70.5,38.8 L70.9,37.9 L72.7,37.8 L73.9,37.9 L75.4,38.8 L75.6,39.7 L76.7,40.2 L77.5,41.2 L77.6,43.1 Z\" fill=\"#fff\" stroke=\"#2b2a28\" stroke-width=\"1.5\"/></g></svg>",
+"circA.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"380\" height=\"380\" viewBox=\"0 0 380 380\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M369.6,190.3 L366.3,227.2 L354.4,263.2 L335.8,296.1 L310.0,323.3 L280.3,345.8 L245.9,360.7 L208.8,369.2 L170.9,369.5 L134.8,360.7 L99.5,345.9 L70.0,323.6 L44.1,295.7 L25.1,262.9 L13.9,227.4 L9.7,189.7 L13.7,152.5 L25.4,116.3 L44.7,84.3 L69.7,55.9 L100.5,34.5 L134.0,18.6 L171.4,11.2 L209.3,10.9 L246.0,19.0 L279.8,34.2 L310.8,56.6 L335.6,84.3 L354.0,116.5 L366.4,152.5 Z\" fill=\"#d9ecf7\" stroke=\"#2b2a28\" stroke-width=\"3.4\"/></g></svg>",
+"circB.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"380\" height=\"380\" viewBox=\"0 0 380 380\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M370.5,190.4 L365.6,227.0 L354.8,263.4 L335.8,295.6 L310.5,323.9 L280.1,345.5 L245.6,361.1 L209.0,369.5 L171.6,369.1 L134.3,361.0 L99.5,345.4 L69.5,323.6 L44.3,296.2 L25.6,263.3 L13.7,226.9 L9.8,189.6 L13.9,153.1 L25.7,116.5 L44.8,84.5 L69.8,56.6 L100.3,34.4 L134.2,19.3 L171.6,10.6 L209.1,11.2 L245.6,18.8 L280.0,34.5 L310.4,56.6 L335.5,84.6 L354.8,116.7 L366.1,153.0 Z\" fill=\"#f6d6a8\" stroke=\"#2b2a28\" stroke-width=\"3.4\"/></g></svg>",
+"folder.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"150\" viewBox=\"0 0 200 150\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.6,30.1 L79.8,30.2 L96.2,11.3 L189.2,12.5 L189.6,139.6 L10.8,140.0 Z\" fill=\"#F2B632\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M23.5,69.2 L175.8,69.3\" fill=\"none\" stroke=\"#cfcfcf\" stroke-width=\"2\"/></g></svg>",
+"mag.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"220\" viewBox=\"0 0 200 220\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M142.5,80.4 L140.2,92.5 L137.0,105.5 L130.3,116.3 L121.6,126.2 L111.1,133.4 L99.1,138.9 L86.7,142.2 L74.0,141.7 L60.8,138.7 L48.5,133.2 L38.5,125.9 L29.7,116.8 L23.4,105.3 L19.1,92.4 L17.8,79.6 L19.4,67.6 L23.5,54.5 L30.2,43.9 L38.7,34.3 L49.3,26.6 L60.7,21.5 L74.0,18.0 L86.7,18.6 L99.1,21.1 L111.0,26.7 L121.5,34.3 L130.0,43.9 L137.0,54.7 L140.7,67.5 Z\" fill=\"#d9ecf7\" stroke=\"#2b2a28\" stroke-width=\"4\"/><path d=\"M125.5,126.1 L185.7,206.2\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"12\"/></g></svg>",
+"shelf.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"740\" height=\"260\" viewBox=\"0 0 740 260\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.3,240.7 L730.5,239.5\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"4\"/><path d=\"M10.9,130.9 L729.1,129.2\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"4\"/><path d=\"M30.6,50.3 L120.4,50.6 L119.6,130.2 L30.6,130.6 Z\" fill=\"#c99a6b\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><path d=\"M144.5,50.3 L235.2,50.0 L234.5,130.5 L145.5,130.0 Z\" fill=\"#c99a6b\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><path d=\"M260.7,49.4 L349.2,50.8 L349.5,129.4 L260.2,129.8 Z\" fill=\"#c99a6b\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><path d=\"M375.7,50.7 L465.6,49.3 L465.1,129.9 L375.0,129.4 Z\" fill=\"#c99a6b\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><path d=\"M490.3,50.5 L579.5,50.8 L579.5,130.3 L489.3,130.4 Z\" fill=\"#c99a6b\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><path d=\"M604.8,50.7 L695.5,49.5 L695.6,130.2 L604.3,130.7 Z\" fill=\"#c99a6b\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><path d=\"M30.2,160.3 L120.7,159.5 L119.3,240.5 L29.7,239.8 Z\" fill=\"#c99a6b\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><path d=\"M144.4,159.4 L235.2,159.5 L234.4,239.9 L144.9,239.5 Z\" fill=\"#c99a6b\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><path d=\"M260.1,159.8 L350.6,159.7 L350.0,239.8 L259.9,240.8 Z\" fill=\"#c99a6b\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><path d=\"M375.1,159.7 L464.2,160.2 L464.5,239.6 L374.8,240.2 Z\" fill=\"#c99a6b\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><path d=\"M604.3,159.5 L694.7,160.6 L695.0,240.4 L604.4,240.0 Z\" fill=\"#c99a6b\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/></g></svg>",
+"dash.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"900\" height=\"140\" viewBox=\"0 0 900 140\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.4,20.6 L890.4,19.6 L890.0,119.9 L10.2,120.5 Z\" fill=\"#d9d9d9\" stroke=\"#2b2a28\" stroke-width=\"3.2\"/><path d=\"M10.7,20.7 L33.3,19.3 L34.5,120.4 L10.3,119.7 Z\" fill=\"#5BA55B\" stroke=\"#2b2a28\" stroke-width=\"3\"/></g></svg>",
+"pzA.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"150\" height=\"150\" viewBox=\"0 0 150 150\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.6,10.1 L59.8,10.2 L62.2,29.3 L85.2,30.5 L89.6,9.6 L140.8,10.0 L140.5,140.0 L10.2,139.4 Z\" fill=\"#d9ecf7\" stroke=\"#2b2a28\" stroke-width=\"3\"/></g></svg>",
+"pzB.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"150\" height=\"150\" viewBox=\"0 0 150 150\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.6,9.4 L59.8,9.4 L61.3,29.8 L86.7,30.5 L90.4,9.6 L140.1,9.6 L139.5,139.4 L9.5,140.7 Z\" fill=\"#f6d6a8\" stroke=\"#2b2a28\" stroke-width=\"3\"/></g></svg>",
+"pzC.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"150\" height=\"150\" viewBox=\"0 0 150 150\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M10.2,10.4 L60.5,10.7 L62.4,30.7 L85.2,29.9 L90.7,10.2 L140.6,9.4 L140.0,139.6 L10.1,140.1 Z\" fill=\"#d8ecd0\" stroke=\"#2b2a28\" stroke-width=\"3\"/></g></svg>",
+"laptop.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"380\" height=\"260\" viewBox=\"0 0 380 260\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M39.4,10.6 L340.4,9.6 L340.0,199.9 L40.2,200.5 Z\" fill=\"#f0f0f0\" stroke=\"#2b2a28\" stroke-width=\"3.2\"/><path d=\"M60.7,30.7 L319.3,29.3 L320.5,180.4 L60.3,179.7 Z\" fill=\"#d9ecf7\" stroke=\"#2b2a28\" stroke-width=\"2\"/><path d=\"M9.6,200.1 L369.8,200.2 L350.2,239.3 L29.2,240.5 Z\" fill=\"#e7e7e7\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/></g></svg>",
+"permit.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"180\" height=\"230\" viewBox=\"0 0 180 230\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.4,10.6 L170.4,9.6 L170.0,219.9 L10.2,220.5 Z\" fill=\"#fff7e0\" stroke=\"#2b2a28\" stroke-width=\"3\"/><path d=\"M30.7,150.7 L99.3,149.3 L100.5,200.4 L30.3,199.7 Z\" fill=\"#EC4338\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><path d=\"M29.5,50.1 L149.7,46.2\" fill=\"none\" stroke=\"#cfcfcf\" stroke-width=\"2\"/><path d=\"M29.5,79.2 L149.8,77.3\" fill=\"none\" stroke=\"#cfcfcf\" stroke-width=\"2\"/></g></svg>",
+"scanner.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"320\" height=\"120\" viewBox=\"0 0 320 120\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.4,40.6 L310.4,39.6 L310.0,109.9 L10.2,110.5 Z\" fill=\"#bdbdbd\" stroke=\"#2b2a28\" stroke-width=\"3.2\"/><path d=\"M30.9,62.9 L289.1,61.2\" fill=\"none\" stroke=\"#5BA55B\" stroke-width=\"4\"/></g></svg>",
+"arrow.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"60\" viewBox=\"0 0 200 60\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.3,30.7 L180.5,29.5\" fill=\"none\" stroke=\"#EC4338\" stroke-width=\"7\"/><path d=\"M150.9,8.9 Q183.1,29.2 166.9,40.8 L150.7,52.5\" fill=\"none\" stroke=\"#EC4338\" stroke-width=\"7\"/></g></svg>",
+"q.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"90\" height=\"130\" viewBox=\"0 0 90 130\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14,40 Q18,8 45,8 Q74,8 74,40 Q74,60 46,76 L46,92\" fill=\"none\" stroke=\"#EC4338\" stroke-width=\"10\" stroke-linecap=\"round\"/><path d=\"M52.7,118.0 L52.7,119.6 L52.5,120.4 L51.2,122.5 L50.4,122.9 L50.0,124.0 L48.5,124.6 L46.9,124.6 L45.4,125.3 L43.9,124.9 L42.7,123.6 L41.6,123.3 L40.1,121.6 L40.0,120.8 L39.4,119.8 L39.2,118.4 L39.0,116.8 L39.5,115.6 L40.7,113.5 L41.0,112.5 L43.0,111.9 L44.0,111.1 L45.3,110.9 L46.6,111.1 L48.2,111.7 L49.7,112.4 L51.0,113.3 L51.8,113.5 L52.8,115.6 L53.3,116.6 Z\" fill=\"#EC4338\" stroke=\"#EC4338\" stroke-width=\"2.6\"/></g></svg>"
+}
+}

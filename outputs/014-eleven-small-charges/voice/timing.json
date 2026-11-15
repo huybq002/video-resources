@@ -1,0 +1,1019 @@
+{
+ "duration": 181.29,
+ "lead": 0.25,
+ "lines": [
+  {
+   "scene": 1,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Arlo opened his card statement and counted eleven things he never remembered buying.",
+   "emote": "surprise",
+   "start": 0.25,
+   "end": 4.89
+  },
+  {
+   "scene": 1,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Each one was small. None was over sixteen dollars.",
+   "emote": "doubt",
+   "start": 5.19,
+   "end": 9.14
+  },
+  {
+   "scene": 1,
+   "i": 2,
+   "who": "jo",
+   "speaker": "Jo",
+   "text": "Read them out loud.",
+   "emote": "calm",
+   "start": 9.59,
+   "end": 10.72
+  },
+  {
+   "scene": 1,
+   "i": 3,
+   "who": "arlo",
+   "speaker": "Arlo",
+   "text": "A film app. A music app. Cloud space. A meal box. I ate that once.",
+   "emote": "worry",
+   "start": 11.17,
+   "end": 17.19
+  },
+  {
+   "scene": 1,
+   "i": 4,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "By the end of this evening, he would know the one number he had never seen.",
+   "emote": "think",
+   "start": 17.64,
+   "end": 22.45
+  },
+  {
+   "scene": 2,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "It started on a Tuesday. A film app offered seven days free.",
+   "emote": "happy",
+   "start": 23.3,
+   "end": 27.05
+  },
+  {
+   "scene": 2,
+   "i": 1,
+   "who": "arlo",
+   "speaker": "Arlo",
+   "text": "Free? Sure. I'll cancel before it renews.",
+   "emote": "happy",
+   "start": 27.5,
+   "end": 30.6
+  },
+  {
+   "scene": 2,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "He did not cancel. After the free week it cost five dollars a month, charged on the same day, every month.",
+   "emote": "doubt",
+   "start": 31.05,
+   "end": 37.51
+  },
+  {
+   "scene": 2,
+   "i": 3,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Nothing felt different. Money left his account, and he felt nothing at all.",
+   "emote": "calm",
+   "start": 37.81,
+   "end": 42.46
+  },
+  {
+   "scene": 3,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Then a Friday. His phone said the storage was full.",
+   "emote": "worry",
+   "start": 43.31,
+   "end": 46.9
+  },
+  {
+   "scene": 3,
+   "i": 1,
+   "who": "arlo",
+   "speaker": "Arlo",
+   "text": "Twelve dollars for more space? Fine. It's just space.",
+   "emote": "tired",
+   "start": 47.35,
+   "end": 51.63
+  },
+  {
+   "scene": 3,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "It was easy. One tap, and the problem went away.",
+   "emote": "relief",
+   "start": 52.08,
+   "end": 56.37
+  },
+  {
+   "scene": 3,
+   "i": 3,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "A music app came the same way. A meal box came after a long week.",
+   "emote": "calm",
+   "start": 56.67,
+   "end": 61.41
+  },
+  {
+   "scene": 3,
+   "i": 4,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Each yes took less than ten seconds, on a different evening.",
+   "emote": "calm",
+   "start": 61.71,
+   "end": 65.35
+  },
+  {
+   "scene": 4,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The meal box was a Sunday. Four dinners a week, and the first box was half price.",
+   "emote": "happy",
+   "start": 66.2,
+   "end": 71.28
+  },
+  {
+   "scene": 4,
+   "i": 1,
+   "who": "arlo",
+   "speaker": "Arlo",
+   "text": "Half price? I'll pause it after the first one.",
+   "emote": "happy",
+   "start": 71.73,
+   "end": 74.42
+  },
+  {
+   "scene": 4,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "He forgot to pause it. The box renewed on the same date every month, and most months he was out of town.",
+   "emote": "doubt",
+   "start": 74.87,
+   "end": 81.09
+  },
+  {
+   "scene": 4,
+   "i": 3,
+   "who": "jo",
+   "speaker": "Jo",
+   "text": "Out of town, and still paying for dinners.",
+   "emote": "doubt",
+   "start": 81.54,
+   "end": 84.02
+  },
+  {
+   "scene": 4,
+   "i": 4,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "That is how an eleventh charge arrives. Not in one big yes. In ten small ones, and a forgotten pause.",
+   "emote": "think",
+   "start": 84.47,
+   "end": 92.36
+  },
+  {
+   "scene": 5,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Researchers who study spending have a name for what he did not feel. The pain of paying.",
+   "emote": "think",
+   "start": 93.21,
+   "end": 98.77
+  },
+  {
+   "scene": 5,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Handing over cash stings. A card tap stings less. A charge that repeats on its own barely registers.",
+   "emote": "calm",
+   "start": 99.07,
+   "end": 106.57
+  },
+  {
+   "scene": 5,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "It does not mean people are foolish. It describes how the sting fades when payment is automatic and small.",
+   "emote": "calm",
+   "start": 106.87,
+   "end": 113.46
+  },
+  {
+   "scene": 6,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Back on the couch, Jo helped him add the lines.",
+   "emote": "calm",
+   "start": 114.31,
+   "end": 117.3
+  },
+  {
+   "scene": 6,
+   "i": 1,
+   "who": "jo",
+   "speaker": "Jo",
+   "text": "Five. Fourteen. Twenty-six. Keep going.",
+   "emote": "calm",
+   "start": 117.75,
+   "end": 121.8
+  },
+  {
+   "scene": 6,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Ninety-one dollars. Every month.",
+   "emote": "shock",
+   "start": 122.25,
+   "end": 124.68
+  },
+  {
+   "scene": 6,
+   "i": 3,
+   "who": "arlo",
+   "speaker": "Arlo",
+   "text": "Ninety-one? I never spent ninety-one on anything.",
+   "emote": "shock",
+   "start": 125.13,
+   "end": 128.19
+  },
+  {
+   "scene": 6,
+   "i": 4,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Twelve months of it was one thousand, ninety-two dollars.",
+   "emote": "shock",
+   "start": 128.64,
+   "end": 132.14
+  },
+  {
+   "scene": 7,
+   "i": 0,
+   "who": "jo",
+   "speaker": "Jo",
+   "text": "Which ones did you use this month?",
+   "emote": "calm",
+   "start": 132.99,
+   "end": 134.77
+  },
+  {
+   "scene": 7,
+   "i": 1,
+   "who": "arlo",
+   "speaker": "Arlo",
+   "text": "The music app. The cloud space. Maybe the film app. Once.",
+   "emote": "doubt",
+   "start": 135.22,
+   "end": 140.04
+  },
+  {
+   "scene": 7,
+   "i": 2,
+   "who": "jo",
+   "speaker": "Jo",
+   "text": "If someone asked for ninety-one dollars at once, would you have said yes?",
+   "emote": "doubt",
+   "start": 140.49,
+   "end": 144.9
+  },
+  {
+   "scene": 7,
+   "i": 3,
+   "who": "arlo",
+   "speaker": "Arlo",
+   "text": "No. Not in one go. Never.",
+   "emote": "sad",
+   "start": 145.35,
+   "end": 148.18
+  },
+  {
+   "scene": 7,
+   "i": 4,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "That is the trick of small. Nothing was hidden. It was only spread across eleven dates.",
+   "emote": "think",
+   "start": 148.63,
+   "end": 154.49
+  },
+  {
+   "scene": 7,
+   "i": 5,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Three of the eleven. The other eight had been paid for months, each one quietly.",
+   "emote": "sad",
+   "start": 154.79,
+   "end": 159.99
+  },
+  {
+   "scene": 7,
+   "i": 6,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "He crossed out five that night, and left the rest on his list to think about.",
+   "emote": "calm",
+   "start": 160.29,
+   "end": 164.11
+  },
+  {
+   "scene": 7,
+   "i": 7,
+   "who": "arlo",
+   "speaker": "Arlo",
+   "text": "It's strange. The charges were never big. It was the adding that hurt.",
+   "emote": "sad",
+   "start": 164.56,
+   "end": 169.58
+  },
+  {
+   "scene": 8,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "No single charge ever felt like a decision. Together, they were a year of them.",
+   "emote": "think",
+   "start": 170.43,
+   "end": 176.01
+  },
+  {
+   "scene": 8,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Arlo kept the printed list on the fridge.",
+   "emote": "calm",
+   "start": 176.31,
+   "end": 178.56
+  },
+  {
+   "scene": 8,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Which of the eleven would you have kept?",
+   "emote": "think",
+   "start": 178.86,
+   "end": 180.69
+  }
+ ],
+ "scenes": [
+  {
+   "id": 1,
+   "title": "The statement",
+   "place": "Arlo's small apartment, a lamp on, he sits on the couch with a laptop open on a card statement",
+   "mood": "tense",
+   "value": "-",
+   "start": 0.25,
+   "end": 22.45
+  },
+  {
+   "id": 2,
+   "title": "A Tuesday",
+   "place": "Arlo's kitchen on a Tuesday evening, a phone propped against a fruit bowl showing a free trial banner",
+   "mood": "upbeat",
+   "value": "+",
+   "start": 23.3,
+   "end": 42.46
+  },
+  {
+   "id": 3,
+   "title": "A Friday",
+   "place": "Arlo's desk at the window on a Friday night, a phone showing a storage full warning",
+   "mood": "tense",
+   "value": "-",
+   "start": 43.31,
+   "end": 65.35
+  },
+  {
+   "id": 4,
+   "title": "A Sunday",
+   "place": "Arlo's cramped kitchen on a Sunday afternoon, a laptop open on a meal box sign-up page, a half-empty fridge behind him",
+   "mood": "upbeat",
+   "value": "+",
+   "start": 66.2,
+   "end": 92.36
+  },
+  {
+   "id": 5,
+   "title": "The name",
+   "place": "A chalkboard in a classroom corner with a coin on one side and a sealed envelope on the other",
+   "mood": "mystery",
+   "value": "+",
+   "start": 93.21,
+   "end": 113.46
+  },
+  {
+   "id": 6,
+   "title": "Eleven",
+   "place": "Arlo's couch again, the laptop now showing a plain list of eleven lines with a calculator beside it",
+   "mood": "tense",
+   "value": "-",
+   "start": 114.31,
+   "end": 132.14
+  },
+  {
+   "id": 7,
+   "title": "Which ones",
+   "place": "The same couch at midnight, Arlo has a pen and circles items on a printed copy of the list",
+   "mood": "hopeful",
+   "value": "+",
+   "start": 132.99,
+   "end": 169.58
+  },
+  {
+   "id": 8,
+   "title": "The question",
+   "place": "A close view of the printed list on the coffee table with a pen lying across it",
+   "mood": "mystery",
+   "value": "-",
+   "start": 170.43,
+   "end": 181.29
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.25,
+   "end": 2.154,
+   "text": "Arlo opened his card statement and"
+  },
+  {
+   "start": 2.174,
+   "end": 3.851,
+   "text": "counted eleven things he never"
+  },
+  {
+   "start": 3.871,
+   "end": 4.87,
+   "text": "remembered buying."
+  },
+  {
+   "start": 5.19,
+   "end": 6.702,
+   "text": "Each one was small."
+  },
+  {
+   "start": 6.722,
+   "end": 9.12,
+   "text": "None was over sixteen dollars."
+  },
+  {
+   "start": 9.59,
+   "end": 10.7,
+   "text": "Read them out loud."
+  },
+  {
+   "start": 11.17,
+   "end": 12.218,
+   "text": "A film app."
+  },
+  {
+   "start": 12.238,
+   "end": 13.383,
+   "text": "A music app."
+  },
+  {
+   "start": 13.403,
+   "end": 14.548,
+   "text": "Cloud space."
+  },
+  {
+   "start": 14.568,
+   "end": 15.616,
+   "text": "A meal box."
+  },
+  {
+   "start": 15.636,
+   "end": 17.17,
+   "text": "I ate that once."
+  },
+  {
+   "start": 17.64,
+   "end": 19.399,
+   "text": "By the end of this evening,"
+  },
+  {
+   "start": 19.419,
+   "end": 21.705,
+   "text": "he would know the one number he had"
+  },
+  {
+   "start": 21.725,
+   "end": 22.43,
+   "text": "never seen."
+  },
+  {
+   "start": 23.3,
+   "end": 24.805,
+   "text": "It started on a Tuesday."
+  },
+  {
+   "start": 24.825,
+   "end": 27.03,
+   "text": "A film app offered seven days free."
+  },
+  {
+   "start": 27.5,
+   "end": 27.877,
+   "text": "Free?"
+  },
+  {
+   "start": 27.897,
+   "end": 28.275,
+   "text": "Sure."
+  },
+  {
+   "start": 28.295,
+   "end": 30.58,
+   "text": "I'll cancel before it renews."
+  },
+  {
+   "start": 31.05,
+   "end": 32.17,
+   "text": "He did not cancel."
+  },
+  {
+   "start": 32.19,
+   "end": 34.197,
+   "text": "After the free week it cost five"
+  },
+  {
+   "start": 34.217,
+   "end": 35.21,
+   "text": "dollars a month,"
+  },
+  {
+   "start": 35.23,
+   "end": 36.73,
+   "text": "charged on the same day,"
+  },
+  {
+   "start": 36.75,
+   "end": 37.49,
+   "text": "every month."
+  },
+  {
+   "start": 37.81,
+   "end": 39.255,
+   "text": "Nothing felt different."
+  },
+  {
+   "start": 39.275,
+   "end": 40.72,
+   "text": "Money left his account,"
+  },
+  {
+   "start": 40.74,
+   "end": 42.44,
+   "text": "and he felt nothing at all."
+  },
+  {
+   "start": 43.31,
+   "end": 44.295,
+   "text": "Then a Friday."
+  },
+  {
+   "start": 44.315,
+   "end": 46.88,
+   "text": "His phone said the storage was full."
+  },
+  {
+   "start": 47.35,
+   "end": 49.848,
+   "text": "Twelve dollars for more space?"
+  },
+  {
+   "start": 49.868,
+   "end": 50.267,
+   "text": "Fine."
+  },
+  {
+   "start": 50.287,
+   "end": 51.61,
+   "text": "It's just space."
+  },
+  {
+   "start": 52.08,
+   "end": 53.179,
+   "text": "It was easy."
+  },
+  {
+   "start": 53.199,
+   "end": 53.925,
+   "text": "One tap,"
+  },
+  {
+   "start": 53.945,
+   "end": 56.35,
+   "text": "and the problem went away."
+  },
+  {
+   "start": 56.67,
+   "end": 58.872,
+   "text": "A music app came the same way."
+  },
+  {
+   "start": 58.892,
+   "end": 61.39,
+   "text": "A meal box came after a long week."
+  },
+  {
+   "start": 61.71,
+   "end": 63.911,
+   "text": "Each yes took less than ten seconds,"
+  },
+  {
+   "start": 63.931,
+   "end": 65.33,
+   "text": "on a different evening."
+  },
+  {
+   "start": 66.2,
+   "end": 67.852,
+   "text": "The meal box was a Sunday."
+  },
+  {
+   "start": 67.872,
+   "end": 69.138,
+   "text": "Four dinners a week,"
+  },
+  {
+   "start": 69.158,
+   "end": 71.26,
+   "text": "and the first box was half price."
+  },
+  {
+   "start": 71.73,
+   "end": 72.368,
+   "text": "Half price?"
+  },
+  {
+   "start": 72.388,
+   "end": 74.4,
+   "text": "I'll pause it after the first one."
+  },
+  {
+   "start": 74.87,
+   "end": 76.205,
+   "text": "He forgot to pause it."
+  },
+  {
+   "start": 76.225,
+   "end": 78.545,
+   "text": "The box renewed on the same date every"
+  },
+  {
+   "start": 78.565,
+   "end": 78.915,
+   "text": "month,"
+  },
+  {
+   "start": 78.935,
+   "end": 81.07,
+   "text": "and most months he was out of town."
+  },
+  {
+   "start": 81.54,
+   "end": 82.246,
+   "text": "Out of town,"
+  },
+  {
+   "start": 82.266,
+   "end": 84.0,
+   "text": "and still paying for dinners."
+  },
+  {
+   "start": 84.47,
+   "end": 86.89,
+   "text": "That is how an eleventh charge"
+  },
+  {
+   "start": 86.91,
+   "end": 87.541,
+   "text": "arrives."
+  },
+  {
+   "start": 87.561,
+   "end": 89.086,
+   "text": "Not in one big yes."
+  },
+  {
+   "start": 89.106,
+   "end": 90.551,
+   "text": "In ten small ones,"
+  },
+  {
+   "start": 90.571,
+   "end": 92.34,
+   "text": "and a forgotten pause."
+  },
+  {
+   "start": 93.21,
+   "end": 95.582,
+   "text": "Researchers who study spending have a"
+  },
+  {
+   "start": 95.602,
+   "end": 97.522,
+   "text": "name for what he did not feel."
+  },
+  {
+   "start": 97.542,
+   "end": 98.75,
+   "text": "The pain of paying."
+  },
+  {
+   "start": 99.07,
+   "end": 100.983,
+   "text": "Handing over cash stings."
+  },
+  {
+   "start": 101.003,
+   "end": 102.761,
+   "text": "A card tap stings less."
+  },
+  {
+   "start": 102.781,
+   "end": 105.236,
+   "text": "A charge that repeats on its own"
+  },
+  {
+   "start": 105.256,
+   "end": 106.55,
+   "text": "barely registers."
+  },
+  {
+   "start": 106.87,
+   "end": 109.131,
+   "text": "It does not mean people are foolish."
+  },
+  {
+   "start": 109.151,
+   "end": 111.476,
+   "text": "It describes how the sting fades when"
+  },
+  {
+   "start": 111.496,
+   "end": 113.44,
+   "text": "payment is automatic and small."
+  },
+  {
+   "start": 114.31,
+   "end": 115.46,
+   "text": "Back on the couch,"
+  },
+  {
+   "start": 115.48,
+   "end": 117.28,
+   "text": "Jo helped him add the lines."
+  },
+  {
+   "start": 117.75,
+   "end": 118.292,
+   "text": "Five."
+  },
+  {
+   "start": 118.312,
+   "end": 119.305,
+   "text": "Fourteen."
+  },
+  {
+   "start": 119.325,
+   "end": 120.542,
+   "text": "Twenty-six."
+  },
+  {
+   "start": 120.562,
+   "end": 121.78,
+   "text": "Keep going."
+  },
+  {
+   "start": 122.25,
+   "end": 123.719,
+   "text": "Ninety-one dollars."
+  },
+  {
+   "start": 123.739,
+   "end": 124.66,
+   "text": "Every month."
+  },
+  {
+   "start": 125.13,
+   "end": 125.811,
+   "text": "Ninety-one?"
+  },
+  {
+   "start": 125.831,
+   "end": 128.17,
+   "text": "I never spent ninety-one on anything."
+  },
+  {
+   "start": 128.64,
+   "end": 130.932,
+   "text": "Twelve months of it was one thousand,"
+  },
+  {
+   "start": 130.952,
+   "end": 132.12,
+   "text": "ninety-two dollars."
+  },
+  {
+   "start": 132.99,
+   "end": 134.75,
+   "text": "Which ones did you use this month?"
+  },
+  {
+   "start": 135.22,
+   "end": 136.45,
+   "text": "The music app."
+  },
+  {
+   "start": 136.47,
+   "end": 137.878,
+   "text": "The cloud space."
+  },
+  {
+   "start": 137.898,
+   "end": 139.574,
+   "text": "Maybe the film app."
+  },
+  {
+   "start": 139.594,
+   "end": 140.02,
+   "text": "Once."
+  },
+  {
+   "start": 140.49,
+   "end": 142.395,
+   "text": "If someone asked for ninety-one"
+  },
+  {
+   "start": 142.415,
+   "end": 143.389,
+   "text": "dollars at once,"
+  },
+  {
+   "start": 143.409,
+   "end": 144.88,
+   "text": "would you have said yes?"
+  },
+  {
+   "start": 145.35,
+   "end": 145.699,
+   "text": "No."
+  },
+  {
+   "start": 145.719,
+   "end": 147.422,
+   "text": "Not in one go."
+  },
+  {
+   "start": 147.442,
+   "end": 148.16,
+   "text": "Never."
+  },
+  {
+   "start": 148.63,
+   "end": 150.494,
+   "text": "That is the trick of small."
+  },
+  {
+   "start": 150.514,
+   "end": 151.819,
+   "text": "Nothing was hidden."
+  },
+  {
+   "start": 151.839,
+   "end": 154.051,
+   "text": "It was only spread across eleven"
+  },
+  {
+   "start": 154.071,
+   "end": 154.47,
+   "text": "dates."
+  },
+  {
+   "start": 154.79,
+   "end": 156.121,
+   "text": "Three of the eleven."
+  },
+  {
+   "start": 156.141,
+   "end": 158.349,
+   "text": "The other eight had been paid for"
+  },
+  {
+   "start": 158.369,
+   "end": 158.822,
+   "text": "months,"
+  },
+  {
+   "start": 158.842,
+   "end": 159.97,
+   "text": "each one quietly."
+  },
+  {
+   "start": 160.29,
+   "end": 161.849,
+   "text": "He crossed out five that night,"
+  },
+  {
+   "start": 161.869,
+   "end": 163.784,
+   "text": "and left the rest on his list to think"
+  },
+  {
+   "start": 163.804,
+   "end": 164.09,
+   "text": "about."
+  },
+  {
+   "start": 164.56,
+   "end": 165.5,
+   "text": "It's strange."
+  },
+  {
+   "start": 165.52,
+   "end": 167.493,
+   "text": "The charges were never big."
+  },
+  {
+   "start": 167.513,
+   "end": 169.56,
+   "text": "It was the adding that hurt."
+  },
+  {
+   "start": 170.43,
+   "end": 172.833,
+   "text": "No single charge ever felt like a"
+  },
+  {
+   "start": 172.853,
+   "end": 173.494,
+   "text": "decision."
+  },
+  {
+   "start": 173.514,
+   "end": 174.154,
+   "text": "Together,"
+  },
+  {
+   "start": 174.174,
+   "end": 175.99,
+   "text": "they were a year of them."
+  },
+  {
+   "start": 176.31,
+   "end": 178.146,
+   "text": "Arlo kept the printed list on the"
+  },
+  {
+   "start": 178.166,
+   "end": 178.54,
+   "text": "fridge."
+  },
+  {
+   "start": 178.86,
+   "end": 180.435,
+   "text": "Which of the eleven would you have"
+  },
+  {
+   "start": 180.455,
+   "end": 180.67,
+   "text": "kept?"
+  }
+ ],
+ "words_per_second": 2.82,
+ "voices": {
+  "Narrator": "en-US-AvaMultilingualNeural",
+  "Arlo": "en-US-BrianMultilingualNeural",
+  "Jo": "en-US-EmmaMultilingualNeural"
+ },
+ "engine": "EdgeTTSAdapter"
+}
