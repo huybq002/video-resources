@@ -12,3 +12,6 @@ __pycache__/
 *.py[cod]
 .env
 node_modules/
+.cache/
+outputs/*/voice/*.wav
+outputs/*/demo-*/

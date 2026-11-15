@@ -57,10 +57,10 @@ EDGE_VOICES: dict[str, list[dict[str, str]]] = {
     # The newer conversational voices come first: they breathe, stress and rise at questions like a person; the
     # older Jenny/Guy read every line in one flat tone (owner, 2026-11-14: "giọng đọc luôn bằng không biểu cảm").
     "en": [
-        {"id": "en-US-AndrewMultilingualNeural", "label": "Andrew (US, nam, kể chuyện)"},
+        # (en-US-AndrewMultilingualNeural returned no audio on every call, 2026-11-15: removed)
+        {"id": "en-US-BrianMultilingualNeural", "label": "Brian (US, nam, kể chuyện)"},
         {"id": "en-US-AvaMultilingualNeural", "label": "Ava (US, nữ)"},
         {"id": "en-US-EmmaMultilingualNeural", "label": "Emma (US, nữ)"},
-        {"id": "en-US-BrianMultilingualNeural", "label": "Brian (US, nam)"},
         {"id": "en-US-AndrewNeural", "label": "Andrew (US, nam)"},
         {"id": "en-US-AvaNeural", "label": "Ava (US, nữ)"},
         {"id": "en-US-EmmaNeural", "label": "Emma (US, nữ)"},
@@ -151,7 +151,7 @@ class EdgeTTSAdapter:
             wav = Path(tmp) / "voice.wav"
             pro = {k: v for k, v in (self.prosody or {}).items() if k in ("rate", "pitch", "volume") and v}
             tried = []
-            for voice in [self.voice, *[v["id"] for v in EDGE_VOICES.get(self.language, [])][8:9]]:
+            for voice in [self.voice, *[v["id"] for v in EDGE_VOICES.get(self.language, [])][7:8]]:
                 if not voice or voice in tried: continue
                 tried.append(voice)
                 for attempt in range(4):

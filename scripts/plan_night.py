@@ -65,9 +65,19 @@ def main():
         if len(rows) < k:
             print(f"FAIL: research gave {len(rows)} idea(s); write at least {k} into data/ideas.md (WebSearch fallback if "
                   f"research_youtube.py was refused) before choosing tonight's videos."); sys.exit(1)
-        print("ideas OK"); return
+        lanes = n.get("lanes") or []
+        missing = [l["id"] for l in lanes if not any(r[1].split()[0] in l["topics"] for r in rows)]
+        if missing:
+            print(f"FAIL: no idea dated {date} for lane(s) {', '.join(missing)} (one video per lane every night, channel.json night.lanes): "
+                  f"research them and write the ideas into data/ideas.md."); sys.exit(1)
+        print("ideas OK" + (f" (lanes: {', '.join(l['id'] for l in lanes)})" if lanes else "")); return
     if a.cmd == "status":
         pend = sorted((ROOT / "tasks" / "pending").glob("*.md"))
+        by_lane = {}
+        for f in pend:
+            m = re.search(r"^lane:\s*\"?(\w+)", f.read_text(encoding="utf-8"), re.M); by_lane[m.group(1) if m else "?"] = by_lane.get(m.group(1) if m else "?", 0) + 1
+        need = [l["id"] for l in (n.get("lanes") or []) if not by_lane.get(l["id"])]
+        print(f"lanes with a runnable task: {sorted(k for k in by_lane)}; lanes still to write tonight: {need or 'none'}")
         print(f"runnable tasks: {len(pend)}; videos tonight: >= {n['videos_per_night']}; "
               f"length per idea within {n['duration_range_min'][0]}-{n['duration_range_min'][1]} min")
         return

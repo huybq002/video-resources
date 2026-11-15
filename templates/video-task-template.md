@@ -3,16 +3,19 @@ id: 002-video-short-name
 type: video            # video | thumbnail
 priority: 2            # lower number = run first
 status: pending        # pending | in-progress | done | blocked
-# --- video fields (skill: code2video-resource-generator, CI mode) ---
-topic: ""              # topic id from channel.json (money | psychology | mystery)
+# --- video fields (skill: hezb-story; picture: stickman-video-director) ---
+lane: ""               # trending | mystery | news (channel.json night.lanes): one video per lane every night
+topic: ""              # topic id from channel.json (money | psychology | mystery | news)
+sources: []            # news lane only: 2+ source URLs with the date read, e.g. ["https://... (read 2026-11-15)"]
+news_date: ""          # news lane only: the date of the story
 keyword: ""            # the target search keyword this video is built around
 format: ""             # what_if | character | episode | days | dilemma | explainer | wordless (skill references/story-formats.md)
 idea: "One-sentence idea or topic"
 lang: en               # script language (channel.json lang)
-only_aspect: ""        # leave empty: every task builds BOTH 16:9 and 9:16 (own assets per frame). "16:9" or "9:16" to build just one.
+only_aspect: ""        # leave empty: every task builds BOTH 16:9 and 9:16 (a native composition each). "16:9" or "9:16" to build just one.
 duration_min: 5        # length this idea needs, in minutes (night.duration_range_min, 1-8): not fixed, the story decides
 script_prompt: ""      # optional: your own script, outline or tone
-renderer: tool         # tool (VieNeu voice + HyperFrames, best quality) | skill (edge-tts, fallback)
+style: ""              # B1 | B2 | B3 (stickman/lock.json enabled_styles); empty = the job picks by content
 series: ""             # optional: folder name under series/ (empty = stand-alone)
 episode: ""            # optional: episode number (series only)
 upload: false          # true = upload to YouTube after rendering (needs YT_* secrets)

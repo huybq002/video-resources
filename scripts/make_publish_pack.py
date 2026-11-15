@@ -66,6 +66,8 @@ def main() -> int:
     dur = None
     if a.spec and pathlib.Path(a.spec).is_file():
         dur = json.load(open(a.spec, encoding="utf-8")).get("duration_s")
+    if not dur and (pathlib.Path("outputs") / a.id / "voice" / "timing.json").is_file():   # a story: the voice's length
+        dur = json.load(open(pathlib.Path("outputs") / a.id / "voice" / "timing.json", encoding="utf-8"))["duration"]
 
     yt = p.get("youtube", {})
     sh = p.get("youtube_shorts", {})
