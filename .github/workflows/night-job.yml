@@ -237,6 +237,22 @@ jobs:
                   carries "Title: <working title, 40-60 chars> / Thumb: <3 words>"; an idea without a title a stranger
                   would click is dropped. Ideas in a topic or title pattern that beat the channel median in
                   data/performance.md come first; a pattern at the bottom twice is paused.
+                  MYSTERY NIGHTS (owner decision 2026-11-15: the channel's nightly videos are classic fair-play murder
+                  mysteries, topics share money 0.1 / psychology 0.1 / mystery 0.8 in channel.json): for every mystery idea
+                  1. read data/mystery-tricks.md and data/mystery-craft.md; pick the first `unused` kind of trick that was not used
+                     this week (the table is the genre's stock: locked room, alibi, snow, dying message, double ...). It is a
+                     KIND of trick, never a story;
+                  2. WebSearch (and the digest) for what viewers search and watch about that kind: titles, lengths, wording of
+                     "locked room mystery explained", "alibi trick explained", "how the trick worked" ... Use those words in the
+                     search phrase and tags. NEVER read a franchise's episode list to copy a case: do not use any existing
+                     franchise's names, characters, cases, titles or catch-phrases anywhere (scripts/policy_check.py fails them);
+                  3. write a NEW case around the kind: new victim, place, suspects, clues, twist; the death is never shown or
+                     described (no blood, wound, weapon on screen, method or cause of death), the trick is a misdirection trick,
+                     never a recipe to harm; three fair clues in plain view; the structure of data/mystery-craft.md;
+                  4. put the idea in data/ideas.md (keyword = a phrase people type, never a franchise name) and mark the kind
+                     `used` in data/mystery-tricks.md with the task id, in the same commit as the task;
+                  5. write the task with the idea's duration (6-8 min) and a `style:` picked by content among the approved styles
+                     (mysteries: B3 first, then B2, B1), different from the previous video's style.
                   HARD RULE: every run writes AT LEAST 3 new ideas (night.min_ideas_per_run) dated tonight into data/ideas.md,
                   even when tasks are already pending (they feed the next nights). Then run
                   `python scripts/plan_night.py check-ideas`; if it prints FAIL, research more (WebSearch is the fallback

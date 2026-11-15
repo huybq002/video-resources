@@ -11,7 +11,7 @@
     {
       "id": "money",
       "name": "Money stories",
-      "share": 0.3,
+      "share": 0.1,
       "angle": "An invented person makes one money decision; the film follows what it costs and names the mechanism behind it",
       "seed_keywords": [
         "money mistakes",
@@ -30,7 +30,7 @@
     {
       "id": "psychology",
       "name": "Behavioural psychology",
-      "share": 0.4,
+      "share": 0.1,
       "angle": "Name one effect, show it happening to a character, then show the viewer where it happens in their own week",
       "seed_keywords": [
         "cognitive bias explained",
@@ -49,15 +49,19 @@
     {
       "id": "mystery",
       "name": "Invented mysteries",
-      "share": 0.3,
-      "angle": "A fictional case built from the SHAPE of real cases: the kind of deception, the kind of motive, the way it unravels. Everything else invented.",
+      "share": 0.8,
+      "angle": "A fair-play whodunit of our own (a detective duo, three suspects, three clues in plain view, then the trick explained). The kind of trick comes from data/mystery-tricks.md; the structure from data/mystery-craft.md.",
       "seed_keywords": [
         "detective story animated",
         "mystery story explained",
         "unsolved mystery story",
         "crime investigation story",
         "how the scam worked",
-        "con artist story"
+        "con artist story",
+        "locked room mystery explained",
+        "how the trick worked mystery",
+        "alibi trick explained",
+        "detective story with clues"
       ],
       "hard_rules": [
         "FICTION ONLY. Invented names, places, dates and outcome. Never a real case, named or recognizable.",
@@ -97,7 +101,8 @@
     "min_ideas_per_run": 3,
     "enrich_per_keyword": 4,
     "enrich_budget_s": 300,
-    "_note": "Ideas are chosen by recent demand and small-channel breakouts, with search phrases from YouTube autocomplete (data/growth-playbook.md)."
+    "_note": "Ideas are chosen by recent demand and small-channel breakouts, with search phrases from YouTube autocomplete (data/growth-playbook.md).",
+    "mystery_tricks": "data/mystery-tricks.md"
   },
   "publish": {
     "platforms": [

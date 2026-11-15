@@ -51,6 +51,13 @@ REAL_ENTITY = re.compile(
     r"Enron|Theranos|FTX|Lehman Brothers|Wirecard|Madoff|Ponzi scheme of|"
     r"Harvard|Stanford|Oxford|Cambridge University|NASA|WHO|CDC)\b")
 
+# Another franchise's name, characters or catch-phrases (owner asked for Conan-STYLE mysteries, 2026-11-15): the genre is free,
+# a specific story is not. Nothing here may carry these words: story, title, description, tags, thumbnail text.
+FRANCHISE = re.compile(
+    r"\b(detective conan|case closed|meitantei|conan edogawa|edogawa|shinichi|kudo shinichi|ran mouri|kogoro|mouri|"
+    r"haibara|ai haibara|professor agasa|black organi[sz]ation|sherlock holmes|hercule poirot|"
+    r"the truth is always one|there is only one truth)\b", re.I)
+
 PLACEHOLDER = re.compile(r"\b(TODO|TBD|xxx|lorem ipsum|<[a-z_]+>)\b", re.I)
 
 problems, notes = [], []
@@ -63,6 +70,7 @@ def scan(text, where):
         (GRAPHIC, "graphic injury or death detail: cut it. It costs the ads and can cost the channel"),
         (ADVICE, "gives advice (money, medical or legal) where the channel promised a story"),
         (REAL_ENTITY, "names a real organisation, company or case. Invent one instead"),
+        (FRANCHISE, "uses another franchise's name, character or catch-phrase. Take the genre's structure, never a story: invent the name"),
         (PLACEHOLDER, "left a placeholder in text that ships"),
     ):
         for m in rx.finditer(text):
