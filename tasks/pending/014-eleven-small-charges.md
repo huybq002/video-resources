@@ -32,3 +32,4 @@ privacy: private
 - [ ] Release published, publish pack written
 
 ## Progress notes
+- 2026-11-16 night: story lint+policy OK, voiced, both cuts authored (author.py + outputs/_lib/alib.py; portrait uses voice-portrait/ with captions re-split to 24 chars via outputs/_lib/portrait_voice.py), validate OK for both cuts, 60-s previews rendered. Full film NOT rendered: see 013's note (runtime preview cap 60 s, full render needs owner approval). Resume: when a render route is decided, run assemble.py (landscape: --voice voice, portrait: --voice voice-portrait).

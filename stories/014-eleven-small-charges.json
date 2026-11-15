@@ -236,6 +236,11 @@
      "emote": "doubt"
     },
     {
+     "who": "narrator",
+     "t": "Three of the eleven. The other eight had been paid for months, each one quietly.",
+     "emote": "sad"
+    },
+    {
      "who": "jo",
      "t": "If someone asked for ninety-one dollars at once, would you have said yes?",
      "emote": "doubt"
@@ -249,11 +254,6 @@
      "who": "narrator",
      "t": "That is the trick of small. Nothing was hidden. It was only spread across eleven dates.",
      "emote": "think"
-    },
-    {
-     "who": "narrator",
-     "t": "Three of the eleven. The other eight had been paid for months, each one quietly.",
-     "emote": "sad"
     },
     {
      "who": "narrator",

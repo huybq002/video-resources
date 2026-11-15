@@ -1,5 +1,5 @@
 {
- "duration": 181.29,
+ "duration": 181.32,
  "lead": 0.25,
  "lines": [
   {
@@ -295,42 +295,42 @@
   {
    "scene": 7,
    "i": 2,
-   "who": "jo",
-   "speaker": "Jo",
-   "text": "If someone asked for ninety-one dollars at once, would you have said yes?",
-   "emote": "doubt",
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Three of the eleven. The other eight had been paid for months, each one quietly.",
+   "emote": "sad",
    "start": 140.49,
-   "end": 144.9
+   "end": 145.69
   },
   {
    "scene": 7,
    "i": 3,
-   "who": "arlo",
-   "speaker": "Arlo",
-   "text": "No. Not in one go. Never.",
-   "emote": "sad",
-   "start": 145.35,
-   "end": 148.18
+   "who": "jo",
+   "speaker": "Jo",
+   "text": "If someone asked for ninety-one dollars at once, would you have said yes?",
+   "emote": "doubt",
+   "start": 146.14,
+   "end": 150.55
   },
   {
    "scene": 7,
    "i": 4,
-   "who": "narrator",
-   "speaker": "Narrator",
-   "text": "That is the trick of small. Nothing was hidden. It was only spread across eleven dates.",
-   "emote": "think",
-   "start": 148.63,
-   "end": 154.49
+   "who": "arlo",
+   "speaker": "Arlo",
+   "text": "No. Not in one go. Never.",
+   "emote": "sad",
+   "start": 151.0,
+   "end": 153.83
   },
   {
    "scene": 7,
    "i": 5,
    "who": "narrator",
    "speaker": "Narrator",
-   "text": "Three of the eleven. The other eight had been paid for months, each one quietly.",
-   "emote": "sad",
-   "start": 154.79,
-   "end": 159.99
+   "text": "That is the trick of small. Nothing was hidden. It was only spread across eleven dates.",
+   "emote": "think",
+   "start": 154.28,
+   "end": 160.14
   },
   {
    "scene": 7,
@@ -339,8 +339,8 @@
    "speaker": "Narrator",
    "text": "He crossed out five that night, and left the rest on his list to think about.",
    "emote": "calm",
-   "start": 160.29,
-   "end": 164.11
+   "start": 160.44,
+   "end": 164.14
   },
   {
    "scene": 7,
@@ -349,8 +349,8 @@
    "speaker": "Arlo",
    "text": "It's strange. The charges were never big. It was the adding that hurt.",
    "emote": "sad",
-   "start": 164.56,
-   "end": 169.58
+   "start": 164.59,
+   "end": 169.61
   },
   {
    "scene": 8,
@@ -359,8 +359,8 @@
    "speaker": "Narrator",
    "text": "No single charge ever felt like a decision. Together, they were a year of them.",
    "emote": "think",
-   "start": 170.43,
-   "end": 176.01
+   "start": 170.46,
+   "end": 176.04
   },
   {
    "scene": 8,
@@ -369,8 +369,8 @@
    "speaker": "Narrator",
    "text": "Arlo kept the printed list on the fridge.",
    "emote": "calm",
-   "start": 176.31,
-   "end": 178.56
+   "start": 176.34,
+   "end": 178.59
   },
   {
    "scene": 8,
@@ -379,8 +379,8 @@
    "speaker": "Narrator",
    "text": "Which of the eleven would you have kept?",
    "emote": "think",
-   "start": 178.86,
-   "end": 180.69
+   "start": 178.89,
+   "end": 180.72
   }
  ],
  "scenes": [
@@ -445,7 +445,7 @@
    "mood": "hopeful",
    "value": "+",
    "start": 132.99,
-   "end": 169.58
+   "end": 169.61
   },
   {
    "id": 8,
@@ -453,8 +453,8 @@
    "place": "A close view of the printed list on the coffee table with a pen lying across it",
    "mood": "mystery",
    "value": "-",
-   "start": 170.43,
-   "end": 181.29
+   "start": 170.46,
+   "end": 181.32
   }
  ],
  "captions": [
@@ -870,142 +870,142 @@
   },
   {
    "start": 140.49,
-   "end": 142.395,
-   "text": "If someone asked for ninety-one"
-  },
-  {
-   "start": 142.415,
-   "end": 143.389,
-   "text": "dollars at once,"
-  },
-  {
-   "start": 143.409,
-   "end": 144.88,
-   "text": "would you have said yes?"
-  },
-  {
-   "start": 145.35,
-   "end": 145.699,
-   "text": "No."
-  },
-  {
-   "start": 145.719,
-   "end": 147.422,
-   "text": "Not in one go."
-  },
-  {
-   "start": 147.442,
-   "end": 148.16,
-   "text": "Never."
-  },
-  {
-   "start": 148.63,
-   "end": 150.494,
-   "text": "That is the trick of small."
-  },
-  {
-   "start": 150.514,
-   "end": 151.819,
-   "text": "Nothing was hidden."
-  },
-  {
-   "start": 151.839,
-   "end": 154.051,
-   "text": "It was only spread across eleven"
-  },
-  {
-   "start": 154.071,
-   "end": 154.47,
-   "text": "dates."
-  },
-  {
-   "start": 154.79,
-   "end": 156.121,
+   "end": 141.821,
    "text": "Three of the eleven."
   },
   {
-   "start": 156.141,
-   "end": 158.349,
+   "start": 141.841,
+   "end": 144.049,
    "text": "The other eight had been paid for"
   },
   {
-   "start": 158.369,
-   "end": 158.822,
+   "start": 144.069,
+   "end": 144.522,
    "text": "months,"
   },
   {
-   "start": 158.842,
-   "end": 159.97,
+   "start": 144.542,
+   "end": 145.67,
    "text": "each one quietly."
   },
   {
-   "start": 160.29,
-   "end": 161.849,
+   "start": 146.14,
+   "end": 148.045,
+   "text": "If someone asked for ninety-one"
+  },
+  {
+   "start": 148.065,
+   "end": 149.039,
+   "text": "dollars at once,"
+  },
+  {
+   "start": 149.059,
+   "end": 150.53,
+   "text": "would you have said yes?"
+  },
+  {
+   "start": 151.0,
+   "end": 151.349,
+   "text": "No."
+  },
+  {
+   "start": 151.369,
+   "end": 153.072,
+   "text": "Not in one go."
+  },
+  {
+   "start": 153.092,
+   "end": 153.81,
+   "text": "Never."
+  },
+  {
+   "start": 154.28,
+   "end": 156.144,
+   "text": "That is the trick of small."
+  },
+  {
+   "start": 156.164,
+   "end": 157.469,
+   "text": "Nothing was hidden."
+  },
+  {
+   "start": 157.489,
+   "end": 159.701,
+   "text": "It was only spread across eleven"
+  },
+  {
+   "start": 159.721,
+   "end": 160.12,
+   "text": "dates."
+  },
+  {
+   "start": 160.44,
+   "end": 161.949,
    "text": "He crossed out five that night,"
   },
   {
-   "start": 161.869,
-   "end": 163.784,
+   "start": 161.969,
+   "end": 163.824,
    "text": "and left the rest on his list to think"
   },
   {
-   "start": 163.804,
-   "end": 164.09,
+   "start": 163.844,
+   "end": 164.12,
    "text": "about."
   },
   {
-   "start": 164.56,
-   "end": 165.5,
+   "start": 164.59,
+   "end": 165.53,
    "text": "It's strange."
   },
   {
-   "start": 165.52,
-   "end": 167.493,
+   "start": 165.55,
+   "end": 167.523,
    "text": "The charges were never big."
   },
   {
-   "start": 167.513,
-   "end": 169.56,
+   "start": 167.543,
+   "end": 169.59,
    "text": "It was the adding that hurt."
   },
   {
-   "start": 170.43,
-   "end": 172.833,
+   "start": 170.46,
+   "end": 172.863,
    "text": "No single charge ever felt like a"
   },
   {
-   "start": 172.853,
-   "end": 173.494,
+   "start": 172.883,
+   "end": 173.524,
    "text": "decision."
   },
   {
-   "start": 173.514,
-   "end": 174.154,
+   "start": 173.544,
+   "end": 174.184,
    "text": "Together,"
   },
   {
-   "start": 174.174,
-   "end": 175.99,
+   "start": 174.204,
+   "end": 176.02,
    "text": "they were a year of them."
   },
   {
-   "start": 176.31,
-   "end": 178.146,
+   "start": 176.34,
+   "end": 178.176,
    "text": "Arlo kept the printed list on the"
   },
   {
-   "start": 178.166,
-   "end": 178.54,
+   "start": 178.196,
+   "end": 178.57,
    "text": "fridge."
   },
   {
-   "start": 178.86,
-   "end": 180.435,
+   "start": 178.89,
+   "end": 180.465,
    "text": "Which of the eleven would you have"
   },
   {
-   "start": 180.455,
-   "end": 180.67,
+   "start": 180.485,
+   "end": 180.7,
    "text": "kept?"
   }
  ],

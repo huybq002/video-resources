@@ -1,0 +1,10698 @@
+{
+"shots": [
+{
+"start": 0.0,
+"end": 5.19,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-1-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-1-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-1-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-1-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 4.0,
+"x": 300.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-1-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 4.0,
+"x": 360.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-1-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-1-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-1-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 4.0,
+"x": 650.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-1-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 4.0,
+"x": 710.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/laptop.png",
+"x": 620,
+"y": 330,
+"w": 300,
+"h": 207,
+"id": "lap-1-9",
+"keys": [
+{
+"t": 0.0,
+"y": 330
+},
+{
+"t": 0.6,
+"y": 324
+},
+{
+"t": 1.2,
+"y": 330
+},
+{
+"t": 1.8,
+"y": 324
+},
+{
+"t": 2.4,
+"y": 330
+},
+{
+"t": 3.0,
+"y": 324
+},
+{
+"t": 3.6,
+"y": 330
+},
+{
+"t": 4.2,
+"y": 324
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the laptop shows the statement"
+}
+},
+{
+"type": "text",
+"text": "11 CHARGES",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 56,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-1-10"
+}
+]
+},
+{
+"start": 5.19,
+"end": 9.59,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-2-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-2-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-2-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-2-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 300.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-2-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 360.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-2-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-2-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-2-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 650.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-2-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 710.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "UNDER $16 EACH",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 56,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-2-9"
+}
+]
+},
+{
+"start": 9.59,
+"end": 11.17,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-3-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-3-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-3-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-3-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-3-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-3-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-3-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-3-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 170.8
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-3-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 0.55,
+"x": 710.0,
+"angle": -1.1
+},
+{
+"t": 1.1,
+"x": 710.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "READ THEM OUT",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 56,
+"bold": true,
+"color": "#5b7fa6",
+"id": "l-3-9"
+}
+]
+},
+{
+"start": 11.17,
+"end": 14.18,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-4-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-4-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-4-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-worry.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-4-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 170.8
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 170.8
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-4-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 0.55,
+"x": 360.0,
+"angle": -1.1
+},
+{
+"t": 1.1,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 1.65,
+"x": 360.0,
+"angle": -1.1
+},
+{
+"t": 2.2,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.75,
+"x": 360.0,
+"angle": -1.1
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-4-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-4-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-4-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-4-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 710.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "FILM \u00b7 MUSIC \u00b7 CLOUD \u00b7 MEAL BOX",
+"x": 40,
+"y": 40,
+"w": 1200,
+"size": 44,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-4-9"
+}
+]
+},
+{
+"start": 14.18,
+"end": 17.64,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-5-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-5-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-5-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-worry.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-5-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 170.8
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 170.8
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-5-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 0.55,
+"x": 360.0,
+"angle": -1.1
+},
+{
+"t": 1.1,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 1.65,
+"x": 360.0,
+"angle": -1.1
+},
+{
+"t": 2.2,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.75,
+"x": 360.0,
+"angle": -1.1
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-5-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-5-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-5-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-5-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 710.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "FILM \u00b7 MUSIC \u00b7 CLOUD \u00b7 MEAL BOX",
+"x": 40,
+"y": 40,
+"w": 1200,
+"size": 44,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-5-9"
+}
+]
+},
+{
+"start": 17.64,
+"end": 20.045,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-6-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-6-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-6-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-6-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-6-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-6-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-6-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-6-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-6-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 710.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "THE ONE NUMBER?",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 60,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-6-9"
+}
+]
+},
+{
+"start": 20.045,
+"end": 23.3,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-7-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-7-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-7-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-7-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-7-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-7-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-7-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-7-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-7-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 710.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "THE ONE NUMBER?",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 60,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-7-9"
+}
+]
+},
+{
+"start": 23.3,
+"end": 27.5,
+"layers": [
+{
+"type": "image",
+"path": "assets/kitchen.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-8-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-8-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-8-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-8-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 300.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-8-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 360.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 874.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-8-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 800,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-8-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 850.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-8-7",
+"keys": [
+{
+"t": 0.0,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 850.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 850.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 850.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 910.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-8-8",
+"keys": [
+{
+"t": 0.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 910.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 910.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/banner.png",
+"x": 380,
+"y": 40,
+"w": 520,
+"h": 150,
+"id": "ban-8-9",
+"keys": [
+{
+"t": 0.0,
+"y": 40
+},
+{
+"t": 0.6,
+"y": 34
+},
+{
+"t": 1.2,
+"y": 40
+},
+{
+"t": 1.8,
+"y": 34
+},
+{
+"t": 2.4,
+"y": 40
+},
+{
+"t": 3.0,
+"y": 34
+},
+{
+"t": 3.6,
+"y": 40
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the free trial banner"
+}
+},
+{
+"type": "text",
+"text": "7 DAYS FREE",
+"x": 440,
+"y": 80,
+"w": 810,
+"size": 60,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-8-10"
+}
+]
+},
+{
+"start": 27.5,
+"end": 31.05,
+"layers": [
+{
+"type": "image",
+"path": "assets/kitchen.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-9-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-9-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-9-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-smile.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-9-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 170.8
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 170.8
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-9-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 0.55,
+"x": 360.0,
+"angle": -1.1
+},
+{
+"t": 1.1,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 1.65,
+"x": 360.0,
+"angle": -1.1
+},
+{
+"t": 2.2,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.75,
+"x": 360.0,
+"angle": -1.1
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 874.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-9-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 800,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-9-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 850.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-9-7",
+"keys": [
+{
+"t": 0.0,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 850.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 850.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 910.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-9-8",
+"keys": [
+{
+"t": 0.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 910.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 910.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/phone.png",
+"x": 560,
+"y": 180,
+"w": 160,
+"h": 300,
+"id": "ph-9-9",
+"keys": [
+{
+"t": 0.0,
+"y": 180
+},
+{
+"t": 0.55,
+"y": 170
+},
+{
+"t": 1.1,
+"y": 180
+},
+{
+"t": 1.65,
+"y": 170
+},
+{
+"t": 2.2,
+"y": 180
+},
+{
+"t": 2.75,
+"y": 170
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the phone with the offer"
+}
+},
+{
+"type": "text",
+"text": "I'LL CANCEL BEFORE IT RENEWS",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 56,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-9-10"
+}
+]
+},
+{
+"start": 31.05,
+"end": 34.28,
+"layers": [
+{
+"type": "image",
+"path": "assets/kitchen.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-10-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-10-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-10-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-10-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 300.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-10-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 360.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 874.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-10-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 800,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-10-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 850.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-10-7",
+"keys": [
+{
+"t": 0.0,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 850.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 850.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 850.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 910.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-10-8",
+"keys": [
+{
+"t": 0.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 910.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 910.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/phone.png",
+"x": 560,
+"y": 180,
+"w": 160,
+"h": 300,
+"id": "ph-10-9",
+"keys": [
+{
+"t": 0.0,
+"y": 180
+},
+{
+"t": 0.55,
+"y": 170
+},
+{
+"t": 1.1,
+"y": 180
+},
+{
+"t": 1.65,
+"y": 170
+},
+{
+"t": 2.2,
+"y": 180
+},
+{
+"t": 2.75,
+"y": 170
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the phone with the offer"
+}
+},
+{
+"type": "text",
+"text": "$5 / MONTH",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 56,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-10-10"
+},
+{
+"type": "text",
+"text": "same day, every month",
+"x": 40,
+"y": 120,
+"w": 1210,
+"size": 48,
+"bold": true,
+"color": "#5b7fa6",
+"from": 1.0,
+"id": "l-10-11"
+}
+]
+},
+{
+"start": 34.28,
+"end": 37.81,
+"layers": [
+{
+"type": "image",
+"path": "assets/kitchen.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-11-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-11-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-11-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-11-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 300.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-11-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 360.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 874.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-11-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 800,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-11-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 850.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-11-7",
+"keys": [
+{
+"t": 0.0,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 850.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 850.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 850.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 910.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-11-8",
+"keys": [
+{
+"t": 0.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 910.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 910.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/phone.png",
+"x": 560,
+"y": 180,
+"w": 160,
+"h": 300,
+"id": "ph-11-9",
+"keys": [
+{
+"t": 0.0,
+"y": 180
+},
+{
+"t": 0.55,
+"y": 170
+},
+{
+"t": 1.1,
+"y": 180
+},
+{
+"t": 1.65,
+"y": 170
+},
+{
+"t": 2.2,
+"y": 180
+},
+{
+"t": 2.75,
+"y": 170
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the phone with the offer"
+}
+},
+{
+"type": "text",
+"text": "$5 / MONTH",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 56,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-11-10"
+},
+{
+"type": "text",
+"text": "same day, every month",
+"x": 40,
+"y": 120,
+"w": 1210,
+"size": 48,
+"bold": true,
+"color": "#5b7fa6",
+"from": 1.0,
+"id": "l-11-11"
+}
+]
+},
+{
+"start": 37.81,
+"end": 43.31,
+"layers": [
+{
+"type": "image",
+"path": "assets/kitchen.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-12-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-12-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-12-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-12-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 4.0,
+"x": 300.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-12-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 4.0,
+"x": 360.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 874.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-12-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 800,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-12-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 850.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-12-7",
+"keys": [
+{
+"t": 0.0,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 850.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 850.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 4.0,
+"x": 850.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 910.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-12-8",
+"keys": [
+{
+"t": 0.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 910.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 910.0,
+"angle": -0.4
+},
+{
+"t": 4.0,
+"x": 910.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "NOTHING FELT DIFFERENT",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 56,
+"bold": true,
+"color": "#5b7fa6",
+"id": "l-12-9"
+},
+{
+"type": "image",
+"path": "assets/coin.png",
+"x": 600,
+"y": 200,
+"w": 100,
+"h": 100,
+"id": "coin-12-10",
+"keys": [
+{
+"t": 0.0,
+"y": 200
+},
+{
+"t": 0.5,
+"y": 190
+},
+{
+"t": 1.0,
+"y": 200
+},
+{
+"t": 1.5,
+"y": 190
+},
+{
+"t": 2.0,
+"y": 200
+},
+{
+"t": 2.5,
+"y": 190
+},
+{
+"t": 3.0,
+"y": 200
+},
+{
+"t": 3.5,
+"y": 190
+},
+{
+"t": 4.0,
+"y": 200
+},
+{
+"t": 4.5,
+"y": 190
+}
+],
+"motion": {
+"role": "prop",
+"reason": "a coin leaves quietly"
+}
+}
+]
+},
+{
+"start": 43.31,
+"end": 47.35,
+"layers": [
+{
+"type": "image",
+"path": "assets/deskroom.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-13-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 374.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-13-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 300,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-13-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 350.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-13-3",
+"keys": [
+{
+"t": 0.0,
+"x": 350.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 350.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 350.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 350.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 350.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 410.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-13-4",
+"keys": [
+{
+"t": 0.0,
+"x": 410.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 410.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 410.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 410.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 854.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-13-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 780,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-13-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 830.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-13-7",
+"keys": [
+{
+"t": 0.0,
+"x": 830.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 830.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 830.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 830.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 830.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 890.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-13-8",
+"keys": [
+{
+"t": 0.0,
+"x": 890.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 890.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 890.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 890.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/phone-warn.png",
+"x": 560,
+"y": 180,
+"w": 160,
+"h": 300,
+"id": "ph-13-9",
+"keys": [
+{
+"t": 0.0,
+"y": 180
+},
+{
+"t": 0.55,
+"y": 170
+},
+{
+"t": 1.1,
+"y": 180
+},
+{
+"t": 1.65,
+"y": 170
+},
+{
+"t": 2.2,
+"y": 180
+},
+{
+"t": 2.75,
+"y": 170
+},
+{
+"t": 3.3,
+"y": 180
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the phone with the offer"
+}
+},
+{
+"type": "text",
+"text": "STORAGE FULL",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 56,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-13-10"
+}
+]
+},
+{
+"start": 47.35,
+"end": 52.08,
+"layers": [
+{
+"type": "image",
+"path": "assets/deskroom.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-14-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 374.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-14-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 300,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-14-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 350.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-14-3",
+"keys": [
+{
+"t": 0.0,
+"x": 350.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 350.0,
+"y": 170.8
+},
+{
+"t": 1.6,
+"x": 350.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 350.0,
+"y": 170.8
+},
+{
+"t": 3.2,
+"x": 350.0,
+"y": 166.0
+},
+{
+"t": 4.0,
+"x": 350.0,
+"y": 170.8
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 410.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-14-4",
+"keys": [
+{
+"t": 0.0,
+"x": 410.0,
+"angle": -0.4
+},
+{
+"t": 0.55,
+"x": 410.0,
+"angle": -1.1
+},
+{
+"t": 1.1,
+"x": 410.0,
+"angle": -0.4
+},
+{
+"t": 1.65,
+"x": 410.0,
+"angle": -1.1
+},
+{
+"t": 2.2,
+"x": 410.0,
+"angle": -0.4
+},
+{
+"t": 2.75,
+"x": 410.0,
+"angle": -1.1
+},
+{
+"t": 3.3,
+"x": 410.0,
+"angle": -0.4
+},
+{
+"t": 3.85,
+"x": 410.0,
+"angle": -1.1
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 854.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-14-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 780,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-14-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 830.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-14-7",
+"keys": [
+{
+"t": 0.0,
+"x": 830.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 830.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 830.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 830.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 830.0,
+"y": 166.0
+},
+{
+"t": 4.0,
+"x": 830.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 890.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-14-8",
+"keys": [
+{
+"t": 0.0,
+"x": 890.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 890.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 890.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 890.0,
+"angle": -0.4
+},
+{
+"t": 4.0,
+"x": 890.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/phone.png",
+"x": 560,
+"y": 180,
+"w": 160,
+"h": 300,
+"id": "ph-14-9",
+"keys": [
+{
+"t": 0.0,
+"y": 180
+},
+{
+"t": 0.55,
+"y": 170
+},
+{
+"t": 1.1,
+"y": 180
+},
+{
+"t": 1.65,
+"y": 170
+},
+{
+"t": 2.2,
+"y": 180
+},
+{
+"t": 2.75,
+"y": 170
+},
+{
+"t": 3.3,
+"y": 180
+},
+{
+"t": 3.85,
+"y": 170
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the phone with the offer"
+}
+},
+{
+"type": "text",
+"text": "$12 FOR SPACE",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 56,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-14-10"
+},
+{
+"type": "text",
+"text": "fine. it's just space.",
+"x": 40,
+"y": 120,
+"w": 1210,
+"size": 48,
+"bold": true,
+"color": "#5b7fa6",
+"from": 1.0,
+"id": "l-14-11"
+}
+]
+},
+{
+"start": 52.08,
+"end": 56.67,
+"layers": [
+{
+"type": "image",
+"path": "assets/deskroom.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-15-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 374.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-15-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 300,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-15-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 350.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-15-3",
+"keys": [
+{
+"t": 0.0,
+"x": 350.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 350.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 350.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 350.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 350.0,
+"y": 166.0
+},
+{
+"t": 4.0,
+"x": 350.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 410.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-15-4",
+"keys": [
+{
+"t": 0.0,
+"x": 410.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 410.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 410.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 410.0,
+"angle": -0.4
+},
+{
+"t": 4.0,
+"x": 410.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 854.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-15-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 780,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-15-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 830.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-15-7",
+"keys": [
+{
+"t": 0.0,
+"x": 830.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 830.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 830.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 830.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 830.0,
+"y": 166.0
+},
+{
+"t": 4.0,
+"x": 830.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 890.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-15-8",
+"keys": [
+{
+"t": 0.0,
+"x": 890.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 890.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 890.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 890.0,
+"angle": -0.4
+},
+{
+"t": 4.0,
+"x": 890.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "ONE TAP",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 70,
+"bold": true,
+"color": "#8fa58a",
+"id": "l-15-9"
+}
+]
+},
+{
+"start": 56.67,
+"end": 61.71,
+"layers": [
+{
+"type": "image",
+"path": "assets/deskroom.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-16-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 374.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-16-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 300,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-16-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 350.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-16-3",
+"keys": [
+{
+"t": 0.0,
+"x": 350.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 350.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 350.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 350.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 350.0,
+"y": 166.0
+},
+{
+"t": 4.0,
+"x": 350.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 410.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-16-4",
+"keys": [
+{
+"t": 0.0,
+"x": 410.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 410.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 410.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 410.0,
+"angle": -0.4
+},
+{
+"t": 4.0,
+"x": 410.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 854.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-16-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 780,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-16-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 830.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-16-7",
+"keys": [
+{
+"t": 0.0,
+"x": 830.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 830.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 830.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 830.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 830.0,
+"y": 166.0
+},
+{
+"t": 4.0,
+"x": 830.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 890.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-16-8",
+"keys": [
+{
+"t": 0.0,
+"x": 890.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 890.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 890.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 890.0,
+"angle": -0.4
+},
+{
+"t": 4.0,
+"x": 890.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "MUSIC APP + MEAL BOX",
+"x": 40,
+"y": 40,
+"w": 1200,
+"size": 56,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-16-9"
+}
+]
+},
+{
+"start": 61.71,
+"end": 66.2,
+"layers": [
+{
+"type": "image",
+"path": "assets/deskroom.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-17-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 374.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-17-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 300,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-17-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 350.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-17-3",
+"keys": [
+{
+"t": 0.0,
+"x": 350.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 350.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 350.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 350.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 350.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 410.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-17-4",
+"keys": [
+{
+"t": 0.0,
+"x": 410.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 410.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 410.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 410.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 854.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-17-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 780,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-17-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 830.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-17-7",
+"keys": [
+{
+"t": 0.0,
+"x": 830.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 830.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 830.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 830.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 830.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 890.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-17-8",
+"keys": [
+{
+"t": 0.0,
+"x": 890.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 890.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 890.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 890.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "10 SECONDS PER YES",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 62,
+"bold": true,
+"color": "#5b7fa6",
+"id": "l-17-9"
+}
+]
+},
+{
+"start": 66.2,
+"end": 68.74,
+"layers": [
+{
+"type": "image",
+"path": "assets/sunday.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-18-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-18-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-18-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-18-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-18-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 874.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-18-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 800,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-18-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 850.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-18-7",
+"keys": [
+{
+"t": 0.0,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 850.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 850.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 910.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-18-8",
+"keys": [
+{
+"t": 0.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 910.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 910.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/banner.png",
+"x": 380,
+"y": 40,
+"w": 520,
+"h": 150,
+"id": "ban-18-9",
+"keys": [
+{
+"t": 0.0,
+"y": 40
+},
+{
+"t": 0.6,
+"y": 34
+},
+{
+"t": 1.2,
+"y": 40
+},
+{
+"t": 1.8,
+"y": 34
+},
+{
+"t": 2.4,
+"y": 40
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the half-price banner"
+}
+},
+{
+"type": "text",
+"text": "HALF PRICE",
+"x": 450,
+"y": 80,
+"w": 800,
+"size": 60,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-18-10"
+}
+]
+},
+{
+"start": 68.74,
+"end": 71.73,
+"layers": [
+{
+"type": "image",
+"path": "assets/sunday.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-19-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-19-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-19-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-19-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-19-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 874.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-19-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 800,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-19-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 850.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-19-7",
+"keys": [
+{
+"t": 0.0,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 850.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 850.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 910.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-19-8",
+"keys": [
+{
+"t": 0.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 910.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 910.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/banner.png",
+"x": 380,
+"y": 40,
+"w": 520,
+"h": 150,
+"id": "ban-19-9",
+"keys": [
+{
+"t": 0.0,
+"y": 40
+},
+{
+"t": 0.6,
+"y": 34
+},
+{
+"t": 1.2,
+"y": 40
+},
+{
+"t": 1.8,
+"y": 34
+},
+{
+"t": 2.4,
+"y": 40
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the half-price banner"
+}
+},
+{
+"type": "text",
+"text": "HALF PRICE",
+"x": 450,
+"y": 80,
+"w": 800,
+"size": 60,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-19-10"
+}
+]
+},
+{
+"start": 71.73,
+"end": 74.87,
+"layers": [
+{
+"type": "image",
+"path": "assets/sunday.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-20-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-20-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-20-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-smile.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-20-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 170.8
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 170.8
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-20-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 0.55,
+"x": 360.0,
+"angle": -1.1
+},
+{
+"t": 1.1,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 1.65,
+"x": 360.0,
+"angle": -1.1
+},
+{
+"t": 2.2,
+"x": 360.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 874.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-20-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 800,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-20-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 850.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-20-7",
+"keys": [
+{
+"t": 0.0,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 850.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 850.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 910.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-20-8",
+"keys": [
+{
+"t": 0.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 910.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 910.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "I'LL PAUSE IT AFTER",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 56,
+"bold": true,
+"color": "#5b7fa6",
+"id": "l-20-9"
+}
+]
+},
+{
+"start": 74.87,
+"end": 77.98,
+"layers": [
+{
+"type": "image",
+"path": "assets/sunday.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-21-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-21-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-21-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-21-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-21-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 360.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 874.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-21-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 800,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-21-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 850.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-21-7",
+"keys": [
+{
+"t": 0.0,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 850.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 850.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 910.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-21-8",
+"keys": [
+{
+"t": 0.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 910.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 910.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/cal.png",
+"x": 560,
+"y": 170,
+"w": 200,
+"h": 220,
+"id": "cal-21-9",
+"keys": [
+{
+"t": 0.0,
+"y": 170
+},
+{
+"t": 0.6,
+"y": 162
+},
+{
+"t": 1.2,
+"y": 170
+},
+{
+"t": 1.8,
+"y": 162
+},
+{
+"t": 2.4,
+"y": 170
+},
+{
+"t": 3.0,
+"y": 162
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the same date every month"
+}
+},
+{
+"type": "text",
+"text": "SAME DATE",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 64,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-21-10"
+}
+]
+},
+{
+"start": 77.98,
+"end": 81.54,
+"layers": [
+{
+"type": "image",
+"path": "assets/sunday.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-22-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-22-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-22-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-22-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-22-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 360.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 874.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-22-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 800,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-22-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 850.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-22-7",
+"keys": [
+{
+"t": 0.0,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 850.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 850.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 910.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-22-8",
+"keys": [
+{
+"t": 0.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 910.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 910.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/cal.png",
+"x": 560,
+"y": 170,
+"w": 200,
+"h": 220,
+"id": "cal-22-9",
+"keys": [
+{
+"t": 0.0,
+"y": 170
+},
+{
+"t": 0.6,
+"y": 162
+},
+{
+"t": 1.2,
+"y": 170
+},
+{
+"t": 1.8,
+"y": 162
+},
+{
+"t": 2.4,
+"y": 170
+},
+{
+"t": 3.0,
+"y": 162
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the same date every month"
+}
+},
+{
+"type": "text",
+"text": "SAME DATE",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 64,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-22-10"
+}
+]
+},
+{
+"start": 81.54,
+"end": 84.47,
+"layers": [
+{
+"type": "image",
+"path": "assets/sunday.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-23-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-23-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-23-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-23-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-23-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 874.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-23-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 800,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-23-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-doubt.png",
+"x": 850.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-23-7",
+"keys": [
+{
+"t": 0.0,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 850.0,
+"y": 170.8
+},
+{
+"t": 1.6,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 850.0,
+"y": 170.8
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 910.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-23-8",
+"keys": [
+{
+"t": 0.0,
+"x": 910.0,
+"angle": -0.4
+},
+{
+"t": 0.55,
+"x": 910.0,
+"angle": -1.1
+},
+{
+"t": 1.1,
+"x": 910.0,
+"angle": -0.4
+},
+{
+"t": 1.65,
+"x": 910.0,
+"angle": -1.1
+},
+{
+"t": 2.2,
+"x": 910.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "STILL PAYING",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 64,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-23-9"
+}
+]
+},
+{
+"start": 84.47,
+"end": 88.415,
+"layers": [
+{
+"type": "image",
+"path": "assets/sunday.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-24-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-24-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-24-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-24-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 300.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-24-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 360.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 874.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-24-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 800,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-24-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 850.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-24-7",
+"keys": [
+{
+"t": 0.0,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 850.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 850.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 850.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 910.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-24-8",
+"keys": [
+{
+"t": 0.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 910.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 910.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "10 SMALL YESES",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 64,
+"bold": true,
+"color": "#5b7fa6",
+"id": "l-24-9"
+}
+]
+},
+{
+"start": 88.415,
+"end": 93.21,
+"layers": [
+{
+"type": "image",
+"path": "assets/sunday.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-25-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-25-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-25-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-25-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 300.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-25-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 360.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 874.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-25-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 800,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-25-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 850.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-25-7",
+"keys": [
+{
+"t": 0.0,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 850.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 850.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 850.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 850.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 910.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-25-8",
+"keys": [
+{
+"t": 0.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 910.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 910.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 910.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "10 SMALL YESES",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 64,
+"bold": true,
+"color": "#5b7fa6",
+"id": "l-25-9"
+}
+]
+},
+{
+"start": 93.21,
+"end": 95.99,
+"layers": [
+{
+"type": "image",
+"path": "assets/board.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-26-0"
+},
+{
+"type": "image",
+"path": "assets/coin.png",
+"x": 250,
+"y": 230,
+"w": 100,
+"h": 100,
+"id": "bc-26-1",
+"keys": [
+{
+"t": 0.0,
+"y": 230
+},
+{
+"t": 0.55,
+"y": 218
+},
+{
+"t": 1.1,
+"y": 230
+},
+{
+"t": 1.65,
+"y": 218
+},
+{
+"t": 2.2,
+"y": 230
+},
+{
+"t": 2.75,
+"y": 218
+}
+],
+"motion": {
+"role": "prop",
+"reason": "cash leaves a sting"
+}
+},
+{
+"type": "image",
+"path": "assets/env.png",
+"x": 850,
+"y": 240,
+"w": 200,
+"h": 140,
+"id": "be-26-2",
+"keys": [
+{
+"t": 0.0,
+"y": 240
+},
+{
+"t": 0.55,
+"y": 228
+},
+{
+"t": 1.1,
+"y": 240
+},
+{
+"t": 1.65,
+"y": 228
+},
+{
+"t": 2.2,
+"y": 240
+},
+{
+"t": 2.75,
+"y": 228
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the auto charge"
+}
+},
+{
+"type": "text",
+"text": "THE PAIN OF PAYING",
+"x": 250,
+"y": 100,
+"w": 900,
+"size": 76,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-26-3"
+}
+]
+},
+{
+"start": 95.99,
+"end": 99.07,
+"layers": [
+{
+"type": "image",
+"path": "assets/board.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-27-0"
+},
+{
+"type": "image",
+"path": "assets/coin.png",
+"x": 250,
+"y": 230,
+"w": 100,
+"h": 100,
+"id": "bc-27-1",
+"keys": [
+{
+"t": 0.0,
+"y": 230
+},
+{
+"t": 0.55,
+"y": 218
+},
+{
+"t": 1.1,
+"y": 230
+},
+{
+"t": 1.65,
+"y": 218
+},
+{
+"t": 2.2,
+"y": 230
+},
+{
+"t": 2.75,
+"y": 218
+}
+],
+"motion": {
+"role": "prop",
+"reason": "cash leaves a sting"
+}
+},
+{
+"type": "image",
+"path": "assets/env.png",
+"x": 850,
+"y": 240,
+"w": 200,
+"h": 140,
+"id": "be-27-2",
+"keys": [
+{
+"t": 0.0,
+"y": 240
+},
+{
+"t": 0.55,
+"y": 228
+},
+{
+"t": 1.1,
+"y": 240
+},
+{
+"t": 1.65,
+"y": 228
+},
+{
+"t": 2.2,
+"y": 240
+},
+{
+"t": 2.75,
+"y": 228
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the auto charge"
+}
+},
+{
+"type": "text",
+"text": "THE PAIN OF PAYING",
+"x": 250,
+"y": 100,
+"w": 900,
+"size": 76,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-27-3"
+}
+]
+},
+{
+"start": 99.07,
+"end": 102.82,
+"layers": [
+{
+"type": "image",
+"path": "assets/board.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-28-0"
+},
+{
+"type": "image",
+"path": "assets/coin.png",
+"x": 250,
+"y": 230,
+"w": 100,
+"h": 100,
+"id": "bc-28-1",
+"keys": [
+{
+"t": 0.0,
+"y": 230
+},
+{
+"t": 0.55,
+"y": 218
+},
+{
+"t": 1.1,
+"y": 230
+},
+{
+"t": 1.65,
+"y": 218
+},
+{
+"t": 2.2,
+"y": 230
+},
+{
+"t": 2.75,
+"y": 218
+},
+{
+"t": 3.3,
+"y": 230
+}
+],
+"motion": {
+"role": "prop",
+"reason": "cash leaves a sting"
+}
+},
+{
+"type": "image",
+"path": "assets/env.png",
+"x": 850,
+"y": 240,
+"w": 200,
+"h": 140,
+"id": "be-28-2",
+"keys": [
+{
+"t": 0.0,
+"y": 240
+},
+{
+"t": 0.55,
+"y": 228
+},
+{
+"t": 1.1,
+"y": 240
+},
+{
+"t": 1.65,
+"y": 228
+},
+{
+"t": 2.2,
+"y": 240
+},
+{
+"t": 2.75,
+"y": 228
+},
+{
+"t": 3.3,
+"y": 240
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the auto charge"
+}
+},
+{
+"type": "text",
+"text": "CASH  STINGS",
+"x": 190,
+"y": 380,
+"w": 500,
+"size": 56,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-28-3"
+},
+{
+"type": "text",
+"text": "AUTO  BARELY",
+"x": 740,
+"y": 380,
+"w": 500,
+"size": 56,
+"bold": true,
+"color": "#2b2a28",
+"from": 1.2,
+"id": "l-28-4"
+}
+]
+},
+{
+"start": 102.82,
+"end": 106.87,
+"layers": [
+{
+"type": "image",
+"path": "assets/board.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-29-0"
+},
+{
+"type": "image",
+"path": "assets/coin.png",
+"x": 250,
+"y": 230,
+"w": 100,
+"h": 100,
+"id": "bc-29-1",
+"keys": [
+{
+"t": 0.0,
+"y": 230
+},
+{
+"t": 0.55,
+"y": 218
+},
+{
+"t": 1.1,
+"y": 230
+},
+{
+"t": 1.65,
+"y": 218
+},
+{
+"t": 2.2,
+"y": 230
+},
+{
+"t": 2.75,
+"y": 218
+},
+{
+"t": 3.3,
+"y": 230
+}
+],
+"motion": {
+"role": "prop",
+"reason": "cash leaves a sting"
+}
+},
+{
+"type": "image",
+"path": "assets/env.png",
+"x": 850,
+"y": 240,
+"w": 200,
+"h": 140,
+"id": "be-29-2",
+"keys": [
+{
+"t": 0.0,
+"y": 240
+},
+{
+"t": 0.55,
+"y": 228
+},
+{
+"t": 1.1,
+"y": 240
+},
+{
+"t": 1.65,
+"y": 228
+},
+{
+"t": 2.2,
+"y": 240
+},
+{
+"t": 2.75,
+"y": 228
+},
+{
+"t": 3.3,
+"y": 240
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the auto charge"
+}
+},
+{
+"type": "text",
+"text": "CASH  STINGS",
+"x": 190,
+"y": 380,
+"w": 500,
+"size": 56,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-29-3"
+},
+{
+"type": "text",
+"text": "AUTO  BARELY",
+"x": 740,
+"y": 380,
+"w": 500,
+"size": 56,
+"bold": true,
+"color": "#2b2a28",
+"from": 1.2,
+"id": "l-29-4"
+}
+]
+},
+{
+"start": 106.87,
+"end": 110.165,
+"layers": [
+{
+"type": "image",
+"path": "assets/board.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-30-0"
+},
+{
+"type": "image",
+"path": "assets/coin.png",
+"x": 250,
+"y": 230,
+"w": 100,
+"h": 100,
+"id": "bc-30-1",
+"keys": [
+{
+"t": 0.0,
+"y": 230
+},
+{
+"t": 0.55,
+"y": 218
+},
+{
+"t": 1.1,
+"y": 230
+},
+{
+"t": 1.65,
+"y": 218
+},
+{
+"t": 2.2,
+"y": 230
+},
+{
+"t": 2.75,
+"y": 218
+}
+],
+"motion": {
+"role": "prop",
+"reason": "cash leaves a sting"
+}
+},
+{
+"type": "image",
+"path": "assets/env.png",
+"x": 850,
+"y": 240,
+"w": 200,
+"h": 140,
+"id": "be-30-2",
+"keys": [
+{
+"t": 0.0,
+"y": 240
+},
+{
+"t": 0.55,
+"y": 228
+},
+{
+"t": 1.1,
+"y": 240
+},
+{
+"t": 1.65,
+"y": 228
+},
+{
+"t": 2.2,
+"y": 240
+},
+{
+"t": 2.75,
+"y": 228
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the auto charge"
+}
+},
+{
+"type": "text",
+"text": "THE STING FADES",
+"x": 330,
+"y": 100,
+"w": 800,
+"size": 76,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-30-3"
+}
+]
+},
+{
+"start": 110.165,
+"end": 114.31,
+"layers": [
+{
+"type": "image",
+"path": "assets/board.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-31-0"
+},
+{
+"type": "image",
+"path": "assets/coin.png",
+"x": 250,
+"y": 230,
+"w": 100,
+"h": 100,
+"id": "bc-31-1",
+"keys": [
+{
+"t": 0.0,
+"y": 230
+},
+{
+"t": 0.55,
+"y": 218
+},
+{
+"t": 1.1,
+"y": 230
+},
+{
+"t": 1.65,
+"y": 218
+},
+{
+"t": 2.2,
+"y": 230
+},
+{
+"t": 2.75,
+"y": 218
+}
+],
+"motion": {
+"role": "prop",
+"reason": "cash leaves a sting"
+}
+},
+{
+"type": "image",
+"path": "assets/env.png",
+"x": 850,
+"y": 240,
+"w": 200,
+"h": 140,
+"id": "be-31-2",
+"keys": [
+{
+"t": 0.0,
+"y": 240
+},
+{
+"t": 0.55,
+"y": 228
+},
+{
+"t": 1.1,
+"y": 240
+},
+{
+"t": 1.65,
+"y": 228
+},
+{
+"t": 2.2,
+"y": 240
+},
+{
+"t": 2.75,
+"y": 228
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the auto charge"
+}
+},
+{
+"type": "text",
+"text": "THE STING FADES",
+"x": 330,
+"y": 100,
+"w": 800,
+"size": 76,
+"bold": true,
+"color": "#2b2a28",
+"id": "l-31-3"
+}
+]
+},
+{
+"start": 114.31,
+"end": 117.75,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-32-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-32-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-32-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-32-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-32-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-32-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-32-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-32-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-32-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 710.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/laptop.png",
+"x": 620,
+"y": 330,
+"w": 300,
+"h": 207,
+"id": "lap-32-9",
+"keys": [
+{
+"t": 0.0,
+"y": 330
+},
+{
+"t": 0.6,
+"y": 324
+},
+{
+"t": 1.2,
+"y": 330
+},
+{
+"t": 1.8,
+"y": 324
+},
+{
+"t": 2.4,
+"y": 330
+}
+],
+"motion": {
+"role": "prop",
+"reason": "adding the lines"
+}
+}
+]
+},
+{
+"start": 117.75,
+"end": 122.25,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-33-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-33-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-33-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-33-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 4.0,
+"x": 300.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-33-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 4.0,
+"x": 360.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-33-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-33-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-33-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 170.8
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 170.8
+},
+{
+"t": 3.2,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 4.0,
+"x": 650.0,
+"y": 170.8
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-33-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 0.55,
+"x": 710.0,
+"angle": -1.1
+},
+{
+"t": 1.1,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 1.65,
+"x": 710.0,
+"angle": -1.1
+},
+{
+"t": 2.2,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.75,
+"x": 710.0,
+"angle": -1.1
+},
+{
+"t": 3.3,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 3.85,
+"x": 710.0,
+"angle": -1.1
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "5 \u00b7 14 \u00b7 26 ...",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 70,
+"bold": true,
+"color": "#5b7fa6",
+"id": "l-33-9"
+}
+]
+},
+{
+"start": 122.25,
+"end": 125.13,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-34-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-34-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-34-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-34-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-34-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-34-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-34-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-34-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-34-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 710.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "$91 / MONTH",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 90,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-34-9"
+}
+]
+},
+{
+"start": 125.13,
+"end": 128.64,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-35-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-35-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-35-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-surprise.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-35-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 170.8
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 170.8
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-35-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 0.55,
+"x": 360.0,
+"angle": -1.1
+},
+{
+"t": 1.1,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 1.65,
+"x": 360.0,
+"angle": -1.1
+},
+{
+"t": 2.2,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.75,
+"x": 360.0,
+"angle": -1.1
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-35-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-35-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-35-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-35-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 710.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "$91?!",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 100,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-35-9"
+}
+]
+},
+{
+"start": 128.64,
+"end": 132.99,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-36-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-36-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-36-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-36-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 300.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-36-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 360.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-36-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-36-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-36-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 650.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-36-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 710.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "$1,092 / YEAR",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 90,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-36-9"
+}
+]
+},
+{
+"start": 132.99,
+"end": 135.22,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-37-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-37-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-37-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-37-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-37-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-37-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-37-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-37-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 170.8
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-37-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 0.55,
+"x": 710.0,
+"angle": -1.1
+},
+{
+"t": 1.1,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 1.65,
+"x": 710.0,
+"angle": -1.1
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "USED THIS MONTH?",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 60,
+"bold": true,
+"color": "#5b7fa6",
+"id": "l-37-9"
+}
+]
+},
+{
+"start": 135.22,
+"end": 137.63,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-38-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-38-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-38-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-doubt.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-38-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 170.8
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 170.8
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-38-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 0.55,
+"x": 360.0,
+"angle": -1.1
+},
+{
+"t": 1.1,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 1.65,
+"x": 360.0,
+"angle": -1.1
+},
+{
+"t": 2.2,
+"x": 360.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-38-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-38-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-38-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-38-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 710.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "MUSIC \u00b7 CLOUD \u00b7 FILM (ONCE)",
+"x": 40,
+"y": 40,
+"w": 1200,
+"size": 50,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-38-9"
+}
+]
+},
+{
+"start": 137.63,
+"end": 140.49,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-39-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-39-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-39-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-doubt.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-39-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 170.8
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 170.8
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-39-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 0.55,
+"x": 360.0,
+"angle": -1.1
+},
+{
+"t": 1.1,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 1.65,
+"x": 360.0,
+"angle": -1.1
+},
+{
+"t": 2.2,
+"x": 360.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-39-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-39-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-39-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-39-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 710.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "MUSIC \u00b7 CLOUD \u00b7 FILM (ONCE)",
+"x": 40,
+"y": 40,
+"w": 1200,
+"size": 50,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-39-9"
+}
+]
+},
+{
+"start": 140.49,
+"end": 143.09,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-40-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-40-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-40-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-40-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-40-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-40-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-40-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-40-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-40-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 710.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "3 OF 11 USED",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 80,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-40-9"
+}
+]
+},
+{
+"start": 143.09,
+"end": 146.14,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-41-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-41-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-41-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-41-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-41-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-41-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-41-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-41-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-41-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 710.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "3 OF 11 USED",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 80,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-41-9"
+}
+]
+},
+{
+"start": 146.14,
+"end": 151.0,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-42-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-42-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-42-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-42-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 4.0,
+"x": 300.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-42-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 4.0,
+"x": 360.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-42-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-42-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-doubt.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-42-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 170.8
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 170.8
+},
+{
+"t": 3.2,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 4.0,
+"x": 650.0,
+"y": 170.8
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-42-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 0.55,
+"x": 710.0,
+"angle": -1.1
+},
+{
+"t": 1.1,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 1.65,
+"x": 710.0,
+"angle": -1.1
+},
+{
+"t": 2.2,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.75,
+"x": 710.0,
+"angle": -1.1
+},
+{
+"t": 3.3,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 3.85,
+"x": 710.0,
+"angle": -1.1
+},
+{
+"t": 4.4,
+"x": 710.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "$91 AT ONCE?",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 80,
+"bold": true,
+"color": "#5b7fa6",
+"id": "l-42-9"
+}
+]
+},
+{
+"start": 151.0,
+"end": 154.28,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-43-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-43-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-43-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-worry.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-43-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 170.8
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 170.8
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-43-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 0.55,
+"x": 360.0,
+"angle": -1.1
+},
+{
+"t": 1.1,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 1.65,
+"x": 360.0,
+"angle": -1.1
+},
+{
+"t": 2.2,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.75,
+"x": 360.0,
+"angle": -1.1
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-43-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-43-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-43-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-43-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 710.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "NO. NEVER.",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 80,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-43-9"
+}
+]
+},
+{
+"start": 154.28,
+"end": 157.21,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-44-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-44-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-44-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-44-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-44-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-44-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-44-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-44-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-44-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 710.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "SPREAD ACROSS ELEVEN DATES",
+"x": 40,
+"y": 40,
+"w": 1200,
+"size": 52,
+"bold": true,
+"color": "#5b7fa6",
+"id": "l-44-9"
+}
+]
+},
+{
+"start": 157.21,
+"end": 160.44,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-45-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-45-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-45-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-45-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-45-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-45-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-45-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-45-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-45-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 710.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "SPREAD ACROSS ELEVEN DATES",
+"x": 40,
+"y": 40,
+"w": 1200,
+"size": 52,
+"bold": true,
+"color": "#5b7fa6",
+"id": "l-45-9"
+}
+]
+},
+{
+"start": 160.44,
+"end": 164.59,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-46-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-46-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-46-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-neutral.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-46-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 300.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-46-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 360.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 360.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-46-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-46-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-46-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 3.2,
+"x": 650.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-46-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 3.0,
+"x": 710.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "5 CROSSED OUT",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 80,
+"bold": true,
+"color": "#8fa58a",
+"id": "l-46-9"
+}
+]
+},
+{
+"start": 164.59,
+"end": 167.1,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-47-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-47-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-47-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-worry.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-47-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 170.8
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 170.8
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-47-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 0.55,
+"x": 360.0,
+"angle": -1.1
+},
+{
+"t": 1.1,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 1.65,
+"x": 360.0,
+"angle": -1.1
+},
+{
+"t": 2.2,
+"x": 360.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-47-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-47-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-47-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-47-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 710.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "IT WAS THE ADDING",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 70,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-47-9"
+}
+]
+},
+{
+"start": 167.1,
+"end": 170.46,
+"layers": [
+{
+"type": "image",
+"path": "assets/living.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-48-0"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 324.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-48-1",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 250,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-48-2"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-worry.png",
+"x": 300.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-48-3",
+"keys": [
+{
+"t": 0.0,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 300.0,
+"y": 170.8
+},
+{
+"t": 1.6,
+"x": 300.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 300.0,
+"y": 170.8
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 360.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-48-4",
+"keys": [
+{
+"t": 0.0,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 0.55,
+"x": 360.0,
+"angle": -1.1
+},
+{
+"t": 1.1,
+"x": 360.0,
+"angle": -0.4
+},
+{
+"t": 1.65,
+"x": 360.0,
+"angle": -1.1
+},
+{
+"t": 2.2,
+"x": 360.0,
+"angle": -0.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-arml.png",
+"x": 674.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armL-48-5",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/jo-body.png",
+"x": 600,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "jo-body-48-6"
+},
+{
+"type": "image",
+"path": "assets/jo-head-neutral.png",
+"x": 650.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "jo-head0-48-7",
+"keys": [
+{
+"t": 0.0,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 650.0,
+"y": 168.4
+},
+{
+"t": 1.6,
+"x": 650.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 650.0,
+"y": 168.4
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/jo-armr.png",
+"x": 710.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "jo-armR-48-8",
+"keys": [
+{
+"t": 0.0,
+"x": 710.0,
+"angle": -0.28
+},
+{
+"t": 1.0,
+"x": 710.0,
+"angle": -0.4
+},
+{
+"t": 2.0,
+"x": 710.0,
+"angle": -0.28
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+},
+{
+"type": "text",
+"text": "IT WAS THE ADDING",
+"x": 40,
+"y": 40,
+"w": 1210,
+"size": 70,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-48-9"
+}
+]
+},
+{
+"start": 170.46,
+"end": 173.25,
+"layers": [
+{
+"type": "image",
+"path": "assets/fridge.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-49-0"
+},
+{
+"type": "image",
+"path": "assets/paper.png",
+"x": 860,
+"y": 110,
+"w": 220,
+"h": 290,
+"id": "fp-49-1",
+"keys": [
+{
+"t": 0.0,
+"y": 110
+},
+{
+"t": 0.6,
+"y": 104
+},
+{
+"t": 1.2,
+"y": 110
+},
+{
+"t": 1.8,
+"y": 104
+},
+{
+"t": 2.4,
+"y": 110
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the list on the fridge"
+}
+},
+{
+"type": "image",
+"path": "assets/magnet.png",
+"x": 960,
+"y": 100,
+"w": 40,
+"h": 40,
+"id": "mg-49-2"
+},
+{
+"type": "text",
+"text": "ONE YEAR OF YESES",
+"x": 80,
+"y": 80,
+"w": 650,
+"size": 70,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-49-3"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 474.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-49-4",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 400,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-49-5"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-think.png",
+"x": 450.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-49-6",
+"keys": [
+{
+"t": 0.0,
+"x": 450.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 450.0,
+"y": 170.0
+},
+{
+"t": 1.6,
+"x": 450.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 450.0,
+"y": 170.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 510.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-49-7",
+"keys": [
+{
+"t": 0.0,
+"x": 510.0,
+"angle": -0.5
+},
+{
+"t": 0.7,
+"x": 510.0,
+"angle": -1.0
+},
+{
+"t": 1.4,
+"x": 510.0,
+"angle": -0.5
+},
+{
+"t": 2.1,
+"x": 510.0,
+"angle": -1.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+}
+]
+},
+{
+"start": 173.25,
+"end": 176.34,
+"layers": [
+{
+"type": "image",
+"path": "assets/fridge.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-50-0"
+},
+{
+"type": "image",
+"path": "assets/paper.png",
+"x": 860,
+"y": 110,
+"w": 220,
+"h": 290,
+"id": "fp-50-1",
+"keys": [
+{
+"t": 0.0,
+"y": 110
+},
+{
+"t": 0.6,
+"y": 104
+},
+{
+"t": 1.2,
+"y": 110
+},
+{
+"t": 1.8,
+"y": 104
+},
+{
+"t": 2.4,
+"y": 110
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the list on the fridge"
+}
+},
+{
+"type": "image",
+"path": "assets/magnet.png",
+"x": 960,
+"y": 100,
+"w": 40,
+"h": 40,
+"id": "mg-50-2"
+},
+{
+"type": "text",
+"text": "ONE YEAR OF YESES",
+"x": 80,
+"y": 80,
+"w": 650,
+"size": 70,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-50-3"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 474.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-50-4",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 400,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-50-5"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-think.png",
+"x": 450.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-50-6",
+"keys": [
+{
+"t": 0.0,
+"x": 450.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 450.0,
+"y": 170.0
+},
+{
+"t": 1.6,
+"x": 450.0,
+"y": 166.0
+},
+{
+"t": 2.4,
+"x": 450.0,
+"y": 170.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 510.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-50-7",
+"keys": [
+{
+"t": 0.0,
+"x": 510.0,
+"angle": -0.5
+},
+{
+"t": 0.7,
+"x": 510.0,
+"angle": -1.0
+},
+{
+"t": 1.4,
+"x": 510.0,
+"angle": -0.5
+},
+{
+"t": 2.1,
+"x": 510.0,
+"angle": -1.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+}
+]
+},
+{
+"start": 176.34,
+"end": 178.89,
+"layers": [
+{
+"type": "image",
+"path": "assets/fridge.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-51-0"
+},
+{
+"type": "image",
+"path": "assets/paper.png",
+"x": 860,
+"y": 110,
+"w": 220,
+"h": 290,
+"id": "fp-51-1",
+"keys": [
+{
+"t": 0.0,
+"y": 110
+},
+{
+"t": 0.6,
+"y": 104
+},
+{
+"t": 1.2,
+"y": 110
+},
+{
+"t": 1.8,
+"y": 104
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the list on the fridge"
+}
+},
+{
+"type": "image",
+"path": "assets/magnet.png",
+"x": 960,
+"y": 100,
+"w": 40,
+"h": 40,
+"id": "mg-51-2"
+},
+{
+"type": "text",
+"text": "ON THE FRIDGE",
+"x": 80,
+"y": 80,
+"w": 650,
+"size": 70,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-51-3"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 474.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-51-4",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 400,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-51-5"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-think.png",
+"x": 450.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-51-6",
+"keys": [
+{
+"t": 0.0,
+"x": 450.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 450.0,
+"y": 170.0
+},
+{
+"t": 1.6,
+"x": 450.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 510.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-51-7",
+"keys": [
+{
+"t": 0.0,
+"x": 510.0,
+"angle": -0.5
+},
+{
+"t": 0.7,
+"x": 510.0,
+"angle": -1.0
+},
+{
+"t": 1.4,
+"x": 510.0,
+"angle": -0.5
+},
+{
+"t": 2.1,
+"x": 510.0,
+"angle": -1.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+}
+]
+},
+{
+"start": 178.89,
+"end": 181.32,
+"layers": [
+{
+"type": "image",
+"path": "assets/fridge.png",
+"x": 0,
+"y": 0,
+"w": 1280,
+"h": 720,
+"id": "l-52-0"
+},
+{
+"type": "image",
+"path": "assets/paper.png",
+"x": 860,
+"y": 110,
+"w": 220,
+"h": 290,
+"id": "fp-52-1",
+"keys": [
+{
+"t": 0.0,
+"y": 110
+},
+{
+"t": 0.6,
+"y": 104
+},
+{
+"t": 1.2,
+"y": 110
+},
+{
+"t": 1.8,
+"y": 104
+}
+],
+"motion": {
+"role": "prop",
+"reason": "the list on the fridge"
+}
+},
+{
+"type": "image",
+"path": "assets/magnet.png",
+"x": 960,
+"y": 100,
+"w": 40,
+"h": 40,
+"id": "mg-52-2"
+},
+{
+"type": "text",
+"text": "WHICH WOULD YOU KEEP?",
+"x": 80,
+"y": 80,
+"w": 650,
+"size": 70,
+"bold": true,
+"color": "#c46a4a",
+"id": "l-52-3"
+},
+{
+"type": "image",
+"path": "assets/arlo-arml.png",
+"x": 474.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armL-52-4",
+"angle": 0.28
+},
+{
+"type": "image",
+"path": "assets/arlo-body.png",
+"x": 400,
+"y": 170,
+"w": 200.0,
+"h": 340.0,
+"id": "arlo-body-52-5"
+},
+{
+"type": "image",
+"path": "assets/arlo-head-think.png",
+"x": 450.0,
+"y": 166.0,
+"w": 100.0,
+"h": 100.0,
+"id": "arlo-head0-52-6",
+"keys": [
+{
+"t": 0.0,
+"x": 450.0,
+"y": 166.0
+},
+{
+"t": 0.8,
+"x": 450.0,
+"y": 170.0
+},
+{
+"t": 1.6,
+"x": 450.0,
+"y": 166.0
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the head nods with the line"
+}
+},
+{
+"type": "image",
+"path": "assets/arlo-armr.png",
+"x": 510.0,
+"y": 270.0,
+"w": 60.0,
+"h": 130.0,
+"id": "arlo-armR-52-7",
+"keys": [
+{
+"t": 0.0,
+"x": 510.0,
+"angle": -0.5
+},
+{
+"t": 0.7,
+"x": 510.0,
+"angle": -1.0
+},
+{
+"t": 1.4,
+"x": 510.0,
+"angle": -0.5
+}
+],
+"motion": {
+"role": "actor",
+"reason": "the hand acts the line"
+}
+}
+]
+}
+],
+"sfx": [
+{
+"time": 4.0,
+"name": "pop",
+"gain": 0.2
+}
+],
+"assets": {
+"living.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1280\" height=\"720\" viewBox=\"0 0 1280 720\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"1280\" height=\"720\" fill=\"#efe3cf\"/><rect y=\"500\" width=\"1280\" height=\"220\" fill=\"#cfb48d\"/><path d=\"M-0.7,500.7 L1280.5,497.5\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M120.7,120.7 L239.3,119.3 L240.5,320.4 L120.3,319.7 Z\" fill=\"#d6e6ee\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M179.5,120.1 L179.7,320.2\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"2\"/><path d=\"M119.5,219.2 L239.8,219.3\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"2\"/><path d=\"M900.2,380.4 L1240.5,380.7 L1240.4,500.7 L899.2,499.9 Z\" fill=\"#b8795a\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M900.5,330.5 L1240.0,329.6 L1239.2,390.3 L900.0,390.4 Z\" fill=\"#c88b6c\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M559.7,439.4 L820.2,439.3 L820.1,499.8 L559.3,500.0 Z\" fill=\"#a77b52\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M1125.7,160.5 L1125.1,165.6 L1123.3,170.3 L1121.5,175.0 L1117.5,179.3 L1113.0,182.5 L1107.7,185.1 L1102.3,185.6 L1096.8,185.6 L1091.9,185.1 L1086.9,182.1 L1082.4,179.8 L1078.5,175.4 L1076.1,170.7 L1074.4,165.6 L1074.0,160.1 L1075.0,154.7 L1075.9,149.0 L1079.4,144.7 L1082.3,141.1 L1087.1,137.7 L1092.3,135.1 L1097.1,134.5 L1102.4,134.4 L1107.6,135.5 L1113.2,137.9 L1117.7,140.7 L1120.7,144.4 L1123.8,149.4 L1125.0,155.0 Z\" fill=\"#f2d27a\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M1099.9,185.7 L1099.3,330.7\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"3\"/></g></svg>",
+"kitchen.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1280\" height=\"720\" viewBox=\"0 0 1280 720\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"1280\" height=\"720\" fill=\"#f3e4c0\"/><rect y=\"500\" width=\"1280\" height=\"220\" fill=\"#c9b08a\"/><path d=\"M-0.7,500.7 L1280.5,497.5\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M140.7,120.7 L499.3,119.3 L500.5,320.4 L140.3,319.7 Z\" fill=\"#fff7e0\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M159.6,140.1 L309.8,140.2 L310.2,299.3 L159.2,300.5 Z\" fill=\"#d6e6ee\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M899.6,149.4 L1159.8,149.4 L1159.3,499.8 L900.7,500.5 Z\" fill=\"#e9e9e9\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M900.2,330.5 L1160.6,330.9\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"3\"/><path d=\"M520.5,430.5 L820.0,429.6 L819.2,500.3 L520.0,500.4 Z\" fill=\"#a77b52\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M739.8,409.7 L739.3,414.6 L736.6,419.6 L731.9,424.1 L726.3,427.8 L719.6,430.4 L712.3,433.2 L703.8,433.6 L695.9,434.3 L687.7,432.7 L680.5,430.3 L673.6,427.6 L667.3,423.7 L663.3,420.1 L660.6,415.1 L660.1,409.9 L660.9,404.6 L663.0,399.9 L667.8,395.8 L673.0,392.3 L680.0,389.0 L687.9,387.4 L695.6,386.2 L704.2,386.5 L712.6,387.0 L720.5,388.8 L726.7,392.4 L732.0,395.9 L736.1,400.4 L739.4,405.1 Z\" fill=\"#e08a50\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M779.7,410.5 L779.0,414.8 L777.0,418.7 L774.8,422.6 L770.2,426.3 L765.0,429.0 L759.0,431.3 L752.7,431.6 L746.4,431.6 L740.6,431.3 L734.9,428.7 L729.7,426.8 L725.3,423.1 L722.5,419.1 L720.5,414.8 L720.0,410.1 L721.1,405.5 L722.2,400.6 L726.2,397.1 L729.6,394.1 L735.1,391.2 L741.1,388.9 L746.7,388.5 L752.8,388.4 L758.9,389.3 L765.2,391.4 L770.4,393.7 L774.0,396.7 L777.4,401.1 L778.9,405.8 Z\" fill=\"#c46a4a\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/></g></svg>",
+"deskroom.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1280\" height=\"720\" viewBox=\"0 0 1280 720\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"1280\" height=\"720\" fill=\"#dfe7ea\"/><rect y=\"500\" width=\"1280\" height=\"220\" fill=\"#b9a07c\"/><path d=\"M-0.7,500.7 L1280.5,497.5\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M120.7,100.7 L499.3,99.3 L500.5,400.4 L120.3,399.7 Z\" fill=\"#9fc2da\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M309.5,100.1 L309.7,400.2\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"3\"/><path d=\"M699.6,399.4 L1139.8,399.4 L1139.3,429.8 L700.7,430.5 Z\" fill=\"#a77b52\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M720.2,430.4 L746.5,430.7 L746.4,500.7 L719.2,499.9 Z\" fill=\"#a77b52\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M1090.5,430.5 L1116.0,429.6 L1115.2,500.3 L1090.0,500.4 Z\" fill=\"#a77b52\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/></g></svg>",
+"sunday.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1280\" height=\"720\" viewBox=\"0 0 1280 720\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"1280\" height=\"720\" fill=\"#f6e7c8\"/><rect y=\"500\" width=\"1280\" height=\"220\" fill=\"#d0b28c\"/><path d=\"M-0.7,500.7 L1280.5,497.5\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M100.7,110.7 L339.3,109.3 L340.5,300.4 L100.3,299.7 Z\" fill=\"#fff7e0\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M899.6,149.4 L1169.8,149.4 L1169.3,499.8 L900.7,500.5 Z\" fill=\"#e9e9e9\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M900.2,330.5 L1170.6,330.9\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"3\"/><path d=\"M480.5,440.5 L800.0,439.6 L799.2,500.3 L480.0,500.4 Z\" fill=\"#a77b52\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M539.7,379.4 L630.2,379.3 L630.1,439.8 L539.3,440.0 Z\" fill=\"#c46a4a\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M649.6,380.7 L739.4,380.3 L739.3,439.6 L650.8,439.5 Z\" fill=\"#d6a64a\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/></g></svg>",
+"board.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1280\" height=\"720\" viewBox=\"0 0 1280 720\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"1280\" height=\"720\" fill=\"#e6e0cf\"/><rect y=\"500\" width=\"1280\" height=\"220\" fill=\"#c3ac84\"/><path d=\"M-0.7,500.7 L1280.5,497.5\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M150.7,70.7 L1129.3,69.3 L1130.5,470.4 L150.3,469.7 Z\" fill=\"#bcd1c0\" stroke=\"#2b2a28\" stroke-width=\"4\"/><path d=\"M639.5,100.1 L639.7,440.2\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/></g></svg>",
+"fridge.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1280\" height=\"720\" viewBox=\"0 0 1280 720\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"1280\" height=\"720\" fill=\"#f1e6cf\"/><rect y=\"500\" width=\"1280\" height=\"220\" fill=\"#cfb48d\"/><path d=\"M-0.7,500.7 L1280.5,497.5\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M780.7,90.7 L1119.3,89.3 L1120.5,510.4 L780.3,509.7 Z\" fill=\"#e9e9e9\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M779.5,270.1 L1119.7,270.2\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"3\"/><path d=\"M1089.6,169.4 L1103.8,169.4 L1103.3,229.8 L1090.7,230.5 Z\" fill=\"#9a9a9a\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M120.2,300.4 L580.5,300.7 L580.4,500.7 L119.2,499.9 Z\" fill=\"#a77b52\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/></g></svg>",
+"laptop.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"420\" height=\"290\" viewBox=\"0 0 420 290\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M39.4,10.6 L380.4,9.6 L380.0,219.9 L40.2,220.5 Z\" fill=\"#f0f0f0\" stroke=\"#2b2a28\" stroke-width=\"3.2\"/><path d=\"M62.7,30.7 L357.3,29.3 L358.5,200.4 L62.3,199.7 Z\" fill=\"#d9ecf7\" stroke=\"#2b2a28\" stroke-width=\"2\"/><path d=\"M9.6,220.1 L409.8,220.2 L386.2,269.3 L33.2,270.5 Z\" fill=\"#e0e0e0\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/></g></svg>",
+"phone.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"160\" height=\"300\" viewBox=\"0 0 160 300\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.4,10.6 L150.4,9.6 L150.0,289.9 L10.2,290.5 Z\" fill=\"#3c3a37\" stroke=\"#2b2a28\" stroke-width=\"3\"/><path d=\"M22.7,30.7 L137.3,29.3 L138.5,260.4 L22.3,259.7 Z\" fill=\"#d9ecf7\" stroke=\"#2b2a28\" stroke-width=\"1.6\"/><path d=\"M87.7,276.0 L87.7,277.8 L87.4,278.8 L86.0,281.0 L85.1,281.7 L84.5,282.9 L82.8,283.6 L81.0,283.6 L79.3,284.3 L77.6,283.8 L76.2,282.5 L74.9,282.0 L73.3,280.2 L73.1,279.2 L72.4,278.0 L72.2,276.4 L72.1,274.6 L72.6,273.2 L73.9,270.9 L74.3,269.8 L76.5,269.0 L77.7,268.2 L79.2,267.9 L80.7,268.1 L82.6,268.8 L84.2,269.5 L85.7,270.5 L86.6,271.0 L87.7,273.2 L88.2,274.4 Z\" fill=\"#cfcfcf\" stroke=\"#2b2a28\" stroke-width=\"1.6\"/></g></svg>",
+"phone-warn.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"160\" height=\"300\" viewBox=\"0 0 160 300\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.4,10.6 L150.4,9.6 L150.0,289.9 L10.2,290.5 Z\" fill=\"#3c3a37\" stroke=\"#2b2a28\" stroke-width=\"3\"/><path d=\"M22.7,30.7 L137.3,29.3 L138.5,260.4 L22.3,259.7 Z\" fill=\"#f6d6a8\" stroke=\"#2b2a28\" stroke-width=\"1.6\"/><path d=\"M87.7,276.0 L87.7,277.8 L87.4,278.8 L86.0,281.0 L85.1,281.7 L84.5,282.9 L82.8,283.6 L81.0,283.6 L79.3,284.3 L77.6,283.8 L76.2,282.5 L74.9,282.0 L73.3,280.2 L73.1,279.2 L72.4,278.0 L72.2,276.4 L72.1,274.6 L72.6,273.2 L73.9,270.9 L74.3,269.8 L76.5,269.0 L77.7,268.2 L79.2,267.9 L80.7,268.1 L82.6,268.8 L84.2,269.5 L85.7,270.5 L86.6,271.0 L87.7,273.2 L88.2,274.4 Z\" fill=\"#cfcfcf\" stroke=\"#2b2a28\" stroke-width=\"1.6\"/></g></svg>",
+"paper.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"300\" height=\"400\" viewBox=\"0 0 300 400\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.4,10.6 L290.4,9.6 L290.0,389.9 L10.2,390.5 Z\" fill=\"#fffdf5\" stroke=\"#2b2a28\" stroke-width=\"3\"/><path d=\"M34.1,59.9 L266.2,55.4\" fill=\"none\" stroke=\"#9a9a9a\" stroke-width=\"1.8\"/><path d=\"M33.9,88.1 L266.8,83.9\" fill=\"none\" stroke=\"#9a9a9a\" stroke-width=\"1.8\"/><path d=\"M33.9,116.3 L266.3,111.3\" fill=\"none\" stroke=\"#9a9a9a\" stroke-width=\"1.8\"/><path d=\"M33.5,144.4 L266.4,140.7\" fill=\"none\" stroke=\"#9a9a9a\" stroke-width=\"1.8\"/><path d=\"M33.2,172.4 L266.3,168.9\" fill=\"none\" stroke=\"#9a9a9a\" stroke-width=\"1.8\"/><path d=\"M34.9,199.0 L266.5,195.3\" fill=\"none\" stroke=\"#9a9a9a\" stroke-width=\"1.8\"/><path d=\"M33.7,228.0 L265.8,223.9\" fill=\"none\" stroke=\"#9a9a9a\" stroke-width=\"1.8\"/><path d=\"M34.0,256.6 L266.9,251.6\" fill=\"none\" stroke=\"#9a9a9a\" stroke-width=\"1.8\"/><path d=\"M33.4,284.3 L265.7,279.4\" fill=\"none\" stroke=\"#9a9a9a\" stroke-width=\"1.8\"/><path d=\"M34.4,312.6 L266.0,308.0\" fill=\"none\" stroke=\"#9a9a9a\" stroke-width=\"1.8\"/><path d=\"M34.8,340.4 L266.5,336.8\" fill=\"none\" stroke=\"#9a9a9a\" stroke-width=\"1.8\"/></g></svg>",
+"banner.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"520\" height=\"150\" viewBox=\"0 0 520 150\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7.4,8.6 L512.4,7.6 L512.0,141.9 L8.2,142.5 Z\" fill=\"#d6a64a\" stroke=\"#2b2a28\" stroke-width=\"3.4\"/></g></svg>",
+"cal.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"220\" viewBox=\"0 0 200 220\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7.4,8.6 L192.4,7.6 L192.0,211.9 L8.2,212.5 Z\" fill=\"#f6efdf\" stroke=\"#2b2a28\" stroke-width=\"3\"/><path d=\"M8.7,8.7 L191.3,7.3 L192.5,58.4 L8.3,57.7 Z\" fill=\"#c46a4a\" stroke=\"#2b2a28\" stroke-width=\"3\"/></g></svg>",
+"coin.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M91.6,50.3 L91.3,58.5 L88.4,67.0 L84.1,75.0 L77.7,80.7 L71.3,86.3 L63.2,89.4 L54.3,92.0 L45.3,92.2 L37.4,89.5 L28.5,86.4 L22.3,81.1 L15.7,74.6 L11.2,66.8 L8.9,58.7 L7.7,49.7 L8.6,41.2 L11.4,32.4 L16.4,25.4 L22.0,18.5 L29.5,14.0 L36.6,9.9 L45.8,8.4 L54.8,8.2 L63.3,10.2 L70.8,13.7 L78.5,19.1 L84.0,25.4 L87.9,32.7 L91.4,41.2 Z\" fill=\"#d6a64a\" stroke=\"#2b2a28\" stroke-width=\"3.4\"/><path d=\"M77.5,50.4 L76.0,55.2 L75.0,61.2 L72.0,65.7 L68.2,70.2 L63.6,73.0 L58.3,75.6 L53.0,77.3 L47.6,76.9 L41.6,75.4 L36.0,72.9 L31.9,69.9 L28.0,66.3 L25.4,61.0 L23.3,55.1 L22.8,49.6 L23.6,44.9 L25.5,38.7 L28.6,34.4 L32.2,30.3 L36.8,26.9 L41.5,24.8 L47.6,22.8 L53.1,23.4 L58.3,24.4 L63.5,27.0 L68.1,30.3 L71.7,34.5 L75.1,39.0 L76.5,44.8 Z\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"2.2\"/><path d=\"M41.5,38.1 Q57.7,38.2 54.0,51.7 L50.3,65.1\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"3\"/></g></svg>",
+"env.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"140\" viewBox=\"0 0 200 140\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7.4,8.6 L192.4,7.6 L192.0,131.9 L8.2,132.5 Z\" fill=\"#f6efdf\" stroke=\"#2b2a28\" stroke-width=\"3\"/><path d=\"M8.9,8.9 Q99.1,79.2 145.9,43.8 L192.7,8.5\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"3\"/></g></svg>",
+"magnet.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"40\" viewBox=\"0 0 40 40\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M35.6,20.3 L35.9,23.1 L34.6,26.5 L33.1,29.7 L30.3,31.4 L28.3,33.8 L25.2,34.7 L21.6,36.1 L18.1,36.4 L15.5,34.7 L11.5,33.9 L9.7,31.8 L6.8,29.3 L4.9,26.2 L4.3,23.3 L3.7,19.7 L4.1,16.6 L5.2,13.0 L7.4,10.7 L9.4,7.8 L12.5,6.5 L14.7,4.6 L18.5,4.3 L22.1,4.0 L25.3,5.0 L27.8,6.2 L31.1,8.5 L32.9,10.7 L34.2,13.2 L35.9,16.6 Z\" fill=\"#c46a4a\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/></g></svg>",
+"ring.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 120 120\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M109.6,60.3 L109.2,70.2 L105.7,80.3 L100.6,89.7 L93.1,96.7 L85.3,103.2 L75.7,107.1 L65.2,109.9 L54.5,110.2 L45.0,107.1 L34.5,103.3 L27.0,97.0 L19.3,89.3 L13.9,80.1 L11.0,70.4 L9.7,59.7 L10.8,49.6 L14.1,39.2 L19.9,30.7 L26.7,22.5 L35.5,17.1 L44.2,12.3 L55.0,10.5 L65.7,10.2 L75.8,12.6 L84.8,16.8 L93.8,23.2 L100.5,30.7 L105.2,39.4 L109.2,49.5 Z\" fill=\"none\" stroke=\"#c46a4a\" stroke-width=\"6\"/></g></svg>",
+"arlo-body.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"340\" viewBox=\"0 0 200 340\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M95.9,200.1 L80.8,327.9\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"3.4\"/><path d=\"M103.9,200.3 L120.3,327.3\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"3.4\"/><path d=\"M87.8,330.2 L87.9,331.6 L86.6,332.2 L85.4,333.3 L84.3,334.1 L82.0,334.9 L79.5,335.6 L77.6,336.1 L74.3,335.7 L71.9,336.1 L70.3,335.5 L68.3,334.7 L66.7,333.8 L64.8,332.8 L64.2,331.5 L64.1,329.9 L64.1,328.7 L64.9,327.2 L66.6,326.8 L68.5,325.7 L70.1,325.1 L71.9,324.5 L74.7,323.7 L77.0,324.1 L79.5,324.3 L82.1,324.7 L83.7,325.5 L85.4,326.2 L86.7,327.4 L87.3,328.9 Z\" fill=\"#3c3a37\" stroke=\"#2b2a28\" stroke-width=\"2\"/><path d=\"M135.6,330.2 L135.9,331.7 L134.7,332.2 L133.9,333.7 L131.8,334.6 L129.9,335.5 L127.3,335.4 L125.7,335.8 L122.5,336.3 L120.4,335.4 L118.1,335.4 L115.6,334.6 L113.9,333.4 L112.6,332.1 L112.7,331.2 L112.5,329.9 L112.4,329.1 L113.2,327.2 L114.4,326.6 L115.7,325.1 L118.4,324.8 L120.0,324.2 L122.5,324.3 L125.3,323.6 L128.0,323.9 L129.8,324.3 L132.3,325.2 L133.7,326.1 L134.9,327.7 L135.8,328.7 Z\" fill=\"#3c3a37\" stroke=\"#2b2a28\" stroke-width=\"2\"/><path d=\"M100.9,81.0 L100.5,97.3\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"3.4\"/><path d=\"M76.0,100.5 L124.7,99.7 L130.4,206.3 L70.3,205.4 Z\" fill=\"#d6a64a\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/></g></svg>",
+"arlo-armr.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"60\" height=\"130\" viewBox=\"0 0 60 130\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M8.4,5.8 L13.0,55.6\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"12\"/><path d=\"M8.4,5.8 L13.0,55.6\" fill=\"none\" stroke=\"#d6a64a\" stroke-width=\"8\"/><path d=\"M12.6,56.2 L9.0,105.0\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"3.2\"/><path d=\"M20.3,112.0 L20.4,113.5 L20.0,115.0 L19.3,116.1 L18.0,117.3 L17.5,118.0 L15.9,119.1 L14.7,119.4 L13.7,119.9 L12.1,118.8 L11.1,118.9 L9.6,117.9 L9.1,116.9 L7.8,114.8 L7.9,113.3 L7.3,111.5 L7.9,110.2 L7.7,109.1 L8.3,107.9 L9.2,106.9 L10.4,105.1 L12.0,105.1 L13.3,104.7 L14.4,104.9 L15.7,104.8 L17.6,105.4 L17.9,106.6 L18.8,107.5 L19.8,108.9 L20.0,110.9 Z\" fill=\"#fdfaf3\" stroke=\"#2b2a28\" stroke-width=\"2.2\"/></g></svg>",
+"arlo-arml.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"60\" height=\"130\" viewBox=\"0 0 60 130\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M8.4,5.8 L13.0,55.6\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"12\"/><path d=\"M8.4,5.8 L13.0,55.6\" fill=\"none\" stroke=\"#d6a64a\" stroke-width=\"8\"/><path d=\"M12.6,56.2 L9.0,105.0\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"3.2\"/><path d=\"M20.3,112.0 L20.4,113.5 L20.0,115.0 L19.3,116.1 L18.0,117.3 L17.5,118.0 L15.9,119.1 L14.7,119.4 L13.7,119.9 L12.1,118.8 L11.1,118.9 L9.6,117.9 L9.1,116.9 L7.8,114.8 L7.9,113.3 L7.3,111.5 L7.9,110.2 L7.7,109.1 L8.3,107.9 L9.2,106.9 L10.4,105.1 L12.0,105.1 L13.3,104.7 L14.4,104.9 L15.7,104.8 L17.6,105.4 L17.9,106.6 L18.8,107.5 L19.8,108.9 L20.0,110.9 Z\" fill=\"#fdfaf3\" stroke=\"#2b2a28\" stroke-width=\"2.2\"/></g></svg>",
+"arlo-head-neutral.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M83.6,51.7 L83.1,59.9 L81.1,66.9 L77.1,73.2 L73.1,78.8 L67.4,83.6 L60.4,85.7 L53.8,87.4 L46.0,88.0 L39.8,86.6 L33.5,82.9 L26.8,78.4 L23.0,72.8 L18.6,66.2 L16.3,59.0 L15.9,51.7 L16.6,44.9 L18.6,37.7 L22.7,30.9 L27.3,25.5 L33.1,20.6 L39.3,17.5 L46.3,16.7 L53.5,15.8 L60.5,18.1 L66.9,21.0 L72.3,24.8 L77.7,30.4 L80.9,37.2 L83.0,44.1 Z\" fill=\"#fdfaf3\" stroke=\"#2b2a28\" stroke-width=\"2.8\"/><path d=\"M17,46 Q20,16 50,15 Q80,16 83,46 Q74,30 50,29 Q28,30 17,46 Z\" fill=\"#2d2a26\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><ellipse cx=\"30\" cy=\"62\" rx=\"6\" ry=\"3.5\" fill=\"#f2a59a\" opacity=\".55\"/><ellipse cx=\"70\" cy=\"62\" rx=\"6\" ry=\"3.5\" fill=\"#f2a59a\" opacity=\".55\"/><path d=\"M29.9,39.8 L41.1,37.6\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/><path d=\"M57.8,37.5 L69.3,39.8\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/><ellipse cx=\"37\" cy=\"50\" rx=\"3.0\" ry=\"3.6\" fill=\"#1f2124\"/><ellipse cx=\"63\" cy=\"50\" rx=\"3.0\" ry=\"3.6\" fill=\"#1f2124\"/><path d=\"M42.0,71.5 L58.3,71.5\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/></g></svg>",
+"jo-body.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"340\" viewBox=\"0 0 200 340\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M89.9,250.1 L82.8,327.9\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"3.4\"/><path d=\"M109.9,250.3 L118.3,327.3\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"3.4\"/><path d=\"M87.8,330.2 L87.9,331.6 L86.6,332.2 L85.4,333.3 L84.3,334.1 L82.0,334.9 L79.5,335.6 L77.6,336.1 L74.3,335.7 L71.9,336.1 L70.3,335.5 L68.3,334.7 L66.7,333.8 L64.8,332.8 L64.2,331.5 L64.1,329.9 L64.1,328.7 L64.9,327.2 L66.6,326.8 L68.5,325.7 L70.1,325.1 L71.9,324.5 L74.7,323.7 L77.0,324.1 L79.5,324.3 L82.1,324.7 L83.7,325.5 L85.4,326.2 L86.7,327.4 L87.3,328.9 Z\" fill=\"#3c3a37\" stroke=\"#2b2a28\" stroke-width=\"2\"/><path d=\"M135.6,330.2 L135.9,331.7 L134.7,332.2 L133.9,333.7 L131.8,334.6 L129.9,335.5 L127.3,335.4 L125.7,335.8 L122.5,336.3 L120.4,335.4 L118.1,335.4 L115.6,334.6 L113.9,333.4 L112.6,332.1 L112.7,331.2 L112.5,329.9 L112.4,329.1 L113.2,327.2 L114.4,326.6 L115.7,325.1 L118.4,324.8 L120.0,324.2 L122.5,324.3 L125.3,323.6 L128.0,323.9 L129.8,324.3 L132.3,325.2 L133.7,326.1 L134.9,327.7 L135.8,328.7 Z\" fill=\"#3c3a37\" stroke=\"#2b2a28\" stroke-width=\"2\"/><path d=\"M100.9,81.0 L100.5,97.3\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"3.4\"/><path d=\"M76.0,100.5 L124.7,99.7 L130.4,206.3 L70.3,205.4 Z\" fill=\"#4a9d9a\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M69.5,200.3 L129.7,199.5 L142.0,262.0 L58.0,261.9 Z\" fill=\"#5b6f8a\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/></g></svg>",
+"jo-armr.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"60\" height=\"130\" viewBox=\"0 0 60 130\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M8.4,5.8 L13.0,55.6\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"12\"/><path d=\"M8.4,5.8 L13.0,55.6\" fill=\"none\" stroke=\"#4a9d9a\" stroke-width=\"8\"/><path d=\"M12.6,56.2 L9.0,105.0\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"3.2\"/><path d=\"M20.3,112.0 L20.4,113.5 L20.0,115.0 L19.3,116.1 L18.0,117.3 L17.5,118.0 L15.9,119.1 L14.7,119.4 L13.7,119.9 L12.1,118.8 L11.1,118.9 L9.6,117.9 L9.1,116.9 L7.8,114.8 L7.9,113.3 L7.3,111.5 L7.9,110.2 L7.7,109.1 L8.3,107.9 L9.2,106.9 L10.4,105.1 L12.0,105.1 L13.3,104.7 L14.4,104.9 L15.7,104.8 L17.6,105.4 L17.9,106.6 L18.8,107.5 L19.8,108.9 L20.0,110.9 Z\" fill=\"#fdfaf3\" stroke=\"#2b2a28\" stroke-width=\"2.2\"/></g></svg>",
+"jo-arml.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"60\" height=\"130\" viewBox=\"0 0 60 130\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M8.4,5.8 L13.0,55.6\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"12\"/><path d=\"M8.4,5.8 L13.0,55.6\" fill=\"none\" stroke=\"#4a9d9a\" stroke-width=\"8\"/><path d=\"M12.6,56.2 L9.0,105.0\" fill=\"none\" stroke=\"#2b2a28\" stroke-width=\"3.2\"/><path d=\"M20.3,112.0 L20.4,113.5 L20.0,115.0 L19.3,116.1 L18.0,117.3 L17.5,118.0 L15.9,119.1 L14.7,119.4 L13.7,119.9 L12.1,118.8 L11.1,118.9 L9.6,117.9 L9.1,116.9 L7.8,114.8 L7.9,113.3 L7.3,111.5 L7.9,110.2 L7.7,109.1 L8.3,107.9 L9.2,106.9 L10.4,105.1 L12.0,105.1 L13.3,104.7 L14.4,104.9 L15.7,104.8 L17.6,105.4 L17.9,106.6 L18.8,107.5 L19.8,108.9 L20.0,110.9 Z\" fill=\"#fdfaf3\" stroke=\"#2b2a28\" stroke-width=\"2.2\"/></g></svg>",
+"jo-head-neutral.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M62.5,11.6 L62.6,14.7 L61.5,16.5 L60.2,19.3 L58.3,21.2 L56.7,22.0 L54.1,23.4 L51.3,24.4 L48.2,23.5 L46.4,23.3 L43.2,22.2 L41.2,21.4 L39.2,18.8 L38.2,16.9 L37.7,14.8 L36.9,11.7 L37.6,10.0 L37.7,7.4 L39.9,5.1 L41.0,3.4 L43.7,1.3 L46.1,0.3 L48.2,-0.1 L51.2,-0.0 L54.2,0.9 L57.0,2.1 L59.2,3.4 L60.3,4.6 L62.0,7.2 L62.9,9.1 Z\" fill=\"#7a4b2c\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M83.6,51.7 L83.1,59.9 L81.1,66.9 L77.1,73.2 L73.1,78.8 L67.4,83.6 L60.4,85.7 L53.8,87.4 L46.0,88.0 L39.8,86.6 L33.5,82.9 L26.8,78.4 L23.0,72.8 L18.6,66.2 L16.3,59.0 L15.9,51.7 L16.6,44.9 L18.6,37.7 L22.7,30.9 L27.3,25.5 L33.1,20.6 L39.3,17.5 L46.3,16.7 L53.5,15.8 L60.5,18.1 L66.9,21.0 L72.3,24.8 L77.7,30.4 L80.9,37.2 L83.0,44.1 Z\" fill=\"#fdfaf3\" stroke=\"#2b2a28\" stroke-width=\"2.8\"/><path d=\"M17,46 Q20,16 50,15 Q80,16 83,46 Q74,30 50,29 Q28,30 17,46 Z\" fill=\"#7a4b2c\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><ellipse cx=\"30\" cy=\"62\" rx=\"6\" ry=\"3.5\" fill=\"#f2a59a\" opacity=\".55\"/><ellipse cx=\"70\" cy=\"62\" rx=\"6\" ry=\"3.5\" fill=\"#f2a59a\" opacity=\".55\"/><path d=\"M29.9,39.8 L41.1,37.6\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/><path d=\"M57.8,37.5 L69.3,39.8\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/><ellipse cx=\"37\" cy=\"50\" rx=\"3.0\" ry=\"3.6\" fill=\"#1f2124\"/><ellipse cx=\"63\" cy=\"50\" rx=\"3.0\" ry=\"3.6\" fill=\"#1f2124\"/><path d=\"M42.0,71.5 L58.3,71.5\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/></g></svg>",
+"arlo-head-worry.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M83.6,51.7 L83.1,59.9 L81.1,66.9 L77.1,73.2 L73.1,78.8 L67.4,83.6 L60.4,85.7 L53.8,87.4 L46.0,88.0 L39.8,86.6 L33.5,82.9 L26.8,78.4 L23.0,72.8 L18.6,66.2 L16.3,59.0 L15.9,51.7 L16.6,44.9 L18.6,37.7 L22.7,30.9 L27.3,25.5 L33.1,20.6 L39.3,17.5 L46.3,16.7 L53.5,15.8 L60.5,18.1 L66.9,21.0 L72.3,24.8 L77.7,30.4 L80.9,37.2 L83.0,44.1 Z\" fill=\"#fdfaf3\" stroke=\"#2b2a28\" stroke-width=\"2.8\"/><path d=\"M17,46 Q20,16 50,15 Q80,16 83,46 Q74,30 50,29 Q28,30 17,46 Z\" fill=\"#2d2a26\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><ellipse cx=\"30\" cy=\"62\" rx=\"6\" ry=\"3.5\" fill=\"#f2a59a\" opacity=\".55\"/><ellipse cx=\"70\" cy=\"62\" rx=\"6\" ry=\"3.5\" fill=\"#f2a59a\" opacity=\".55\"/><path d=\"M29.9,37.8 L41.1,40.6\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/><path d=\"M57.8,40.5 L69.3,37.8\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/><ellipse cx=\"37\" cy=\"50\" rx=\"3.0\" ry=\"3.6\" fill=\"#1f2124\"/><ellipse cx=\"63\" cy=\"50\" rx=\"3.0\" ry=\"3.6\" fill=\"#1f2124\"/><path d=\"M41,75 Q50,68 59,75\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/><path d=\"M80,36 Q83,42 80,45 Q77,42 80,36 Z\" fill=\"#9cc7e4\" stroke=\"#2b2a28\" stroke-width=\"1.2\"/></g></svg>",
+"arlo-head-smile.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M83.6,51.7 L83.1,59.9 L81.1,66.9 L77.1,73.2 L73.1,78.8 L67.4,83.6 L60.4,85.7 L53.8,87.4 L46.0,88.0 L39.8,86.6 L33.5,82.9 L26.8,78.4 L23.0,72.8 L18.6,66.2 L16.3,59.0 L15.9,51.7 L16.6,44.9 L18.6,37.7 L22.7,30.9 L27.3,25.5 L33.1,20.6 L39.3,17.5 L46.3,16.7 L53.5,15.8 L60.5,18.1 L66.9,21.0 L72.3,24.8 L77.7,30.4 L80.9,37.2 L83.0,44.1 Z\" fill=\"#fdfaf3\" stroke=\"#2b2a28\" stroke-width=\"2.8\"/><path d=\"M17,46 Q20,16 50,15 Q80,16 83,46 Q74,30 50,29 Q28,30 17,46 Z\" fill=\"#2d2a26\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><ellipse cx=\"30\" cy=\"62\" rx=\"6\" ry=\"3.5\" fill=\"#f2a59a\" opacity=\".55\"/><ellipse cx=\"70\" cy=\"62\" rx=\"6\" ry=\"3.5\" fill=\"#f2a59a\" opacity=\".55\"/><path d=\"M29.9,38.8 L41.1,35.6\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/><path d=\"M57.8,35.5 L69.3,38.8\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/><ellipse cx=\"37\" cy=\"50\" rx=\"3.0\" ry=\"3.6\" fill=\"#1f2124\"/><ellipse cx=\"63\" cy=\"50\" rx=\"3.0\" ry=\"3.6\" fill=\"#1f2124\"/><path d=\"M40,69 Q50,79 60,69\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.8\"/></g></svg>",
+"jo-head-doubt.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M62.5,11.6 L62.6,14.7 L61.5,16.5 L60.2,19.3 L58.3,21.2 L56.7,22.0 L54.1,23.4 L51.3,24.4 L48.2,23.5 L46.4,23.3 L43.2,22.2 L41.2,21.4 L39.2,18.8 L38.2,16.9 L37.7,14.8 L36.9,11.7 L37.6,10.0 L37.7,7.4 L39.9,5.1 L41.0,3.4 L43.7,1.3 L46.1,0.3 L48.2,-0.1 L51.2,-0.0 L54.2,0.9 L57.0,2.1 L59.2,3.4 L60.3,4.6 L62.0,7.2 L62.9,9.1 Z\" fill=\"#7a4b2c\" stroke=\"#2b2a28\" stroke-width=\"2.6\"/><path d=\"M83.6,51.7 L83.1,59.9 L81.1,66.9 L77.1,73.2 L73.1,78.8 L67.4,83.6 L60.4,85.7 L53.8,87.4 L46.0,88.0 L39.8,86.6 L33.5,82.9 L26.8,78.4 L23.0,72.8 L18.6,66.2 L16.3,59.0 L15.9,51.7 L16.6,44.9 L18.6,37.7 L22.7,30.9 L27.3,25.5 L33.1,20.6 L39.3,17.5 L46.3,16.7 L53.5,15.8 L60.5,18.1 L66.9,21.0 L72.3,24.8 L77.7,30.4 L80.9,37.2 L83.0,44.1 Z\" fill=\"#fdfaf3\" stroke=\"#2b2a28\" stroke-width=\"2.8\"/><path d=\"M17,46 Q20,16 50,15 Q80,16 83,46 Q74,30 50,29 Q28,30 17,46 Z\" fill=\"#7a4b2c\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><ellipse cx=\"30\" cy=\"62\" rx=\"6\" ry=\"3.5\" fill=\"#f2a59a\" opacity=\".55\"/><ellipse cx=\"70\" cy=\"62\" rx=\"6\" ry=\"3.5\" fill=\"#f2a59a\" opacity=\".55\"/><path d=\"M29.9,40.8 L41.1,39.6\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/><path d=\"M57.8,33.5 L69.3,38.8\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/><ellipse cx=\"37\" cy=\"50\" rx=\"3.0\" ry=\"3.6\" fill=\"#1f2124\"/><ellipse cx=\"63\" cy=\"50\" rx=\"3.0\" ry=\"3.6\" fill=\"#1f2124\"/><path d=\"M42.0,72.5 L58.3,68.5\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/></g></svg>",
+"arlo-head-surprise.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M83.6,51.7 L83.1,59.9 L81.1,66.9 L77.1,73.2 L73.1,78.8 L67.4,83.6 L60.4,85.7 L53.8,87.4 L46.0,88.0 L39.8,86.6 L33.5,82.9 L26.8,78.4 L23.0,72.8 L18.6,66.2 L16.3,59.0 L15.9,51.7 L16.6,44.9 L18.6,37.7 L22.7,30.9 L27.3,25.5 L33.1,20.6 L39.3,17.5 L46.3,16.7 L53.5,15.8 L60.5,18.1 L66.9,21.0 L72.3,24.8 L77.7,30.4 L80.9,37.2 L83.0,44.1 Z\" fill=\"#fdfaf3\" stroke=\"#2b2a28\" stroke-width=\"2.8\"/><path d=\"M17,46 Q20,16 50,15 Q80,16 83,46 Q74,30 50,29 Q28,30 17,46 Z\" fill=\"#2d2a26\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><ellipse cx=\"30\" cy=\"62\" rx=\"6\" ry=\"3.5\" fill=\"#f2a59a\" opacity=\".55\"/><ellipse cx=\"70\" cy=\"62\" rx=\"6\" ry=\"3.5\" fill=\"#f2a59a\" opacity=\".55\"/><path d=\"M29.9,33.8 L41.1,30.6\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/><path d=\"M57.8,30.5 L69.3,33.8\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/><ellipse cx=\"37\" cy=\"50\" rx=\"3.4\" ry=\"4.6\" fill=\"#1f2124\"/><ellipse cx=\"63\" cy=\"50\" rx=\"3.4\" ry=\"4.6\" fill=\"#1f2124\"/><ellipse cx=\"50\" cy=\"73\" rx=\"5\" ry=\"6.5\" fill=\"#1f2124\"/></g></svg>",
+"arlo-head-doubt.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M83.6,51.7 L83.1,59.9 L81.1,66.9 L77.1,73.2 L73.1,78.8 L67.4,83.6 L60.4,85.7 L53.8,87.4 L46.0,88.0 L39.8,86.6 L33.5,82.9 L26.8,78.4 L23.0,72.8 L18.6,66.2 L16.3,59.0 L15.9,51.7 L16.6,44.9 L18.6,37.7 L22.7,30.9 L27.3,25.5 L33.1,20.6 L39.3,17.5 L46.3,16.7 L53.5,15.8 L60.5,18.1 L66.9,21.0 L72.3,24.8 L77.7,30.4 L80.9,37.2 L83.0,44.1 Z\" fill=\"#fdfaf3\" stroke=\"#2b2a28\" stroke-width=\"2.8\"/><path d=\"M17,46 Q20,16 50,15 Q80,16 83,46 Q74,30 50,29 Q28,30 17,46 Z\" fill=\"#2d2a26\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><ellipse cx=\"30\" cy=\"62\" rx=\"6\" ry=\"3.5\" fill=\"#f2a59a\" opacity=\".55\"/><ellipse cx=\"70\" cy=\"62\" rx=\"6\" ry=\"3.5\" fill=\"#f2a59a\" opacity=\".55\"/><path d=\"M29.9,40.8 L41.1,39.6\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/><path d=\"M57.8,33.5 L69.3,38.8\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/><ellipse cx=\"37\" cy=\"50\" rx=\"3.0\" ry=\"3.6\" fill=\"#1f2124\"/><ellipse cx=\"63\" cy=\"50\" rx=\"3.0\" ry=\"3.6\" fill=\"#1f2124\"/><path d=\"M42.0,72.5 L58.3,68.5\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/></g></svg>",
+"arlo-head-think.png": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"><g stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M83.6,51.7 L83.1,59.9 L81.1,66.9 L77.1,73.2 L73.1,78.8 L67.4,83.6 L60.4,85.7 L53.8,87.4 L46.0,88.0 L39.8,86.6 L33.5,82.9 L26.8,78.4 L23.0,72.8 L18.6,66.2 L16.3,59.0 L15.9,51.7 L16.6,44.9 L18.6,37.7 L22.7,30.9 L27.3,25.5 L33.1,20.6 L39.3,17.5 L46.3,16.7 L53.5,15.8 L60.5,18.1 L66.9,21.0 L72.3,24.8 L77.7,30.4 L80.9,37.2 L83.0,44.1 Z\" fill=\"#fdfaf3\" stroke=\"#2b2a28\" stroke-width=\"2.8\"/><path d=\"M17,46 Q20,16 50,15 Q80,16 83,46 Q74,30 50,29 Q28,30 17,46 Z\" fill=\"#2d2a26\" stroke=\"#2b2a28\" stroke-width=\"2.4\"/><ellipse cx=\"30\" cy=\"62\" rx=\"6\" ry=\"3.5\" fill=\"#f2a59a\" opacity=\".55\"/><ellipse cx=\"70\" cy=\"62\" rx=\"6\" ry=\"3.5\" fill=\"#f2a59a\" opacity=\".55\"/><path d=\"M29.9,38.8 L41.1,39.6\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/><path d=\"M57.8,35.5 L69.3,34.8\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/><ellipse cx=\"37\" cy=\"50\" rx=\"3.0\" ry=\"3.6\" fill=\"#1f2124\"/><ellipse cx=\"63\" cy=\"50\" rx=\"3.0\" ry=\"3.6\" fill=\"#1f2124\"/><path d=\"M44.0,72.5 L56.3,71.5\" fill=\"none\" stroke=\"#1f2124\" stroke-width=\"2.6\"/></g></svg>"
+}
+}

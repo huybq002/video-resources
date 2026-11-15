@@ -1,5 +1,5 @@
 {
- "duration": 364.96,
+ "duration": 364.98,
  "lead": 0.25,
  "lines": [
   {
@@ -40,7 +40,7 @@
    "text": "Mara knocked for ten minutes. Then we forced the door.",
    "emote": "worry",
    "start": 13.46,
-   "end": 16.35
+   "end": 16.47
   },
   {
    "scene": 1,
@@ -49,8 +49,8 @@
    "speaker": "Inspector Dale",
    "text": "The window latch was shut. The only key was on his desk. Nobody could have gone in or out.",
    "emote": "doubt",
-   "start": 16.65,
-   "end": 23.17
+   "start": 16.77,
+   "end": 22.4
   },
   {
    "scene": 1,
@@ -59,8 +59,8 @@
    "speaker": "Hana",
    "text": "That's impossible, Kiri.",
    "emote": "shock",
-   "start": 23.62,
-   "end": 25.11
+   "start": 22.85,
+   "end": 24.34
   },
   {
    "scene": 1,
@@ -69,8 +69,8 @@
    "speaker": "Kiri",
    "text": "Nothing is impossible. Something is just hidden.",
    "emote": "calm",
-   "start": 25.56,
-   "end": 28.98
+   "start": 24.79,
+   "end": 28.21
   },
   {
    "scene": 2,
@@ -79,8 +79,8 @@
    "speaker": "Narrator",
    "text": "Kiri was twelve, and he rarely spoke. He looked at things the way other people listen.",
    "emote": "calm",
-   "start": 29.83,
-   "end": 34.96
+   "start": 29.06,
+   "end": 34.19
   },
   {
    "scene": 2,
@@ -89,8 +89,8 @@
    "speaker": "Narrator",
    "text": "He walked the room once. The desk. The key. The clock on the shelf. The door.",
    "emote": "think",
-   "start": 35.26,
-   "end": 41.38
+   "start": 34.49,
+   "end": 40.61
   },
   {
    "scene": 2,
@@ -99,18 +99,18 @@
    "speaker": "Narrator",
    "text": "The desk was tidy. A cold cup of tea. A manuscript with a red pencil on top.",
    "emote": "calm",
-   "start": 41.68,
-   "end": 47.59
+   "start": 40.91,
+   "end": 46.82
   },
   {
    "scene": 2,
    "i": 3,
    "who": "narrator",
    "speaker": "Narrator",
-   "text": "And a gap under the door, thin as a coin.",
+   "text": "And a thin gap at the top of the door, no wider than a coin.",
    "emote": "think",
-   "start": 47.89,
-   "end": 51.06
+   "start": 47.12,
+   "end": 51.08
   },
   {
    "scene": 2,
@@ -119,8 +119,8 @@
    "speaker": "Inspector Dale",
    "text": "Crane's wristwatch stopped at nine-forty. So we think that is when it happened.",
    "emote": "doubt",
-   "start": 51.51,
-   "end": 55.47
+   "start": 51.53,
+   "end": 55.49
   },
   {
    "scene": 2,
@@ -129,8 +129,8 @@
    "speaker": "Kiri",
    "text": "Stopped. But the clock on the shelf is still running.",
    "emote": "think",
-   "start": 55.92,
-   "end": 59.49
+   "start": 55.94,
+   "end": 59.51
   },
   {
    "scene": 2,
@@ -139,8 +139,8 @@
    "speaker": "Hana",
    "text": "So? Different clocks.",
    "emote": "confused",
-   "start": 59.94,
-   "end": 62.01
+   "start": 59.96,
+   "end": 62.03
   },
   {
    "scene": 2,
@@ -149,8 +149,8 @@
    "speaker": "Kiri",
    "text": "Remember that. Remember the watch.",
    "emote": "calm",
-   "start": 62.46,
-   "end": 64.91
+   "start": 62.48,
+   "end": 64.93
   },
   {
    "scene": 3,
@@ -159,8 +159,8 @@
    "speaker": "Narrator",
    "text": "Three people were in the house that night. Each of them has an alibi.",
    "emote": "calm",
-   "start": 65.76,
-   "end": 69.6
+   "start": 65.78,
+   "end": 69.62
   },
   {
    "scene": 3,
@@ -169,8 +169,8 @@
    "speaker": "Narrator",
    "text": "First, Dr. Voss, Crane's doctor. He came at nine for a check-up and left the study at twenty past.",
    "emote": "calm",
-   "start": 69.9,
-   "end": 76.47
+   "start": 69.92,
+   "end": 76.49
   },
   {
    "scene": 3,
@@ -179,8 +179,8 @@
    "speaker": "Dr. Voss",
    "text": "He was well. Cheerful, even. I said goodnight in the hall.",
    "emote": "calm",
-   "start": 76.92,
-   "end": 82.42
+   "start": 76.94,
+   "end": 82.44
   },
   {
    "scene": 3,
@@ -189,8 +189,8 @@
    "speaker": "Dr. Voss",
    "text": "At nine-forty I phoned the hospital from this very phone. The switchboard keeps a log.",
    "emote": "calm",
-   "start": 82.72,
-   "end": 88.27
+   "start": 82.74,
+   "end": 88.29
   },
   {
    "scene": 3,
@@ -199,8 +199,8 @@
    "speaker": "Narrator",
    "text": "A bag of medicine bottles, a spool of blue thread, a stick of red sealing wax. A doctor's tools.",
    "emote": "calm",
-   "start": 88.72,
-   "end": 95.72
+   "start": 88.74,
+   "end": 95.74
   },
   {
    "scene": 3,
@@ -209,8 +209,8 @@
    "speaker": "Hana",
    "text": "A phone log. That's solid.",
    "emote": "calm",
-   "start": 96.17,
-   "end": 98.24
+   "start": 96.19,
+   "end": 98.26
   },
   {
    "scene": 4,
@@ -219,8 +219,8 @@
    "speaker": "Narrator",
    "text": "Second, Mara, the secretary. She has worked for Crane for six years.",
    "emote": "calm",
-   "start": 99.09,
-   "end": 104.25
+   "start": 99.11,
+   "end": 104.27
   },
   {
    "scene": 4,
@@ -229,8 +229,8 @@
    "speaker": "Mara",
    "text": "From nine to ten I counted the silver with Mrs. Pell, the cook. We never left the kitchen.",
    "emote": "calm",
-   "start": 104.7,
-   "end": 110.54
+   "start": 104.72,
+   "end": 110.56
   },
   {
    "scene": 4,
@@ -239,8 +239,8 @@
    "speaker": "Mara",
    "text": "He told me to take the morning off. He said he would write me a letter.",
    "emote": "worry",
-   "start": 110.84,
-   "end": 114.6
+   "start": 110.86,
+   "end": 114.62
   },
   {
    "scene": 4,
@@ -249,8 +249,8 @@
    "speaker": "Mara",
    "text": "He never said what was in it.",
    "emote": "sad",
-   "start": 114.9,
-   "end": 116.41
+   "start": 114.92,
+   "end": 116.43
   },
   {
    "scene": 4,
@@ -259,8 +259,8 @@
    "speaker": "Narrator",
    "text": "The cook agrees. Mara found the door locked at half past ten and called the police.",
    "emote": "calm",
-   "start": 116.86,
-   "end": 122.06
+   "start": 116.88,
+   "end": 122.08
   },
   {
    "scene": 4,
@@ -269,8 +269,8 @@
    "speaker": "Hana",
    "text": "Another alibi. Everyone is covered.",
    "emote": "worry",
-   "start": 122.51,
-   "end": 125.31
+   "start": 122.53,
+   "end": 125.33
   },
   {
    "scene": 4,
@@ -279,8 +279,8 @@
    "speaker": "Kiri",
    "text": "Not yet. Keep counting.",
    "emote": "think",
-   "start": 125.76,
-   "end": 127.9
+   "start": 125.78,
+   "end": 127.92
   },
   {
    "scene": 5,
@@ -289,8 +289,8 @@
    "speaker": "Narrator",
    "text": "Third, Felix, Crane's nephew. He has money troubles, and an uncle who refused to help.",
    "emote": "calm",
-   "start": 128.75,
-   "end": 134.94
+   "start": 128.77,
+   "end": 134.96
   },
   {
    "scene": 5,
@@ -299,8 +299,8 @@
    "speaker": "Felix",
    "text": "We argued at supper. I left at ten to nine and walked straight to the cinema.",
    "emote": "angry",
-   "start": 135.39,
-   "end": 139.75
+   "start": 135.41,
+   "end": 139.77
   },
   {
    "scene": 5,
@@ -309,8 +309,8 @@
    "speaker": "Inspector Dale",
    "text": "A man with a motive and an alibi. Interesting.",
    "emote": "doubt",
-   "start": 140.2,
-   "end": 143.32
+   "start": 140.22,
+   "end": 143.34
   },
   {
    "scene": 5,
@@ -319,8 +319,8 @@
    "speaker": "Felix",
    "text": "I was at the village cinema from nine. Here is my ticket. The usher saw me all night.",
    "emote": "calm",
-   "start": 143.77,
-   "end": 149.53
+   "start": 143.79,
+   "end": 149.55
   },
   {
    "scene": 5,
@@ -329,8 +329,8 @@
    "speaker": "Narrator",
    "text": "The ticket says nine o'clock. The usher confirms it.",
    "emote": "calm",
-   "start": 149.98,
-   "end": 153.19
+   "start": 150.0,
+   "end": 153.21
   },
   {
    "scene": 5,
@@ -339,8 +339,8 @@
    "speaker": "Inspector Dale",
    "text": "Three people, three alibis, one locked room. I do not like it, Kiri.",
    "emote": "worry",
-   "start": 153.64,
-   "end": 158.25
+   "start": 153.66,
+   "end": 158.27
   },
   {
    "scene": 5,
@@ -349,8 +349,8 @@
    "speaker": "Kiri",
    "text": "I do. It means someone made a plan.",
    "emote": "calm",
-   "start": 158.7,
-   "end": 161.13
+   "start": 158.72,
+   "end": 161.15
   },
   {
    "scene": 6,
@@ -359,8 +359,8 @@
    "speaker": "Narrator",
    "text": "Now look closely. Three clues are in plain view. Each one is named once.",
    "emote": "think",
-   "start": 161.98,
-   "end": 168.05
+   "start": 162.0,
+   "end": 168.07
   },
   {
    "scene": 6,
@@ -369,8 +369,8 @@
    "speaker": "Narrator",
    "text": "Nobody touched the room. The police photographed everything, and the three clues sat there the whole time.",
    "emote": "calm",
-   "start": 168.35,
-   "end": 174.49
+   "start": 168.37,
+   "end": 174.51
   },
   {
    "scene": 6,
@@ -379,8 +379,8 @@
    "speaker": "Narrator",
    "text": "One. A tiny drop of red wax on the door frame, level with the lock.",
    "emote": "calm",
-   "start": 174.79,
-   "end": 179.35
+   "start": 174.81,
+   "end": 179.37
   },
   {
    "scene": 6,
@@ -389,8 +389,8 @@
    "speaker": "Narrator",
    "text": "Two. A blue fibre caught on the ring of the key.",
    "emote": "calm",
-   "start": 179.65,
-   "end": 183.02
+   "start": 179.67,
+   "end": 183.04
   },
   {
    "scene": 6,
@@ -399,8 +399,8 @@
    "speaker": "Narrator",
    "text": "Three. A wristwatch stopped at nine-forty, glass unbroken, while the clock on the shelf still runs.",
    "emote": "calm",
-   "start": 183.32,
-   "end": 190.28
+   "start": 183.34,
+   "end": 190.3
   },
   {
    "scene": 6,
@@ -409,8 +409,8 @@
    "speaker": "Narrator",
    "text": "Pause the video if you want to guess. Who made a plan?",
    "emote": "happy",
-   "start": 190.58,
-   "end": 193.8
+   "start": 190.6,
+   "end": 193.82
   },
   {
    "scene": 7,
@@ -419,8 +419,8 @@
    "speaker": "Kiri",
    "text": "The wax first. The only red sealing wax in this house is in one bag.",
    "emote": "think",
-   "start": 194.65,
-   "end": 199.6
+   "start": 194.67,
+   "end": 199.62
   },
   {
    "scene": 7,
@@ -429,8 +429,8 @@
    "speaker": "Kiri",
    "text": "And nobody drips wax on a door frame by accident.",
    "emote": "calm",
-   "start": 199.9,
-   "end": 202.98
+   "start": 199.92,
+   "end": 203.0
   },
   {
    "scene": 7,
@@ -439,8 +439,8 @@
    "speaker": "Hana",
    "text": "The doctor's bag?",
    "emote": "surprise",
-   "start": 203.43,
-   "end": 204.4
+   "start": 203.45,
+   "end": 204.42
   },
   {
    "scene": 7,
@@ -449,8 +449,8 @@
    "speaker": "Kiri",
    "text": "Let's see what else it explains.",
    "emote": "calm",
-   "start": 204.85,
-   "end": 206.74
+   "start": 204.87,
+   "end": 206.76
   },
   {
    "scene": 8,
@@ -459,8 +459,8 @@
    "speaker": "Kiri",
    "text": "The fibre. Not wool, not cotton. Blue nylon thread, the kind in a spool.",
    "emote": "think",
-   "start": 207.59,
-   "end": 213.36
+   "start": 207.61,
+   "end": 213.38
   },
   {
    "scene": 8,
@@ -469,8 +469,8 @@
    "speaker": "Kiri",
    "text": "A spool like the one in the doctor's bag. Mara's drawer has only white thread. Felix owns none.",
    "emote": "calm",
-   "start": 213.66,
-   "end": 220.33
+   "start": 213.68,
+   "end": 220.35
   },
   {
    "scene": 8,
@@ -479,8 +479,8 @@
    "speaker": "Hana",
    "text": "So the thread touched the key.",
    "emote": "think",
-   "start": 220.78,
-   "end": 222.45
+   "start": 220.8,
+   "end": 222.47
   },
   {
    "scene": 8,
@@ -489,8 +489,8 @@
    "speaker": "Kiri",
    "text": "And the key was never in the lock. Why would a thread go through its ring?",
    "emote": "doubt",
-   "start": 222.9,
-   "end": 227.43
+   "start": 222.92,
+   "end": 227.45
   },
   {
    "scene": 9,
@@ -499,8 +499,8 @@
    "speaker": "Kiri",
    "text": "Now the watch. Stopped at nine-forty, with an unbroken glass.",
    "emote": "think",
-   "start": 228.28,
-   "end": 232.79
+   "start": 228.3,
+   "end": 232.81
   },
   {
    "scene": 9,
@@ -509,8 +509,8 @@
    "speaker": "Kiri",
    "text": "A fall would crack it. So someone stopped it by hand, and chose the time.",
    "emote": "calm",
-   "start": 233.09,
-   "end": 238.01
+   "start": 233.11,
+   "end": 238.03
   },
   {
    "scene": 9,
@@ -519,8 +519,8 @@
    "speaker": "Kiri",
    "text": "Who needs it to be nine-forty? Only someone who is safe at nine-forty.",
    "emote": "calm",
-   "start": 238.31,
-   "end": 242.81
+   "start": 238.33,
+   "end": 242.83
   },
   {
    "scene": 9,
@@ -529,8 +529,8 @@
    "speaker": "Kiri",
    "text": "Felix was in the cinema from nine. Mara was in the kitchen from nine. They are safe at any hour that matters.",
    "emote": "calm",
-   "start": 243.11,
-   "end": 250.55
+   "start": 243.13,
+   "end": 250.57
   },
   {
    "scene": 9,
@@ -539,8 +539,8 @@
    "speaker": "Kiri",
    "text": "Dr. Voss left the study at twenty past nine. His only alibi starts at nine-forty.",
    "emote": "calm",
-   "start": 250.85,
-   "end": 256.72
+   "start": 250.87,
+   "end": 256.74
   },
   {
    "scene": 9,
@@ -549,8 +549,8 @@
    "speaker": "Inspector Dale",
    "text": "So the watch was moved to hide the true time.",
    "emote": "shock",
-   "start": 257.17,
-   "end": 259.42
+   "start": 257.19,
+   "end": 259.44
   },
   {
    "scene": 10,
@@ -559,8 +559,8 @@
    "speaker": "Kiri",
    "text": "Here is how the door was locked. Step one. A latch bar inside the door, lifted, with a thread tied to it.",
    "emote": "calm",
-   "start": 260.27,
-   "end": 267.68
+   "start": 260.29,
+   "end": 267.7
   },
   {
    "scene": 10,
@@ -569,8 +569,8 @@
    "speaker": "Kiri",
    "text": "Step two. The thread runs through the ring of the key.",
    "emote": "calm",
-   "start": 267.98,
-   "end": 271.41
+   "start": 268.0,
+   "end": 271.43
   },
   {
    "scene": 10,
@@ -579,8 +579,8 @@
    "speaker": "Kiri",
    "text": "Then it passes over a drop of wax, a small guide, and out through the gap above the door.",
    "emote": "calm",
-   "start": 271.71,
-   "end": 277.41
+   "start": 271.73,
+   "end": 277.43
   },
   {
    "scene": 10,
@@ -589,8 +589,8 @@
    "speaker": "Kiri",
    "text": "Step three. Outside, pull the thread. The key is a weight. The bar drops, and the door is fast.",
    "emote": "think",
-   "start": 277.71,
-   "end": 284.86
+   "start": 277.73,
+   "end": 284.88
   },
   {
    "scene": 10,
@@ -599,8 +599,8 @@
    "speaker": "Kiri",
    "text": "Step four. Let go. The thread slips out through the gap, dragged by the falling key, which lands on the desk.",
    "emote": "calm",
-   "start": 285.16,
-   "end": 292.94
+   "start": 285.18,
+   "end": 292.96
   },
   {
    "scene": 10,
@@ -609,8 +609,8 @@
    "speaker": "Kiri",
    "text": "It leaves a fibre on the ring, and a drop of wax on the frame.",
    "emote": "calm",
-   "start": 293.24,
-   "end": 297.19
+   "start": 293.26,
+   "end": 297.21
   },
   {
    "scene": 10,
@@ -619,8 +619,8 @@
    "speaker": "Hana",
    "text": "A harmless trick with a thread, a weight and a bar. And all of it was in plain view.",
    "emote": "surprise",
-   "start": 297.64,
-   "end": 302.25
+   "start": 297.66,
+   "end": 302.27
   },
   {
    "scene": 10,
@@ -629,8 +629,8 @@
    "speaker": "Inspector Dale",
    "text": "So the door was never locked from inside at all.",
    "emote": "shock",
-   "start": 302.7,
-   "end": 304.67
+   "start": 302.72,
+   "end": 304.69
   },
   {
    "scene": 10,
@@ -639,8 +639,8 @@
    "speaker": "Kiri",
    "text": "It only looked locked. Anyone can fool a door. It is much harder to fool a clock.",
    "emote": "calm",
-   "start": 305.12,
-   "end": 310.77
+   "start": 305.14,
+   "end": 310.79
   },
   {
    "scene": 11,
@@ -649,8 +649,8 @@
    "speaker": "Inspector Dale",
    "text": "Dr. Voss, open your bag.",
    "emote": "angry",
-   "start": 311.62,
-   "end": 313.21
+   "start": 311.64,
+   "end": 313.23
   },
   {
    "scene": 11,
@@ -659,8 +659,8 @@
    "speaker": "Narrator",
    "text": "The spool was blue. The thread matched the fibre. The wax matched the drop.",
    "emote": "calm",
-   "start": 313.66,
-   "end": 318.7
+   "start": 313.68,
+   "end": 318.72
   },
   {
    "scene": 11,
@@ -669,8 +669,8 @@
    "speaker": "Dr. Voss",
    "text": "This is ridiculous. I was on the phone at nine-forty.",
    "emote": "angry",
-   "start": 319.15,
-   "end": 322.9
+   "start": 319.17,
+   "end": 322.92
   },
   {
    "scene": 11,
@@ -679,8 +679,8 @@
    "speaker": "Kiri",
    "text": "You were. But Mr. Crane was already silent, and the clock on the shelf is the only honest clock in the room.",
    "emote": "calm",
-   "start": 323.35,
-   "end": 330.21
+   "start": 323.37,
+   "end": 330.23
   },
   {
    "scene": 11,
@@ -689,8 +689,8 @@
    "speaker": "Dr. Voss",
    "text": "A thread? Half the village owns blue thread!",
    "emote": "angry",
-   "start": 330.66,
-   "end": 333.74
+   "start": 330.68,
+   "end": 333.76
   },
   {
    "scene": 11,
@@ -699,8 +699,8 @@
    "speaker": "Kiri",
    "text": "Half the village does not own that wax. Or a watch that stops at the very hour you need.",
    "emote": "calm",
-   "start": 334.19,
-   "end": 339.83
+   "start": 334.21,
+   "end": 339.85
   },
   {
    "scene": 12,
@@ -709,8 +709,8 @@
    "speaker": "Narrator",
    "text": "The motive is two lines long. Crane was about to print a story about Voss.",
    "emote": "calm",
-   "start": 340.68,
-   "end": 345.5
+   "start": 340.7,
+   "end": 345.52
   },
   {
    "scene": 12,
@@ -719,8 +719,8 @@
    "speaker": "Narrator",
    "text": "It said the work that made the doctor famous was never his own.",
    "emote": "sad",
-   "start": 345.8,
-   "end": 349.71
+   "start": 345.82,
+   "end": 349.73
   },
   {
    "scene": 12,
@@ -729,8 +729,8 @@
    "speaker": "Inspector Dale",
    "text": "Dr. Voss confessed in the hall. Mara cried, and Felix could not speak.",
    "emote": "sad",
-   "start": 350.16,
-   "end": 355.1
+   "start": 350.18,
+   "end": 355.12
   },
   {
    "scene": 12,
@@ -739,8 +739,8 @@
    "speaker": "Narrator",
    "text": "He did not want the world to read it. So he planned a door nobody could open.",
    "emote": "calm",
-   "start": 355.55,
-   "end": 360.37
+   "start": 355.57,
+   "end": 360.39
   },
   {
    "scene": 12,
@@ -749,8 +749,8 @@
    "speaker": "Hana",
    "text": "All because of a thread.",
    "emote": "sad",
-   "start": 360.82,
-   "end": 362.31
+   "start": 360.84,
+   "end": 362.33
   },
   {
    "scene": 12,
@@ -759,8 +759,8 @@
    "speaker": "Kiri",
    "text": "Which clue did you notice first?",
    "emote": "happy",
-   "start": 362.76,
-   "end": 364.36
+   "start": 362.78,
+   "end": 364.38
   }
  ],
  "scenes": [
@@ -771,7 +771,7 @@
    "mood": "mystery",
    "value": "-",
    "start": 0.25,
-   "end": 28.98
+   "end": 28.21
   },
   {
    "id": 2,
@@ -779,8 +779,8 @@
    "place": "Inside Aldous Crane's study, a dark wooden desk with a lamp, a brass key on a green blotter, a clock ticking on the shelf",
    "mood": "mystery",
    "value": "-",
-   "start": 29.83,
-   "end": 64.91
+   "start": 29.06,
+   "end": 64.93
   },
   {
    "id": 3,
@@ -788,8 +788,8 @@
    "place": "The grand hallway of Crane's house at night, a medical bag on a chair beside a hall telephone",
    "mood": "tense",
    "value": "-",
-   "start": 65.76,
-   "end": 98.24
+   "start": 65.78,
+   "end": 98.26
   },
   {
    "id": 4,
@@ -797,8 +797,8 @@
    "place": "A busy farmhouse kitchen at night, a cook stirring a pot, silver spoons laid out on a long table",
    "mood": "tense",
    "value": "-",
-   "start": 99.09,
-   "end": 127.9
+   "start": 99.11,
+   "end": 127.92
   },
   {
    "id": 5,
@@ -806,8 +806,8 @@
    "place": "A small village cinema lobby, a ticket booth, a red ticket stub in a young man's hand",
    "mood": "upbeat",
    "value": "-",
-   "start": 128.75,
-   "end": 161.13
+   "start": 128.77,
+   "end": 161.15
   },
   {
    "id": 6,
@@ -815,8 +815,8 @@
    "place": "A close view of the study door frame and the desk, with a magnifying glass hovering over a tiny spot of red wax",
    "mood": "mystery",
    "value": "-",
-   "start": 161.98,
-   "end": 193.8
+   "start": 162.0,
+   "end": 193.82
   },
   {
    "id": 7,
@@ -824,8 +824,8 @@
    "place": "A close view of the door frame, a drop of red wax shining beside a small iron latch bar",
    "mood": "mystery",
    "value": "+",
-   "start": 194.65,
-   "end": 206.74
+   "start": 194.67,
+   "end": 206.76
   },
   {
    "id": 8,
@@ -833,8 +833,8 @@
    "place": "A close view of the brass key on the green blotter, a single blue fibre across its ring",
    "mood": "mystery",
    "value": "+",
-   "start": 207.59,
-   "end": 227.43
+   "start": 207.61,
+   "end": 227.45
   },
   {
    "id": 9,
@@ -842,8 +842,8 @@
    "place": "A close view of Crane's silver wristwatch on the desk, the hands stopped, the glass shining and whole",
    "mood": "mystery",
    "value": "+",
-   "start": 228.28,
-   "end": 259.42
+   "start": 228.3,
+   "end": 259.44
   },
   {
    "id": 10,
@@ -851,8 +851,8 @@
    "place": "A re-enactment drawing of the study door from the outside, a long blue thread running from the latch bar through a key ring to a wax guide on the frame",
    "mood": "mystery",
    "value": "+",
-   "start": 260.27,
-   "end": 310.77
+   "start": 260.29,
+   "end": 310.79
   },
   {
    "id": 11,
@@ -860,8 +860,8 @@
    "place": "The hallway again at dawn, the medical bag open on a chair and a spool of blue thread on top",
    "mood": "tense",
    "value": "-",
-   "start": 311.62,
-   "end": 339.83
+   "start": 311.64,
+   "end": 339.85
   },
   {
    "id": 12,
@@ -869,8 +869,8 @@
    "place": "A quiet study at sunrise, a manuscript on the desk with a single page lifted by the draught",
    "mood": "sad",
    "value": "-",
-   "start": 340.68,
-   "end": 364.96
+   "start": 340.7,
+   "end": 364.98
   }
  ],
  "captions": [
@@ -916,1121 +916,1121 @@
   },
   {
    "start": 13.46,
-   "end": 15.021,
+   "end": 15.087,
    "text": "Mara knocked for ten minutes."
   },
   {
-   "start": 15.041,
-   "end": 16.33,
+   "start": 15.107,
+   "end": 16.45,
    "text": "Then we forced the door."
   },
   {
-   "start": 16.65,
-   "end": 18.556,
+   "start": 16.77,
+   "end": 18.413,
    "text": "The window latch was shut."
   },
   {
-   "start": 18.576,
-   "end": 20.705,
+   "start": 18.433,
+   "end": 20.269,
    "text": "The only key was on his desk."
   },
   {
-   "start": 20.725,
-   "end": 23.15,
+   "start": 20.289,
+   "end": 22.38,
    "text": "Nobody could have gone in or out."
   },
   {
-   "start": 23.62,
-   "end": 24.766,
+   "start": 22.85,
+   "end": 23.996,
    "text": "That's impossible,"
   },
   {
-   "start": 24.786,
-   "end": 25.09,
+   "start": 24.016,
+   "end": 24.32,
    "text": "Kiri."
   },
   {
-   "start": 25.56,
-   "end": 27.141,
+   "start": 24.79,
+   "end": 26.371,
    "text": "Nothing is impossible."
   },
   {
-   "start": 27.161,
-   "end": 28.96,
+   "start": 26.391,
+   "end": 28.19,
    "text": "Something is just hidden."
   },
   {
-   "start": 29.83,
-   "end": 30.799,
+   "start": 29.06,
+   "end": 30.029,
    "text": "Kiri was twelve,"
   },
   {
-   "start": 30.819,
-   "end": 32.035,
+   "start": 30.049,
+   "end": 31.265,
    "text": "and he rarely spoke."
   },
   {
-   "start": 32.055,
-   "end": 34.075,
+   "start": 31.285,
+   "end": 33.305,
    "text": "He looked at things the way other"
   },
   {
-   "start": 34.095,
-   "end": 34.94,
+   "start": 33.325,
+   "end": 34.17,
    "text": "people listen."
   },
   {
-   "start": 35.26,
-   "end": 37.252,
+   "start": 34.49,
+   "end": 36.482,
    "text": "He walked the room once."
   },
   {
-   "start": 37.272,
-   "end": 38.007,
+   "start": 36.502,
+   "end": 37.237,
    "text": "The desk."
   },
   {
-   "start": 38.027,
-   "end": 38.677,
+   "start": 37.257,
+   "end": 37.907,
    "text": "The key."
   },
   {
-   "start": 38.697,
-   "end": 40.605,
+   "start": 37.927,
+   "end": 39.835,
    "text": "The clock on the shelf."
   },
   {
-   "start": 40.625,
-   "end": 41.36,
+   "start": 39.855,
+   "end": 40.59,
    "text": "The door."
   },
   {
-   "start": 41.68,
-   "end": 43.098,
+   "start": 40.91,
+   "end": 42.328,
    "text": "The desk was tidy."
   },
   {
-   "start": 43.118,
-   "end": 44.535,
+   "start": 42.348,
+   "end": 43.765,
    "text": "A cold cup of tea."
   },
   {
-   "start": 44.555,
-   "end": 47.57,
+   "start": 43.785,
+   "end": 46.8,
    "text": "A manuscript with a red pencil on top."
   },
   {
-   "start": 47.89,
-   "end": 49.851,
-   "text": "And a gap under the door,"
+   "start": 47.12,
+   "end": 49.651,
+   "text": "And a thin gap at the top of the door,"
   },
   {
-   "start": 49.871,
-   "end": 51.04,
-   "text": "thin as a coin."
+   "start": 49.671,
+   "end": 51.06,
+   "text": "no wider than a coin."
   },
   {
-   "start": 51.51,
-   "end": 52.981,
+   "start": 51.53,
+   "end": 53.001,
    "text": "Crane's wristwatch stopped at"
   },
   {
-   "start": 53.001,
-   "end": 53.547,
+   "start": 53.021,
+   "end": 53.567,
    "text": "nine-forty."
   },
   {
-   "start": 53.567,
-   "end": 55.45,
+   "start": 53.587,
+   "end": 55.47,
    "text": "So we think that is when it happened."
   },
   {
-   "start": 55.92,
-   "end": 56.46,
+   "start": 55.94,
+   "end": 56.48,
    "text": "Stopped."
   },
   {
-   "start": 56.48,
-   "end": 58.91,
+   "start": 56.5,
+   "end": 58.93,
    "text": "But the clock on the shelf is still"
   },
   {
-   "start": 58.93,
-   "end": 59.47,
+   "start": 58.95,
+   "end": 59.49,
    "text": "running."
   },
   {
-   "start": 59.94,
-   "end": 60.23,
+   "start": 59.96,
+   "end": 60.25,
    "text": "So?"
   },
   {
-   "start": 60.25,
-   "end": 61.99,
+   "start": 60.27,
+   "end": 62.01,
    "text": "Different clocks."
   },
   {
-   "start": 62.46,
-   "end": 63.479,
+   "start": 62.48,
+   "end": 63.499,
    "text": "Remember that."
   },
   {
-   "start": 63.499,
-   "end": 64.89,
+   "start": 63.519,
+   "end": 64.91,
    "text": "Remember the watch."
   },
   {
-   "start": 65.76,
-   "end": 67.746,
+   "start": 65.78,
+   "end": 67.766,
    "text": "Three people were in the house that"
   },
   {
-   "start": 67.766,
-   "end": 68.09,
+   "start": 67.786,
+   "end": 68.11,
    "text": "night."
   },
   {
-   "start": 68.11,
-   "end": 69.58,
+   "start": 68.13,
+   "end": 69.6,
    "text": "Each of them has an alibi."
   },
   {
-   "start": 69.9,
-   "end": 70.304,
+   "start": 69.92,
+   "end": 70.324,
    "text": "First,"
   },
   {
-   "start": 70.324,
-   "end": 70.516,
+   "start": 70.344,
+   "end": 70.536,
    "text": "Dr."
   },
   {
-   "start": 70.536,
-   "end": 70.869,
+   "start": 70.556,
+   "end": 70.889,
    "text": "Voss,"
   },
   {
-   "start": 70.889,
-   "end": 71.929,
+   "start": 70.909,
+   "end": 71.949,
    "text": "Crane's doctor."
   },
   {
-   "start": 71.949,
-   "end": 74.331,
+   "start": 71.969,
+   "end": 74.351,
    "text": "He came at nine for a check-up and"
   },
   {
-   "start": 74.351,
-   "end": 76.45,
+   "start": 74.371,
+   "end": 76.47,
    "text": "left the study at twenty past."
   },
   {
-   "start": 76.92,
-   "end": 78.1,
+   "start": 76.94,
+   "end": 78.12,
    "text": "He was well."
   },
   {
-   "start": 78.12,
-   "end": 79.0,
+   "start": 78.14,
+   "end": 79.02,
    "text": "Cheerful,"
   },
   {
-   "start": 79.02,
-   "end": 79.5,
+   "start": 79.04,
+   "end": 79.52,
    "text": "even."
   },
   {
-   "start": 79.52,
-   "end": 82.4,
+   "start": 79.54,
+   "end": 82.42,
    "text": "I said goodnight in the hall."
   },
   {
-   "start": 82.72,
-   "end": 85.013,
+   "start": 82.74,
+   "end": 85.033,
    "text": "At nine-forty I phoned the hospital"
   },
   {
-   "start": 85.032,
-   "end": 86.4,
+   "start": 85.053,
+   "end": 86.42,
    "text": "from this very phone."
   },
   {
-   "start": 86.42,
-   "end": 88.25,
+   "start": 86.44,
+   "end": 88.27,
    "text": "The switchboard keeps a log."
   },
   {
-   "start": 88.72,
-   "end": 90.657,
+   "start": 88.74,
+   "end": 90.677,
    "text": "A bag of medicine bottles,"
   },
   {
-   "start": 90.677,
-   "end": 92.388,
+   "start": 90.697,
+   "end": 92.408,
    "text": "a spool of blue thread,"
   },
   {
-   "start": 92.408,
-   "end": 94.42,
+   "start": 92.428,
+   "end": 94.44,
    "text": "a stick of red sealing wax."
   },
   {
-   "start": 94.44,
-   "end": 95.7,
+   "start": 94.46,
+   "end": 95.72,
    "text": "A doctor's tools."
   },
   {
-   "start": 96.17,
-   "end": 97.144,
+   "start": 96.19,
+   "end": 97.164,
    "text": "A phone log."
   },
   {
-   "start": 97.164,
-   "end": 98.22,
+   "start": 97.184,
+   "end": 98.24,
    "text": "That's solid."
   },
   {
-   "start": 99.09,
-   "end": 99.634,
+   "start": 99.11,
+   "end": 99.654,
    "text": "Second,"
   },
   {
-   "start": 99.654,
-   "end": 100.037,
+   "start": 99.674,
+   "end": 100.058,
    "text": "Mara,"
   },
   {
-   "start": 100.057,
-   "end": 101.166,
+   "start": 100.078,
+   "end": 101.186,
    "text": "the secretary."
   },
   {
-   "start": 101.186,
-   "end": 103.746,
+   "start": 101.206,
+   "end": 103.766,
    "text": "She has worked for Crane for six"
   },
   {
-   "start": 103.766,
-   "end": 104.23,
+   "start": 103.786,
+   "end": 104.25,
    "text": "years."
   },
   {
-   "start": 104.7,
-   "end": 107.193,
+   "start": 104.72,
+   "end": 107.213,
    "text": "From nine to ten I counted the silver"
   },
   {
-   "start": 107.213,
-   "end": 107.804,
+   "start": 107.233,
+   "end": 107.824,
    "text": "with Mrs."
   },
   {
-   "start": 107.824,
-   "end": 108.143,
+   "start": 107.844,
+   "end": 108.163,
    "text": "Pell,"
   },
   {
-   "start": 108.163,
-   "end": 108.754,
+   "start": 108.183,
+   "end": 108.774,
    "text": "the cook."
   },
   {
-   "start": 108.774,
-   "end": 110.52,
+   "start": 108.794,
+   "end": 110.54,
    "text": "We never left the kitchen."
   },
   {
-   "start": 110.84,
-   "end": 112.7,
+   "start": 110.86,
+   "end": 112.72,
    "text": "He told me to take the morning off."
   },
   {
-   "start": 112.72,
-   "end": 114.58,
+   "start": 112.74,
+   "end": 114.6,
    "text": "He said he would write me a letter."
   },
   {
-   "start": 114.9,
-   "end": 116.39,
+   "start": 114.92,
+   "end": 116.41,
    "text": "He never said what was in it."
   },
   {
-   "start": 116.86,
-   "end": 117.867,
+   "start": 116.88,
+   "end": 117.887,
    "text": "The cook agrees."
   },
   {
-   "start": 117.887,
-   "end": 120.05,
+   "start": 117.907,
+   "end": 120.07,
    "text": "Mara found the door locked at half"
   },
   {
-   "start": 120.07,
-   "end": 122.04,
+   "start": 120.09,
+   "end": 122.06,
    "text": "past ten and called the police."
   },
   {
-   "start": 122.51,
-   "end": 123.643,
+   "start": 122.53,
+   "end": 123.663,
    "text": "Another alibi."
   },
   {
-   "start": 123.663,
-   "end": 125.29,
+   "start": 123.683,
+   "end": 125.31,
    "text": "Everyone is covered."
   },
   {
-   "start": 125.76,
-   "end": 126.518,
+   "start": 125.78,
+   "end": 126.538,
    "text": "Not yet."
   },
   {
-   "start": 126.538,
-   "end": 127.88,
+   "start": 126.558,
+   "end": 127.9,
    "text": "Keep counting."
   },
   {
-   "start": 128.75,
-   "end": 129.183,
+   "start": 128.77,
+   "end": 129.203,
    "text": "Third,"
   },
   {
-   "start": 129.203,
-   "end": 129.636,
+   "start": 129.223,
+   "end": 129.656,
    "text": "Felix,"
   },
   {
-   "start": 129.656,
-   "end": 130.768,
+   "start": 129.676,
+   "end": 130.788,
    "text": "Crane's nephew."
   },
   {
-   "start": 130.788,
-   "end": 132.429,
+   "start": 130.808,
+   "end": 132.449,
    "text": "He has money troubles,"
   },
   {
-   "start": 132.449,
-   "end": 134.92,
+   "start": 132.469,
+   "end": 134.94,
    "text": "and an uncle who refused to help."
   },
   {
-   "start": 135.39,
-   "end": 136.533,
+   "start": 135.41,
+   "end": 136.553,
    "text": "We argued at supper."
   },
   {
-   "start": 136.553,
-   "end": 138.393,
+   "start": 136.573,
+   "end": 138.413,
    "text": "I left at ten to nine and walked"
   },
   {
-   "start": 138.413,
-   "end": 139.73,
+   "start": 138.433,
+   "end": 139.75,
    "text": "straight to the cinema."
   },
   {
-   "start": 140.2,
-   "end": 142.468,
+   "start": 140.22,
+   "end": 142.488,
    "text": "A man with a motive and an alibi."
   },
   {
-   "start": 142.488,
-   "end": 143.3,
+   "start": 142.508,
+   "end": 143.32,
    "text": "Interesting."
   },
   {
-   "start": 143.77,
-   "end": 146.387,
+   "start": 143.79,
+   "end": 146.407,
    "text": "I was at the village cinema from nine."
   },
   {
-   "start": 146.407,
-   "end": 147.636,
+   "start": 146.427,
+   "end": 147.656,
    "text": "Here is my ticket."
   },
   {
-   "start": 147.656,
-   "end": 149.51,
+   "start": 147.676,
+   "end": 149.53,
    "text": "The usher saw me all night."
   },
   {
-   "start": 149.98,
-   "end": 151.785,
+   "start": 150.0,
+   "end": 151.805,
    "text": "The ticket says nine o'clock."
   },
   {
-   "start": 151.805,
-   "end": 153.17,
+   "start": 151.825,
+   "end": 153.19,
    "text": "The usher confirms it."
   },
   {
-   "start": 153.64,
-   "end": 154.556,
+   "start": 153.66,
+   "end": 154.576,
    "text": "Three people,"
   },
   {
-   "start": 154.576,
-   "end": 155.493,
+   "start": 154.596,
+   "end": 155.513,
    "text": "three alibis,"
   },
   {
-   "start": 155.513,
-   "end": 156.645,
+   "start": 155.533,
+   "end": 156.665,
    "text": "one locked room."
   },
   {
-   "start": 156.665,
-   "end": 157.87,
+   "start": 156.685,
+   "end": 157.89,
    "text": "I do not like it,"
   },
   {
-   "start": 157.89,
-   "end": 158.23,
+   "start": 157.91,
+   "end": 158.25,
    "text": "Kiri."
   },
   {
-   "start": 158.7,
-   "end": 159.037,
+   "start": 158.72,
+   "end": 159.057,
    "text": "I do."
   },
   {
-   "start": 159.057,
-   "end": 161.11,
+   "start": 159.077,
+   "end": 161.13,
    "text": "It means someone made a plan."
   },
   {
-   "start": 161.98,
-   "end": 163.434,
+   "start": 162.0,
+   "end": 163.454,
    "text": "Now look closely."
   },
   {
-   "start": 163.454,
-   "end": 166.036,
+   "start": 163.474,
+   "end": 166.056,
    "text": "Three clues are in plain view."
   },
   {
-   "start": 166.056,
-   "end": 168.03,
+   "start": 166.076,
+   "end": 168.05,
    "text": "Each one is named once."
   },
   {
-   "start": 168.35,
-   "end": 169.761,
+   "start": 168.37,
+   "end": 169.781,
    "text": "Nobody touched the room."
   },
   {
-   "start": 169.781,
-   "end": 171.847,
+   "start": 169.801,
+   "end": 171.867,
    "text": "The police photographed everything,"
   },
   {
-   "start": 171.867,
-   "end": 173.814,
+   "start": 171.887,
+   "end": 173.834,
    "text": "and the three clues sat there the"
   },
   {
-   "start": 173.834,
-   "end": 174.47,
+   "start": 173.854,
+   "end": 174.49,
    "text": "whole time."
   },
   {
-   "start": 174.79,
-   "end": 175.055,
+   "start": 174.81,
+   "end": 175.075,
    "text": "One."
   },
   {
-   "start": 175.075,
-   "end": 177.477,
+   "start": 175.095,
+   "end": 177.497,
    "text": "A tiny drop of red wax on the door"
   },
   {
-   "start": 177.497,
-   "end": 177.905,
+   "start": 177.517,
+   "end": 177.925,
    "text": "frame,"
   },
   {
-   "start": 177.925,
-   "end": 179.33,
+   "start": 177.945,
+   "end": 179.35,
    "text": "level with the lock."
   },
   {
-   "start": 179.65,
-   "end": 179.923,
+   "start": 179.67,
+   "end": 179.943,
    "text": "Two."
   },
   {
-   "start": 179.943,
-   "end": 182.707,
+   "start": 179.963,
+   "end": 182.727,
    "text": "A blue fibre caught on the ring of the"
   },
   {
-   "start": 182.727,
-   "end": 183.0,
+   "start": 182.747,
+   "end": 183.02,
    "text": "key."
   },
   {
-   "start": 183.32,
-   "end": 183.74,
+   "start": 183.34,
+   "end": 183.76,
    "text": "Three."
   },
   {
-   "start": 183.76,
-   "end": 186.304,
+   "start": 183.78,
+   "end": 186.324,
    "text": "A wristwatch stopped at nine-forty,"
   },
   {
-   "start": 186.324,
-   "end": 187.403,
+   "start": 186.344,
+   "end": 187.423,
    "text": "glass unbroken,"
   },
   {
-   "start": 187.423,
-   "end": 189.894,
+   "start": 187.443,
+   "end": 189.914,
    "text": "while the clock on the shelf still"
   },
   {
-   "start": 189.914,
-   "end": 190.26,
+   "start": 189.934,
+   "end": 190.28,
    "text": "runs."
   },
   {
-   "start": 190.58,
-   "end": 192.808,
+   "start": 190.6,
+   "end": 192.828,
    "text": "Pause the video if you want to guess."
   },
   {
-   "start": 192.828,
-   "end": 193.78,
+   "start": 192.848,
+   "end": 193.8,
    "text": "Who made a plan?"
   },
   {
-   "start": 194.65,
-   "end": 195.68,
+   "start": 194.67,
+   "end": 195.7,
    "text": "The wax first."
   },
   {
-   "start": 195.7,
-   "end": 198.53,
+   "start": 195.72,
+   "end": 198.55,
    "text": "The only red sealing wax in this house"
   },
   {
-   "start": 198.55,
-   "end": 199.58,
+   "start": 198.57,
+   "end": 199.6,
    "text": "is in one bag."
   },
   {
-   "start": 199.9,
-   "end": 202.19,
+   "start": 199.92,
+   "end": 202.21,
    "text": "And nobody drips wax on a door frame"
   },
   {
-   "start": 202.21,
-   "end": 202.96,
+   "start": 202.23,
+   "end": 202.98,
    "text": "by accident."
   },
   {
-   "start": 203.43,
-   "end": 204.38,
+   "start": 203.45,
+   "end": 204.4,
    "text": "The doctor's bag?"
   },
   {
-   "start": 204.85,
-   "end": 206.72,
+   "start": 204.87,
+   "end": 206.74,
    "text": "Let's see what else it explains."
   },
   {
-   "start": 207.59,
-   "end": 208.419,
+   "start": 207.61,
+   "end": 208.439,
    "text": "The fibre."
   },
   {
-   "start": 208.439,
-   "end": 209.182,
+   "start": 208.459,
+   "end": 209.202,
    "text": "Not wool,"
   },
   {
-   "start": 209.202,
-   "end": 210.116,
+   "start": 209.222,
+   "end": 210.136,
    "text": "not cotton."
   },
   {
-   "start": 210.136,
-   "end": 211.643,
+   "start": 210.156,
+   "end": 211.663,
    "text": "Blue nylon thread,"
   },
   {
-   "start": 211.663,
-   "end": 213.34,
+   "start": 211.683,
+   "end": 213.36,
    "text": "the kind in a spool."
   },
   {
-   "start": 213.66,
-   "end": 216.25,
+   "start": 213.68,
+   "end": 216.27,
    "text": "A spool like the one in the doctor's"
   },
   {
-   "start": 216.27,
-   "end": 216.54,
+   "start": 216.29,
+   "end": 216.56,
    "text": "bag."
   },
   {
-   "start": 216.56,
-   "end": 219.15,
+   "start": 216.58,
+   "end": 219.17,
    "text": "Mara's drawer has only white thread."
   },
   {
-   "start": 219.17,
-   "end": 220.31,
+   "start": 219.19,
+   "end": 220.33,
    "text": "Felix owns none."
   },
   {
-   "start": 220.78,
-   "end": 222.43,
+   "start": 220.8,
+   "end": 222.45,
    "text": "So the thread touched the key."
   },
   {
-   "start": 222.9,
-   "end": 225.019,
+   "start": 222.92,
+   "end": 225.039,
    "text": "And the key was never in the lock."
   },
   {
-   "start": 225.039,
-   "end": 227.095,
+   "start": 225.059,
+   "end": 227.115,
    "text": "Why would a thread go through its"
   },
   {
-   "start": 227.115,
-   "end": 227.41,
+   "start": 227.135,
+   "end": 227.43,
    "text": "ring?"
   },
   {
-   "start": 228.28,
-   "end": 229.33,
+   "start": 228.3,
+   "end": 229.35,
    "text": "Now the watch."
   },
   {
-   "start": 229.35,
-   "end": 231.012,
+   "start": 229.37,
+   "end": 231.032,
    "text": "Stopped at nine-forty,"
   },
   {
-   "start": 231.032,
-   "end": 232.77,
+   "start": 231.052,
+   "end": 232.79,
    "text": "with an unbroken glass."
   },
   {
-   "start": 233.09,
-   "end": 234.595,
+   "start": 233.11,
+   "end": 234.615,
    "text": "A fall would crack it."
   },
   {
-   "start": 234.615,
-   "end": 236.673,
+   "start": 234.635,
+   "end": 236.693,
    "text": "So someone stopped it by hand,"
   },
   {
-   "start": 236.693,
-   "end": 237.99,
+   "start": 236.713,
+   "end": 238.01,
    "text": "and chose the time."
   },
   {
-   "start": 238.31,
-   "end": 240.275,
+   "start": 238.33,
+   "end": 240.295,
    "text": "Who needs it to be nine-forty?"
   },
   {
-   "start": 240.295,
-   "end": 242.062,
+   "start": 240.315,
+   "end": 242.082,
    "text": "Only someone who is safe at"
   },
   {
-   "start": 242.082,
-   "end": 242.79,
+   "start": 242.102,
+   "end": 242.81,
    "text": "nine-forty."
   },
   {
-   "start": 243.11,
-   "end": 245.476,
+   "start": 243.13,
+   "end": 245.496,
    "text": "Felix was in the cinema from nine."
   },
   {
-   "start": 245.496,
-   "end": 247.863,
+   "start": 245.516,
+   "end": 247.883,
    "text": "Mara was in the kitchen from nine."
   },
   {
-   "start": 247.883,
-   "end": 249.968,
+   "start": 247.903,
+   "end": 249.988,
    "text": "They are safe at any hour that"
   },
   {
-   "start": 249.988,
-   "end": 250.53,
+   "start": 250.008,
+   "end": 250.55,
    "text": "matters."
   },
   {
-   "start": 250.85,
-   "end": 251.056,
+   "start": 250.87,
+   "end": 251.076,
    "text": "Dr."
   },
   {
-   "start": 251.076,
-   "end": 253.614,
+   "start": 251.096,
+   "end": 253.634,
    "text": "Voss left the study at twenty past"
   },
   {
-   "start": 253.634,
-   "end": 253.991,
+   "start": 253.654,
+   "end": 254.011,
    "text": "nine."
   },
   {
-   "start": 254.011,
-   "end": 256.7,
+   "start": 254.031,
+   "end": 256.72,
    "text": "His only alibi starts at nine-forty."
   },
   {
-   "start": 257.17,
-   "end": 258.889,
+   "start": 257.19,
+   "end": 258.909,
    "text": "So the watch was moved to hide the"
   },
   {
-   "start": 258.909,
-   "end": 259.4,
+   "start": 258.929,
+   "end": 259.42,
    "text": "true time."
   },
   {
-   "start": 260.27,
-   "end": 262.598,
+   "start": 260.29,
+   "end": 262.618,
    "text": "Here is how the door was locked."
   },
   {
-   "start": 262.618,
-   "end": 263.258,
+   "start": 262.638,
+   "end": 263.278,
    "text": "Step one."
   },
   {
-   "start": 263.278,
-   "end": 265.312,
+   "start": 263.298,
+   "end": 265.332,
    "text": "A latch bar inside the door,"
   },
   {
-   "start": 265.332,
-   "end": 265.826,
+   "start": 265.352,
+   "end": 265.846,
    "text": "lifted,"
   },
   {
-   "start": 265.846,
-   "end": 267.66,
+   "start": 265.866,
+   "end": 267.68,
    "text": "with a thread tied to it."
   },
   {
-   "start": 267.98,
-   "end": 268.554,
+   "start": 268.0,
+   "end": 268.574,
    "text": "Step two."
   },
   {
-   "start": 268.574,
-   "end": 270.862,
+   "start": 268.594,
+   "end": 270.882,
    "text": "The thread runs through the ring of"
   },
   {
-   "start": 270.882,
-   "end": 271.39,
+   "start": 270.902,
+   "end": 271.41,
    "text": "the key."
   },
   {
-   "start": 271.71,
-   "end": 273.943,
+   "start": 271.73,
+   "end": 273.963,
    "text": "Then it passes over a drop of wax,"
   },
   {
-   "start": 273.963,
-   "end": 274.871,
+   "start": 273.983,
+   "end": 274.891,
    "text": "a small guide,"
   },
   {
-   "start": 274.891,
-   "end": 277.059,
+   "start": 274.911,
+   "end": 277.079,
    "text": "and out through the gap above the"
   },
   {
-   "start": 277.079,
-   "end": 277.39,
+   "start": 277.099,
+   "end": 277.41,
    "text": "door."
   },
   {
-   "start": 277.71,
-   "end": 278.564,
+   "start": 277.73,
+   "end": 278.584,
    "text": "Step three."
   },
   {
-   "start": 278.584,
-   "end": 279.199,
+   "start": 278.604,
+   "end": 279.219,
    "text": "Outside,"
   },
   {
-   "start": 279.219,
-   "end": 280.471,
+   "start": 279.239,
+   "end": 280.491,
    "text": "pull the thread."
   },
   {
-   "start": 280.491,
-   "end": 282.059,
+   "start": 280.511,
+   "end": 282.079,
    "text": "The key is a weight."
   },
   {
-   "start": 282.079,
-   "end": 283.172,
+   "start": 282.099,
+   "end": 283.192,
    "text": "The bar drops,"
   },
   {
-   "start": 283.192,
-   "end": 284.84,
+   "start": 283.212,
+   "end": 284.86,
    "text": "and the door is fast."
   },
   {
-   "start": 285.16,
-   "end": 285.881,
+   "start": 285.18,
+   "end": 285.901,
    "text": "Step four."
   },
   {
-   "start": 285.901,
-   "end": 286.4,
+   "start": 285.921,
+   "end": 286.42,
    "text": "Let go."
   },
   {
-   "start": 286.42,
-   "end": 289.141,
+   "start": 286.44,
+   "end": 289.161,
    "text": "The thread slips out through the gap,"
   },
   {
-   "start": 289.161,
-   "end": 291.142,
+   "start": 289.181,
+   "end": 291.162,
    "text": "dragged by the falling key,"
   },
   {
-   "start": 291.162,
-   "end": 292.92,
+   "start": 291.182,
+   "end": 292.94,
    "text": "which lands on the desk."
   },
   {
-   "start": 293.24,
-   "end": 295.163,
+   "start": 293.26,
+   "end": 295.183,
    "text": "It leaves a fibre on the ring,"
   },
   {
-   "start": 295.183,
-   "end": 297.17,
+   "start": 295.203,
+   "end": 297.19,
    "text": "and a drop of wax on the frame."
   },
   {
-   "start": 297.64,
-   "end": 299.363,
+   "start": 297.66,
+   "end": 299.383,
    "text": "A harmless trick with a thread,"
   },
   {
-   "start": 299.383,
-   "end": 300.431,
+   "start": 299.403,
+   "end": 300.451,
    "text": "a weight and a bar."
   },
   {
-   "start": 300.451,
-   "end": 302.23,
+   "start": 300.471,
+   "end": 302.25,
    "text": "And all of it was in plain view."
   },
   {
-   "start": 302.7,
-   "end": 304.063,
+   "start": 302.72,
+   "end": 304.083,
    "text": "So the door was never locked from"
   },
   {
-   "start": 304.083,
-   "end": 304.65,
+   "start": 304.103,
+   "end": 304.67,
    "text": "inside at all."
   },
   {
-   "start": 305.12,
-   "end": 306.673,
+   "start": 305.14,
+   "end": 306.693,
    "text": "It only looked locked."
   },
   {
-   "start": 306.693,
-   "end": 308.318,
+   "start": 306.713,
+   "end": 308.338,
    "text": "Anyone can fool a door."
   },
   {
-   "start": 308.338,
-   "end": 310.75,
+   "start": 308.358,
+   "end": 310.77,
    "text": "It is much harder to fool a clock."
   },
   {
-   "start": 311.62,
-   "end": 311.817,
+   "start": 311.64,
+   "end": 311.837,
    "text": "Dr."
   },
   {
-   "start": 311.837,
-   "end": 312.178,
+   "start": 311.857,
+   "end": 312.198,
    "text": "Voss,"
   },
   {
-   "start": 312.198,
-   "end": 313.19,
+   "start": 312.218,
+   "end": 313.21,
    "text": "open your bag."
   },
   {
-   "start": 313.66,
-   "end": 314.952,
+   "start": 313.68,
+   "end": 314.972,
    "text": "The spool was blue."
   },
   {
-   "start": 314.972,
-   "end": 316.954,
+   "start": 314.992,
+   "end": 316.974,
    "text": "The thread matched the fibre."
   },
   {
-   "start": 316.974,
-   "end": 318.68,
+   "start": 316.994,
+   "end": 318.7,
    "text": "The wax matched the drop."
   },
   {
-   "start": 319.15,
-   "end": 320.5,
+   "start": 319.17,
+   "end": 320.52,
    "text": "This is ridiculous."
   },
   {
-   "start": 320.52,
-   "end": 322.88,
+   "start": 320.54,
+   "end": 322.9,
    "text": "I was on the phone at nine-forty."
   },
   {
-   "start": 323.35,
-   "end": 323.924,
+   "start": 323.37,
+   "end": 323.944,
    "text": "You were."
   },
   {
-   "start": 323.944,
-   "end": 324.385,
+   "start": 323.964,
+   "end": 324.405,
    "text": "But Mr."
   },
   {
-   "start": 324.405,
-   "end": 326.034,
+   "start": 324.425,
+   "end": 326.054,
    "text": "Crane was already silent,"
   },
   {
-   "start": 326.054,
-   "end": 328.541,
+   "start": 326.074,
+   "end": 328.561,
    "text": "and the clock on the shelf is the only"
   },
   {
-   "start": 328.561,
-   "end": 330.19,
+   "start": 328.581,
+   "end": 330.21,
    "text": "honest clock in the room."
   },
   {
-   "start": 330.66,
-   "end": 331.285,
+   "start": 330.68,
+   "end": 331.305,
    "text": "A thread?"
   },
   {
-   "start": 331.305,
-   "end": 333.72,
+   "start": 331.325,
+   "end": 333.74,
    "text": "Half the village owns blue thread!"
   },
   {
-   "start": 334.19,
-   "end": 336.426,
+   "start": 334.21,
+   "end": 336.446,
    "text": "Half the village does not own that"
   },
   {
-   "start": 336.446,
-   "end": 336.691,
+   "start": 336.466,
+   "end": 336.711,
    "text": "wax."
   },
   {
-   "start": 336.711,
-   "end": 339.213,
+   "start": 336.731,
+   "end": 339.233,
    "text": "Or a watch that stops at the very hour"
   },
   {
-   "start": 339.233,
-   "end": 339.81,
+   "start": 339.253,
+   "end": 339.83,
    "text": "you need."
   },
   {
-   "start": 340.68,
-   "end": 342.601,
+   "start": 340.7,
+   "end": 342.621,
    "text": "The motive is two lines long."
   },
   {
-   "start": 342.621,
-   "end": 345.145,
+   "start": 342.641,
+   "end": 345.165,
    "text": "Crane was about to print a story about"
   },
   {
-   "start": 345.165,
-   "end": 345.48,
+   "start": 345.185,
+   "end": 345.5,
    "text": "Voss."
   },
   {
-   "start": 345.8,
-   "end": 348.113,
+   "start": 345.82,
+   "end": 348.133,
    "text": "It said the work that made the doctor"
   },
   {
-   "start": 348.133,
-   "end": 349.69,
+   "start": 348.153,
+   "end": 349.71,
    "text": "famous was never his own."
   },
   {
-   "start": 350.16,
-   "end": 350.361,
+   "start": 350.18,
+   "end": 350.381,
    "text": "Dr."
   },
   {
-   "start": 350.381,
-   "end": 352.352,
+   "start": 350.401,
+   "end": 352.372,
    "text": "Voss confessed in the hall."
   },
   {
-   "start": 352.372,
-   "end": 353.163,
+   "start": 352.392,
+   "end": 353.183,
    "text": "Mara cried,"
   },
   {
-   "start": 353.183,
-   "end": 355.08,
+   "start": 353.203,
+   "end": 355.1,
    "text": "and Felix could not speak."
   },
   {
-   "start": 355.55,
-   "end": 357.908,
+   "start": 355.57,
+   "end": 357.928,
    "text": "He did not want the world to read it."
   },
   {
-   "start": 357.928,
-   "end": 360.029,
+   "start": 357.948,
+   "end": 360.049,
    "text": "So he planned a door nobody could"
   },
   {
-   "start": 360.049,
-   "end": 360.35,
+   "start": 360.069,
+   "end": 360.37,
    "text": "open."
   },
   {
-   "start": 360.82,
-   "end": 362.29,
+   "start": 360.84,
+   "end": 362.31,
    "text": "All because of a thread."
   },
   {
-   "start": 362.76,
-   "end": 364.34,
+   "start": 362.78,
+   "end": 364.36,
    "text": "Which clue did you notice first?"
   }
  ],
- "words_per_second": 2.95,
+ "words_per_second": 2.96,
  "voices": {
   "Narrator": "en-US-AvaMultilingualNeural",
   "Kiri": "en-US-BrianMultilingualNeural",

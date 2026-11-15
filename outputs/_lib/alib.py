@@ -10,7 +10,7 @@ sys.path.insert(0, str(SK))
 
 PW, PH = 1280, 2275.56
 SAFE_L, SAFE_R = 77, 1126            # .06 / .12 of 1280
-PIC_TOP, PIC_BOT = 200, 1670         # inside top .08 and caption band_top-24 (B1/B3 64 units; B2 72 -> checked by validate)
+PIC_TOP, PIC_BOT = 200, 1620         # inside top .08 and caption band_top-24 (B1/B3 64 units; B2 72 -> checked by validate)
 
 
 def _tf(l, left, s, ox, oy):
@@ -24,7 +24,9 @@ def _tf(l, left, s, ox, oy):
         for k in ("w", "h"):
             if k in d: d[k] = round(d[k] * s, 1)
     fix(l)
-    if l.get("type") == "text" and "size" in l: l["size"] = round(l["size"] * s, 1)
+    if l.get("type") == "text" and "size" in l:
+        l["size"] = round(l["size"] * s, 1)
+        l["w"] = round(max(120, min(l["w"], SAFE_R - l["x"])), 1)
     for k in l.get("keys", []): fix(k)
     for c in l.get("children", []): pass
     return l
@@ -41,6 +43,7 @@ def _box(l):
 def _vbox(l):
     """visible box of a landscape layer (text: estimated from its characters, not its wide w)"""
     x0, y0, x1, y1 = _box(l)
+    if any("angle" in k for k in l.get("keys", [])) and l.get("type") == "image": x0 -= l.get("h", 130) * 0.9; x1 += l.get("h", 130) * 0.9   # a swinging arm
     if l.get("type") == "text":
         est = 0.58 * l.get("size", 40) * len(l.get("text", ""))
         x1 = x0 + min(est, l.get("w", est))
