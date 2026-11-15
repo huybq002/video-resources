@@ -1,7 +1,10 @@
 {
-  "approved": true,
-  "skill_hash": "8836cd568279a4cd",
-  "approved_at": "2026-11-14T20:33",
-  "demo": "https://github.com/huybq002/video-resources/pull/7",
-  "note": "Owner approved in chat 2026-11-14 after PR #7 (designed places, room tone and score, acted voice, relay and director's pass)."
+  "_readme": "Per-style approval (owner decision 2026-11-15). A style whose skill_hash matches scripts/skill_hash.py makes full videos; any other style makes a demo. Approve: python scripts/approve_demo.py --style B3 --demo <release url>.",
+  "styles": {},
+  "previous_look": {
+    "skill_hash": "8836cd568279a4cd",
+    "approved_at": "2026-11-14T20:33",
+    "demo": "https://github.com/huybq002/video-resources/pull/7",
+    "note": "Owner approved in chat 2026-11-14 after PR #7 (designed places, room tone and score, acted voice, relay and director's pass)."
+  }
 }

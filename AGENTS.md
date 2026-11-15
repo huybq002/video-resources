@@ -1,17 +1,19 @@
 # AGENTS.md — project context for AI agents
 
-Read this file instead of exploring the repo. It is accurate as of 2026-11-09. If code contradicts it, trust the code and fix this file.
+Read this file instead of exploring the repo. It is accurate as of 2026-11-15. If code contradicts it, trust the code and fix this file.
 
 ## What this is
-Automation for a YouTube channel ("Hezb Stories", English, US/UK/AU market): animated stick-figure short films about decisions and their cost (money, psychology, invented mysteries). A nightly GitHub job researches the market, writes a story spec, renders a video in both 16:9 and 9:16 with HyperFrames, and prepares a publishing pack. The owner only reviews and posts. Owner works in Vietnamese; narration language comes from `channel.json` (`lang`, now `en`).
+Automation for a YouTube channel ("Hezb Stories", English, US/UK/AU market): animated stick-figure short films about decisions and their cost (money, psychology, invented mysteries). A nightly GitHub job researches the market, writes a story, voices it, directs and renders the picture in both 16:9 and 9:16 with the pinned kaomei/stickman-video-director runtime (one of its visual styles), and prepares a publishing pack. The owner only reviews and posts. Owner works in Vietnamese; narration language comes from `channel.json` (`lang`, now `en`).
 
 ## Layout
 | path | what |
 |---|---|
 | `channel.json` | the only file the owner edits: niche, topics, seed keywords, hard rules |
-| `.claude/skills/code2video-resource-generator/` | **the video generator (most work happens here)** |
+| `.claude/skills/hezb-story/` | **how a video is made**: story script (`stories/<id>.json`), voice, directing the stickman runtime, style choice, approval |
+| `stickman/lock.json`, `scripts/stickman/` | the pinned stickman-video-director runtime (MIT) + `install.sh`, `narrate.py` (voice + timing), `assemble.py` (project.json, sound, validate, render) |
+| `scripts/media/` | `score.py` (room tone per place, original score), `sfx_bank.py`, `director_pass.py`, `make_metadata.py`, `upload_youtube.py` |
 | `.claude/skills/{claude-youtube,html-thumbnail,video-thumbnail}/` | strategy/SEO, HTML thumbnails (no API), Gemini thumbnails |
-| `tools/code2video/` | Python app: VieNeu-TTS, faster-whisper alignment, HyperFrames render (`renderer: tool` tasks) |
+| `tools/code2video/` | Python app; the night job uses its TTS (edge-tts voices, VieNeu for vi, `direction_prosody`) |
 | `scripts/` | night-job helpers: `research_youtube.py`, `policy_check.py`, `make_publish_pack.py`, `publish_release.py`, `verify_bundle.py`, `approve_demo.py`, `skill_hash.py` |
 | `.github/workflows/` | `night-job.yml` (00:00 UTC+7, nine crons 09:17-17:17 UTC because GitHub starts them up to ~9 h late; a run starting after 22:45 UTC does nothing), `autofix.yml`, `build-image.yml`, `claude.yml`, `research-check.yml` |
 | `data/` | `ideas.md` backlog, `learnings.md`, `known-issues.md` (read before any fix), `platform-policy.md`, `approval.json`, `thumbnail-results.csv` |
@@ -20,44 +22,38 @@ Automation for a YouTube channel ("Hezb Stories", English, US/UK/AU market): ani
 
 Read `README.md` and `tasks/README.md` only for operations detail.
 
-## Generator pipeline (`.claude/skills/code2video-resource-generator/`)
-Idea + length → Claude writes `spec.json` → `scripts/build_both.py spec out` (runs `generate.py` once per aspect) → project folder (`index.html`, `script.srt`, `compositions/scene_N.html`, `assets/`) → `ci/run_pipeline.py` (TTS fitted to SRT, lip-sync from the real voice, parallel slice render, ffmpeg, background music, thumbnail, metadata, optional upload).
-- Lip-sync: `build_project` writes text-guessed mouths (`lipsync.py`; Vietnamese syllable rules, English split per vowel group), each `shots[].lip[]` entry tagged with its cue `ci`. After the voice-over, `ci/lipsync_audio.py <project> --lang en` runs Rhubarb Lip Sync (MIT, v1.14.0 in the runner image at `/usr/local/bin/rhubarb`, or `RHUBARB=` env) per cue and swaps the real mouth shapes into `compositions/scene_N.html` (~13 s for a 72 s film). No binary → it keeps the text mouths. `renderer: tool` runs it through the job's `"preRender"` command (tools/code2video `studio/jobs.py`).
-- Sound effects: `build_project` writes `assets/sfx_cues.json` from the picture's beats (cuts/whip/zoom, keyword `word` hit, `react` sting/sparkle/plink, footsteps on walks, keys on typing, prop pop/place/drop, counter/clock ticks, power moment = riser + impact; one sound per beat, clusters thinned). `ci/add_sfx.py <video> --project <proj>` mixes them under the voice before the music step. Effects are synthesised in numpy (`ci/sfx_bank.py`, the ZzFX/jsfxr approach, no licence to track); a recording `data/sfx/<name>.wav` (CC0/owned, e.g. a Kenney pack) overrides one. Spec `"sfx": false` turns them off.
-- Music: `ci/add_music.py <video> --spec spec.json` loops a licensed track from `data/music/library.json` (owner-curated, matched by mood), ducked under the voice by sidechain compression; empty library → no music. Writes `<video>.music.json` (credit line for the description).
+## Video pipeline (2026-11-15, owner decision)
+The old HyperFrames generator (preset 3D sets, stick rigs, `spec.json`) was removed from main; it is kept on the branch
+`backup/pre-stickman-director-2026-11-15`.
 
-Key scripts (`scripts/`):
-- `catalog.py`: single data table — every object (synonyms, zone, footprint, places, affordances lie/sit/sleep/work/use/stand), place recipes (`PLACES`), verb groups (`VERBS`). New scene types = add data here, not code.
-- `layout.py`: places any catalog object into any room at a free spot of its zone.
-- `autofill.py` (first step of `generate.py`): settings → furnished rooms (style / PLACES recipe / generic + named objects; special-state places like ruined/mind kept as authored); lines → `at`/`do` (verb → affordance → object present or added)/`props`/`emote`. Never overwrites the spec author.
-- New pose `use:<act>@<object>` (coverage → build_project.resolve): stand at the object's approach point, turned to it, hands looping the act.
-- `generate.py` lint → plan SRT → render 3D backgrounds → build project → validate. `--aspect 16:9|9:16`, `--skip-bg`, `--keep-srt`.
-- `coverage.py` expands `sequence` blocks (dialogue/narration) into shots; `_cinematic_pass` fixes jump cuts, adds eyeline looks before inserts.
-- `build_project.py` shots → scene HTML (anchors, extras, held poses, HUD, looks); `engine.js` GSAP runtime (acts: walk, sit, lie, gesture, blink, look…).
-- `sets.py` (room styles: bedroom office lab kitchen living classroom cafe shop laundry meeting bathroom grocery generic void; `_dress` puts clutter on every surface, per-style palettes) + `furniture.py` (63 pieces incl. small props) + `bg_renderer/` (three.js via Chrome) = 3D toon backgrounds; `anchors.py` projects furniture so characters sit/lie ON it; `extras.py` populates places by logic.
-- `characters.py` / `characters_stick.py` rigged SVG stick figures. `srt_tools.py` scene-budgeted SRT.
-- Lints (every one prints `WARNING:`; **a spec with any WARNING is not finished**): `spec_lint.py` (visual match, pacing, format voice) → also runs `voice_lint.py` (spoken naturalness: contractions, clichés, show-don't-tell, dialogue shape; en + vi) and `craft_lint.py` (story: `spine`, per-scene `turn`/`value`, motif, 180° line, establishing shots).
-- References to read per step (don't read all): `short-film-craft.md` + `spoken-voice.md` + `story-formats.md` + `script-planning.md` (writing), `wardrobe.md` (cast), `set-design.md` + `scene-dsl.md` (places), `spec-schema.md` (all spec keys), `film-language.md` (shot grammar from reference channel).
-- Examples: `examples/film-demo-2am/spec.json` is the reference spec shape (has `spine`, scene `turn`/`value`); `zombie-portrait` is old 9:16.
+1. **Story** `stories/<id>.json` (`.claude/skills/hezb-story/references/story-schema.md`): style, cast with a look, scenes
+   with a story-specific `place`, acted lines (`emote`). Gate: `.claude/skills/hezb-story/scripts/lint_story.py` +
+   `scripts/policy_check.py spec`.
+2. **Voice** `scripts/stickman/narrate.py story outputs/<id>/voice` -> `narration.wav` + `timing.json` (line/scene times,
+   one-line captions). Natural pace; the picture follows the voice.
+3. **Picture** the night job directs it: `outputs/<id>/shots-16x9.json` / `shots-9x16.json` written against the runtime's
+   references (`$STICKMAN/references/`), with its own SVG drawings in `assets`.
+   `scripts/stickman/assemble.py` writes the runtime's `project.json` (adds captions, room tone, score, sfx), runs
+   `validate` and renders.
+4. **Check** `scripts/verify_bundle.py bundle|video` (+ `scripts/media/director_pass.py`), publishing pack, Release.
 
-## Spec essentials
-`format` (what_if|character|episode|days|dilemma|explainer|wordless), `spine{want,obstacle,turn,choice,opening_image,ending_image,motif}`, `cast[]`, `settings{}` (use `set:{type,style,time}`), `scenes[]{id,title,goal,turn,value,target_s,shots[]}`; scene durations sum to `duration_s`; words per scene ≈ `target_s × 2.4–3` (en ≈ 3.3 w/s cap); cue ≤ 14 words; actions anchored to furniture (`lie@bed`, `sit@chair`); every ~3 s a cut; numbers appear as `hud`. Full key list: `references/spec-schema.md`.
+Styles: `stickman/lock.json` `enabled_styles` (B1, B2, B3: code-drawn, no paid API). A1-A6, B4, B5 and B6 need an image or
+video generation API and are off until a key is added. Each style is approved once
+(`python scripts/approve_demo.py --style B3 --demo <url>`); `data/approval.json` `styles`.
 
 ## Commands
 ```bash
-S=.claude/skills/code2video-resource-generator
-python3 $S/scripts/spec_lint.py spec.json                      # lints incl. voice: and craft:
-python3 $S/scripts/build_both.py spec.json OUT --only 16:9      # first run does npm install in scripts/bg_renderer; needs google-chrome
-python3 $S/scripts/validate.py OUT/landscape --check --no-audio
-npx hyperframes snapshot OUT/landscape --at 2,6,16 -o SNAP      # look at contact-sheet.jpg to judge visuals
+bash scripts/stickman/install.sh                                # pinned runtime into .cache/stickman-director (image: /opt/stickman-director)
+python3 .claude/skills/hezb-story/scripts/lint_story.py stories/<id>.json
+python3 scripts/stickman/narrate.py stories/<id>.json outputs/<id>/voice [--dry-run]
+python3 scripts/stickman/assemble.py --story stories/<id>.json --voice outputs/<id>/voice --shots outputs/<id>/shots-16x9.json --ratio 16:9 --out outputs/<id>/landscape [--check | --seconds 20]
+python3 scripts/media/director_pass.py outputs/<id>/landscape/output.mp4
 python3 scripts/skill_hash.py                                   # approval fingerprint
-cd tools/code2video && python -m pytest tests                   # tool tests
 ```
-Environment: Linux, node, python3, google-chrome, ffmpeg available. Use the scratchpad/tmp, never write scratch into the project.
 
 ## Rules and gotchas
 - **Night volume** (`channel.json` `night`): every run writes >= 3 new ideas dated tonight into `data/ideas.md` (`scripts/plan_night.py check-ideas` gates it) and makes >= 2 videos; each video's length is chosen per idea inside `night.duration_range_min` (1-8 min), and `plan_night.py budget --durations a,b` checks they fit before `$DEADLINE_EPOCH`. A scheduled run GitHub starts after the 22:45 UTC window (up to 05:00 UTC) catches up with a 5 h budget instead of doing nothing.
-- **Lint gate:** `scripts/verify_bundle.py bundle` and `ci/run_pipeline.py` fail while any spec-lint WARNING is open (`--max-warnings N` to override, must be justified in the report).
+- **Lint gate:** `scripts/verify_bundle.py bundle` fails while any story-lint WARNING is open or the runtime's validate has not passed (`--max-warnings N` to override, must be justified in the report).
 - **Approval gate:** `skill_hash.py` hashes the skill's scripts/assets/references/SKILL.md and `tools/code2video/src` (not examples). Any change there invalidates `data/approval.json`, so the next night makes a short demo; the owner runs `scripts/approve_demo.py` after reviewing. Rebuild the runner image after skill changes.
 - Content policy (`scripts/policy_check.py`, `data/platform-policy.md`): fiction only, invented names, no real people/brands/prices, no advice or returns, no graphic violence, AI disclosure in the publish pack.
 - Nothing reaches `main` without the owner: improvements go to branch `improve/YYYY-MM-DD` via PR. Commit only when asked. Commit messages end with the attribution line from the session reminder.

@@ -1,0 +1,29 @@
+{
+  "_readme": "The stickman-video-director runtime the night job renders with (kaomei/stickman-video-director, MIT). Pinned to one commit: a new upstream version is adopted only by changing this file, which changes the look fingerprint (scripts/skill_hash.py) and asks the owner for a new approval.",
+  "repo": "https://github.com/kaomei/stickman-video-director.git",
+  "commit": "44873d1e9757c34c4db037e1d68c2a5548e2d7dc",
+  "skill_dir": "skills/directing-stickman-videos",
+  "sparse": [
+    "skills/directing-stickman-videos/*",
+    "!skills/directing-stickman-videos/assets/b5/*",
+    "!skills/directing-stickman-videos/assets/b6/*",
+    "!skills/directing-stickman-videos/assets/b-audio-library/audio/*"
+  ],
+  "enabled_styles": [
+    "B1",
+    "B2",
+    "B3"
+  ],
+  "disabled_styles": {
+    "A1": "Director mode: writes prompts for Gemini Omni Flash video clips (paid API, no key)",
+    "A2": "Director mode: Gemini Omni Flash (paid API, no key)",
+    "A3": "Director mode: Gemini Omni Flash (paid API, no key)",
+    "A4": "Director mode: Gemini Omni Flash (paid API, no key)",
+    "A5": "Director mode: Gemini Omni Flash (paid API, no key)",
+    "A6": "Amber Noir: reference-guided Gemini images + Gemini Puck narration (paid API, no key)",
+    "B5": "Character Explainer: needs an image-generation tool for the presenter (paid API, no key)",
+    "B6": "Dynamic Meme: needs painted story stills from an image tool (paid API, no key)",
+    "B4": "Survival Thriller: its style lock requires an image-generation tool that takes the B4 anchor images as references (paid API, no key)"
+  },
+  "owner_decision_2026-11-15": "No paid image or video API. Only the styles the runtime can draw with code run: B1, B2, B3 (disclosed as best effort, not sample-equivalent). Each style is approved once from a demo; the job picks the style by content. A1-A6, B4, B5, B6 switch on when a key is added."
+}

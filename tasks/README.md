@@ -32,7 +32,7 @@ If `tasks/pending/` has no runnable task at 00:00, the job does nothing (Claude 
 
 ## Video tasks
 
-Use `templates/video-task-template.md` (`type: video`). The job follows the `code2video-resource-generator` skill in CI mode:
+Use `templates/video-task-template.md` (`type: video`). The job follows the `hezb-story` skill (story, voice, stickman-video-director picture):
 spec in `specs/<id>.json`, then ONE command `ci/run_pipeline.py` (resources, voice-over, render, thumbnail, metadata).
 
 - **Every video task produces two films from one spec**: `outputs/<id>/landscape` (16:9 1920x1080, YouTube) and `outputs/<id>/portrait` (9:16 1080x1920, Shorts). They are not the same pixels cropped: each is generated for its frame, so the three.js backgrounds are re-rendered at that resolution with the camera pulled back in portrait, characters are rescaled, shot sizes eased and captions lifted out of the Shorts UI. The voice-over is made once and copied, because `script.srt` is identical.
