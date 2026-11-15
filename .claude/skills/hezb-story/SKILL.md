@@ -107,6 +107,23 @@ landscape):
   real keys.
 - The runtime refuses more than 2.5 s without principal motion and refuses captions that wrap.
 
+**Drawing kit** (`scripts/draw_kit.py`, worked example `examples/saving-feels-harder/author.py` with its `story.json`, a full B1/B2/B3
+film of one story): colored hand-inked characters cut into parts (left arm, body, head drawings per expression, right arm), so a
+hand can act and the face change with the line. Write your own `author.py` in `outputs/<id>/` the same way: one function per place
+drawing, `D.person_layers(...)` for people, `add(t0, t1, layers)` per shot against `timing.json`.
+- Look per style: B1 = ink figures (`style:"b1"`, no fill) with colored props on the runtime's grid; B2 = coloured clothes (`shirt`,
+  `skirt`, `apron`, `vest`, `hair`) in a coloured world; B3 = a grey ramp on the dark field (set env `DRAW_INK=#e9eaec` before the
+  import, light skin, grey clothes).
+- Character looks come from the story's `cast[].look`; give every character different clothes and hair, and give them the same
+  look in every shot.
+- Facial features are always dark ink (the kit does it), so the eyes never vanish on a light face.
+- Runtime rules that bit us: B1/B2 images turn about their top-left corner (no pivot), so sway a lamp with x keys; B3 shapes
+  (path/rect/ellipse/group) are not allowed in B1/B2; a `text` layer cannot carry `motion` (it never counts as the principal
+  picture) and needs `w`; text drawn inside an SVG gets no font, so write words as `text` layers; a layer's `keys` must stay inside
+  its shot. `assemble.py` rounds and clamps keys and gives text a width, so rounding noise does not stop the night.
+- Draw FOR THE STORY: the places, props and clue objects the words name (a locked study, a snow-covered shed, a radio booth), with
+  the clue objects large and clear when the narrator points at them: a mystery is won or lost on the viewer seeing the clue.
+
 **Direction rules**, from the runtime's references and ours:
 - Each scene is a relay of main visuals: a new place, object, person or graphic hands the stage on.
   `references/event-relay.md`.
