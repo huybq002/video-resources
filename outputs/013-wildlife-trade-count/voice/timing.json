@@ -1,0 +1,860 @@
+{
+ "duration": 161.54,
+ "lead": 0.25,
+ "lines": [
+  {
+   "scene": 1,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Scientists just counted wildlife for sale. The number doubled.",
+   "emote": "surprise",
+   "start": 0.25,
+   "end": 3.99
+  },
+  {
+   "scene": 1,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "At least one hundred seven thousand, three hundred fifty-six species.",
+   "emote": "surprise",
+   "start": 4.29,
+   "end": 8.56
+  },
+  {
+   "scene": 1,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "That is from a study in the journal Science Advances, reported since late October.",
+   "emote": "calm",
+   "start": 8.86,
+   "end": 13.4
+  },
+  {
+   "scene": 1,
+   "i": 3,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Here is what was counted, what was not, and what nobody knows yet.",
+   "emote": "think",
+   "start": 13.7,
+   "end": 17.96
+  },
+  {
+   "scene": 2,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Until now, the number people used was about fifty thousand species.",
+   "emote": "calm",
+   "start": 18.81,
+   "end": 22.6
+  },
+  {
+   "scene": 2,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "It came from a twenty twenty-two assessment by an intergovernmental biodiversity panel called IPBES.",
+   "emote": "calm",
+   "start": 22.9,
+   "end": 28.36
+  },
+  {
+   "scene": 2,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The new study puts the count at more than double that.",
+   "emote": "surprise",
+   "start": 28.66,
+   "end": 31.2
+  },
+  {
+   "scene": 3,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Animals: forty-seven thousand, six hundred eighty-five species.",
+   "emote": "calm",
+   "start": 32.05,
+   "end": 36.63
+  },
+  {
+   "scene": 3,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Plants: at least forty-nine thousand, seven hundred twenty-three, according to the Down To Earth report.",
+   "emote": "calm",
+   "start": 36.93,
+   "end": 43.28
+  },
+  {
+   "scene": 3,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Fungi are counted too. The researchers call it the first global look at how trade in all three is monitored.",
+   "emote": "think",
+   "start": 43.58,
+   "end": 50.21
+  },
+  {
+   "scene": 4,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Notice the wording. Used or traded.",
+   "emote": "think",
+   "start": 51.06,
+   "end": 53.66
+  },
+  {
+   "scene": 4,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "A broader count of about sixty thousand plant and fungus species includes uses that are not trade at all.",
+   "emote": "calm",
+   "start": 53.96,
+   "end": 60.11
+  },
+  {
+   "scene": 4,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "So that figure is kept apart from the headline number.",
+   "emote": "calm",
+   "start": 60.41,
+   "end": 63.23
+  },
+  {
+   "scene": 5,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Did trade itself double? The reports do not say that.",
+   "emote": "doubt",
+   "start": 64.08,
+   "end": 67.69
+  },
+  {
+   "scene": 5,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "This is a new count, put together from many databases. A better count, not a report of more trade.",
+   "emote": "calm",
+   "start": 67.99,
+   "end": 75.44
+  },
+  {
+   "scene": 5,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Each database catches a different slice of the species.",
+   "emote": "think",
+   "start": 75.74,
+   "end": 79.26
+  },
+  {
+   "scene": 6,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Now the gap. Few programmes record trade outside the main treaty list, called CITES, and a few sectors such as fisheries.",
+   "emote": "worry",
+   "start": 80.11,
+   "end": 88.22
+  },
+  {
+   "scene": 6,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Even fewer record whether animals were taken from the wild or bred in captivity.",
+   "emote": "worry",
+   "start": 88.52,
+   "end": 93.54
+  },
+  {
+   "scene": 6,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Or whether the use is sustainable.",
+   "emote": "worry",
+   "start": 93.84,
+   "end": 96.15
+  },
+  {
+   "scene": 6,
+   "i": 3,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Only one country, the United States, systematically records and shares trade data across a wide range of species, the university says.",
+   "emote": "calm",
+   "start": 96.45,
+   "end": 105.0
+  },
+  {
+   "scene": 7,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Global biodiversity targets use an indicator to track traded species.",
+   "emote": "calm",
+   "start": 105.85,
+   "end": 110.6
+  },
+  {
+   "scene": 7,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The study estimates that indicator covers about two to three percent of them.",
+   "emote": "worry",
+   "start": 110.9,
+   "end": 115.15
+  },
+  {
+   "scene": 7,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The authors warn that more than ninety-eight percent may fall outside some form of international monitoring.",
+   "emote": "worry",
+   "start": 115.45,
+   "end": 121.28
+  },
+  {
+   "scene": 8,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "These are estimates. The team says the real number could be higher, because the data are patchy.",
+   "emote": "doubt",
+   "start": 122.13,
+   "end": 127.86
+  },
+  {
+   "scene": 8,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Different outlets round the totals a little differently, so the sources are listed below.",
+   "emote": "calm",
+   "start": 128.16,
+   "end": 132.96
+  },
+  {
+   "scene": 9,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The researchers propose standard ways to record trade, electronic permits instead of paper, and automatic checks of shipping documents.",
+   "emote": "happy",
+   "start": 133.81,
+   "end": 141.42
+  },
+  {
+   "scene": 9,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Those are their recommendations. Nothing here has been decided.",
+   "emote": "calm",
+   "start": 141.72,
+   "end": 145.17
+  },
+  {
+   "scene": 10,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Still unknown: how much of this trade is sustainable. The study counts species. It does not say which are in trouble.",
+   "emote": "think",
+   "start": 146.02,
+   "end": 154.22
+  },
+  {
+   "scene": 10,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "If a figure here is out of date, the sources are the reference.",
+   "emote": "calm",
+   "start": 154.52,
+   "end": 158.73
+  },
+  {
+   "scene": 10,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Which gap would you want counted first?",
+   "emote": "think",
+   "start": 159.03,
+   "end": 160.94
+  }
+ ],
+ "scenes": [
+  {
+   "id": 1,
+   "title": "The count",
+   "place": "A paper ledger on a wooden desk, one huge number written across the page",
+   "mood": "tense",
+   "value": "+",
+   "start": 0.25,
+   "end": 17.96
+  },
+  {
+   "id": 2,
+   "title": "Before",
+   "place": "A wall chart in a quiet office, a small stack of species cards pinned in one corner",
+   "mood": "upbeat",
+   "value": "+",
+   "start": 18.81,
+   "end": 31.2
+  },
+  {
+   "id": 3,
+   "title": "What is in it",
+   "place": "Three large crates on a loading dock, one marked animals, one plants, one fungi",
+   "mood": "upbeat",
+   "value": "+",
+   "start": 32.05,
+   "end": 50.21
+  },
+  {
+   "id": 4,
+   "title": "Used or traded",
+   "place": "Two overlapping circles chalked on a classroom blackboard, one word in each",
+   "mood": "mystery",
+   "value": "-",
+   "start": 51.06,
+   "end": 63.23
+  },
+  {
+   "id": 5,
+   "title": "Not a doubling of trade",
+   "place": "A long table of database folders, a magnifying glass resting on one of them",
+   "mood": "mystery",
+   "value": "-",
+   "start": 64.08,
+   "end": 79.26
+  },
+  {
+   "id": 6,
+   "title": "The gaps",
+   "place": "A harbour warehouse with shelves of labelled boxes and one empty shelf marked with a question mark",
+   "mood": "tense",
+   "value": "-",
+   "start": 80.11,
+   "end": 105.0
+  },
+  {
+   "id": 7,
+   "title": "Watching",
+   "place": "A dashboard with a long bar that is almost entirely grey, a thin bright sliver at one end",
+   "mood": "tense",
+   "value": "-",
+   "start": 105.85,
+   "end": 121.28
+  },
+  {
+   "id": 8,
+   "title": "What is uncertain",
+   "place": "A tray of unfinished puzzle pieces beside a half-built picture of a map",
+   "mood": "mystery",
+   "value": "-",
+   "start": 122.13,
+   "end": 132.96
+  },
+  {
+   "id": 9,
+   "title": "Proposals",
+   "place": "A tidy desk with a laptop, a stamped paper permit and a scanner side by side",
+   "mood": "hopeful",
+   "value": "+",
+   "start": 133.81,
+   "end": 145.17
+  },
+  {
+   "id": 10,
+   "title": "Still unknown",
+   "place": "The same ledger on the same wooden desk, the huge number now with a blank line under it",
+   "mood": "tense",
+   "value": "-",
+   "start": 146.02,
+   "end": 161.54
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.25,
+   "end": 2.474,
+   "text": "Scientists just counted wildlife for"
+  },
+  {
+   "start": 2.494,
+   "end": 2.786,
+   "text": "sale."
+  },
+  {
+   "start": 2.806,
+   "end": 3.97,
+   "text": "The number doubled."
+  },
+  {
+   "start": 4.29,
+   "end": 6.531,
+   "text": "At least one hundred seven thousand,"
+  },
+  {
+   "start": 6.551,
+   "end": 8.54,
+   "text": "three hundred fifty-six species."
+  },
+  {
+   "start": 8.86,
+   "end": 10.826,
+   "text": "That is from a study in the journal"
+  },
+  {
+   "start": 10.846,
+   "end": 11.791,
+   "text": "Science Advances,"
+  },
+  {
+   "start": 11.811,
+   "end": 13.38,
+   "text": "reported since late October."
+  },
+  {
+   "start": 13.7,
+   "end": 15.344,
+   "text": "Here is what was counted,"
+  },
+  {
+   "start": 15.364,
+   "end": 16.209,
+   "text": "what was not,"
+  },
+  {
+   "start": 16.229,
+   "end": 17.94,
+   "text": "and what nobody knows yet."
+  },
+  {
+   "start": 18.81,
+   "end": 19.373,
+   "text": "Until now,"
+  },
+  {
+   "start": 19.393,
+   "end": 21.589,
+   "text": "the number people used was about fifty"
+  },
+  {
+   "start": 21.609,
+   "end": 22.58,
+   "text": "thousand species."
+  },
+  {
+   "start": 22.9,
+   "end": 24.663,
+   "text": "It came from a twenty twenty-two"
+  },
+  {
+   "start": 24.683,
+   "end": 26.557,
+   "text": "assessment by an intergovernmental"
+  },
+  {
+   "start": 26.577,
+   "end": 28.34,
+   "text": "biodiversity panel called IPBES."
+  },
+  {
+   "start": 28.66,
+   "end": 30.365,
+   "text": "The new study puts the count at more"
+  },
+  {
+   "start": 30.385,
+   "end": 31.18,
+   "text": "than double that."
+  },
+  {
+   "start": 32.05,
+   "end": 32.631,
+   "text": "Animals:"
+  },
+  {
+   "start": 32.651,
+   "end": 34.207,
+   "text": "forty-seven thousand,"
+  },
+  {
+   "start": 34.227,
+   "end": 36.61,
+   "text": "six hundred eighty-five species."
+  },
+  {
+   "start": 36.93,
+   "end": 37.35,
+   "text": "Plants:"
+  },
+  {
+   "start": 37.37,
+   "end": 39.173,
+   "text": "at least forty-nine thousand,"
+  },
+  {
+   "start": 39.193,
+   "end": 40.871,
+   "text": "seven hundred twenty-three,"
+  },
+  {
+   "start": 40.891,
+   "end": 43.26,
+   "text": "according to the Down To Earth report."
+  },
+  {
+   "start": 43.58,
+   "end": 44.949,
+   "text": "Fungi are counted too."
+  },
+  {
+   "start": 44.969,
+   "end": 47.033,
+   "text": "The researchers call it the first"
+  },
+  {
+   "start": 47.053,
+   "end": 49.369,
+   "text": "global look at how trade in all three"
+  },
+  {
+   "start": 49.389,
+   "end": 50.19,
+   "text": "is monitored."
+  },
+  {
+   "start": 51.06,
+   "end": 52.493,
+   "text": "Notice the wording."
+  },
+  {
+   "start": 52.513,
+   "end": 53.64,
+   "text": "Used or traded."
+  },
+  {
+   "start": 53.96,
+   "end": 55.749,
+   "text": "A broader count of about sixty"
+  },
+  {
+   "start": 55.769,
+   "end": 57.739,
+   "text": "thousand plant and fungus species"
+  },
+  {
+   "start": 57.759,
+   "end": 59.849,
+   "text": "includes uses that are not trade at"
+  },
+  {
+   "start": 59.869,
+   "end": 60.09,
+   "text": "all."
+  },
+  {
+   "start": 60.41,
+   "end": 62.359,
+   "text": "So that figure is kept apart from the"
+  },
+  {
+   "start": 62.379,
+   "end": 63.21,
+   "text": "headline number."
+  },
+  {
+   "start": 64.08,
+   "end": 65.726,
+   "text": "Did trade itself double?"
+  },
+  {
+   "start": 65.746,
+   "end": 67.67,
+   "text": "The reports do not say that."
+  },
+  {
+   "start": 67.99,
+   "end": 69.538,
+   "text": "This is a new count,"
+  },
+  {
+   "start": 69.558,
+   "end": 72.126,
+   "text": "put together from many databases."
+  },
+  {
+   "start": 72.146,
+   "end": 73.303,
+   "text": "A better count,"
+  },
+  {
+   "start": 73.323,
+   "end": 75.42,
+   "text": "not a report of more trade."
+  },
+  {
+   "start": 75.74,
+   "end": 77.871,
+   "text": "Each database catches a different"
+  },
+  {
+   "start": 77.891,
+   "end": 79.24,
+   "text": "slice of the species."
+  },
+  {
+   "start": 80.11,
+   "end": 80.922,
+   "text": "Now the gap."
+  },
+  {
+   "start": 80.942,
+   "end": 83.348,
+   "text": "Few programmes record trade outside"
+  },
+  {
+   "start": 83.368,
+   "end": 84.804,
+   "text": "the main treaty list,"
+  },
+  {
+   "start": 84.824,
+   "end": 85.705,
+   "text": "called CITES,"
+  },
+  {
+   "start": 85.725,
+   "end": 88.2,
+   "text": "and a few sectors such as fisheries."
+  },
+  {
+   "start": 88.52,
+   "end": 90.946,
+   "text": "Even fewer record whether animals were"
+  },
+  {
+   "start": 90.966,
+   "end": 92.876,
+   "text": "taken from the wild or bred in"
+  },
+  {
+   "start": 92.896,
+   "end": 93.52,
+   "text": "captivity."
+  },
+  {
+   "start": 93.84,
+   "end": 96.13,
+   "text": "Or whether the use is sustainable."
+  },
+  {
+   "start": 96.45,
+   "end": 97.557,
+   "text": "Only one country,"
+  },
+  {
+   "start": 97.577,
+   "end": 98.75,
+   "text": "the United States,"
+  },
+  {
+   "start": 98.77,
+   "end": 100.937,
+   "text": "systematically records and shares"
+  },
+  {
+   "start": 100.957,
+   "end": 103.124,
+   "text": "trade data across a wide range of"
+  },
+  {
+   "start": 103.144,
+   "end": 103.654,
+   "text": "species,"
+  },
+  {
+   "start": 103.674,
+   "end": 104.98,
+   "text": "the university says."
+  },
+  {
+   "start": 105.85,
+   "end": 108.205,
+   "text": "Global biodiversity targets use an"
+  },
+  {
+   "start": 108.225,
+   "end": 110.58,
+   "text": "indicator to track traded species."
+  },
+  {
+   "start": 110.9,
+   "end": 112.807,
+   "text": "The study estimates that indicator"
+  },
+  {
+   "start": 112.827,
+   "end": 114.847,
+   "text": "covers about two to three percent of"
+  },
+  {
+   "start": 114.867,
+   "end": 115.13,
+   "text": "them."
+  },
+  {
+   "start": 115.45,
+   "end": 117.135,
+   "text": "The authors warn that more than"
+  },
+  {
+   "start": 117.155,
+   "end": 119.17,
+   "text": "ninety-eight percent may fall outside"
+  },
+  {
+   "start": 119.19,
+   "end": 121.26,
+   "text": "some form of international monitoring."
+  },
+  {
+   "start": 122.13,
+   "end": 123.342,
+   "text": "These are estimates."
+  },
+  {
+   "start": 123.362,
+   "end": 125.684,
+   "text": "The team says the real number could be"
+  },
+  {
+   "start": 125.704,
+   "end": 126.115,
+   "text": "higher,"
+  },
+  {
+   "start": 126.135,
+   "end": 127.84,
+   "text": "because the data are patchy."
+  },
+  {
+   "start": 128.16,
+   "end": 130.126,
+   "text": "Different outlets round the totals a"
+  },
+  {
+   "start": 130.146,
+   "end": 131.174,
+   "text": "little differently,"
+  },
+  {
+   "start": 131.194,
+   "end": 132.94,
+   "text": "so the sources are listed below."
+  },
+  {
+   "start": 133.81,
+   "end": 135.939,
+   "text": "The researchers propose standard ways"
+  },
+  {
+   "start": 135.959,
+   "end": 136.869,
+   "text": "to record trade,"
+  },
+  {
+   "start": 136.889,
+   "end": 138.96,
+   "text": "electronic permits instead of paper,"
+  },
+  {
+   "start": 138.98,
+   "end": 140.819,
+   "text": "and automatic checks of shipping"
+  },
+  {
+   "start": 140.839,
+   "end": 141.4,
+   "text": "documents."
+  },
+  {
+   "start": 141.72,
+   "end": 143.481,
+   "text": "Those are their recommendations."
+  },
+  {
+   "start": 143.501,
+   "end": 145.15,
+   "text": "Nothing here has been decided."
+  },
+  {
+   "start": 146.02,
+   "end": 147.007,
+   "text": "Still unknown:"
+  },
+  {
+   "start": 147.027,
+   "end": 149.74,
+   "text": "how much of this trade is sustainable."
+  },
+  {
+   "start": 149.76,
+   "end": 151.539,
+   "text": "The study counts species."
+  },
+  {
+   "start": 151.559,
+   "end": 154.2,
+   "text": "It does not say which are in trouble."
+  },
+  {
+   "start": 154.52,
+   "end": 156.673,
+   "text": "If a figure here is out of date,"
+  },
+  {
+   "start": 156.693,
+   "end": 158.71,
+   "text": "the sources are the reference."
+  },
+  {
+   "start": 159.03,
+   "end": 160.618,
+   "text": "Which gap would you want counted"
+  },
+  {
+   "start": 160.638,
+   "end": 160.92,
+   "text": "first?"
+  }
+ ],
+ "words_per_second": 2.71,
+ "voices": {
+  "Narrator": "en-US-AvaMultilingualNeural"
+ },
+ "engine": "EdgeTTSAdapter"
+}

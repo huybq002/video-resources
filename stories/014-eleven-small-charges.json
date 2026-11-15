@@ -1,0 +1,295 @@
+{
+ "id": "014-eleven-small-charges",
+ "title": "Eleven Small Charges. One Big Number.",
+ "lang": "en",
+ "style": "B2",
+ "lane": "trending",
+ "topic": "money",
+ "idea": "A man adds up eleven small monthly charges he said yes to one evening at a time; the pain of paying never came",
+ "keyword": "money mistakes",
+ "format": "days",
+ "duration_min": 3,
+ "mood": "tense",
+ "narrator": {
+  "name": "Narrator",
+  "gender": "female"
+ },
+ "cast": [
+  {
+   "id": "arlo",
+   "name": "Arlo",
+   "gender": "male",
+   "look": "tall man in a mustard sweater, short dark hair, always holding a phone"
+  },
+  {
+   "id": "jo",
+   "name": "Jo",
+   "gender": "female",
+   "look": "his friend, teal hoodie, hair in a bun, a mug in her hand"
+  }
+ ],
+ "scenes": [
+  {
+   "id": 1,
+   "title": "The statement",
+   "place": "Arlo's small apartment, a lamp on, he sits on the couch with a laptop open on a card statement",
+   "mood": "tense",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "Arlo opened his card statement and counted eleven things he never remembered buying.",
+     "emote": "surprise"
+    },
+    {
+     "who": "narrator",
+     "t": "Each one was small. None was over sixteen dollars.",
+     "emote": "doubt"
+    },
+    {
+     "who": "jo",
+     "t": "Read them out loud.",
+     "emote": "calm"
+    },
+    {
+     "who": "arlo",
+     "t": "A film app. A music app. Cloud space. A meal box. I ate that once.",
+     "emote": "worry"
+    },
+    {
+     "who": "narrator",
+     "t": "By the end of this evening, he would know the one number he had never seen.",
+     "emote": "think"
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "title": "A Tuesday",
+   "place": "Arlo's kitchen on a Tuesday evening, a phone propped against a fruit bowl showing a free trial banner",
+   "mood": "upbeat",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "It started on a Tuesday. A film app offered seven days free.",
+     "emote": "happy"
+    },
+    {
+     "who": "arlo",
+     "t": "Free? Sure. I'll cancel before it renews.",
+     "emote": "happy"
+    },
+    {
+     "who": "narrator",
+     "t": "He did not cancel. After the free week it cost five dollars a month, charged on the same day, every month.",
+     "emote": "doubt"
+    },
+    {
+     "who": "narrator",
+     "t": "Nothing felt different. Money left his account, and he felt nothing at all.",
+     "emote": "calm"
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "title": "A Friday",
+   "place": "Arlo's desk at the window on a Friday night, a phone showing a storage full warning",
+   "mood": "tense",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "Then a Friday. His phone said the storage was full.",
+     "emote": "worry"
+    },
+    {
+     "who": "arlo",
+     "t": "Twelve dollars for more space? Fine. It's just space.",
+     "emote": "tired"
+    },
+    {
+     "who": "narrator",
+     "t": "It was easy. One tap, and the problem went away.",
+     "emote": "relief"
+    },
+    {
+     "who": "narrator",
+     "t": "A music app came the same way. A meal box came after a long week.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "Each yes took less than ten seconds, on a different evening.",
+     "emote": "calm"
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "title": "A Sunday",
+   "place": "Arlo's cramped kitchen on a Sunday afternoon, a laptop open on a meal box sign-up page, a half-empty fridge behind him",
+   "mood": "upbeat",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "The meal box was a Sunday. Four dinners a week, and the first box was half price.",
+     "emote": "happy"
+    },
+    {
+     "who": "arlo",
+     "t": "Half price? I'll pause it after the first one.",
+     "emote": "happy"
+    },
+    {
+     "who": "narrator",
+     "t": "He forgot to pause it. The box renewed on the same date every month, and most months he was out of town.",
+     "emote": "doubt"
+    },
+    {
+     "who": "jo",
+     "t": "Out of town, and still paying for dinners.",
+     "emote": "doubt"
+    },
+    {
+     "who": "narrator",
+     "t": "That is how an eleventh charge arrives. Not in one big yes. In ten small ones, and a forgotten pause.",
+     "emote": "think"
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "title": "The name",
+   "place": "A chalkboard in a classroom corner with a coin on one side and a sealed envelope on the other",
+   "mood": "mystery",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "Researchers who study spending have a name for what he did not feel. The pain of paying.",
+     "emote": "think"
+    },
+    {
+     "who": "narrator",
+     "t": "Handing over cash stings. A card tap stings less. A charge that repeats on its own barely registers.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "It does not mean people are foolish. It describes how the sting fades when payment is automatic and small.",
+     "emote": "calm"
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "title": "Eleven",
+   "place": "Arlo's couch again, the laptop now showing a plain list of eleven lines with a calculator beside it",
+   "mood": "tense",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "Back on the couch, Jo helped him add the lines.",
+     "emote": "calm"
+    },
+    {
+     "who": "jo",
+     "t": "Five. Fourteen. Twenty-six. Keep going.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "Ninety-one dollars. Every month.",
+     "emote": "shock"
+    },
+    {
+     "who": "arlo",
+     "t": "Ninety-one? I never spent ninety-one on anything.",
+     "emote": "shock"
+    },
+    {
+     "who": "narrator",
+     "t": "Twelve months of it was one thousand, ninety-two dollars.",
+     "emote": "shock"
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "title": "Which ones",
+   "place": "The same couch at midnight, Arlo has a pen and circles items on a printed copy of the list",
+   "mood": "hopeful",
+   "value": "+",
+   "lines": [
+    {
+     "who": "jo",
+     "t": "Which ones did you use this month?",
+     "emote": "calm"
+    },
+    {
+     "who": "arlo",
+     "t": "The music app. The cloud space. Maybe the film app. Once.",
+     "emote": "doubt"
+    },
+    {
+     "who": "jo",
+     "t": "If someone asked for ninety-one dollars at once, would you have said yes?",
+     "emote": "doubt"
+    },
+    {
+     "who": "arlo",
+     "t": "No. Not in one go. Never.",
+     "emote": "sad"
+    },
+    {
+     "who": "narrator",
+     "t": "That is the trick of small. Nothing was hidden. It was only spread across eleven dates.",
+     "emote": "think"
+    },
+    {
+     "who": "narrator",
+     "t": "Three of the eleven. The other eight had been paid for months, each one quietly.",
+     "emote": "sad"
+    },
+    {
+     "who": "narrator",
+     "t": "He crossed out five that night, and left the rest on his list to think about.",
+     "emote": "calm"
+    },
+    {
+     "who": "arlo",
+     "t": "It's strange. The charges were never big. It was the adding that hurt.",
+     "emote": "sad"
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "title": "The question",
+   "place": "A close view of the printed list on the coffee table with a pen lying across it",
+   "mood": "mystery",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "No single charge ever felt like a decision. Together, they were a year of them.",
+     "emote": "think"
+    },
+    {
+     "who": "narrator",
+     "t": "Arlo kept the printed list on the fridge.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "Which of the eleven would you have kept?",
+     "emote": "think"
+    }
+   ]
+  }
+ ]
+}

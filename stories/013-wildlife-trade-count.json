@@ -1,0 +1,265 @@
+{
+ "id": "013-wildlife-trade-count",
+ "title": "The Count of Traded Wildlife Just Doubled",
+ "lang": "en",
+ "style": "B1",
+ "lane": "news",
+ "topic": "news",
+ "news_date": "2026-10-29",
+ "sources": [
+  "https://sheffield.ac.uk/news/global-wildlife-trade-involves-more-double-number-species-previously-estimated",
+  "https://www.downtoearth.org.in/wildlife-biodiversity/global-wildlife-trade-involves-more-than-107000-species-twice-previous-estimates-study"
+ ],
+ "idea": "A new study counts at least 107,356 species used or traded worldwide, more than double the earlier estimate; only a few percent are tracked",
+ "keyword": "how many species are traded",
+ "format": "explainer",
+ "duration_min": 2.5,
+ "mood": "mystery",
+ "narrator": {
+  "name": "Narrator",
+  "gender": "female"
+ },
+ "cast": [],
+ "scenes": [
+  {
+   "id": 1,
+   "title": "The count",
+   "place": "A paper ledger on a wooden desk, one huge number written across the page",
+   "mood": "tense",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "Scientists just counted wildlife for sale. The number doubled.",
+     "emote": "surprise"
+    },
+    {
+     "who": "narrator",
+     "t": "At least one hundred seven thousand, three hundred fifty-six species.",
+     "emote": "surprise"
+    },
+    {
+     "who": "narrator",
+     "t": "That is from a study in the journal Science Advances, reported since late October.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "Here is what was counted, what was not, and what nobody knows yet.",
+     "emote": "think"
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "title": "Before",
+   "place": "A wall chart in a quiet office, a small stack of species cards pinned in one corner",
+   "mood": "upbeat",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "Until now, the number people used was about fifty thousand species.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "It came from a twenty twenty-two assessment by an intergovernmental biodiversity panel called IPBES.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "The new study puts the count at more than double that.",
+     "emote": "surprise"
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "title": "What is in it",
+   "place": "Three large crates on a loading dock, one marked animals, one plants, one fungi",
+   "mood": "upbeat",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "Animals: forty-seven thousand, six hundred eighty-five species.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "Plants: at least forty-nine thousand, seven hundred twenty-three, according to the Down To Earth report.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "Fungi are counted too. The researchers call it the first global look at how trade in all three is monitored.",
+     "emote": "think"
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "title": "Used or traded",
+   "place": "Two overlapping circles chalked on a classroom blackboard, one word in each",
+   "mood": "mystery",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "Notice the wording. Used or traded.",
+     "emote": "think"
+    },
+    {
+     "who": "narrator",
+     "t": "A broader count of about sixty thousand plant and fungus species includes uses that are not trade at all.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "So that figure is kept apart from the headline number.",
+     "emote": "calm"
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "title": "Not a doubling of trade",
+   "place": "A long table of database folders, a magnifying glass resting on one of them",
+   "mood": "mystery",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "Did trade itself double? The reports do not say that.",
+     "emote": "doubt"
+    },
+    {
+     "who": "narrator",
+     "t": "This is a new count, put together from many databases. A better count, not a report of more trade.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "Each database catches a different slice of the species.",
+     "emote": "think"
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "title": "The gaps",
+   "place": "A harbour warehouse with shelves of labelled boxes and one empty shelf marked with a question mark",
+   "mood": "tense",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "Now the gap. Few programmes record trade outside the main treaty list, called CITES, and a few sectors such as fisheries.",
+     "emote": "worry"
+    },
+    {
+     "who": "narrator",
+     "t": "Even fewer record whether animals were taken from the wild or bred in captivity.",
+     "emote": "worry"
+    },
+    {
+     "who": "narrator",
+     "t": "Or whether the use is sustainable.",
+     "emote": "worry"
+    },
+    {
+     "who": "narrator",
+     "t": "Only one country, the United States, systematically records and shares trade data across a wide range of species, the university says.",
+     "emote": "calm"
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "title": "Watching",
+   "place": "A dashboard with a long bar that is almost entirely grey, a thin bright sliver at one end",
+   "mood": "tense",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "Global biodiversity targets use an indicator to track traded species.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "The study estimates that indicator covers about two to three percent of them.",
+     "emote": "worry"
+    },
+    {
+     "who": "narrator",
+     "t": "The authors warn that more than ninety-eight percent may fall outside some form of international monitoring.",
+     "emote": "worry"
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "title": "What is uncertain",
+   "place": "A tray of unfinished puzzle pieces beside a half-built picture of a map",
+   "mood": "mystery",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "These are estimates. The team says the real number could be higher, because the data are patchy.",
+     "emote": "doubt"
+    },
+    {
+     "who": "narrator",
+     "t": "Different outlets round the totals a little differently, so the sources are listed below.",
+     "emote": "calm"
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "title": "Proposals",
+   "place": "A tidy desk with a laptop, a stamped paper permit and a scanner side by side",
+   "mood": "hopeful",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "The researchers propose standard ways to record trade, electronic permits instead of paper, and automatic checks of shipping documents.",
+     "emote": "happy"
+    },
+    {
+     "who": "narrator",
+     "t": "Those are their recommendations. Nothing here has been decided.",
+     "emote": "calm"
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "title": "Still unknown",
+   "place": "The same ledger on the same wooden desk, the huge number now with a blank line under it",
+   "mood": "tense",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "Still unknown: how much of this trade is sustainable. The study counts species. It does not say which are in trouble.",
+     "emote": "think"
+    },
+    {
+     "who": "narrator",
+     "t": "If a figure here is out of date, the sources are the reference.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "Which gap would you want counted first?",
+     "emote": "think"
+    }
+   ]
+  }
+ ]
+}
