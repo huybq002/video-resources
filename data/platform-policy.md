@@ -5,7 +5,9 @@ Refreshed by the night job before it writes any idea (step 1), and enforced by
 creator-education blogs and news rewrites, not the platforms' own pages: treat the wording as a
 direction, re-check the official pages when something looks decisive, and prefer the safer reading.
 
-Last refreshed: 2026-11-10
+Last refreshed: 2026-11-17
+
+Re-check 2026-11-17 (WebSearch, secondary sources only, no official page found dated Nov 2026): no change. AI use is monetizable; mass-produced/repetitive/generic AI content and AI personas giving health or finance advice are not; realistic synthetic content must still be disclosed. Safer reading kept: label every video, vary stories, no advice.
 
 ## The rule that shapes this channel
 
