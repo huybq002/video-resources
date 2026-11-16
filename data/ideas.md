@@ -53,6 +53,7 @@ topic is behind its `share`.
 | 2026-11-17 | mystery | new | Dying-message mystery T05: a clockmaker leaves a word that reads differently from the other side of the glass; Kiri turns the pane around (fiction, nothing shown; Title: The Dying Word Read Backwards / Thumb: READ IT BACK) | how the trick worked mystery | 60 | episode (7 min) | next unused trick kind after T07 queue; 14/20 channels |
 | 2026-11-17 | psychology | new | Sunk cost fallacy: a man keeps watching a dull series to the end because he already watched six episodes (invented; effect well studied, no advice; Title: Why You Finish Things You Hate / Thumb: STOP? NO) | sunk cost fallacy | 38 | days (3 min) | 20/20 channels, 320 s median length fits 3 min |
 | 2026-11-17 | money | new | Debt-trap pattern as a story: a woman moves one small balance to a new card three times and the film shows the count, not the advice (invented, no real products; Title: The Balance That Followed Her Around / Thumb: MOVED 3x) | debt trap explained | 49 | days (3 min) | 17/20 channels, small-channel friendly |
+| 2026-11-17 | news | new | News backup: NASA reports the Roman telescope's optical error at 63 nm RMS vs a ~90 nm requirement (NASA blog 14 Oct 2026; ScienceDaily 16 Oct only repeats NASA, so a second independent outlet is needed before use; Title: The Telescope That Beat Its Own Spec / Thumb: 63 vs 90 nm) | roman space telescope | - | explainer (2 min) | science story, low risk; fails the 2-independent-outlets rule until one more is found |
 
 ## Dropped ideas and the reason
 
