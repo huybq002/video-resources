@@ -9,8 +9,10 @@ PY=python3; "$PY" -c "print(1)" >/dev/null 2>&1 || PY=python
 HOME_DIR="${STICKMAN_HOME:-$ROOT/.cache/stickman-director}"
 REPO=$("$PY" -c "import json;print(json.load(open('stickman/lock.json'))['repo'])")
 COMMIT=$("$PY" -c "import json;print(json.load(open('stickman/lock.json'))['commit'])")
+PATCHES=$("$PY" -c "import json;print(' '.join(json.load(open('stickman/lock.json')).get('patches',[])))")
+MARK="$COMMIT+$(cat $PATCHES 2>/dev/null | sha256sum | cut -c1-12)"
 SKILL=$("$PY" -c "import json;print(json.load(open('stickman/lock.json'))['skill_dir'])")
-if [ -f "$HOME_DIR/.commit" ] && [ "$(cat "$HOME_DIR/.commit")" = "$COMMIT" ] && [ -d "$HOME_DIR/$SKILL/node_modules" ]; then
+if [ -f "$HOME_DIR/.commit" ] && [ "$(cat "$HOME_DIR/.commit")" = "$MARK" ] && [ -d "$HOME_DIR/$SKILL/node_modules" ]; then
   echo "stickman runtime $COMMIT already installed at $HOME_DIR"; exit 0
 fi
 rm -rf "${HOME_DIR:?}"; mkdir -p "$HOME_DIR"
@@ -22,6 +24,7 @@ git -C "$HOME_DIR" fetch -q --depth 1 --filter=blob:none origin "$COMMIT"
 git -C "$HOME_DIR" checkout -q FETCH_HEAD
 test "$(git -C "$HOME_DIR" rev-parse HEAD)" = "$COMMIT"
 (cd "$HOME_DIR/$SKILL" && npm ci --no-audit --no-fund --silent)
-echo "$COMMIT" > "$HOME_DIR/.commit"
+for pt in $PATCHES; do "$PY" "$pt" "$HOME_DIR/$SKILL"; done      # lock.json "patches": install-time patches of the pinned runtime
+echo "$MARK" > "$HOME_DIR/.commit"
 (cd "$HOME_DIR/$SKILL" && node scripts/autopilot.mjs doctor)
 echo "stickman runtime $COMMIT installed at $HOME_DIR/$SKILL"

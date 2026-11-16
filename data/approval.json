@@ -3,24 +3,24 @@
   "styles": {
     "B1": {
       "approved": true,
-      "skill_hash": "5c388d369b265fd4",
-      "approved_at": "2026-11-15T20:16",
+      "skill_hash": "152088ad266c4864",
+      "approved_at": "2026-11-16T20:06",
       "demo": null,
-      "note": "Owner said 'oke duyệt' in chat on 2026-11-15 after watching the B1/B2/B3 demos and the three versions of 'Why Saving Feels Harder Than Spending' (delivered as files, no Release). Approval covers the current look fingerprint."
+      "note": "Re-recorded 2026-11-16 for the long-film patch (runtime preview cap lifted, no change to how anything is drawn). The owner approved the B1-B3 looks on 2026-11-15 and asked on 2026-11-16 to remove the 60 s limit."
     },
     "B2": {
       "approved": true,
-      "skill_hash": "5c388d369b265fd4",
-      "approved_at": "2026-11-15T20:16",
+      "skill_hash": "152088ad266c4864",
+      "approved_at": "2026-11-16T20:06",
       "demo": null,
-      "note": "Owner said 'oke duyệt' in chat on 2026-11-15 after watching the B1/B2/B3 demos and the three versions of 'Why Saving Feels Harder Than Spending' (delivered as files, no Release). Approval covers the current look fingerprint."
+      "note": "Re-recorded 2026-11-16 for the long-film patch (runtime preview cap lifted, no change to how anything is drawn). The owner approved the B1-B3 looks on 2026-11-15 and asked on 2026-11-16 to remove the 60 s limit."
     },
     "B3": {
       "approved": true,
-      "skill_hash": "5c388d369b265fd4",
-      "approved_at": "2026-11-15T20:16",
+      "skill_hash": "152088ad266c4864",
+      "approved_at": "2026-11-16T20:06",
       "demo": null,
-      "note": "Owner said 'oke duyệt' in chat on 2026-11-15 after watching the B1/B2/B3 demos and the three versions of 'Why Saving Feels Harder Than Spending' (delivered as files, no Release). Approval covers the current look fingerprint."
+      "note": "Re-recorded 2026-11-16 for the long-film patch (runtime preview cap lifted, no change to how anything is drawn). The owner approved the B1-B3 looks on 2026-11-15 and asked on 2026-11-16 to remove the 60 s limit."
     }
   },
   "previous_look": {

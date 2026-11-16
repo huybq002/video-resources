@@ -61,6 +61,7 @@ RUN pip install -e "/opt/code2video[tts,alignment]"
 ENV STICKMAN_HOME=/opt/stickman-director
 COPY stickman/lock.json /tmp/stickman/stickman/lock.json
 COPY scripts/stickman/install.sh /tmp/stickman/scripts/stickman/install.sh
+COPY stickman/patches /tmp/stickman/stickman/patches
 RUN bash /tmp/stickman/scripts/stickman/install.sh && rm -rf /tmp/stickman
 
 # Download the models at build time so nights never download them.

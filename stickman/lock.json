@@ -25,5 +25,9 @@
     "B6": "Dynamic Meme: needs painted story stills from an image tool (paid API, no key)",
     "B4": "Survival Thriller: its style lock requires an image-generation tool that takes the B4 anchor images as references (paid API, no key)"
   },
-  "owner_decision_2026-11-15": "No paid image or video API. Only the styles the runtime can draw with code run: B1, B2, B3 (disclosed as best effort, not sample-equivalent). Each style is approved once from a demo; the job picks the style by content. A1-A6, B4, B5, B6 switch on when a key is added."
+  "owner_decision_2026-11-15": "No paid image or video API. Only the styles the runtime can draw with code run: B1, B2, B3 (disclosed as best effort, not sample-equivalent). Each style is approved once from a demo; the job picks the style by content. A1-A6, B4, B5, B6 switch on when a key is added.",
+  "patches": [
+    "stickman/patches/long-preview.py"
+  ],
+  "owner_decision_2026-11-16": "Films longer than 60 s are allowed: the runtime's preview cap is lifted by stickman/patches/long-preview.py (applied by install.sh). The night job renders whole films with `preview`; the runtime's own approve/render gate is not used. Visual acceptance stays the owner's by style."
 }

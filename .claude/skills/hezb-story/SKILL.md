@@ -140,7 +140,9 @@ drawing, `D.person_layers(...)` for people, `add(t0, t1, layers)` per shot again
 
 `python scripts/stickman/assemble.py --story stories/<id>.json --voice outputs/<id>/voice --shots outputs/<id>/shots-16x9.json --ratio 16:9 --out outputs/<id>/landscape`
 
-Same for `--ratio 9:16 --out outputs/<id>/portrait`. Add `--check` to validate only; add `--seconds 20` for a demo.
+Same for `--ratio 9:16 --out outputs/<id>/portrait`. Add `--check` to validate only; add `--seconds 20` for a demo. Films of any length render in one
+command: the runtime's 60 s preview cap is lifted by `stickman/patches/long-preview.py` (owner decision 2026-11-16), so a 2-8 minute film is one
+`assemble.py` call per cut (budget about 5 s of render per second of film at 1080p).
 A validate failure names the shot and the rule: fix the shots, not the runtime.
 
 **Look at the result as the runtime asks**:
