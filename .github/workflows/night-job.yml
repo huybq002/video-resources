@@ -99,11 +99,23 @@ jobs:
             t=$(date -u -d "$created" +%s); [ "$t" -lt "$start" ] && continue
             if [ "$status" != "completed" ]; then n=$((n+1)); echo "run $id is $status"; continue; fi
             did=$(gh run view "$id" --repo "$GITHUB_REPOSITORY" --json jobs                   -q '[.jobs[].steps[] | select(.name=="Run Claude") | .conclusion] | first // "none"')
-            echo "run $id: Claude step $did"
-            [ "$did" = "success" ] && n=$((n+1))
+            echo "run $id: Claude step $did (a finished run blocks only if the night is complete, checked below)"
           done
           echo "runs that own this night: $n"
-          if [ "$n" -gt 0 ]; then echo "skip=true" >> "$GITHUB_OUTPUT"; else echo "skip=false" >> "$GITHUB_OUTPUT"; fi
+          # THREE-VIDEO RULE (owner, 2026-11-15, highest priority): the night is finished only when its three videos exist:
+          # >= channel.json night.videos_per_night Releases created since the night started (demo Releases do not count), or a
+          # demo Release (demo mode: nothing else is made). A run that ended with fewer (usage limit, deadline, crash) does NOT
+          # own the night: the next cron takes over and continues from tasks/pending and the Progress notes.
+          need=$(python3 -c "import json; print(json.load(open('channel.json'))['night']['videos_per_night'])")
+          start_iso=$(date -u -d @"$start" +%FT%TZ)
+          gh release list --repo "$GITHUB_REPOSITORY" --limit 40 --json tagName,createdAt > /tmp/rels.json
+          real=$(python3 -c "import json; r=json.load(open('/tmp/rels.json')); print(sum(1 for x in r if x['createdAt']>='$start_iso' and not x['tagName'].startswith('demo-')))")
+          demo=$(python3 -c "import json; r=json.load(open('/tmp/rels.json')); print(sum(1 for x in r if x['createdAt']>='$start_iso' and x['tagName'].startswith('demo-')))")
+          echo "videos released tonight: $real of $need; demo releases tonight: $demo"
+          echo "released=$real" >> "$GITHUB_OUTPUT"
+          if [ "$real" -ge "$need" ] || [ "$demo" -gt 0 ]; then echo "night complete ($real videos, $demo demo): nothing more to do"; echo "skip=true" >> "$GITHUB_OUTPUT"
+          elif [ "$n" -gt 0 ]; then echo "a run is still working on it"; echo "skip=true" >> "$GITHUB_OUTPUT"
+          else echo "skip=false" >> "$GITHUB_OUTPUT"; fi
       - name: Wait for 00:00 Vietnam time
         id: wait
         if: github.event_name == 'schedule' && steps.guard.outputs.skip != 'true'
@@ -190,7 +202,23 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: |
             Follow tasks/README.md.
-            0. APPROVAL GATE (per visual style): ENABLED_STYLES=$ENABLED_STYLES, APPROVED_STYLES=$APPROVED_STYLES (look
+            RULE 0 - THE THREE-VIDEO RULE (HIGHEST PRIORITY, overrides every rule below that says stop, skip, wait or go on to the
+            improvement phase; owner, 2026-11-15). You may stop ONLY when channel.json night.videos_per_night (3) videos are
+            published tonight, one per lane, each with a Release URL in its manifest (releases created since 12:00 UTC of tonight's
+            date; `gh release list` shows them; demo Releases do not count unless tonight is demo mode). Until then:
+            - never start the improvement phase (step 12), never write a final report as "done", never end the run;
+            - never drop a lane: when time is short SHORTEN the videos (news 2 min, mystery 4 min, trending 2 min, down to 1 min each
+              if that is what fits; the lane's duration range may be undercut for this) and re-run `plan_night.py budget`, but make all three;
+            - when a video fails verification, fix it and re-render: do not skip it; when a lane has no safe story (news), replace it
+              with a second trending video, which still counts;
+            - publish each video the moment it is verified, in the order news, mystery, trending, so a hard stop leaves finished videos;
+            - the only reasons to stop earlier are limits you cannot move: the deadline epoch in $DEADLINE_EPOCH, a usage or rate
+              limit error, or the job's own timeout. Then commit and push the state (Progress notes: which lane is next and how far
+              it got). The workflow knows the night is NOT finished, and the next cron run continues exactly there. Say how many of
+              the three are done and why you stopped in the report.
+            Safety rules are NOT overridden by Rule 0: never publish a video that fails policy_check or verify_bundle, never use an
+            unapproved style for a full video, never weaken a lint to finish.
+            0b. APPROVAL GATE (per visual style): ENABLED_STYLES=$ENABLED_STYLES, APPROVED_STYLES=$APPROVED_STYLES (look
                fingerprint $SKILL_HASH, data/approval.json). A video may be made in full only in an APPROVED style.
                - Pick each video's style by its content among ENABLED_STYLES ($SKILL/SKILL.md "Styles"), never the previous
                  video's style. Prefer an approved style that fits; if none fits, the video waits and tonight makes a demo.
@@ -366,9 +394,9 @@ jobs:
             10. If you get a usage-limit or rate-limit error, or less than 15 minutes remain: STOP immediately. Do not retry. First commit and push
                what you have (spec, Progress notes with exactly where you stopped, status: in-progress) and leave the task in tasks/pending/.
                The next night's run picks it up and continues from your notes.
-            11. When no task is left, go to step 12 instead of stopping. Before step 12, if fewer than night.videos_per_night
-               videos were published tonight and the budget allows another (`plan_night.py budget`), go back to step 2.
-            12. IMPROVEMENT PHASE. If at least 25 minutes remain before $DEADLINE_EPOCH, do not stop: spend what is left
+            11. When no task is left: if fewer than night.videos_per_night videos were published tonight, RULE 0 applies: go back to
+               step 2 and make the missing lane (shortened if needed). Only with all three published, go to step 12.
+            12. IMPROVEMENT PHASE (only after Rule 0 is satisfied: three videos published tonight). If at least 25 minutes remain before $DEADLINE_EPOCH, do not stop: spend what is left
                making tomorrow's videos better. Stop it the moment time or usage runs out (step 10 applies).
                FIRST create reports/<YYYY-MM-DD>.md from reports/README.md and commit + push it to `night` at once;
                then append to it after EVERY finished item and push again. A usage limit can end the run at any
@@ -408,6 +436,20 @@ jobs:
                   found; every improvement (what, why, evidence, files, commit); what you tried and reverted; what you could
                   NOT verify; decisions the owner has to make; suggested next steps. Honest beats impressive.
           claude_args: --max-turns 500 --allowedTools "Bash,Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
+      - name: Night quota (three-video rule)
+        if: always() && steps.claude.outcome != 'skipped'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "$(date -u +%H)" -lt 12 ]; then start=$(date -u -d "$(date -u -d yesterday +%F) 12:00:00" +%s); else start=$(date -u -d "$(date -u +%F) 12:00:00" +%s); fi
+          start_iso=$(date -u -d @"$start" +%FT%TZ)
+          need=$(python3 -c "import json; print(json.load(open('channel.json'))['night']['videos_per_night'])")
+          gh release list --repo "$GITHUB_REPOSITORY" --limit 40 --json tagName,createdAt > /tmp/rels.json
+          real=$(python3 -c "import json; r=json.load(open('/tmp/rels.json')); print(sum(1 for x in r if x['createdAt']>='$start_iso' and not x['tagName'].startswith('demo-')))")
+          msg="Night quota: $real of $need videos released tonight."
+          if [ "$real" -lt "$need" ]; then msg="$msg NOT FINISHED: the next cron run continues the night."; fi
+          echo "$msg"; echo "$msg" >> "$GITHUB_STEP_SUMMARY"
       - name: Save unfinished work (bundles, voice-over)
         # only after a run that worked: stand-down runs used to save a copy of the same cache each time (9 crons a night)
         if: always() && steps.claude.outcome != 'skipped'
