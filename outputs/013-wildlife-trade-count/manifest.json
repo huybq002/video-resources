@@ -1,0 +1,76 @@
+{
+  "id": "013-wildlife-trade-count",
+  "tag": "013-wildlife-trade-count-44163081094",
+  "idea": "A new study counts at least 107,356 species used or traded worldwide, more than double the earlier estimate; only a few percent are tracked",
+  "lang": "en",
+  "style": "B1",
+  "topic": "news",
+  "duration_s": 161.5,
+  "cuts": [
+    {
+      "cut": "landscape",
+      "aspect": "16:9",
+      "video": "landscape.mp4",
+      "bundle": "landscape-bundle.zip"
+    },
+    {
+      "cut": "portrait",
+      "aspect": "9:16",
+      "video": "portrait.mp4",
+      "bundle": "portrait-bundle.zip"
+    }
+  ],
+  "assets": [
+    {
+      "name": "landscape.mp4",
+      "bytes": 9484937,
+      "sha256": "2ae701286581147c4c1179e9e26ee8dd5d5e8b04eb08b1ded34501cc976760c8"
+    },
+    {
+      "name": "landscape-bundle.zip",
+      "bytes": 64735651,
+      "sha256": "e559d59f74dd88703a90e2c662c72ee07f8a078592ba492e9c9db0f6bf57de5a"
+    },
+    {
+      "name": "portrait.mp4",
+      "bytes": 7997116,
+      "sha256": "ec035b8c826cc1e5b5a70556c504785c98bdff77ad95f09109a7713b2aa2df52"
+    },
+    {
+      "name": "portrait-bundle.zip",
+      "bytes": 54226377,
+      "sha256": "2b69e5bb61585304433d1f4b3cbf76ef438a5de8101cb7162f6f074cd1db9b7b"
+    },
+    {
+      "name": "metadata.json",
+      "bytes": 683,
+      "sha256": "43487fc8ae9e6937798ec46de9cf959a82680ff8c4ab5510c43cd1540812eb44"
+    },
+    {
+      "name": "tiktok.md",
+      "bytes": 889,
+      "sha256": "d9b60ea21b7d66db9a3dadc23dd29b0d3618509748f3e2cfd431ec5782da505f"
+    },
+    {
+      "name": "youtube.md",
+      "bytes": 2436,
+      "sha256": "fe2da182fc060d6f83f643356fad1bd9b90d107f1d337814ce1541d0163a1f96"
+    },
+    {
+      "name": "youtube_shorts.md",
+      "bytes": 588,
+      "sha256": "eb107968fcc9f2d5e05b80e5407926f5e2da4ecedd8b33e6ce9f98a2d8de4e7e"
+    },
+    {
+      "name": "a.png",
+      "bytes": 50128,
+      "sha256": "ae65ce2d3cc6724bfce4ebacb8b2276babb56f54737c0842b06baa1a1b390094"
+    },
+    {
+      "name": "p.png",
+      "bytes": 41414,
+      "sha256": "4e8344101fdb93f5611acd39d0a9bb17fb54cac394cf08ccdcc0e1fc054ee53a"
+    }
+  ],
+  "release_url": "https://github.com/huybq002/video-resources/releases/tag/013-wildlife-trade-count-44163081094"
+}

@@ -93,7 +93,7 @@ def build(ratio):
         L = [desk_l()]
         for k, (nm, ic, lab, col) in enumerate((("animals", "paw.png", "ANIMALS", INK), ("plants", "leaf.png", "PLANTS", GREEN), ("fungi", "shroom.png", "FUNGI", RED))):
             x = 90 + k * 400; y = 320 - (18 if k == active else 0)
-            L.append(img("crate.png", x, y, 260, 230, f"cr{k}", bob(d, 0.5, y, y - 8) if k == active else None, "the open crate", role="prop"))
+            L.append(img("crate.png", x, y, 260, 230, f"cr{k}", bob(d, 0.5, y, y - 22) if k == active else None, "the open crate", role="prop"))
             L.append(img(ic, x + 70, y + 40, 120, 120, f"ic{k}"))
             L.append(T(lab, x + 30, y - 70, 52, col))
         return L
@@ -135,16 +135,16 @@ def build(ratio):
     S(7, 2, lambda d, p, n: dashb(d, p, n, [T("98 %+", 470, 140, 140, RED), T("may fall outside some monitoring", 300, 500, 48, INK, frm=1.2)]), s=1.0)
     # ------------------------------------------------------------------ scene 8: uncertain
     def puz(d, p, n, extra):
-        return [desk_l(), img("pzA.png", 330, 250, 150, 150, "pa", bob(d, 0.6, 250, 242), "a puzzle piece"), img("pzB.png", 480, 250, 150, 150, "pb", bob(d, 0.6, 242, 250), "a puzzle piece"),
-                img("pzC.png", 630, 250, 150, 150, "pc", bob(d, 0.6, 250, 242), "a puzzle piece")] + extra
+        return [desk_l(), img("pzA.png", 330, 250, 150, 150, "pa", bob(d, 0.6, 250, 230), "a puzzle piece"), img("pzB.png", 480, 250, 150, 150, "pb", bob(d, 0.6, 230, 250), "a puzzle piece"),
+                img("pzC.png", 630, 250, 150, 150, "pc", bob(d, 0.6, 250, 230), "a puzzle piece")] + extra
     S(8, 0, lambda d, p, n: puz(d, p, n, [T("ESTIMATES", 400, 100, 90, RED), T("the real number could be higher", 300, 470, 50, INK, frm=1.5)]))
     S(8, 1, lambda d, p, n: puz(d, p, n, [T("TOTALS ROUND DIFFERENTLY", 220, 100, 62, INK, w=1000), T("sources listed below", 400, 470, 54, BLUE, frm=1.0)]))
     # ------------------------------------------------------------------ scene 9: proposals
     def prop(d, p, n, extra, k=0):
-        L = [desk_l(), img("laptop.png", 120, 250, 380, 260, "lp", bob(d, 0.6, 250, 242) if k == 1 else None, "the laptop"), img("permit.png", 580, 300, 180, 230, "pm", bob(d, 0.6, 300, 292) if k == 0 else None, "the permit"),
-             img("scanner.png", 830, 380, 320, 120, "sc", bob(d, 0.5, 380, 374) if k == 2 else None, "the scanner")]
+        L = [desk_l(), img("laptop.png", 120, 250, 380, 260, "lp", bob(d, 0.6, 250, 230) if k == 1 else None, "the laptop"), img("permit.png", 580, 300, 180, 230, "pm", bob(d, 0.6, 300, 276) if k == 0 else None, "the permit"),
+             img("scanner.png", 830, 380, 320, 120, "sc", bob(d, 0.5, 380, 360) if k == 2 else None, "the scanner")]
         return L + extra
-    S(9, 0, lambda d, p, n: prop(d, p, n, [T("STANDARD RECORDS", 120, 60, 58, INK, from_=None) if False else T("STANDARD RECORDS", 120, 60, 58, INK), T("E-PERMITS", 120, 150, 58, BLUE, frm=2.0), T("DOCUMENT CHECKS", 120, 560, 58, GREEN, frm=4.5, w=1000)], k=p % 3))
+    S(9, 0, lambda d, p, n: prop(d, p, n, [T("STANDARD RECORDS", 120, 60, 58, INK, from_=None) if False else T("STANDARD RECORDS", 120, 60, 58, INK), T("E-PERMITS", 120, 150, 58, BLUE, frm=1.2), T("DOCUMENT CHECKS", 120, 560, 58, GREEN, frm=4.5, w=1000)], k=p % 3))
     S(9, 1, lambda d, p, n: prop(d, p, n, [T("RECOMMENDATIONS", 200, 90, 80, INK), T("nothing decided", 400, 570, 60, RED, frm=1.0)], k=1))
     # ------------------------------------------------------------------ scene 10: still unknown
     def fin(d, p, n, extra):

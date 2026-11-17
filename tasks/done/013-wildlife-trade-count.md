@@ -2,7 +2,7 @@
 id: 013-wildlife-trade-count
 type: video
 priority: 013
-status: pending
+status: done
 lane: news
 topic: news
 sources:
@@ -37,3 +37,4 @@ privacy: private
 ## Progress notes
 - 2026-11-16 night: story 013 lint+policy OK, voice 161.5 s, shots-16x9/9x16 authored with outputs/013-wildlife-trade-count/author.py (+ outputs/_lib/alib.py), both validate OK. 60-s previews rendered (render ~1 min per 60 s) and looked at.
 - BLOCKER: the runtime's `preview` is capped at 60 s and its full `render` command refuses without the runtime's approve artifacts (human-approved preview; `approve` is owner-only). assemble.py therefore cannot produce the 161 s film. Not bypassed. Owner: approve this project's preview with the runtime's own approve flow, then run `render`; or decide another route (see report).
+- 2026-11-18 night: long-preview patch applied, both cuts rendered (~3 min each), verified (0 frozen after amplifying bobs), published: https://github.com/huybq002/video-resources/releases/tag/013-wildlife-trade-count-44163081094
