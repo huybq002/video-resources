@@ -1,0 +1,76 @@
+{
+  "id": "014-eleven-small-charges",
+  "tag": "014-eleven-small-charges-44174427889",
+  "idea": "A man adds up eleven small monthly charges he said yes to one evening at a time; the pain of paying never came",
+  "lang": "en",
+  "style": "B2",
+  "topic": "money",
+  "duration_s": 181.3,
+  "cuts": [
+    {
+      "cut": "landscape",
+      "aspect": "16:9",
+      "video": "landscape.mp4",
+      "bundle": "landscape-bundle.zip"
+    },
+    {
+      "cut": "portrait",
+      "aspect": "9:16",
+      "video": "portrait.mp4",
+      "bundle": "portrait-bundle.zip"
+    }
+  ],
+  "assets": [
+    {
+      "name": "landscape.mp4",
+      "bytes": 10601987,
+      "sha256": "f1369d2b0207096be8c13da19e33b4b2c1d798f11028a8d64aced8b67119ad71"
+    },
+    {
+      "name": "landscape-bundle.zip",
+      "bytes": 77520900,
+      "sha256": "5cc9b516174b93591a44c27f2458ad14973f06e9637b972275c77bd22cae94c5"
+    },
+    {
+      "name": "portrait.mp4",
+      "bytes": 8975066,
+      "sha256": "c5e8ce2d99209e79c30f71698fcc603cd92edb33d9e816bf85eed97fe2bb3d57"
+    },
+    {
+      "name": "portrait-bundle.zip",
+      "bytes": 61617081,
+      "sha256": "a8d00111837d167a9218c245ae759188f896e5b966926b692592a5d22c4802c4"
+    },
+    {
+      "name": "metadata.json",
+      "bytes": 575,
+      "sha256": "54f282df55275e7e305235f98ccb2b9c834b7cc6386020c92add4d9ed7417c51"
+    },
+    {
+      "name": "tiktok.md",
+      "bytes": 846,
+      "sha256": "f7502f085796c63d7d5fa78dee7bdea17c2bed127d2df8ce70a6eca38a941c6a"
+    },
+    {
+      "name": "youtube.md",
+      "bytes": 1405,
+      "sha256": "0014f9dfcfe016d11fabde62f0d5face72cf18992ac2eb1229ae5562976444d9"
+    },
+    {
+      "name": "youtube_shorts.md",
+      "bytes": 367,
+      "sha256": "b290b79e95c6475ecb10d348011e4ea1972e2cec9778cfcf881206a3e0e704bb"
+    },
+    {
+      "name": "a.png",
+      "bytes": 48971,
+      "sha256": "b0c222d5f676e48adf9e1f3d07c71f77625596f636c606016bb2bca89a578963"
+    },
+    {
+      "name": "p.png",
+      "bytes": 41284,
+      "sha256": "1d585e96f037c74374b78e829d10ce694695fe51552ce008c4d4b8b1a55b9f77"
+    }
+  ],
+  "release_url": "https://github.com/huybq002/video-resources/releases/tag/014-eleven-small-charges-44174427889"
+}

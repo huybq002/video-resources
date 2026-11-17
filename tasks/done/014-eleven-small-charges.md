@@ -2,7 +2,7 @@
 id: 014-eleven-small-charges
 type: video
 priority: 014
-status: pending
+status: done
 lane: trending
 topic: money
 sources: []
@@ -33,3 +33,4 @@ privacy: private
 
 ## Progress notes
 - 2026-11-16 night: story lint+policy OK, voiced, both cuts authored (author.py + outputs/_lib/alib.py; portrait uses voice-portrait/ with captions re-split to 24 chars via outputs/_lib/portrait_voice.py), validate OK for both cuts, 60-s previews rendered. Full film NOT rendered: see 013's note (runtime preview cap 60 s, full render needs owner approval). Resume: when a render route is decided, run assemble.py (landscape: --voice voice, portrait: --voice voice-portrait).
+- 2026-11-17 night: rendered in full (181 s), both cuts verified, published: https://github.com/huybq002/video-resources/releases/tag/014-eleven-small-charges-44174427889

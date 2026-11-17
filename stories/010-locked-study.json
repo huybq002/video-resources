@@ -8,7 +8,7 @@
  "idea": "classic fair-play locked-room mystery: a publisher's study locked from the inside, key on the desk; three alibis; Kiri breaks the thread-and-wax trick and the faked time",
  "keyword": "crime investigation story",
  "format": "episode",
- "duration_min": 7,
+ "duration_min": 2.5,
  "mood": "mystery",
  "narrator": {
   "name": "Narrator",
@@ -77,18 +77,8 @@
     },
     {
      "who": "dale",
-     "t": "Mara knocked for ten minutes. Then we forced the door.",
-     "emote": "worry"
-    },
-    {
-     "who": "dale",
      "t": "The window latch was shut. The only key was on his desk. Nobody could have gone in or out.",
      "emote": "doubt"
-    },
-    {
-     "who": "hana",
-     "t": "That's impossible, Kiri.",
-     "emote": "shock"
     },
     {
      "who": "kiri",
@@ -105,26 +95,6 @@
    "value": "-",
    "lines": [
     {
-     "who": "narrator",
-     "t": "Kiri was twelve, and he rarely spoke. He looked at things the way other people listen.",
-     "emote": "calm"
-    },
-    {
-     "who": "narrator",
-     "t": "He walked the room once. The desk. The key. The clock on the shelf. The door.",
-     "emote": "think"
-    },
-    {
-     "who": "narrator",
-     "t": "The desk was tidy. A cold cup of tea. A manuscript with a red pencil on top.",
-     "emote": "calm"
-    },
-    {
-     "who": "narrator",
-     "t": "And a thin gap at the top of the door, no wider than a coin.",
-     "emote": "think"
-    },
-    {
      "who": "dale",
      "t": "Crane's wristwatch stopped at nine-forty. So we think that is when it happened.",
      "emote": "doubt"
@@ -133,16 +103,6 @@
      "who": "kiri",
      "t": "Stopped. But the clock on the shelf is still running.",
      "emote": "think"
-    },
-    {
-     "who": "hana",
-     "t": "So? Different clocks.",
-     "emote": "confused"
-    },
-    {
-     "who": "kiri",
-     "t": "Remember that. Remember the watch.",
-     "emote": "calm"
     }
    ]
   },
@@ -155,32 +115,12 @@
    "lines": [
     {
      "who": "narrator",
-     "t": "Three people were in the house that night. Each of them has an alibi.",
-     "emote": "calm"
-    },
-    {
-     "who": "narrator",
      "t": "First, Dr. Voss, Crane's doctor. He came at nine for a check-up and left the study at twenty past.",
      "emote": "calm"
     },
     {
      "who": "voss",
-     "t": "He was well. Cheerful, even. I said goodnight in the hall.",
-     "emote": "calm"
-    },
-    {
-     "who": "voss",
      "t": "At nine-forty I phoned the hospital from this very phone. The switchboard keeps a log.",
-     "emote": "calm"
-    },
-    {
-     "who": "narrator",
-     "t": "A bag of medicine bottles, a spool of blue thread, a stick of red sealing wax. A doctor's tools.",
-     "emote": "calm"
-    },
-    {
-     "who": "hana",
-     "t": "A phone log. That's solid.",
      "emote": "calm"
     }
    ]
@@ -193,39 +133,9 @@
    "value": "-",
    "lines": [
     {
-     "who": "narrator",
-     "t": "Second, Mara, the secretary. She has worked for Crane for six years.",
-     "emote": "calm"
-    },
-    {
      "who": "mara",
      "t": "From nine to ten I counted the silver with Mrs. Pell, the cook. We never left the kitchen.",
      "emote": "calm"
-    },
-    {
-     "who": "mara",
-     "t": "He told me to take the morning off. He said he would write me a letter.",
-     "emote": "worry"
-    },
-    {
-     "who": "mara",
-     "t": "He never said what was in it.",
-     "emote": "sad"
-    },
-    {
-     "who": "narrator",
-     "t": "The cook agrees. Mara found the door locked at half past ten and called the police.",
-     "emote": "calm"
-    },
-    {
-     "who": "hana",
-     "t": "Another alibi. Everyone is covered.",
-     "emote": "worry"
-    },
-    {
-     "who": "kiri",
-     "t": "Not yet. Keep counting.",
-     "emote": "think"
     }
    ]
   },
@@ -237,38 +147,8 @@
    "value": "-",
    "lines": [
     {
-     "who": "narrator",
-     "t": "Third, Felix, Crane's nephew. He has money troubles, and an uncle who refused to help.",
-     "emote": "calm"
-    },
-    {
-     "who": "felix",
-     "t": "We argued at supper. I left at ten to nine and walked straight to the cinema.",
-     "emote": "angry"
-    },
-    {
-     "who": "dale",
-     "t": "A man with a motive and an alibi. Interesting.",
-     "emote": "doubt"
-    },
-    {
      "who": "felix",
      "t": "I was at the village cinema from nine. Here is my ticket. The usher saw me all night.",
-     "emote": "calm"
-    },
-    {
-     "who": "narrator",
-     "t": "The ticket says nine o'clock. The usher confirms it.",
-     "emote": "calm"
-    },
-    {
-     "who": "dale",
-     "t": "Three people, three alibis, one locked room. I do not like it, Kiri.",
-     "emote": "worry"
-    },
-    {
-     "who": "kiri",
-     "t": "I do. It means someone made a plan.",
      "emote": "calm"
     }
    ]
@@ -280,16 +160,6 @@
    "mood": "mystery",
    "value": "-",
    "lines": [
-    {
-     "who": "narrator",
-     "t": "Now look closely. Three clues are in plain view. Each one is named once.",
-     "emote": "think"
-    },
-    {
-     "who": "narrator",
-     "t": "Nobody touched the room. The police photographed everything, and the three clues sat there the whole time.",
-     "emote": "calm"
-    },
     {
      "who": "narrator",
      "t": "One. A tiny drop of red wax on the door frame, level with the lock.",
@@ -323,21 +193,6 @@
      "who": "kiri",
      "t": "The wax first. The only red sealing wax in this house is in one bag.",
      "emote": "think"
-    },
-    {
-     "who": "kiri",
-     "t": "And nobody drips wax on a door frame by accident.",
-     "emote": "calm"
-    },
-    {
-     "who": "hana",
-     "t": "The doctor's bag?",
-     "emote": "surprise"
-    },
-    {
-     "who": "kiri",
-     "t": "Let's see what else it explains.",
-     "emote": "calm"
     }
    ]
   },
@@ -351,16 +206,6 @@
     {
      "who": "kiri",
      "t": "The fibre. Not wool, not cotton. Blue nylon thread, the kind in a spool.",
-     "emote": "think"
-    },
-    {
-     "who": "kiri",
-     "t": "A spool like the one in the doctor's bag. Mara's drawer has only white thread. Felix owns none.",
-     "emote": "calm"
-    },
-    {
-     "who": "hana",
-     "t": "So the thread touched the key.",
      "emote": "think"
     },
     {
@@ -379,33 +224,13 @@
    "lines": [
     {
      "who": "kiri",
-     "t": "Now the watch. Stopped at nine-forty, with an unbroken glass.",
-     "emote": "think"
-    },
-    {
-     "who": "kiri",
-     "t": "A fall would crack it. So someone stopped it by hand, and chose the time.",
-     "emote": "calm"
-    },
-    {
-     "who": "kiri",
      "t": "Who needs it to be nine-forty? Only someone who is safe at nine-forty.",
-     "emote": "calm"
-    },
-    {
-     "who": "kiri",
-     "t": "Felix was in the cinema from nine. Mara was in the kitchen from nine. They are safe at any hour that matters.",
      "emote": "calm"
     },
     {
      "who": "kiri",
      "t": "Dr. Voss left the study at twenty past nine. His only alibi starts at nine-forty.",
      "emote": "calm"
-    },
-    {
-     "who": "dale",
-     "t": "So the watch was moved to hide the true time.",
-     "emote": "shock"
     }
    ]
   },
@@ -428,37 +253,12 @@
     },
     {
      "who": "kiri",
-     "t": "Then it passes over a drop of wax, a small guide, and out through the gap above the door.",
-     "emote": "calm"
-    },
-    {
-     "who": "kiri",
      "t": "Step three. Outside, pull the thread. The key is a weight. The bar drops, and the door is fast.",
      "emote": "think"
     },
     {
      "who": "kiri",
      "t": "Step four. Let go. The thread slips out through the gap, dragged by the falling key, which lands on the desk.",
-     "emote": "calm"
-    },
-    {
-     "who": "kiri",
-     "t": "It leaves a fibre on the ring, and a drop of wax on the frame.",
-     "emote": "calm"
-    },
-    {
-     "who": "hana",
-     "t": "A harmless trick with a thread, a weight and a bar. And all of it was in plain view.",
-     "emote": "surprise"
-    },
-    {
-     "who": "dale",
-     "t": "So the door was never locked from inside at all.",
-     "emote": "shock"
-    },
-    {
-     "who": "kiri",
-     "t": "It only looked locked. Anyone can fool a door. It is much harder to fool a clock.",
      "emote": "calm"
     }
    ]
@@ -471,33 +271,8 @@
    "value": "-",
    "lines": [
     {
-     "who": "dale",
-     "t": "Dr. Voss, open your bag.",
-     "emote": "angry"
-    },
-    {
      "who": "narrator",
      "t": "The spool was blue. The thread matched the fibre. The wax matched the drop.",
-     "emote": "calm"
-    },
-    {
-     "who": "voss",
-     "t": "This is ridiculous. I was on the phone at nine-forty.",
-     "emote": "angry"
-    },
-    {
-     "who": "kiri",
-     "t": "You were. But Mr. Crane was already silent, and the clock on the shelf is the only honest clock in the room.",
-     "emote": "calm"
-    },
-    {
-     "who": "voss",
-     "t": "A thread? Half the village owns blue thread!",
-     "emote": "angry"
-    },
-    {
-     "who": "kiri",
-     "t": "Half the village does not own that wax. Or a watch that stops at the very hour you need.",
      "emote": "calm"
     }
    ]
@@ -516,23 +291,8 @@
     },
     {
      "who": "narrator",
-     "t": "It said the work that made the doctor famous was never his own.",
-     "emote": "sad"
-    },
-    {
-     "who": "dale",
-     "t": "Dr. Voss confessed in the hall. Mara cried, and Felix could not speak.",
-     "emote": "sad"
-    },
-    {
-     "who": "narrator",
      "t": "He did not want the world to read it. So he planned a door nobody could open.",
      "emote": "calm"
-    },
-    {
-     "who": "hana",
-     "t": "All because of a thread.",
-     "emote": "sad"
     },
     {
      "who": "kiri",

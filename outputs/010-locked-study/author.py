@@ -9,6 +9,8 @@ from draw_kit import svg, line, blob, poly, INK, cycle
 from alib import img, text, bob
 
 STORY = json.load(open(HERE.parents[1] / "stories" / "010-locked-study.json"))
+KEEP = {int(k): v for k, v in json.load(open(HERE / "keep.json")).items()}   # short cut: new line index -> original index (overlay texts are keyed by the original)
+SCN = {x["id"]: x for x in STORY["scenes"]}
 G1, G2, G3, G4, G5, G6, G7 = "#e9eaec", "#d3d6db", "#a7acb3", "#7d838b", "#5b6067", "#3a3e44", "#2a2d31"
 EXPR = {"surprise": "surprise", "shock": "surprise", "worry": "worry", "fear": "worry", "angry": "angry", "frustrated": "angry", "doubt": "doubt", "confused": "doubt",
         "think": "think", "happy": "smile", "joy": "smile", "excited": "smile", "laugh": "smile", "proud": "smile", "relief": "smile", "sad": "worry", "tired": "neutral", "calm": "neutral", "neutral": "neutral"}
@@ -64,7 +66,7 @@ def build(ratio):
     for k, v in {"hall.png": hall(), "study.png": study(), "hall2.png": hall2(), "kitchen.png": kitchen(), "cinema.png": cinema(), "stub.png": stub(), "key.png": key_img(), "wax.png": wax(),
                  "watch.png": watch_img(), "clock.png": clock_img(), "spool.png": spool(), "bag.png": bag(), "ms.png": manuscript(), "frame.png": frame_close(),
                  "t1.png": trick(1), "t2.png": trick(2), "t3.png": trick(3), "t4.png": trick(4)}.items(): A[k] = v
-    lines = {(s["id"], i): l for s, in [(x,) for x in STORY["scenes"]] for i, l in enumerate(s["lines"])}
+    lines = {(s["id"], i): l for s in STORY["scenes"] for i, l in enumerate(s["lines"])}
     def T(t, x, y, size, color=G1, **k): return text(t, x, y, size, color, **k)
 
     def people(d, who, e, pos, s=1.0, ys=170):
@@ -80,8 +82,8 @@ def build(ratio):
         return [(a + (b - a) * p / n, a + (b - a) * (p + 1) / n, p, n) for p in range(n)]
 
     def scene(sc, bg, pos, extras=None, s=1.0, ps=1.2, bgxy=(0, 0, 1280, 720)):
-        for i in range(len(STORY["scenes"][sc - 1]["lines"])):
-            l = lines[(sc, i)]; ex = (extras or {}).get(i)
+        for i in range(len(SCN[sc]["lines"])):
+            l = lines[(sc, i)]; ex = (extras or {}).get(KEEP[sc][i])
             for t0, t1, p, n in beats(sc, i):
                 d = t1 - t0
                 F.add(t0, t1, [img(bg, *bgxy, bg=True)] + people(d, l["who"], l["emote"], pos, s) + (ex(d, p, n) if ex else []), fx=640, s=ps)
@@ -121,35 +123,37 @@ def build(ratio):
             if "none" in show[1]: L += [img("frame.png", 140, 70, 300, 370, "f6", bob(d, 0.6, 70, 62), "clue one"), img("key.png", 480, 230, 300, 150, "k6", bob(d, 0.6, 230, 222), "clue two"), img("watch.png", 860, 120, 220, 220, "w6", bob(d, 0.6, 120, 112), "clue three")]
             return L
         close(sc, i, f)
-    clue_scene(6, 0, ("LOOK CLOSELY", "none")); clue_scene(6, 1, ("ALL IN PLAIN VIEW", "none")); clue_scene(6, 2, ("CLUE 1 · RED WAX", "wax")); clue_scene(6, 3, ("CLUE 2 · BLUE FIBRE", "key"))
-    clue_scene(6, 4, ("CLUE 3 · THE WATCH", "watch")); clue_scene(6, 5, ("WHO MADE A PLAN?", "none"))
+    N = lambda sc, o: KEEP[sc].index(o)
+    clue_scene(6, N(6, 2), ("CLUE 1 · RED WAX", "wax")); clue_scene(6, N(6, 3), ("CLUE 2 · BLUE FIBRE", "key"))
+    clue_scene(6, N(6, 4), ("CLUE 3 · THE WATCH", "watch")); clue_scene(6, N(6, 5), ("WHO MADE A PLAN?", "none"))
     P7 = {"hana": 160, "kiri": 450}
-    for i, t in enumerate(["THE WAX FIRST", "NOT BY ACCIDENT", "THE DOCTOR'S BAG?", "WHAT ELSE?"]):
-        l = lines[(7, i)]
+    for i, o in enumerate(KEEP[7]):
+        t = ["THE WAX FIRST", "NOT BY ACCIDENT", "THE DOCTOR'S BAG?", "WHAT ELSE?"][o]; l = lines[(7, i)]
         for t0, t1, p, n in beats(7, i):
             d = t1 - t0
             F.add(t0, t1, [img("frame.png", 760, 30, 340, 420, "fr7", bob(d, 0.6, 30, 24), "the door frame with the wax"), img("wax.png", 855, 185, 70, 70, "wx7", bob(d, 0.4, 185, 179), "the wax drop"), CH(t, 40, 30, 54, G1, w=700)]
                   + people(d, l["who"], l["emote"], P7), fx=640, s=1.2)
-    for i, t in enumerate(["THE FIBRE", "A SPOOL LIKE HIS", "THE THREAD TOUCHED THE KEY", "WHY THE RING?"]):
-        l = lines[(8, i)]
+    for i, o in enumerate(KEEP[8]):
+        t = ["THE FIBRE", "A SPOOL LIKE HIS", "THE THREAD TOUCHED THE KEY", "WHY THE RING?"][o]; l = lines[(8, i)]
         for t0, t1, p, n in beats(8, i):
             d = t1 - t0
             F.add(t0, t1, [img("key.png", 760, 250, 400, 200, "k8", bob(d, 0.6, 250, 242), "the key with its blue fibre"), img("spool.png", 1000, 80, 100, 117, "s8", bob(d, 0.5, 80, 72), "the matching spool"), CH(t, 40, 30, 54, G1, w=700)]
                   + people(d, l["who"], l["emote"], P7), fx=640, s=1.2)
-    for i, t in enumerate(["STOPPED AT 9:40", "STOPPED BY HAND", "WHO NEEDS 9:40?", "FELIX · MARA: SAFE", "VOSS: ALIBI FROM 9:40", "THE TRUE TIME IS HIDDEN"]):
-        l = lines[(9, i)]; pos = {"hana": 120, "kiri": 400} if i < 5 else {"dale": 120, "kiri": 400}
+    for i, o in enumerate(KEEP[9]):
+        t = ["STOPPED AT 9:40", "STOPPED BY HAND", "WHO NEEDS 9:40?", "FELIX · MARA: SAFE", "VOSS: ALIBI FROM 9:40", "THE TRUE TIME IS HIDDEN"][o]
+        l = lines[(9, i)]; pos = {"hana": 120, "kiri": 400} if o < 5 else {"dale": 120, "kiri": 400}
         for t0, t1, p, n in beats(9, i):
             d = t1 - t0
             F.add(t0, t1, [img("watch.png", 700, 120, 300, 300, "w9", bob(d, 0.6, 120, 112), "the stopped watch"), img("clock.png", 1000, 150, 220, 220, "c9", bob(d, 0.5, 150, 158), "the clock runs"), CH(t, 40, 30, 54, G1, w=700)]
                   + people(d, l["who"], l["emote"], pos), fx=640, s=1.1)
     # 10 the trick: four states of the re-enactment drawing, stepping through the lines
     stepmap = {0: 1, 1: 2, 2: 2, 3: 3, 4: 4, 5: 4, 6: 4, 7: 4, 8: 4}; steptxt = {0: "STEP 1 · THE BAR IS LIFTED", 1: "STEP 2 · THREAD THROUGH THE RING", 2: "OVER THE WAX GUIDE", 3: "STEP 3 · PULL: THE BAR DROPS", 4: "STEP 4 · LET GO", 5: "A FIBRE · A DROP OF WAX", 6: "A HARMLESS TRICK", 7: "NEVER LOCKED FROM INSIDE", 8: "HARD TO FOOL A CLOCK"}
-    for i in range(9):
+    for i, o in enumerate(KEEP[10]):
         l = lines[(10, i)]
         for t0, t1, p, n in beats(10, i):
-            d = t1 - t0; st = stepmap[i]
-            L = [img(f"t{st}.png", 760, 90, 420, 520, "trk", bob(d, 0.5, 90, 82), "the re-enactment drawing"), CH(steptxt[i], 40, 30, 50, G1, w=1200)]
-            pos = {"kiri": 250} if i < 6 else ({"hana": 150, "kiri": 420} if i == 6 else ({"dale": 150, "kiri": 420}))
+            d = t1 - t0; st = stepmap[o]
+            L = [img(f"t{st}.png", 760, 90, 420, 520, "trk", bob(d, 0.5, 90, 82), "the re-enactment drawing"), CH(steptxt[o], 40, 30, 50, G1, w=1200)]
+            pos = {"kiri": 250} if o < 6 else ({"hana": 150, "kiri": 420} if o == 6 else ({"dale": 150, "kiri": 420}))
             F.add(t0, t1, L + people(d, l["who"], l["emote"], pos), fx=640, s=1.1)
     P11 = {"dale": 140, "voss": 440, "kiri": 740}
     scene(11, "hall2.png", P11, {0: lambda d, p, n: [CH("OPEN YOUR BAG")], 1: lambda d, p, n: [img("spool.png", 1010, 240, 90, 105, "sp11", bob(d, 0.5, 240, 232), "the matching spool"), CH("SAME THREAD · SAME WAX")], 2: lambda d, p, n: [CH("THE PHONE CALL AT 9:40")],
