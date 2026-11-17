@@ -12,6 +12,7 @@ on:
       - tools/code2video/**
       - stickman/lock.json
       - scripts/stickman/install.sh
+      - stickman/patches/**
       - .github/workflows/build-image.yml
 
 permissions:

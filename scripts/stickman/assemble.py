@@ -37,8 +37,9 @@ def runtime_dir():
 
 
 def node(rt, *args):
+    # whole films: the runtime's 60 s preview cap is lifted by stickman/patches/long-preview.py when this variable is set
     r = subprocess.run(["node", str(rt / "scripts" / "autopilot.mjs"), *map(str, args)], cwd=str(rt), capture_output=True, text=True,
-                       encoding="utf-8", errors="replace")
+                       encoding="utf-8", errors="replace", env={**os.environ, "AUTOPILOT_MAX_PREVIEW_SECONDS": "3600"})
     return r.returncode, (r.stdout or "") + (r.stderr or "")
 
 

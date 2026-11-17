@@ -4,6 +4,7 @@
 !tools/code2video
 !stickman/lock.json
 !scripts/stickman/install.sh
+!stickman/patches
 **/.git
 **/__pycache__
 **/.pytest_cache

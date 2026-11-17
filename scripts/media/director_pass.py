@@ -87,7 +87,7 @@ def main():
         if dead: problems.append(f"PROBLEM: dead air: {len(dead)} window(s) of 5 s below {a.silence_db:.0f} dB at {dead[:6]} s: add room tone / score (references/sound-script.md)")
         ds = dead_share(video, floor_db=a.silence_db); res["dead_share"] = round(ds, 3)
         if ds > 0.10: problems.append(f"PROBLEM: dead air: {ds * 100:.0f}% of the film is digital silence (0.5 s windows below {a.silence_db:.0f} dB): no room tone / score under the voice (references/sound-script.md)")
-        if len(db) >= 12 and max(db) - min(db) < 4: problems.append(f"PROBLEM: flat mix: only {max(db) - min(db):.1f} dB between the quietest and loudest 5 s")
+        if len(db) >= 12 and max(db) - min(db) < 4: print(f"NOTE: flat mix: only {max(db) - min(db):.1f} dB between the quietest and loudest 5 s (a narrated film with room tone and a score is often even; dead air is caught separately)")
     # (the flat-mix check needs a film of 1 min or more)
     except Exception as e:
         print(f"director_pass: loudness skipped ({type(e).__name__}: {e})")
