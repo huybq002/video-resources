@@ -1,0 +1,561 @@
+{
+ "duration": 108.1,
+ "lead": 0.25,
+ "lines": [
+  {
+   "scene": 1,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Sixty-three light-years away, a young star is trailing a tail of dust.",
+   "emote": "surprise",
+   "start": 0.25,
+   "end": 5.06
+  },
+  {
+   "scene": 1,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Reported on the eleventh of November, from a study in The Astrophysical Journal Letters.",
+   "emote": "calm",
+   "start": 5.36,
+   "end": 10.61
+  },
+  {
+   "scene": 1,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The star is called Beta Pictoris. And now Hubble has photographed the tail in ordinary visible light.",
+   "emote": "think",
+   "start": 10.91,
+   "end": 17.46
+  },
+  {
+   "scene": 1,
+   "i": 3,
+   "who": "mia",
+   "speaker": "Mia",
+   "text": "A tail of dust? Around a star?",
+   "emote": "surprise",
+   "start": 17.91,
+   "end": 20.09
+  },
+  {
+   "scene": 2,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The tail has a nickname: the Cat's Tail.",
+   "emote": "calm",
+   "start": 20.94,
+   "end": 23.61
+  },
+  {
+   "scene": 2,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The James Webb telescope found it in twenty twenty-four, but only in mid-infrared light.",
+   "emote": "think",
+   "start": 23.91,
+   "end": 29.08
+  },
+  {
+   "scene": 2,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "In visible light it was almost invisible, because the dust is very dark.",
+   "emote": "doubt",
+   "start": 29.38,
+   "end": 34.18
+  },
+  {
+   "scene": 2,
+   "i": 3,
+   "who": "mia",
+   "speaker": "Mia",
+   "text": "So why could Hubble see it at all?",
+   "emote": "confused",
+   "start": 34.63,
+   "end": 36.54
+  },
+  {
+   "scene": 3,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Patience. Hubble looked at the system six times, between twenty twelve and twenty twenty-five.",
+   "emote": "calm",
+   "start": 37.39,
+   "end": 43.44
+  },
+  {
+   "scene": 3,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Its long exposures pulled out the faint glow of light scattered by the dust.",
+   "emote": "think",
+   "start": 43.74,
+   "end": 48.61
+  },
+  {
+   "scene": 3,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Together with the Webb data, they suggest the tail lies mostly flat across our view, not pointing toward us.",
+   "emote": "calm",
+   "start": 48.91,
+   "end": 55.58
+  },
+  {
+   "scene": 3,
+   "i": 3,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Earlier estimates said it could stretch up to a thousand astronomical units. About ninety-three billion miles.",
+   "emote": "surprise",
+   "start": 55.88,
+   "end": 62.51
+  },
+  {
+   "scene": 4,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The dust is made mostly of carbon-rich material. Each grain is about one micron across.",
+   "emote": "calm",
+   "start": 63.36,
+   "end": 69.47
+  },
+  {
+   "scene": 4,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The grains look porous and fluffy, a bit like tiny sponges, and they soak up most of the light.",
+   "emote": "think",
+   "start": 69.77,
+   "end": 75.66
+  },
+  {
+   "scene": 4,
+   "i": 2,
+   "who": "mia",
+   "speaker": "Mia",
+   "text": "Where would so much fluffy dust come from?",
+   "emote": "doubt",
+   "start": 76.11,
+   "end": 78.61
+  },
+  {
+   "scene": 5,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "One idea: a collision between two bodies the size of Pluto, that made carbon vapor, which cooled into fluffy grains.",
+   "emote": "think",
+   "start": 79.46,
+   "end": 87.55
+  },
+  {
+   "scene": 5,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The authors say this is uncertain. It fits the evidence, but it needs more observations to confirm.",
+   "emote": "calm",
+   "start": 87.85,
+   "end": 93.92
+  },
+  {
+   "scene": 5,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "And this is one young star. It does not show that our own young solar system had the same tail.",
+   "emote": "calm",
+   "start": 94.22,
+   "end": 99.77
+  },
+  {
+   "scene": 5,
+   "i": 3,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "If a figure here is out of date, the sources in the description are the reference.",
+   "emote": "calm",
+   "start": 100.07,
+   "end": 104.56
+  },
+  {
+   "scene": 5,
+   "i": 4,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "So what would you want Hubble and Webb to look at next?",
+   "emote": "think",
+   "start": 104.86,
+   "end": 107.5
+  }
+ ],
+ "scenes": [
+  {
+   "id": 1,
+   "title": "A tail around a star",
+   "place": "A hilltop at night under a huge starry sky, Mia sits on the grass with a notebook and a small telescope",
+   "mood": "mystery",
+   "value": "+",
+   "start": 0.25,
+   "end": 20.09
+  },
+  {
+   "id": 2,
+   "title": "Webb saw it first",
+   "place": "A dark observatory control room with glowing screens, a big telescope dome seen through the window",
+   "mood": "mystery",
+   "value": "+",
+   "start": 20.94,
+   "end": 36.54
+  },
+  {
+   "id": 3,
+   "title": "Six looks",
+   "place": "A hilltop at night under a huge starry sky, a drawing of the Hubble telescope and a long dusty tail on Mia's notebook page",
+   "mood": "mystery",
+   "value": "+",
+   "start": 37.39,
+   "end": 62.51
+  },
+  {
+   "id": 4,
+   "title": "Fluffy and dark",
+   "place": "A close view of a notebook page on a hilltop at night, a drawing of a single tiny dust grain with holes in it",
+   "mood": "mystery",
+   "value": "+",
+   "start": 63.36,
+   "end": 78.61
+  },
+  {
+   "id": 5,
+   "title": "What we do not know",
+   "place": "A hilltop at night under a huge starry sky, Mia looks up at the stars with her notebook closed",
+   "mood": "hopeful",
+   "value": "+",
+   "start": 79.46,
+   "end": 108.1
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.25,
+   "end": 2.281,
+   "text": "Sixty-three light-years away,"
+  },
+  {
+   "start": 2.301,
+   "end": 4.686,
+   "text": "a young star is trailing a tail of"
+  },
+  {
+   "start": 4.706,
+   "end": 5.04,
+   "text": "dust."
+  },
+  {
+   "start": 5.36,
+   "end": 7.599,
+   "text": "Reported on the eleventh of November,"
+  },
+  {
+   "start": 7.619,
+   "end": 9.613,
+   "text": "from a study in The Astrophysical"
+  },
+  {
+   "start": 9.633,
+   "end": 10.59,
+   "text": "Journal Letters."
+  },
+  {
+   "start": 10.91,
+   "end": 13.073,
+   "text": "The star is called Beta Pictoris."
+  },
+  {
+   "start": 13.093,
+   "end": 15.389,
+   "text": "And now Hubble has photographed the"
+  },
+  {
+   "start": 15.409,
+   "end": 17.44,
+   "text": "tail in ordinary visible light."
+  },
+  {
+   "start": 17.91,
+   "end": 19.018,
+   "text": "A tail of dust?"
+  },
+  {
+   "start": 19.038,
+   "end": 20.07,
+   "text": "Around a star?"
+  },
+  {
+   "start": 20.94,
+   "end": 22.563,
+   "text": "The tail has a nickname:"
+  },
+  {
+   "start": 22.583,
+   "end": 23.59,
+   "text": "the Cat's Tail."
+  },
+  {
+   "start": 23.91,
+   "end": 26.054,
+   "text": "The James Webb telescope found it in"
+  },
+  {
+   "start": 26.074,
+   "end": 27.196,
+   "text": "twenty twenty-four,"
+  },
+  {
+   "start": 27.216,
+   "end": 29.06,
+   "text": "but only in mid-infrared light."
+  },
+  {
+   "start": 29.38,
+   "end": 31.417,
+   "text": "In visible light it was almost"
+  },
+  {
+   "start": 31.437,
+   "end": 32.103,
+   "text": "invisible,"
+  },
+  {
+   "start": 32.123,
+   "end": 34.16,
+   "text": "because the dust is very dark."
+  },
+  {
+   "start": 34.63,
+   "end": 36.52,
+   "text": "So why could Hubble see it at all?"
+  },
+  {
+   "start": 37.39,
+   "end": 37.968,
+   "text": "Patience."
+  },
+  {
+   "start": 37.988,
+   "end": 40.495,
+   "text": "Hubble looked at the system six times,"
+  },
+  {
+   "start": 40.515,
+   "end": 42.622,
+   "text": "between twenty twelve and twenty"
+  },
+  {
+   "start": 42.642,
+   "end": 43.42,
+   "text": "twenty-five."
+  },
+  {
+   "start": 43.74,
+   "end": 45.892,
+   "text": "Its long exposures pulled out the"
+  },
+  {
+   "start": 45.912,
+   "end": 48.261,
+   "text": "faint glow of light scattered by the"
+  },
+  {
+   "start": 48.281,
+   "end": 48.59,
+   "text": "dust."
+  },
+  {
+   "start": 48.91,
+   "end": 50.669,
+   "text": "Together with the Webb data,"
+  },
+  {
+   "start": 50.689,
+   "end": 53.083,
+   "text": "they suggest the tail lies mostly flat"
+  },
+  {
+   "start": 53.103,
+   "end": 54.099,
+   "text": "across our view,"
+  },
+  {
+   "start": 54.119,
+   "end": 55.56,
+   "text": "not pointing toward us."
+  },
+  {
+   "start": 55.88,
+   "end": 57.781,
+   "text": "Earlier estimates said it could"
+  },
+  {
+   "start": 57.801,
+   "end": 60.073,
+   "text": "stretch up to a thousand astronomical"
+  },
+  {
+   "start": 60.093,
+   "end": 60.445,
+   "text": "units."
+  },
+  {
+   "start": 60.465,
+   "end": 62.49,
+   "text": "About ninety-three billion miles."
+  },
+  {
+   "start": 63.36,
+   "end": 66.072,
+   "text": "The dust is made mostly of carbon-rich"
+  },
+  {
+   "start": 66.092,
+   "end": 66.718,
+   "text": "material."
+  },
+  {
+   "start": 66.738,
+   "end": 69.45,
+   "text": "Each grain is about one micron across."
+  },
+  {
+   "start": 69.77,
+   "end": 71.903,
+   "text": "The grains look porous and fluffy,"
+  },
+  {
+   "start": 71.923,
+   "end": 73.423,
+   "text": "a bit like tiny sponges,"
+  },
+  {
+   "start": 73.443,
+   "end": 75.64,
+   "text": "and they soak up most of the light."
+  },
+  {
+   "start": 76.11,
+   "end": 78.285,
+   "text": "Where would so much fluffy dust come"
+  },
+  {
+   "start": 78.305,
+   "end": 78.59,
+   "text": "from?"
+  },
+  {
+   "start": 79.46,
+   "end": 80.09,
+   "text": "One idea:"
+  },
+  {
+   "start": 80.11,
+   "end": 82.546,
+   "text": "a collision between two bodies the"
+  },
+  {
+   "start": 82.566,
+   "end": 83.557,
+   "text": "size of Pluto,"
+  },
+  {
+   "start": 83.577,
+   "end": 85.219,
+   "text": "that made carbon vapor,"
+  },
+  {
+   "start": 85.239,
+   "end": 87.53,
+   "text": "which cooled into fluffy grains."
+  },
+  {
+   "start": 87.85,
+   "end": 89.98,
+   "text": "The authors say this is uncertain."
+  },
+  {
+   "start": 90.0,
+   "end": 91.308,
+   "text": "It fits the evidence,"
+  },
+  {
+   "start": 91.328,
+   "end": 93.394,
+   "text": "but it needs more observations to"
+  },
+  {
+   "start": 93.414,
+   "end": 93.9,
+   "text": "confirm."
+  },
+  {
+   "start": 94.22,
+   "end": 95.811,
+   "text": "And this is one young star."
+  },
+  {
+   "start": 95.831,
+   "end": 97.9,
+   "text": "It does not show that our own young"
+  },
+  {
+   "start": 97.92,
+   "end": 99.75,
+   "text": "solar system had the same tail."
+  },
+  {
+   "start": 100.07,
+   "end": 101.846,
+   "text": "If a figure here is out of date,"
+  },
+  {
+   "start": 101.866,
+   "end": 103.979,
+   "text": "the sources in the description are the"
+  },
+  {
+   "start": 103.999,
+   "end": 104.54,
+   "text": "reference."
+  },
+  {
+   "start": 104.86,
+   "end": 106.698,
+   "text": "So what would you want Hubble and Webb"
+  },
+  {
+   "start": 106.718,
+   "end": 107.48,
+   "text": "to look at next?"
+  }
+ ],
+ "words_per_second": 2.86,
+ "voices": {
+  "Narrator": "en-US-AvaMultilingualNeural",
+  "Mia": "en-US-EmmaMultilingualNeural"
+ },
+ "engine": "EdgeTTSAdapter"
+}

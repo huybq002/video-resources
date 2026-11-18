@@ -1,0 +1,55 @@
+{
+  "id": "015-cats-tail-dust",
+  "tag": "015-cats-tail-dust-44366836623",
+  "idea": "Hubble photographs, in visible light, a long tail of dark fluffy dust around the young star Beta Pictoris, 63 light-years away; what it is and what is still unknown",
+  "lang": "en",
+  "style": "B1",
+  "topic": "news",
+  "duration_s": 108.1,
+  "cuts": [
+    {
+      "cut": "landscape",
+      "aspect": "16:9",
+      "video": "landscape.mp4",
+      "bundle": "landscape-bundle.zip"
+    }
+  ],
+  "assets": [
+    {
+      "name": "landscape.mp4",
+      "bytes": 22359473,
+      "sha256": "a83bf04bf00684ebc331555056b36d16f77214eadf55a5e98e80adae05bf9a26"
+    },
+    {
+      "name": "landscape-bundle.zip",
+      "bytes": 34005519,
+      "sha256": "2bb8378e4d4d67ce62ec941c530e9264e7014db5828c64b3df8665d3d3cf12bd"
+    },
+    {
+      "name": "metadata.json",
+      "bytes": 618,
+      "sha256": "e70dac5fa6545fa15158cbae727d58229c3a60c800fe7f6e8a18008a1eb05746"
+    },
+    {
+      "name": "tiktok.md",
+      "bytes": 940,
+      "sha256": "5452c63fcc7f719aa56d5a8fc745c75ec37064ef85a42ff7044ca23e6cd3c2d1"
+    },
+    {
+      "name": "youtube.md",
+      "bytes": 2306,
+      "sha256": "cc7f61f671863a0ad66ea09e965d9f5577bbb0a01935687b6dc1b54f9453d180"
+    },
+    {
+      "name": "youtube_shorts.md",
+      "bytes": 659,
+      "sha256": "55928c5b904a96af4afeb00ceb32a112f78028e7756b022c05b52d2583568f3c"
+    },
+    {
+      "name": "a.png",
+      "bytes": 374949,
+      "sha256": "357ccf1052fb504d8c2d8ac36a5e79c50535905d6e173f2b3f8590a0228ba07c"
+    }
+  ],
+  "release_url": "https://github.com/huybq002/video-resources/releases/tag/015-cats-tail-dust-44366836623"
+}

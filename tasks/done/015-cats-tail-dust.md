@@ -2,7 +2,7 @@
 id: 015-cats-tail-dust
 type: video
 priority: 015
-status: pending
+status: done
 lane: news
 topic: news
 sources: ["https://theprint.in/feature/a-collision-between-pluto-sized-bodies-study-investigates-a-mysterious-dust-cloud-spotted-by-nasa/3095822/ (11 Nov 2026, read 18 Nov 2026)", "https://www.natureworldnews.com/articles/73857/20261113/fluffy-carbon-dust-63-light-years-away-shows-what-our-young-solar-system-may-have-looked-like.htm (13 Nov 2026, read 18 Nov 2026)", "The Astrophysical Journal Letters, DOI 10.3847/2041-8213/aeac4a"]
@@ -32,4 +32,4 @@ privacy: private
 - [ ] Release published, publish pack written
 
 ## Progress notes
-2026-11-18 night: story, voice, direction done; render started.
+2026-11-18 night: story, voice, direction done; published: https://github.com/huybq002/video-resources/releases/tag/015-cats-tail-dust-44366836623 . 16:9 only. Remember YouTube Studio altered/synthetic setting and TikTok AI label.
