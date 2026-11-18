@@ -2,7 +2,7 @@
 id: 016-footprints-in-snow
 type: video
 priority: 011
-status: pending
+status: done
 lane: mystery
 topic: mystery
 keyword: "mystery story explained"
@@ -31,3 +31,5 @@ privacy: private
 
 ## Progress notes
 2026-11-18 night: shortened to 4.5 min (time budget), style B3 (previous video differs), 16:9 only. Story stories/016-footprints-in-snow.json (clues: snow-free outline, cold lantern, dry boots; liar: Mr. Hale).
+
+published: https://github.com/huybq002/video-resources/releases/tag/016-footprints-in-snow-44366836623 (16:9 only). Remember YouTube Studio altered/synthetic setting and TikTok AI label.

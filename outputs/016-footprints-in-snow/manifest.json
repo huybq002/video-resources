@@ -1,0 +1,55 @@
+{
+  "id": "016-footprints-in-snow",
+  "tag": "016-footprints-in-snow-44366836623",
+  "idea": "classic fair-play snow mystery: a gardener found at a shed with only the finder's footprints in the snow; a snow-free outline, a cold lantern and dry boots break three alibis",
+  "lang": "en",
+  "style": "B3",
+  "topic": "mystery",
+  "duration_s": 207.8,
+  "cuts": [
+    {
+      "cut": "landscape",
+      "aspect": "16:9",
+      "video": "landscape.mp4",
+      "bundle": "landscape-bundle.zip"
+    }
+  ],
+  "assets": [
+    {
+      "name": "landscape.mp4",
+      "bytes": 60721039,
+      "sha256": "4e5c353320becc4b346c7ec2bba897c6e0d270de0b8cb4d1c781bf287e692fe8"
+    },
+    {
+      "name": "landscape-bundle.zip",
+      "bytes": 37858525,
+      "sha256": "629c38f00a9a00462369bd98a3a5aaed3d5c1c5993721bf5fa498ea856bc95a4"
+    },
+    {
+      "name": "metadata.json",
+      "bytes": 669,
+      "sha256": "5d1e20bf51ecf35b0d763fcb85cecc1d2cef51fa029f0aea7e462a9f713294d2"
+    },
+    {
+      "name": "tiktok.md",
+      "bytes": 864,
+      "sha256": "10d3e78066a97dd5c45c13bf931f1392fa162ecf1ccf57ec5f8908390a87857a"
+    },
+    {
+      "name": "youtube.md",
+      "bytes": 1684,
+      "sha256": "029ee9fb186f1474397a45103c0609cc6517ec4f51fb09520e30bc5f8e048023"
+    },
+    {
+      "name": "youtube_shorts.md",
+      "bytes": 447,
+      "sha256": "2d6d47576328b1a5276d2e5520896ae3d8bc0e060dca905a0c2478d049414386"
+    },
+    {
+      "name": "a.png",
+      "bytes": 53536,
+      "sha256": "94a7238311ac19b8b68588ea8f679873befa6c64b53b29451709a181e92c2eb9"
+    }
+  ],
+  "release_url": "https://github.com/huybq002/video-resources/releases/tag/016-footprints-in-snow-44366836623"
+}
