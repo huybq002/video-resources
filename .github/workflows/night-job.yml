@@ -357,7 +357,7 @@ jobs:
                     first, LOOK at outputs/<id>/landscape/stills/contact-sheet.png (place right, people visible, action
                     readable, objects on screen?), fix direct.py, then the same command without --stills-only (score, render,
                     mix -> outputs/<id>/landscape/output.mp4). It renders with software GL at 1280x720, 24 fps: budget about
-                    7 s of wall time per video second. A demo: add `--seconds 30`.
+                    10 s of wall time per video second (channel.json night.render_s_per_video_s). A demo: add `--seconds 30`.
                  5. CHECK: `python scripts/verify_bundle.py video outputs/<id>/landscape/output.mp4 --story stories/<id>.json --aspect 16:9`
                     (runs scripts/media/director_pass.py: dead air, frozen picture, black frames, contact sheets; a "flat mix"
                     note alone is not a failure). LOOK at the director_pass sheets: does the picture change and match the

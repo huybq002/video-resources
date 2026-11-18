@@ -5,7 +5,7 @@
   room     room tone that follows each scene's place (scripts/media/score.py ambience_for_scenes)
   foley    film.json "events": a sound at every visible action (coins, door, knock, steps, cheer, splash, dig, thud, ...)
            from our bank (scripts/media/sfx_bank.py) or synthesised here
-then muxes with out/video.mp4 and normalises to -14 LUFS (two-pass loudnorm).
+then muxes with out/video.mp4 (scaled to 1920x1080: the runner renders at 1280x720 with software GL) and normalises to -14 LUFS.
 """
 import json, sys, subprocess, pathlib, wave
 import numpy as np
@@ -94,7 +94,7 @@ def main():
     with wave.open(str(wav), "wb") as w:          # our own writer: scripts/media/score.py writes at its own rate
         w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR); w.writeframes((np.clip(mix, -1, 1) * 32767).astype(np.int16).tobytes())
     video = film_dir / "out" / "video.mp4"
-    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(video), "-i", str(wav), "-c:v", "libx264", "-preset", "medium", "-crf", "26", "-tune", "grain", "-pix_fmt", "yuv420p", "-af", "loudnorm=I=-14:TP=-1.5:LRA=11,alimiter=limit=0.89", "-ar", "48000", "-c:a", "aac", "-b:a", "192k", "-shortest", str(out)], check=True)
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(video), "-i", str(wav), "-vf", "scale=1920:1080:flags=lanczos", "-c:v", "libx264", "-preset", "medium", "-crf", "24", "-pix_fmt", "yuv420p", "-af", "loudnorm=I=-14:TP=-1.5:LRA=11,alimiter=limit=0.89", "-ar", "48000", "-c:a", "aac", "-b:a", "192k", "-shortest", str(out)], check=True)
     print("film", out)
 
 

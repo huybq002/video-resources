@@ -142,10 +142,10 @@
       8
     ],
     "duration_note": "No fixed length: each idea gets the length its story needs (a single twist ~1-2 min, a story with a turn 3-5, an explainer 4-8). formats[].duration_min is only a typical value.",
-    "render_s_per_video_s": 7.0,
+    "render_s_per_video_s": 10.0,
     "overhead_min_per_video": 30,
     "margin": 1.3,
-    "_render_note": "hezb-motion engine (2026-11-17): software GL on the runner at 1280x720, 24 fps, 3 workers; 0.36 s per frame per worker measured on a laptop, about 2x that on the runner = about 6 s per video second, 7.0 keeps a margin",
+    "_render_note": "hezb-motion engine (2026-11-17): software GL on the runner at 1280x720, 24 fps, 3 workers; 0.36 s per frame per worker measured on a laptop, about 2x that on the runner = about 6 s per video second, measured 0.7 s per frame per worker in the full pipeline on a laptop; 10.0 keeps a margin for the slower runner",
     "lanes": [
       {
         "id": "news",

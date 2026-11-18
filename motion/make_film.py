@@ -35,7 +35,12 @@ def main():
     a = ap.parse_args()
     voice, out = pathlib.Path(a.voice), pathlib.Path(a.out); out.mkdir(parents=True, exist_ok=True)
     t0 = time.time()
-    run(["bash", HERE / "install.sh"])
+    # 1. engine ready (same as install.sh, in Python so it also runs where `bash` is not Git Bash)
+    nm = HERE / "node_modules"
+    if not nm.exists():
+        if pathlib.Path("/opt/hezb-motion/node_modules").is_dir(): nm.symlink_to("/opt/hezb-motion/node_modules")
+        else: run(["npm", "ci", "--no-audit", "--no-fund"], cwd=HERE, shell=os.name == "nt")
+    run(["node", HERE / "tools/bundle.mjs"])
     if not (voice / "words.json").exists() or (voice / "words.json").stat().st_mtime < (voice / "narration.wav").stat().st_mtime:
         run([sys.executable, HERE / "align.py", voice, "--model", a.whisper_model])
     run([sys.executable, a.direct, out])
