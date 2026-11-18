@@ -5415,7 +5415,9 @@
    ],
    "portrait": {
     "intent": "The focal action sits in the picture band above the caption; props and hands stay inside the safe region",
-    "background_ids": [],
+    "background_ids": [
+     "panel-18"
+    ],
     "regions": [
      {
       "id": "r19",
@@ -6576,7 +6578,9 @@
    ],
    "portrait": {
     "intent": "The focal action sits in the picture band above the caption; props and hands stay inside the safe region",
-    "background_ids": [],
+    "background_ids": [
+     "panel-23"
+    ],
     "regions": [
      {
       "id": "r24",
@@ -6890,7 +6894,9 @@
    ],
    "portrait": {
     "intent": "The focal action sits in the picture band above the caption; props and hands stay inside the safe region",
-    "background_ids": [],
+    "background_ids": [
+     "panel-24"
+    ],
     "regions": [
      {
       "id": "r25",
@@ -7277,7 +7283,9 @@
    ],
    "portrait": {
     "intent": "The focal action sits in the picture band above the caption; props and hands stay inside the safe region",
-    "background_ids": [],
+    "background_ids": [
+     "panel-25"
+    ],
     "regions": [
      {
       "id": "r26",
@@ -7664,7 +7672,9 @@
    ],
    "portrait": {
     "intent": "The focal action sits in the picture band above the caption; props and hands stay inside the safe region",
-    "background_ids": [],
+    "background_ids": [
+     "panel-26"
+    ],
     "regions": [
      {
       "id": "r27",
