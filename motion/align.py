@@ -10,6 +10,13 @@ mouths move on the speaker's words only, captions light up word by word, and an 
 import json, sys, argparse, difflib, re, pathlib
 
 
+def _load(path):
+    """Decode with ffmpeg to 16 kHz mono float32 (faster-whisper's own decoder breaks with the newest PyAV)."""
+    import subprocess, numpy as np
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(path), "-f", "f32le", "-ac", "1", "-ar", "16000", "-"], capture_output=True, check=True).stdout
+    return np.frombuffer(raw, dtype=np.float32)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("voice"); ap.add_argument("--model", default="base.en"); ap.add_argument("--lang", default="en")
@@ -18,7 +25,7 @@ def main():
     vd = pathlib.Path(a.voice); timing = json.load(open(vd / "timing.json", encoding="utf-8"))
     from faster_whisper import WhisperModel
     model = WhisperModel(a.model if a.lang == "en" else a.model.replace(".en", ""), device=a.device, compute_type=a.compute)
-    segs, _ = model.transcribe(str(vd / "narration.wav"), language=a.lang, word_timestamps=True, vad_filter=False, beam_size=5)
+    segs, _ = model.transcribe(_load(vd / "narration.wav"), language=a.lang, word_timestamps=True, vad_filter=False, beam_size=5)
     words = [{"w": w.word.strip(), "t0": round(w.start, 3), "t1": round(w.end, 3)} for s in segs for w in (s.words or []) if w.word.strip()]
     lines = timing["lines"]
     for w in words:
