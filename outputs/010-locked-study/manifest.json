@@ -1,0 +1,76 @@
+{
+  "id": "010-locked-study",
+  "tag": "010-locked-study-44189281956",
+  "idea": "classic fair-play locked-room mystery: a publisher's study locked from the inside, key on the desk; three alibis; Kiri breaks the thread-and-wax trick and the faked time",
+  "lang": "en",
+  "style": "B3",
+  "topic": "mystery",
+  "duration_s": 154.0,
+  "cuts": [
+    {
+      "cut": "landscape",
+      "aspect": "16:9",
+      "video": "landscape.mp4",
+      "bundle": "landscape-bundle.zip"
+    },
+    {
+      "cut": "portrait",
+      "aspect": "9:16",
+      "video": "portrait.mp4",
+      "bundle": "portrait-bundle.zip"
+    }
+  ],
+  "assets": [
+    {
+      "name": "landscape.mp4",
+      "bytes": 10746348,
+      "sha256": "0ea97120d38dbeb6bf3a995cea800893cb98a57f356605dfaa43d688ccb090a5"
+    },
+    {
+      "name": "landscape-bundle.zip",
+      "bytes": 66321112,
+      "sha256": "e9e401e709c9d305aab81c2ab65c56e731bdae4487b89bb319061850dc025e5b"
+    },
+    {
+      "name": "portrait.mp4",
+      "bytes": 8198222,
+      "sha256": "414c1475f046338c2ffad82ad948c62ed17f5738c3d74b05bd14fa416c419dbe"
+    },
+    {
+      "name": "portrait-bundle.zip",
+      "bytes": 52117465,
+      "sha256": "a08738fb223ef504b2bda11100aee37b714205e18aa8669f50b383a7d1db78cb"
+    },
+    {
+      "name": "metadata.json",
+      "bytes": 696,
+      "sha256": "1743ff23a8bdd525c29f59ecbfff3e6a6152527e91f85e245984451eba7b5805"
+    },
+    {
+      "name": "tiktok.md",
+      "bytes": 806,
+      "sha256": "d385cec31007769e39bb60d6d43d8f2c86892de2b307f2787d38a3427ac960ef"
+    },
+    {
+      "name": "youtube.md",
+      "bytes": 1499,
+      "sha256": "16578cbfca273346fc6b8564c996a8f27bbe0a5350c32be36301daab3f8af39a"
+    },
+    {
+      "name": "youtube_shorts.md",
+      "bytes": 355,
+      "sha256": "4cf6e7bc111f8bff0f982aa88497a23737e64196654a4bda564fcda4e38c0aa8"
+    },
+    {
+      "name": "a.png",
+      "bytes": 47440,
+      "sha256": "de7d4c8c1e5c6c7b759b46e8ae84e1ae637c6f886f0cb871a4df2760cdf5265b"
+    },
+    {
+      "name": "p.png",
+      "bytes": 44628,
+      "sha256": "0b3fa406b7aede45c9b9e5ff12be4861c15803b12464e38c33ef18a913d1c819"
+    }
+  ],
+  "release_url": "https://github.com/huybq002/video-resources/releases/tag/010-locked-study-44189281956"
+}
