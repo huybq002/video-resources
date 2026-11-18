@@ -19,8 +19,9 @@ PARTS = [
     ROOT / "scripts/media",
     ROOT / ".claude/skills/hezb-story",
     ROOT / "tools/code2video/src",
+    ROOT / "motion",                             # the film engine (hezb-motion, owner decision 2026-11-17)
 ]
-SKIP = {"node_modules", "__pycache__", ".pytest_cache", "examples"}
+SKIP = {"node_modules", "__pycache__", ".pytest_cache", "examples", "dist"}
 
 
 def files():

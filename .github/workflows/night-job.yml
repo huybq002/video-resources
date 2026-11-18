@@ -44,8 +44,12 @@ jobs:
       id-token: write
     env:
       SKILL: .claude/skills/hezb-story
-      # the pinned stickman-video-director runtime (stickman/lock.json), installed in the runner image
-      STICKMAN: /opt/stickman-director/skills/directing-stickman-videos
+      # the film engine (owner decision 2026-11-17): hezb-motion in motion/, rendered by the image's Chrome with software GL
+      CHROMIUM_PATH: /opt/google/chrome/chrome
+      MOTION_SIZE: "1280x720"
+      MOTION_FPS: "24"
+      MOTION_WORKERS: "3"
+      MOTION_WHISPER: small
       STUDIO_DATA_DIR: ${{ github.workspace }}/out/.studio-data
       # let Claude's single long render command run for hours
       BASH_MAX_TIMEOUT_MS: "21000000"
@@ -316,10 +320,13 @@ jobs:
                Skip any task whose file already exists in tasks/done/ on the night branch.
             4. Save results in outputs/<task id>/. Update "Progress notes" as you go.
             5. Task types (frontmatter `type:`):
-               - `video`: follow the hezb-story skill ($SKILL/SKILL.md). The picture is made with the pinned
-                 stickman-video-director runtime at $STICKMAN (kaomei/stickman-video-director, MIT); our part is the story,
-                 the voice and the sound. Read idea, lang, duration_min, script_prompt, style, privacy, upload from the task.
-                 Every task builds BOTH frame shapes. Everything lives under outputs/<id>/.
+               - `video`: follow the hezb-story skill ($SKILL/SKILL.md). The picture is made with OUR film engine hezb-motion
+                 (motion/, owner decision 2026-11-17; it replaces the stickman-video-director runtime): PixiJS stage, paper.js
+                 and p5.js drawing, OGL grade and GL Transitions, tsParticles weather, Rapier and Matter.js physics, react-spring
+                 and anime.js motion, a Tone.js score, faster-whisper word timings. Read motion/README.md and the worked example
+                 motion/examples/prodigal-son/direct.py BEFORE directing. Read idea, lang, duration_min, script_prompt, style,
+                 privacy, upload from the task. TONIGHT: 16:9 only (outputs/<id>/landscape); the engine has no native portrait cut
+                 yet, so set `only_aspect: "16:9"` in the task and say so in the report. Everything lives under outputs/<id>/.
                  1. STORY. Write stories/<id>.json ($SKILL/references/story-schema.md): style (content-picked, approved),
                     cast with a look, scenes whose `place` says where THIS beat happens in THIS story (no preset places),
                     acted lines with `emote`, hook first, a question last. Craft: $SKILL/references/*.md and
@@ -328,27 +335,33 @@ jobs:
                     and `python scripts/policy_check.py spec stories/<id>.json`; fix until both are clean.
                  2. VOICE. `python scripts/stickman/narrate.py stories/<id>.json outputs/<id>/voice`
                     (edge-tts conversational voices for en, VieNeu for vi; each line acted; natural pauses; never sped up to fit).
-                 3. PICTURE. You direct it as the runtime's references say. READ in $STICKMAN/references/: autopilot.md,
-                    autopilot-runtime.md, autopilot-production-qa.md, autopilot-sound-system.md, b-delivery-completeness.md,
-                    b1-b2-b3-reference-acceptance.md, the style page (b1-minimal-handdrawn.md | b2-colorful-handdrawn.md |
-                    b3-television.md + b3-semantic-motion.md) and b1-b2-b3-native-portrait.md; look at $STICKMAN/assets/<style>/.
-                    Write outputs/<id>/shots-16x9.json and a NATIVE portrait outputs/<id>/shots-9x16.json against
-                    outputs/<id>/voice/timing.json: shots covering the whole voice, layers in the style's grammar, your own SVG
-                    drawings of THIS story's places, props and characters in "assets", story sfx at real actions
-                    ($SKILL/SKILL.md section 3; references/event-relay.md and sound-script.md).
-                 4. RENDER both cuts:
-                    `python scripts/stickman/assemble.py --story stories/<id>.json --voice outputs/<id>/voice --shots outputs/<id>/shots-16x9.json --ratio 16:9 --out outputs/<id>/landscape`
-                    `python scripts/stickman/assemble.py --story stories/<id>.json --voice outputs/<id>/voice --shots outputs/<id>/shots-9x16.json --ratio 9:16 --out outputs/<id>/portrait`
-                    A validate failure names the shot and the rule (2.5 s inactivity, a wrapping caption, a missing id/motion
-                    reason, coverage gaps): fix the shots and re-run. Add `--check` to validate without rendering.
-                 5. CHECK each cut (the runtime's acceptance is judged on the real film, never on the plan):
-                    `python scripts/verify_bundle.py bundle outputs/<id>/<cut> --story stories/<id>.json`
-                    `python scripts/verify_bundle.py video outputs/<id>/<cut>/output.mp4 --story stories/<id>.json --aspect <16:9|9:16>`
-                    (it runs scripts/media/director_pass.py: dead air, flat mix, frozen picture, black frames, contact sheets).
-                    LOOK at outputs/<id>/<cut>/contact-sheet.png and the director_pass sheets: where are we, does the picture
-                    match the words, can I see the speaker's eyes, does the stage change between beats? Fix and re-render
-                    whatever fails. Never publish a video that fails. Never run the runtime's `approve` / `accept-*` commands
-                    yourself: that is the owner's or an independent reviewer's.
+                    Then `python motion/align.py outputs/<id>/voice --model small` (word timings; fix any line it reports CHECK).
+                 3. DIRECT. Write outputs/<id>/direct.py with motion/director.py and motion/worlds.py, line by line against
+                    voice/timing.json and words.json, exactly like the worked example. The owner's rules (2026-11-17), all MUST:
+                    - NO MOTION WITHOUT A PURPOSE: a character at rest only breathes; every movement is a VERB the story asks
+                      for (walk to, give, take, kneel, run, hug, point, count, eat, drink, cheer, sigh, shout, turnAway ...),
+                      timed to its line or its word (f.word(...)). Never a gesture loop.
+                    - THE WORLD LIVES AND REACTS: each place has ambient life (birds, smoke, clouds, wind in grass/wheat, rain,
+                      passers-by, a crowd, pigs, fire, glow) and particles (dust, rain, leaves, fireflies, confetti); story
+                      moments trigger it (birds scatter, a gust, lanterns swing via f.hanger gusts, coins spill via f.spill).
+                    - A NEW PICTURE OFTEN: 1-3 shots per line, no shot over ~6 s, vary kinds (wide, medium, close, two, over,
+                      detail, track, reveal, insert3d); director.py prints CHECK lines on save: fix every one.
+                    - THE OBJECTS THE WORDS NAME are on screen when named (f.prop / f.spill / insert3d), big enough to read.
+                    - SOUND: f.sfx at every visible action, f.section per scene mood (motif, bpm, scale, instruments), a
+                      silence before the turn, f.hit on the peak.
+                    - Style decides the world's light: B2 = warm colourful day; B3 = night/overcast grades (worlds night, rain,
+                      street "overcast", look grade "night"/"cool"); B1 = light paper, few colours. Places come from the words:
+                      start from a worlds.py place and change its elements for THIS story.
+                    - Mysteries: the death is never shown; clues are props drawn large, shown when the narrator names them.
+                 4. RENDER: `python motion/make_film.py --voice outputs/<id>/voice --direct outputs/<id>/direct.py --out outputs/<id>/landscape --stills-only`
+                    first, LOOK at outputs/<id>/landscape/stills/contact-sheet.png (place right, people visible, action
+                    readable, objects on screen?), fix direct.py, then the same command without --stills-only (score, render,
+                    mix -> outputs/<id>/landscape/output.mp4). It renders with software GL at 1280x720, 24 fps: budget about
+                    10 s of wall time per video second (channel.json night.render_s_per_video_s). A demo: add `--seconds 30`.
+                 5. CHECK: `python scripts/verify_bundle.py video outputs/<id>/landscape/output.mp4 --story stories/<id>.json --aspect 16:9`
+                    (runs scripts/media/director_pass.py: dead air, frozen picture, black frames, contact sheets; a "flat mix"
+                    note alone is not a failure). LOOK at the director_pass sheets: does the picture change and match the
+                    words, does every action read? Fix and re-render whatever fails. Never publish a video that fails.
                  6. Metadata: `python scripts/media/make_metadata.py stories/<id>.json outputs/<id>/voice --privacy <privacy> > outputs/<id>/metadata.json`.
                     Thumbnails with the html-thumbnail skill into outputs/<id>/thumbnails/: 1280x720 for the landscape cut
                     and 720x1280 for the portrait one.
@@ -409,8 +422,8 @@ jobs:
                   - Re-read tonight's story and watch its contact sheets as a bored viewer: name its 3 weakest moments and why.
                   - Write concrete, dated, evidenced findings into data/learnings.md.
                   - Change the writing guidance ONLY where the evidence supports it: the hezb-story skill's references and
-                    scripts/lint_story.py. The stickman runtime itself is pinned (stickman/lock.json): never edit it; propose an
-                    upstream version change in the report instead.
+                    scripts/lint_story.py. The film engine is motion/ (hezb-motion): improve it only on an improve/ branch, with a
+                    rendered before/after still.
                b. PIPELINE: tools/code2video, the flow (scripts/, ci/), asset creation (settings, characters, props) and script
                   generation. Only after (a), and only with time for it. Rules:
                   - Work on a branch cut from main: `git switch -c improve/<YYYY-MM-DD> origin/main`. Never commit this to
@@ -418,14 +431,13 @@ jobs:
                   - One small improvement at a time, each with a measurable before and after (a lint count, a test, a render
                     time, a rendered frame). No big rewrites. Revert whatever you cannot show is better.
                   - Before every commit: `python -m py_compile` on touched scripts; `python -m pytest tools/code2video -q`
-                    if the tool was touched; tonight's story must still pass `scripts/stickman/assemble.py ... --check` for both
-                    cuts; `python scripts/policy_check.py` must still pass.
-                  - Edit only: .claude/skills/, tools/code2video/, scripts/, templates/, data/learnings.md, reports/.
+                    if the tool was touched; tonight's story must still build with `python motion/make_film.py ... --stills-only`; `python scripts/policy_check.py` must still pass.
+                  - Edit only: .claude/skills/, motion/, tools/code2video/, scripts/, templates/, data/learnings.md, reports/.
                     Never .github/, secrets, channel.json, stickman/lock.json, the rules of data/platform-policy.md, data/approval.json,
                     scripts/skill_hash.py or scripts/approve_demo.py (only the owner approves how videos look).
                   - Never weaken scripts/policy_check.py, scripts/verify_bundle.py or any lint rule that guards a platform
                     policy. You may add checks.
-                  - Look at what you change: for an asset, character or setting, render a short preview (`assemble.py ... --seconds 10`)
+                  - Look at what you change: for an asset, character or setting, render a short preview (`motion/make_film.py ... --seconds 10`)
                     and describe what you see in the report. Say plainly when you could not verify something.
                   - When done, or at the limit: commit, `git push origin improve/<YYYY-MM-DD>`, then try
                     `gh pr create --base main --head improve/<YYYY-MM-DD> --title "<what improved>" --body-file reports/<YYYY-MM-DD>.md`.
