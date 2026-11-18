@@ -1,0 +1,178 @@
+{
+ "id": "015-cats-tail-dust",
+ "title": "The Dust Tail Hubble Just Photographed",
+ "lang": "en",
+ "style": "B1",
+ "lane": "news",
+ "topic": "news",
+ "news_date": "2026-11-11",
+ "idea": "Hubble photographs, in visible light, a long tail of dark fluffy dust around the young star Beta Pictoris, 63 light-years away; what it is and what is still unknown",
+ "keyword": "hubble new discovery",
+ "format": "explainer",
+ "duration_min": 2,
+ "mood": "mystery",
+ "sources": [
+  "https://theprint.in/feature/a-collision-between-pluto-sized-bodies-study-investigates-a-mysterious-dust-cloud-spotted-by-nasa/3095822/ (11 Nov 2026, read 18 Nov 2026)",
+  "https://www.natureworldnews.com/articles/73857/20261113/fluffy-carbon-dust-63-light-years-away-shows-what-our-young-solar-system-may-have-looked-like.htm (13 Nov 2026, read 18 Nov 2026)",
+  "The Astrophysical Journal Letters, DOI 10.3847/2041-8213/aeac4a"
+ ],
+ "narrator": {
+  "name": "Narrator",
+  "gender": "female"
+ },
+ "cast": [
+  {
+   "id": "mia",
+   "name": "Mia",
+   "gender": "female",
+   "look": "young stargazer in a green scarf, round glasses, a notebook in her hand"
+  }
+ ],
+ "scenes": [
+  {
+   "id": 1,
+   "title": "A tail around a star",
+   "place": "A hilltop at night under a huge starry sky, Mia sits on the grass with a notebook and a small telescope",
+   "mood": "mystery",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "Sixty-three light-years away, a young star is trailing a tail of dust.",
+     "emote": "surprise"
+    },
+    {
+     "who": "narrator",
+     "t": "Reported on the eleventh of November, from a study in The Astrophysical Journal Letters.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "The star is called Beta Pictoris. And now Hubble has photographed the tail in ordinary visible light.",
+     "emote": "think"
+    },
+    {
+     "who": "mia",
+     "t": "A tail of dust? Around a star?",
+     "emote": "surprise"
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "title": "Webb saw it first",
+   "place": "A dark observatory control room with glowing screens, a big telescope dome seen through the window",
+   "mood": "mystery",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "The tail has a nickname: the Cat's Tail.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "The James Webb telescope found it in twenty twenty-four, but only in mid-infrared light.",
+     "emote": "think"
+    },
+    {
+     "who": "narrator",
+     "t": "In visible light it was almost invisible, because the dust is very dark.",
+     "emote": "doubt"
+    },
+    {
+     "who": "mia",
+     "t": "So why could Hubble see it at all?",
+     "emote": "confused"
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "title": "Six looks",
+   "place": "A hilltop at night under a huge starry sky, a drawing of the Hubble telescope and a long dusty tail on Mia's notebook page",
+   "mood": "mystery",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "Patience. Hubble looked at the system six times, between twenty twelve and twenty twenty-five.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "Its long exposures pulled out the faint glow of light scattered by the dust.",
+     "emote": "think"
+    },
+    {
+     "who": "narrator",
+     "t": "Together with the Webb data, they suggest the tail lies mostly flat across our view, not pointing toward us.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "Earlier estimates said it could stretch up to a thousand astronomical units. About ninety-three billion miles.",
+     "emote": "surprise"
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "title": "Fluffy and dark",
+   "place": "A close view of a notebook page on a hilltop at night, a drawing of a single tiny dust grain with holes in it",
+   "mood": "mystery",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "The dust is made mostly of carbon-rich material. Each grain is about one micron across.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "The grains look porous and fluffy, a bit like tiny sponges, and they soak up most of the light.",
+     "emote": "think"
+    },
+    {
+     "who": "mia",
+     "t": "Where would so much fluffy dust come from?",
+     "emote": "doubt"
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "title": "What we do not know",
+   "place": "A hilltop at night under a huge starry sky, Mia looks up at the stars with her notebook closed",
+   "mood": "hopeful",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "One idea: a collision between two bodies the size of Pluto, that made carbon vapor, which cooled into fluffy grains.",
+     "emote": "think"
+    },
+    {
+     "who": "narrator",
+     "t": "The authors say this is uncertain. It fits the evidence, but it needs more observations to confirm.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "And this is one young star. It does not show that our own young solar system had the same tail.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "If a figure here is out of date, the sources in the description are the reference.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "So what would you want Hubble and Webb to look at next?",
+     "emote": "think"
+    }
+   ]
+  }
+ ]
+}

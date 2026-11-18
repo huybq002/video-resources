@@ -1,0 +1,333 @@
+{
+ "id": "016-footprints-in-snow",
+ "title": "Footprints in the Snow. None Out.",
+ "lang": "en",
+ "style": "B3",
+ "lane": "mystery",
+ "topic": "mystery",
+ "idea": "classic fair-play snow mystery: a gardener found at a shed with only the finder's footprints in the snow; a snow-free outline, a cold lantern and dry boots break three alibis",
+ "keyword": "mystery story explained",
+ "format": "episode",
+ "duration_min": 4.5,
+ "mood": "mystery",
+ "narrator": {
+  "name": "Narrator",
+  "gender": "female"
+ },
+ "cast": [
+  {
+   "id": "kiri",
+   "name": "Kiri",
+   "gender": "male",
+   "look": "a quiet sharp boy of twelve, red scarf, short messy hair, round glasses"
+  },
+  {
+   "id": "hana",
+   "name": "Hana",
+   "gender": "female",
+   "look": "his teenage cousin, green parka, long ponytail, always says what the viewer thinks"
+  },
+  {
+   "id": "dale",
+   "name": "Inspector Dale",
+   "gender": "male",
+   "look": "police inspector, long grey coat, grey moustache, notebook"
+  },
+  {
+   "id": "rosa",
+   "name": "Rosa",
+   "gender": "female",
+   "look": "the cook, white apron, brown hair under a cap, flour on her hands"
+  },
+  {
+   "id": "hale",
+   "name": "Mr. Hale",
+   "gender": "male",
+   "look": "a guest, velvet jacket, slick dark hair, neat moustache"
+  },
+  {
+   "id": "ben",
+   "name": "Ben",
+   "gender": "male",
+   "look": "the groundsman's son, wool cap, work jacket, tall and shy"
+  }
+ ],
+ "scenes": [
+  {
+   "id": 1,
+   "title": "One set of footprints",
+   "place": "The garden shed at night under falling snow, one line of footprints in the snow leading to its shut door, an unlit lantern hanging beside it",
+   "mood": "mystery",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "It snowed all night. One set of footprints. They only went in.",
+     "emote": "fear"
+    },
+    {
+     "who": "narrator",
+     "t": "Old Tom, the gardener at Larkfield Manor, was in the shed. He would not come out again.",
+     "emote": "worry"
+    },
+    {
+     "who": "narrator",
+     "t": "Rosa, the cook, found him at ten. Hers were the only footprints in the snow.",
+     "emote": "calm"
+    },
+    {
+     "who": "dale",
+     "t": "Nobody else came near that door. Nobody could have. The snow tells us so.",
+     "emote": "doubt"
+    },
+    {
+     "who": "kiri",
+     "t": "The snow tells us what it saw. That is not the same as what happened.",
+     "emote": "calm"
+    },
+    {
+     "who": "hana",
+     "t": "Kiri, you always say that. Fine. Who are we looking at?",
+     "emote": "think"
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "title": "Rosa",
+   "place": "The warm manor kitchen at night, a big pot on the stove, a cook in an apron wiping her hands, a clock on the wall",
+   "mood": "mystery",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "First, Rosa, the cook. She cooked dinner for the house from five o'clock.",
+     "emote": "calm"
+    },
+    {
+     "who": "rosa",
+     "t": "I went to the shed at ten to bring Tom his soup. I opened the door. That is all.",
+     "emote": "worry"
+    },
+    {
+     "who": "narrator",
+     "t": "Two kitchen girls say she never left the stove before eight.",
+     "emote": "calm"
+    },
+    {
+     "who": "hana",
+     "t": "So she walked to the door, and her prints go in. Simple.",
+     "emote": "think"
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "title": "Mr. Hale",
+   "place": "The manor dining room at night, candles on a long table, a guest in a velvet jacket folding his napkin, snow at the window",
+   "mood": "mystery",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "Next, Mr. Hale, a guest. He sat at the family table from eight until eleven.",
+     "emote": "calm"
+    },
+    {
+     "who": "hale",
+     "t": "Dinner, then cards. Ask anyone. I never went near the garden.",
+     "emote": "calm"
+    },
+    {
+     "who": "hale",
+     "t": "I did hear Tom singing in his shed at eight, from the terrace. He was alive and in good voice.",
+     "emote": "calm"
+    },
+    {
+     "who": "dale",
+     "t": "So whatever happened was after eight. And after eight, the snow was falling.",
+     "emote": "doubt"
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "title": "Ben",
+   "place": "The groundsman's cottage porch at night, snow falling, a young man stamping his boots by a lamp",
+   "mood": "mystery",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "Last, Ben, the groundsman's son. He lives at the cottage by the gate.",
+     "emote": "calm"
+    },
+    {
+     "who": "ben",
+     "t": "I came home from the village at ten, through the snow. I went straight to bed.",
+     "emote": "tired"
+    },
+    {
+     "who": "hana",
+     "t": "Three alibis, one dead end. Kiri, I do not see how this is possible.",
+     "emote": "confused"
+    },
+    {
+     "who": "narrator",
+     "t": "Now watch closely. Three clues are hiding in plain view. Can you find them before Kiri does?",
+     "emote": "happy"
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "title": "The first clue",
+   "place": "A close view of the shed step in the snow, a dry dark outline of a lying shape on the boards with snow all around it",
+   "mood": "mystery",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "Clue one. The shed step. Look at the snow around it.",
+     "emote": "think"
+    },
+    {
+     "who": "narrator",
+     "t": "On the step there is a dark, dry outline. Snow is everywhere, except in that shape.",
+     "emote": "calm"
+    },
+    {
+     "who": "kiri",
+     "t": "Snow cannot fall where something already lies. He was on that step when the snow began.",
+     "emote": "think"
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "title": "The second clue",
+   "place": "A close view of the lantern hanging by the shed door, its glass clear and its oil full, snow on its hook",
+   "mood": "mystery",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "Clue two. The lantern by the door.",
+     "emote": "think"
+    },
+    {
+     "who": "rosa",
+     "t": "Tom lit it every evening at dusk. Half past six, like clockwork.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "Tonight it is cold, and the oil is full. It was never lit.",
+     "emote": "doubt"
+    },
+    {
+     "who": "kiri",
+     "t": "So Tom was gone before half past six. He never sang at eight.",
+     "emote": "calm"
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "title": "The third clue",
+   "place": "A close view of a young man's boots on the cottage porch, dry and clean, a puddle-free boards, a warm lamp glowing",
+   "mood": "mystery",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "Clue three. Ben's boots.",
+     "emote": "think"
+    },
+    {
+     "who": "narrator",
+     "t": "He says he walked through deep snow at ten. His boots are dry, and warm from the fire.",
+     "emote": "doubt"
+    },
+    {
+     "who": "ben",
+     "t": "All right. I was home before eight, before it snowed. I was afraid you would blame me.",
+     "emote": "fear"
+    },
+    {
+     "who": "ben",
+     "t": "On my way past the garden at half past six I saw Mr. Hale come out of the shed alone.",
+     "emote": "worry"
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "title": "The trick",
+   "place": "The garden under snow in the dark, a drawing of a clock at six and a second clock at eight with snow falling, the shed and the manor lit in the distance",
+   "mood": "mystery",
+   "value": "+",
+   "lines": [
+    {
+     "who": "kiri",
+     "t": "So here is how it worked. Step one. Tom died before half past six, on that step.",
+     "emote": "calm"
+    },
+    {
+     "who": "kiri",
+     "t": "Step two. At eight the snow began and covered every track of the one who was there.",
+     "emote": "calm"
+    },
+    {
+     "who": "kiri",
+     "t": "Step three. Mr. Hale told us he heard singing at eight, so everyone thought it happened later.",
+     "emote": "think"
+    },
+    {
+     "who": "kiri",
+     "t": "Step four. At ten Rosa found him and made the only footprints left. The snow did the rest.",
+     "emote": "calm"
+    },
+    {
+     "who": "dale",
+     "t": "Mr. Hale, there was no light in that shed at eight. The lantern was cold.",
+     "emote": "doubt"
+    },
+    {
+     "who": "hana",
+     "t": "He needed us to believe the snow made it impossible. It only made it quiet.",
+     "emote": "think"
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "title": "Why",
+   "place": "The manor terrace at night, snow on the stone rail, lights from the dining room behind, Kiri looking out over the white garden",
+   "mood": "sad",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "The motive is two lines long. Tom had seen Mr. Hale burying a small box in the garden.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "Mr. Hale did not want anyone to ask what was in it.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "The three clues were there the whole time. A dry outline. A cold lantern. A pair of dry boots.",
+     "emote": "think"
+    },
+    {
+     "who": "kiri",
+     "t": "What do you walk past every day without really looking?",
+     "emote": "happy"
+    }
+   ]
+  }
+ ]
+}
