@@ -105,6 +105,12 @@ cmd = [py, str(HERE / "build_project.py"), str(exp), str(out), "--timeline", str
 if a.no_audio_tag: cmd.append("--no-audio-tag")
 if a.no_captions: cmd.append("--no-captions")
 run(cmd)
+# ---- 3b. character logic, as the camera frames it (scripts/logic_check.py): each problem is a WARNING (lint gate)
+try:
+    import logic_check
+    for _p in logic_check.check(out, json.load(open(spec_path, encoding="utf-8"))): print("WARNING: logic: " + _p)
+except Exception as _e:
+    print(f"logic check skipped ({type(_e).__name__}: {_e})")
 
 # ---- 4. docs next to the project ----------------------------------------------------------------------
 docs = out.parent / (out.name + "_docs"); docs.mkdir(exist_ok=True)

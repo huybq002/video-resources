@@ -365,7 +365,7 @@ def beach(cfg, P, rnd):
     time = cfg.get("time", "day"); o = []
     sand = {"day": "#e8cf9a", "dusk": "#d9a878", "night": "#5a5068"}.get(time, "#e8cf9a")
     sea = {"day": "#3fa7c9", "dusk": "#7a6aa8", "night": "#232a55"}.get(time, "#3fa7c9")
-    o.append(_box(0, -0.05, 0, 120, 0.05, 30, sand, ink=0))                       # sand from the camera to the waterline at z=-15
+    o.append(_box(0, -0.05, 10, 120, 0.05, 50, sand, ink=0))                      # sand from behind the 9:16 camera (z~30) to the waterline at z=-15
     o.append(_box(0, -0.02, -60, 260, 0.03, 90, sea, ink=0))                      # sea to the horizon
     for k in range(7):                                                             # foam lines
         o.append(_box(rnd.uniform(-20, 20), 0.012, -15.2 - k * 2.6, rnd.uniform(4, 12), 0.004, 0.25, "#f3f7fa", ink=0, op=0.7))
