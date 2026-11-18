@@ -1,0 +1,1377 @@
+{
+ "duration": 248.19,
+ "lead": 0.25,
+ "lines": [
+  {
+   "scene": 1,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "A lawyer tested Jesus with a question. He answered with a road.",
+   "emote": "doubt",
+   "start": 0.25,
+   "end": 4.32
+  },
+  {
+   "scene": 1,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Crowds followed Jesus everywhere, and this man wanted to catch him out.",
+   "emote": "calm",
+   "start": 4.62,
+   "end": 8.8
+  },
+  {
+   "scene": 1,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "A lawyer is a man who knows the rules. He wanted to know exactly where they stopped.",
+   "emote": "think",
+   "start": 9.1,
+   "end": 14.05
+  },
+  {
+   "scene": 1,
+   "i": 3,
+   "who": "lawyer",
+   "speaker": "Lawyer",
+   "text": "Teacher, the law says to love my neighbour. But who is my neighbour?",
+   "emote": "doubt",
+   "start": 14.5,
+   "end": 18.82
+  },
+  {
+   "scene": 1,
+   "i": 4,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "He wanted a short list. A line to draw, with some people on each side.",
+   "emote": "think",
+   "start": 19.27,
+   "end": 23.76
+  },
+  {
+   "scene": 1,
+   "i": 5,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Jesus did not give him a list. He told him a story.",
+   "emote": "calm",
+   "start": 24.06,
+   "end": 27.66
+  },
+  {
+   "scene": 1,
+   "i": 6,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "It is a parable Jesus told, and it begins on a very lonely road.",
+   "emote": "calm",
+   "start": 27.96,
+   "end": 32.33
+  },
+  {
+   "scene": 2,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "A man was walking from Jerusalem down to Jericho. It was a long, steep road, and a dangerous one.",
+   "emote": "worry",
+   "start": 33.18,
+   "end": 40.05
+  },
+  {
+   "scene": 2,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The hills hid robbers, and travellers there kept their eyes open and their bags close.",
+   "emote": "worry",
+   "start": 40.35,
+   "end": 45.42
+  },
+  {
+   "scene": 2,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "This man walked alone. He was tired, and he was not thinking about danger.",
+   "emote": "calm",
+   "start": 45.72,
+   "end": 50.43
+  },
+  {
+   "scene": 2,
+   "i": 3,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The sun was high and the road was empty, and the heat shimmered on the stones.",
+   "emote": "calm",
+   "start": 50.73,
+   "end": 55.63
+  },
+  {
+   "scene": 2,
+   "i": 4,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Then, in a bend of the road, the robbers stepped out.",
+   "emote": "fear",
+   "start": 55.93,
+   "end": 59.27
+  },
+  {
+   "scene": 2,
+   "i": 5,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "When they were gone, the road was quiet. The man lay by the side of it, and his bag was gone.",
+   "emote": "sad",
+   "start": 59.57,
+   "end": 65.74
+  },
+  {
+   "scene": 2,
+   "i": 6,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "He could not stand. He could not call out. He could only wait for someone to come.",
+   "emote": "sad",
+   "start": 66.04,
+   "end": 71.39
+  },
+  {
+   "scene": 3,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The first to come was a priest. A respected man, with an important place to be.",
+   "emote": "calm",
+   "start": 72.24,
+   "end": 77.26
+  },
+  {
+   "scene": 3,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "He saw the man lying there. And he crossed to the other side of the road.",
+   "emote": "doubt",
+   "start": 77.56,
+   "end": 81.84
+  },
+  {
+   "scene": 3,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Maybe he was late. Maybe he was afraid. Maybe he told himself someone else would help.",
+   "emote": "think",
+   "start": 82.14,
+   "end": 88.08
+  },
+  {
+   "scene": 3,
+   "i": 3,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "He walked on. His steps got faster, not slower.",
+   "emote": "sad",
+   "start": 88.38,
+   "end": 92.04
+  },
+  {
+   "scene": 3,
+   "i": 4,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Then came a Levite, a man who served in the temple. He came close enough to look.",
+   "emote": "calm",
+   "start": 92.34,
+   "end": 97.37
+  },
+  {
+   "scene": 3,
+   "i": 5,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "He looked. And he, too, crossed to the other side.",
+   "emote": "sad",
+   "start": 97.67,
+   "end": 100.73
+  },
+  {
+   "scene": 3,
+   "i": 6,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Two good men, two good reasons, and one man still lying on the road.",
+   "emote": "sad",
+   "start": 101.03,
+   "end": 104.9
+  },
+  {
+   "scene": 3,
+   "i": 7,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The road was empty again, except for the dust, and one man waiting.",
+   "emote": "sad",
+   "start": 105.2,
+   "end": 110.22
+  },
+  {
+   "scene": 4,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The third traveller was a Samaritan. The people listening to Jesus looked down on Samaritans.",
+   "emote": "surprise",
+   "start": 111.07,
+   "end": 116.54
+  },
+  {
+   "scene": 4,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "He had every reason to keep walking. He did not.",
+   "emote": "calm",
+   "start": 116.84,
+   "end": 119.84
+  },
+  {
+   "scene": 4,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "He did not ask who the man was. He did not ask where he came from.",
+   "emote": "calm",
+   "start": 120.14,
+   "end": 124.27
+  },
+  {
+   "scene": 4,
+   "i": 3,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "He stopped. He knelt in the dust beside the stranger.",
+   "emote": "calm",
+   "start": 124.57,
+   "end": 128.13
+  },
+  {
+   "scene": 4,
+   "i": 4,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The robbers might still be close. He knelt there anyway.",
+   "emote": "worry",
+   "start": 128.43,
+   "end": 131.92
+  },
+  {
+   "scene": 4,
+   "i": 5,
+   "who": "samaritan",
+   "speaker": "Samaritan",
+   "text": "Hold on, friend. You are not alone now.",
+   "emote": "calm",
+   "start": 132.37,
+   "end": 135.85
+  },
+  {
+   "scene": 4,
+   "i": 6,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "He cleaned and bandaged him, using the oil and wine he carried for his own journey.",
+   "emote": "calm",
+   "start": 136.3,
+   "end": 141.33
+  },
+  {
+   "scene": 4,
+   "i": 7,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Then he lifted him onto his own donkey, and walked beside him, one slow step at a time.",
+   "emote": "happy",
+   "start": 141.63,
+   "end": 147.1
+  },
+  {
+   "scene": 4,
+   "i": 8,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "It cost him time, and it cost him money. He did not count either.",
+   "emote": "relief",
+   "start": 147.4,
+   "end": 151.35
+  },
+  {
+   "scene": 5,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "They reached an inn as the sun went down. The Samaritan did not leave him at the door.",
+   "emote": "calm",
+   "start": 152.2,
+   "end": 157.34
+  },
+  {
+   "scene": 5,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "He carried the man in, found him a bed, and stayed with him all night.",
+   "emote": "happy",
+   "start": 157.64,
+   "end": 161.69
+  },
+  {
+   "scene": 5,
+   "i": 2,
+   "who": "samaritan",
+   "speaker": "Samaritan",
+   "text": "Is there a room? He needs rest, and food, and someone to watch over him.",
+   "emote": "worry",
+   "start": 162.14,
+   "end": 167.23
+  },
+  {
+   "scene": 5,
+   "i": 3,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "All night he stayed by the bed, changing the bandages by lamplight.",
+   "emote": "calm",
+   "start": 167.68,
+   "end": 171.84
+  },
+  {
+   "scene": 5,
+   "i": 4,
+   "who": "innkeeper",
+   "speaker": "Innkeeper",
+   "text": "There is. But a room costs money, friend. Who is going to pay for it?",
+   "emote": "doubt",
+   "start": 172.29,
+   "end": 177.31
+  },
+  {
+   "scene": 5,
+   "i": 5,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The Samaritan nodded. He had already thought of that.",
+   "emote": "calm",
+   "start": 177.76,
+   "end": 180.67
+  },
+  {
+   "scene": 6,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "In the morning, the Samaritan had to go. But he did not just walk away.",
+   "emote": "calm",
+   "start": 181.52,
+   "end": 185.96
+  },
+  {
+   "scene": 6,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "He took out two silver coins, and put them in the innkeeper's hand.",
+   "emote": "happy",
+   "start": 186.26,
+   "end": 190.03
+  },
+  {
+   "scene": 6,
+   "i": 2,
+   "who": "samaritan",
+   "speaker": "Samaritan",
+   "text": "Look after him. If it costs more, I will pay you when I come back.",
+   "emote": "calm",
+   "start": 190.48,
+   "end": 194.98
+  },
+  {
+   "scene": 6,
+   "i": 3,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "He did not ask the man his name. He did not ask what he believed.",
+   "emote": "think",
+   "start": 195.43,
+   "end": 199.51
+  },
+  {
+   "scene": 6,
+   "i": 4,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Then he went on his way, and the innkeeper looked after the stranger.",
+   "emote": "calm",
+   "start": 199.81,
+   "end": 203.92
+  },
+  {
+   "scene": 6,
+   "i": 5,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "He saw a man who needed help, and he was the one standing there.",
+   "emote": "relief",
+   "start": 204.22,
+   "end": 207.86
+  },
+  {
+   "scene": 7,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Jesus looked at the lawyer, and asked him one question.",
+   "emote": "calm",
+   "start": 208.71,
+   "end": 211.69
+  },
+  {
+   "scene": 7,
+   "i": 1,
+   "who": "jesus",
+   "speaker": "Jesus",
+   "text": "Which of these three was a neighbour to the man the robbers left on the road?",
+   "emote": "think",
+   "start": 212.14,
+   "end": 216.02
+  },
+  {
+   "scene": 7,
+   "i": 2,
+   "who": "lawyer",
+   "speaker": "Lawyer",
+   "text": "The one who showed him mercy.",
+   "emote": "sad",
+   "start": 216.47,
+   "end": 218.28
+  },
+  {
+   "scene": 7,
+   "i": 3,
+   "who": "jesus",
+   "speaker": "Jesus",
+   "text": "Go, and do the same.",
+   "emote": "calm",
+   "start": 218.73,
+   "end": 220.08
+  },
+  {
+   "scene": 7,
+   "i": 4,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The lawyer said nothing for a long moment. Everyone listening knew who had stopped.",
+   "emote": "think",
+   "start": 220.53,
+   "end": 225.39
+  },
+  {
+   "scene": 7,
+   "i": 5,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The lawyer had asked who counts as a neighbour. Jesus turned the question around.",
+   "emote": "think",
+   "start": 225.69,
+   "end": 230.6
+  },
+  {
+   "scene": 7,
+   "i": 6,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Not, who deserves my help? But, will I be the one who stops?",
+   "emote": "think",
+   "start": 230.9,
+   "end": 235.25
+  },
+  {
+   "scene": 7,
+   "i": 7,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Jesus did not tell him who to help. He told him who to become.",
+   "emote": "calm",
+   "start": 235.55,
+   "end": 239.84
+  },
+  {
+   "scene": 7,
+   "i": 8,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Everyone has a road like that. And everyone has someone lying beside it.",
+   "emote": "think",
+   "start": 240.14,
+   "end": 244.7
+  },
+  {
+   "scene": 7,
+   "i": 9,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Who is on the other side of your road this week?",
+   "emote": "think",
+   "start": 245.0,
+   "end": 247.59
+  }
+ ],
+ "scenes": [
+  {
+   "id": 1,
+   "title": "The question",
+   "place": "a grassy hillside above the lake, a crowd sitting in the sun and a lawyer standing up",
+   "mood": "warm",
+   "value": "+",
+   "start": 0.25,
+   "end": 32.33
+  },
+  {
+   "id": 2,
+   "title": "The road",
+   "place": "the steep rocky road down from Jerusalem to Jericho, bare hills and a few boulders",
+   "mood": "tense",
+   "value": "-",
+   "start": 33.18,
+   "end": 71.39
+  },
+  {
+   "id": 3,
+   "title": "The other side",
+   "place": "the steep rocky road down from Jerusalem to Jericho, bare hills and a few boulders",
+   "mood": "sad",
+   "value": "-",
+   "start": 72.24,
+   "end": 110.22
+  },
+  {
+   "id": 4,
+   "title": "The Samaritan",
+   "place": "the steep rocky road down from Jerusalem to Jericho, bare hills and a few boulders",
+   "mood": "hopeful",
+   "value": "+",
+   "start": 111.07,
+   "end": 151.35
+  },
+  {
+   "id": 5,
+   "title": "The inn",
+   "place": "a small roadside inn at night, a lamp, a bed and a courtyard with a donkey",
+   "mood": "warm",
+   "value": "+",
+   "start": 152.2,
+   "end": 180.67
+  },
+  {
+   "id": 6,
+   "title": "Two coins",
+   "place": "the inn courtyard in the morning, the innkeeper's table and the road beyond the gate",
+   "mood": "hopeful",
+   "value": "+",
+   "start": 181.52,
+   "end": 207.86
+  },
+  {
+   "id": 7,
+   "title": "Which one",
+   "place": "a grassy hillside above the lake, a crowd sitting in the sun and a lawyer standing up",
+   "mood": "hopeful",
+   "value": "+",
+   "start": 208.71,
+   "end": 248.19
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.25,
+   "end": 2.725,
+   "text": "A lawyer tested Jesus with a question."
+  },
+  {
+   "start": 2.745,
+   "end": 4.3,
+   "text": "He answered with a road."
+  },
+  {
+   "start": 4.62,
+   "end": 6.571,
+   "text": "Crowds followed Jesus everywhere,"
+  },
+  {
+   "start": 6.591,
+   "end": 8.78,
+   "text": "and this man wanted to catch him out."
+  },
+  {
+   "start": 9.1,
+   "end": 11.374,
+   "text": "A lawyer is a man who knows the rules."
+  },
+  {
+   "start": 11.394,
+   "end": 13.547,
+   "text": "He wanted to know exactly where they"
+  },
+  {
+   "start": 13.567,
+   "end": 14.03,
+   "text": "stopped."
+  },
+  {
+   "start": 14.5,
+   "end": 15.004,
+   "text": "Teacher,"
+  },
+  {
+   "start": 15.024,
+   "end": 17.229,
+   "text": "the law says to love my neighbour."
+  },
+  {
+   "start": 17.249,
+   "end": 18.8,
+   "text": "But who is my neighbour?"
+  },
+  {
+   "start": 19.27,
+   "end": 20.769,
+   "text": "He wanted a short list."
+  },
+  {
+   "start": 20.789,
+   "end": 21.759,
+   "text": "A line to draw,"
+  },
+  {
+   "start": 21.779,
+   "end": 23.74,
+   "text": "with some people on each side."
+  },
+  {
+   "start": 24.06,
+   "end": 26.2,
+   "text": "Jesus did not give him a list."
+  },
+  {
+   "start": 26.22,
+   "end": 27.64,
+   "text": "He told him a story."
+  },
+  {
+   "start": 27.96,
+   "end": 29.813,
+   "text": "It is a parable Jesus told,"
+  },
+  {
+   "start": 29.833,
+   "end": 32.31,
+   "text": "and it begins on a very lonely road."
+  },
+  {
+   "start": 33.18,
+   "end": 35.893,
+   "text": "A man was walking from Jerusalem down"
+  },
+  {
+   "start": 35.913,
+   "end": 36.706,
+   "text": "to Jericho."
+  },
+  {
+   "start": 36.726,
+   "end": 37.74,
+   "text": "It was a long,"
+  },
+  {
+   "start": 37.76,
+   "end": 38.553,
+   "text": "steep road,"
+  },
+  {
+   "start": 38.573,
+   "end": 40.03,
+   "text": "and a dangerous one."
+  },
+  {
+   "start": 40.35,
+   "end": 41.658,
+   "text": "The hills hid robbers,"
+  },
+  {
+   "start": 41.678,
+   "end": 43.831,
+   "text": "and travellers there kept their eyes"
+  },
+  {
+   "start": 43.851,
+   "end": 45.4,
+   "text": "open and their bags close."
+  },
+  {
+   "start": 45.72,
+   "end": 47.139,
+   "text": "This man walked alone."
+  },
+  {
+   "start": 47.159,
+   "end": 47.99,
+   "text": "He was tired,"
+  },
+  {
+   "start": 48.01,
+   "end": 50.41,
+   "text": "and he was not thinking about danger."
+  },
+  {
+   "start": 50.73,
+   "end": 52.838,
+   "text": "The sun was high and the road was"
+  },
+  {
+   "start": 52.858,
+   "end": 53.224,
+   "text": "empty,"
+  },
+  {
+   "start": 53.244,
+   "end": 55.61,
+   "text": "and the heat shimmered on the stones."
+  },
+  {
+   "start": 55.93,
+   "end": 56.237,
+   "text": "Then,"
+  },
+  {
+   "start": 56.257,
+   "end": 57.678,
+   "text": "in a bend of the road,"
+  },
+  {
+   "start": 57.698,
+   "end": 59.25,
+   "text": "the robbers stepped out."
+  },
+  {
+   "start": 59.57,
+   "end": 60.921,
+   "text": "When they were gone,"
+  },
+  {
+   "start": 60.941,
+   "end": 62.224,
+   "text": "the road was quiet."
+  },
+  {
+   "start": 62.244,
+   "end": 64.28,
+   "text": "The man lay by the side of it,"
+  },
+  {
+   "start": 64.3,
+   "end": 65.72,
+   "text": "and his bag was gone."
+  },
+  {
+   "start": 66.04,
+   "end": 67.307,
+   "text": "He could not stand."
+  },
+  {
+   "start": 67.327,
+   "end": 68.797,
+   "text": "He could not call out."
+  },
+  {
+   "start": 68.817,
+   "end": 71.031,
+   "text": "He could only wait for someone to"
+  },
+  {
+   "start": 71.051,
+   "end": 71.37,
+   "text": "come."
+  },
+  {
+   "start": 72.24,
+   "end": 74.241,
+   "text": "The first to come was a priest."
+  },
+  {
+   "start": 74.261,
+   "end": 75.284,
+   "text": "A respected man,"
+  },
+  {
+   "start": 75.304,
+   "end": 77.24,
+   "text": "with an important place to be."
+  },
+  {
+   "start": 77.56,
+   "end": 79.168,
+   "text": "He saw the man lying there."
+  },
+  {
+   "start": 79.188,
+   "end": 81.277,
+   "text": "And he crossed to the other side of"
+  },
+  {
+   "start": 81.297,
+   "end": 81.82,
+   "text": "the road."
+  },
+  {
+   "start": 82.14,
+   "end": 83.408,
+   "text": "Maybe he was late."
+  },
+  {
+   "start": 83.428,
+   "end": 84.84,
+   "text": "Maybe he was afraid."
+  },
+  {
+   "start": 84.86,
+   "end": 87.273,
+   "text": "Maybe he told himself someone else"
+  },
+  {
+   "start": 87.293,
+   "end": 88.06,
+   "text": "would help."
+  },
+  {
+   "start": 88.38,
+   "end": 89.417,
+   "text": "He walked on."
+  },
+  {
+   "start": 89.437,
+   "end": 91.125,
+   "text": "His steps got faster,"
+  },
+  {
+   "start": 91.145,
+   "end": 92.02,
+   "text": "not slower."
+  },
+  {
+   "start": 92.34,
+   "end": 93.53,
+   "text": "Then came a Levite,"
+  },
+  {
+   "start": 93.55,
+   "end": 95.504,
+   "text": "a man who served in the temple."
+  },
+  {
+   "start": 95.524,
+   "end": 97.35,
+   "text": "He came close enough to look."
+  },
+  {
+   "start": 97.67,
+   "end": 98.301,
+   "text": "He looked."
+  },
+  {
+   "start": 98.321,
+   "end": 98.757,
+   "text": "And he,"
+  },
+  {
+   "start": 98.777,
+   "end": 99.017,
+   "text": "too,"
+  },
+  {
+   "start": 99.037,
+   "end": 100.71,
+   "text": "crossed to the other side."
+  },
+  {
+   "start": 101.03,
+   "end": 101.772,
+   "text": "Two good men,"
+  },
+  {
+   "start": 101.792,
+   "end": 102.769,
+   "text": "two good reasons,"
+  },
+  {
+   "start": 102.789,
+   "end": 104.88,
+   "text": "and one man still lying on the road."
+  },
+  {
+   "start": 105.2,
+   "end": 107.111,
+   "text": "The road was empty again,"
+  },
+  {
+   "start": 107.131,
+   "end": 108.655,
+   "text": "except for the dust,"
+  },
+  {
+   "start": 108.675,
+   "end": 110.2,
+   "text": "and one man waiting."
+  },
+  {
+   "start": 111.07,
+   "end": 113.214,
+   "text": "The third traveller was a Samaritan."
+  },
+  {
+   "start": 113.234,
+   "end": 115.378,
+   "text": "The people listening to Jesus looked"
+  },
+  {
+   "start": 115.398,
+   "end": 116.52,
+   "text": "down on Samaritans."
+  },
+  {
+   "start": 116.84,
+   "end": 119.118,
+   "text": "He had every reason to keep walking."
+  },
+  {
+   "start": 119.138,
+   "end": 119.82,
+   "text": "He did not."
+  },
+  {
+   "start": 120.14,
+   "end": 122.09,
+   "text": "He did not ask who the man was."
+  },
+  {
+   "start": 122.11,
+   "end": 124.25,
+   "text": "He did not ask where he came from."
+  },
+  {
+   "start": 124.57,
+   "end": 125.318,
+   "text": "He stopped."
+  },
+  {
+   "start": 125.338,
+   "end": 127.482,
+   "text": "He knelt in the dust beside the"
+  },
+  {
+   "start": 127.502,
+   "end": 128.11,
+   "text": "stranger."
+  },
+  {
+   "start": 128.43,
+   "end": 130.504,
+   "text": "The robbers might still be close."
+  },
+  {
+   "start": 130.524,
+   "end": 131.9,
+   "text": "He knelt there anyway."
+  },
+  {
+   "start": 132.37,
+   "end": 133.102,
+   "text": "Hold on,"
+  },
+  {
+   "start": 133.122,
+   "end": 133.761,
+   "text": "friend."
+  },
+  {
+   "start": 133.781,
+   "end": 135.83,
+   "text": "You are not alone now."
+  },
+  {
+   "start": 136.3,
+   "end": 138.019,
+   "text": "He cleaned and bandaged him,"
+  },
+  {
+   "start": 138.039,
+   "end": 140.316,
+   "text": "using the oil and wine he carried for"
+  },
+  {
+   "start": 140.336,
+   "end": 141.31,
+   "text": "his own journey."
+  },
+  {
+   "start": 141.63,
+   "end": 143.629,
+   "text": "Then he lifted him onto his own"
+  },
+  {
+   "start": 143.649,
+   "end": 144.085,
+   "text": "donkey,"
+  },
+  {
+   "start": 144.105,
+   "end": 145.517,
+   "text": "and walked beside him,"
+  },
+  {
+   "start": 145.537,
+   "end": 147.08,
+   "text": "one slow step at a time."
+  },
+  {
+   "start": 147.4,
+   "end": 148.446,
+   "text": "It cost him time,"
+  },
+  {
+   "start": 148.466,
+   "end": 149.825,
+   "text": "and it cost him money."
+  },
+  {
+   "start": 149.845,
+   "end": 151.33,
+   "text": "He did not count either."
+  },
+  {
+   "start": 152.2,
+   "end": 154.347,
+   "text": "They reached an inn as the sun went"
+  },
+  {
+   "start": 154.367,
+   "end": 154.657,
+   "text": "down."
+  },
+  {
+   "start": 154.677,
+   "end": 157.01,
+   "text": "The Samaritan did not leave him at the"
+  },
+  {
+   "start": 157.03,
+   "end": 157.32,
+   "text": "door."
+  },
+  {
+   "start": 157.64,
+   "end": 158.93,
+   "text": "He carried the man in,"
+  },
+  {
+   "start": 158.95,
+   "end": 159.883,
+   "text": "found him a bed,"
+  },
+  {
+   "start": 159.903,
+   "end": 161.67,
+   "text": "and stayed with him all night."
+  },
+  {
+   "start": 162.14,
+   "end": 163.3,
+   "text": "Is there a room?"
+  },
+  {
+   "start": 163.32,
+   "end": 164.333,
+   "text": "He needs rest,"
+  },
+  {
+   "start": 164.353,
+   "end": 164.997,
+   "text": "and food,"
+  },
+  {
+   "start": 165.017,
+   "end": 167.21,
+   "text": "and someone to watch over him."
+  },
+  {
+   "start": 167.68,
+   "end": 169.614,
+   "text": "All night he stayed by the bed,"
+  },
+  {
+   "start": 169.634,
+   "end": 171.82,
+   "text": "changing the bandages by lamplight."
+  },
+  {
+   "start": 172.29,
+   "end": 172.955,
+   "text": "There is."
+  },
+  {
+   "start": 172.975,
+   "end": 174.704,
+   "text": "But a room costs money,"
+  },
+  {
+   "start": 174.724,
+   "end": 175.236,
+   "text": "friend."
+  },
+  {
+   "start": 175.256,
+   "end": 177.29,
+   "text": "Who is going to pay for it?"
+  },
+  {
+   "start": 177.76,
+   "end": 178.915,
+   "text": "The Samaritan nodded."
+  },
+  {
+   "start": 178.935,
+   "end": 180.65,
+   "text": "He had already thought of that."
+  },
+  {
+   "start": 181.52,
+   "end": 182.465,
+   "text": "In the morning,"
+  },
+  {
+   "start": 182.485,
+   "end": 184.01,
+   "text": "the Samaritan had to go."
+  },
+  {
+   "start": 184.03,
+   "end": 185.94,
+   "text": "But he did not just walk away."
+  },
+  {
+   "start": 186.26,
+   "end": 187.897,
+   "text": "He took out two silver coins,"
+  },
+  {
+   "start": 187.917,
+   "end": 190.01,
+   "text": "and put them in the innkeeper's hand."
+  },
+  {
+   "start": 190.48,
+   "end": 191.515,
+   "text": "Look after him."
+  },
+  {
+   "start": 191.535,
+   "end": 192.71,
+   "text": "If it costs more,"
+  },
+  {
+   "start": 192.73,
+   "end": 194.96,
+   "text": "I will pay you when I come back."
+  },
+  {
+   "start": 195.43,
+   "end": 197.45,
+   "text": "He did not ask the man his name."
+  },
+  {
+   "start": 197.47,
+   "end": 199.49,
+   "text": "He did not ask what he believed."
+  },
+  {
+   "start": 199.81,
+   "end": 201.262,
+   "text": "Then he went on his way,"
+  },
+  {
+   "start": 201.282,
+   "end": 203.348,
+   "text": "and the innkeeper looked after the"
+  },
+  {
+   "start": 203.368,
+   "end": 203.9,
+   "text": "stranger."
+  },
+  {
+   "start": 204.22,
+   "end": 205.876,
+   "text": "He saw a man who needed help,"
+  },
+  {
+   "start": 205.896,
+   "end": 207.84,
+   "text": "and he was the one standing there."
+  },
+  {
+   "start": 208.71,
+   "end": 210.18,
+   "text": "Jesus looked at the lawyer,"
+  },
+  {
+   "start": 210.2,
+   "end": 211.67,
+   "text": "and asked him one question."
+  },
+  {
+   "start": 212.14,
+   "end": 213.982,
+   "text": "Which of these three was a neighbour"
+  },
+  {
+   "start": 214.002,
+   "end": 215.741,
+   "text": "to the man the robbers left on the"
+  },
+  {
+   "start": 215.761,
+   "end": 216.0,
+   "text": "road?"
+  },
+  {
+   "start": 216.47,
+   "end": 218.26,
+   "text": "The one who showed him mercy."
+  },
+  {
+   "start": 218.73,
+   "end": 218.923,
+   "text": "Go,"
+  },
+  {
+   "start": 218.943,
+   "end": 220.06,
+   "text": "and do the same."
+  },
+  {
+   "start": 220.53,
+   "end": 222.575,
+   "text": "The lawyer said nothing for a long"
+  },
+  {
+   "start": 222.595,
+   "end": 223.001,
+   "text": "moment."
+  },
+  {
+   "start": 223.021,
+   "end": 224.884,
+   "text": "Everyone listening knew who had"
+  },
+  {
+   "start": 224.904,
+   "end": 225.37,
+   "text": "stopped."
+  },
+  {
+   "start": 225.69,
+   "end": 227.907,
+   "text": "The lawyer had asked who counts as a"
+  },
+  {
+   "start": 227.927,
+   "end": 228.529,
+   "text": "neighbour."
+  },
+  {
+   "start": 228.549,
+   "end": 230.58,
+   "text": "Jesus turned the question around."
+  },
+  {
+   "start": 230.9,
+   "end": 231.185,
+   "text": "Not,"
+  },
+  {
+   "start": 231.205,
+   "end": 232.788,
+   "text": "who deserves my help?"
+  },
+  {
+   "start": 232.808,
+   "end": 233.093,
+   "text": "But,"
+  },
+  {
+   "start": 233.113,
+   "end": 235.23,
+   "text": "will I be the one who stops?"
+  },
+  {
+   "start": 235.55,
+   "end": 237.991,
+   "text": "Jesus did not tell him who to help."
+  },
+  {
+   "start": 238.011,
+   "end": 239.82,
+   "text": "He told him who to become."
+  },
+  {
+   "start": 240.14,
+   "end": 242.074,
+   "text": "Everyone has a road like that."
+  },
+  {
+   "start": 242.094,
+   "end": 244.485,
+   "text": "And everyone has someone lying beside"
+  },
+  {
+   "start": 244.505,
+   "end": 244.68,
+   "text": "it."
+  },
+  {
+   "start": 245.0,
+   "end": 247.019,
+   "text": "Who is on the other side of your road"
+  },
+  {
+   "start": 247.039,
+   "end": 247.57,
+   "text": "this week?"
+  }
+ ],
+ "words_per_second": 3.19,
+ "voices": {
+  "Narrator": "en-US-BrianMultilingualNeural",
+  "Jesus": "en-US-AndrewNeural",
+  "Lawyer": "en-US-BrianNeural",
+  "Samaritan": "en-US-GuyNeural",
+  "Innkeeper": "en-US-AvaMultilingualNeural"
+ },
+ "engine": "EdgeTTSAdapter"
+}

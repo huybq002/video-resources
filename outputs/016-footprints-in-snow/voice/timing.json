@@ -1,0 +1,1182 @@
+{
+ "duration": 207.85,
+ "lead": 0.25,
+ "lines": [
+  {
+   "scene": 1,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "It snowed all night. One set of footprints. They only went in.",
+   "emote": "fear",
+   "start": 0.25,
+   "end": 4.81
+  },
+  {
+   "scene": 1,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Old Tom, the gardener at Larkfield Manor, was in the shed. He would not come out again.",
+   "emote": "worry",
+   "start": 5.11,
+   "end": 10.86
+  },
+  {
+   "scene": 1,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Rosa, the cook, found him at ten. Hers were the only footprints in the snow.",
+   "emote": "calm",
+   "start": 11.16,
+   "end": 16.87
+  },
+  {
+   "scene": 1,
+   "i": 3,
+   "who": "dale",
+   "speaker": "Inspector Dale",
+   "text": "Nobody else came near that door. Nobody could have. The snow tells us so.",
+   "emote": "doubt",
+   "start": 17.32,
+   "end": 21.78
+  },
+  {
+   "scene": 1,
+   "i": 4,
+   "who": "kiri",
+   "speaker": "Kiri",
+   "text": "The snow tells us what it saw. That is not the same as what happened.",
+   "emote": "calm",
+   "start": 22.23,
+   "end": 26.5
+  },
+  {
+   "scene": 1,
+   "i": 5,
+   "who": "hana",
+   "speaker": "Hana",
+   "text": "Kiri, you always say that. Fine. Who are we looking at?",
+   "emote": "think",
+   "start": 26.95,
+   "end": 31.06
+  },
+  {
+   "scene": 2,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "First, Rosa, the cook. She cooked dinner for the house from five o'clock.",
+   "emote": "calm",
+   "start": 31.91,
+   "end": 36.53
+  },
+  {
+   "scene": 2,
+   "i": 1,
+   "who": "rosa",
+   "speaker": "Rosa",
+   "text": "I went to the shed at ten to bring Tom his soup. I opened the door. That is all.",
+   "emote": "worry",
+   "start": 36.98,
+   "end": 42.14
+  },
+  {
+   "scene": 2,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Two kitchen girls say she never left the stove before eight.",
+   "emote": "calm",
+   "start": 42.59,
+   "end": 45.95
+  },
+  {
+   "scene": 2,
+   "i": 3,
+   "who": "hana",
+   "speaker": "Hana",
+   "text": "So she walked to the door, and her prints go in. Simple.",
+   "emote": "think",
+   "start": 46.4,
+   "end": 50.27
+  },
+  {
+   "scene": 3,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Next, Mr. Hale, a guest. He sat at the family table from eight until eleven.",
+   "emote": "calm",
+   "start": 51.12,
+   "end": 56.53
+  },
+  {
+   "scene": 3,
+   "i": 1,
+   "who": "hale",
+   "speaker": "Mr. Hale",
+   "text": "Dinner, then cards. Ask anyone. I never went near the garden.",
+   "emote": "calm",
+   "start": 56.98,
+   "end": 61.67
+  },
+  {
+   "scene": 3,
+   "i": 2,
+   "who": "hale",
+   "speaker": "Mr. Hale",
+   "text": "I did hear Tom singing in his shed at eight, from the terrace. He was alive and in good voice.",
+   "emote": "calm",
+   "start": 61.97,
+   "end": 68.23
+  },
+  {
+   "scene": 3,
+   "i": 3,
+   "who": "dale",
+   "speaker": "Inspector Dale",
+   "text": "So whatever happened was after eight. And after eight, the snow was falling.",
+   "emote": "doubt",
+   "start": 68.68,
+   "end": 72.77
+  },
+  {
+   "scene": 4,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Last, Ben, the groundsman's son. He lives at the cottage by the gate.",
+   "emote": "calm",
+   "start": 73.62,
+   "end": 78.35
+  },
+  {
+   "scene": 4,
+   "i": 1,
+   "who": "ben",
+   "speaker": "Ben",
+   "text": "I came home from the village at ten, through the snow. I went straight to bed.",
+   "emote": "tired",
+   "start": 78.8,
+   "end": 84.27
+  },
+  {
+   "scene": 4,
+   "i": 2,
+   "who": "hana",
+   "speaker": "Hana",
+   "text": "Three alibis, one dead end. Kiri, I do not see how this is possible.",
+   "emote": "confused",
+   "start": 84.72,
+   "end": 89.54
+  },
+  {
+   "scene": 4,
+   "i": 3,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Now watch closely. Three clues are hiding in plain view. Can you find them before Kiri does?",
+   "emote": "happy",
+   "start": 89.99,
+   "end": 96.43
+  },
+  {
+   "scene": 5,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Clue one. The shed step. Look at the snow around it.",
+   "emote": "think",
+   "start": 97.28,
+   "end": 101.22
+  },
+  {
+   "scene": 5,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "On the step there is a dark, dry outline. Snow is everywhere, except in that shape.",
+   "emote": "calm",
+   "start": 101.52,
+   "end": 107.12
+  },
+  {
+   "scene": 5,
+   "i": 2,
+   "who": "kiri",
+   "speaker": "Kiri",
+   "text": "Snow cannot fall where something already lies. He was on that step when the snow began.",
+   "emote": "think",
+   "start": 107.57,
+   "end": 113.36
+  },
+  {
+   "scene": 6,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Clue two. The lantern by the door.",
+   "emote": "think",
+   "start": 114.21,
+   "end": 116.9
+  },
+  {
+   "scene": 6,
+   "i": 1,
+   "who": "rosa",
+   "speaker": "Rosa",
+   "text": "Tom lit it every evening at dusk. Half past six, like clockwork.",
+   "emote": "calm",
+   "start": 117.35,
+   "end": 121.89
+  },
+  {
+   "scene": 6,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Tonight it is cold, and the oil is full. It was never lit.",
+   "emote": "doubt",
+   "start": 122.34,
+   "end": 126.64
+  },
+  {
+   "scene": 6,
+   "i": 3,
+   "who": "kiri",
+   "speaker": "Kiri",
+   "text": "So Tom was gone before half past six. He never sang at eight.",
+   "emote": "calm",
+   "start": 127.09,
+   "end": 131.18
+  },
+  {
+   "scene": 7,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Clue three. Ben's boots.",
+   "emote": "think",
+   "start": 132.03,
+   "end": 134.48
+  },
+  {
+   "scene": 7,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "He says he walked through deep snow at ten. His boots are dry, and warm from the fire.",
+   "emote": "doubt",
+   "start": 134.78,
+   "end": 140.42
+  },
+  {
+   "scene": 7,
+   "i": 2,
+   "who": "ben",
+   "speaker": "Ben",
+   "text": "All right. I was home before eight, before it snowed. I was afraid you would blame me.",
+   "emote": "fear",
+   "start": 140.87,
+   "end": 146.99
+  },
+  {
+   "scene": 7,
+   "i": 3,
+   "who": "ben",
+   "speaker": "Ben",
+   "text": "On my way past the garden at half past six I saw Mr. Hale come out of the shed alone.",
+   "emote": "worry",
+   "start": 147.29,
+   "end": 152.0
+  },
+  {
+   "scene": 8,
+   "i": 0,
+   "who": "kiri",
+   "speaker": "Kiri",
+   "text": "So here is how it worked. Step one. Tom died before half past six, on that step.",
+   "emote": "calm",
+   "start": 152.85,
+   "end": 158.63
+  },
+  {
+   "scene": 8,
+   "i": 1,
+   "who": "kiri",
+   "speaker": "Kiri",
+   "text": "Step two. At eight the snow began and covered every track of the one who was there.",
+   "emote": "calm",
+   "start": 158.93,
+   "end": 164.22
+  },
+  {
+   "scene": 8,
+   "i": 2,
+   "who": "kiri",
+   "speaker": "Kiri",
+   "text": "Step three. Mr. Hale told us he heard singing at eight, so everyone thought it happened later.",
+   "emote": "think",
+   "start": 164.52,
+   "end": 170.33
+  },
+  {
+   "scene": 8,
+   "i": 3,
+   "who": "kiri",
+   "speaker": "Kiri",
+   "text": "Step four. At ten Rosa found him and made the only footprints left. The snow did the rest.",
+   "emote": "calm",
+   "start": 170.63,
+   "end": 176.99
+  },
+  {
+   "scene": 8,
+   "i": 4,
+   "who": "dale",
+   "speaker": "Inspector Dale",
+   "text": "Mr. Hale, there was no light in that shed at eight. The lantern was cold.",
+   "emote": "doubt",
+   "start": 177.44,
+   "end": 181.89
+  },
+  {
+   "scene": 8,
+   "i": 5,
+   "who": "hana",
+   "speaker": "Hana",
+   "text": "He needed us to believe the snow made it impossible. It only made it quiet.",
+   "emote": "think",
+   "start": 182.34,
+   "end": 187.27
+  },
+  {
+   "scene": 9,
+   "i": 0,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The motive is two lines long. Tom had seen Mr. Hale burying a small box in the garden.",
+   "emote": "calm",
+   "start": 188.12,
+   "end": 193.8
+  },
+  {
+   "scene": 9,
+   "i": 1,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "Mr. Hale did not want anyone to ask what was in it.",
+   "emote": "calm",
+   "start": 194.1,
+   "end": 196.85
+  },
+  {
+   "scene": 9,
+   "i": 2,
+   "who": "narrator",
+   "speaker": "Narrator",
+   "text": "The three clues were there the whole time. A dry outline. A cold lantern. A pair of dry boots.",
+   "emote": "think",
+   "start": 197.15,
+   "end": 204.09
+  },
+  {
+   "scene": 9,
+   "i": 3,
+   "who": "kiri",
+   "speaker": "Kiri",
+   "text": "What do you walk past every day without really looking?",
+   "emote": "happy",
+   "start": 204.54,
+   "end": 207.25
+  }
+ ],
+ "scenes": [
+  {
+   "id": 1,
+   "title": "One set of footprints",
+   "place": "The garden shed at night under falling snow, one line of footprints in the snow leading to its shut door, an unlit lantern hanging beside it",
+   "mood": "mystery",
+   "value": "-",
+   "start": 0.25,
+   "end": 31.06
+  },
+  {
+   "id": 2,
+   "title": "Rosa",
+   "place": "The warm manor kitchen at night, a big pot on the stove, a cook in an apron wiping her hands, a clock on the wall",
+   "mood": "mystery",
+   "value": "-",
+   "start": 31.91,
+   "end": 50.27
+  },
+  {
+   "id": 3,
+   "title": "Mr. Hale",
+   "place": "The manor dining room at night, candles on a long table, a guest in a velvet jacket folding his napkin, snow at the window",
+   "mood": "mystery",
+   "value": "-",
+   "start": 51.12,
+   "end": 72.77
+  },
+  {
+   "id": 4,
+   "title": "Ben",
+   "place": "The groundsman's cottage porch at night, snow falling, a young man stamping his boots by a lamp",
+   "mood": "mystery",
+   "value": "-",
+   "start": 73.62,
+   "end": 96.43
+  },
+  {
+   "id": 5,
+   "title": "The first clue",
+   "place": "A close view of the shed step in the snow, a dry dark outline of a lying shape on the boards with snow all around it",
+   "mood": "mystery",
+   "value": "-",
+   "start": 97.28,
+   "end": 113.36
+  },
+  {
+   "id": 6,
+   "title": "The second clue",
+   "place": "A close view of the lantern hanging by the shed door, its glass clear and its oil full, snow on its hook",
+   "mood": "mystery",
+   "value": "-",
+   "start": 114.21,
+   "end": 131.18
+  },
+  {
+   "id": 7,
+   "title": "The third clue",
+   "place": "A close view of a young man's boots on the cottage porch, dry and clean, a puddle-free boards, a warm lamp glowing",
+   "mood": "mystery",
+   "value": "-",
+   "start": 132.03,
+   "end": 152.0
+  },
+  {
+   "id": 8,
+   "title": "The trick",
+   "place": "The garden under snow in the dark, a drawing of a clock at six and a second clock at eight with snow falling, the shed and the manor lit in the distance",
+   "mood": "mystery",
+   "value": "+",
+   "start": 152.85,
+   "end": 187.27
+  },
+  {
+   "id": 9,
+   "title": "Why",
+   "place": "The manor terrace at night, snow on the stone rail, lights from the dining room behind, Kiri looking out over the white garden",
+   "mood": "sad",
+   "value": "+",
+   "start": 188.12,
+   "end": 207.85
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.25,
+   "end": 1.75,
+   "text": "It snowed all night."
+  },
+  {
+   "start": 1.77,
+   "end": 3.422,
+   "text": "One set of footprints."
+  },
+  {
+   "start": 3.442,
+   "end": 4.79,
+   "text": "They only went in."
+  },
+  {
+   "start": 5.11,
+   "end": 5.638,
+   "text": "Old Tom,"
+  },
+  {
+   "start": 5.658,
+   "end": 7.828,
+   "text": "the gardener at Larkfield Manor,"
+  },
+  {
+   "start": 7.848,
+   "end": 8.923,
+   "text": "was in the shed."
+  },
+  {
+   "start": 8.943,
+   "end": 10.84,
+   "text": "He would not come out again."
+  },
+  {
+   "start": 11.16,
+   "end": 11.537,
+   "text": "Rosa,"
+  },
+  {
+   "start": 11.557,
+   "end": 12.25,
+   "text": "the cook,"
+  },
+  {
+   "start": 12.27,
+   "end": 13.598,
+   "text": "found him at ten."
+  },
+  {
+   "start": 13.618,
+   "end": 16.453,
+   "text": "Hers were the only footprints in the"
+  },
+  {
+   "start": 16.473,
+   "end": 16.85,
+   "text": "snow."
+  },
+  {
+   "start": 17.32,
+   "end": 19.31,
+   "text": "Nobody else came near that door."
+  },
+  {
+   "start": 19.33,
+   "end": 20.441,
+   "text": "Nobody could have."
+  },
+  {
+   "start": 20.461,
+   "end": 21.76,
+   "text": "The snow tells us so."
+  },
+  {
+   "start": 22.23,
+   "end": 24.094,
+   "text": "The snow tells us what it saw."
+  },
+  {
+   "start": 24.114,
+   "end": 26.48,
+   "text": "That is not the same as what happened."
+  },
+  {
+   "start": 26.95,
+   "end": 27.325,
+   "text": "Kiri,"
+  },
+  {
+   "start": 27.345,
+   "end": 28.906,
+   "text": "you always say that."
+  },
+  {
+   "start": 28.926,
+   "end": 29.301,
+   "text": "Fine."
+  },
+  {
+   "start": 29.321,
+   "end": 31.04,
+   "text": "Who are we looking at?"
+  },
+  {
+   "start": 31.91,
+   "end": 32.292,
+   "text": "First,"
+  },
+  {
+   "start": 32.312,
+   "end": 32.627,
+   "text": "Rosa,"
+  },
+  {
+   "start": 32.647,
+   "end": 33.229,
+   "text": "the cook."
+  },
+  {
+   "start": 33.249,
+   "end": 35.64,
+   "text": "She cooked dinner for the house from"
+  },
+  {
+   "start": 35.66,
+   "end": 36.51,
+   "text": "five o'clock."
+  },
+  {
+   "start": 36.98,
+   "end": 39.506,
+   "text": "I went to the shed at ten to bring Tom"
+  },
+  {
+   "start": 39.526,
+   "end": 40.11,
+   "text": "his soup."
+  },
+  {
+   "start": 40.13,
+   "end": 41.316,
+   "text": "I opened the door."
+  },
+  {
+   "start": 41.336,
+   "end": 42.12,
+   "text": "That is all."
+  },
+  {
+   "start": 42.59,
+   "end": 44.62,
+   "text": "Two kitchen girls say she never left"
+  },
+  {
+   "start": 44.64,
+   "end": 45.93,
+   "text": "the stove before eight."
+  },
+  {
+   "start": 46.4,
+   "end": 48.243,
+   "text": "So she walked to the door,"
+  },
+  {
+   "start": 48.263,
+   "end": 49.748,
+   "text": "and her prints go in."
+  },
+  {
+   "start": 49.768,
+   "end": 50.25,
+   "text": "Simple."
+  },
+  {
+   "start": 51.12,
+   "end": 51.481,
+   "text": "Next,"
+  },
+  {
+   "start": 51.501,
+   "end": 51.71,
+   "text": "Mr."
+  },
+  {
+   "start": 51.73,
+   "end": 52.091,
+   "text": "Hale,"
+  },
+  {
+   "start": 52.111,
+   "end": 52.7,
+   "text": "a guest."
+  },
+  {
+   "start": 52.72,
+   "end": 55.519,
+   "text": "He sat at the family table from eight"
+  },
+  {
+   "start": 55.539,
+   "end": 56.51,
+   "text": "until eleven."
+  },
+  {
+   "start": 56.98,
+   "end": 57.526,
+   "text": "Dinner,"
+  },
+  {
+   "start": 57.546,
+   "end": 58.416,
+   "text": "then cards."
+  },
+  {
+   "start": 58.436,
+   "end": 59.305,
+   "text": "Ask anyone."
+  },
+  {
+   "start": 59.325,
+   "end": 61.65,
+   "text": "I never went near the garden."
+  },
+  {
+   "start": 61.97,
+   "end": 64.495,
+   "text": "I did hear Tom singing in his shed at"
+  },
+  {
+   "start": 64.515,
+   "end": 64.908,
+   "text": "eight,"
+  },
+  {
+   "start": 64.928,
+   "end": 66.077,
+   "text": "from the terrace."
+  },
+  {
+   "start": 66.097,
+   "end": 68.21,
+   "text": "He was alive and in good voice."
+  },
+  {
+   "start": 68.68,
+   "end": 70.705,
+   "text": "So whatever happened was after eight."
+  },
+  {
+   "start": 70.725,
+   "end": 71.589,
+   "text": "And after eight,"
+  },
+  {
+   "start": 71.609,
+   "end": 72.75,
+   "text": "the snow was falling."
+  },
+  {
+   "start": 73.62,
+   "end": 73.958,
+   "text": "Last,"
+  },
+  {
+   "start": 73.978,
+   "end": 74.245,
+   "text": "Ben,"
+  },
+  {
+   "start": 74.265,
+   "end": 75.75,
+   "text": "the groundsman's son."
+  },
+  {
+   "start": 75.77,
+   "end": 78.33,
+   "text": "He lives at the cottage by the gate."
+  },
+  {
+   "start": 78.8,
+   "end": 81.371,
+   "text": "I came home from the village at ten,"
+  },
+  {
+   "start": 81.391,
+   "end": 82.595,
+   "text": "through the snow."
+  },
+  {
+   "start": 82.615,
+   "end": 84.25,
+   "text": "I went straight to bed."
+  },
+  {
+   "start": 84.72,
+   "end": 85.664,
+   "text": "Three alibis,"
+  },
+  {
+   "start": 85.684,
+   "end": 86.628,
+   "text": "one dead end."
+  },
+  {
+   "start": 86.648,
+   "end": 86.999,
+   "text": "Kiri,"
+  },
+  {
+   "start": 87.019,
+   "end": 89.52,
+   "text": "I do not see how this is possible."
+  },
+  {
+   "start": 89.99,
+   "end": 91.258,
+   "text": "Now watch closely."
+  },
+  {
+   "start": 91.278,
+   "end": 93.906,
+   "text": "Three clues are hiding in plain view."
+  },
+  {
+   "start": 93.926,
+   "end": 96.41,
+   "text": "Can you find them before Kiri does?"
+  },
+  {
+   "start": 97.28,
+   "end": 97.969,
+   "text": "Clue one."
+  },
+  {
+   "start": 97.989,
+   "end": 99.072,
+   "text": "The shed step."
+  },
+  {
+   "start": 99.092,
+   "end": 101.2,
+   "text": "Look at the snow around it."
+  },
+  {
+   "start": 101.52,
+   "end": 103.46,
+   "text": "On the step there is a dark,"
+  },
+  {
+   "start": 103.48,
+   "end": 104.3,
+   "text": "dry outline."
+  },
+  {
+   "start": 104.32,
+   "end": 105.63,
+   "text": "Snow is everywhere,"
+  },
+  {
+   "start": 105.65,
+   "end": 107.1,
+   "text": "except in that shape."
+  },
+  {
+   "start": 107.57,
+   "end": 109.756,
+   "text": "Snow cannot fall where something"
+  },
+  {
+   "start": 109.776,
+   "end": 110.652,
+   "text": "already lies."
+  },
+  {
+   "start": 110.672,
+   "end": 112.926,
+   "text": "He was on that step when the snow"
+  },
+  {
+   "start": 112.946,
+   "end": 113.34,
+   "text": "began."
+  },
+  {
+   "start": 114.21,
+   "end": 114.924,
+   "text": "Clue two."
+  },
+  {
+   "start": 114.944,
+   "end": 116.88,
+   "text": "The lantern by the door."
+  },
+  {
+   "start": 117.35,
+   "end": 119.746,
+   "text": "Tom lit it every evening at dusk."
+  },
+  {
+   "start": 119.766,
+   "end": 120.772,
+   "text": "Half past six,"
+  },
+  {
+   "start": 120.792,
+   "end": 121.87,
+   "text": "like clockwork."
+  },
+  {
+   "start": 122.34,
+   "end": 123.779,
+   "text": "Tonight it is cold,"
+  },
+  {
+   "start": 123.799,
+   "end": 125.315,
+   "text": "and the oil is full."
+  },
+  {
+   "start": 125.335,
+   "end": 126.62,
+   "text": "It was never lit."
+  },
+  {
+   "start": 127.09,
+   "end": 129.592,
+   "text": "So Tom was gone before half past six."
+  },
+  {
+   "start": 129.612,
+   "end": 131.16,
+   "text": "He never sang at eight."
+  },
+  {
+   "start": 132.03,
+   "end": 133.182,
+   "text": "Clue three."
+  },
+  {
+   "start": 133.202,
+   "end": 134.46,
+   "text": "Ben's boots."
+  },
+  {
+   "start": 134.78,
+   "end": 137.342,
+   "text": "He says he walked through deep snow at"
+  },
+  {
+   "start": 137.362,
+   "end": 137.614,
+   "text": "ten."
+  },
+  {
+   "start": 137.634,
+   "end": 138.837,
+   "text": "His boots are dry,"
+  },
+  {
+   "start": 138.857,
+   "end": 140.4,
+   "text": "and warm from the fire."
+  },
+  {
+   "start": 140.87,
+   "end": 141.587,
+   "text": "All right."
+  },
+  {
+   "start": 141.607,
+   "end": 143.357,
+   "text": "I was home before eight,"
+  },
+  {
+   "start": 143.377,
+   "end": 144.61,
+   "text": "before it snowed."
+  },
+  {
+   "start": 144.63,
+   "end": 146.97,
+   "text": "I was afraid you would blame me."
+  },
+  {
+   "start": 147.29,
+   "end": 149.426,
+   "text": "On my way past the garden at half past"
+  },
+  {
+   "start": 149.446,
+   "end": 150.164,
+   "text": "six I saw Mr."
+  },
+  {
+   "start": 150.184,
+   "end": 151.98,
+   "text": "Hale come out of the shed alone."
+  },
+  {
+   "start": 152.85,
+   "end": 154.707,
+   "text": "So here is how it worked."
+  },
+  {
+   "start": 154.727,
+   "end": 155.382,
+   "text": "Step one."
+  },
+  {
+   "start": 155.402,
+   "end": 157.634,
+   "text": "Tom died before half past six,"
+  },
+  {
+   "start": 157.654,
+   "end": 158.61,
+   "text": "on that step."
+  },
+  {
+   "start": 158.93,
+   "end": 159.498,
+   "text": "Step two."
+  },
+  {
+   "start": 159.518,
+   "end": 161.784,
+   "text": "At eight the snow began and covered"
+  },
+  {
+   "start": 161.804,
+   "end": 164.2,
+   "text": "every track of the one who was there."
+  },
+  {
+   "start": 164.52,
+   "end": 165.21,
+   "text": "Step three."
+  },
+  {
+   "start": 165.23,
+   "end": 165.404,
+   "text": "Mr."
+  },
+  {
+   "start": 165.424,
+   "end": 167.47,
+   "text": "Hale told us he heard singing at"
+  },
+  {
+   "start": 167.49,
+   "end": 167.857,
+   "text": "eight,"
+  },
+  {
+   "start": 167.877,
+   "end": 170.31,
+   "text": "so everyone thought it happened later."
+  },
+  {
+   "start": 170.63,
+   "end": 171.341,
+   "text": "Step four."
+  },
+  {
+   "start": 171.361,
+   "end": 173.827,
+   "text": "At ten Rosa found him and made the"
+  },
+  {
+   "start": 173.847,
+   "end": 175.362,
+   "text": "only footprints left."
+  },
+  {
+   "start": 175.382,
+   "end": 176.97,
+   "text": "The snow did the rest."
+  },
+  {
+   "start": 177.44,
+   "end": 177.613,
+   "text": "Mr."
+  },
+  {
+   "start": 177.633,
+   "end": 177.936,
+   "text": "Hale,"
+  },
+  {
+   "start": 177.956,
+   "end": 180.129,
+   "text": "there was no light in that shed at"
+  },
+  {
+   "start": 180.149,
+   "end": 180.516,
+   "text": "eight."
+  },
+  {
+   "start": 180.536,
+   "end": 181.87,
+   "text": "The lantern was cold."
+  },
+  {
+   "start": 182.34,
+   "end": 184.819,
+   "text": "He needed us to believe the snow made"
+  },
+  {
+   "start": 184.839,
+   "end": 185.764,
+   "text": "it impossible."
+  },
+  {
+   "start": 185.784,
+   "end": 187.25,
+   "text": "It only made it quiet."
+  },
+  {
+   "start": 188.12,
+   "end": 190.085,
+   "text": "The motive is two lines long."
+  },
+  {
+   "start": 190.105,
+   "end": 191.18,
+   "text": "Tom had seen Mr."
+  },
+  {
+   "start": 191.2,
+   "end": 193.301,
+   "text": "Hale burying a small box in the"
+  },
+  {
+   "start": 193.321,
+   "end": 193.78,
+   "text": "garden."
+  },
+  {
+   "start": 194.1,
+   "end": 194.248,
+   "text": "Mr."
+  },
+  {
+   "start": 194.268,
+   "end": 196.269,
+   "text": "Hale did not want anyone to ask what"
+  },
+  {
+   "start": 196.289,
+   "end": 196.83,
+   "text": "was in it."
+  },
+  {
+   "start": 197.15,
+   "end": 199.906,
+   "text": "The three clues were there the whole"
+  },
+  {
+   "start": 199.926,
+   "end": 200.292,
+   "text": "time."
+  },
+  {
+   "start": 200.312,
+   "end": 201.371,
+   "text": "A dry outline."
+  },
+  {
+   "start": 201.391,
+   "end": 202.528,
+   "text": "A cold lantern."
+  },
+  {
+   "start": 202.548,
+   "end": 204.07,
+   "text": "A pair of dry boots."
+  },
+  {
+   "start": 204.54,
+   "end": 206.076,
+   "text": "What do you walk past every day"
+  },
+  {
+   "start": 206.096,
+   "end": 207.23,
+   "text": "without really looking?"
+  }
+ ],
+ "words_per_second": 2.99,
+ "voices": {
+  "Narrator": "en-US-AvaMultilingualNeural",
+  "Kiri": "en-US-BrianMultilingualNeural",
+  "Hana": "en-US-EmmaMultilingualNeural",
+  "Inspector Dale": "en-US-AndrewNeural",
+  "Rosa": "en-US-AvaNeural",
+  "Mr. Hale": "en-US-BrianNeural",
+  "Ben": "en-US-GuyNeural"
+ },
+ "engine": "EdgeTTSAdapter"
+}
