@@ -1,9 +1,9 @@
 ---
 name: hezb-story
-description: Make a Hezb Stories video from a task: write the story script (characters, places, acted lines), voice it with our TTS, then direct and render the picture with the pinned stickman-video-director runtime in one of its visual styles. Use for every `type: video` task of the night job.
+description: Make a Hezb Stories video from a task: write the story script (characters, places, acted lines), voice it with our TTS, then direct and render the picture with our film engine hezb-motion (motion/). Use for every `type: video` task of the night job.
 ---
 
-# Hezb Stories: story -> voice -> stickman-video-director picture
+# Hezb Stories: story -> voice -> hezb-motion picture
 
 Since 2026-11-15 (owner decision) every video is made in three parts:
 
@@ -11,13 +11,12 @@ Since 2026-11-15 (owner decision) every video is made in three parts:
 |---|---|---|
 | 1. the story script | you write `stories/<id>.json`: cast, places, acted lines | this skill: `references/story-schema.md`, writing craft in `references/` |
 | 2. the voice | our TTS: edge-tts conversational voices (en), VieNeu (vi), one voice per speaker, each line acted from its `emote` | `python scripts/stickman/narrate.py` |
-| 3. the picture, captions, mix and render | **kaomei/stickman-video-director** (MIT), pinned in `stickman/lock.json`, in one of its visual styles | `$STICKMAN` = the runtime skill dir; `python scripts/stickman/assemble.py` |
+| 3. the picture, captions, score, mix and render | **hezb-motion**, our engine in `motion/` (owner decision 2026-11-17, replaces stickman-video-director) | `python motion/make_film.py` |
 
 The old generator (HyperFrames, preset 3D sets, stick rigs) was removed from main; it is kept on the branch
 `backup/pre-stickman-director-2026-11-15`.
 
-`$STICKMAN` is `$STICKMAN_HOME/skills/directing-stickman-videos`. It is `/opt/stickman-director/...` in the runner image;
-elsewhere run `bash scripts/stickman/install.sh` once.
+`bash motion/install.sh` prepares the engine (node modules, bundle); `make_film.py` runs it for you.
 
 ## Styles: which are on
 
@@ -73,86 +72,53 @@ What a story must have:
 - It writes `narration.wav` and `timing.json`: line times, scene times and one-line captions.
 - The voice is never sped up or slowed to fit a picture. The picture is timed to the voice.
 
-## 3. Direct the picture with stickman-video-director
+## 3. Direct the picture with hezb-motion (owner decision 2026-11-17)
 
-You are the director now. Before authoring, READ from `$STICKMAN/references/`:
-- `autopilot.md`;
-- `autopilot-runtime.md` (the manifest, layers, keys, motion rules);
-- `autopilot-production-qa.md`;
-- `autopilot-sound-system.md`;
-- `b-delivery-completeness.md`;
-- the selected style's page: `b1-minimal-handdrawn.md` | `b2-colorful-handdrawn.md` | `b3-television.md` + `b3-semantic-motion.md`;
-- `b1-b2-b3-reference-acceptance.md`;
-- `b1-b2-b3-native-portrait.md` for the 9:16 cut.
+The picture is made by our own engine in `motion/`. It replaces the stickman-video-director runtime. Read
+`motion/README.md` and the worked example `motion/examples/prodigal-son/direct.py` before you direct.
 
-Look at the style's bundled reference images in `$STICKMAN/assets/<b1|b2|b3>/`.
+1. **Word timings**: `python motion/align.py outputs/<id>/voice --model small` writes `voice/words.json`. Fix any line it
+   reports with `CHECK`.
+2. **Direction**: write `outputs/<id>/direct.py` with `motion/director.py` and `motion/worlds.py`, line by line:
+   - the places, from a `worlds.py` place with its elements changed for THIS story;
+   - the cast looks, from `cast[].look`;
+   - per line, the verbs (`f.act`), the objects (`f.prop`, `f.spill`, `f.hanger`, insert3d), the shots (`f.shot`, 1-3 per
+     line) and the sound (`f.sfx`, `f.section`, `f.hit`).
+3. **Look before rendering**: run `python motion/make_film.py --voice outputs/<id>/voice --direct outputs/<id>/direct.py --out outputs/<id>/landscape --stills-only`
+   and look at `stills/contact-sheet.png`. Then run the same command without `--stills-only` to get
+   `outputs/<id>/landscape/output.mp4`.
 
-Write `outputs/<id>/shots-16x9.json` and `outputs/<id>/shots-9x16.json` (a native portrait composition, not a resized
-landscape):
+Rules (owner, 2026-11-17):
+- **No motion without a purpose.**
+  - A character at rest only breathes and blinks.
+  - Every other movement is a verb the story asks for, timed to its line or its word: use `f.word(scene, line, "ran")`.
+  - Never use gesture loops.
+  - Mouths move only on the speaker's own words.
+- **The world lives and reacts.**
+  - Every place has ambient life (birds, smoke, wind in the grass, rain, passers-by, a crowd) and particles.
+  - Story moments trigger the world: birds scatter, a gust blows, lanterns swing, coins spill.
+- **A new picture often.**
+  - No shot over about 6 s.
+  - Vary the shot kinds.
+  - `director.py` prints `CHECK` lines when it saves: fix every one.
+- **The objects the words name** are on screen when they are named, big enough to read.
+- **Sound**:
+  - every visible action has an sfx;
+  - each scene has a score section with its mood;
+  - there is a silence before the turn;
+  - there is a hit on the peak.
+- **Style picks the light**:
+  - B2: a warm, colourful day;
+  - B3: night, rain or overcast grades;
+  - B1: light paper with few colours.
+- **Mysteries**: the death is never shown. Clues are props drawn large, on screen when the narrator names them.
+- **Cut**: 16:9 only for now (`only_aspect: "16:9"`). The native portrait cut is not built yet.
 
-```jsonc
-{
-  "shots": [ {"start": 0, "end": 2.6, "layers": [ ... ]}, ... ],   // absolute seconds on timing.json; cover 0..duration, no gaps
-  "assets": {"ward-bed.png": "<svg xmlns=...>...</svg>"},          // YOUR drawings for this story, rasterised to PNG
-  "sfx": [{"time": 3.1, "name": "step"}, {"time": 7.0, "kind": "paper"}],
-  "television": {"enabled": true, "intensity": 0.45}               // B3 only
-}
-```
+Check the result:
+- `python scripts/verify_bundle.py video outputs/<id>/landscape/output.mp4 --story stories/<id>.json --aspect 16:9`;
+- look at the contact sheets of `director_pass`.
 
-**Layers**:
-- B1/B2: `image` (your assets, `@b1/...` bundled B1 art), `text`, `line`, `arrow`, `underline`.
-- B1 only: `pose` from the demo atlas, as a reference, not the only cast.
-- B3 adds vector `path`, `rect`, `ellipse`, `group` with pivots, so characters and props can be drawn directly in JSON.
-- Every moving actor/prop/information layer needs a unique `id` and `motion: {role: actor|prop|information, reason}`, with
-  real keys.
-- The runtime refuses more than 2.5 s without principal motion and refuses captions that wrap.
-
-**Drawing kit** (`scripts/draw_kit.py`, worked example `examples/saving-feels-harder/author.py` with its `story.json`, a full B1/B2/B3
-film of one story): colored hand-inked characters cut into parts (left arm, body, head drawings per expression, right arm), so a
-hand can act and the face change with the line. Write your own `author.py` in `outputs/<id>/` the same way: one function per place
-drawing, `D.person_layers(...)` for people, `add(t0, t1, layers)` per shot against `timing.json`.
-- Look per style: B1 = ink figures (`style:"b1"`, no fill) with colored props on the runtime's grid; B2 = coloured clothes (`shirt`,
-  `skirt`, `apron`, `vest`, `hair`) in a coloured world; B3 = a grey ramp on the dark field (set env `DRAW_INK=#e9eaec` before the
-  import, light skin, grey clothes).
-- Character looks come from the story's `cast[].look`; give every character different clothes and hair, and give them the same
-  look in every shot.
-- Facial features are always dark ink (the kit does it), so the eyes never vanish on a light face.
-- Runtime rules that bit us: B1/B2 images turn about their top-left corner (no pivot), so sway a lamp with x keys; B3 shapes
-  (path/rect/ellipse/group) are not allowed in B1/B2; a `text` layer cannot carry `motion` (it never counts as the principal
-  picture) and needs `w`; text drawn inside an SVG gets no font, so write words as `text` layers; a layer's `keys` must stay inside
-  its shot. `assemble.py` rounds and clamps keys and gives text a width, so rounding noise does not stop the night.
-- Draw FOR THE STORY: the places, props and clue objects the words name (a locked study, a snow-covered shed, a radio booth), with
-  the clue objects large and clear when the narrator points at them: a mystery is won or lost on the viewer seeing the clue.
-
-**Direction rules**, from the runtime's references and ours:
-- Each scene is a relay of main visuals: a new place, object, person or graphic hands the stage on.
-  `references/event-relay.md`.
-- Draw the place the words name, with its signature objects; the same drawing grammar across the film, a new set per
-  place.
-- Draw the needed states before animating them: before, contact/peak, result.
-- Characters keep the style's drawing grammar and their `look`. Faces are readable: eyes on every speaker, expressions
-  that change with `emote`.
-- Sound: our room tone follows each scene's `place`, and an original score follows the mood. You add story `sfx` at real
-  actions, from our bank (`scripts/media/sfx_bank.py` names) or the runtime kinds tap/paper/pop/chime/jingle.
-  `references/sound-script.md`.
-
-**Render**:
-
-`python scripts/stickman/assemble.py --story stories/<id>.json --voice outputs/<id>/voice --shots outputs/<id>/shots-16x9.json --ratio 16:9 --out outputs/<id>/landscape`
-
-Same for `--ratio 9:16 --out outputs/<id>/portrait`. Add `--check` to validate only; add `--seconds 20` for a demo. Films of any length render in one
-command: the runtime's 60 s preview cap is lifted by `stickman/patches/long-preview.py` (owner decision 2026-11-16), so a 2-8 minute film is one
-`assemble.py` call per cut (budget about 5 s of render per second of film at 1080p).
-A validate failure names the shot and the rule: fix the shots, not the runtime.
-
-**Look at the result as the runtime asks**:
-- watch the contact sheet `outputs/<id>/<cut>/contact-sheet.png`;
-- run `python scripts/media/director_pass.py outputs/<id>/<cut>/output.mp4` (dead air, frozen picture, black frames,
-  contact sheets);
-- run `python scripts/verify_bundle.py video outputs/<id>/<cut>/output.mp4 --story stories/<id>.json --aspect 16:9|9:16`.
-
-Write what you saw, with times, in the report. The runtime's own acceptance (`approve`, `accept-visual`) needs a human
-or an independent reviewer: never run it on your own judgement.
+Write what you saw, with times, in the report.
 
 ## Approval (owner decision 2026-11-15: once per style)
 
