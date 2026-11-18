@@ -102,9 +102,10 @@ async function boot() {
       let x = p.x, y = p.y, s = p.s ?? 0.5, rot = p.rot ?? 0;
       const hold = (p.held || []).find(hh => t >= hh.t0 && t <= hh.t1);
       if (hold && S.actors[hold.who]?.hands) { const hd = S.actors[hold.who].hands; const pt = hd[hold.hand || 'front']; x = pt[0]; y = pt[1] + (hold.dy ?? 10) * hd.scale; s = (p.s ?? 0.5) * hd.scale; }
+      else if (p.follow && S.actors[p.follow.who]?.at) { const at = S.actors[p.follow.who].at; x = at.x + (p.follow.dx ?? 0) * at.facing; y = at.y + (p.follow.dy ?? 0); }
       else if (p.keys) { const K = n => keyed(p.keys.filter(k => k[n] != null).map(k => ({ t: k.t, v: k[n] })), t); x = K('x') || x; y = K('y') || y; if (p.keys.some(k => k.s != null)) s = K('s'); if (p.keys.some(k => k.r != null)) rot = K('r'); }
       if (p.pop != null) s *= clamp(springStep(t - p.pop, SPRING.wobbly), 0, 1.3);
-      p.sp.x = x; p.sp.y = y; p.sp.scale.set(s); p.sp.rotation = rot;
+      p.sp.x = x; p.sp.y = y; p.sp.scale.set(s); if (p.follow?.flip && S.actors[p.follow.who]?.at) p.sp.scale.x = s * S.actors[p.follow.who].at.facing; p.sp.rotation = rot;
     }
     for (const ss of S.spillSprites) { const fr = spills.sample(ss.id, t); ss.sprites.forEach((sp, i) => { sp.visible = !!fr; if (fr) { sp.x = fr[i].x; sp.y = fr[i].y; sp.rotation = fr[i].a; } }); }
     for (const hs of S.hangSprites) { const b = hangers.sample(hs.id, t); if (!b) continue; hs.rope.clear().moveTo(hs.h.x, hs.h.y).lineTo(b.x, b.y - 20).stroke({ width: 3, color: 0x2b2622 }); hs.sp.x = b.x; hs.sp.y = b.y - 30; hs.sp.rotation = -b.a; }

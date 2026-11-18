@@ -13,6 +13,8 @@ on:
       - stickman/lock.json
       - scripts/stickman/install.sh
       - stickman/patches/**
+      - motion/package.json
+      - motion/package-lock.json
       - .github/workflows/build-image.yml
 
 permissions:

@@ -4,6 +4,8 @@
 !tools/code2video
 !stickman/lock.json
 !scripts/stickman/install.sh
+!motion/package.json
+!motion/package-lock.json
 !stickman/patches
 **/.git
 **/__pycache__

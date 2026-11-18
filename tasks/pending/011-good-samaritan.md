@@ -30,3 +30,4 @@ privacy: private
 - [ ] Release published with both bundles and both videos, publish pack written
 
 ## Progress notes
+2026-11-18 (owner session): story `stories/011-good-samaritan.json` is written and lints clean (policy OK); the direction is `outputs/011-good-samaritan/direct.py` (7 scenes, 108 shots, 96 actions) and a full test film was rendered on the owner's machine with hezb-motion (248 s, whisper match 98.8 %, -14.1 LUFS) and sent to the owner. Tonight: reuse the story and `direct.py` as they are (voice again with narrate.py, `align.py`, `make_film.py`), verify, publish the Release. Do NOT rewrite the story.

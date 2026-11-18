@@ -91,28 +91,34 @@ class Film:
 
     # ---------------------------------------------------------------- camera
     def _pos(self, sc, who, t=None):
-        c = sc["cast"][who]; x, y = c["x"], c.get("y", 900)
-        for a in sorted(sc["actions"], key=lambda a: a["t0"]):     # last destination reached before t
-            if a["who"] == who and a["verb"] in ("walk", "run") and "to" in a and (t is None or a["t1"] <= t): x, y = a["to"]
-        return x, y, c.get("s", 1)
+        """where the actor is at time t (walks and runs are followed along their path, so a shot that starts mid-walk aims at him)"""
+        c = sc["cast"][who]; x, y, s = c["x"], c.get("y", 900), c.get("s", 1)
+        for a in sorted(sc["actions"], key=lambda a: a["t0"]):
+            if a["who"] != who or a["verb"] not in ("walk", "run") or "to" not in a: continue
+            tx, ty = a["to"]
+            if t is None or a["t1"] <= t: x, y = tx, ty
+            elif a["t0"] < t:
+                u = (t - a["t0"]) / max(0.01, a["t1"] - a["t0"]); x, y = x + (tx - x) * u, y + (ty - y) * u
+        return x, y, s
 
     def shot(self, sc, t0, t1, kind="wide", on=None, push=0.08, pan=0, transition=None, look=None, hide=None, **kw):
         W, H = self.size
+        tm = (t0 + t1) / 2                       # aim where people are in the middle of the shot
         cam = {}
         if kind in ("wide", "reveal"):
-            cx = kw.get("cx", 960); cy = kw.get("cy", 560)
+            cx = kw.get("cx", 960); cy = kw.get("cy", getattr(self, "default_cy", 560))
             z0, z1 = (1.0, 1.0 + push) if kind == "wide" else (1.6, 1.0)
             cam = dict(z=[z0, z1], c=[[cx - pan, cy], [cx + pan, cy]])
         elif kind in ("medium", "close", "detail", "over"):
             who = on if isinstance(on, str) else None
-            if who: x, y, s = self._pos(sc, who, t0)
+            if who: x, y, s = self._pos(sc, who, tm)
             else: x, y, s = on[0], on[1], 1
             z = {"medium": 1.55, "close": 2.35, "detail": 2.8, "over": 1.7}[kind]
             fy = y - ACTOR_H * s * (0.55 if kind == "medium" else 0.86 if kind == "close" else 0.6) if who else y
-            if kind == "over" and kw.get("from"): fx0 = self._pos(sc, kw["from"], t0)[0]; x = x + (fx0 - x) * 0.32
+            if kind == "over" and kw.get("from"): fx0 = self._pos(sc, kw["from"], tm)[0]; x = x + (fx0 - x) * 0.32
             cam = dict(z=[z, z + push * (1.6 if kind == "close" else 1)], c=[[x - pan, fy], [x + pan, fy]])
         elif kind == "two":
-            a, b = on; xa, ya, sa = self._pos(sc, a, t0); xb, yb, sb = self._pos(sc, b, t0)
+            a, b = on; xa, ya, sa = self._pos(sc, a, tm); xb, yb, sb = self._pos(sc, b, tm)
             mx, my = (xa + xb) / 2, (ya + yb) / 2 - ACTOR_H * 0.5
             z = max(1.0, min(1.6, 1500 / max(300, abs(xa - xb) + 520)))
             cam = dict(z=[z, z + push], c=[[mx - pan, my], [mx + pan, my]])

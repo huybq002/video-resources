@@ -45,7 +45,7 @@ jobs:
     env:
       SKILL: .claude/skills/hezb-story
       # the film engine (owner decision 2026-11-17): hezb-motion in motion/, rendered by the image's Chrome with software GL
-      CHROMIUM_PATH: /opt/google/chrome/chrome
+      CHROMIUM_PATH: /usr/local/bin/chrome-nosandbox
       MOTION_SIZE: "1280x720"
       MOTION_FPS: "24"
       MOTION_WORKERS: "3"

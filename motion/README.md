@@ -86,3 +86,28 @@ The worked example is `examples/prodigal-son/direct.py`: a 5-minute film with 12
     sound, the review loop;
   - mg-styles-15 and mg-video (MIT);
   - huashu-art-motion (MIT; its demo characters are excluded from that licence).
+
+## Reference for the director
+
+**Place elements** (`far`, `mid`, `front`, `near` lists in a place spec; coordinates in the 1920x1080 world):
+- paper.js: `hills`, `dune`, `ground`, `road`, `house`, `shack`, `tree`, `palm`, `fence`, `wall`, `floor`, `window`, `door`, `table`, `shelf`, `pen`, `trough`, `well`, `gate`, `stall`, `sign`, `boulder`.
+- p5.js: `field`, `grass`, `mud`, `planks`, `bricks`, `stones`.
+- Sky: `{top, bottom, sun:[x,y,r], moon:[x,y,r], stars:true}`.
+
+**Ambient life** (`ambient` list, drawn with the camera): `clouds`, `birds` (`scatter` = story time they burst up), `smoke`, `wheat` (`gusts`), `pigs`, `glow`, `cloth`, `ripples`, `fire`, `passers`.
+
+**Particles** (`particles` list; `near: true` = in front; `t0`/`t1` limit them to part of a scene): `rain`, `drizzle`, `dust`, `leaves`, `fireflies`, `smoke`, `confetti`, `snow`, `flies`.
+
+**Props** (`f.prop(scene, id, prop, x, y, s=...)`, with `held=[{who, t0, t1}]` to put it in a hand, `follow={who, dx, dy}` to carry it along with someone, `pop=t` to spring it in, `keys` to move it, `from`/`until` to show it for part of the scene):
+`bag coin cup bread ring robe sandals lantern pod stick donkey bed jar bandage`. New props are small paper.js functions in `engine/places.js` (`PROPS`).
+
+**Actor looks** (`f.look`): `shirt vest apron belt shoes skin hair hairStyle(short|long|bald) beard moustache headscarf skirt rags`.
+
+**Verbs** (`f.act(scene, who, verb, t0, t1, emotion=...)`): `walk run` (`to=[x,y]`, `open`, `carry`), `give take beg point wave cheer toast drink eat count sigh shout armsOpen carry look nod shake turnAway crossArms dig kneel sit lie despair hug face(dir=+-1)`.
+Emotions: `neutral happy sad angry worried surprised ashamed`.
+
+**Shot kinds** (`f.shot`): `wide medium close two over detail track reveal`, plus `f.insert3d` (a 3D prop turning in light: models built by `tools/props3d.mjs`: ring, coin, cup, lantern).
+Transitions (`transition=` on a shot): any MIT shader of gl-transitions, for example `fade`, `wipeLeft`, `Dreamy`, `directionalwipe`, `CrossZoom`, `swap`.
+Looks (`look=` on a shot or a place): `{grade: day|warm|dusk|cool|grey|night, vignette, grain, light:[x,y,amount]}`.
+
+`Film.default_cy` sets the camera height of wide and reveal shots: raise it when the actors stand low in the frame.
