@@ -15,3 +15,7 @@ node_modules/
 .cache/
 outputs/*/voice/*.wav
 outputs/*/demo-*/
+
+# hezb-motion: build output and film renders
+motion/dist/
+outputs/*/film/out/

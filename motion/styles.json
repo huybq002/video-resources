@@ -1,0 +1,7 @@
+{
+  "_readme": "Visual styles of the hezb-motion engine. A style makes full videos only when data/approval.json approves it at the current scripts/skill_hash.py fingerprint (owner decision 2026-11-15: approve once per style).",
+  "enabled_styles": ["M1"],
+  "styles": {
+    "M1": {"name": "Living storybook", "look": "warm hand-inked world painted with p5.js and paper.js, coloured stick people with faces that act, ambient life (birds, smoke, wind, rain, crowds), physics props, GL transitions, a Tone.js score", "use_for": "every lane: stories, parables, mysteries (night grade), news explainers (day grade)"}
+  }
+}

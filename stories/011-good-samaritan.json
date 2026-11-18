@@ -1,0 +1,372 @@
+{
+ "id": "011-good-samaritan",
+ "title": "The Man Who Stopped on the Road",
+ "lang": "en",
+ "style": "B2",
+ "topic": "psychology",
+ "keyword": "good samaritan story explained",
+ "format": "character",
+ "idea": "The parable of the Good Samaritan (Luke 10:25-37) retold in plain words: a traveller is robbed on the road to Jericho, a priest and a Levite cross to the other side, and a Samaritan stops, cares for him and pays for his stay; Jesus asks the lawyer which one was the neighbour",
+ "mood": "warm",
+ "duration_min": 5,
+ "narrator": {
+  "name": "Narrator",
+  "gender": "male"
+ },
+ "cast": [
+  {
+   "id": "jesus",
+   "name": "Jesus",
+   "gender": "male",
+   "look": "calm teacher, plain white robe, short brown beard, sandals"
+  },
+  {
+   "id": "lawyer",
+   "name": "Lawyer",
+   "gender": "male",
+   "look": "sharp lawyer, long grey robe, a scroll in his hand, thin beard"
+  },
+  {
+   "id": "samaritan",
+   "name": "Samaritan",
+   "gender": "male",
+   "look": "practical traveller, brown tunic, a travel bag and a donkey"
+  },
+  {
+   "id": "innkeeper",
+   "name": "Innkeeper",
+   "gender": "female",
+   "look": "innkeeper, round face, red apron, hair in a scarf"
+  }
+ ],
+ "scenes": [
+  {
+   "id": 1,
+   "title": "The question",
+   "place": "a grassy hillside above the lake, a crowd sitting in the sun and a lawyer standing up",
+   "mood": "warm",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "A lawyer tested Jesus with a question. He answered with a road.",
+     "emote": "doubt"
+    },
+    {
+     "who": "narrator",
+     "t": "Crowds followed Jesus everywhere, and this man wanted to catch him out.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "A lawyer is a man who knows the rules. He wanted to know exactly where they stopped.",
+     "emote": "think"
+    },
+    {
+     "who": "lawyer",
+     "t": "Teacher, the law says to love my neighbour. But who is my neighbour?",
+     "emote": "doubt"
+    },
+    {
+     "who": "narrator",
+     "t": "He wanted a short list. A line to draw, with some people on each side.",
+     "emote": "think"
+    },
+    {
+     "who": "narrator",
+     "t": "Jesus did not give him a list. He told him a story.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "It is a parable Jesus told, and it begins on a very lonely road.",
+     "emote": "calm"
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "title": "The road",
+   "place": "the steep rocky road down from Jerusalem to Jericho, bare hills and a few boulders",
+   "mood": "tense",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "A man was walking from Jerusalem down to Jericho. It was a long, steep road, and a dangerous one.",
+     "emote": "worry"
+    },
+    {
+     "who": "narrator",
+     "t": "The hills hid robbers, and travellers there kept their eyes open and their bags close.",
+     "emote": "worry"
+    },
+    {
+     "who": "narrator",
+     "t": "This man walked alone. He was tired, and he was not thinking about danger.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "The sun was high and the road was empty, and the heat shimmered on the stones.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "Then, in a bend of the road, the robbers stepped out.",
+     "emote": "fear"
+    },
+    {
+     "who": "narrator",
+     "t": "When they were gone, the road was quiet. The man lay by the side of it, and his bag was gone.",
+     "emote": "sad"
+    },
+    {
+     "who": "narrator",
+     "t": "He could not stand. He could not call out. He could only wait for someone to come.",
+     "emote": "sad"
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "title": "The other side",
+   "place": "the steep rocky road down from Jerusalem to Jericho, bare hills and a few boulders",
+   "mood": "sad",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "The first to come was a priest. A respected man, with an important place to be.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "He saw the man lying there. And he crossed to the other side of the road.",
+     "emote": "doubt"
+    },
+    {
+     "who": "narrator",
+     "t": "Maybe he was late. Maybe he was afraid. Maybe he told himself someone else would help.",
+     "emote": "think"
+    },
+    {
+     "who": "narrator",
+     "t": "He walked on. His steps got faster, not slower.",
+     "emote": "sad"
+    },
+    {
+     "who": "narrator",
+     "t": "Then came a Levite, a man who served in the temple. He came close enough to look.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "He looked. And he, too, crossed to the other side.",
+     "emote": "sad"
+    },
+    {
+     "who": "narrator",
+     "t": "Two good men, two good reasons, and one man still lying on the road.",
+     "emote": "sad"
+    },
+    {
+     "who": "narrator",
+     "t": "The road was empty again, except for the dust, and one man waiting.",
+     "emote": "sad"
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "title": "The Samaritan",
+   "place": "the steep rocky road down from Jerusalem to Jericho, bare hills and a few boulders",
+   "mood": "hopeful",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "The third traveller was a Samaritan. The people listening to Jesus looked down on Samaritans.",
+     "emote": "surprise"
+    },
+    {
+     "who": "narrator",
+     "t": "He had every reason to keep walking. He did not.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "He did not ask who the man was. He did not ask where he came from.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "He stopped. He knelt in the dust beside the stranger.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "The robbers might still be close. He knelt there anyway.",
+     "emote": "worry"
+    },
+    {
+     "who": "samaritan",
+     "t": "Hold on, friend. You are not alone now.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "He cleaned and bandaged him, using the oil and wine he carried for his own journey.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "Then he lifted him onto his own donkey, and walked beside him, one slow step at a time.",
+     "emote": "happy"
+    },
+    {
+     "who": "narrator",
+     "t": "It cost him time, and it cost him money. He did not count either.",
+     "emote": "relief"
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "title": "The inn",
+   "place": "a small roadside inn at night, a lamp, a bed and a courtyard with a donkey",
+   "mood": "warm",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "They reached an inn as the sun went down. The Samaritan did not leave him at the door.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "He carried the man in, found him a bed, and stayed with him all night.",
+     "emote": "happy"
+    },
+    {
+     "who": "samaritan",
+     "t": "Is there a room? He needs rest, and food, and someone to watch over him.",
+     "emote": "worry"
+    },
+    {
+     "who": "narrator",
+     "t": "All night he stayed by the bed, changing the bandages by lamplight.",
+     "emote": "calm"
+    },
+    {
+     "who": "innkeeper",
+     "t": "There is. But a room costs money, friend. Who is going to pay for it?",
+     "emote": "doubt"
+    },
+    {
+     "who": "narrator",
+     "t": "The Samaritan nodded. He had already thought of that.",
+     "emote": "calm"
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "title": "Two coins",
+   "place": "the inn courtyard in the morning, the innkeeper's table and the road beyond the gate",
+   "mood": "hopeful",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "In the morning, the Samaritan had to go. But he did not just walk away.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "He took out two silver coins, and put them in the innkeeper's hand.",
+     "emote": "happy"
+    },
+    {
+     "who": "samaritan",
+     "t": "Look after him. If it costs more, I will pay you when I come back.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "He did not ask the man his name. He did not ask what he believed.",
+     "emote": "think"
+    },
+    {
+     "who": "narrator",
+     "t": "Then he went on his way, and the innkeeper looked after the stranger.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "He saw a man who needed help, and he was the one standing there.",
+     "emote": "relief"
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "title": "Which one",
+   "place": "a grassy hillside above the lake, a crowd sitting in the sun and a lawyer standing up",
+   "mood": "hopeful",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "Jesus looked at the lawyer, and asked him one question.",
+     "emote": "calm"
+    },
+    {
+     "who": "jesus",
+     "t": "Which of these three was a neighbour to the man the robbers left on the road?",
+     "emote": "think"
+    },
+    {
+     "who": "lawyer",
+     "t": "The one who showed him mercy.",
+     "emote": "sad"
+    },
+    {
+     "who": "jesus",
+     "t": "Go, and do the same.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "The lawyer said nothing for a long moment. Everyone listening knew who had stopped.",
+     "emote": "think"
+    },
+    {
+     "who": "narrator",
+     "t": "The lawyer had asked who counts as a neighbour. Jesus turned the question around.",
+     "emote": "think"
+    },
+    {
+     "who": "narrator",
+     "t": "Not, who deserves my help? But, will I be the one who stops?",
+     "emote": "think"
+    },
+    {
+     "who": "narrator",
+     "t": "Jesus did not tell him who to help. He told him who to become.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "Everyone has a road like that. And everyone has someone lying beside it.",
+     "emote": "think"
+    },
+    {
+     "who": "narrator",
+     "t": "Who is on the other side of your road this week?",
+     "emote": "think"
+    }
+   ]
+  }
+ ]
+}
