@@ -1,0 +1,38 @@
+{
+ "fps": 30, "size": [1920, 1080], "duration": 8, "seed": 1,
+ "models": {"ring": "/f/models/ring.glb"},
+ "cast": {
+  "father": {"shirt": "#e8dcc0", "vest": "#8a6a4a", "hairStyle": "bald", "moustache": true, "shoes": "#5a3f28", "mood": "neutral"},
+  "son": {"shirt": "#4f86c6", "hair": "#6a4a2c", "shoes": "#3c3a37"}
+ },
+ "places": {
+  "farm": {
+   "sky": {"top": "#9fd3ec", "bottom": "#f8ead0", "sun": [1500, 200, 70]},
+   "far": [{"type": "hills", "y": 640, "amp": 90, "color": "#9cc47a"}, {"type": "hills", "y": 720, "amp": 50, "color": "#86b766"}],
+   "mid": [{"type": "ground", "y": 820, "color": "#d8c49a"}, {"type": "house", "x": 1180, "y": 830, "w": 380, "h": 250, "chimney": true}, {"type": "tree", "x": 380, "y": 830, "s": 1.1}, {"type": "fence", "x0": 80, "x1": 900, "y": 850}],
+   "near": [{"type": "grass", "y": 940, "density": 0.4}],
+   "ambient": [{"type": "clouds", "n": 4}, {"type": "birds", "every": 6, "y": 260}, {"type": "smoke", "x": 1460, "y": 520, "depth": "mid"}, {"type": "wheat", "y": 990, "n": 60, "h": 90, "gusts": [{"t": 3, "strength": 0.6}]}],
+   "particles": [{"preset": "dust", "number": 50}],
+   "look": {"grade": "warm", "light": [0.78, 0.18, 0.18]}
+  }
+ },
+ "scenes": [{"id": "s1", "place": "farm", "t0": 0, "t1": 8,
+   "cast": {"father": {"x": 1250, "y": 900, "facing": -1}, "son": {"x": 500, "y": 900}},
+   "actions": [
+     {"who": "son", "verb": "walk", "t0": 0.5, "t1": 2.6, "to": [880, 900]},
+     {"who": "son", "verb": "beg", "t0": 2.8, "t1": 4.4, "emotion": "worried"},
+     {"who": "father", "verb": "give", "t0": 4.6, "t1": 6.0, "emotion": "sad"},
+     {"who": "son", "verb": "take", "t0": 5.3, "t1": 6.6, "emotion": "happy"}
+   ],
+   "props": [{"id": "bag", "prop": "bag", "x": 1200, "y": 820, "s": 0.32, "held": [{"who": "father", "t0": 0, "t1": 5.6}, {"who": "son", "t0": 5.6, "t1": 8}]}],
+   "spills": [{"id": "coins", "t": 6.2, "prop": "coin", "n": 6, "from": [900, 700], "vel": [120, -300], "floor": 905, "size": 30, "dur": 2}]
+ }],
+ "shots": [
+  {"t0": 0, "t1": 3, "scene": "s1", "cam": {"z": [1.0, 1.15], "c": [[960, 600], [900, 620]]}},
+  {"t0": 3, "t1": 6, "scene": "s1", "cam": {"z": [1.6, 1.75], "c": [[1000, 640], [1040, 640]]}, "transition": {"name": "directionalwipe", "dur": 0.6}},
+  {"t0": 6, "t1": 8, "scene": "s1", "insert3d": {"model": "ring", "spin": 0.9}, "transition": {"name": "fade", "dur": 0.5}}
+ ],
+ "captions": [{"t0": 2.8, "t1": 4.5, "text": "Father, give me my share.", "words": [{"w": "Father,", "t0": 2.8, "t1": 3.2}, {"w": "give", "t0": 3.2, "t1": 3.5}, {"w": "me", "t0": 3.5, "t1": 3.7}, {"w": "my", "t0": 3.7, "t1": 3.9}, {"w": "share.", "t0": 3.9, "t1": 4.4}]}],
+ "words": [{"who": "son", "t0": 2.8, "t1": 3.2}, {"who": "son", "t0": 3.2, "t1": 3.5}, {"who": "son", "t0": 3.5, "t1": 3.7}, {"who": "son", "t0": 3.7, "t1": 3.9}, {"who": "son", "t0": 3.9, "t1": 4.4}],
+ "cards": [{"t0": 0.2, "t1": 2.8, "text": "1. The Share"}]
+}

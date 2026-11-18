@@ -1,0 +1,30 @@
+{
+  "name": "hezb-motion",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Hezb Stories film engine: a film is a web page with render(t), rendered frame by frame in headless Chromium",
+  "scripts": {
+    "build": "node tools/bundle.mjs"
+  },
+  "dependencies": {
+    "@dimforge/rapier2d-compat": "0.14.0",
+    "@gltf-transform/core": "4.1.1",
+    "@gltf-transform/functions": "4.1.1",
+    "@react-spring/web": "9.7.5",
+    "@tsparticles/engine": "3.7.1",
+    "@tsparticles/slim": "3.7.1",
+    "animejs": "4.0.2",
+    "esbuild": "0.24.2",
+    "gl-transitions": "1.43.0",
+    "matter-js": "0.20.0",
+    "ogl": "1.0.11",
+    "p5": "1.11.3",
+    "paper": "0.12.18",
+    "pixi.js": "8.6.6",
+    "playwright-core": "1.49.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "tone": "15.0.4"
+  }
+}

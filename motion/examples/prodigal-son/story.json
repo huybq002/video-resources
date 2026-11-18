@@ -1,0 +1,441 @@
+{
+ "id": "bible-prodigal-son",
+ "title": "The Son Who Took His Share and Left",
+ "lang": "en",
+ "style": "B2",
+ "topic": "psychology",
+ "keyword": "parable of the prodigal son explained",
+ "format": "character",
+ "idea": "The parable of the lost son (Luke 15:11-32) retold in plain words: a son takes his inheritance and wastes it, comes home with a speech, and a father runs to meet him; the elder brother stands outside",
+ "mood": "warm",
+ "duration_min": 5.3,
+ "narrator": {
+  "name": "Narrator",
+  "gender": "male"
+ },
+ "cast": [
+  {
+   "id": "father",
+   "name": "Father",
+   "gender": "male",
+   "look": "old farmer, bald, white moustache, plain tunic"
+  },
+  {
+   "id": "younger",
+   "name": "Younger Son",
+   "gender": "male",
+   "look": "young man, short brown hair, blue shirt, a heavy coin bag"
+  },
+  {
+   "id": "elder",
+   "name": "Elder Son",
+   "gender": "male",
+   "look": "older brother, dark hair, green vest, work gloves"
+  },
+  {
+   "id": "farmer",
+   "name": "Farmer",
+   "gender": "male",
+   "look": "stern pig farmer, bald, brown apron"
+  }
+ ],
+ "scenes": [
+  {
+   "id": 1,
+   "title": "The share",
+   "place": "the family farm in the morning, a stone house, olive trees and a gate",
+   "mood": "warm",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "A son asked for his inheritance while his father was still alive.",
+     "emote": "doubt"
+    },
+    {
+     "who": "narrator",
+     "t": "The father loved them both. He had taught them to plow, to prune the olives, and to read the sky.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "A man had two sons, and a farm that would one day be theirs.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "The elder son did all of it well, and never asked for more than the work in front of him.",
+     "emote": "calm"
+    },
+    {
+     "who": "younger",
+     "t": "Father, give me my share now. I want to live my own life.",
+     "emote": "excited"
+    },
+    {
+     "who": "younger",
+     "t": "I do not want to wait thirty years for a farm. I want a life now.",
+     "emote": "frustrated"
+    },
+    {
+     "who": "father",
+     "t": "Are you sure? A farm takes years to grow, and one winter to lose.",
+     "emote": "worry"
+    },
+    {
+     "who": "narrator",
+     "t": "It was a hard thing to ask. It was like saying: I cannot wait for you to be gone.",
+     "emote": "sad"
+    },
+    {
+     "who": "father",
+     "t": "He did not argue. He did not shout. He divided what he had.",
+     "emote": "sad"
+    },
+    {
+     "who": "narrator",
+     "t": "The father looked at his son for a long time. Then he nodded.",
+     "emote": "sad"
+    },
+    {
+     "who": "narrator",
+     "t": "A few days later the younger son packed his things, and left.",
+     "emote": "calm"
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "title": "The far country",
+   "place": "a loud city street at night, a crowded tavern with lanterns and a long table",
+   "mood": "upbeat",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "In the far country, nobody knew his name, and everybody liked his money.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "He rented the biggest house on the street, and filled it with guests.",
+     "emote": "happy"
+    },
+    {
+     "who": "younger",
+     "t": "Another round for everyone! Tonight is on me!",
+     "emote": "joy"
+    },
+    {
+     "who": "narrator",
+     "t": "He bought dinners. He bought gifts. He bought friends who stayed exactly as long as the coins did.",
+     "emote": "doubt"
+    },
+    {
+     "who": "younger",
+     "t": "Stay as long as you like! There is always more where this came from.",
+     "emote": "excited"
+    },
+    {
+     "who": "narrator",
+     "t": "He kept saying that. He did not look at the bag, which got lighter every week.",
+     "emote": "worry"
+    },
+    {
+     "who": "narrator",
+     "t": "It felt like freedom. For a while, it even looked like freedom.",
+     "emote": "calm"
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "title": "Empty",
+   "place": "a bare street in the same city by day, an empty market and a closed tavern door",
+   "mood": "sad",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "The tavern door was locked. The big house had a new owner.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "Then the coins ran out. And a famine came to the land.",
+     "emote": "worry"
+    },
+    {
+     "who": "younger",
+     "t": "I have nothing left. Where did my friends go?",
+     "emote": "fear"
+    },
+    {
+     "who": "younger",
+     "t": "I cannot even pay for a loaf of bread.",
+     "emote": "sad"
+    },
+    {
+     "who": "narrator",
+     "t": "They had gone where the money was. That is the only place a friend like that can go.",
+     "emote": "sad"
+    },
+    {
+     "who": "narrator",
+     "t": "He was hungry, and he did not know anyone, and there was no one to ask.",
+     "emote": "sad"
+    },
+    {
+     "who": "narrator",
+     "t": "One morning he counted what he had left. It took no time at all.",
+     "emote": "sad"
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "title": "The pigs",
+   "place": "a muddy pig farm outside the city, a wooden fence, a trough and grey rain clouds",
+   "mood": "sad",
+   "value": "-",
+   "lines": [
+    {
+     "who": "farmer",
+     "t": "I can use a hand. Feed the pigs. That is all I have.",
+     "emote": "neutral"
+    },
+    {
+     "who": "farmer",
+     "t": "No pay. You eat what the pigs leave.",
+     "emote": "neutral"
+    },
+    {
+     "who": "narrator",
+     "t": "For a young man from a good family, it was the lowest job there was.",
+     "emote": "sad"
+    },
+    {
+     "who": "narrator",
+     "t": "He was so hungry that the pigs' food began to look good to him.",
+     "emote": "worry"
+    },
+    {
+     "who": "narrator",
+     "t": "He thought about his father's farm. Even the hired workers there ate well.",
+     "emote": "think"
+    },
+    {
+     "who": "younger",
+     "t": "My father's workers have bread to spare, and I am starving here.",
+     "emote": "sad"
+    },
+    {
+     "who": "narrator",
+     "t": "And in that mud, something quiet happened. He stopped blaming everyone else.",
+     "emote": "think"
+    },
+    {
+     "who": "younger",
+     "t": "I was a son in that house, and I threw it away for a few months of noise.",
+     "emote": "sad"
+    },
+    {
+     "who": "narrator",
+     "t": "He did not make excuses to himself. For the first time, he told the truth.",
+     "emote": "think"
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "title": "The speech",
+   "place": "a dusty country road in the late afternoon, a signpost and the farm far away on a hill",
+   "mood": "hopeful",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "He decided to go home. He did not expect to be a son again.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "The road was long. His shoes were worn through, and his shirt was in rags.",
+     "emote": "tired"
+    },
+    {
+     "who": "younger",
+     "t": "Father, I have sinned against heaven and against you. Make me one of your workers.",
+     "emote": "worry"
+    },
+    {
+     "who": "narrator",
+     "t": "He practised it all the way. Every step, a little louder, a little more sure.",
+     "emote": "calm"
+    },
+    {
+     "who": "younger",
+     "t": "What if he does not even open the gate?",
+     "emote": "fear"
+    },
+    {
+     "who": "narrator",
+     "t": "He did not know that someone had been watching that road every single day.",
+     "emote": "surprise"
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "title": "The run",
+   "place": "the gate of the family farm at dusk, the dusty road and the father running toward it",
+   "mood": "warm",
+   "value": "+",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "While he was still far off, his father saw him, and ran.",
+     "emote": "surprise"
+    },
+    {
+     "who": "narrator",
+     "t": "The father did not wait at the gate. He ran, and a man his age does not run.",
+     "emote": "surprise"
+    },
+    {
+     "who": "father",
+     "t": "My son! My son is home!",
+     "emote": "joy"
+    },
+    {
+     "who": "younger",
+     "t": "Father, I have sinned. I am no longer worthy to be called your son.",
+     "emote": "sad"
+    },
+    {
+     "who": "narrator",
+     "t": "He hugged his son before the speech could start. The rags and the smell of the pigsty did not matter.",
+     "emote": "calm"
+    },
+    {
+     "who": "father",
+     "t": "I was watching the road every day. I knew you would come.",
+     "emote": "joy"
+    },
+    {
+     "who": "father",
+     "t": "Bring the best robe. Bring a ring, and sandals. Tonight we celebrate.",
+     "emote": "happy"
+    },
+    {
+     "who": "narrator",
+     "t": "The speech he had practised never got finished. He did not need it.",
+     "emote": "relief"
+    },
+    {
+     "who": "narrator",
+     "t": "The servants brought a robe, a ring, and sandals. Things that only a son wears.",
+     "emote": "happy"
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "title": "The brother",
+   "place": "a wheat field at sunset, the farm house with warm lights and a long table inside",
+   "mood": "tense",
+   "value": "-",
+   "lines": [
+    {
+     "who": "narrator",
+     "t": "The elder son was in the fields. He came home to music and laughter.",
+     "emote": "doubt"
+    },
+    {
+     "who": "elder",
+     "t": "What is all this noise? Whose party is this?",
+     "emote": "confused"
+    },
+    {
+     "who": "narrator",
+     "t": "A servant told him: your brother is back, and your father has killed the fattened calf.",
+     "emote": "calm"
+    },
+    {
+     "who": "elder",
+     "t": "Years of work, and nobody ever killed a calf for me.",
+     "emote": "frustrated"
+    },
+    {
+     "who": "elder",
+     "t": "I never left. I worked every day. And I never got even a goat.",
+     "emote": "angry"
+    },
+    {
+     "who": "narrator",
+     "t": "He stayed outside. He had every reason to be angry, and he was not wrong about the facts.",
+     "emote": "sad"
+    },
+    {
+     "who": "narrator",
+     "t": "His father came out to him. He had run to meet one son. Now he walked out to meet the other.",
+     "emote": "calm"
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "title": "Everything I have",
+   "place": "the farm gate at night under lanterns, the father walking out to meet his elder son",
+   "mood": "warm",
+   "value": "+",
+   "lines": [
+    {
+     "who": "father",
+     "t": "Son, you are always with me. Everything I have is yours.",
+     "emote": "calm"
+    },
+    {
+     "who": "elder",
+     "t": "He wasted everything, and you give him a feast?",
+     "emote": "angry"
+    },
+    {
+     "who": "father",
+     "t": "But we had to celebrate. Your brother was lost, and now he is found.",
+     "emote": "happy"
+    },
+    {
+     "who": "father",
+     "t": "He was lost, and now he is found. How could I not celebrate?",
+     "emote": "sad"
+    },
+    {
+     "who": "narrator",
+     "t": "The story does not say whether the elder brother went inside.",
+     "emote": "think"
+    },
+    {
+     "who": "narrator",
+     "t": "Both brothers had been far from the father. One went to a far country.",
+     "emote": "think"
+    },
+    {
+     "who": "narrator",
+     "t": "The other was far away while standing right next to him.",
+     "emote": "think"
+    },
+    {
+     "who": "narrator",
+     "t": "It stops at the door, with the music behind it, and leaves that part to us.",
+     "emote": "calm"
+    },
+    {
+     "who": "narrator",
+     "t": "Which brother are you tonight, and what would it take to walk in?",
+     "emote": ""
+    }
+   ]
+  }
+ ]
+}
