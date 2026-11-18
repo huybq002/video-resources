@@ -2,7 +2,7 @@
 id: 011-good-samaritan
 type: video
 priority: 011
-status: pending
+status: done
 lane: trending
 topic: psychology
 keyword: "good samaritan story explained"
@@ -31,3 +31,5 @@ privacy: private
 
 ## Progress notes
 2026-11-18 (owner session): story `stories/011-good-samaritan.json` is written and lints clean (policy OK); the direction is `outputs/011-good-samaritan/direct.py` (7 scenes, 108 shots, 96 actions) and a full test film was rendered on the owner's machine with hezb-motion (248 s, whisper match 98.8 %, -14.1 LUFS) and sent to the owner. Tonight: reuse the story and `direct.py` as they are (voice again with narrate.py, `align.py`, `make_film.py`), verify, publish the Release. Do NOT rewrite the story.
+
+2026-11-18 night: voiced, aligned (patched decoder, see data/known-issues.md), rendered 16:9, verified, published: https://github.com/huybq002/video-resources/releases/tag/011-good-samaritan-44366836623 . Remember YouTube Studio altered/synthetic setting and TikTok AI label.

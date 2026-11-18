@@ -1,0 +1,55 @@
+{
+  "id": "011-good-samaritan",
+  "tag": "011-good-samaritan-44366836623",
+  "idea": "The parable of the Good Samaritan (Luke 10:25-37) retold in plain words: a traveller is robbed on the road to Jericho, a priest and a Levite cross to the other side, and a Samaritan stops, cares for him and pays for his stay; Jesus asks the lawyer which one was the neighbour",
+  "lang": "en",
+  "style": "B2",
+  "topic": "psychology",
+  "duration_s": 248.2,
+  "cuts": [
+    {
+      "cut": "landscape",
+      "aspect": "16:9",
+      "video": "landscape.mp4",
+      "bundle": "landscape-bundle.zip"
+    }
+  ],
+  "assets": [
+    {
+      "name": "landscape.mp4",
+      "bytes": 157135761,
+      "sha256": "01158547f83d5345206da95b620b301c4f4f4fdcb016f8182938a695cf78fff8"
+    },
+    {
+      "name": "landscape-bundle.zip",
+      "bytes": 43212283,
+      "sha256": "19e2364e76905c4601c768a32af0c8c78bf35a57de66a005f268c0c627e0a504"
+    },
+    {
+      "name": "metadata.json",
+      "bytes": 740,
+      "sha256": "de3623ee20e175a533f24239bcaf7b6203c84af28ef10fa53b96599d20dfc0b4"
+    },
+    {
+      "name": "tiktok.md",
+      "bytes": 761,
+      "sha256": "910f045d5a8506ee671b54077fc1b9edc8848010dbc4fd62890c52cc8173aa0c"
+    },
+    {
+      "name": "youtube.md",
+      "bytes": 1589,
+      "sha256": "d313ac54df082e538624c8d96c93fc0a9330fe87f444601383a78524350ef1be"
+    },
+    {
+      "name": "youtube_shorts.md",
+      "bytes": 366,
+      "sha256": "eed9b54ad7382ddb4175dddbbb33d1d8a5816961c2741da4be071ee108c3f1d5"
+    },
+    {
+      "name": "a.png",
+      "bytes": 52740,
+      "sha256": "e4eb31dfb1dabac218356bb0ea1d369bd8bb4a4242d3f44496e2c0087d72f7b5"
+    }
+  ],
+  "release_url": "https://github.com/huybq002/video-resources/releases/tag/011-good-samaritan-44366836623"
+}
