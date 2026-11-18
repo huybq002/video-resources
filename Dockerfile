@@ -64,6 +64,11 @@ COPY scripts/stickman/install.sh /tmp/stickman/scripts/stickman/install.sh
 COPY stickman/patches /tmp/stickman/stickman/patches
 RUN bash /tmp/stickman/scripts/stickman/install.sh && rm -rf /tmp/stickman
 
+# The film engine's node modules (motion/package.json): the night job links /opt/hezb-motion/node_modules, so nights never
+# run npm (motion/install.sh). Chrome above renders the frames with software GL.
+COPY motion/package.json motion/package-lock.json /opt/hezb-motion/
+RUN cd /opt/hezb-motion && npm ci --no-audit --no-fund --silent
+
 # Download the models at build time so nights never download them.
 # faster-whisper "small" (tool default) and VieNeu "v3turbo" (tool default).
 RUN python3 -c "from faster_whisper import WhisperModel; WhisperModel('small', device='cpu', compute_type='int8'); print('whisper ok')"

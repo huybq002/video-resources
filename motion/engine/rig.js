@@ -24,6 +24,7 @@ function mix(a, b, w) {
 // each verb returns a pose for local time lt (seconds since start) and progress u (0..1)
 const VERBS = {
   kneel: () => ({ ...REST, crouch: 0.55, lL: [1.5, -1.6], lR: [-0.1, -1.4], lean: 0.12, headDrop: 0.25, aL: [0.5, 0.6], aR: [0.5, 0.6] }),
+  lie: () => ({ ...REST, crouch: 0.95, lean: 1.45, headDrop: 0.2, lL: [-1.45, 0.1], lR: [-1.35, 0.1], aL: [0.25, 0.1], aR: [0.35, 0.2] }),
   sit: () => ({ ...REST, crouch: 0.78, lL: [1.55, -2.2], lR: [1.45, -2.25], lean: 0.25, headDrop: 0.6, aL: [0.9, 1.1], aR: [0.95, 1.05] }),
   despair: () => ({ ...REST, crouch: 0.7, lL: [1.5, -2.1], lR: [1.4, -2.2], lean: 0.45, headDrop: 0.9, aL: [1.9, 2.1], aR: [2.0, 2.0] }),
   hug: () => ({ ...REST, lean: 0.08, aL: [1.35, 0.9], aR: [1.45, 0.85] }),
