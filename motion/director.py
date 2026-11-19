@@ -113,7 +113,7 @@ class Film:
             who = on if isinstance(on, str) else None
             if who: x, y, s = self._pos(sc, who, tm)
             else: x, y, s = on[0], on[1], 1
-            z = {"medium": 1.55, "close": 2.35, "detail": 2.8, "over": 1.7}[kind]
+            z = {"medium": 1.5, "close": 2.0, "detail": 2.3, "over": 1.65}[kind]
             fy = y - ACTOR_H * s * (0.55 if kind == "medium" else 0.86 if kind == "close" else 0.6) if who else y
             if kind == "over" and kw.get("from"): fx0 = self._pos(sc, kw["from"], tm)[0]; x = x + (fx0 - x) * 0.32
             cam = dict(z=[z, z + push * (1.6 if kind == "close" else 1)], c=[[x - pan, fy], [x + pan, fy]])

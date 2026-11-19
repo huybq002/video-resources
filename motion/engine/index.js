@@ -2,7 +2,7 @@
 //   window.DUR, window.FPS, window.render(t) (async, deterministic), window.READY, window.EV (sound events)
 // tools/render.mjs opens it in headless Chromium and captures frames in order.
 import { Application, Container, Sprite, Texture, Graphics } from 'pixi.js';
-import { initP5, paintPlace, paintProp, paintGrain, W, HGT } from './places.js';
+import { initP5, paintPlace, paintProp, paintGrain, W, HGT, PS } from './places.js';
 import { Actor } from './rig.js';
 import { drawAmbient } from './env.js';
 import { initPhysics, simulateSpills, simulateHangers } from './physics.js';
@@ -25,7 +25,7 @@ async function boot() {
 
   // ---- canvases: Pixi draws the world, a 2D canvas keeps the outgoing shot, OGL composites onto the visible canvas
   const app = new Application();
-  await app.init({ width: W, height: HGT, background: '#f4ead6', antialias: FW >= 1920, preference: 'webgl', preserveDrawingBuffer: true, autoStart: false, resolution: FW / W });   // the world is 1920x1080; a 720p film draws it at 2/3 (2.25x fewer pixels for software GL)
+  await app.init({ width: W, height: HGT, background: '#f4ead6', antialias: true, preference: 'webgl', preserveDrawingBuffer: true, autoStart: false, resolution: FW / W });   // the world is 1920x1080; a 720p film draws it at 2/3 (2.25x fewer pixels for software GL)
   app.ticker.stop();
   const snap = document.createElement('canvas'); snap.width = app.canvas.width; snap.height = app.canvas.height; const snapCtx = snap.getContext('2d');
   const out = document.getElementById('out'); out.width = FW; out.height = FH;
@@ -37,7 +37,7 @@ async function boot() {
 
   // ---- props (paper.js drawings) as textures
   const propTex = {};
-  const tex = name => (propTex[name] ??= Texture.from(paintProp(name, 256)));
+  const tex = name => (propTex[name] ??= Texture.from(paintProp(name, 512)));
 
   // ---- physics, precomputed
   const allSpills = film.scenes.flatMap(s => s.spills || []), spills = simulateSpills(allSpills);
@@ -51,7 +51,7 @@ async function boot() {
     const painted = (placeCache[sc.place] ??= paintPlace(place, sc.place));
     const root = new Container(), layers = {};
     for (const d of ['sky', 'far', 'farAmb', 'mid', 'midAmb', 'partFar', 'act', 'front', 'near', 'nearAmb', 'partNear']) { layers[d] = new Container(); root.addChild(layers[d]); }
-    for (const d of ['sky', 'far', 'mid', 'front', 'near']) if (painted[d]) layers[d].addChild(new Sprite(Texture.from(painted[d])));
+    for (const d of ['sky', 'far', 'mid', 'front', 'near']) if (painted[d]) { const sp = new Sprite(Texture.from(painted[d])); sp.scale.set(1 / PS); layers[d].addChild(sp); }
     const amb = { far: new Graphics(), mid: new Graphics(), near: new Graphics() };
     layers.farAmb.addChild(amb.far); layers.midAmb.addChild(amb.mid); layers.nearAmb.addChild(amb.near);
     const ambient = [...(place.ambient || []), ...(sc.ambient || [])];
@@ -105,7 +105,7 @@ async function boot() {
       else if (p.follow && S.actors[p.follow.who]?.at) { const at = S.actors[p.follow.who].at; x = at.x + (p.follow.dx ?? 0) * at.facing; y = at.y + (p.follow.dy ?? 0); }
       else if (p.keys) { const K = n => keyed(p.keys.filter(k => k[n] != null).map(k => ({ t: k.t, v: k[n] })), t); x = K('x') || x; y = K('y') || y; if (p.keys.some(k => k.s != null)) s = K('s'); if (p.keys.some(k => k.r != null)) rot = K('r'); }
       if (p.pop != null) s *= clamp(springStep(t - p.pop, SPRING.wobbly), 0, 1.3);
-      p.sp.x = x; p.sp.y = y; p.sp.scale.set(s); if (p.follow?.flip && S.actors[p.follow.who]?.at) p.sp.scale.x = s * S.actors[p.follow.who].at.facing; p.sp.rotation = rot;
+      p.sp.x = x; p.sp.y = y; p.sp.scale.set(s * 0.5); if (p.follow?.flip && S.actors[p.follow.who]?.at) p.sp.scale.x = s * 0.5 * S.actors[p.follow.who].at.facing; p.sp.rotation = rot;
     }
     for (const ss of S.spillSprites) { const fr = spills.sample(ss.id, t); ss.sprites.forEach((sp, i) => { sp.visible = !!fr; if (fr) { sp.x = fr[i].x; sp.y = fr[i].y; sp.rotation = fr[i].a; } }); }
     for (const hs of S.hangSprites) { const b = hangers.sample(hs.id, t); if (!b) continue; hs.rope.clear().moveTo(hs.h.x, hs.h.y).lineTo(b.x, b.y - 20).stroke({ width: 3, color: 0x2b2622 }); hs.sp.x = b.x; hs.sp.y = b.y - 30; hs.sp.rotation = -b.a; }

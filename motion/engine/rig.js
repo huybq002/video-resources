@@ -6,6 +6,7 @@
 import { Graphics, Container } from 'pixi.js';
 import { clamp, lerp, smooth, easeInOut, noise1, hash, hex, mulberry } from './util.js';
 import { springWindow, SPRING } from './springs.js';
+import { paintActor } from './figure.js';
 
 const INK = 0x2b2622;
 const H = 360;                       // standing height in world px at scale 1 (feet to top of head)
@@ -13,7 +14,7 @@ const L = { thigh: 78, shin: 78, upper: 62, fore: 58, torso: 112, neck: 10, head
 
 // ---------------------------------------------------------------- poses -------------------------------------------------
 // angles in radians, 0 = hanging straight down, positive = forward (toward facing)
-const REST = { lean: 0, crouch: 0, bob: 0, head: 0, headDrop: 0, aL: [0.12, 0.08], aR: [0.12, 0.08], lL: [0, 0], lR: [0, 0], shrug: 0 };
+const REST = { lean: 0, crouch: 0, bob: 0, head: 0, headDrop: 0, aL: [0.12, 0.08], aR: [0.12, 0.08], lL: [0.07, 0], lR: [-0.07, 0], shrug: 0 };
 
 function mix(a, b, w) {
   const o = {};
@@ -124,98 +125,12 @@ export class Actor {
 
   blink(t) { const r = mulberry(this.seed + Math.floor(t / 3.7))(); const k = (t % 3.7) - (1.2 + r * 2); return k > 0 && k < 0.12; }
 
-  // draw at world position; s = scale (1 = full height H)
+  // draw at world position; s = scale (1 = full height H). The drawing itself is engine/figure.js
   draw(t, x0, y0, s = 1) {
-    const at = this.place(t, x0, y0), p = this.pose(t, at), lk = this.look, g = this.g;
-    const F = at.facing, k = s, boil = Math.floor(t * 12);                 // line boil on twos (hand-drawn life, not motion)
-    g.clear();
-    const jit = (i) => (mulberry(this.seed * 31 + boil * 7 + i)() - 0.5) * 0.9 * k;
-    const ink = (pts, w = 4.2, col = INK) => { g.moveTo(pts[0][0] + jit(1), pts[0][1] + jit(2)); for (let i = 1; i < pts.length; i++) g.lineTo(pts[i][0] + jit(i * 3), pts[i][1] + jit(i * 5)); g.stroke({ width: w * k, color: col, cap: 'round', join: 'round' }); };
-    const X = at.x, Y = at.y;
-    // shadow
-    g.ellipse(X, Y + 2 * k, 46 * k, 9 * k).fill({ color: 0x000000, alpha: 0.12 });
-    const crouch = p.crouch * (L.thigh + L.shin) * 0.9 * k;
-    const hip = [X, Y - (L.thigh + L.shin) * k + crouch - p.bob * k];
-    const lean = p.lean * F;
-    const neckB = [hip[0] + Math.sin(lean) * L.torso * k, hip[1] - Math.cos(lean) * L.torso * k];
-    const sh = [lerp(hip[0], neckB[0], 0.86), lerp(hip[1], neckB[1], 0.86) - p.shrug * 6 * k];
-    const limb = (base, a1, a2, l1, l2) => {
-      const j = [base[0] + Math.sin(a1) * F * l1 * k, base[1] + Math.cos(a1) * l1 * k];
-      const e = [j[0] + Math.sin(a1 + a2) * F * l2 * k, j[1] + Math.cos(a1 + a2) * l2 * k];
-      return [base, j, e];
-    };
-    const legBack = limb(hip, p.lR[0], p.lR[1], L.thigh, L.shin), legFront = limb(hip, p.lL[0], p.lL[1], L.thigh, L.shin);
-    const armBack = limb(sh, p.aR[0] + lean, p.aR[1], L.upper, L.fore), armFront = limb(sh, p.aL[0] + lean, p.aL[1], L.upper, L.fore);
-    // keep feet on the ground when standing (no sliding legs through the floor)
-    const clampFoot = leg => { if (leg[2][1] > Y) { const d = leg[2][1] - Y; leg[1][1] -= d * 0.5; leg[2][1] = Y; } };
-    clampFoot(legBack); clampFoot(legFront);
-    const shoe = hex(lk.shoes || '#3c3a37'), skin = hex(lk.skin || '#f4dcc2'), shirt = hex(lk.shirt || '#4f86c6');
-    const drawLeg = leg => { ink(leg, 4.4); g.ellipse(leg[2][0] + 7 * F * k, leg[2][1] - 3 * k, 12 * k, 6 * k).fill(shoe).stroke({ width: 2 * k, color: INK }); };
-    const drawArm = (arm, sleeve) => {
-      ink([arm[0], arm[1]], 9 * k > 0 ? 4.2 : 4.2);
-      if (sleeve) { g.moveTo(arm[0][0], arm[0][1]); g.lineTo(lerp(arm[0][0], arm[1][0], 0.55), lerp(arm[0][1], arm[1][1], 0.55)); g.stroke({ width: 13 * k, color: sleeve, cap: 'round' }); }
-      ink([arm[1], arm[2]], 4.2); g.circle(arm[2][0], arm[2][1], 6.5 * k).fill(skin).stroke({ width: 2 * k, color: INK });
-    };
-    drawLeg(legBack); drawArm(armBack, shirt);
-    // torso: a tunic shape between shoulders and hips
-    const tw = 30 * k, bw = (lk.skirt ? 44 : 34) * k;
-    const nx = Math.cos(lean), ny = Math.sin(lean);
-    const tunic = [sh[0] - tw * nx, sh[1] - tw * ny, sh[0] + tw * nx, sh[1] + tw * ny, hip[0] + bw * nx + 4 * k, hip[1] + bw * ny + 18 * k, hip[0] - bw * nx - 4 * k, hip[1] - bw * ny + 18 * k];
-    g.poly(tunic).fill(shirt).stroke({ width: 3.2 * k, color: INK, join: 'round' });
-    if (lk.vest) g.poly([tunic[0] + 6 * k, tunic[1], sh[0] - 6 * k * F, sh[1] + 4 * k, hip[0] - 4 * k * F, hip[1] + 14 * k, tunic[6] + 6 * k, tunic[7] - 4 * k]).fill(hex(lk.vest)).stroke({ width: 2.4 * k, color: INK });
-    if (lk.apron) g.poly([hip[0] - 26 * k, sh[1] + 40 * k, hip[0] + 26 * k, sh[1] + 40 * k, hip[0] + 30 * k, hip[1] + 22 * k, hip[0] - 30 * k, hip[1] + 22 * k]).fill(hex(lk.apron)).stroke({ width: 2.4 * k, color: INK });
-    if (lk.belt) { g.moveTo(hip[0] - bw * 0.9, hip[1] + 4 * k).lineTo(hip[0] + bw * 0.9, hip[1] + 4 * k).stroke({ width: 5 * k, color: hex(lk.belt) }); }
-    if (lk.rags) for (let i = 0; i < 4; i++) { const xx = hip[0] - bw + i * bw * 0.6; g.poly([xx, hip[1] + 16 * k, xx + 9 * k, hip[1] + 30 * k, xx + 18 * k, hip[1] + 16 * k]).fill(shirt).stroke({ width: 2 * k, color: INK }); }
-    drawLeg(legFront);
-    // head
-    const hd = p.headDrop, hc = [neckB[0] + Math.sin(lean + hd * 0.6) * (L.neck + L.head) * k, neckB[1] - Math.cos(lean + hd * 0.6) * (L.neck + L.head) * k];
-    ink([neckB, [lerp(neckB[0], hc[0], 0.5), lerp(neckB[1], hc[1], 0.5)]], 4);
-    const R = L.head * k;
-    g.circle(hc[0], hc[1], R).fill(skin).stroke({ width: 3.2 * k, color: INK });
-    this.drawHair(g, hc, R, F, k, lk);
-    this.drawFace(g, t, hc, R, F, k, p, hd);
-    drawArm(armFront, shirt);
-    // held prop (drawn by the scene through this hook)
-    this.hands = { front: armFront[2], back: armBack[2], head: hc, hip, facing: F, scale: k };
-    this.at = at;
+    const at = this.place(t, x0, y0), p = this.pose(t, at);
+    this.g.clear();
+    paintActor(this, this.g, t, at, p, s);
     return this.hands;
-  }
-
-  drawHair(g, c, R, F, k, lk) {
-    const hair = hex(lk.hair || '#3a2a1e');
-    if (lk.hairStyle === 'bald') { if (lk.fringe !== false) g.moveTo(c[0] - F * R * 0.25 + Math.cos(Math.PI * 1.05) * R * 0.95, c[1] - R * 0.1 + Math.sin(Math.PI * 1.05) * R * 0.95).arc(c[0] - F * R * 0.25, c[1] - R * 0.1, R * 0.95, Math.PI * 1.05, Math.PI * 1.35).stroke({ width: 5 * k, color: hex(lk.hair || '#d9d4cc') }); }
-    else if (lk.hairStyle === 'long') { g.ellipse(c[0] - F * R * 0.2, c[1] - R * 0.35, R * 1.08, R * 0.75).fill(hair); g.rect(c[0] - F * R * 0.2 - R * 1.0, c[1] - R * 0.3, R * 0.5, R * 1.5).fill(hair); }
-    else { g.ellipse(c[0] - F * R * 0.12, c[1] - R * 0.55, R * 1.02, R * 0.55).fill(hair).stroke({ width: 2.4 * k, color: INK }); }
-    if (lk.headscarf) g.ellipse(c[0], c[1] - R * 0.5, R * 1.12, R * 0.62).fill(hex(lk.headscarf)).stroke({ width: 2.4 * k, color: INK });
-    if (lk.beard) g.ellipse(c[0] + F * R * 0.25, c[1] + R * 0.62, R * 0.62, R * 0.42).fill(hex(lk.beard)).stroke({ width: 2 * k, color: INK });
-  }
-
-  drawFace(g, t, c, R, F, k, p, hd) {
-    const turn = clamp(p.head, -0.6, 0.6), fx = c[0] + F * R * (0.32 + turn * 0.3), fy = c[1] + hd * R * 0.25;
-    const e = this.emotion(t), shut = this.blink(t) || e === 'ashamed';
-    const ex = [fx - R * 0.28, fx + R * 0.22], ey = fy - R * 0.12;
-    // eyes
-    for (const x of ex) {
-      if (shut) g.moveTo(x - 4 * k, ey + 1 * k).lineTo(x + 4 * k, ey + 1 * k).stroke({ width: 2.6 * k, color: INK, cap: 'round' });
-      else if (e === 'surprised') g.circle(x, ey, 4.6 * k).fill(0xffffff).stroke({ width: 2.2 * k, color: INK }).circle(x, ey, 2 * k).fill(INK);
-      else g.ellipse(x, ey, 3.2 * k, 4.2 * k).fill(INK);
-    }
-    // brows: the emotion lives here (worried and angry are one flip apart: check at final size)
-    const brow = { angry: [0.45, -0.45], worried: [-0.4, 0.4], sad: [-0.35, 0.35], surprised: [0, 0], happy: [-0.1, 0.1], ashamed: [-0.3, 0.3] }[e] || [0, 0];
-    const by = ey - 9 * k - (e === 'surprised' ? 4 * k : 0);
-    ex.forEach((x, i) => { const a = brow[i] * (i ? 1 : 1) * F; g.moveTo(x - 6 * k, by + Math.sin(-a) * 5 * k * (i ? -1 : 1)).lineTo(x + 6 * k, by + Math.sin(a) * 5 * k * (i ? -1 : 1)).stroke({ width: 2.6 * k, color: INK, cap: 'round' }); });
-    // mouth: talking opens it, the emotion shapes it
-    const m = this.mouth(t), mx = fx - R * 0.03, my = fy + R * 0.42;
-    if (m > 0.05) g.ellipse(mx, my, (5 + 2 * m) * k, (2 + 6 * m) * k).fill(0x7a2e2a).stroke({ width: 2 * k, color: INK });
-    else if (e === 'happy') g.moveTo(mx + Math.cos(0.15 * Math.PI) * 9 * k, my - 4 * k + Math.sin(0.15 * Math.PI) * 9 * k).arc(mx, my - 4 * k, 9 * k, 0.15 * Math.PI, 0.85 * Math.PI).stroke({ width: 2.6 * k, color: INK, cap: 'round' });
-    else if (e === 'sad' || e === 'worried' || e === 'ashamed') g.moveTo(mx + Math.cos(1.2 * Math.PI) * 8 * k, my + 7 * k + Math.sin(1.2 * Math.PI) * 8 * k).arc(mx, my + 7 * k, 8 * k, 1.2 * Math.PI, 1.8 * Math.PI).stroke({ width: 2.6 * k, color: INK, cap: 'round' });
-    else if (e === 'angry') g.moveTo(mx - 8 * k, my + 1 * k).lineTo(mx + 8 * k, my - 1 * k).stroke({ width: 3 * k, color: INK, cap: 'round' });
-    else if (e === 'surprised') g.ellipse(mx, my, 5 * k, 7 * k).fill(0x7a2e2a).stroke({ width: 2 * k, color: INK });
-    else g.moveTo(mx - 6 * k, my).lineTo(mx + 6 * k, my).stroke({ width: 2.6 * k, color: INK, cap: 'round' });
-    if (this.look.moustache) g.moveTo(mx - 10 * k, my - 7 * k).quadraticCurveTo(mx, my - 12 * k, mx + 10 * k, my - 7 * k).stroke({ width: 4 * k, color: hex(this.look.moustache === true ? '#efe9df' : this.look.moustache), cap: 'round' });
-    if (e === 'sad' && this.look.tears !== false && Math.floor(t * 2) % 2 === 0) g.circle(ex[0], ey + 9 * k + ((t * 30) % 14) * k, 2.4 * k).fill(0x7fb4e0);
-    // cheeks
-    g.circle(fx - R * 0.48, fy + R * 0.22, 5 * k).fill({ color: 0xe88a7a, alpha: 0.35 });
   }
 }
 

@@ -1,0 +1,17 @@
+{"fps": 30, "size": [1920, 1080], "duration": 6,
+ "cast": {
+  "jesus": {"shirt": "#f3efe6", "robe": true, "hair": "#5a3c24", "beard": "#5a3c24", "hairStyle": "long", "sash": "#3f6fb0", "trim": "#c9a45a", "sandals": true, "shoes": "#8a5a34", "mantle": "#c9d6ea"},
+  "samaritan": {"shirt": "#c98a4a", "robe": false, "vest": "#7a4a2a", "hair": "#3a2a1e", "beard": "#3a2a1e", "headcloth": "#efe6d2", "band": "#3a2a1e", "belt": "#2f5a8a", "sandals": true, "shoes": "#6a4a2a", "mantle": "#8a4a3a", "legs": "#d9c6a0", "pack": "#a2764a"},
+  "priest": {"shirt": "#f1ede2", "robe": true, "vest": "#7a2e8a", "hair": "#e0e0e0", "beard": "#e0e0e0", "hairStyle": "bald", "sash": "#e8c25a", "trim": "#7a2e8a", "sandals": true, "shoes": "#3c3a37"},
+  "innkeeper": {"shirt": "#d9cdb5", "robe": true, "apron": "#c4544a", "hair": "#4a3a2a", "hairStyle": "long", "headcloth": "#c4544a", "band": "#8a2e2a", "sandals": true, "shoes": "#4a3a2e", "skirt": true},
+  "poor": {"shirt": "#a89a82", "rags": true, "hair": "#6a4a2c", "legs": "#7a6a52", "shoes": "#7a6a52", "sandals": true},
+  "lawyer": {"shirt": "#8f8f98", "robe": true, "vest": "#5a5a68", "hair": "#bdbdbd", "beard": "#bdbdbd", "hairStyle": "short", "trim": "#2b2622", "sash": "#2b2622", "shoes": "#3c3a37"}
+ },
+ "places": {"hill": {"sky": {"top": "#a7d8f0", "bottom": "#eef3e6", "sun": [1600, 160, 60]},
+   "far": [{"type": "hills", "y": 600, "amp": 90, "color": "#b4d490"}], "mid": [{"type": "ground", "y": 800, "color": "#9fca78"}], "near": [{"type": "grass", "y": 900, "density": 0.4}],
+   "ambient": [{"type": "clouds", "n": 3}], "look": {"grade": "warm"}}},
+ "scenes": [{"id": "s", "place": "hill", "t0": 0, "t1": 6,
+   "cast": {"jesus": {"x": 300, "y": 960, "facing": 1}, "samaritan": {"x": 620, "y": 960, "facing": 1}, "priest": {"x": 960, "y": 960, "facing": 1}, "innkeeper": {"x": 1280, "y": 960, "facing": -1}, "poor": {"x": 1560, "y": 960, "facing": -1}, "lawyer": {"x": 1800, "y": 960, "facing": -1}},
+   "actions": [{"who": "jesus", "verb": "armsOpen", "t0": 1, "t1": 5, "emotion": "happy"}, {"who": "samaritan", "verb": "point", "t0": 1, "t1": 5, "emotion": "happy"}, {"who": "priest", "verb": "crossArms", "t0": 1, "t1": 5, "emotion": "doubt"},
+     {"who": "innkeeper", "verb": "wave", "t0": 1, "t1": 5, "emotion": "happy"}, {"who": "poor", "verb": "beg", "t0": 1, "t1": 5, "emotion": "sad"}, {"who": "lawyer", "verb": "shout", "t0": 1, "t1": 5, "emotion": "angry"}]}],
+ "shots": [{"t0": 0, "t1": 6, "scene": "s", "cam": {"z": [1.0, 1.0], "c": [[960, 600]]}}], "captions": [], "words": [], "cards": []}
