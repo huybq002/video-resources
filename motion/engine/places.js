@@ -19,11 +19,13 @@ export function initP5() {
   });
 }
 
-function canvas(w = W, h = HGT) { const c = document.createElement('canvas'); c.width = w; c.height = h; c.setAttribute('hidpi', 'off'); return c; }
+// places are painted at 1.5x so close shots (zoom up to 2x) stay sharp; sprites are scaled back by 1 / PS
+export const PS = 1.5;
+function canvas(w = W * PS, h = HGT * PS) { const c = document.createElement('canvas'); c.width = w; c.height = h; c.setAttribute('hidpi', 'off'); return c; }
 
 // ------------------------------------------------------------ p5 painters ---------------------------------------------
-function p5Layer(w, h, seed, paint) {
-  const s = P5, g = s.createGraphics(w, h); g.pixelDensity(1);
+function p5Layer(w, h, seed, paint, ps = PS) {
+  const s = P5, g = s.createGraphics(w * ps, h * ps); g.pixelDensity(1); g.scale(ps);
   s.randomSeed(seed); s.noiseSeed(seed); g.randomSeed(seed); g.noiseSeed(seed);
   paint(g, s); return g.elt;
 }
@@ -42,7 +44,7 @@ export function paintSky(sky, seed) {
 function paperGrain(g, a = 12) { g.noStroke(); for (let i = 0; i < 9000; i++) { g.fill(80, 60, 40, g.random(a * 0.3, a)); g.rect(g.random(W), g.random(HGT), 1.6, 1.6); } }
 
 export function paintGrain(seed) {      // a full-frame paper-grain overlay used by the post pass
-  return p5Layer(512, 512, seed, (g) => { g.clear(); g.noStroke(); for (let i = 0; i < 26000; i++) { const v = g.random(); g.fill(v > 0.5 ? 255 : 30, v > 0.5 ? 255 : 20, v > 0.5 ? 250 : 10, g.random(4, 18)); g.rect(g.random(512), g.random(512), 1.3, 1.3); } });
+  return p5Layer(512, 512, seed, (g) => { g.clear(); g.noStroke(); for (let i = 0; i < 26000; i++) { const v = g.random(); g.fill(v > 0.5 ? 255 : 30, v > 0.5 ? 255 : 20, v > 0.5 ? 250 : 10, g.random(4, 18)); g.rect(g.random(512), g.random(512), 1.3, 1.3); } }, 1);
 }
 
 function paintField(g, s, top, color, dark, density = 1) {      // wheat / grass strokes, denser and longer toward the viewer
@@ -64,7 +66,7 @@ function paintPlanks(g, x, y, w, h, color, horizontal = true) {
 
 // ------------------------------------------------------------ paper.js painters ---------------------------------------
 function paperLayer(seed, draw) {
-  const c = canvas(), scope = new paper.PaperScope(); scope.setup(c);
+  const c = canvas(), scope = new paper.PaperScope(); scope.setup(c); scope.view.scale(PS, [0, 0]);
   const rnd = mulberry(seed);
   const style = (path, fill, w = 4) => { path.fillColor = fill; path.strokeColor = INK; path.strokeWidth = w; path.strokeJoin = 'round'; path.strokeCap = 'round'; return path; };
   // organic shapes (leaves, ground edges) are flattened, jittered and re-smoothed; built shapes (walls, roofs) only get

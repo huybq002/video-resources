@@ -94,7 +94,7 @@ def main():
     with wave.open(str(wav), "wb") as w:          # our own writer: scripts/media/score.py writes at its own rate
         w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR); w.writeframes((np.clip(mix, -1, 1) * 32767).astype(np.int16).tobytes())
     video = film_dir / "out" / "video.mp4"
-    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(video), "-i", str(wav), "-vf", "scale=1920:1080:flags=lanczos", "-c:v", "libx264", "-preset", "medium", "-crf", "24", "-pix_fmt", "yuv420p", "-af", "loudnorm=I=-14:TP=-1.5:LRA=11,alimiter=limit=0.89", "-ar", "48000", "-c:a", "aac", "-b:a", "192k", "-shortest", str(out)], check=True)
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(video), "-i", str(wav), "-vf", "scale=1920:1080:flags=lanczos,unsharp=5:5:0.5:5:5:0.0", "-c:v", "libx264", "-preset", "medium", "-crf", "19", "-pix_fmt", "yuv420p", "-af", "loudnorm=I=-14:TP=-1.5:LRA=11,alimiter=limit=0.89", "-ar", "48000", "-c:a", "aac", "-b:a", "192k", "-shortest", str(out)], check=True)
     print("film", out)
 
 

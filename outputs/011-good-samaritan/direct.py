@@ -16,17 +16,19 @@ f = Film(HERE.parents[1] / "stories" / "011-good-samaritan.json", HERE / "voice"
 L, S, WD = f.line, f.next_start, f.word
 
 # ---------------------------------------------------------------- cast
-f.look("jesus", shirt="#f3efe6", hair="#5a3c24", beard="#5a3c24", hairStyle="long", belt="#c9b79a", shoes="#8a6a4a", skirt=True)
-f.look("lawyer", shirt="#8f8f98", vest="#5a5a68", hair="#bdbdbd", beard="#bdbdbd", shoes="#3c3a37", belt="#2b2622")
-f.look("traveller", shirt="#c9a45a", hair="#3a2a1e", shoes="#7a6a52", belt="#6b4a34")
-f.look("priest", shirt="#f1ede2", vest="#7a2e8a", hair="#e0e0e0", beard="#e0e0e0", shoes="#3c3a37", belt="#e8c25a", skirt=True)
-f.look("levite", shirt="#4f6f9a", vest="#e6e0d0", hair="#2d2a26", shoes="#3c3a37", belt="#2b2622")
-f.look("samaritan", shirt="#a0623a", vest="#d9b872", hair="#4a3a2a", beard="#4a3a2a", shoes="#5a3f28", belt="#2f5a8a")
-f.look("innkeeper", shirt="#d9cdb5", apron="#c4544a", hair="#4a3a2a", hairStyle="long", headscarf="#c4544a", shoes="#4a3a2e", skirt=True)
-f.look("robber1", shirt="#4a4a52", hair="#1f1f1f", shoes="#2b2622", belt="#2b2622", headscarf="#2b2622")
-f.look("robber2", shirt="#5a3a3a", hair="#1f1f1f", shoes="#2b2622", belt="#2b2622", headscarf="#5a3a3a")
-for k, (sh, hr) in enumerate((("#c4544a", "#2d2a26"), ("#e0b04a", "#7a4b2c"), ("#8a6fb0", "#1f1f1f"), ("#4fa59a", "#3a2a1e"), ("#d98a3a", "#5a3c24"), ("#6f9e55", "#2d2a26"))):
-    f.look(f"c{k}", shirt=sh, hair=hr, shoes="#4a3a2e", hairStyle="long" if k in (1, 3) else "short", skirt=k in (1, 3))
+f.look("jesus", shirt="#f3efe6", robe=True, hair="#5a3c24", beard="#5a3c24", hairStyle="long", sash="#3f6fb0", trim="#c9a45a", mantle="#c9d6ea", sandals=True, shoes="#8a5a34")
+f.look("lawyer", shirt="#8f8f98", robe=True, vest="#5a5a68", hair="#bdbdbd", beard="#bdbdbd", trim="#2b2622", sash="#2b2622", shoes="#3c3a37")
+f.look("traveller", shirt="#c9a45a", hair="#3a2a1e", belt="#6b4a34", legs="#d9c6a0", sandals=True, shoes="#6a4a2a", pack="#a2764a")
+f.look("priest", shirt="#f1ede2", robe=True, vest="#7a2e8a", hair="#e0e0e0", beard="#e0e0e0", hairStyle="bald", sash="#e8c25a", trim="#7a2e8a", sandals=True, shoes="#3c3a37")
+f.look("levite", shirt="#4f6f9a", vest="#e6e0d0", hair="#2d2a26", beard="#2d2a26", headcloth="#e6e0d0", band="#2b2622", belt="#2b2622", legs="#d9c6a0", sandals=True, shoes="#3c3a37")
+f.look("samaritan", shirt="#c98a4a", vest="#7a4a2a", hair="#3a2a1e", beard="#3a2a1e", headcloth="#efe6d2", band="#3a2a1e", belt="#2f5a8a", mantle="#8a4a3a", legs="#d9c6a0", sandals=True, shoes="#6a4a2a", pack="#a2764a")
+f.look("innkeeper", shirt="#d9cdb5", robe=True, apron="#c4544a", hair="#4a3a2a", hairStyle="long", headcloth="#c4544a", band="#8a2e2a", sandals=True, shoes="#4a3a2e", skirt=True)
+f.look("robber1", shirt="#4a4a52", hair="#1f1f1f", headcloth="#2b2622", band="#8a2e2a", belt="#2b2622", legs="#2b2622", shoes="#2b2622", mantle="#3a3a42")
+f.look("robber2", shirt="#5a3a3a", hair="#1f1f1f", headcloth="#5a3a3a", band="#2b2622", belt="#2b2622", legs="#3a2a2a", shoes="#2b2622")
+CROWD = [dict(shirt="#c4544a", robe=True, hair="#2d2a26", sash="#e8c25a"), dict(shirt="#e0b04a", robe=True, hair="#7a4b2c", hairStyle="long", headcloth="#e0b04a", band="#8a6a2a"),
+         dict(shirt="#8a6fb0", robe=True, hair="#1f1f1f", beard="#1f1f1f", sash="#d9d3c8"), dict(shirt="#4fa59a", robe=True, hair="#3a2a1e", hairStyle="long", headcloth="#e8e0cc", band="#4fa59a"),
+         dict(shirt="#d98a3a", hair="#5a3c24", vest="#7a4a2a", legs="#d9c6a0", sandals=True), dict(shirt="#6f9e55", robe=True, hair="#2d2a26", hairStyle="curly", sash="#8a4a2a")]
+for k, d in enumerate(CROWD): f.look(f"c{k}", **{"sandals": True, "shoes": "#4a3a2e", **d})
 
 # ---------------------------------------------------------------- places
 f.place("hill", Wb.hillside("day"))
